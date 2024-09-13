@@ -129,6 +129,7 @@ filters/rcllatinstops.zip
 filters/rcllink.py
 filters/rcllyx
 filters/rclman
+filters/rclmd.py
 filters/rclmidi.py
 filters/rclnamefilter.py
 filters/rclnull.py
@@ -194,6 +195,15 @@ index/rclmon.h
 index/rclmon.sh
 index/rclmonprc.cpp
 index/rclmonrcv.cpp
+index/rclmonrcv.h
+index/rclmonrcv_fam.cpp
+index/rclmonrcv_fam.h
+index/rclmonrcv_fsevents.cpp
+index/rclmonrcv_fsevents.h
+index/rclmonrcv_inotify.cpp
+index/rclmonrcv_inotify.h
+index/rclmonrcv_win32.cpp
+index/rclmonrcv_win32.h
 index/recollindex.cpp
 index/recollindex.h
 index/recollindex.service

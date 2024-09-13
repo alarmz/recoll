@@ -1,5 +1,17 @@
 recoll (1.40.1-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
+  * MacOS: add real time indexing capability. No impact on other OSes.
+  * GUI: when directory side filter depth is set to zero, do not build the
+    directory tree: should improve startup speed.
+  * Manage very long paths (hashed UDI) when building the directory tree.
+  * Avoid some exceptions during filter exit (esp. pdf). These had no
+    impact but caused nasty messages.
+  * Markdown indexer with front matter parser.
+
+ -- Jean-Francois Dockes <jf@dockes.org>  Fri, 14 Sep 2024 20:54:00 +0200
+
+recoll (1.40.1-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
   * PDF: fix issue with opening snippets at the right page.
   * Fix preview issues under wayland.
   
