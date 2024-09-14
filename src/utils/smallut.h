@@ -133,7 +133,7 @@ template <class T> std::string stringsToString(const T& tokens);
  * " inside tokens is escaped as "" ([word "quote"] =>["word ""quote"""]
  * See instantiation note above.
  */
-template <class T> void stringsToCSV(const T& tokens, std::string& s, char sep = ',');
+template <class T> std::string stringsToCSV(const T& tokens, char sep = ',');
 
 /** Find longest common prefix for bunch of strings */
 template <class T> std::string commonprefix(const T& values);
@@ -167,8 +167,7 @@ extern std::string escapeHtml(const std::string& in);
 extern std::string makeCString(const std::string& in);
 
 /** Replace some chars with spaces (ie: newline chars). */
-extern std::string neutchars(const std::string& str, const std::string& chars,
-                             char rep = ' ');
+extern std::string neutchars(const std::string& str, const std::string& chars, char rep = ' ');
 extern void neutchars(const std::string& str, std::string& out,
                       const std::string& chars, char rep = ' ');
 
@@ -176,8 +175,7 @@ extern void neutchars(const std::string& str, std::string& out,
  *  quote with double-quotes and escape $`\ */
 extern std::string escapeShell(const std::string& in);
 
-/** Truncate a string to a given maxlength, avoiding cutting off midword
- *  if reasonably possible. */
+/** Truncate a string to a given maxlength, avoiding cutting off midword if reasonably possible. */
 extern std::string truncate_to_word(const std::string& input, std::string::size_type maxlen);
 
 void ulltodecstr(uint64_t val, std::string& buf);
@@ -194,10 +192,11 @@ std::string breakIntoLines(const std::string& in, unsigned int ll = 100, unsigne
 /** Small utility to substitute printf-like percents cmds in a string */
 bool pcSubst(const std::string& in, std::string& out, const std::map<char, std::string>& subs);
 /** Substitute printf-like percents and also %(key) */
-bool pcSubst(const std::string& in, std::string& out,
-             const std::map<std::string, std::string>& subs);
+bool pcSubst(
+    const std::string& in, std::string& out, const std::map<std::string, std::string>& subs);
 /** Substitute printf-like percents and %(nm), using result of function call */
-bool pcSubst(const std::string& i, std::string& o, const std::function<std::string(const std::string&)>&);
+bool pcSubst(
+    const std::string& i, std::string& o, const std::function<std::string(const std::string&)>&);
 
 /** Stupid little smart buffer handler avoiding value-initialization when not needed (e.g. for using
     as read buffer **/
@@ -215,8 +214,7 @@ public:
 /** Append system error message */
 void catstrerror(std::string *reason, const char *what, int _errno);
 
-/** Portable timegm. MS C has _mkgmtime, but there is a bug in Gminw which
- * makes it inaccessible */
+/** Portable timegm. MS C has _mkgmtime, but there is a bug in Gminw which makes it inaccessible */
 time_t portable_timegm(struct tm *tm);
 
 inline void leftzeropad(std::string &s, unsigned len) {

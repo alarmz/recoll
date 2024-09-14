@@ -454,8 +454,7 @@ void RecollModel::saveAsCSV(std::fstream& fp)
         QString qs = headerData(col, Qt::Horizontal,Qt::DisplayRole).toString();
         tokens.push_back((const char *)qs.toUtf8());
     }
-    string csv;
-    stringsToCSV(tokens, csv);
+    auto csv = stringsToCSV(tokens);
     fp << csv << "\n";
     tokens.clear();
 
@@ -467,7 +466,7 @@ void RecollModel::saveAsCSV(std::fstream& fp)
         for (int col = 0; col < cols; col++) {
             tokens.push_back(m_getters[col](m_fields[col], doc));
         }
-        stringsToCSV(tokens, csv);
+        csv = stringsToCSV(tokens);
         fp << csv << "\n";
         tokens.clear();
     }

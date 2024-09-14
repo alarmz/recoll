@@ -426,9 +426,9 @@ template <class T> std::string stringsToString(const T& tokens)
     return out;
 }
 
-template <class T> void stringsToCSV(const T& tokens, std::string& s, char sep)
+template <class T> std::string stringsToCSV(const T& tokens, char sep)
 {
-    s.erase();
+    std::string s;
     for (const auto& tok : tokens) {
         bool needquotes = false;
         if (tok.empty() || tok.find_first_of(std::string(1, sep) + "\"\n") != std::string::npos) {
@@ -452,6 +452,7 @@ template <class T> void stringsToCSV(const T& tokens, std::string& s, char sep)
     // Remove last separator.
     if (!s.empty())
         s.pop_back();
+    return s;
 }
 
 template <class T> std::string commonprefix(const T& values)
@@ -500,10 +501,8 @@ template std::string stringsToString<std::vector<std::string>>(const std::vector
 template std::string stringsToString<std::set<std::string>>(const std::set<std::string>&);
 template std::string stringsToString<std::unordered_set<std::string>>(
     const std::unordered_set<std::string>&);
-template void stringsToCSV<std::list<std::string>>(
-    const std::list<std::string>&, std::string&, char);
-template void stringsToCSV<std::vector<std::string>>(
-    const std::vector<std::string>&, std::string&, char);
+template std::string stringsToCSV<std::list<std::string>>(const std::list<std::string>&, char);
+template std::string stringsToCSV<std::vector<std::string>>(const std::vector<std::string>&, char);
 template std::string commonprefix<std::vector<std::string>>(const std::vector<std::string>&values);
 #endif
 
