@@ -6,15 +6,14 @@
 
 qtgui_conf = configuration_data()
 qtgui_conf.set('srcdir', meson.current_source_dir())
-if get_option('webkit') and not get_option('webengine')
-    qtgui_conf.set('QMAKE_ENABLE_WEBKIT', '')
-else
-    qtgui_conf.set('QMAKE_ENABLE_WEBKIT', '#')
-endif
+qtgui_conf.set('QMAKE_ENABLE_WEBKIT', '#')
+qtgui_conf.set('QMAKE_ENABLE_WEBENGINE', '#')
 if get_option('webengine')
     qtgui_conf.set('QMAKE_ENABLE_WEBENGINE', '')
 else
-    qtgui_conf.set('QMAKE_ENABLE_WEBENGINE', '#')
+    if get_option('webkit')
+        qtgui_conf.set('QMAKE_ENABLE_WEBKIT', '')
+    endif
 endif
 if get_option('qtzeitgeist')
     qtgui_conf.set('QMAKE_ENABLE_ZEITGEIST', '')
