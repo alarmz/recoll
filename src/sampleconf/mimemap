@@ -16,7 +16,7 @@
 .txt = text/plain
 .text = text/plain
 .rst = text/plain
-.md = text/plain
+.md = text/markdown
 .gv = text/plain
 .desktop = text/plain
 .json = text/plain

@@ -218,6 +218,7 @@ application/x-tex = emacsclient --no-wait  %f
 application/xml = emacsclient --no-wait  %f
 text/xml = emacsclient --no-wait  %f
 text/x-tex = emacsclient --no-wait  %f
+text/markdown = emacsclient --no-wait  %f
 text/plain = emacsclient --no-wait  %f
 text/x-awk = emacsclient --no-wait  %f
 text/x-c = emacsclient --no-wait  %f

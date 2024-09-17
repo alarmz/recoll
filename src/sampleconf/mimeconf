@@ -213,7 +213,8 @@ inode/x-empty = internal application/x-zerosize
 message/rfc822 = internal
 text/calendar = execm rclics.py;mimetype=text/plain
 text/css = internal text/plain
-text/html  = internal 
+text/html  = internal
+text/markdown = execm rclmd.py
 text/plain = internal
 # See comment in mh_execm.cpp about text/plain1
 text/plain1 = internal 
@@ -362,6 +363,7 @@ text/html = html
 text/html|chm = bookchap
 text/html|epub = bookchap
 text/html|gnuinfo = bookchap
+text/markdown = txt
 text/plain = txt
 text/rtf = wordprocessing
 application/rtf = wordprocessing
@@ -453,6 +455,7 @@ text = \
       text/calendar \
       text/css \
       text/html \
+      text/markdown \
       text/plain \
       text/rtf \
       application/rtf \
