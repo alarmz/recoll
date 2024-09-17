@@ -55,7 +55,12 @@ bool RclMonitor::isOrphaned() {
     return false;
 #else
     pid_t currentParentPid = getppid();
-    return currentParentPid != m_originalParentPid;
+
+    // For the case currentParentPid==1 see https://stackoverflow.com/a/68648482/4216175
+    // Essentially, in Linux and macOS, when the process looses its parent,
+    // a new id is automatically assigned. In this case, the id 1 of the init process
+    // is automatically assigned.
+    return currentParentPid == 1 || currentParentPid != m_originalParentPid;
 #endif
 }
 
