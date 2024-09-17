@@ -24,6 +24,7 @@
 
 import os
 import re
+import sys
 import rclexecm  # For communicating with recoll
 import yaml  # Import PyYAML for parsing YAML front matter
 from rclbasehandler import RclBaseHandler
@@ -41,12 +42,48 @@ _htmlsuffix = b'''
 </pre></body></html>'''
 ####
 
-class MDhandler(RclBaseHandler):
-    tags = []
+def get_file_times(file_path):
+    # Get modification time (mtime)
+    modification_time = os.path.getmtime(file_path)
 
+    # Get change time (ctime)
+    if sys.platform == 'darwin':  # macOS
+        # On macOS, use st_ctime for change time
+        stat_info = os.stat(file_path)
+        change_time = stat_info.st_ctime
+
+        # Get birth (creation) time
+        if hasattr(stat_info, 'st_birthtime'):
+            birth_time = stat_info.st_birthtime
+        else:
+            birth_time = os.path.getctime(file_path)
+    elif sys.platform == 'win32':  # Windows
+        # On Windows, os.path.getctime() gives creation time (used as birth time)
+        birth_time = os.path.getctime(file_path)
+        change_time = birth_time  # Windows doesn't have a change time like Linux/macOS
+    else:  # Linux or other Unix systems
+        # On Linux, os.path.getctime() typically gives the last metadata change time (ctime)
+        change_time = os.path.getctime(file_path)
+        
+        # Linux often doesn't track creation time, so we fallback to ctime
+        birth_time = os.path.getctime(file_path)
+
+    # Round the Unix timestamps to the nearest second and convert to string
+    modification_time_unix = str(round(modification_time))
+    change_time_unix = str(round(change_time))
+    birth_time_unix = str(round(birth_time))
+
+    return modification_time_unix, change_time_unix, birth_time_unix
+
+
+class MDhandler(RclBaseHandler):
     def __init__(self, em):
         super(MDhandler, self).__init__(em)
 
+        self.RCLMD_CREATED = os.environ.get('RCLMD_CREATED',None);
+        self.RCLMD_MODIFIED = os.environ.get('RCLMD_CREATED',None);
+        self.RCLMD_DATEFORMAT = os.environ.get('RCLMD_DATEFORMAT',None);
+        
     def parse_md_file(self, text_content):
         """Extract YAML front matter and return it along with the body content."""
         frontmatter = {}
@@ -71,7 +108,6 @@ class MDhandler(RclBaseHandler):
         return stripped_tags
 
     def html_text(self, filename):
-
         basename = os.path.splitext(os.path.basename(filename))[0].decode('utf-8')
 
         # Regular expression to match a date followed by a space and then the rest of the title
@@ -104,20 +140,23 @@ class MDhandler(RclBaseHandler):
         # Parse the front matter and get the body content
         frontmatter, body_content = self.parse_md_file(text_content)
 
-        # Include the Markdown content without the front matter
+        # We start with empty variables and try to fill them in using data from the frontmatter 
+        created = None
+        modified = None
+        # Process frontmatter
         if frontmatter is not {}:
-            # if 'created' in frontmatter:
-            #     date_format = '%Y-%m-%d, %H:%M:%S'
-            #     date_obj = datetime.strptime(frontmatter['created'], date_format)
-            #     # self.em.log(date_obj.timestamp())
-            #     self.em.setfield("dctime", str(int(date_obj.timestamp())))
-        
-            if 'modified' in frontmatter:
-                date_format = '%Y-%m-%d, %H:%M:%S'
-                date_obj = datetime.strptime(frontmatter['modified'], date_format)
-                # self.em.log(date_obj.timestamp())
-                self.em.setfield("dmtime", str(int(date_obj.timestamp())))
-        
+            # If the datetime format is provided
+            if self.RCLMD_DATEFORMAT:
+                if self.RCLMD_CREATED and 'created' in frontmatter:
+                    date_format = '%Y-%m-%d, %H:%M:%S'
+                    date_obj = datetime.strptime(frontmatter[self.RCLMD_CREATED], date_format)
+                    created = str(round(date_obj.timestamp()))
+            
+                if self.RCLMD_MODIFIED and 'modified' in frontmatter:
+                    date_format = '%Y-%m-%d, %H:%M:%S'
+                    date_obj = datetime.strptime(frontmatter[self.RCLMD_MODIFIED], date_format)
+                    created = str(round(date_obj.timestamp()))
+                    
             # Extract tags from the front matter
             tags = self.extract_tags(frontmatter)
 
@@ -130,6 +169,19 @@ class MDhandler(RclBaseHandler):
                 output += b'<meta name="tags" content="' + \
                           rclexecm.htmlescape(rclexecm.makebytes(tag)) + b'">\n'
 
+        # Fallback case when the creation and modification time could not be determined from the frontmatter
+        if(created is None or modified is None):
+            modified_from_file, changed_from_file, created_from_file = get_file_times(filename)
+            if(created is None):
+                created = created_from_file
+            if(modified is None):
+                modified = modified_from_file
+
+        # self.em.log("Field 'created' set to: " + created)
+        # self.em.log("Field 'modified' set to: " + modified)
+    
+        self.em.setfield("created",created)
+        self.em.setfield("modified",modified)
 
         output += _htmlmidfix
         output += rclexecm.htmlescape(body_content.encode('utf-8'))
