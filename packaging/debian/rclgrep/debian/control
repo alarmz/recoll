@@ -29,7 +29,7 @@ Recommends: antiword,
             python3-mutagen,
             python3-rarfile,
             unrtf,
-            unzip,sfami
+            unzip,
             xdg-utils
 Suggests: ghostscript,
           untex,
