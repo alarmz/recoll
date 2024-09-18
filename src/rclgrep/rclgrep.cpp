@@ -104,7 +104,6 @@ static struct option long_options[] = {
     {"recurse", 0, 0, 'r'},
     {"include", required_argument, 0, OPTVAL_INCLUDE},
     {"version", 0, 0, 'V'},
-    {"word-regexp", 0, 0, 'w'},
     {"silent", 0, 0, 'q'},
     {"quiet", 0, 0, 'q'},
     {"no-messages", 0, 0, 's'},
@@ -114,6 +113,31 @@ static struct option long_options[] = {
     {"exclude-from", required_argument, 0, OPTVAL_EXCLUDEFROM},
     {0, 0, 0, 0}
 };
+
+std::string thisprog;
+static const char usage [] =
+"\n"
+"rclgrep [--help] \n"
+"    Print help\n"
+"rclgrep [pattern] [<path [path ...]>]\n"
+"    Search files and (recursively) directories for a match of <pattern>.\n"
+"  -e PATTERNS, --regexp=PATTERNS patterns to search for. Can be given multiple times.\n"
+"    if -e is used, all non-option arguments will be used as paths (no [pattern] argument).\n"
+"  -f FILE, --file=FILE get patterns from the file argument, one per line\n"
+"  -r, --recurse: operate recursively on directories. This is the default except if no paths\n"
+"    are given in which case rclgrep searches stdin. Use -r to cause recursing on . in this case\n"
+"  --include=FN file name pattern for files to be searched. Can be given multiple times\n"
+"  --exclude=FN file name pattern for files not to be searched. Can be given multiple times\n"
+"  --exclude-from=FILE take file name exclusion patterns from FILE\n"
+"  --config <configdir> : specify configuration directory (default ~/.config/rclgrep)\n"
+    "  -v,-w,-x,-c,-L,-l,-H,-n,-A,-B,-C,-q,-s,-R : see grep manual.\n"
+;
+
+static void Usage(FILE* fp = stdout)
+{
+    fprintf(fp, "%s: Usage: %s", path_getsimple(thisprog).c_str(), usage);
+    exit(1);
+}
 
 std::vector<SimpleRegexp *> g_expressions;
 int g_reflags = SimpleRegexp::SRE_NOSUB;
@@ -173,7 +197,6 @@ void grepit(std::istream& instream, const Rcl::Doc& doc)
     int matchcount = 0;
     std::deque<std::string> beflines;
     int lnum = 0;
-    int idx;
     std::string ln;
     bool inmatch{false};
     int aftercount = 0;
@@ -184,7 +207,6 @@ void grepit(std::istream& instream, const Rcl::Doc& doc)
             break;
         }
 
-        idx = lnum;
         ++lnum;
         if ((op_flags & OPT_n) && !(op_flags & OPT_c)) {
             ln = ulltodecstr(lnum) + ":";
@@ -253,8 +275,7 @@ void grepit(std::istream& instream, const Rcl::Doc& doc)
 
 bool processpath(RclConfig *config, const std::string& path)
 {
-//    LOGINF("processpath: [" << path << "]\n");
-//    std::cerr << "processpath: [" << path << "]\n";
+    LOGDEB1("processpath: [" << path << "]\n");
     if (path.empty()) {
         // stdin
         Rcl::Doc doc;
@@ -279,7 +300,6 @@ bool processpath(RclConfig *config, const std::string& path)
         mimetype = interner.getMimetype();
 
         FileInterner::Status fis = FileInterner::FIAgain;
-        bool hadNonNullIpath = false;
         Rcl::Doc doc;
         while (fis == FileInterner::FIAgain) {
             doc.erase();
@@ -306,15 +326,15 @@ bool processpath(RclConfig *config, const std::string& path)
 
 class WalkerCB : public FsTreeWalkerCB {
 public:
-    WalkerCB(const std::vector<std::string>& selpats, RclConfig *config)
-        : m_pats(selpats), m_config(config) {}
+    WalkerCB(const std::vector<std::string>& fnincl, RclConfig *config)
+        : m_fnincludes(fnincl), m_config(config) {}
     virtual FsTreeWalker::Status processone(
         const std::string& fn, FsTreeWalker::CbFlag flg, const struct PathStat&) override {
         if (flg == FsTreeWalker::FtwRegular) {
-            if (m_pats.empty()) {
+            if (m_fnincludes.empty()) {
                 processpath(m_config, fn);
             } else {
-                for (const auto& pat : m_pats) {
+                for (const auto& pat : m_fnincludes) {
                     if (fnmatch(pat.c_str(), fn.c_str(), 0) == 0) {
                         processpath(m_config, fn);
                         break;
@@ -324,21 +344,22 @@ public:
         }
         return FsTreeWalker::FtwOk;
     }
-    const std::vector<std::string>& m_pats;
+    const std::vector<std::string>& m_fnincludes;
     RclConfig *m_config{nullptr};
 };
 
 bool recursive_grep(RclConfig *config, const std::string& top,
-                    const std::vector<std::string>& selpats,const std::vector<std::string>& exclpats)
+                    const std::vector<std::string>& fnincludes,
+                    const std::vector<std::string>& fnexcludes)
 {
 //    std::cerr << "recursive_grep: top : [" << top << "]\n";
-    WalkerCB cb(selpats, config);
+    WalkerCB cb(fnincludes, config);
     int opts = FsTreeWalker::FtwTravNatural;
     if (op_flags & OPT_R) {
         opts |= FsTreeWalker::FtwFollow;
     }
     FsTreeWalker walker(opts);
-    walker.setSkippedNames(exclpats);
+    walker.setSkippedNames(fnexcludes);
     current_topdir = top;
     if (path_isdir(top)) {
         path_catslash(current_topdir);
@@ -348,7 +369,8 @@ bool recursive_grep(RclConfig *config, const std::string& top,
 }
 
 bool processpaths(RclConfig *config, const std::vector<std::string> &_paths,
-                  const std::vector<std::string>& selpats, const std::vector<std::string>& exclpats)
+                  const std::vector<std::string>& fnincludes,
+                  const std::vector<std::string>& fnexcludes)
 {
     if (_paths.empty())
         return true;
@@ -364,7 +386,7 @@ bool processpaths(RclConfig *config, const std::vector<std::string> &_paths,
     for (const auto& path : paths) {
         LOGDEB("processpaths: " << path << "\n");
         if (path_isdir(path)) {
-            recursive_grep(config, path, selpats, exclpats);
+            recursive_grep(config, path, fnincludes, fnexcludes);
         } else {
             if (!path_readable(path)) {
                 if (!(op_flags & OPT_s)) {
@@ -412,24 +434,6 @@ std::string make_config()
     return confdir;
 }
 
-std::string thisprog;
-
-static const char usage [] =
-"\n"
-"rclgrep [--help] \n"
-"    Print help\n"
-"rclgrep [-f] [<path [path ...]>]\n"
-"    Search files.\n"
-"    --config <configdir> : specify configuration directory (default ~/.config/rclgrep)\n"
-"  -e PATTERNS, --regexp=PATTERNS patterns to search for. Can be given multiple times\n"
-;
-
-static void Usage(FILE* fp = stdout)
-{
-    fprintf(fp, "%s: Usage: %s", path_getsimple(thisprog).c_str(), usage);
-    exit(1);
-}
-
 static void add_expressions(const std::string& exps)
 {
     std::vector<std::string> vexps;
@@ -465,8 +469,7 @@ static void exps_from_file(const std::string& fn)
     g_expstrings.push_back(data);
 }
 
-std::vector<std::string> g_excludestrings;
-static void excludes_from_file(const std::string& fn)
+std::string excludes_from_file(const std::string& fn)
 {
     std::string data;
     std::string reason;
@@ -474,13 +477,13 @@ static void excludes_from_file(const std::string& fn)
         std::cerr << "Could not read " << fn << " : " << reason << "\n";
         exit(1);
     }
-    g_excludestrings.push_back(data);
+    return data;
 }
 
-static std::vector<std::string> buildexcludes()
+static std::vector<std::string> buildexcludes(const std::vector<std::string>& data)
 {
     std::vector<std::string> ret;
-    for (const auto& lst : g_excludestrings) {
+    for (const auto& lst : data) {
         std::vector<std::string> v;
         stringToTokens(lst, v, "\n");
         for (const auto& s : v) {
@@ -494,7 +497,8 @@ int main(int argc, char *argv[])
 {
     int ret;
     std::string a_config;
-    std::vector<std::string> selpatterns;
+    std::vector<std::string> fnincludes;
+    std::vector<std::string> fnexcludedata;
     
     while ((ret = getopt_long(argc, argv, "A:B:C:HLRVce:f:hilnp:qrsvwx",
                               long_options, NULL)) != -1) {
@@ -513,7 +517,7 @@ int main(int argc, char *argv[])
         case 'i': op_flags |= OPT_i; g_reflags |= SimpleRegexp::SRE_ICASE; break;
         case 'l': op_flags |= OPT_l|OPT_c; break;
         case 'n': op_flags |= OPT_n; break;
-        case 'p': op_flags |= OPT_p; selpatterns.push_back(optarg); break;
+        case 'p': op_flags |= OPT_p; fnincludes.push_back(optarg); break;
         case 'q': op_flags |= OPT_q; break;
         case 'r': op_flags |= OPT_r|OPT_H; break;
         case 's': op_flags |= OPT_s; break;
@@ -522,9 +526,9 @@ int main(int argc, char *argv[])
         case 'x': op_flags |= OPT_x; break;
         case OPTVAL_RECOLL_CONFIG: a_config = optarg; break;
         case OPTVAL_HELP: Usage(stdout); break;
-        case OPTVAL_INCLUDE: selpatterns.push_back(optarg); break;
-        case OPTVAL_EXCLUDE: g_excludestrings.push_back(optarg); break;
-        case OPTVAL_EXCLUDEFROM: excludes_from_file(optarg); break;
+        case OPTVAL_INCLUDE: fnincludes.push_back(optarg); break;
+        case OPTVAL_EXCLUDE: fnexcludedata.push_back(optarg); break;
+        case OPTVAL_EXCLUDEFROM: fnexcludedata.push_back(excludes_from_file(optarg)); break;
         default: Usage(); break;
         }
     }
@@ -585,8 +589,8 @@ int main(int argc, char *argv[])
         }
     }
 
-    auto excludes = buildexcludes();
-    bool status = processpaths(config, paths, selpatterns, excludes);
+    auto fnexcludes = buildexcludes(fnexcludedata);
+    bool status = processpaths(config, paths, fnincludes, fnexcludes);
     if (op_flags&OPT_q) {
         exit(1);
     }
