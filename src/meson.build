@@ -26,7 +26,7 @@ project(
     # We'd like to use version: files('RECOLL-VERSION.txt') but this is a 0.56 feature. 
     # Ubuntu focal has 0.53 and is supported until 2025-04.
     version: '1.40.2', # VERSIONCOMMENT keep this here, used by setversion.sh
-    default_options: ['cpp_std=c++17', 'buildtype=debugoptimized'],
+    default_options: ['cpp_std=c++17', 'buildtype=debugoptimized', 'follow_symlinks=true'],
     meson_version: '>=0.53',
 )
 # Note: 1.38.0 had 1.38.0 for soversion, which was a mistake, because the SONAME was xxx.1 For now
