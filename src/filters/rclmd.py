@@ -26,9 +26,14 @@ import os
 import re
 import sys
 import rclexecm  # For communicating with recoll
-import yaml  # Import PyYAML for parsing YAML front matter
 from rclbasehandler import RclBaseHandler
 from datetime import datetime
+
+try:
+    import yaml
+except:
+    print("RECFILTERROR HELPERNOTFOUND python3:PyYAML")
+    sys.exit(1);
 
 ####
 _htmlprefix =b'''<html><head>
