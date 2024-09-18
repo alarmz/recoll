@@ -335,7 +335,7 @@ public:
                 processpath(m_config, fn);
             } else {
                 for (const auto& pat : m_fnincludes) {
-                    if (fnmatch(pat.c_str(), fn.c_str(), 0) == 0) {
+                    if (fnmatch(pat.c_str(), path_getsimple(fn).c_str(), 0) == 0) {
                         processpath(m_config, fn);
                         break;
                     }
