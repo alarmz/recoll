@@ -19,15 +19,16 @@
 
 #include "syngroups.h"
 
-#include "log.h"
-#include "smallut.h"
-#include "pathut.h"
-
-#include <errno.h>
 #include <unordered_map>
 #include <fstream>
 #include <iostream>
 #include <cstring>
+#include <algorithm>
+
+#include "log.h"
+#include "smallut.h"
+#include "pathut.h"
+
 
 using namespace std;
 
@@ -178,42 +179,36 @@ bool SynGroups::setfile(const string& fn)
 
         vector<string> words;
         if (!stringToStrings(line, words)) {
-            LOGERR("SynGroups:setfile: " << fn << ": bad line " << lnum <<
-                   ": " << line << "\n");
+            LOGERR("SynGroups:setfile: " << fn << ": bad line " << lnum << ": " << line << "\n");
             continue;
         }
 
         if (words.empty())
             continue;
         if (words.size() == 1) {
-            LOGERR("Syngroup::setfile(" << fn << "):single term group at line "
-                   << lnum << " ??\n");
+            LOGERR("Syngroup::setfile(" << fn << "):single term group at line " << lnum << " ??\n");
             continue;
         }
-
-        m->groups.push_back(words);
-        for (const auto& word : words) {
-            m->terms[word] = m->groups.size()-1;
+        for (auto& word : words) {
+            if (word.find_first_of(" \t") != std::string::npos) {
+                vector<string> v;
+                stringToTokens(word, v);
+                word = tokensToString(v);
+            }
+            m->terms[word] = m->groups.size();
         }
-        LOGDEB1("SynGroups::setfile: group: [" <<
-                stringsToString(m->groups.back()) << "]\n");
+        m->groups.push_back(words);
+        LOGDEB1("SynGroups::setfile: group: [" << stringsToString(m->groups.back()) << "]\n");
     }
 
     for (const auto& group : m->groups) {
         for (const auto& term : group) {
-            std::vector<std::string> words;
-            stringToTokens(term, words);
-            if (words.size() > 1) {
-                std::string multiword;
-                for (const auto& word : words) {
-                    if (!multiword.empty()) {
-                        multiword += " ";
-                    }
-                    multiword += word;
-                }
-                m->multiwords.insert(multiword);
-                if (m->multiwords_maxlen < words.size()) {
-                    m->multiwords_maxlen = words.size();
+            // Whitespace was already normalized to single 0x20
+            if (term.find(' ') != std::string::npos) {
+                size_t cnt = std::count(term.begin(), term.end(), ' ') + 1;
+                m->multiwords.insert(term);
+                if (m->multiwords_maxlen < cnt) {
+                    m->multiwords_maxlen = cnt;
                 }
             }
         }
