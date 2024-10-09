@@ -1799,6 +1799,28 @@ out:
 }
 
 static PyObject *
+Db_setSynonymsFile(recoll_DbObject *self, PyObject *args)
+{
+    if (self->db == 0) {
+        LOGERR("Db_setSynonymsFile: db not found " << self->db << "\n");
+        PyErr_SetString(PyExc_AttributeError, "db");
+        return 0;
+    }
+    PyBytesObject *py_path = NULL;
+    char *c_path;
+    Py_ssize_t path_size;
+    if (!PyArg_ParseTuple(args, "O&", PyUnicode_FSConverter, &py_path) || py_path == NULL)
+        return 0;
+    PyBytes_AsStringAndSize((PyObject *)py_path, &c_path, &path_size);
+    if (!self->db->setSynGroupsFile(c_path)) {
+        LOGERR("Db_setSynonymsFile: setSynGroupsFile failed\n");
+        PyErr_SetString(PyExc_AttributeError, "setSynGroupsFile failed");
+        return 0;
+    }
+    Py_RETURN_NONE;
+}
+
+static PyObject *
 Db_needUpdate(recoll_DbObject* self, PyObject *args, PyObject *kwds)
 {
     LOGDEB0("Db_needUpdate\n");
@@ -1983,8 +2005,10 @@ static PyMethodDef Db_methods[] = {
      "Build and return 'keyword-in-context' abstract for document\n"
      "and query."
     },
-    {"termMatch", (PyCFunction)Db_termMatch, METH_VARARGS|METH_KEYWORDS,
-     doc_Db_termMatch
+    {"termMatch", (PyCFunction)Db_termMatch, METH_VARARGS|METH_KEYWORDS, doc_Db_termMatch},
+    {"setSynonymsFile", (PyCFunction)Db_setSynonymsFile, METH_VARARGS,
+     "setSynonymsFile(path)\n"
+     " Set the synonyms file used when querying."
     },
     {"needUpdate", (PyCFunction)Db_needUpdate, METH_VARARGS,
      "needUpdate(udi, sig) -> Bool.\n"

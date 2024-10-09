@@ -4547,30 +4547,34 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
     <sect1 id="RCL.SEARCH.SYNONYMS">
       <title>Using Synonyms (1.22)</title>
 
-      <formalpara><title>Term synonyms and text search:</title> <para>in
-      general, there are two main ways to use term synonyms for
-      searching text:
+      <formalpara><title>Term synonyms and text search:</title> <para>in general, there are two main
+      ways to use term synonyms for searching text:
       <itemizedlist>
-        <listitem><para>At index creation time, they can be used to alter the 
-        indexed terms, either increasing or decreasing their number, by
-        expanding the original terms to all synonyms, or by
-        reducing all synonym terms to a canonical one.</para></listitem>
-        <listitem><para>At query time, they can be used to match texts
-        containing terms which are synonyms of the ones specified by the user,
-        either by expanding the query for all synonyms, or by reducing the user
-        entry to canonical terms (the latter only works if the corresponding
-        processing has been performed while creating the
-        index).</para></listitem> 
+        <listitem><para>At index creation time, they can be used to alter the indexed terms, either
+        increasing or decreasing their number, by expanding the original terms to all synonyms, or
+        by reducing all synonym terms to a canonical one.</para></listitem>
+        <listitem><para>At query time, they can be used to match texts containing terms which are
+        synonyms of the ones specified by the user, either by expanding the query for all synonyms,
+        or by reducing the user entry to canonical terms (the latter only works if the corresponding
+        processing has been performed while creating the index).</para></listitem>
       </itemizedlist>
       </para>
       </formalpara>
       
-      <para>&RCL; only uses synonyms at query time. A user query term which
-      part of a synonym group will be optionally expanded into an
-      <literal>OR</literal> query for all terms in the group.</para>
+      <para>With one exception, &RCL; only uses synonyms at query time. A user query term which part
+      of a synonym group will be optionally expanded into an <literal>OR</literal> query for all
+      terms in the group.</para>
 
-      <para>Synonym groups are defined inside ordinary text files. Each line
-      in the file defines a group.</para> 
+      <para>The one exception is that if the <link
+      linkend="RCL.INSTALL.CONFIG.RECOLLCONF.IDXSYNONYMS"><literal>idxsynonyms</literal></link>
+      parameter is set during indexing, and if the file contains multi-word synonyms, a multi-word
+      single term will be emitted for every occurrence found in the text. If the same file is in use
+      at query time, this will allow phrase and proximity searches to work for the multi-word
+      synonyms.</para>
+
+
+      <para>Synonym groups are defined inside ordinary text files. Each line in the file defines a
+      group.</para>
 
       <para>Example:
       <programlisting>
@@ -5586,6 +5590,11 @@ db = recoll.connect(extra_dbs=["/home/me/.someconfdir/xapiandb", "/data/othercon
               <term>Db.close()</term><listitem><para>Closes the connection. You can't do anything
                   with the <classname>Db</classname> object after this. If the index was opened as
                   writable, this commits any pending change.</para></listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Db.setSynonymsFile(path)</term><listitem><para>Set the synonyms file used when
+              querying."</para></listitem>
             </varlistentry>
 
           </variablelist>

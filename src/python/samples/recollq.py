@@ -95,9 +95,10 @@ extra_dbs = []
 # Snippet params
 maxchars = 120
 contextwords = 4
+syngroupsfile=""
 # Process options: [-c confdir] [-i extra_db [-i extra_db] ...]
 try:
-    options, args = getopt(sys.argv[1:], "c:i:")
+    options, args = getopt(sys.argv[1:], "c:i:T:")
 except Exception as ex:
     print(f"{ex}")
     sys.exit(1)
@@ -106,6 +107,8 @@ for opt,val in options:
         confdir = val
     elif opt == "-i":
         extra_dbs.append(val)
+    elif opt == "-T":
+        syngroupsfile = val
     else:
         print("Bad opt: %s"%(opt,))
         Usage()
@@ -121,5 +124,6 @@ for word in args:
 print(f"QUERY: [{q}]")
 db = recoll.connect(confdir=confdir, extra_dbs=extra_dbs)
 db.setAbstractParams(maxchars=maxchars, contextwords=contextwords)
-
+if syngroupsfile:
+    db.setSynonymsFile(syngroupsfile)
 doquery(db, q)

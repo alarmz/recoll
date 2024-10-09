@@ -6525,11 +6525,19 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
             </li>
           </ul>
         </div>
-        <p><span class="application">Recoll</span> only uses
-        synonyms at query time. A user query term which part of a
-        synonym group will be optionally expanded into an
-        <code class="literal">OR</code> query for all terms in the
-        group.</p>
+        <p>With one exception, <span class=
+        "application">Recoll</span> only uses synonyms at query
+        time. A user query term which part of a synonym group will
+        be optionally expanded into an <code class=
+        "literal">OR</code> query for all terms in the group.</p>
+        <p>The one exception is that if the <a class="link" href=
+        "#RCL.INSTALL.CONFIG.RECOLLCONF.IDXSYNONYMS"><code class=
+        "literal">idxsynonyms</code></a> parameter is set during
+        indexing, and if the file contains multi-word synonyms, a
+        multi-word single term will be emitted for every occurrence
+        found in the text. If the same file is in use at query
+        time, this will allow phrase and proximity searches to work
+        for the multi-word synonyms.</p>
         <p>Synonym groups are defined inside ordinary text files.
         Each line in the file defines a group.</p>
         <p>Example:</p>
@@ -7935,6 +7943,12 @@ db = recoll.connect(extra_dbs=["/home/me/.someconfdir/xapiandb", "/data/othercon
                     with the <code class="classname">Db</code>
                     object after this. If the index was opened as
                     writable, this commits any pending change.</p>
+                  </dd>
+                  <dt><span class=
+                  "term">Db.setSynonymsFile(path)</span></dt>
+                  <dd>
+                    <p>Set the synonyms file used when
+                    querying."</p>
                   </dd>
                 </dl>
               </div>
