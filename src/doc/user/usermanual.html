@@ -1304,7 +1304,7 @@ indexedmimetypes = application/pdf</pre>
           this becomes a performance issue, and may even be an SSD
           disk wear issue.</p>
           <p>The problem can be mitigated by using the following
-          mitigations:</p>
+          approaches:</p>
           <div class="itemizedlist">
             <ul class="itemizedlist" style=
             "list-style-type: disc;">
@@ -1334,10 +1334,13 @@ indexedmimetypes = application/pdf</pre>
           </div>
           <p><span class="application">Recoll</span> versions 1.38
           and newer have an option to use <a class="link" href=
-          "#">multiple temporary indexes and a final merge</a>
-          internally. This is mostly a performance optimization,
-          but it may be a simple solution for the index size issue,
-          but it may not provide enough control over the temporary
+          "#RCL.INDEXING.CONFIG.MULTIDX" title=
+          "2.3.5.&nbsp;Using multiple temporary indexes to improve indexing time">
+          multiple temporary indexes and a final merge</a>
+          internally. This was designed as a CPU performance
+          optimization (increasing parallelism), but it may also
+          provide a simple solution for the index size issue,
+          though it may not give enough control over the temporary
           indexes physical placement for really huge datasets.</p>
         </div>
       </div>
@@ -11107,10 +11110,12 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                 "RCL.INSTALL.CONFIG.RECOLLCONF.IDXSYNONYMS"></a><span class="term"><code class="varname">idxsynonyms</code></span></dt>
                 <dd>
                   <p>Name of the index-time synonyms file. This is
-                  used for indexing multiword synonyms as single
-                  terms, which in turn is only useful if you want
-                  to perform proximity searches with such
-                  terms.</p>
+                  only used to issue multi-word single terms for
+                  multi-word synonyms so that phrase and proximity
+                  searches work for them (ex: applejack "apple
+                  jack"). The feature will only have an effect for
+                  querying if the query-time and index-time synonym
+                  files are the same.</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.IDXNICEPRIO" id=

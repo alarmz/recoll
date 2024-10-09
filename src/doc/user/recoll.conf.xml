@@ -734,9 +734,9 @@ space issues.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.IDXSYNONYMS">
 <term><varname>idxsynonyms</varname></term>
-<listitem><para>Name of the index-time synonyms file. This is used for indexing multiword synonyms as single terms,
-which in turn is only useful if you want to perform proximity searches
-with such terms.
+<listitem><para>Name of the index-time synonyms file. This is only used to issue multi-word single terms for multi-word synonyms so that phrase
+and proximity searches work for them (ex: applejack "apple jack"). The feature will only have an
+effect for querying if the query-time and index-time synonym files are the same.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.IDXNICEPRIO">
 <term><varname>idxniceprio</varname></term>

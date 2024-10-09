@@ -459,7 +459,8 @@ public:
     }
     bool doFlush();
 
-    // Use empty fn for no synonyms
+    // Read and store a synonyms groups file. Use empty fn to reset. Different uses at query
+    // and index times. See the comments for m_syngroups for a detailed explanation.
     bool setSynGroupsFile(const std::string& fn);
     const SynGroups& getSynGroups() {return *m_syngroups;}
     
@@ -492,13 +493,24 @@ private:
     // First fs occup check ?
     int         m_occFirstCheck{1};
 
-    // Synonym groups. There is no strict reason that this has to be
-    // an Rcl::Db member, as it is only used when building each query. It
-    // could be a SearchData member, or even a parameter to
-    // Query::setQuery(). Otoh, building the syngroups structure from
-    // a file may be expensive and it's unlikely to change with every
-    // query, so it makes sense to cache it, and Rcl::Db is not a bad
-    // place for this.
+    // Synonym groups. This has two different uses, at query or indexing time. The main use is at
+    // query time.
+    //  - Query time: this is set by the upper level query program (GUI or recollq, not accessible
+    //    from Python at the moment for no special reason). The synonym file name comes from
+    //    whatever upper level pref. It is used during query expansion to OR the synonym terms.
+    //    There is no strict reason that this has to be an Rcl::Db member, as it is only used when
+    //    building each query. It could be a SearchData member, or even a parameter to
+    //    Query::setQuery(). Otoh, building the syngroups structure from a file may be expensive and
+    //    it's unlikely to change with every query, so it makes sense to cache it, and Rcl::Db is
+    //    not a bad place for this.
+    // - Index time: the data comes from the idxsynonyms parameter which has no default value. It is
+    //   ONLY used for generating multiword terms to allow phrase/proximity searches to work with
+    //   multiword synonyms. Ex.: if we have an (applejack "apple jack") synonym group, without
+    //   idxsynonyms, if "apple jack" is found in a text the indexer will issue two terms at
+    //   positions x and x+1 so that a search for the "apple jack" synonym at position x will
+    //   fail. If idxsynonyms is set, the indexer will also issue a multiword "apple jack" term at
+    //   position x so that phrase/prox searches will work. Another approach would have been to have
+    //   a "phrase within phrase" at query time, but this is not supported by Xapian.
     std::unique_ptr<SynGroups> m_syngroups;
 
     // Aspell object if needed

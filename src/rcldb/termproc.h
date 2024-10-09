@@ -20,7 +20,7 @@
 #include <vector>
 #include <string>
 #include <set>
-#include <list>
+#include <deque>
 
 #include "textsplit.h"
 #include "stoplist.h"
@@ -111,9 +111,8 @@ private:
     TermProc *m_prc;
 };
 
-/** Unaccent and lowercase term. If the index is
- *  not case/diac-sensitive, this is usually the first step in the pipeline
- */
+/** Unaccent and lowercase term. If the index is not case/diac-sensitive, this is usually the
+ *  first step in the pipeline */
 class TermProcPrep : public TermProc {
 public:
     TermProcPrep(TermProc *nxt)
@@ -126,8 +125,8 @@ public:
         if (!unacmaybefold(itrm, otrm, UNACOP_UNACFOLD)) {
             LOGDEB("splitter::takeword: unac [" << itrm << "] failed\n");
             m_unacerrors++;
-            // We don't generate a fatal error because of a bad term,
-            // but one has to put the limit somewhere
+            // We don't generate a fatal error because of a bad term, but one has to put the limit
+            // somewhere
             if (m_unacerrors > 500 &&
                 (double(m_totalterms) / double(m_unacerrors)) < 2.0) {
                 // More than 1 error for every other term
@@ -139,16 +138,14 @@ public:
         }
 
         if (otrm.empty()) {
-            // It may happen in some weird cases that the output from
-            // unac is empty (if the word actually consisted entirely
-            // of diacritics ...)  The consequence is that a phrase
+            // It may happen in some weird cases that the output from unac is empty (if the word
+            // actually consisted entirely of diacritics ...)  The consequence is that a phrase
             // search won't work without additional slack.
             return true;
         }
 
-        // We should have a Japanese stemmer to handle this, but for
-        // experimenting, let's do it here: remove 'prolounged sound
-        // mark' and its halfwidth variant from the end of terms.
+        // We should have a Japanese stemmer to handle this, but for experimenting, let's do it
+        // here: remove 'prolounged sound mark' and its halfwidth variant from the end of terms.
         if ((unsigned int)otrm[0] > 127) {
             Utf8Iter it(otrm);
             if (TextSplit::isKATAKANA(*it)) {
@@ -166,14 +163,11 @@ public:
             return true;
         }
         
-        // It may also occur that unac introduces spaces in the string
-        // (when removing isolated accents, may happen for Greek
-        // for example). This is a pathological situation. We
-        // index all the resulting terms at the same pos because
-        // the surrounding code is not designed to handle a pos
-        // change in here. This means that phrase searches and
-        // snippets will be wrong, but at least searching for the
-        // terms will work.
+        // It may also occur that unac introduces spaces in the string (when removing isolated
+        // accents, may happen for Greek for example). This is a pathological situation. We index
+        // all the resulting terms at the same pos because the surrounding code is not designed to
+        // handle a pos change in here. This means that phrase searches and snippets will be wrong,
+        // but at least searching for the terms will work.
         bool hasspace = otrm.find(' ') != std::string::npos;
         if (hasspace) {
             std::vector<std::string> terms;
@@ -216,7 +210,7 @@ private:
 };
 
 /** Generate multiword terms for multiword synonyms. This allows
- * NEAR/PHRASE searches for multiword synonyms. */
+ * NEAR/PHRASE searches for multiword synonyms. See comments for m_syngroups in rcldb.h */
 class TermProcMulti : public TermProc {
 public:
     TermProcMulti(TermProc *nxt, const SynGroups& sg)
@@ -243,15 +237,12 @@ public:
                 comp += " ";
                 comp += gterm;
                 gsz++;
-                // We could optimize by not testing m_groups for sizes
-                // which do not exist.
+                // We could optimize by not testing m_groups for sizes which do not exist.
                 // if not gsz in sizes continue;
             }
             if (m_groups.find(comp) != m_groups.end()) {
-                LOGDEB1("Emitting multiword synonym: [" << comp << "] at pos " <<
-                       pos-gsz+1 << "\n");
-                // TBD bs-be correct computation. Need to store the
-                // values in a parallel list
+                LOGDEB1("Emitting multiword synonym: [" << comp << "] at pos " << pos-gsz+1 << "\n");
+                // TBD bs-be correct computation. Need to store the values in a parallel list
                 TermProc::takeword(comp, pos-gsz+1, bs-comp.size(), be);
             }
         }
@@ -261,7 +252,7 @@ public:
 private:
     const std::set<std::string>& m_groups;
     size_t m_maxl{0};
-    std::list<std::string> m_terms;
+    std::deque<std::string> m_terms;
 };
 
 /** Handle common-gram generation: combine frequent terms with neighbours to

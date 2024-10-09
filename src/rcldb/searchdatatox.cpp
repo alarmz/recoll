@@ -688,6 +688,8 @@ void SearchDataClauseSimple::processPhraseOrNear(
         orqueries.push_back(Xapian::Query(prefix + start_of_field_term));
     }
 
+    // Max term count in a multiword. See below comment about slack adjustment
+    int maxmwordlen = 0;
     // Go through the list and perform stem/wildcard expansion for each element
     auto nxit = splitData->nostemexps().begin();
     for (auto it = splitData->terms().begin(); it != splitData->terms().end(); it++, nxit++) {
@@ -705,12 +707,20 @@ void SearchDataClauseSimple::processPhraseOrNear(
         if (!expandTerm(db, ermsg, lmods, *it, exp, sterm, prefix, &multiwords))
             return;
 
-        // Note: because of how expandTerm works, the multiwords can
-        // only come from the synonyms expansion, which means that, if
-        // idxsynonyms is set, they have each been indexed as a single
-        // term. So, if idxsynonyms is set, and is the current active
-        // synonyms file, we just add them to the expansion.
+        // Note: because of how expandTerm works, the multiwords can only come from the synonyms
+        // expansion, which means that, if idxsynonyms is set, they have each been indexed as a
+        // single term. So, if idxsynonyms is set, and is the current active synonyms file, we just
+        // add them to the expansion. We have to increase the slack in this case, which will also
+        // apply to single-word expansions and cause false matches, but this is better than missing
+        // multiword matches (this is because, even if the multiword term was issued at the position
+        // of its first word during indexing, the position of the first term after the multiword is
+        // still increased by the number of words in the multiword).
         if (!multiwords.empty() && useidxsynonyms) {
+            for (const auto& mword: multiwords) {
+                int cnt = std::count(mword.begin(), mword.end(), ' ') + 1;
+                if (cnt > maxmwordlen)
+                    maxmwordlen = cnt;
+            }
             exp.insert(exp.end(), multiwords.begin(), multiwords.end());
         }
 
@@ -736,6 +746,9 @@ void SearchDataClauseSimple::processPhraseOrNear(
     // For phrases, give a relevance boost like we do for original terms
     LOGDEB2("PHRASE/NEAR:  alltermcount " << splitData->alltermcount() <<
             " lastpos " << splitData->lastpos() << "\n");
+    if (maxmwordlen > 1) {
+        slack += maxmwordlen - 1;
+    }
     Xapian::Query xq(op, orqueries.begin(), orqueries.end(),
                      static_cast<int>(orqueries.size()) + slack);
     if (op == Xapian::Query::OP_PHRASE)

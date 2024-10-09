@@ -662,7 +662,7 @@ indexedmimetypes = application/pdf</programlisting>
           index size (it is somewhere between linear and quadratic). For big indexes this becomes a
           performance issue, and may even be an SSD disk wear issue.</para>
 
-        <para>The problem can be mitigated by using the following mitigations:</para>
+        <para>The problem can be mitigated by using the following approaches:</para>
         <itemizedlist>
           <listitem><para>Partition the data set and create several indexes of reasonable size
               rather than a huge one. These indexes can then be queried in parallel (using the &RCL;
@@ -677,10 +677,11 @@ indexedmimetypes = application/pdf</programlisting>
         </itemizedlist>
 
         <para>&RCL; versions 1.38 and newer have an option to use
-          <link linkend="RCL.INDEXING.CONFIG.THREADS.MULTIDX">multiple temporary indexes and a
-            final merge</link> internally. This is mostly a performance optimization, but it may be
-          a simple solution for the index size issue, but it may not provide enough control over the
-          temporary indexes physical placement for really huge datasets.</para>
+          <link linkend="RCL.INDEXING.CONFIG.MULTIDX">multiple temporary indexes and a final
+          merge</link> internally. This was designed as a CPU performance optimization (increasing
+          parallelism), but it may also provide a simple solution for the index size issue,
+          though it may not give enough control over the temporary indexes physical placement for
+          really huge datasets.</para>
         
       </sect2>
       
