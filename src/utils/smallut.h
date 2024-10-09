@@ -151,6 +151,10 @@ extern void stringSplitString(const std::string& str,
                               std::vector<std::string>& tokens,
                               const std::string& sep);
 
+/** Join strings with string separator. No handling of quoting. */
+extern std::string tokensToString(const std::vector<std::string>& tokens,
+                                  const std::string& sep = " ");
+
 /** Convert string to boolean */
 extern bool stringToBool(const std::string& s);
 

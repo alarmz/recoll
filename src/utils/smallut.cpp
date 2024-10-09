@@ -564,6 +564,18 @@ void stringSplitString(const std::string& str, std::vector<std::string>& tokens,
     }
 }
 
+std::string tokensToString(const std::vector<std::string>& tokens, const std::string& sep)
+{
+    std::string out;
+    for (const auto& token : tokens) {
+        if (!out.empty()) {
+            out += sep;
+        }
+        out += token;
+    }
+    return out;
+}
+
 bool stringToBool(const std::string& s)
 {
     if (s.empty()) {
