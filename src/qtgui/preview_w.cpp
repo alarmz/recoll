@@ -1240,8 +1240,15 @@ void PreviewTextEdit::displayFields()
     txt += "<dl>\n";
     for (const auto& entry: m_fdoc.meta) {
         if (!entry.second.empty()) {
-            txt += "<dt>" + u8s2qs(entry.first) + "</dt> " 
-                + "<dd>" + u8s2qs(escapeHtml(entry.second)) + "</dd>\n";
+            if (prefs.pvmaxfldlen == 0 || (int)entry.second.size() < prefs.pvmaxfldlen) {
+                txt += "<dt>" + u8s2qs(entry.first) + "</dt> " 
+                    + "<dd>" + u8s2qs(escapeHtml(entry.second)) + "</dd>\n";
+            } else {
+                auto full = escapeHtml(entry.second);
+                auto summary = full.substr(0, 60) +  "...";
+                txt += "<dt>" + u8s2qs(entry.first) + "</dt> " 
+                    + "<dd><details><summary>" + u8s2qs(summary) + "</summary>" + u8s2qs(full) + "</details></dd>\n";
+            }
         }
     }
     txt += "</dl></body></html>";

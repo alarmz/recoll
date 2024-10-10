@@ -157,6 +157,7 @@ public:
     int ssearchCompleterHistCnt{0};
     QString sidefilterdateformat;
     bool ignwilds{false};
+    int pvmaxfldlen{0};
     /*INSERTHERE*/
 
     // See widgets/qxtconfirmationmessage.

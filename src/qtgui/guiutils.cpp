@@ -302,6 +302,7 @@ void rwSettings(bool writing)
     SETTING_RW(prefs.ssearchCompleterHistCnt, "/Recoll/ui/ssearchCompleterHistCnt", Int, 10)
     SETTING_RW(prefs.sidefilterdateformat, "/Recoll/ui/sidefilterdateformat", String, "");
     SETTING_RW(prefs.ignwilds, "/Recoll/search/ignwilds", Bool, false)
+    SETTING_RW(prefs.pvmaxfldlen, "/Recoll/ui/pvmaxfldlen", Int, 200)
     /*INSERTHERE*/
     
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.

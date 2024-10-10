@@ -180,6 +180,7 @@ void UIPrefsDialog::setFromPrefs()
     ssearchCompleterHistCntSB->setValue(prefs.ssearchCompleterHistCnt);
     sidefilterdateformatLE->setText(prefs.sidefilterdateformat);
     ignwildsCB->setChecked(prefs.ignwilds);
+    pvmaxfldlenSB->setValue(prefs.pvmaxfldlen);
     /*INSERTHERE_LOAD*/
 
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -463,6 +464,7 @@ void UIPrefsDialog::accept()
     prefs.ssearchCompleterHistCnt = ssearchCompleterHistCntSB->value();
     prefs.sidefilterdateformat = sidefilterdateformatLE->text();
     prefs.ignwilds = ignwildsCB->isChecked();
+    prefs.pvmaxfldlen = pvmaxfldlenSB->value();
     /*INSERTHERE_ACCEPT*/
 
     // -1 is the qxtconf... predefined value to show the dialog
