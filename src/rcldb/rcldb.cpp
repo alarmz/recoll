@@ -1318,10 +1318,9 @@ bool Db::testDbDir(const string &dir, bool *stripped_p)
     LOGDEB("Db::testDbDir: [" << dir << "]\n");
     try {
         Xapian::Database db(dir);
-        // If the prefix for mimetype is wrapped, it's an unstripped
-        // index. T has been in use in recoll since the beginning and
-        // all documents have a T field (possibly empty).
-        Xapian::TermIterator term = db.allterms_begin(":T:");
+        // If the prefix for udi is wrapped, it's an unstripped index. Q is guaranteed to exist if
+        // there is at least one doc in the index.
+        Xapian::TermIterator term = db.allterms_begin(":Q:");
         if (term == db.allterms_end()) {
             mstripped = true;
         } else {
@@ -1713,7 +1712,9 @@ bool Db::addOrUpdate(const string &udi, const string &parent_udi, Doc &doc)
         }
 
         // Split and index the path from the url for path-based filtering
-        {
+        const FieldTraits *ftp{nullptr};
+        fieldToTraits(cstr_dir, &ftp);
+        if (ftp && !ftp->pfx.empty()) {
             string path = url_gpathS(doc.url);
 
 #ifdef _WIN32
@@ -1815,29 +1816,36 @@ bool Db::addOrUpdate(const string &udi, const string &parent_udi, Doc &doc)
 #endif
 
         ////// Special terms for other metadata. No positions for these.
-        // Mime type
-        newdocument.add_boolean_term(wrap_prefix(mimetype_prefix) + doc.mimetype);
+
+        // Mime type. We check the traits in case the user has disabled mimetype indexing by setting
+        // the prefixes entry to empty. Otherwise, can't change the prefix, it's 'T'
+        fieldToTraits(cstr_mimetype, &ftp);
+        if (ftp && !ftp->pfx.empty()) {
+            newdocument.add_boolean_term(wrap_prefix(mimetype_prefix) + doc.mimetype);
+        }
 
         // Simple file name indexed unsplit for specific "file name"
         // searches. This is not the same as a filename: clause inside the
         // query language.
         // We also add a term for the filename extension if any.
-        string utf8fn;
-        if (doc.getmeta(Doc::keyfn, &utf8fn) && !utf8fn.empty()) {
-            string fn;
-            if (unacmaybefold(utf8fn, fn, UNACOP_UNACFOLD)) {
-                // We should truncate after extracting the extension,
-                // but this is a pathological case anyway
-                if (fn.size() > 230)
-                    utf8truncate(fn, 230);
-                string::size_type pos = fn.rfind('.');
-                if (pos != string::npos && pos != fn.length() - 1) {
-                    newdocument.add_boolean_term(wrap_prefix(fileext_prefix) + fn.substr(pos + 1));
+        fieldToTraits(unsplitFilenameFieldName, &ftp);
+        if (ftp && !ftp->pfx.empty()) {
+            string utf8fn;
+            if (doc.getmeta(Doc::keyfn, &utf8fn) && !utf8fn.empty()) {
+                string fn;
+                if (unacmaybefold(utf8fn, fn, UNACOP_UNACFOLD)) {
+                    // We should truncate after extracting the extension, but this is a pathological case anyway
+                    if (fn.size() > 230)
+                        utf8truncate(fn, 230);
+                    string::size_type pos = fn.rfind('.');
+                    if (pos != string::npos && pos != fn.length() - 1) {
+                        newdocument.add_boolean_term(wrap_prefix(fileext_prefix) + fn.substr(pos + 1));
+                    }
+                    newdocument.add_term(wrap_prefix(unsplitfilename_prefix) + fn, 0);
                 }
-                newdocument.add_term(wrap_prefix(unsplitfilename_prefix) + fn,0);
             }
         }
-
+        
         newdocument.add_boolean_term(uniterm);
         // Parent term. This is used to find all descendents, mostly
         // to delete them when the parent goes away

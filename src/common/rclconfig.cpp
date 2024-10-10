@@ -1281,6 +1281,10 @@ bool RclConfig::getGuiFilter(const string& catfiltername, string& frag) const
 
 bool RclConfig::valueSplitAttributes(const string& whole, string& value, ConfSimple& attrs)
 {
+    if (whole.empty()) {
+        value.clear();
+        return false;
+    }
     bool inquote{false};
     string::size_type semicol0;    
     for (semicol0 = 0; semicol0 < whole.size(); semicol0++) {
@@ -1348,6 +1352,11 @@ bool RclConfig::Internal::readFieldsConfig(const string& cnferrloc)
     for (const auto& fieldname : tps) {
         string val;
         m_fields->get(fieldname, val, "prefixes");
+        // An empty value can be used to undo the default prefix and avoid indexing the field
+        if (val.empty()) {
+            LOGDEB0("Empty fields [prefixes] setting for " << fieldname << "\n");
+            continue;
+        }
         ConfSimple attrs;
         FieldTraits ft;
         // fieldname = prefix ; attr1=val;attr2=val...
@@ -1470,19 +1479,17 @@ bool RclConfig::Internal::readFieldsConfig(const string& cnferrloc)
 }
 
 // Return specifics for field name:
-bool RclConfig::getFieldTraits(const string& _fld, const FieldTraits **ftpp,
-                               bool isquery) const
+bool RclConfig::getFieldTraits(const string& _fld, const FieldTraits **ftpp, bool isquery) const
 {
     string fld = isquery ? fieldQCanon(_fld) : fieldCanon(_fld);
     map<string, FieldTraits>::const_iterator pit = m->m_fldtotraits.find(fld);
     if (pit != m->m_fldtotraits.end()) {
         *ftpp = &pit->second;
-        LOGDEB1("RclConfig::getFieldTraits: [" << _fld << "]->["  <<
-                pit->second.pfx << "]\n");
+        LOGDEB1("RclConfig::getFieldTraits: [" << _fld << "]->["  << pit->second.pfx << "]\n");
         return true;
     } else {
         LOGDEB1("RclConfig::getFieldTraits: no prefix for field [" << fld << "]\n");
-        *ftpp = 0;
+        *ftpp = nullptr;
         return false;
     }
 }

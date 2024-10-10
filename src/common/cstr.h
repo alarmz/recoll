@@ -41,6 +41,7 @@
 
 DEF_CSTR(caption, "caption");
 DEF_CSTR(colon, ":");
+DEF_CSTR(dir, "dir");
 DEF_CSTR(dmtime, "dmtime");
 DEF_CSTR(dquote, "\"");
 DEF_CSTR(fbytes, "fbytes");
@@ -49,6 +50,7 @@ DEF_CSTR(fmtime, "fmtime");
 DEF_CSTR(iso_8859_1, "ISO-8859-1");
 DEF_CSTR(utf8, "UTF-8");
 DEF_CSTR(cp1252, "CP1252");
+DEF_CSTR(mimetype, "mimetype");
 DEF_CSTR(minwilds, "*?[");
 DEF_CSTR(newline, "\n");
 DEF_CSTR(null, "");
