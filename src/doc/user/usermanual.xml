@@ -5594,7 +5594,7 @@ db = recoll.connect(extra_dbs=["/home/me/.someconfdir/xapiandb", "/data/othercon
 
             <varlistentry>
               <term>Db.setSynonymsFile(path)</term><listitem><para>Set the synonyms file used when
-              querying."</para></listitem>
+              querying.</para></listitem>
             </varlistentry>
 
           </variablelist>

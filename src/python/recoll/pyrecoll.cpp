@@ -1546,7 +1546,7 @@ Db_init(recoll_DbObject *self, PyObject *args, PyObject *kwargs)
         return -1;
     }
 
-    if (extradbs) {
+    if (extradbs && extradbs != Py_None) {
         if (!PySequence_Check(extradbs)) {
             PyErr_SetString(PyExc_TypeError, "extra_dbs must be a sequence");
             deleteZ(self->db);
