@@ -209,6 +209,13 @@ static void setMyPriority(const RclConfig *config)
     if (setpriority(PRIO_PROCESS, 0, prio) != 0) {
         LOGINFO("recollindex: can't setpriority(), errno " << errno << "\n");
     }
+#ifdef SCHED_IDLE
+    {
+        struct sched_param param;
+        memset(&param, 0, sizeof(param));
+        sched_setscheduler(getpid(), SCHED_IDLE, &param);
+    }
+#endif
     // Try to ionice. This does not work on all platforms
     rclIxIonice(config);
 #endif
