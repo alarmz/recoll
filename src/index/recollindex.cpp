@@ -200,17 +200,16 @@ static void setMyPriority(const RclConfig *config)
 {
     PRETEND_USE(config);
 #ifndef _WIN32
-    int prio{19};
-    std::string sprio;
-    config->getConfParam("idxniceprio", sprio);
-    if (!sprio.empty()) {
-        prio = atoi(sprio.c_str());
-    }
+    // Note: will be clamped to 19 on Linux. Allows the user to set idxniceprio to 19 to avoid
+    // SCHED_IDLE use (see below).
+    int prio{20};
+    config->getConfParam("idxniceprio", &prio);
     if (setpriority(PRIO_PROCESS, 0, prio) != 0) {
-        LOGINFO("recollindex: can't setpriority(), errno " << errno << "\n");
+        LOGSYSERR("recollindex", "setpriority", std::to_string(prio));
     }
 #ifdef SCHED_IDLE
-    {
+    // By default, or if the user has set idxniceprio > 19, use SCHED_IDLE if available.
+    if (prio > 19) {
         struct sched_param param;
         memset(&param, 0, sizeof(param));
         sched_setscheduler(getpid(), SCHED_IDLE, &param);
