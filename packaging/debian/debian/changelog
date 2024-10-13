@@ -1,3 +1,20 @@
+recoll (1.40.3-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Synonyms: fix the index-time feature enabling search phrase
+    involving multi-word synonyms (generate multi-word terms when
+    needed).
+  * Python: add Db.setSynonymsFile() method mostly to allow using
+    query-time synonyms in the Web UI.
+  * Indexer: use SCHED_IDLE by default instead of just a high 'nice'
+    value. Can be disabled by setting idxniceprio to 19 or lower.
+  * Indexer: allow disabling term generation for file names, paths and MIME
+    types by setting the corresponding prefix to empty in the fields file.
+    e.g. 'filename = ' in the ~/.recoll/fields [prefixes] section.
+  * GUI Preview: use an HTML <details> tag to allow partial hiding of large
+    metadata value.
+    
+ -- Jean-Francois Dockes <jf@dockes.org>  Sun, 13 Oct 2024 10:08:00 +0200
+
 recoll (1.40.2-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * MacOS: add real time indexing capability. No impact on other OSes.

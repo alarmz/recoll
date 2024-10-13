@@ -74,6 +74,7 @@ doc/user/docbook-xsl.css
 doc/user/docbook.css
 doc/user/frag-sample.png
 doc/user/recoll.conf.xml
+doc/user/usermanual-russian.html
 doc/user/usermanual.html
 doc/user/usermanual.xml
 filters/

@@ -12,8 +12,8 @@ Build-Depends: bison,
                libchm-dev,
 # Note rasbian bookworm: qt6 / webengine not there yet. Also edit rules (QMAKE and meson options)
 # Too lazy to automate...
-#               libqt5webkit5-dev, qtbase5-dev, qttools5-dev-tools,
-              qt6-base-dev, qt6-webengine-dev, qt6-l10n-tools, qt6-tools-dev,
+               libqt5webkit5-dev, qtbase5-dev, qttools5-dev-tools,
+#              qt6-base-dev, qt6-webengine-dev, qt6-l10n-tools, qt6-tools-dev,
                libmagic-dev,
                libx11-dev,
                libxapian-dev (>= 1.2.0),

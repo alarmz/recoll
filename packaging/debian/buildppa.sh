@@ -13,15 +13,15 @@ SERIES="focal jammy noble oracular"
 
 PPA_KEYID=7808CE96D38B9201
 
-RCLVERS=1.40.2
+RCLVERS=1.40.3
 GSSPVERS=1.1.3
 PPAVERS=1
 
 PPANAME=recoll15-ppa
-PPANAME=recollexp-ppa
+#PPANAME=recollexp-ppa
 
 # recoll 
-series_rcl="jammy noble oracular"
+series_rcl="focal jammy noble oracular"
 # KIO
 series_kio=
 # krunner: does not build on focal and bionic because of the 5.90 min version requested in the

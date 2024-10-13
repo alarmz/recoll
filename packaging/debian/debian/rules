@@ -13,15 +13,15 @@ DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
 # Note rasbian bookworm: qt6 / webengine not there yet. Also edit
 # control's deps and meson line below
-#export QMAKE=qmake
-export QMAKE=qmake6
+export QMAKE=qmake
+#export QMAKE=qmake6
 
 %:
 	dh $@
 
 override_dh_auto_configure:
 	dh_auto_configure --buildsystem=meson -- -Drecollq=true -Dxadump=true \
-	-Dwebkit=false -Dwebengine=true \
+	-Dwebkit=true -Dwebengine=false \
 	-Dpython.platlibdir=/usr/lib/python3/dist-packages
 
 override_dh_auto_install:
