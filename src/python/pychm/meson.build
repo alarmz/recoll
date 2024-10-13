@@ -1,4 +1,4 @@
-# Building the recollaspell Python extension. Same as pyaspell, but this is not packaged.
+# Building the recollchm Python extension.
 
 py_mod = import('python')
 
@@ -38,9 +38,9 @@ foreach v : py3versions
             # use `-Dpython.install_env=auto` if you are using a virtual enviroment or conda 
             # We can however leave the line below as it was already here. However,
             # we need to specify that required is false, since it otherwise fails
-            # on systems where aspell is provided in a virtual environment, and aspell
+            # on systems where chm is provided in a virtual environment, and chm
             # was correctly detected in py3_dep by the python module. 
-            cc.find_library('aspell',required: false)
+            cc.find_library('chm',required: false)
         ],
         include_directories: include_directories(chm_include_dir),
         install: true,
