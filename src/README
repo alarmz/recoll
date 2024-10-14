@@ -4158,7 +4158,7 @@ The Db class
           any pending change.
 
    Db.setSynonymsFile(path)
-          Set the synonyms file used when querying."
+          Set the synonyms file used when querying.
 
 The Query class
 
