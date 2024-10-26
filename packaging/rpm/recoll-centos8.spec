@@ -113,7 +113,7 @@ exit 0
 
 %files
 %license COPYING
-%doc ChangeLog README
+%doc README
 %{_sysconfdir}/ld.so.conf.d/%{name}-%{_arch}.conf
 %{_bindir}/%{name}
 %{_bindir}/%{name}index

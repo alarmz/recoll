@@ -105,7 +105,7 @@ exit 0
 
 %files
 %license COPYING
-%doc ChangeLog README
+%doc README
 %{_bindir}/%{name}
 %{_bindir}/%{name}index
 %{_datadir}/%{name}

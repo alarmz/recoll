@@ -152,7 +152,7 @@ echo "%{_libdir}/recoll" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/recoll-%{_arc
 
 %files
 %license COPYING
-%doc ChangeLog README
+%doc README
 %{_sysconfdir}/ld.so.conf.d/recoll-%{_arch}.conf
 %{_bindir}/recoll
 %{_bindir}/recollindex
