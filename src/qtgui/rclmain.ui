@@ -253,10 +253,18 @@
   </action>
   <action name="userManualAction">
    <property name="text">
-    <string>&amp;User manual</string>
+    <string>&amp;User manual (local, one HTML page)</string>
    </property>
    <property name="name" stdset="0">
     <cstring>userManualAction</cstring>
+   </property>
+  </action>
+  <action name="onlineManualAction">
+   <property name="text">
+    <string>&amp;Online manual (Recoll Web site)</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>onlineManualAction</cstring>
    </property>
   </action>
   <action name="toolsDoc_HistoryAction">

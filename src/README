@@ -15,7 +15,7 @@ Jean-Francois Dockes
 
    This document introduces full text search notions and describes the
    installation and use of the Recoll application. This version describes
-   Recoll 1.39.
+   Recoll 1.40.
      __________________________________________________________________
 
    Table of Contents
@@ -149,7 +149,7 @@ Jean-Francois Dockes
               5.3.3. [91]Installing
               5.3.4. [92]Python API package
 
-        5.4. [93]Configuration overview
+        5.4. [93]Settings, configuration overview
 
               5.4.1. [94]Environment variables
               5.4.2. [95]Recoll main configuration file, recoll.conf
@@ -168,7 +168,7 @@ Chapter 1. Introduction
 
    This document introduces full text search notions and describes the
    installation and use of the Recoll application. It is updated for
-   Recoll 1.39.
+   Recoll 1.40.
 
    Recoll was for a long time dedicated to Unix-like systems. It was only
    lately (2015) ported to MS-Windows. Many references in this manual,
@@ -194,13 +194,24 @@ Chapter 1. Introduction
    documents and you do not want to wait or are very short on disk space.
    In this case, you may first want to customize the [104]configuration to
    restrict the indexed area. From the recoll GUI go to: Preferences →
-   Indexing configuration, then adjust the Top directories section, which
-   defines the directories from which the filesystem exploration starts.
+   Indexing configuration, then adjust the Start folders section (or Top
+   directories in older Recoll versions), which defines the directories
+   from which the filesystem exploration starts.
+
+   By default, the indexer process writes all errors to its stderr output,
+   which may be lost if you started the GUI from the desktop. You may find
+   it useful to assign a file name to the Indexer log file name entry on
+   the above indexing preferences screen. With the default level of 3,
+   this will list all processed documents, and all errors (lines beginning
+   with :2:).
 
    On Unix-like systems, you may need to install the appropriate
    [105]supporting applications for document types that need them (for
    example antiword for Microsoft Word files). The Windows package is
-   self-contained and includes most useful auxiliary programs.
+   self-contained and includes most useful auxiliary programs. After the
+   indexing ran, the recoll GUI Tools → Missing helpers menu entry will
+   show a list of missing supporting applications for the documents found
+   in the indexed area.
 
 1.2. Full text search
 
@@ -555,11 +566,10 @@ Note about MIME types
 
 2.2. Index storage
 
-   The default location for the index data is the xapiandb subdirectory of
-   the Recoll configuration directory, typically $HOME/.recoll/xapiandb/
-   on Unix-like systems or C:/Users/[me]/Appdata/Local/Recoll/xapiandb on
-   Windows. This can be changed via two different methods (with different
-   purposes):
+   The default index location is the xapiandb subdirectory of the Recoll
+   configuration directory, typically $HOME/.recoll/xapiandb/ on Unix-like
+   systems or C:/Users/[me]/Appdata/Local/Recoll/xapiandb on Windows. This
+   can be changed via two different methods (with different purposes):
     1. For a given configuration directory, you can specify a non-default
        storage location for the index by setting the dbdir parameter in
        the configuration file (see the [134]configuration section). Use
@@ -3245,7 +3255,7 @@ Note
 
    mime, rclcat, size, issub and date criteria always affect the whole
    query (they are applied as a final filter), even if set with other
-   terms inside a parenthese.
+   terms inside a parenthesis.
 
 Note
 
@@ -3486,12 +3496,12 @@ Wildcards and path filtering
    allowing accesses from the client.
 
    The translations are defined in the [224]ptrans configuration file,
-   which can be edited by hand or from the GUI external indexes
-   configuration dialog: Preferences → External index dialog, then click
-   the Paths translations button on the right below the index list:
-   translations will be set for the main index if no external index is
-   currently selected in the list, or else for the currently selected
-   index.
+   which can be edited with a plain text editor or by using the GUI
+   external indexes configuration dialog: Preferences → External index
+   dialog, then click the Paths translations button on the right below the
+   index list: translations will be set for the main index if no external
+   index is currently selected in the list, or else for the currently
+   selected index.
 
    Example entry from a ptrans file:
 [/path/to/external/xapiandb]
@@ -4983,21 +4993,21 @@ Building from git code
    setup.py. This is obsoleted by meson.build but might be useful in some
    cases.
 
-5.4. Configuration overview
+5.4. Settings, configuration overview
 
    Most of the parameters specific to the recoll GUI are set through the
    Preferences menu and stored in the standard Qt place
-   ($HOME/.config/Recoll.org/recoll.conf). You probably do not want to
-   edit this by hand.
+   ($HOME/.config/Recoll.org/recoll.conf).
 
    Recoll indexing options are set inside text configuration files located
    in a configuration directory. There can be several such directories,
    each of which defines the parameters for one index.
 
-   The configuration files can be edited by hand or through the Index
-   configuration dialog (Preferences menu). The GUI tool will try to
-   respect your formatting and comments as much as possible, so it is
-   quite possible to use both approaches on the same configuration.
+   The configuration files can be edited with a plain text editor or
+   through the Index configuration dialog (Preferences menu). The GUI tool
+   will try to respect your formatting and comments as much as possible,
+   so it is quite possible to use both approaches on the same
+   configuration.
 
    For each index, there are at least two sets of configuration files.
    System-wide configuration files are kept in a directory named like
@@ -5016,26 +5026,26 @@ Building from git code
    environment variable or the -c option parameter to recoll and
    recollindex.
 
-   In addition (as of Recoll version 1.19.7), it is possible to specify
-   two additional configuration directories which will be stacked before
-   and after the user configuration directory. These are defined by the
-   RECOLL_CONFTOP and RECOLL_CONFMID environment variables. Values from
-   configuration files inside the top directory will override user ones,
-   values from configuration files inside the middle directory will
-   override system ones and be overridden by user ones. These two
-   variables may be of use to applications which augment Recoll
-   functionality, and need to add configuration data without disturbing
-   the user's files. Please note that the two, currently single, values
-   will probably be interpreted as colon-separated lists in the future: do
-   not use colon characters inside the directory paths.
+   In addition, it is possible to specify two additional configuration
+   directories which will be stacked before and after the user
+   configuration directory. These are defined by the RECOLL_CONFTOP and
+   RECOLL_CONFMID environment variables. Values from configuration files
+   inside the top directory will override user ones, values from
+   configuration files inside the middle directory will override system
+   ones and be overridden by user ones. These two variables may be of use
+   to applications which augment Recoll functionality, and need to add
+   configuration data without disturbing the user's files. Please note
+   that the two, currently single, values will probably be interpreted as
+   colon-separated lists in the future: do not use colon characters inside
+   the directory paths.
 
-   If the default configuration directory does not exist when recoll or
-   recollindex are started, it will be created with a set of empty
-   configuration files. recoll will give you a chance to edit the
+   If the default configuration directory does not exist when either
+   recoll or recollindex is started, it will be created with a set of
+   empty configuration files. recoll will give you a chance to edit the
    configuration file before starting indexing. recollindex will proceed
    immediately. To avoid mistakes, the automatic directory creation will
    only occur for the default location, not if -c or RECOLL_CONFDIR were
-   used (in the latter cases, you will have to create the directory).
+   used, in which case, you will have to create the directory.
 
    All configuration files share the same format. For example, a short
    extract of the main configuration file might look as follows:
@@ -5046,9 +5056,11 @@ Building from git code
         defaultcharset = utf-8
 
    There are three kinds of lines:
-     * Comment (starts with #) or empty.
-     * Parameter affectation (name = value).
-     * Section definition ([somedirname]).
+     * Comment lines start with a hash mark #.
+     * Parameter assignment: name = value.
+     * Section definitions: [somedirname].
+
+   Lines which are empty or only containing white space are ignored.
 
    Long lines can be broken by ending each incomplete part with a
    backslash (\).
@@ -5069,6 +5081,7 @@ Important
 
    When found at the beginning of a file path, the tilde character (~) is
    expanded to the name of the user's home directory, as a shell would do.
+   The same convention is used on Windows.
 
    Some parameters are lists of strings. White space is used for
    separation. List elements with embedded spaces can be quoted using
@@ -5147,9 +5160,9 @@ Parameters affecting what documents we index
 
    topdirs
           Space-separated list of files or directories to recursively
-          index. Default to ~ (indexes $HOME). You can use symbolic links
-          in the list, they will be followed, independently of the value
-          of the followLinks variable.
+          index. You can use symbolic links in the list, they will be
+          followed, independently of the value of the followLinks
+          variable. The default value is ~ : recursively index $HOME.
 
    monitordirs
           Space-separated list of files or directories to monitor for

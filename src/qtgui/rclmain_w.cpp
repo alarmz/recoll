@@ -215,6 +215,7 @@ void RclMain::init()
     connect(showMissingHelpers_Action, SIGNAL(triggered()), this, SLOT(showMissingHelpers()));
     connect(showActiveTypes_Action, SIGNAL(triggered()), this, SLOT(showActiveTypes()));
     connect(userManualAction, SIGNAL(triggered()), this, SLOT(startManual()));
+    connect(onlineManualAction, SIGNAL(triggered()), this, SLOT(startOnlineManual()));
     connect(toolsDoc_HistoryAction, SIGNAL(triggered()), this, SLOT(showDocHistory()));
     connect(toolsAdvanced_SearchAction, SIGNAL(triggered()), this, SLOT(showAdvSearchDialog()));
     connect(toolsSpellAction, SIGNAL(triggered()), this, SLOT(showSpellDialog()));

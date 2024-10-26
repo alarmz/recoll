@@ -5,10 +5,8 @@
 <title>Parameters affecting what documents we index </title><variablelist>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS">
 <term><varname>topdirs</varname></term>
-<listitem><para>Space-separated list of files or
-directories to recursively index. Default to ~ (indexes
-$HOME). You can use symbolic links in the list, they will be followed,
-independently of the value of the followLinks variable.
+<listitem><para>Space-separated list of files or directories to recursively index. You can use symbolic links in the list, they will be followed, independently of the value
+of the followLinks variable. The default value is ~ : recursively index $HOME.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.MONITORDIRS">
 <term><varname>monitordirs</varname></term>

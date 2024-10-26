@@ -121,6 +121,7 @@ public slots:
     virtual void showMissingHelpers();
     virtual void showActiveTypes();
     virtual void startManual();
+    virtual void startOnlineManual();
     virtual void startManual(const std::string&);
     virtual void showDocHistory();
     virtual void showExtIdxDialog();

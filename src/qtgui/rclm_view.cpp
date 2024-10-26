@@ -489,26 +489,31 @@ void RclMain::startManual(const string& index)
     bool has_wh = path_exists(webhelp);
     
     LOGDEB("RclMain::startManual: help index is " << (index.empty() ? "(null)" : index) << "\n");
-    bool indexempty = index.empty();
 
-#ifdef _WIN32
-    // On Windows I could not find any way to pass the fragment through
-    // rclstartw (tried to set text/html as exception with rclstartw %u).
-    // So always start the webhelp
-    indexempty = true;
-#endif
-    
-    if (!indexempty) {
+#ifndef _WIN32
+    // On Windows I could not find any way to pass the fragment through rclstartw (tried to set
+    // text/html as exception with rclstartw %u).
+    if (!index.empty()) {
         usermanual += "#";
         usermanual += index;
     }
+#endif
+    
     Rcl::Doc doc;
-    if (has_wh && indexempty) {
+    if (has_wh && index.empty()) {
         doc.url = path_pathtofileurl(webhelp);
     } else {
         doc.url = path_pathtofileurl(usermanual);
     }
     doc.mimetype = "text/html";
     doc.meta[Rcl::Doc::keyapptg] = "rclman";
+    startNativeViewer(doc);
+}
+
+void RclMain::startOnlineManual()
+{
+    Rcl::Doc doc;
+    doc.url = "https://www.recoll.org/usermanual/webhelp/docs/index.html";
+    doc.mimetype = "text/html";
     startNativeViewer(doc);
 }
