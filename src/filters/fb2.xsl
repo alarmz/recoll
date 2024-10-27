@@ -30,7 +30,7 @@
 <title> <xsl:value-of select="."/> </title>
 </xsl:template>
 
-<xsl:template match="fb:description/fb:title-info/fb:author">
+<xsl:template match="fb:description/title-info/author">
   <meta>
   <xsl:attribute name="name">author</xsl:attribute>
   <xsl:attribute name="content">
@@ -43,14 +43,17 @@
 
 <xsl:template match="fb:body">
  <body>
- <xsl:apply-templates select="fb:section"/>
+ <xsl:apply-templates select="fb:section" />
  </body>
 </xsl:template>
 
-<xsl:template match="fb:body/fb:section">
-  <xsl:for-each select="fb:p">
+<xsl:template match="fb:section">
+   <xsl:apply-templates select="fb:p" />
+   <xsl:apply-templates select="fb:section" />
+</xsl:template>
+
+<xsl:template match="fb:p">
   <p><xsl:value-of select="."/></p>
-  </xsl:for-each>
 </xsl:template>
 
 </xsl:stylesheet>
