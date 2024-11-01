@@ -682,7 +682,7 @@ indexedmimetypes = application/pdf</programlisting>
         </itemizedlist>
 
         <para>&RCL; versions 1.38 and newer have an option to use
-          <link linkend="RCL.INDEXING.CONFIG.MULTIDX">multiple temporary indexes and a final
+          <link linkend="RCL.INDEXING.PERF.MULTIDX">multiple temporary indexes and a final
           merge</link> internally. This was designed as a CPU performance optimization (increasing
           parallelism), but it may also provide a simple solution for the index size issue,
           though it may not give enough control over the temporary indexes physical placement for
@@ -719,10 +719,10 @@ indexedmimetypes = application/pdf</programlisting>
         manual page. Both documents are automatically generated from
         the comments inside the configuration file.</para>
 
-      <para>The most immediately useful variable
-        is probably
-        <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS"><varname>topdirs</varname></link>, 
-        which lists the subtrees and files to be indexed.</para>
+      <para>The most immediately useful variable is <link
+      linkend="RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS"><varname>topdirs</varname></link>, which lists
+      the subtrees and files to be indexed. The variable name is a bit misleading for native English
+      speakers, so the corresponding GUI label is <guilabel>Start folders</guilabel>.</para>
 
       <para>The applications needed to index file types other than
         text, HTML or email (e.g.: pdf, postscript, ms-word...) are
@@ -971,7 +971,12 @@ indexedmimetypes = application/pdf</programlisting>
 
       </sect2>
 
-      <sect2 id="RCL.INDEXING.CONFIG.THREADS">
+    </sect1>
+
+    <sect1 id="RCL.INDEXING.PERF">
+      <title>Indexing performance and resource usage</title>
+
+      <sect2 id="RCL.INDEXING.PERF.THREADS">
         <title>Indexing threads configuration (&LIN;)</title>
 
         <para>Note: you don't probably don't need to read this. The default automatic configuration
@@ -981,9 +986,6 @@ indexedmimetypes = application/pdf</programlisting>
             thrQSizes = -1 -1 -1
           </programlisting>
         </para>
-
-      <sect3 id="RCL.INDEXING.CONFIG.THREADS.DOCPREP">
-        <title>Multithreading for document preparation</title>
 
         <para>The &RCL; indexing process <command>recollindex</command> can use multithreading to
           speed up indexing on multiprocessor systems. This is currently enabled on &MAC; and &LIN;
@@ -1059,10 +1061,10 @@ indexedmimetypes = application/pdf</programlisting>
         <para>The following example would disable multithreading. Indexing will be performed by a
           single thread.</para>
         <programlisting>thrQSizes = -1 -1 -1</programlisting>
-      </sect3>
+
       </sect2>
 
-      <sect2 id="RCL.INDEXING.CONFIG.MULTIDX">
+      <sect2 id="RCL.INDEXING.PERF.MULTIDX">
         <title>Using multiple temporary indexes to improve indexing time</title>
 
         <para>In some cases, either when the input documents are simple and require little
@@ -1088,7 +1090,25 @@ indexedmimetypes = application/pdf</programlisting>
           not work well on spinning disks, at least not in its current form.</para>
         
       </sect2>
-        
+
+      <sect2 id="RCL.INDEXING.QUIET">
+        <title>Quieting down the indexing process</title>
+        <para>The &RCL; indexing process, <command>recollindex</command> is usually configured to
+        have very low priority and not disturb other activity on the machine. Still, on an idle
+        system, even with multithreading disabled, it will use 100% of one core if needed and
+        available. This may be enough to get a laptop fan to spin up in some cases. To prevent this,
+        we want to limit the CPU utilisation for every short time quanta (e.g. not more than 20 mS
+        for every 100 mS).</para>
+
+        <para>This would be extremely difficult to do from inside the indexing process, because of
+        the many places where intensive CPU usage takes place, some not under our control (&XAP; or
+        external helpers). Happily enough, on Linux systems, you can use the
+        <application>cgroup</application> facility to throttle the process CPU usage. This is
+        further documented on the <ulink
+        url="https://www.recoll.org/faqsandhowtos/cgroups_instructions.html">&RCL; WEB
+        site</ulink></para>
+      </sect2>
+      
     </sect1>
 
     <sect1 id="RCL.INDEXING.OPERATION">

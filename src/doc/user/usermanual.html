@@ -130,66 +130,76 @@ alink="#0000FF">
                 <dt><span class="sect2">2.3.3. <a href=
                 "#RCL.INDEXING.CONFIG.SENS">Index case and
                 diacritics sensitivity</a></span></dt>
-                <dt><span class="sect2">2.3.4. <a href=
-                "#RCL.INDEXING.CONFIG.THREADS">Indexing threads
-                configuration (<span class=
-                "application">Unix</span>-like
-                systems)</a></span></dt>
-                <dt><span class="sect2">2.3.5. <a href=
-                "#RCL.INDEXING.CONFIG.MULTIDX">Using multiple
-                temporary indexes to improve indexing
-                time</a></span></dt>
               </dl>
             </dd>
             <dt><span class="sect1">2.4. <a href=
+            "#RCL.INDEXING.PERF">Indexing performance and resource
+            usage</a></span></dt>
+            <dd>
+              <dl>
+                <dt><span class="sect2">2.4.1. <a href=
+                "#RCL.INDEXING.PERF.THREADS">Indexing threads
+                configuration (<span class=
+                "application">Unix</span>-like
+                systems)</a></span></dt>
+                <dt><span class="sect2">2.4.2. <a href=
+                "#RCL.INDEXING.PERF.MULTIDX">Using multiple
+                temporary indexes to improve indexing
+                time</a></span></dt>
+                <dt><span class="sect2">2.4.3. <a href=
+                "#RCL.INDEXING.QUIET">Quieting down the indexing
+                process</a></span></dt>
+              </dl>
+            </dd>
+            <dt><span class="sect1">2.5. <a href=
             "#RCL.INDEXING.OPERATION">Index update
             scheduling</a></span></dt>
             <dd>
               <dl>
-                <dt><span class="sect2">2.4.1. <a href=
+                <dt><span class="sect2">2.5.1. <a href=
                 "#RCL.INDEXING.PERIODIC">Periodic
                 indexing</a></span></dt>
-                <dt><span class="sect2">2.4.2. <a href=
+                <dt><span class="sect2">2.5.2. <a href=
                 "#RCL.INDEXING.MONITOR">Real time
                 indexing</a></span></dt>
               </dl>
             </dd>
-            <dt><span class="sect1">2.5. <a href=
+            <dt><span class="sect1">2.6. <a href=
             "#RCL.INDEXING.EXTRAMETA">Incorporating external
             metadata</a></span></dt>
             <dd>
               <dl>
-                <dt><span class="sect2">2.5.1. <a href=
+                <dt><span class="sect2">2.6.1. <a href=
                 "#RCL.INDEXING.EXTATTR"><span class=
                 "application">Unix</span>-like systems and
                 <span class="application">MacOS</span> systems:
                 using extended attributes</a></span></dt>
-                <dt><span class="sect2">2.5.2. <a href=
+                <dt><span class="sect2">2.6.2. <a href=
                 "#RCL.INDEXING.EXTTAGS">Using a command to
                 importing external metadata</a></span></dt>
               </dl>
             </dd>
-            <dt><span class="sect1">2.6. <a href=
+            <dt><span class="sect1">2.7. <a href=
             "#RCL.INDEXING.NOTES">Miscellaneous indexing
             notes</a></span></dt>
             <dd>
               <dl>
-                <dt><span class="sect2">2.6.1. <a href=
+                <dt><span class="sect2">2.7.1. <a href=
                 "#RCL.INDEXING.PUNCTUATION">Indexing punctuation
                 characters (1.39)</a></span></dt>
-                <dt><span class="sect2">2.6.2. <a href=
+                <dt><span class="sect2">2.7.2. <a href=
                 "#RCL.INDEXING.PDF">The PDF input
                 handler</a></span></dt>
-                <dt><span class="sect2">2.6.3. <a href=
+                <dt><span class="sect2">2.7.3. <a href=
                 "#RCL.INDEXING.OCR">Running OCR on image
                 documents</a></span></dt>
-                <dt><span class="sect2">2.6.4. <a href=
+                <dt><span class="sect2">2.7.4. <a href=
                 "#RCL.INDEXING.STT">Running a speech to text
                 program on audio files</a></span></dt>
-                <dt><span class="sect2">2.6.5. <a href=
+                <dt><span class="sect2">2.7.5. <a href=
                 "#RCL.INDEXING.REMOVABLE">Removable
                 volumes</a></span></dt>
-                <dt><span class="sect2">2.6.6. <a href=
+                <dt><span class="sect2">2.7.6. <a href=
                 "#RCL.INDEXING.WEBQUEUE"><span class=
                 "application">Unix</span>-like systems: indexing
                 visited Web pages</a></span></dt>
@@ -799,7 +809,7 @@ alink="#0000FF">
         this happens depends on the indexing mode. There are
         provisions to <a class="link" href=
         "#RCL.INDEXING.REMOVABLE" title=
-        "2.6.5.&nbsp;Removable volumes">avoid deleting data</a> for
+        "2.7.5.&nbsp;Removable volumes">avoid deleting data</a> for
         an umounted removable volume.</p>
         <p>The following sections give an overview of different
         aspects of the indexing processes and configuration, with
@@ -832,7 +842,7 @@ alink="#0000FF">
             "list-style-type: disc;">
               <li class="listitem">
                 <p><b><a class="link" href="#RCL.INDEXING.PERIODIC"
-                title="2.4.1.&nbsp;Periodic indexing">Periodic (or
+                title="2.5.1.&nbsp;Periodic indexing">Periodic (or
                 batch) indexing</a> .&nbsp;</b><span class=
                 "command"><strong>recollindex</strong></span> is
                 executed at discrete times. On <span class=
@@ -851,7 +861,7 @@ alink="#0000FF">
               </li>
               <li class="listitem">
                 <p><b><a class="link" href="#RCL.INDEXING.MONITOR"
-                title="2.4.2.&nbsp;Real time indexing">Real time
+                title="2.5.2.&nbsp;Real time indexing">Real time
                 indexing</a> .&nbsp;</b><span class=
                 "command"><strong>recollindex</strong></span> runs
                 permanently as a daemon and uses a file system
@@ -879,7 +889,7 @@ alink="#0000FF">
             indexing on a big documentation directory, and real
             time indexing on a small home directory), or by
             <a class="link" href="#RCL.INDEXING.MONITOR" title=
-            "2.4.2.&nbsp;Real time indexing">configuring the index
+            "2.5.2.&nbsp;Real time indexing">configuring the index
             so that only a subset of the tree will be
             monitored.</a></p>
             <p>The choice of method and the parameters used can be
@@ -1350,8 +1360,8 @@ indexedmimetypes = application/pdf</pre>
           </div>
           <p><span class="application">Recoll</span> versions 1.38
           and newer have an option to use <a class="link" href=
-          "#RCL.INDEXING.CONFIG.MULTIDX" title=
-          "2.3.5.&nbsp;Using multiple temporary indexes to improve indexing time">
+          "#RCL.INDEXING.PERF.MULTIDX" title=
+          "2.4.2.&nbsp;Using multiple temporary indexes to improve indexing time">
           multiple temporary indexes and a final merge</a>
           internally. This was designed as a CPU performance
           optimization (increasing parallelism), but it may also
@@ -1401,11 +1411,12 @@ indexedmimetypes = application/pdf</pre>
         "refentrytitle">recoll.conf</span>(5)</span></a> manual
         page. Both documents are automatically generated from the
         comments inside the configuration file.</p>
-        <p>The most immediately useful variable is probably
-        <a class="link" href=
-        "#RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS"><code class=
+        <p>The most immediately useful variable is <a class="link"
+        href="#RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS"><code class=
         "varname">topdirs</code></a>, which lists the subtrees and
-        files to be indexed.</p>
+        files to be indexed. The variable name is a bit misleading
+        for native English speakers, so the corresponding GUI label
+        is <span class="guilabel">Start folders</span>.</p>
         <p>The applications needed to index file types other than
         text, HTML or email (e.g.: pdf, postscript, ms-word...) are
         described in the <a class="link" href=
@@ -1442,7 +1453,7 @@ indexedmimetypes = application/pdf</pre>
           parameters</span>, <span class="guilabel">Web
           history</span> (<a class="link" href=
           "#RCL.INDEXING.WEBQUEUE" title=
-          "2.6.6.&nbsp;Unix-like systems: indexing visited Web pages">details</a>)
+          "2.7.6.&nbsp;Unix-like systems: indexing visited Web pages">details</a>)
           and <span class="guilabel">Search parameters</span>.</p>
           <p>The <span class="guilabel">Global parameters</span>
           tab allows setting global variables, like the lists of
@@ -1731,13 +1742,25 @@ indexedmimetypes = application/pdf</pre>
           expanded, and all combinations searched for, the
           multiplicative expansion may become unmanageable.</p>
         </div>
+      </div>
+      <div class="sect1">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title" style="clear: both"><a name=
+              "RCL.INDEXING.PERF" id=
+              "RCL.INDEXING.PERF"></a>2.4.&nbsp;Indexing
+              performance and resource usage</h2>
+            </div>
+          </div>
+        </div>
         <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
                 <h3 class="title"><a name=
-                "RCL.INDEXING.CONFIG.THREADS" id=
-                "RCL.INDEXING.CONFIG.THREADS"></a>2.3.4.&nbsp;Indexing
+                "RCL.INDEXING.PERF.THREADS" id=
+                "RCL.INDEXING.PERF.THREADS"></a>2.4.1.&nbsp;Indexing
                 threads configuration (<span class=
                 "application">Unix</span>-like systems)</h3>
               </div>
@@ -1751,133 +1774,116 @@ indexedmimetypes = application/pdf</pre>
           <pre class="programlisting">
             thrQSizes = -1 -1 -1
           </pre>
-          <div class="sect3">
-            <div class="titlepage">
-              <div>
-                <div>
-                  <h4 class="title"><a name=
-                  "RCL.INDEXING.CONFIG.THREADS.DOCPREP" id=
-                  "RCL.INDEXING.CONFIG.THREADS.DOCPREP"></a>Multithreading
-                  for document preparation</h4>
-                </div>
-              </div>
-            </div>
-            <p>The <span class="application">Recoll</span> indexing
-            process <span class=
-            "command"><strong>recollindex</strong></span> can use
-            multithreading to speed up indexing on multiprocessor
-            systems. This is currently enabled on <span class=
-            "application">MacOS</span> systems and <span class=
-            "application">Unix</span>-like systems systems, but not
-            under <span class="application">Windows</span>.</p>
-            <p>The data processing used to index files is divided
-            in several stages and some of the stages can be
-            executed by multiple threads. The stages are:</p>
-            <div class="orderedlist">
-              <ol class="orderedlist" type="1">
-                <li class="listitem">
-                  <p>File system walking: this is always performed
-                  by the main thread.</p>
-                </li>
-                <li class="listitem">
-                  <p>File conversion and data extraction.</p>
-                </li>
-                <li class="listitem">
-                  <p>Text processing (splitting, stemming,
-                  etc.).</p>
-                </li>
-                <li class="listitem">
-                  <p><span class="application">Xapian</span> index
-                  update.</p>
-                </li>
-              </ol>
-            </div>
-            <p>You can also read a <a class="ulink" href=
-            "https://www.recoll.org/pages/idxthreads/threadingRecoll.html"
-            target="_top">longer document</a> about the
-            transformation of <span class=
-            "application">Recoll</span> indexing to
-            multithreading.</p>
-            <p>The threads configuration is controlled by two
-            configuration file parameters.</p>
-            <div class="variablelist">
-              <dl class="variablelist">
-                <dt><span class="term"><code class=
-                "varname">thrQSizes</code></span></dt>
-                <dd>
-                  <p>This variable defines the job input queues
-                  configuration. There are three possible queues
-                  for stages 2, 3 and 4, and this parameter should
-                  give the queue depth for each stage (three
-                  integer values). If a value of -1 is used for a
-                  given stage, no queue is used, and the thread
-                  will go on performing the next stage. In
-                  practise, deep queues have not been shown to
-                  increase performance. A value of 0 for the first
-                  queue tells <span class=
-                  "application">Recoll</span> to perform
-                  autoconfiguration (no need for anything else in
-                  this case, thrTCounts is not used) - this is the
-                  default configuration.</p>
-                </dd>
-                <dt><span class="term"><code class=
-                "varname">thrTCounts</code></span></dt>
-                <dd>
-                  <p>This defines the number of threads used for
-                  each stage. If a value of -1 is used for one of
-                  the queue depths, the corresponding thread count
-                  is ignored. It makes no sense to use a value
-                  other than 1 for the last stage because updating
-                  the <span class="application">Xapian</span> index
-                  is necessarily single-threaded (and protected by
-                  a mutex).</p>
-                </dd>
-              </dl>
-            </div>
-            <div class="note" style=
-            "margin-left: 0.5in; margin-right: 0.5in;">
-              <h3 class="title">Note</h3>
-              <p>If the first value in <code class=
-              "varname">thrQSizes</code> is 0, <code class=
-              "varname">thrTCounts</code> is ignored.</p>
-            </div>
-            <p>The following example would use three queues (of
-            depth 2), and 4 threads for converting source
-            documents, 2 for processing their text, and one to
-            update the index. This was tested to be the best
-            configuration on the test system (quadri-processor with
-            multiple disks).</p>
-            <pre class="programlisting">
+          <p>The <span class="application">Recoll</span> indexing
+          process <span class=
+          "command"><strong>recollindex</strong></span> can use
+          multithreading to speed up indexing on multiprocessor
+          systems. This is currently enabled on <span class=
+          "application">MacOS</span> systems and <span class=
+          "application">Unix</span>-like systems systems, but not
+          under <span class="application">Windows</span>.</p>
+          <p>The data processing used to index files is divided in
+          several stages and some of the stages can be executed by
+          multiple threads. The stages are:</p>
+          <div class="orderedlist">
+            <ol class="orderedlist" type="1">
+              <li class="listitem">
+                <p>File system walking: this is always performed by
+                the main thread.</p>
+              </li>
+              <li class="listitem">
+                <p>File conversion and data extraction.</p>
+              </li>
+              <li class="listitem">
+                <p>Text processing (splitting, stemming, etc.).</p>
+              </li>
+              <li class="listitem">
+                <p><span class="application">Xapian</span> index
+                update.</p>
+              </li>
+            </ol>
+          </div>
+          <p>You can also read a <a class="ulink" href=
+          "https://www.recoll.org/pages/idxthreads/threadingRecoll.html"
+          target="_top">longer document</a> about the
+          transformation of <span class="application">Recoll</span>
+          indexing to multithreading.</p>
+          <p>The threads configuration is controlled by two
+          configuration file parameters.</p>
+          <div class="variablelist">
+            <dl class="variablelist">
+              <dt><span class="term"><code class=
+              "varname">thrQSizes</code></span></dt>
+              <dd>
+                <p>This variable defines the job input queues
+                configuration. There are three possible queues for
+                stages 2, 3 and 4, and this parameter should give
+                the queue depth for each stage (three integer
+                values). If a value of -1 is used for a given
+                stage, no queue is used, and the thread will go on
+                performing the next stage. In practise, deep queues
+                have not been shown to increase performance. A
+                value of 0 for the first queue tells <span class=
+                "application">Recoll</span> to perform
+                autoconfiguration (no need for anything else in
+                this case, thrTCounts is not used) - this is the
+                default configuration.</p>
+              </dd>
+              <dt><span class="term"><code class=
+              "varname">thrTCounts</code></span></dt>
+              <dd>
+                <p>This defines the number of threads used for each
+                stage. If a value of -1 is used for one of the
+                queue depths, the corresponding thread count is
+                ignored. It makes no sense to use a value other
+                than 1 for the last stage because updating the
+                <span class="application">Xapian</span> index is
+                necessarily single-threaded (and protected by a
+                mutex).</p>
+              </dd>
+            </dl>
+          </div>
+          <div class="note" style=
+          "margin-left: 0.5in; margin-right: 0.5in;">
+            <h3 class="title">Note</h3>
+            <p>If the first value in <code class=
+            "varname">thrQSizes</code> is 0, <code class=
+            "varname">thrTCounts</code> is ignored.</p>
+          </div>
+          <p>The following example would use three queues (of depth
+          2), and 4 threads for converting source documents, 2 for
+          processing their text, and one to update the index. This
+          was tested to be the best configuration on the test
+          system (quadri-processor with multiple disks).</p>
+          <pre class="programlisting">
             thrQSizes = 2 2 2
             thrTCounts =  4 2 1
           </pre>
-            <p>The following example would use a single queue, and
-            the complete processing for each document would be
-            performed by a single thread (several documents will
-            still be processed in parallel in most cases). The
-            threads will use mutual exclusion when entering the
-            index update stage. In practise the performance would
-            be close to the precedent case in general, but worse in
-            certain cases (e.g. a Zip archive would be performed
-            purely sequentially), so the previous approach is
-            preferred. YMMV... The 2 last values for thrTCounts are
-            ignored.</p>
-            <pre class="programlisting">
+          <p>The following example would use a single queue, and
+          the complete processing for each document would be
+          performed by a single thread (several documents will
+          still be processed in parallel in most cases). The
+          threads will use mutual exclusion when entering the index
+          update stage. In practise the performance would be close
+          to the precedent case in general, but worse in certain
+          cases (e.g. a Zip archive would be performed purely
+          sequentially), so the previous approach is preferred.
+          YMMV... The 2 last values for thrTCounts are ignored.</p>
+          <pre class="programlisting">
             thrQSizes = 2 -1 -1
             thrTCounts =  6 1 1
           </pre>
-            <p>The following example would disable multithreading.
-            Indexing will be performed by a single thread.</p>
-            <pre class="programlisting">thrQSizes = -1 -1 -1</pre>
-          </div>
+          <p>The following example would disable multithreading.
+          Indexing will be performed by a single thread.</p>
+          <pre class="programlisting">thrQSizes = -1 -1 -1</pre>
         </div>
         <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
                 <h3 class="title"><a name=
-                "RCL.INDEXING.CONFIG.MULTIDX" id=
-                "RCL.INDEXING.CONFIG.MULTIDX"></a>2.3.5.&nbsp;Using
+                "RCL.INDEXING.PERF.MULTIDX" id=
+                "RCL.INDEXING.PERF.MULTIDX"></a>2.4.2.&nbsp;Using
                 multiple temporary indexes to improve indexing
                 time</h3>
               </div>
@@ -1915,6 +1921,39 @@ indexedmimetypes = application/pdf</pre>
           probable that this approach would not work well on
           spinning disks, at least not in its current form.</p>
         </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name="RCL.INDEXING.QUIET" id=
+                "RCL.INDEXING.QUIET"></a>2.4.3.&nbsp;Quieting down
+                the indexing process</h3>
+              </div>
+            </div>
+          </div>
+          <p>The <span class="application">Recoll</span> indexing
+          process, <span class=
+          "command"><strong>recollindex</strong></span> is usually
+          configured to have very low priority and not disturb
+          other activity on the machine. Still, on an idle system,
+          even with multithreading disabled, it will use 100% of
+          one core if needed and available. This may be enough to
+          get a laptop fan to spin up in some cases. To prevent
+          this, we want to limit the CPU utilisation for every
+          short time quanta (e.g. not more than 20 mS for every 100
+          mS).</p>
+          <p>This would be extremely difficult to do from inside
+          the indexing process, because of the many places where
+          intensive CPU usage takes place, some not under our
+          control (<span class="application">Xapian</span> or
+          external helpers). Happily enough, on Linux systems, you
+          can use the <span class="application">cgroup</span>
+          facility to throttle the process CPU usage. This is
+          further documented on the <a class="ulink" href=
+          "https://www.recoll.org/faqsandhowtos/cgroups_instructions.html"
+          target="_top"><span class="application">Recoll</span> WEB
+          site</a></p>
+        </div>
       </div>
       <div class="sect1">
         <div class="titlepage">
@@ -1922,7 +1961,7 @@ indexedmimetypes = application/pdf</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.INDEXING.OPERATION" id=
-              "RCL.INDEXING.OPERATION"></a>2.4.&nbsp;Index update
+              "RCL.INDEXING.OPERATION"></a>2.5.&nbsp;Index update
               scheduling</h2>
             </div>
           </div>
@@ -1932,7 +1971,7 @@ indexedmimetypes = application/pdf</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.PERIODIC"
-                id="RCL.INDEXING.PERIODIC"></a>2.4.1.&nbsp;Periodic
+                id="RCL.INDEXING.PERIODIC"></a>2.5.1.&nbsp;Periodic
                 indexing</h3>
               </div>
             </div>
@@ -2123,7 +2162,7 @@ indexedmimetypes = application/pdf</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.MONITOR"
-                id="RCL.INDEXING.MONITOR"></a>2.4.2.&nbsp;Real time
+                id="RCL.INDEXING.MONITOR"></a>2.5.2.&nbsp;Real time
                 indexing</h3>
               </div>
             </div>
@@ -2344,7 +2383,7 @@ fs.inotify.max_user_watches=32768</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.INDEXING.EXTRAMETA" id=
-              "RCL.INDEXING.EXTRAMETA"></a>2.5.&nbsp;Incorporating
+              "RCL.INDEXING.EXTRAMETA"></a>2.6.&nbsp;Incorporating
               external metadata</h2>
             </div>
           </div>
@@ -2354,7 +2393,7 @@ fs.inotify.max_user_watches=32768</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.EXTATTR"
-                id="RCL.INDEXING.EXTATTR"></a>2.5.1.&nbsp;<span class="application">Unix</span>-like
+                id="RCL.INDEXING.EXTATTR"></a>2.6.1.&nbsp;<span class="application">Unix</span>-like
                 systems and <span class="application">MacOS</span>
                 systems: using extended attributes</h3>
               </div>
@@ -2429,7 +2468,7 @@ setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/f
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.EXTTAGS"
-                id="RCL.INDEXING.EXTTAGS"></a>2.5.2.&nbsp;Using a
+                id="RCL.INDEXING.EXTTAGS"></a>2.6.2.&nbsp;Using a
                 command to importing external metadata</h3>
               </div>
             </div>
@@ -2512,7 +2551,7 @@ metadatacmds = ; <em class=
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.INDEXING.NOTES" id=
-              "RCL.INDEXING.NOTES"></a>2.6.&nbsp;Miscellaneous
+              "RCL.INDEXING.NOTES"></a>2.7.&nbsp;Miscellaneous
               indexing notes</h2>
             </div>
           </div>
@@ -2523,7 +2562,7 @@ metadatacmds = ; <em class=
               <div>
                 <h3 class="title"><a name=
                 "RCL.INDEXING.PUNCTUATION" id=
-                "RCL.INDEXING.PUNCTUATION"></a>2.6.1.&nbsp;Indexing
+                "RCL.INDEXING.PUNCTUATION"></a>2.7.1.&nbsp;Indexing
                 punctuation characters (1.39)</h3>
               </div>
             </div>
@@ -2557,7 +2596,7 @@ metadatacmds = ; <em class=
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.PDF" id=
-                "RCL.INDEXING.PDF"></a>2.6.2.&nbsp;The PDF input
+                "RCL.INDEXING.PDF"></a>2.7.2.&nbsp;The PDF input
                 handler</h3>
               </div>
             </div>
@@ -2588,7 +2627,7 @@ metadatacmds = ; <em class=
                 text is empty. This is done by executing an
                 external program and is now described in a
                 <a class="link" href="#RCL.INDEXING.OCR" title=
-                "2.6.3.&nbsp;Running OCR on image documents">separate
+                "2.7.3.&nbsp;Running OCR on image documents">separate
                 section</a>, because the OCR framework can also be
                 used with non-PDF image files.</p>
               </li>
@@ -2683,7 +2722,7 @@ pass</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.OCR" id=
-                "RCL.INDEXING.OCR"></a>2.6.3.&nbsp;Running OCR on
+                "RCL.INDEXING.OCR"></a>2.7.3.&nbsp;Running OCR on
                 image documents</h3>
               </div>
             </div>
@@ -2768,7 +2807,7 @@ pdfocrlang = eng</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.STT" id=
-                "RCL.INDEXING.STT"></a>2.6.4.&nbsp;Running a speech
+                "RCL.INDEXING.STT"></a>2.7.4.&nbsp;Running a speech
                 to text program on audio files</h3>
               </div>
             </div>
@@ -2792,7 +2831,7 @@ pdfocrlang = eng</pre>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.REMOVABLE"
                 id=
-                "RCL.INDEXING.REMOVABLE"></a>2.6.5.&nbsp;Removable
+                "RCL.INDEXING.REMOVABLE"></a>2.7.5.&nbsp;Removable
                 volumes</h3>
               </div>
             </div>
@@ -3016,7 +3055,7 @@ recollindex -c "$confdir"</pre>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.WEBQUEUE"
                 id=
-                "RCL.INDEXING.WEBQUEUE"></a>2.6.6.&nbsp;<span class="application">Unix</span>-like
+                "RCL.INDEXING.WEBQUEUE"></a>2.7.6.&nbsp;<span class="application">Unix</span>-like
                 systems: indexing visited Web pages</h3>
               </div>
             </div>
