@@ -2609,12 +2609,17 @@ metadatacmds = ; <em class=
           <p>In consequence, the <span class=
           "command"><strong>rclpdf.py</strong></span> PDF input
           handler has more complex capabilities than most others,
-          and it is also more configurable. Specifically,
-          <span class="command"><strong>rclpdf.py</strong></span>
-          has the following features:</p>
+          and it is also more configurable, because some extra
+          features need executing external commands, so that they
+          are not enabled by default. Specifically, <span class=
+          "command"><strong>rclpdf.py</strong></span> has the
+          following optional features:</p>
           <div class="itemizedlist">
             <ul class="itemizedlist" style=
             "list-style-type: disc;">
+              <li class="listitem">
+                <p>It can extract PDF outlines and bookmarks.</p>
+              </li>
               <li class="listitem">
                 <p>It can be configured to extract specific
                 metadata tags from an XMP packet.</p>
@@ -2632,6 +2637,25 @@ metadatacmds = ; <em class=
                 used with non-PDF image files.</p>
               </li>
             </ul>
+          </div>
+          <div class="sect3">
+            <div class="titlepage">
+              <div>
+                <div>
+                  <h4 class="title"><a name=
+                  "RCL.INDEXING.PDF.OUTLINE" id=
+                  "RCL.INDEXING.PDF.OUTLINE"></a>Extracting PDF
+                  outlines and bookmarks</h4>
+                </div>
+              </div>
+            </div>
+            <p>These data elements will be extracted if
+            <code class="literal">pdfoutline</code> is set in the
+            configuration file and the <span class=
+            "command"><strong>pdftohtml</strong></span> command
+            (from <span class="application">poppler-tools</span> is
+            available). Executing the command takes extra time,
+            which is why the feature is not enabled by default.</p>
           </div>
           <div class="sect3">
             <div class="titlepage">
@@ -9241,81 +9265,75 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
           </div>
           <p>The following prerequisites are described in broad
           terms and Debian package names. The dependencies should
-          be available as packages on most common Unix derivatives,
-          and it should be quite uncommon that you would have to
-          build one of them. Finding the right package name for
-          other systems is left to the sagacity of the reader.</p>
+          be available as packages on most common <span class=
+          "application">Unix</span>-like systems, and it should be
+          quite uncommon that you would have to build one of them.
+          Finding the right package name for non-Debian systems is
+          left to the sagacity of the reader.</p>
           <p>Up to version 1.37, the <span class=
           "application">Recoll</span> build process used the
           <span class="application">GNU autotools</span>. Versions
           1.38 and later use <span class=
-          "application">meson/ninja</span> instead. In the
-          following, most configuration options are still defined
-          in terms of autotools <code class=
-          "literal">--enable-xxx</code>, <code class=
-          "literal">--disable-xxx</code>. These can be translated
-          to -Dxxx=true -Dxxx=false options for <span class=
-          "command"><strong>meson setup</strong></span></p>
+          "application">meson/ninja</span> instead.</p>
           <p>If you do not need the GUI, you can avoid all GUI
-          dependencies by disabling its build. (See the configure
+          dependencies by disabling its build: see the configure
           section further down: <code class=
-          "literal">--disable-qtgui</code>).</p>
+          "literal">-Dqtgui=false</code>.</p>
+          <p>Check the <a class="ulink" href=
+          "https://www.recoll.org/pages/download.html" target=
+          "_top"><span class="application">Recoll</span> download
+          page</a> for up to date <span class=
+          "application">Recoll</span> version information and links
+          to source release files in <span class=
+          "command"><strong>tar</strong></span> format.</p>
           <p>The shopping list follows:</p>
           <div class="itemizedlist">
             <ul class="itemizedlist" style=
             "list-style-type: disc;">
               <li class="listitem">
-                <p>If you start from git code, you will need the
-                <span class="command"><strong>git</strong></span>
-                command (<code class="literal">git</code>), and the
-                <span class=
-                "command"><strong>autoconf</strong></span>,
-                <span class=
-                "command"><strong>automake</strong></span> and
-                <span class=
-                "command"><strong>libtool</strong></span> triad
-                (<code class="literal">autoconf</code>,
-                <code class="literal">automake</code>, <code class=
-                "literal">libtool</code>). These are not needed for
-                building from tar distributions.</p>
+                <p>If you start from git repository source code,
+                you will need the <span class=
+                "command"><strong>git</strong></span>, obviously
+                (package: <code class="literal">git</code>).</p>
               </li>
               <li class="listitem">
-                <p>The pkg-config command and gettext package are
-                needed for configuring the build (<code class=
-                "literal">pkg-config</code>, <code class=
-                "literal">gettext</code>).</p>
+                <p>On <span class="application">Unix</span>-like
+                systems systems, you will need the <span class=
+                "command"><strong>meson</strong></span> and
+                <span class="command"><strong>ninja</strong></span>
+                commands. (package: <code class=
+                "literal">meson</code>, this will bring
+                <code class="literal">ninja</code> as a
+                dependency). Not needed on <span class=
+                "application">MacOS</span> systems at the
+                moment.</p>
+              </li>
+              <li class="listitem">
+                <p>The pkg-config command is needed for configuring
+                the build (package: <code class=
+                "literal">pkg-config</code>).</p>
               </li>
               <li class="listitem">
                 <p>The <span class=
-                "command"><strong>make</strong></span> command
-                (<code class="literal">make</code> which will
-                actually install <span class="application">GNU
-                make</span> on Linux). If you get strange error
-                messages about dependency tracking from
-                <span class="command"><strong>configure</strong></span>,
-                you probably forgot to install <span class=
-                "command"><strong>make</strong></span>.</p>
+                "command"><strong>make</strong></span> command is
+                needed for building the GUI, unneeded if you
+                disable this. (package: <code class=
+                "literal">make</code>).</p>
               </li>
               <li class="listitem">
                 <p>A C++ compiler with at least C++17 compatibility
                 (<code class="literal">g++</code> or <code class=
-                "literal">clang</code>). Versions 1.33.4 and older
-                only require c++11.</p>
+                "literal">clang</code>). <span class=
+                "application">Recoll</span> Versions 1.33.4 and
+                older only required c++11.</p>
               </li>
               <li class="listitem">
                 <p>The <span class=
                 "command"><strong>bison</strong></span> command is
-                not generally needed, but might be if some file
-                modification times are not right.</p>
-              </li>
-              <li class="listitem">
-                <p>If you want to process CHM files, you will need
-                libchm (<code class="literal">libchm-dev</code>),
-                else you can set the <code class=
-                "literal">--disable-python-chm</code> option to the
-                <span class=
-                "command"><strong>configure</strong></span>
-                command.</p>
+                not generally needed, but might be if you modify
+                the query language yacc source or if some file
+                modification times are not right (package:
+                <code class="literal">bison</code>).</p>
               </li>
               <li class="listitem">
                 <p>For building the documentation: the <span class=
@@ -9323,32 +9341,21 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                 and the Docbook XML and style sheet files. You can
                 avoid this dependency by disabling documentation
                 building with the <code class=
-                "literal">--disable-userdoc</code> <span class=
-                "command"><strong>configure</strong></span>
-                option.</p>
+                "literal">-Duserdoc=false</code> setup option.</p>
               </li>
               <li class="listitem">
                 <p>Development files for <a class="ulink" href=
                 "https://www.xapian.org" target="_top"><span class=
                 "application">Xapian core</span></a> (<code class=
                 "literal">libxapian-dev</code>).</p>
-                <div class="important" style=
-                "margin-left: 0.5in; margin-right: 0.5in;">
-                  <h3 class="title">Important</h3>
-                  <p>If you are building Xapian for an older CPU
-                  (before Pentium 4 or Athlon 64), you need to add
-                  the <code class="option">--disable-sse</code>
-                  flag to the <span class=
-                  "command"><strong>configure</strong></span>
-                  command. Else all Xapian applications will crash
-                  with an <code class="literal">illegal
-                  instruction</code> error.</p>
-                </div>
               </li>
               <li class="listitem">
                 <p>Development files for <span class=
-                "application">libxslt</span> (<code class=
-                "literal">libxslt1-dev</code>).</p>
+                "application">libxml2</span> and <span class=
+                "application">libxslt</span> (packages:
+                <code class="literal">libxslt1-dev</code>, which
+                will pull <code class=
+                "literal">libxml2-dev</code>).</p>
               </li>
               <li class="listitem">
                 <p>Development files for <span class=
@@ -9357,49 +9364,55 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
               </li>
               <li class="listitem">
                 <p>Development files for <span class=
-                "application">libaspell</span> (<code class=
-                "literal">libaspell-dev</code>). Can be avoided
-                with the <code class=
-                "literal">--disable-aspell</code> option to
-                <span class=
-                "command"><strong>configure</strong></span>.</p>
-              </li>
-              <li class="listitem">
-                <p>If you want to build the GUI: development files
-                for <a class="ulink" href=
-                "https://qt-project.org/downloads" target=
-                "_top"><span class="application">Qt 5</span></a>.
-                Else give the <code class=
-                "literal">--disable-qtgui</code> option to the
-                <span class=
-                "command"><strong>configure</strong></span>
-                command. You will probably need <code class=
-                "literal">qtbase5-dev</code> and <code class=
-                "literal">qttools5-dev-tools</code> I can never
-                remember what other packages to install, but
-                installing the Qt5 Webkit, (or Qt5 Webengine if you
-                set <code class=
-                "literal">--enable-webengine</code>) will usually
-                bring them as dependencies (<code class=
-                "literal">libqt5webkit5-dev</code> or <code class=
-                "literal">qtwebengine5dev</code>). The <span class=
-                "application">Recoll</span> GUI can use either
-                Webkit or Webengine for displaying the results.</p>
+                "application">libmagic</span> (<code class=
+                "literal">libmagic-dev</code>).</p>
               </li>
               <li class="listitem">
                 <p>Development files for <span class=
-                "application">Python3</span> (<code class=
-                "literal">python3-all-dev</code>, <code class=
-                "literal">python3-setuptools</code>). You can use
-                the <code class=
-                "literal">--disable-python-module</code> option for
-                disabling the build of the Python extension. On
-                older systems still supporting Python2, you can
-                also install <code class=
-                "literal">python2-dev</code> and <code class=
-                "literal">python-setuptools</code>. The build will
-                test for the presence of the python2 and/or python3
-                commands and behave accordingly.</p>
+                "application">libaspell</span> (package:
+                <code class="literal">libaspell-dev</code>). Can be
+                avoided with the <code class=
+                "literal">-Daspell=false</code> setup option.</p>
+              </li>
+              <li class="listitem">
+                <p>If you want to process CHM files, you will need
+                libchm (<code class="literal">libchm-dev</code>),
+                else you can set the <code class=
+                "literal">-Dpython-chm=false</code> option to the
+                setup command.</p>
+              </li>
+              <li class="listitem">
+                <p>If you want the daemon indexer process to
+                monitor the session for quitting, you need the X11
+                development library (package: <code class=
+                "literal">libx11-dev</code>). Else use the
+                -Dx11mon=false setup option.</p>
+              </li>
+              <li class="listitem">
+                <p>If you want to build the GUI: <span class=
+                "command"><strong>qmake</strong></span> and
+                development files for <a class="ulink" href=
+                "https://qt-project.org/downloads" target=
+                "_top"><span class="application">Qt 5</span></a>.
+                Else give the <code class=
+                "literal">-Dqtgui=false</code> setup option.
+                Packages: <code class="literal">qtbase5-dev</code>,
+                <code class="literal">qttools5-dev-tools</code>,
+                <code class="literal">libqt5webkit5-dev</code>.
+                Replace <code class=
+                "literal">libqt5webkit5-dev</code> with
+                <code class="literal">libqt5webengine5</code> if
+                you use -Dwebengine=true.</p>
+              </li>
+              <li class="listitem">
+                <p>Development files for <span class=
+                "application">Python3</span> (packages:
+                <code class="literal">python3-all-dev</code>,
+                <code class="literal">python3-setuptools</code>).
+                You can use the <code class=
+                "literal">-Dpython-module=false</code> setup option
+                for disabling the build of the Python
+                extension.</p>
               </li>
               <li class="listitem">
                 <p>You may also need <a class="ulink" href=
@@ -9411,10 +9424,6 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
               </li>
             </ul>
           </div>
-          <p>Check the <a class="ulink" href=
-          "https://www.recoll.org/pages/download.html" target=
-          "_top"><span class="application">Recoll</span> download
-          page</a> for up to date version information.</p>
         </div>
         <div class="sect2">
           <div class="titlepage">
@@ -9443,52 +9452,57 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                 <div>
                   <h4 class="title"><a name=
                   "RCL.INSTALL.BUILDING.BUILDING.CONFIGURE" id=
-                  "RCL.INSTALL.BUILDING.BUILDING.CONFIGURE"></a>Configure
-                  options:</h4>
+                  "RCL.INSTALL.BUILDING.BUILDING.CONFIGURE"></a>meson
+                  setup options</h4>
                 </div>
               </div>
             </div>
-            <p>Translate the following to <code class=
-            "literal">-Dxxx=true/-Dxxx=false</code> for
-            <span class="command"><strong>meson
-            setup</strong></span>.</p>
-            <p><code class="option">--without-aspell</code> will
+            <p>Of course the usual <span class=
+            "command"><strong>meson</strong></span> <code class=
+            "literal">setup</code> options, like <code class=
+            "option">-Dprefix=/usr</code> apply.</p>
+            <p><code class="option">-Daspell=false</code> will
             disable the code for phonetic matching of search
             terms.</p>
-            <p><code class="option">--with-fam</code> or
-            <code class="option">--with-inotify</code> will enable
+            <p><code class="option">-Dfam=true</code> or
+            <code class="option">-Dinotify=true</code> will enable
             the code for real time indexing. Inotify support is
-            enabled by default on Linux systems.</p>
-            <p><code class="option">--with-qzeitgeist</code> will
+            enabled by default on Linux systems. <span class=
+            "application">MacOS</span> systems and <span class=
+            "application">Windows</span> platforms now have real
+            time indexing enabled by default and need no setup
+            options.</p>
+            <p><code class="option">-Dqzeitgeist=true</code> will
             enable sending <span class=
             "application">Zeitgeist</span> events about the visited
             search results, and needs the <span class=
             "application">qzeitgeist</span> package.</p>
-            <p><code class="option">--disable-qtgui</code> will
+            <p><code class="option">-Dqtgui=false</code> will
             disable the Qt graphical interface, which allows
             building the indexer and the command line search
             program in absence of a Qt environment.</p>
-            <p><code class="option">--disable-webkit</code> will
+            <p><code class="option">-Dwebkit=false</code> will
             implement the result list with a <span class=
             "application">Qt</span> QTextBrowser instead of a
             WebKit widget if you do not or can't depend on the
             latter.</p>
-            <p><code class="option">--enable-webengine</code> will
+            <p><code class="option">-Dwebengine=true</code> will
             enable the use of Qt Webengine (only meaningful if the
             Qt GUI is enabled), in place or Qt Webkit.</p>
-            <p><code class="option">--disable-webpreview</code>: do
+            <p><code class="option">-Dwebpreview=false</code>: do
             not implement the GUI preview windows with webkit or
             webengine instead of qtextbrowser. Using webxx will
             usually produce a better display, but will sometimes
-            fail to display anything because of JS issues.</p>
-            <p><code class="option">--enable-guidebug</code> will
+            fail to display anything because of javascript
+            issues.</p>
+            <p><code class="option">-Dguidebug=true</code> will
             build the recoll GUI program with debug symbols. This
             makes it very big (~50MB), which is why it is stripped
             by default.</p>
-            <p><code class="option">--disable-idxthreads</code> is
-            available from version 1.19 to suppress multithreading
-            inside the indexing process. You can also use the
-            run-time configuration to restrict <span class=
+            <p><code class="option">-Didxthreads=false</code> will
+            suppress multithreading inside the indexing process.
+            You can also use the run-time configuration to restrict
+            <span class=
             "command"><strong>recollindex</strong></span> to using
             a single thread, but the compile-time option may
             disable a few more unused locks. This only applies to
@@ -9496,13 +9510,13 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
             (data input). The <span class=
             "application">Recoll</span> monitor mode always uses at
             least two threads of execution.</p>
-            <p><code class="option">--disable-python-module</code>
+            <p><code class="option">-Dpython-module=false</code>
             will avoid building the <span class=
-            "application">Python</span> module.</p>
-            <p><code class="option">--disable-python-chm</code>
-            will avoid building the Python libchm interface used to
+            "application">Python</span> extension.</p>
+            <p><code class="option">-Dpython-chm=false</code> will
+            avoid building the Python libchm interface used to
             index CHM files.</p>
-            <p><code class="option">--enable-camelcase</code> will
+            <p><code class="option">-Dcamelcase=true</code> will
             enable splitting <em class=
             "replaceable"><code>camelCase</code></em> words. This
             is not enabled by default as it has the unfortunate
@@ -9513,50 +9527,42 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
             "literal">"my sql manual"</code> but not <code class=
             "literal">"mysql manual"</code> (only inside phrase
             searches).</p>
-            <p><code class="option">--with-file-command</code>
-            Specify the version of the 'file' command to use (e.g.:
-            --with-file-command=/usr/local/bin/file). Can be useful
-            to enable the gnu version on systems where the native
-            one is bad.</p>
-            <p><code class="option">--disable-x11mon</code> Disable
+            <p><code class="option">-Dlibmagic=false</code>:
+            disable the use of libmagic (use a <code class=
+            "literal">file</code>-like command instead).</p>
+            <p><code class=
+            "option">-Dfile-command=somecommand</code> Specify the
+            version of the 'file' command to use (e.g.:
+            -Dfile-command=/usr/local/bin/file). Can be useful to
+            enable the gnu version on systems where the native one
+            is bad.</p>
+            <p><code class="option">-Dx11mon=false</code> Disable
             <span class="application">X11</span> connection
-            monitoring inside recollindex. Together with
-            --disable-qtgui, this allows building recoll without
+            monitoring inside <span class=
+            "command"><strong>recollindex</strong></span>. Together
+            with -Dqtgui=false, this allows building recoll without
             <span class="application">Qt</span> and <span class=
             "application">X11</span>.</p>
-            <p><code class="option">--disable-userdoc</code> will
+            <p><code class="option">-Duserdoc=false</code> will
             avoid building the user manual. This avoids having to
             install the Docbook XML/XSL files and the TeX toolchain
             used for translating the manual to PDF.</p>
-            <p><code class="option">--enable-recollq</code> Enable
+            <p><code class="option">-Drecollq=true</code> Enable
             building the <span class=
             "command"><strong>recollq</strong></span> command line
             query tool (recoll -t without need for Qt). This is
-            done by default if --disable-qtgui is set but this
+            done by default if -Dqtgui=false is used but this
             option enables forcing it.</p>
-            <p><code class="option">--disable-pic</code>
-            (<span class="application">Recoll</span> versions up to
-            1.21 only) will compile <span class=
-            "application">Recoll</span> with position-dependant
-            code. This is incompatible with building the KIO or the
-            <span class="application">Python</span> or <span class=
-            "application">PHP</span> extensions, but might yield
-            very marginally faster code.</p>
-            <p><code class="option">--without-systemd</code>
-            Disable the automatic installation of systemd unit
-            files. Normally unit files are installed if the install
-            path can be detected.</p>
-            <p><code class=
-            "option">--with-system-unit-dir=DIR</code> Provide an
-            install path for the systemd system unit template
-            file.</p>
-            <p><code class="option">--with-user-unit-dir=DIR</code>
+            <p><code class="option">-Dsystemd=false</code> Disable
+            the automatic installation of systemd unit files.
+            Normally unit files are installed if the install path
+            can be detected.</p>
+            <p><code class="option">-Dsystem-unit-dir=DIR</code>
+            Provide an install path for the systemd system unit
+            template file.</p>
+            <p><code class="option">-Duser-unit-dir=DIR</code>
             Provide an install path for the systemd user unit
             file.</p>
-            <p>Of course the usual <span class=
-            "application">autoconf</span> <span class=
-            "command"><strong>configure</strong></span> options,
-            like <code class="option">--prefix</code> apply.</p>
           </div>
           <div class="sect3">
             <div class="titlepage">
@@ -9570,50 +9576,14 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                 </div>
               </div>
             </div>
-            <p>For versions up to 1.37.x:</p>
-            <pre class="screen"><strong class=
-            "userinput"><code>cd recoll-xxx</code></strong>
-<strong class="userinput"><code>./configure <em class=
-"replaceable"><code>[options]</code></em></code></strong>
-<strong class="userinput"><code>make</code></strong>
-<strong class=
-"userinput"><code>(practices usual hardship-repelling invocations)</code></strong></pre>
-            <p>For versions 1.38 and later:</p>
+            <p>For versions 1.38 and later (else check the manual
+            inside the older source):</p>
             <pre class="screen"><strong class=
             "userinput"><code>cd recoll-xxx</code></strong>
 <strong class="userinput"><code>meson setup <em class=
 "replaceable"><code>[options]</code></em> build</code></strong>
 <strong class="userinput"><code>ninja -C build</code></strong>
             </pre>
-          </div>
-          <div class="sect3">
-            <div class="titlepage">
-              <div>
-                <div>
-                  <h4 class="title"><a name=
-                  "RCL.INSTALL.BUILDING.BUILDING.GIT" id=
-                  "RCL.INSTALL.BUILDING.BUILDING.GIT"></a>Building
-                  from git code</h4>
-                </div>
-              </div>
-            </div>
-            <p>Nothing special is needed for 1.38 and later
-            (<span class="application">meson/ninja</span>).</p>
-            <p>For older versions using the <span class=
-            "application">autotools</span>:</p>
-            <p>When building from source cloned from the git
-            repository, you also need to install <span class=
-            "application">autoconf</span>, <span class=
-            "application">automake</span>, and <span class=
-            "application">libtool</span> and you must execute
-            <code class="literal">sh autogen.sh</code> in the top
-            source directory before running <code class=
-            "literal">configure</code>.</p>
-            <p>You will also need to run <span class=
-            "command"><strong>configure</strong></span> with
-            <code class="literal">--disable-userdoc</code> or
-            install the Docbook XML/XSL files needed for
-            translating the Docbook XML manual into HTML.</p>
           </div>
         </div>
         <div class="sect2">
@@ -9626,11 +9596,9 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
               </div>
             </div>
           </div>
-          <p>Use <strong class="userinput"><code>sudo make
-          install</code></strong> or <strong class=
-          "userinput"><code>sudo ninja install</code></strong> in
-          your build tree. This will copy the commands to
-          <code class="filename"><em class=
+          <p>Use <strong class="userinput"><code>sudo ninja
+          install</code></strong> in your build tree. This will
+          copy the commands to <code class="filename"><em class=
           "replaceable"><code>prefix</code></em>/bin</code> and the
           sample configuration files, scripts and other shared data
           to <code class="filename"><em class=
@@ -11464,6 +11432,15 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                   <p>Attempt OCR of PDF files with no text content.
                   This can be defined in subdirectories. The
                   default is off because OCR is so very slow.</p>
+                </dd>
+                <dt><a name=
+                "RCL.INSTALL.CONFIG.RECOLLCONF.PDFOUTLINE" id=
+                "RCL.INSTALL.CONFIG.RECOLLCONF.PDFOUTLINE"></a><span class="term"><code class="varname">pdfoutline</code></span></dt>
+                <dd>
+                  <p>Extract outlines and bookmarks from PDF
+                  documents (needs pdftohtml). This is not enabled
+                  by default because it is rarely needed, and the
+                  extra command takes a little time.</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.PDFATTACH" id=

@@ -209,7 +209,12 @@ MimeHandlerXslt::MimeHandlerXslt(RclConfig *cnf, const std::string& id,
 
 xsltStylesheet *MimeHandlerXslt::Internal::prepare_stylesheet(const string& ssnm)
 {
-    string ssfn = path_cat(filtersdir, ssnm);
+    string ssfn;
+    if (path_isabsolute(ssnm)) {
+        ssfn = ssnm;
+    } else {
+        ssfn = path_cat(filtersdir, ssnm);
+    }
     FileScanXML XMLstyle(ssfn);
     string reason;
     if (!file_scan(ssfn, &XMLstyle, &reason)) {

@@ -1367,8 +1367,11 @@ indexedpunctuation = %€
    actually used in the real world.
 
    In consequence, the rclpdf.py PDF input handler has more complex
-   capabilities than most others, and it is also more configurable.
-   Specifically, rclpdf.py has the following features:
+   capabilities than most others, and it is also more configurable,
+   because some extra features need executing external commands, so that
+   they are not enabled by default. Specifically, rclpdf.py has the
+   following optional features:
+     * It can extract PDF outlines and bookmarks.
      * It can be configured to extract specific metadata tags from an XMP
        packet.
      * It can extract PDF attachments.
@@ -1376,6 +1379,13 @@ indexedpunctuation = %€
        This is done by executing an external program and is now described
        in a [167]separate section, because the OCR framework can also be
        used with non-PDF image files.
+
+Extracting PDF outlines and bookmarks
+
+   These data elements will be extracted if pdfoutline is set in the
+   configuration file and the pdftohtml command (from poppler-tools is
+   available). Executing the command takes extra time, which is why the
+   feature is not enabled by default.
 
 XMP fields extraction
 
@@ -4814,70 +4824,63 @@ Note
 
    The following prerequisites are described in broad terms and Debian
    package names. The dependencies should be available as packages on most
-   common Unix derivatives, and it should be quite uncommon that you would
-   have to build one of them. Finding the right package name for other
-   systems is left to the sagacity of the reader.
+   common Unix-like systems, and it should be quite uncommon that you
+   would have to build one of them. Finding the right package name for
+   non-Debian systems is left to the sagacity of the reader.
 
    Up to version 1.37, the Recoll build process used the GNU autotools.
-   Versions 1.38 and later use meson/ninja instead. In the following, most
-   configuration options are still defined in terms of autotools
-   --enable-xxx, --disable-xxx. These can be translated to -Dxxx=true
-   -Dxxx=false options for meson setup
+   Versions 1.38 and later use meson/ninja instead.
 
    If you do not need the GUI, you can avoid all GUI dependencies by
-   disabling its build. (See the configure section further down:
-   --disable-qtgui).
+   disabling its build: see the configure section further down:
+   -Dqtgui=false.
+
+   Check the [264]Recoll download page for up to date Recoll version
+   information and links to source release files in tar format.
 
    The shopping list follows:
-     * If you start from git code, you will need the git command (git),
-       and the autoconf, automake and libtool triad (autoconf, automake,
-       libtool). These are not needed for building from tar distributions.
-     * The pkg-config command and gettext package are needed for
-       configuring the build (pkg-config, gettext).
-     * The make command (make which will actually install GNU make on
-       Linux). If you get strange error messages about dependency tracking
-       from configure, you probably forgot to install make.
+     * If you start from git repository source code, you will need the
+       git, obviously (package: git).
+     * On Unix-like systems systems, you will need the meson and ninja
+       commands. (package: meson, this will bring ninja as a dependency).
+       Not needed on MacOS systems at the moment.
+     * The pkg-config command is needed for configuring the build
+       (package: pkg-config).
+     * The make command is needed for building the GUI, unneeded if you
+       disable this. (package: make).
      * A C++ compiler with at least C++17 compatibility (g++ or clang).
-       Versions 1.33.4 and older only require c++11.
-     * The bison command is not generally needed, but might be if some
-       file modification times are not right.
-     * If you want to process CHM files, you will need libchm
-       (libchm-dev), else you can set the --disable-python-chm option to
-       the configure command.
+       Recoll Versions 1.33.4 and older only required c++11.
+     * The bison command is not generally needed, but might be if you
+       modify the query language yacc source or if some file modification
+       times are not right (package: bison).
      * For building the documentation: the xsltproc command, and the
        Docbook XML and style sheet files. You can avoid this dependency by
-       disabling documentation building with the --disable-userdoc
-       configure option.
-     * Development files for [264]Xapian core (libxapian-dev).
-
-Important
-       If you are building Xapian for an older CPU (before Pentium 4 or
-       Athlon 64), you need to add the --disable-sse flag to the configure
-       command. Else all Xapian applications will crash with an illegal
-       instruction error.
-     * Development files for libxslt (libxslt1-dev).
+       disabling documentation building with the -Duserdoc=false setup
+       option.
+     * Development files for [265]Xapian core (libxapian-dev).
+     * Development files for libxml2 and libxslt (packages: libxslt1-dev,
+       which will pull libxml2-dev).
      * Development files for zlib (zlib1g-dev).
-     * Development files for libaspell (libaspell-dev). Can be avoided
-       with the --disable-aspell option to configure.
-     * If you want to build the GUI: development files for [265]Qt 5. Else
-       give the --disable-qtgui option to the configure command. You will
-       probably need qtbase5-dev and qttools5-dev-tools I can never
-       remember what other packages to install, but installing the Qt5
-       Webkit, (or Qt5 Webengine if you set --enable-webengine) will
-       usually bring them as dependencies (libqt5webkit5-dev or
-       qtwebengine5dev). The Recoll GUI can use either Webkit or Webengine
-       for displaying the results.
-     * Development files for Python3 (python3-all-dev,
-       python3-setuptools). You can use the --disable-python-module option
-       for disabling the build of the Python extension. On older systems
-       still supporting Python2, you can also install python2-dev and
-       python-setuptools. The build will test for the presence of the
-       python2 and/or python3 commands and behave accordingly.
-     * You may also need [266]libiconv. On Linux systems, the iconv
+     * Development files for libmagic (libmagic-dev).
+     * Development files for libaspell (package: libaspell-dev). Can be
+       avoided with the -Daspell=false setup option.
+     * If you want to process CHM files, you will need libchm
+       (libchm-dev), else you can set the -Dpython-chm=false option to the
+       setup command.
+     * If you want the daemon indexer process to monitor the session for
+       quitting, you need the X11 development library (package:
+       libx11-dev). Else use the -Dx11mon=false setup option.
+     * If you want to build the GUI: qmake and development files for
+       [266]Qt 5. Else give the -Dqtgui=false setup option. Packages:
+       qtbase5-dev, qttools5-dev-tools, libqt5webkit5-dev. Replace
+       libqt5webkit5-dev with libqt5webengine5 if you use
+       -Dwebengine=true.
+     * Development files for Python3 (packages: python3-all-dev,
+       python3-setuptools). You can use the -Dpython-module=false setup
+       option for disabling the build of the Python extension.
+     * You may also need [267]libiconv. On Linux systems, the iconv
        interface is part of libc and you should not need to do anything
        special.
-
-   Check the [267]Recoll download page for up to date version information.
 
 5.3.2. Building
 
@@ -4889,121 +4892,99 @@ Important
    If you build on another system, and need to modify things, [268]I would
    very much welcome patches.
 
-Configure options:
+meson setup options
 
-   Translate the following to -Dxxx=true/-Dxxx=false for meson setup.
+   Of course the usual meson setup options, like -Dprefix=/usr apply.
 
-   --without-aspell will disable the code for phonetic matching of search
+   -Daspell=false will disable the code for phonetic matching of search
    terms.
 
-   --with-fam or --with-inotify will enable the code for real time
-   indexing. Inotify support is enabled by default on Linux systems.
+   -Dfam=true or -Dinotify=true will enable the code for real time
+   indexing. Inotify support is enabled by default on Linux systems. MacOS
+   systems and Windows platforms now have real time indexing enabled by
+   default and need no setup options.
 
-   --with-qzeitgeist will enable sending Zeitgeist events about the
+   -Dqzeitgeist=true will enable sending Zeitgeist events about the
    visited search results, and needs the qzeitgeist package.
 
-   --disable-qtgui will disable the Qt graphical interface, which allows
+   -Dqtgui=false will disable the Qt graphical interface, which allows
    building the indexer and the command line search program in absence of
    a Qt environment.
 
-   --disable-webkit will implement the result list with a Qt QTextBrowser
+   -Dwebkit=false will implement the result list with a Qt QTextBrowser
    instead of a WebKit widget if you do not or can't depend on the latter.
 
-   --enable-webengine will enable the use of Qt Webengine (only meaningful
+   -Dwebengine=true will enable the use of Qt Webengine (only meaningful
    if the Qt GUI is enabled), in place or Qt Webkit.
 
-   --disable-webpreview: do not implement the GUI preview windows with
+   -Dwebpreview=false: do not implement the GUI preview windows with
    webkit or webengine instead of qtextbrowser. Using webxx will usually
    produce a better display, but will sometimes fail to display anything
-   because of JS issues.
+   because of javascript issues.
 
-   --enable-guidebug will build the recoll GUI program with debug symbols.
+   -Dguidebug=true will build the recoll GUI program with debug symbols.
    This makes it very big (~50MB), which is why it is stripped by default.
 
-   --disable-idxthreads is available from version 1.19 to suppress
-   multithreading inside the indexing process. You can also use the
-   run-time configuration to restrict recollindex to using a single
-   thread, but the compile-time option may disable a few more unused
-   locks. This only applies to the use of multithreading for the core
-   index processing (data input). The Recoll monitor mode always uses at
-   least two threads of execution.
+   -Didxthreads=false will suppress multithreading inside the indexing
+   process. You can also use the run-time configuration to restrict
+   recollindex to using a single thread, but the compile-time option may
+   disable a few more unused locks. This only applies to the use of
+   multithreading for the core index processing (data input). The Recoll
+   monitor mode always uses at least two threads of execution.
 
-   --disable-python-module will avoid building the Python module.
+   -Dpython-module=false will avoid building the Python extension.
 
-   --disable-python-chm will avoid building the Python libchm interface
-   used to index CHM files.
+   -Dpython-chm=false will avoid building the Python libchm interface used
+   to index CHM files.
 
-   --enable-camelcase will enable splitting camelCase words. This is not
+   -Dcamelcase=true will enable splitting camelCase words. This is not
    enabled by default as it has the unfortunate side-effect of making some
    phrase searches quite confusing: ie, "MySQL manual" would be matched by
    "MySQL manual" and "my sql manual" but not "mysql manual" (only inside
    phrase searches).
 
-   --with-file-command Specify the version of the 'file' command to use
-   (e.g.: --with-file-command=/usr/local/bin/file). Can be useful to
-   enable the gnu version on systems where the native one is bad.
+   -Dlibmagic=false: disable the use of libmagic (use a file-like command
+   instead).
 
-   --disable-x11mon Disable X11 connection monitoring inside recollindex.
-   Together with --disable-qtgui, this allows building recoll without Qt
-   and X11.
+   -Dfile-command=somecommand Specify the version of the 'file' command to
+   use (e.g.: -Dfile-command=/usr/local/bin/file). Can be useful to enable
+   the gnu version on systems where the native one is bad.
 
-   --disable-userdoc will avoid building the user manual. This avoids
-   having to install the Docbook XML/XSL files and the TeX toolchain used
-   for translating the manual to PDF.
+   -Dx11mon=false Disable X11 connection monitoring inside recollindex.
+   Together with -Dqtgui=false, this allows building recoll without Qt and
+   X11.
 
-   --enable-recollq Enable building the recollq command line query tool
+   -Duserdoc=false will avoid building the user manual. This avoids having
+   to install the Docbook XML/XSL files and the TeX toolchain used for
+   translating the manual to PDF.
+
+   -Drecollq=true Enable building the recollq command line query tool
    (recoll -t without need for Qt). This is done by default if
-   --disable-qtgui is set but this option enables forcing it.
+   -Dqtgui=false is used but this option enables forcing it.
 
-   --disable-pic (Recoll versions up to 1.21 only) will compile Recoll
-   with position-dependant code. This is incompatible with building the
-   KIO or the Python or PHP extensions, but might yield very marginally
-   faster code.
-
-   --without-systemd Disable the automatic installation of systemd unit
+   -Dsystemd=false Disable the automatic installation of systemd unit
    files. Normally unit files are installed if the install path can be
    detected.
 
-   --with-system-unit-dir=DIR Provide an install path for the systemd
-   system unit template file.
+   -Dsystem-unit-dir=DIR Provide an install path for the systemd system
+   unit template file.
 
-   --with-user-unit-dir=DIR Provide an install path for the systemd user
-   unit file.
-
-   Of course the usual autoconf configure options, like --prefix apply.
+   -Duser-unit-dir=DIR Provide an install path for the systemd user unit
+   file.
 
 Normal procedure, for source extracted from a tar distribution)
 
-   For versions up to 1.37.x:
-cd recoll-xxx
-./configure [options]
-make
-(practices usual hardship-repelling invocations)
-
-   For versions 1.38 and later:
+   For versions 1.38 and later (else check the manual inside the older
+   source):
 cd recoll-xxx
 meson setup [options] build
 ninja -C build
 
-Building from git code
-
-   Nothing special is needed for 1.38 and later (meson/ninja).
-
-   For older versions using the autotools:
-
-   When building from source cloned from the git repository, you also need
-   to install autoconf, automake, and libtool and you must execute sh
-   autogen.sh in the top source directory before running configure.
-
-   You will also need to run configure with --disable-userdoc or install
-   the Docbook XML/XSL files needed for translating the Docbook XML manual
-   into HTML.
-
 5.3.3. Installing
 
-   Use sudo make install or sudo ninja install in your build tree. This
-   will copy the commands to prefix/bin and the sample configuration
-   files, scripts and other shared data to prefix/share/recoll.
+   Use sudo ninja install in your build tree. This will copy the commands
+   to prefix/bin and the sample configuration files, scripts and other
+   shared data to prefix/share/recoll.
 
 5.3.4. Python API package
 
@@ -6042,6 +6023,11 @@ Parameters for the PDF input script
           defined in subdirectories. The default is off because OCR is so
           very slow.
 
+   pdfoutline
+          Extract outlines and bookmarks from PDF documents (needs
+          pdftohtml). This is not enabled by default because it is rarely
+          needed, and the extra command takes a little time.
+
    pdfattach
           Enable PDF attachment extraction by executing pdftk (if
           available). This is normally disabled, because it does slow down
@@ -6732,10 +6718,10 @@ References
  261. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG
  262. https://www.recoll.org/pages/features.html#doctypes
  263. https://www.recoll.org/pages/features.html#doctypes
- 264. https://www.xapian.org/
- 265. https://qt-project.org/downloads
- 266. https://www.gnu.org/software/libiconv/
- 267. https://www.recoll.org/pages/download.html
+ 264. https://www.recoll.org/pages/download.html
+ 265. https://www.xapian.org/
+ 266. https://qt-project.org/downloads
+ 267. https://www.gnu.org/software/libiconv/
  268. mailto:jfd@recoll.org
  269. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.MULTIDB
  270. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
