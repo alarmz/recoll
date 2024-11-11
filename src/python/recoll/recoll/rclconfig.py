@@ -13,9 +13,11 @@ try:
 except:
     import conftree
 
+
 def msg(s):
     print("%s" % s, file=sys.stderr)
-    
+
+
 class RclDynConf:
     def __init__(self, fname):
         self.data = conftree.ConfSimple(fname)
@@ -27,9 +29,10 @@ class RclDynConf:
             for nm in nms:
                 out.append(base64.b64decode(self.data.get(nm, sk)))
         return out
-    
+
+
 class RclConfig:
-    def __init__(self, argcnf = None):
+    def __init__(self, argcnf=None):
         self.config = None
         self.mimemap = None
         platsys = platform.system()
@@ -47,8 +50,8 @@ class RclConfig:
                 self.confdir = os.path.join(dir, "Recoll")
             else:
                 self.confdir = os.path.expanduser("~/.recoll")
-        #msg(f"Confdir: [{self.confdir}]")
-        
+        # msg(f"Confdir: [{self.confdir}]")
+
         # Find datadir to get at the base configuration files. This is tricky because this module
         # could be loaded either from the recoll filters/ directory, or from the Recoll Python
         # extension. In the first case, the base configuration should be in __file__/../examples.
@@ -62,10 +65,12 @@ class RclConfig:
                 # Note that this is not guaranteed to work if we come from the Python extension and
                 # not started from a recoll filter. Then we try a guess, which will fail if recoll
                 # is installed in a non-default (or multiple) place.
-                dirs = (os.path.join(os.path.dirname(sys.argv[0]), "..", ".."),
-                        "C:/Program Files (X86)/Recoll/",
-                        "C:/Program Files/Recoll/",
-                        "C:/install/recoll/")
+                dirs = (
+                    os.path.join(os.path.dirname(sys.argv[0]), "..", ".."),
+                    "C:/Program Files (X86)/Recoll/",
+                    "C:/Program Files/Recoll/",
+                    "C:/install/recoll/",
+                )
                 for dir in dirs:
                     if os.path.exists(os.path.join(dir, "Share")):
                         self.datadir = os.path.join(dir, "Share")
@@ -76,24 +81,27 @@ class RclConfig:
                 self.datadir = os.path.join(os.path.dirname(__file__), "..")
             else:
                 # Try to use __file__ and sys.argv[0]. This may fail if we're not a filter
-                for filtersdir in (os.path.dirname(__file__), os.path.dirname(sys.argv[0])):
+                for filtersdir in (
+                    os.path.dirname(__file__),
+                    os.path.dirname(sys.argv[0]),
+                ):
                     if filtersdir.find("recoll/filters") != -1:
-                        #msg("Using __file__ to compute datadir")
+                        # msg("Using __file__ to compute datadir")
                         self.datadir = os.path.dirname(filtersdir)
                         break
                 if self.datadir is None:
                     # On ux platforms, the datadir value is set by "configure" in the C code.
                     # Try to guess
-                    #msg("Trying to guess datadir")
+                    # msg("Trying to guess datadir")
                     dirs = ("/opt/local", "/opt", "/usr", "/usr/local", "/usr/pkg")
                     for dir in dirs:
                         dd = os.path.join(dir, "share/recoll")
                         if os.path.exists(dd):
                             self.datadir = dd
         if self.datadir is None:
-            #msg("DATADIR could not be computed. Trying /usr/share/recoll as last resort")
+            # msg("DATADIR could not be computed. Trying /usr/share/recoll as last resort")
             self.datadir = "/usr/share/recoll"
-        #msg(f"DATADIR: [{self.datadir}]")
+        # msg(f"DATADIR: [{self.datadir}]")
         baseconfdir = os.path.join(self.datadir, "examples")
         f = None
         try:
@@ -101,15 +109,18 @@ class RclConfig:
         except:
             pass
         if f is None:
-            raise(Exception(
-                "Can't open default/system recoll.conf in [%s]. " % baseconfdir +
-                "Please set RECOLL_DATADIR in the environment to point " +
-                "to the installed recoll data files."))
+            raise (
+                Exception(
+                    "Can't open default/system recoll.conf in [%s]. " % baseconfdir
+                    + "Please set RECOLL_DATADIR in the environment to point "
+                    + "to the installed recoll data files."
+                )
+            )
         else:
             f.close()
 
         self.cdirs = []
-        
+
         # Additional config directory, values override user ones
         if "RECOLL_CONFTOP" in os.environ:
             self.cdirs.append(os.environ["RECOLL_CONFTOP"])
@@ -118,13 +129,15 @@ class RclConfig:
         if "RECOLL_CONFMID" in os.environ:
             self.cdirs.append(os.environ["RECOLL_CONFMID"])
         self.cdirs.append(os.path.join(self.datadir, "examples"))
-        #msg("Config dirs: {self.cdirs}")
-        self.keydir = ''
+        # msg("Config dirs: {self.cdirs}")
+        self.keydir = ""
 
     def getConfDir(self):
         return self.confdir
+
     def getDataDir(self):
         return self.datadir
+
     def getDbDir(self):
         dir = self.getConfParam("dbdir")
         if os.path.isabs(dir):
@@ -133,6 +146,7 @@ class RclConfig:
         if not cachedir:
             cachedir = self.confdir
         return os.path.join(cachedir, dir)
+
     def setKeyDir(self, dir):
         self.keydir = dir
 
@@ -162,7 +176,8 @@ class RclConfig:
                 pass
         ext = os.path.splitext(path)[1]
         return self.mimemap.get(ext, self.keydir)
-        
+
+
 class RclExtraDbs:
     def __init__(self, config):
         self.config = config
@@ -171,9 +186,10 @@ class RclExtraDbs:
         dyncfile = os.path.join(self.config.getConfDir(), "history")
         dync = RclDynConf(dyncfile)
         return dync.getStringList("actExtDbs")
-    
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     config = RclConfig()
-    print("topdirs = %s" % config.getConfParam('topdirs'))
+    print("topdirs = %s" % config.getConfParam("topdirs"))
     extradbs = RclExtraDbs(config)
     print("%s" % extradbs.getActDbs())

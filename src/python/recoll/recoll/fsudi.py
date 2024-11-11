@@ -27,28 +27,29 @@ import base64
 import sys
 import os
 
+
 def _pathHash(path, maxlen):
     HASHLEN = 22
     if len(path) <= maxlen:
         return path
-    digest = hashlib.md5(path[maxlen-HASHLEN:]).digest()
+    digest = hashlib.md5(path[maxlen - HASHLEN :]).digest()
     adigest = base64.b64encode(digest)
     adigest = adigest[:-2]
-    return path[:maxlen-HASHLEN] + adigest
+    return path[: maxlen - HASHLEN] + adigest
+
 
 def fs_udi(path, ipath=b""):
     if type(path) == type(""):
         path = os.fsencode(path)
     if type(ipath) == type(""):
-        ipath = ipath.encode('utf-8')
+        ipath = ipath.encode("utf-8")
     PATHHASHLEN = 150
-    path +=  b"|"
+    path += b"|"
     path += ipath
     return _pathHash(path, PATHHASHLEN)
 
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: rclfileudi.py <filepath>", file=sys.stderr)
         sys.exit(1)
