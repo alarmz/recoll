@@ -657,6 +657,8 @@ if (LINUX)
         DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/48x48/apps)
     install(FILES desktop/recoll.png
         DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/pixmaps)
+    install(FILES desktop/recoll.svg
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps)
 
     install(FILES ${docs_files}
        DESTINATION ${CMAKE_INSTALL_DATADIR}/recoll/doc)
