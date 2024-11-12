@@ -3461,11 +3461,11 @@ Wildcards and path filtering
    file defines a group.
 
    Example:
-        hi hello "good morning"
+hi hello "good morning"
 
-        # not sure about "au revoir" though. Is this english ?
-        bye goodbye "see you" \
-        "au revoir"
+# not sure about "au revoir" though. Is this english ?
+bye goodbye "see you" \
+"au revoir"
 
    As usual, lines beginning with a # are comments, empty lines are
    ignored, and lines can be continued by ending them with a backslash.
@@ -3588,10 +3588,10 @@ C: = Z:
    You can also explicitly activate case and diacritics sensitivity by
    using modifiers with the query language. C will make the term
    case-sensitive, and D will make it diacritics-sensitive. Examples:
-        "us"C
+"us"C
 
    will search for the term us exactly (Us will not be a match).
-        "resume"D
+"resume"D
 
    will search for the term resume exactly (résumé will not be a match).
 
@@ -3819,7 +3819,6 @@ Terminology
 
    The association of files to MIME types is mostly based on name
    suffixes. The types are defined inside the [236]mimemap file. Example:
-
 .doc = application/msword
 
    If no suffix association is found for the file name, recent Recoll will
@@ -3829,17 +3828,15 @@ Terminology
    The second element is the association of MIME types to handlers in the
    [237]mimeconf file. A sample will probably be better than a long
    explanation:
+[index]
+application/msword = exec antiword -t -i 1 -m UTF-8;\
+mimetype = text/plain ; charset=utf-8
 
-          [index]
-          application/msword = exec antiword -t -i 1 -m UTF-8;\
-          mimetype = text/plain ; charset=utf-8
+application/ogg = exec rclogg
 
-          application/ogg = exec rclogg
+text/rtf = exec unrtf --nopict --html; charset=iso-8859-1; mimetype=text/html
 
-          text/rtf = exec unrtf --nopict --html; charset=iso-8859-1; mimetype=te
-xt/html
-
-          application/x-chm = execm rclchm.py
+application/x-chm = execm rclchm.py
 
    The fragment specifies that:
      * application/msword files are processed by executing the antiword
@@ -3870,15 +3867,14 @@ xt/html
 
    For filters producing HTML, the output could be very minimal like the
    following example:
-          <html>
-            <head>
-              <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/
->
-            </head>
-            <body>
-              Some text content
-            </body>
-          </html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  </head>
+  <body>
+    Some text content
+  </body>
+</html>
 
    You should take care to escape some characters inside the text by
    transforming them into appropriate entities. At the very minimum, "&"
@@ -3908,23 +3904,23 @@ xt/html
    right format, it will be used as the document date (for display and
    sorting), in preference to the file modification date. The date format
    should be as follows:
-          <meta name="date" content="YYYY-mm-dd HH:MM:SS">
-          or
-          <meta name="date" content="YYYY-mm-ddTHH:MM:SS">
+<meta name="date" content="YYYY-mm-dd HH:MM:SS">
+
+   or
+<meta name="date" content="YYYY-mm-ddTHH:MM:SS">
 
    Example:
-          <meta name="date" content="2013-02-24 17:50:00">
+<meta name="date" content="2013-02-24 17:50:00">
 
    Input handlers also have the possibility to "invent" field names. This
    should also be output as meta tags:
-          <meta name="somefield" content="Some textual data" />
+<meta name="somefield" content="Some textual data" />
 
    You can embed HTML markup inside the content of custom fields, for
    improving the display inside result lists. In this case, add a (wildly
    non-standard) markup attribute to tell Recoll that the value is HTML
    and should not be escaped for display.
-          <meta name="somefield" markup="html" content="Some <i>textual</i> data
-" />
+<meta name="somefield" markup="html" content="Some <i>textual</i> data" />
 
    As written above, the processing of fields is described in a
    [239]further section.
@@ -4673,54 +4669,52 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
 External indexer samples
 
    First a quick look at an indexer main part, using pseudo-Python3 code:
-    # Connect to the recoll index. This will use the RECOLL_CONFDIR variable, se
-t
-    # by the parent recollindex process, to use the right index.
-    rcldb = recoll.connect(writable=1)
+# Connect to the recoll index. This will use the RECOLL_CONFDIR variable, set
+# by the parent recollindex process, to use the right index.
+rcldb = recoll.connect(writable=1)
 
-    # Important: tell the Recoll db that we are going to update documents for th
-e
-    # MYBACK backend. All other documents will be marked as present so as
-    # not to be affect by the subsequent purge.
-    rcldb.preparePurge("MYBACK")
+# Important: tell the Recoll db that we are going to update documents for the
+# MYBACK backend. All other documents will be marked as present so as
+# not to be affect by the subsequent purge.
+rcldb.preparePurge("MYBACK")
 
-    # Walk your dataset (of course your code will not look like this)
-    for mydoc in mydoclist:
-        # Compute the doc unique identifier and the signature corresponding to i
-ts update state
-        # (e.g. mtime and size for a file).
-        udi = mydoc.udi()
-        sig = mydoc.sig()
-        # Check with recoll if the document needs updating. This has the side-ef
-fect or marking
-        # it present.
-        if not rcldb.needUpdate(udi, sig):
-            continue
-        # The document data does not exist in the index or needs updating. Creat
-e and add a Recoll
-        # Doc object
-        doc = recoll.Doc()
-        doc.mimetype = "some/type"
-        # Say that the document belongs to this indexer
-        doc.rclbes = "MYBACK"
-        # The url will be passed back to you along with the udi if the fetch
-        # method is called later (for previewing), or may be used for opening th
-e document with
-        # its native app from Recoll. The udi has a maximum size because it is u
-sed as a Xapian
-        # term. The url has no such limitation.
-        doc.url = "someurl"
-        doc.sig = sig
-        # Of course add other fields like "text" (duh), "author" etc. See the sa
-mples.
-        doc.text = mydoc.text()
-        # [...]
-        # Then add or update the data in the index.
-        self.db.addOrUpdate(udi, doc)
+# Walk your dataset (of course your code will not look like this)
+for mydoc in mydoclist:
+    # Compute the doc unique identifier and the signature corresponding to its u
+pdate state
+    # (e.g. mtime and size for a file).
+    udi = mydoc.udi()
+    sig = mydoc.sig()
+    # Check with recoll if the document needs updating. This has the side-effect
+ or marking
+    # it present.
+    if not rcldb.needUpdate(udi, sig):
+        continue
+    # The document data does not exist in the index or needs updating. Create an
+d add a Recoll
+    # Doc object
+    doc = recoll.Doc()
+    doc.mimetype = "some/type"
+    # Say that the document belongs to this indexer
+    doc.rclbes = "MYBACK"
+    # The url will be passed back to you along with the udi if the fetch
+    # method is called later (for previewing), or may be used for opening the do
+cument with
+    # its native app from Recoll. The udi has a maximum size because it is used
+as a Xapian
+    # term. The url has no such limitation.
+    doc.url = "someurl"
+    doc.sig = sig
+    # Of course add other fields like "text" (duh), "author" etc. See the sample
+s.
+    doc.text = mydoc.text()
+    # [...]
+    # Then add or update the data in the index.
+    self.db.addOrUpdate(udi, doc)
 
-    # Finally call purge to delete the data for documents which were not seen at
- all.
-    db.purge()
+# Finally call purge to delete the data for documents which were not seen at all
+.
+db.purge()
 
    The Recoll source tree has two samples of external indexers.
      * [257]rclmbox.py indexes a directory containing mbox folder files.
@@ -4937,6 +4931,15 @@ meson setup options
    -Dpython-chm=false will avoid building the Python libchm interface used
    to index CHM files.
 
+   -Dpython-aspell=false will avoid building the Python libaspell
+   interface. This is used to supplement queries with spelling guesses.
+
+   -Dindexer=false will prevent building the indexer. Possibly useful if
+   you just need the lib (e.g. for the Python extension).
+
+   -Dsimdutf=false will prevent the use of the simdutf code normally used
+   to speed up character code conversions.
+
    -Dcamelcase=true will enable splitting camelCase words. This is not
    enabled by default as it has the unfortunate side-effect of making some
    phrase searches quite confusing: ie, "MySQL manual" would be matched by
@@ -5054,11 +5057,11 @@ ninja -C build
 
    All configuration files share the same format. For example, a short
    extract of the main configuration file might look as follows:
-        # Space-separated list of files and directories to index.
-        topdirs =  ~/docs /usr/share/doc
+# Space-separated list of files and directories to index.
+topdirs =  ~/docs /usr/share/doc
 
-        [~/somedirectory-with-utf8-txt-files]
-        defaultcharset = utf-8
+[~/somedirectory-with-utf8-txt-files]
+defaultcharset = utf-8
 
    There are three kinds of lines:
      * Comment lines start with a hash mark #.
@@ -5096,9 +5099,9 @@ Important
    No value inside a configuration file can contain a newline character.
    Long lines can be continued by escaping the physical newline with
    backslash, even inside quoted strings.
-        astringlist =  "some string \
-        with spaces"
-        thesame = "some string with spaces"
+astringlist =  "some string \
+with spaces"
+thesame = "some string with spaces"
 
    Parameters which are not part of string lists can't be quoted, and
    leading and trailing space characters are stripped before the value is
@@ -6176,22 +6179,22 @@ Parameters set for specific locations
    indexed, and only the first occurrence will be used for headers that
    occur several times).
 [prefixes]
-        # Index mailmytag contents (with the given prefix)
-        mailmytag = XMTAG
+# Index mailmytag contents (with the given prefix)
+mailmytag = XMTAG
 
-        [stored]
-        # Store mailmytag inside the document data record (so that it can be
-        # displayed - as %(mailmytag) - in result lists).
-        mailmytag =
+[stored]
+# Store mailmytag inside the document data record (so that it can be
+# displayed - as %(mailmytag) - in result lists).
+mailmytag =
 
-        [queryaliases]
-        filename = fn
-        containerfilename = cfn
+[queryaliases]
+filename = fn
+containerfilename = cfn
 
-        [mail]
-        # Extract the X-My-Tag mail header, and use it internally with the
-        # mailmytag field name
-        x-my-tag = mailmytag
+[mail]
+# Extract the X-My-Tag mail header, and use it internally with the
+# mailmytag field name
+x-my-tag = mailmytag
 
 Extended attributes in the fields file
 
@@ -6237,7 +6240,7 @@ Extended attributes in the fields file
    should be handled specially, which is possible because they are usually
    all located in one place. Example:
 [~/.kde/share/apps/okular/docdata]
-        .xml = application/x-okular-notes
+.xml = application/x-okular-notes
 
    The recoll_noindex mimemap variable has been moved to recoll.conf and
    renamed to noContentSuffixes, while keeping the same function, as of
@@ -6390,12 +6393,12 @@ other = rclcat:other
    the Xapian index directory names. No slash character should exist at
    the end of the paths (all comparisons are textual). An example should
    make things sufficiently clear
-          [/home/me/.recoll/xapiandb]
-          /this/directory/moved = /to/this/place
+[/home/me/.recoll/xapiandb]
+/this/directory/moved = /to/this/place
 
-          [/path/to/additional/xapiandb]
-          /server/volume1/docdir = /net/server/volume1/docdir
-          /server/volume2/docdir = /net/server/volume2/docdir
+[/path/to/additional/xapiandb]
+/server/volume1/docdir = /net/server/volume1/docdir
+/server/volume2/docdir = /net/server/volume2/docdir
 
 5.4.8. Examples of configuration adjustments
 
@@ -6409,13 +6412,11 @@ Adding an external viewer for an non-indexed type
    You need two entries in the configuration files for this to work:
      * In $RECOLL_CONFDIR/mimemap (typically ~/.recoll/mimemap), add the
        following line:
-            .blob = application/x-blobapp
-
+.blob = application/x-blobapp
        Note that the MIME type is made up here, and you could call it
        diesel/oil just the same.
      * In $RECOLL_CONFDIR/mimeview under the [view] section, add:
-              application/x-blobapp = blobviewer %f
-
+application/x-blobapp = blobviewer %f
        We are supposing that blobviewer wants a file name parameter here,
        you would use %u if it liked URLs better.
 
