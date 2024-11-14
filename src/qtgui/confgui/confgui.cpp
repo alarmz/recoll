@@ -22,6 +22,7 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <string>
 
 #include <qglobal.h>
 #include <QHBoxLayout>
@@ -195,8 +196,7 @@ ConfParamW *ConfTabsW::addParam(
     case CFPT_INT: {
         size_t v = (size_t)sl;
         int v1 = (v & 0xffffffff);
-        cp = new ConfParamIntW(varname, this, lnk, label, tooltip, ival,
-                               maxval, v1);
+        cp = new ConfParamIntW(varname, this, lnk, label, tooltip, ival, maxval, v1);
         break;
     }
     case CFPT_STR:
@@ -252,11 +252,9 @@ bool ConfTabsW::enableLink(ConfParamW* boolw, ConfParamW* otherw, bool revert)
     }
     otherw->setEnabled(revert ? !bw->m_cb->isChecked() : bw->m_cb->isChecked());
     if (revert) {
-        connect(bw->m_cb, SIGNAL(toggled(bool)),
-                otherw, SLOT(setDisabled(bool)));
+        connect(bw->m_cb, SIGNAL(toggled(bool)), otherw, SLOT(setDisabled(bool)));
     } else {
-        connect(bw->m_cb, SIGNAL(toggled(bool)),
-                otherw, SLOT(setEnabled(bool)));
+        connect(bw->m_cb, SIGNAL(toggled(bool)), otherw, SLOT(setEnabled(bool)));
     }
     return true;
 }
@@ -284,7 +282,7 @@ void ConfPanelW::addWidget(QWidget *w)
 ConfParamW *ConfPanelW::findParamW(const QString& varname)
 {
     for (const auto& param : m_params) {
-        if (!varname.compare(param->getVarName())) {
+        if (varname == param->getVarName()) {
             return param;
         }
     }
@@ -310,8 +308,7 @@ void ConfPanelW::loadValues()
     }
 }
 
-static QString myGetFileName(bool isdir, QString caption = QString(),
-                             bool filenosave = false);
+static QString myGetFileName(bool isdir, QString caption = QString(), bool filenosave = false);
 
 static QString myGetFileName(bool isdir, QString caption, bool filenosave)
 {
@@ -358,25 +355,19 @@ void ConfParamW::setValue(const QString& value)
 
 void ConfParamW::setValue(int value)
 {
-    char buf[30];
-    sprintf(buf, "%d", value);
-    m_cflink->set(std::string(buf));
+    m_cflink->set(std::to_string(value));
 }
 
 void ConfParamW::setValue(bool value)
 {
-    char buf[30];
-    sprintf(buf, "%d", value);
-    m_cflink->set(std::string(buf));
+    m_cflink->set(std::to_string(value));
 }
 
 extern void setSzPol(QWidget *w, QSizePolicy::Policy hpol,
-                     QSizePolicy::Policy vpol,
-                     int hstretch, int vstretch);
+                     QSizePolicy::Policy vpol, int hstretch, int vstretch);
 
 void setSzPol(QWidget *w, QSizePolicy::Policy hpol,
-              QSizePolicy::Policy vpol,
-              int hstretch, int vstretch)
+              QSizePolicy::Policy vpol, int hstretch, int vstretch)
 {
     QSizePolicy policy(hpol, vpol);
     policy.setHorizontalStretch(hstretch);
@@ -386,13 +377,14 @@ void setSzPol(QWidget *w, QSizePolicy::Policy hpol,
     w->resize(w->sizeHint().width(), w->sizeHint().height());
 }
 
-bool ConfParamW::createCommon(const QString& lbltxt, const QString&)
+bool ConfParamW::createCommon(const QString& lbltxt, const QString& tltptxt)
 {
     m_hl = new QHBoxLayout(this);
     m_hl->setSpacing(spacing);
     m_hl->setContentsMargins(margin);
 
     QLabel *tl = new QLabel(this);
+    tl->setToolTip(tltptxt);
     setSzPol(tl, QSizePolicy::Preferred, QSizePolicy::Fixed, 0, 0);
     tl->setText(lbltxt);
 
@@ -443,8 +435,7 @@ void ConfParamIntW::loadValue()
 
 void ConfParamIntW::setImmediate()
 {
-    connect(m_sb, SIGNAL(valueChanged(int)), 
-            this, SLOT(setValue(int)));
+    connect(m_sb, SIGNAL(valueChanged(int)), this, SLOT(setValue(int)));
 }
 
 ConfParamStrW::ConfParamStrW(
@@ -490,8 +481,7 @@ void ConfParamStrW::loadValue()
 
 void ConfParamStrW::setImmediate()
 {
-    connect(m_le, SIGNAL(textChanged(const QString&)), 
-            this, SLOT(setValue(const QString&)));
+    connect(m_le, SIGNAL(textChanged(const QString&)), this, SLOT(setValue(const QString&)));
 }
 
 ConfParamCStrW::ConfParamCStrW(
@@ -555,13 +545,12 @@ void ConfParamCStrW::loadValue()
 
 void ConfParamCStrW::setImmediate()
 {
-    connect(m_cmb, SIGNAL(activated(const QString&)), 
-            this, SLOT(setValue(const QString&)));
+    connect(m_cmb, SIGNAL(activated(const QString&)), this, SLOT(setValue(const QString&)));
 }
 
 ConfParamBoolW::ConfParamBoolW(
     const QString& varnm, QWidget *parent, ConfLink cflink,
-    const QString& lbltxt, const QString&, bool deflt)
+    const QString& lbltxt, const QString& tltptxt, bool deflt)
     : ConfParamW(varnm, parent, cflink), m_dflt(deflt)
 {
     // No createCommon because the checkbox has a label
@@ -572,7 +561,8 @@ ConfParamBoolW::ConfParamBoolW(
     m_cb = new QCheckBox(lbltxt, this);
     setSzPol(m_cb, QSizePolicy::Fixed, QSizePolicy::Fixed, 0, 0);
     m_hl->addWidget(m_cb);
-
+    m_cb->setToolTip(tltptxt);
+    
     QFrame *fr = new QFrame(this);
     setSzPol(fr, QSizePolicy::Preferred, QSizePolicy::Fixed, 1, 0);
     m_hl->addWidget(fr);
@@ -597,7 +587,6 @@ void ConfParamBoolW::loadValue()
     }
     m_cb->setChecked(m_origvalue);
 }
-
 
 void ConfParamBoolW::setImmediate()
 {
@@ -661,8 +650,7 @@ void ConfParamFNW::showBrowserDialog()
 
 void ConfParamFNW::setImmediate()
 {
-    connect(m_le, SIGNAL(textChanged(const QString&)), 
-            this, SLOT(setValue(const QString&)));
+    connect(m_le, SIGNAL(textChanged(const QString&)), this, SLOT(setValue(const QString&)));
 }
 
 class SmallerListWidget: public QListWidget {
@@ -676,7 +664,7 @@ public:
 
 ConfParamSLW::ConfParamSLW(
     const QString& varnm, QWidget *parent, ConfLink cflink,
-    const QString& lbltxt, const QString&)
+    const QString& lbltxt, const QString& tltptxt)
     : ConfParamW(varnm, parent, cflink)
 {
     // Can't use createCommon here cause we want the buttons below the label
@@ -694,6 +682,7 @@ ConfParamSLW::ConfParamSLW(
     QLabel *tl = new QLabel(this);
     setSzPol(tl, QSizePolicy::Preferred, QSizePolicy::Fixed, 0, 0);
     tl->setText(lbltxt);
+    tl->setToolTip(tltptxt);
     vl1->addWidget(tl);
 
     QPushButton *pbA = new QPushButton(this);
@@ -922,11 +911,11 @@ static QString u8s2qs(const std::string us)
     return QString::fromUtf8(us.c_str());
 }
 
-static const std::string& mapfind(const std::string& nm, const std::map<std::string, std::string>& mp)
+static const std::string& mapfind(
+    const std::string& nm, const std::map<std::string, std::string>& mp)
 {
     static std::string strnull;
-    std::map<std::string, std::string>::const_iterator it;
-    it = mp.find(nm);
+    std::map<std::string, std::string>::const_iterator it = mp.find(nm);
     if (it == mp.end()) {
         return strnull;
     }

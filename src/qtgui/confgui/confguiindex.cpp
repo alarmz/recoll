@@ -439,14 +439,11 @@ ConfSubPanelW::ConfSubPanelW(QWidget *parent, ConfNull **config, RclConfig *rclc
         QObject::tr("The list of subdirectories in the indexed "
                     "hierarchy <br>where some parameters need "
                     "to be redefined. Default: empty."));
-    m_subdirs->getListBox()->setSelectionMode(
-        QAbstractItemView::SingleSelection);
+    m_subdirs->getListBox()->setSelectionMode(QAbstractItemView::SingleSelection);
     connect(m_subdirs->getListBox(), 
             SIGNAL(currentItemChanged(QListWidgetItem *, QListWidgetItem *)),
-            this, 
-            SLOT(subDirChanged(QListWidgetItem *, QListWidgetItem *)));
-    connect(m_subdirs, SIGNAL(entryDeleted(QString)),
-            this, SLOT(subDirDeleted(QString)));
+            this, SLOT(subDirChanged(QListWidgetItem *, QListWidgetItem *)));
+    connect(m_subdirs, SIGNAL(entryDeleted(QString)), this, SLOT(subDirDeleted(QString)));
 
     // We only retrieve the subkeys from the user's config (shallow),
     // no use to confuse the user by showing the subtrees which are
@@ -490,12 +487,10 @@ ConfSubPanelW::ConfSubPanelW(QWidget *parent, ConfNull **config, RclConfig *rclc
 
     ConfParamSLW *eskn = new ConfParamSLW(
         "skippedNames", m_groupbox, 
-        ConfLink(new ConfLinkPlusMinus(
-                     rclconf, config, "skippedNames",
-                     std::bind(&RclConfig::getSkippedNames, rclconf), &m_sk)),
+        ConfLink(new ConfLinkPlusMinus(rclconf, config, "skippedNames",
+                                       std::bind(&RclConfig::getSkippedNames, rclconf), &m_sk)),
         QObject::tr("Skipped names"),
-        QObject::tr("These are patterns for file or directory "
-                    " names which should not be indexed."));
+        QObject::tr("These are patterns for file or directory names which should not be indexed."));
     eskn->setFsEncoding(true);
     eskn->setImmediate();
     m_widgets.push_back(eskn);
