@@ -37,8 +37,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>881</width>
-            <height>760</height>
+            <width>876</width>
+            <height>684</height>
            </rect>
           </property>
           <layout class="QVBoxLayout">
@@ -52,7 +52,7 @@
            <item>
             <widget class="Line" name="line1">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -74,7 +74,7 @@
              <item>
               <spacer name="horizontalSpacer_12">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -112,6 +112,9 @@
                <property name="minimum">
                 <number>-1</number>
                </property>
+               <property name="maximum">
+                <number>1000</number>
+               </property>
                <property name="value">
                 <number>0</number>
                </property>
@@ -120,7 +123,7 @@
              <item>
               <spacer name="horizontalSpacer_5">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -156,14 +159,14 @@
             <layout class="QHBoxLayout" stretch="0,0,2">
              <item>
               <widget class="QLabel" name="textLabel20">
-               <property name="toolTip">
-                <string>Set to 0 to disable and speed up startup by avoiding tree computation.</string>
-               </property>
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
                  <horstretch>1</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Set to 0 to disable and speed up startup by avoiding tree computation.</string>
                </property>
                <property name="text">
                 <string>Depth of side filter directory tree</string>
@@ -179,7 +182,7 @@
                 <number>0</number>
                </property>
                <property name="maximum">
-                <number>99</number>
+                <number>100</number>
                </property>
                <property name="value">
                 <number>2</number>
@@ -189,7 +192,7 @@
              <item>
               <spacer name="horizontalSpacer_20">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -229,7 +232,7 @@
              <item>
               <spacer name="sidefilterdateformatHSPC">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -244,7 +247,7 @@
            <item>
             <widget class="Line" name="line2">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -468,6 +471,9 @@
                  <property name="minimum">
                   <number>0</number>
                  </property>
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
                  <property name="value">
                   <number>10</number>
                  </property>
@@ -476,7 +482,7 @@
                <item>
                 <spacer name="ssearchCompleterHistCntHSPC">
                  <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+                  <enum>Qt::Orientation::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
@@ -506,7 +512,7 @@
            <item>
             <widget class="Line" name="line3">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -537,7 +543,7 @@
                 <number>0</number>
                </property>
                <property name="maximum">
-                <number>99000</number>
+                <number>100000</number>
                </property>
                <property name="singleStep">
                 <number>500</number>
@@ -550,7 +556,7 @@
              <item>
               <spacer name="horizontalSpacer_4">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -585,55 +591,55 @@
              </property>
             </widget>
            </item>
-       <item>
-        <layout class="QHBoxLayout" stretch="0,0,1">
-         <item>
-          <widget class="QLabel" name="pvmaxfldlenLBL">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>1</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="toolTip">
-            <string>Set to 0 to disable details/summary feature</string>
-           </property>
-           <property name="text">
-            <string>Fields display: max field length before using summary:</string>
-           </property>
-           <property name="wordWrap">
-            <bool>false</bool>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QSpinBox" name="pvmaxfldlenSB">
-           <property name="minimum">
-            <number>0</number>
-           </property>
-           <property name="maximum">
-              <number>9999</number>
-           </property>
-           <property name="value">
-            <number>200</number>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="pvmaxfldlenHSPC">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-        </layout>
-       </item>
+           <item>
+            <layout class="QHBoxLayout" stretch="0,0,1">
+             <item>
+              <widget class="QLabel" name="pvmaxfldlenLBL">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                 <horstretch>1</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="toolTip">
+                <string>Set to 0 to disable details/summary feature</string>
+               </property>
+               <property name="text">
+                <string>Fields display: max field length before using summary:</string>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="pvmaxfldlenSB">
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>10000</number>
+               </property>
+               <property name="value">
+                <number>200</number>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="pvmaxfldlenHSPC">
+               <property name="orientation">
+                <enum>Qt::Orientation::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
@@ -681,7 +687,7 @@
            <item>
             <widget class="Line" name="line4">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -712,7 +718,7 @@
                 <bool>true</bool>
                </property>
                <property name="insertPolicy">
-                <enum>QComboBox::NoInsert</enum>
+                <enum>QComboBox::InsertPolicy::NoInsert</enum>
                </property>
               </widget>
              </item>
@@ -752,7 +758,7 @@
              <item>
               <spacer name="wholeuiscaleHSPC">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -809,7 +815,7 @@
              <item>
               <spacer name="horizontalSpacer_16">
                <property name="orientation">
-                <enum>Qt::Horizontal</enum>
+                <enum>Qt::Orientation::Horizontal</enum>
                </property>
                <property name="sizeHint" stdset="0">
                 <size>
@@ -824,10 +830,10 @@
            <item>
             <spacer name="spacer4">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Expanding</enum>
+              <enum>QSizePolicy::Policy::Expanding</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -865,7 +871,7 @@
            <item>
             <spacer name="horizontalSpacer">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -929,7 +935,7 @@
            <item>
             <spacer name="horizontalSpacer_2">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -976,7 +982,7 @@
            <item>
             <spacer name="horizontalSpacer_13">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1055,7 +1061,7 @@
            <item>
             <spacer name="horizontalSpacer_14">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1105,7 +1111,7 @@
            <item>
             <spacer name="horizontalSpacer_15">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1154,7 +1160,7 @@
            <item>
             <spacer name="horizontalSpacer_3">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1191,7 +1197,7 @@
        <item>
         <spacer name="verticalSpacer">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -1276,7 +1282,7 @@
        <item>
         <spacer name="verticalSpacer_rst2">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -1326,7 +1332,7 @@
            <item>
             <spacer name="horizontalSpacer_11">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1341,10 +1347,10 @@
          <item>
           <widget class="Line" name="line5">
            <property name="frameShape">
-            <enum>QFrame::HLine</enum>
+            <enum>QFrame::Shape::HLine</enum>
            </property>
            <property name="frameShadow">
-            <enum>QFrame::Sunken</enum>
+            <enum>QFrame::Shadow::Sunken</enum>
            </property>
           </widget>
          </item>
@@ -1396,7 +1402,7 @@ The default value is 2 (percent). </string>
            <item>
             <spacer name="horizontalSpacer_6">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1411,10 +1417,10 @@ The default value is 2 (percent). </string>
          <item>
           <widget class="Line" name="line6">
            <property name="frameShape">
-            <enum>QFrame::HLine</enum>
+            <enum>QFrame::Shape::HLine</enum>
            </property>
            <property name="frameShadow">
-            <enum>QFrame::Sunken</enum>
+            <enum>QFrame::Shadow::Sunken</enum>
            </property>
           </widget>
          </item>
@@ -1482,7 +1488,7 @@ May be slow for big documents.</string>
            <item>
             <spacer name="horizontalSpacer_7">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1528,7 +1534,7 @@ May be slow for big documents.</string>
            <item>
             <spacer name="horizontalSpacer_8">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1543,10 +1549,10 @@ May be slow for big documents.</string>
          <item>
           <widget class="Line" name="line7">
            <property name="frameShape">
-            <enum>QFrame::HLine</enum>
+            <enum>QFrame::Shape::HLine</enum>
            </property>
            <property name="frameShadow">
-            <enum>QFrame::Sunken</enum>
+            <enum>QFrame::Shadow::Sunken</enum>
            </property>
           </widget>
          </item>
@@ -1591,7 +1597,7 @@ May be slow for big documents.</string>
            <item>
             <spacer name="horizontalSpacer_9">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1627,6 +1633,9 @@ May be slow for big documents.</string>
              <property name="minimum">
               <number>0</number>
              </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
              <property name="value">
               <number>1</number>
              </property>
@@ -1635,7 +1644,7 @@ May be slow for big documents.</string>
            <item>
             <spacer name="horizontalSpacer_91">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1688,7 +1697,7 @@ May be slow for big documents.</string>
            <item>
             <spacer name="horizontalSpacer_10">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1716,10 +1725,10 @@ May be slow for big documents.</string>
          <item>
           <spacer name="spacer2">
            <property name="orientation">
-            <enum>Qt::Vertical</enum>
+            <enum>Qt::Orientation::Vertical</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Expanding</enum>
+            <enum>QSizePolicy::Policy::Expanding</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -1743,7 +1752,7 @@ May be slow for big documents.</string>
          <item>
           <widget class="QListWidget" name="idxLV">
            <property name="selectionMode">
-            <enum>QAbstractItemView::ExtendedSelection</enum>
+            <enum>QAbstractItemView::SelectionMode::ExtendedSelection</enum>
            </property>
           </widget>
          </item>
@@ -1785,10 +1794,10 @@ May be slow for big documents.</string>
          <item>
           <widget class="Line" name="line9">
            <property name="frameShape">
-            <enum>QFrame::HLine</enum>
+            <enum>QFrame::Shape::HLine</enum>
            </property>
            <property name="frameShadow">
-            <enum>QFrame::Sunken</enum>
+            <enum>QFrame::Shadow::Sunken</enum>
            </property>
           </widget>
          </item>
@@ -1807,10 +1816,10 @@ May be slow for big documents.</string>
            <item>
             <spacer name="spacer3">
              <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+              <enum>Qt::Orientation::Horizontal</enum>
              </property>
              <property name="sizeType">
-              <enum>QSizePolicy::Expanding</enum>
+              <enum>QSizePolicy::Policy::Expanding</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -1857,7 +1866,7 @@ May be slow for big documents.</string>
        <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
@@ -1876,10 +1885,10 @@ May be slow for big documents.</string>
      <item>
       <spacer name="Horizontal Spacing2">
        <property name="orientation">
-        <enum>Qt::Horizontal</enum>
+        <enum>Qt::Orientation::Horizontal</enum>
        </property>
        <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
+        <enum>QSizePolicy::Policy::Expanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>

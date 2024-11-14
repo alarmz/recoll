@@ -383,6 +383,7 @@ void setSzPol(QWidget *w, QSizePolicy::Policy hpol,
     policy.setVerticalStretch(vstretch);
     policy.setHeightForWidth(w->sizePolicy().hasHeightForWidth());
     w->setSizePolicy(policy);
+    w->resize(w->sizeHint().width(), w->sizeHint().height());
 }
 
 bool ConfParamW::createCommon(const QString& lbltxt, const QString&)
@@ -623,8 +624,6 @@ ConfParamFNW::ConfParamFNW(
 
     QString text = tr("Choose");
     m_pb->setText(text);
-    int width = m_pb->fontMetrics().boundingRect(text).width() + pbTextMargin;
-    m_pb->setMaximumWidth(width);
     setSzPol(m_pb, QSizePolicy::Minimum, QSizePolicy::Fixed, 0, 0);
     m_hl->addWidget(m_pb);
 
