@@ -27,35 +27,21 @@ BUILD=MSVC
 #WEB=WEBKIT
 WEB=WEBENGINE
 
-if test $BUILD = MSVC ; then
-    # Recoll src tree
-    RCL=/c/users/bill/documents/recoll/src/
-    PYRECOLL=${RCL}/python/recoll/
-    # Recoll dependancies
-    RCLDEPS=/c/users/bill/documents/recolldeps/
-    LIBXML=${RCLDEPS}/msvc/libxml2/libxml2-2.9.4+dfsg1/win32/bin.msvc/libxml2.dll
-    LIBXSLT=${RCLDEPS}/msvc/libxslt/libxslt-1.1.29/win32/bin.msvc/libxslt.dll
-    ZLIB=${RCLDEPS}/msvc/zlib-1.2.11
-    LIBMAGIC=${RCLDEPS}/msvc/libmagic
-    # Qt
-    QTA=Desktop_Qt_6_7_2_MSVC2019_64bit-Release/release
-    QTBIN=C:/Qt/6.7.2/msvc2019_64/bin
-    MINGWBIN=${RCLDEPS}/gcclibs
-    LIBS32=${RCLDEPS}/libs32
-else
-    # Recoll src tree
-    RCL=/c/recoll/src/
-    # Recoll dependancies
-    RCLDEPS=/c/recolldeps/
-    QTA=Desktop_Qt_5_8_0_MinGW_32bit-Release/release/
-    LIBXAPIAN=${RCLDEPS}/mingw/xapian-core-1.4.11/.libs/libxapian-30.dll
-    ZLIB=${RCLDEPS}/mingw/zlib-1.2.8
-    QTGCCBIN=C:/qt/Qt5.8.0/Tools/mingw530_32/bin/
-    QTBIN=C:/Qt/Qt5.8.0/5.8/mingw53_32/bin/
-    MINGWBIN=$QTBIN
-    PATH=$MINGWBIN:$QTGCCBIN:$PATH
-    export PATH
-fi
+# Recoll src tree
+RCL=/c/users/bill/documents/recoll/src/
+PYRECOLL=${RCL}/python/recoll/
+# Recoll dependancies
+RCLDEPS=/c/users/bill/documents/recolldeps/
+LIBXML=${RCLDEPS}/msvc/libxml2/libxml2-2.9.4+dfsg1/win32/bin.msvc/libxml2.dll
+LIBXSLT=${RCLDEPS}/msvc/libxslt/libxslt-1.1.29/win32/bin.msvc/libxslt.dll
+ZLIB=${RCLDEPS}/msvc/zlib-1.2.11
+LIBMAGIC=${RCLDEPS}/msvc/libmagic
+# Qt
+QTA=Desktop_Qt_6_7_3_MSVC2019_64bit-Release
+qtsdir=release
+QTBIN=C:/Qt/6.7.3/msvc2019_64/bin
+MINGWBIN=${RCLDEPS}/gcclibs
+LIBS32=${RCLDEPS}/libs32
 
 # We use the mingw-compiled aspell program for building the dict
 ASPELL=${RCLDEPS}/mingw/aspell-0.60.7/aspell-installed
@@ -65,19 +51,13 @@ ASPELL=${RCLDEPS}/mingw/aspell-0.60.7/aspell-installed
 # for the record, the variable is not used currently
 #LIBASPELL=${RCLDEPS}/msvc/aspell-0.60.7/
 
-# Where to find libgcc_s_dw2-1.dll et all for progs compiled with
-# c:/MinGW (as opposed to the mingw bundled with qt). This is the same
-# for either a msvc or mingw build of recoll itself.
-#MINGWBIN=C:/MinGW/bin
 
 RCLW=$RCL/
-# Only used for mingw, the msvc one is static
-LIBR=$RCLW/build-librecoll-${QTA}/${qtsdir}/librecoll.dll
-GUIBIN=$RCL/build-recoll-${QTA}/${qtsdir}/recoll.exe
-RCLIDX=$RCLW/build-recollindex-${QTA}/${qtsdir}/recollindex.exe
-RCLQ=$RCLW/build-recollq-${QTA}/${qtsdir}/recollq.exe
-RCLS=$RCLW/build-rclstartw-${QTA}/${qtsdir}/rclstartw.exe
-XAPC=$RCLW/build-xapian-check-${QTA}/xapian-check.exe
+GUIBIN=$RCL/qtgui/build/${QTA}/${qtsdir}/recoll.exe
+RCLIDX=$RCLW/qmake/build/recollindex/${QTA}/${qtsdir}/recollindex.exe
+RCLQ=$RCLW/qmake/build/recollq/${QTA}/${qtsdir}/recollq.exe
+RCLS=$RCLW/qmake/build/rclstartw/${QTA}/${qtsdir}/rclstartw.exe
+XAPC=$RCLW/qmake/build/xapian-check/${QTA}/${qtsdir}/xapian-check.exe
 PYTHONMINOR=12
 PYTHON=${RCLDEPS}python-3.12.4-embed-amd64
 UNRTF=${RCLDEPS}unrtf
@@ -202,7 +182,7 @@ copyrecoll()
     chkcp $RCLDEPS/rclimg/rclimg.exe $FILTERS
 
     chkcp $RCL/qtgui/mtpics/*  $DESTDIR/Share/images
-    chkcp $RCL/build-recoll-${QTA}/${qtsdir}/*.qm $DESTDIR/Share/translations
+    chkcp $RCL/qtgui/build/${QTA}/${qtsdir}/*.qm $DESTDIR/Share/translations
 
     chkcp $RCL/desktop/recoll.ico $DESTDIR/Share
 }

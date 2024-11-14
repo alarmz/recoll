@@ -36,20 +36,20 @@ windows {
 
   contains(QMAKE_CC, cl){
     # MSVC
-    QCBUILDLOC = Desktop_Qt_6_7_2_MSVC2019_64bit
-    RECOLLDEPS = ../../../recolldeps/msvc
+    QCBUILDLOC = Desktop_Qt_6_7_3_MSVC2019_64bit
+    RECOLLDEPS = $$PWD/../../../recolldeps/msvc
     DEFINES += USING_STATIC_LIBICONV
     PRE_TARGETDEPS = \
-      ../build-librecoll-$$QCBUILDLOC-Release/release/recoll.lib
+      $$PWD/build/librecoll/$$QCBUILDLOC-Release/release/recoll.lib
     LIBS += \
-      -L../build-librecoll-$$QCBUILDLOC-Release/release -lrecoll \
+      $$PWD/build/librecoll/$$QCBUILDLOC-Release/release/recoll.lib \
       $$RECOLLDEPS/libxml2/libxml2-2.9.4+dfsg1/win32/bin.msvc/libxml2.lib \
       $$RECOLLDEPS/libxslt/libxslt-1.1.29/win32/bin.msvc/libxslt.lib \
-      -L../build-libxapian-$$QCBUILDLOC-Release/release -llibxapian \
+      $$PWD/build/libxapian/$$QCBUILDLOC-Release/release/libxapian.lib \
+      $$RECOLLDEPS/wlibiconv/build/$$QCBUILDLOC-Release/release/iconv.lib \
       $$RECOLLDEPS/libmagic/src/lib/libmagic.lib \
       $$RECOLLDEPS/regex/libregex.lib \
       $$RECOLLDEPS/zlib-1.2.11/zdll.lib \
-      -L$$RECOLLDEPS/wlibiconv/build-libiconv-$$QCBUILDLOC-Release/release -liconv \
       -lShell32 -lrpcrt4 -lws2_32 -luser32 -lshlwapi -lpsapi -lkernel32
   }
 
@@ -82,7 +82,7 @@ mac {
     ../utils/rclionice.cpp
   PRE_TARGETDEPS = $$PWD/build/librecoll/$$QCBUILDLOC-Release/librecoll.a
   LIBS += \
-     $$PWD/build/librecoll/$$QCBUILDLOC-Release/librecoll.a \
+     $$PWD/build/librecoll/$$QCBUILDLOC-Release/release/librecoll.a \
      $$PWD/build/libxapian/$$QCBUILDLOC-Release/liblibxapian.a \
      -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -framework CoreServices \
      -lxslt -lxml2 -liconv -lz
