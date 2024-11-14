@@ -97,8 +97,7 @@ SearchData_init(recoll_SearchDataObject *self, PyObject *args, PyObject *kwargs)
     char *stp = 0;
     char *steml = 0;
 
-    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|sz", (char**)kwlist, 
-                                     &stp, &steml))
+    if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|sz", (char**)kwlist, &stp, &steml))
         return -1;
     Rcl::SClType tp = Rcl::SCLT_AND;
 
@@ -1638,7 +1637,7 @@ Db_getDoc(recoll_DbObject* self, PyObject *args, PyObject *kwargs)
     }
     int idxidx = 0;
     PyObject *pyudi = 0;
-    static const char *kwlist[] = {"idxidx", NULL};
+    static const char *kwlist[] = {"udi", "idxidx", NULL};
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "O|i", (char**)kwlist, &pyudi, &idxidx)) {
         return 0;
     }

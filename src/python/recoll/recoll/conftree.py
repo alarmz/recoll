@@ -25,28 +25,30 @@ import base64
 import platform
 import shlex
 
+
 def _debug(s):
-    print("%s"%s, file=sys.stderr)
-    
+    print("%s" % s, file=sys.stderr)
+
+
 class ConfSimple(object):
     """A ConfSimple class reads a recoll configuration file, which is
     a typical ini file (see the Recoll manual). It's a dictionary of
     dictionaries which lets you retrieve named values from the top
     level or a subsection"""
 
-    def __init__(self, confname, tildexp = False, readonly = True, casesensitive = True):
+    def __init__(self, confname, tildexp=False, readonly=True, casesensitive=True):
         self.casesens = casesensitive
         self.submaps = self._makedict()
-        self.submaps[b''] = self._makedict()
+        self.submaps[b""] = self._makedict()
         self.subkeys_unsorted = []
         self.dotildexpand = tildexp
         self.readonly = readonly
         self.confname = confname
-        
+
         try:
-            f = open(confname, 'rb')
+            f = open(confname, "rb")
         except Exception as exc:
-            #_debug("Open Exception: %s" % exc)
+            # _debug("Open Exception: %s" % exc)
             # File does not exist -> empty config, not an error.
             return
 
@@ -58,96 +60,96 @@ class ConfSimple(object):
             return dict()
         else:
             return CaseInsensitiveDict()
-        
+
     def _parseinput(self, f):
         appending = False
-        line = b''
-        submapkey = b''
+        line = b""
+        submapkey = b""
         for cline in f:
-            cline = cline.rstrip(b'\r\n')
+            cline = cline.rstrip(b"\r\n")
             if appending:
                 line = line + cline
             else:
                 line = cline
             line = line.strip()
-            if line == b'' or line[0] == b'#'[0]:
+            if not line or line.startswith(b"#"):
                 continue
 
-            if line[len(line)-1] == b'\\'[0]:
-                line = line[0:len(line)-1]
+            if line.endswith(b"\\"):
+                line = line[:-1]
                 appending = True
                 continue
 
             appending = False
-            #_debug(line)
-            if line[0] == b'['[0]:
-                line = line.strip(b'[]')
+            # _debug(line)
+            if line.startswith(b"["):
+                line = line.strip(b"[]")
                 if self.dotildexpand:
                     submapkey = os.path.expanduser(line)
-                    if type(submapkey) == type(u''):
-                        submapkey = submapkey.encode('utf-8')
+                    if type(submapkey) == type(""):
+                        submapkey = submapkey.encode("utf-8")
                 else:
                     submapkey = line
-                #_debug("Submapkey: [%s]" % submapkey)
+                # _debug("Submapkey: [%s]" % submapkey)
                 self.subkeys_unsorted.append(submapkey)
                 continue
 
-            nm, sep, value = line.partition(b'=')
-            if sep == b'':
+            nm, sep, value = line.partition(b"=")
+            if not sep:
                 # No equal sign in line -> considered comment
                 continue
 
             nm = nm.strip()
             value = value.strip()
-            #_debug("sk [%s] nm: [%s] value: [%s]" % (submapkey, nm, value))
+            # _debug("sk [%s] nm: [%s] value: [%s]" % (submapkey, nm, value))
             if not submapkey in self.submaps:
                 self.submaps[submapkey] = self._makedict()
             self.submaps[submapkey][nm] = value
 
     def getSubKeys_unsorted(self):
-        return [k.decode('utf-8') for k in self.subkeys_unsorted]
-    
-    def getbin(self, nm, sk = b''):
-        '''Returns None if not found, empty string if found empty'''
-        if type(nm) != type(b'') or type(sk) != type(b''):
+        return [k.decode("utf-8") for k in self.subkeys_unsorted]
+
+    def getbin(self, nm, sk=b""):
+        """Returns None if not found, empty string if found empty"""
+        if type(nm) != type(b"") or type(sk) != type(b""):
             raise TypeError("getbin: parameters must be binary not unicode")
-        #_debug("ConfSimple::getbin nm [%s] sk [%s]" % (nm, sk))
+        # _debug("ConfSimple::getbin nm [%s] sk [%s]" % (nm, sk))
         if not sk in self.submaps:
             return None
         if not nm in self.submaps[sk]:
             return None
         return self.submaps[sk][nm]
 
-    def get(self, nm, sk = b'', dflt=None):
+    def get(self, nm, sk=b"", dflt=None):
         dodecode = False
-        if type(nm) == type(u''):
+        if type(nm) == type(""):
             dodecode = True
-            nm = nm.encode('utf-8')
-        if type(sk) == type(u''):
-            sk = sk.encode('utf-8')
-        #v = ConfSimple.getbin(self, nm, sk)
+            nm = nm.encode("utf-8")
+        if type(sk) == type(""):
+            sk = sk.encode("utf-8")
+        # v = ConfSimple.getbin(self, nm, sk)
         v = self.getbin(nm, sk)
         if v is not None and dodecode:
-            v = v.decode('utf-8')
+            v = v.decode("utf-8")
         if v is None:
             return dflt
         return v
 
-    def getNamesbin(self, sk = b''):
+    def getNamesbin(self, sk=b""):
         if not sk in self.submaps:
             return None
         return list(self.submaps[sk].keys())
 
-    def getNames(self, sk = ''):
+    def getNames(self, sk=""):
         dodecode = False
-        if type(sk) == type(u''):
+        if type(sk) == type(""):
             dodecode = True
-            sk = sk.encode('utf-8')
+            sk = sk.encode("utf-8")
         if not sk in self.submaps:
             return None
         names = self.getNamesbin(sk)
         if names and dodecode:
-            names = [nm.decode('utf-8') for nm in names]
+            names = [nm.decode("utf-8") for nm in names]
         return names
 
     def _rewrite(self):
@@ -155,17 +157,17 @@ class ConfSimple(object):
             raise Exception("ConfSimple is readonly")
 
         tname = self.confname + "-"
-        f = open(tname, 'wb')
+        f = open(tname, "wb")
         # First output null subkey submap
-        if b'' in self.submaps:
-            for nm,value in self.submaps[b''].items():
-                f.write(nm + b'=' + value + b'\n')
-        for sk,mp in self.submaps.items():
-            if sk == b'':
+        if b"" in self.submaps:
+            for nm, value in self.submaps[b""].items():
+                f.write(nm + b"=" + value + b"\n")
+        for sk, mp in self.submaps.items():
+            if sk == b"":
                 continue
-            f.write(b'[' + sk + b']\n')
-            for nm,value in mp.items():
-                f.write(nm + b'=' + value + b'\n')
+            f.write(b"[" + sk + b"]\n")
+            for nm, value in mp.items():
+                f.write(nm + b"=" + value + b"\n")
         f.close()
         try:
             # os.replace works on Windows even if dst exists, but py3 only
@@ -175,9 +177,10 @@ class ConfSimple(object):
                 os.rename(tname, self.confname)
             except:
                 import shutil
+
                 shutil.move(tname, self.confname)
 
-    def setbin(self, nm, value, sk = b''):
+    def setbin(self, nm, value, sk=b""):
         if self.readonly:
             raise Exception("ConfSimple is readonly")
         if sk not in self.submaps:
@@ -186,18 +189,18 @@ class ConfSimple(object):
         self._rewrite()
         return True
 
-    def set(self, nm, value, sk = b''):
+    def set(self, nm, value, sk=b""):
         if self.readonly:
             raise Exception("ConfSimple is readonly")
-        if type(nm) == type(u''):
-            nm = nm.encode('utf-8')
-        if type(value) == type(u''):
-            value = value.encode('utf-8')
-        if type(sk) == type(u''):
-            sk = sk.encode('utf-8')
+        if type(nm) == type(""):
+            nm = nm.encode("utf-8")
+        if type(value) == type(""):
+            value = value.encode("utf-8")
+        if type(sk) == type(""):
+            sk = sk.encode("utf-8")
         return self.setbin(nm, value, sk)
-    
-    
+
+
 class ConfTree(ConfSimple):
     """A ConfTree adds path-hierarchical interpretation of the section keys,
     which should be '/'-separated values. When a value is requested for a
@@ -205,11 +208,11 @@ class ConfTree(ConfSimple):
     the ancestors. E.g. get(name, '/a/b') will also look in sections '/a' and
     '/' or '' (the last 2 are equivalent)"""
 
-    def getbin(self, nm, sk = b''):
-        if type(nm) != type(b'') or type(sk) != type(b''):
+    def getbin(self, nm, sk=b""):
+        if type(nm) != type(b"") or type(sk) != type(b""):
             raise TypeError("getbin: parameters must be binary not unicode")
-        #_debug("ConfTree::getbin: nm [%s] sk [%s]" % (nm, sk))
-        
+        # _debug("ConfTree::getbin: nm [%s] sk [%s]" % (nm, sk))
+
         # Note the test for root. There does not seem to be a direct
         # way to do this in os.path
         if not sk:
@@ -219,24 +222,24 @@ class ConfTree(ConfSimple):
         while True:
             if sk in self.submaps:
                 return ConfSimple.getbin(self, nm, sk)
-            if sk + b'/' in self.submaps:
-                return ConfSimple.getbin(self, nm, sk + b'/')
+            if sk + b"/" in self.submaps:
+                return ConfSimple.getbin(self, nm, sk + b"/")
             nsk = os.path.dirname(sk)
             if nsk == sk:
-                # sk was already root, we're done. 
-                break;
+                # sk was already root, we're done.
+                break
             sk = nsk
 
         return ConfSimple.getbin(self, nm)
 
 
 class ConfStack(object):
-    """ A ConfStack manages the superposition of a list of Configuration
+    """A ConfStack manages the superposition of a list of Configuration
     objects. Values are looked for in each object from the list until found.
     This typically provides for defaults overridden by sparse values in the
     topmost file."""
 
-    def __init__(self, nm, dirs, tp = 'simple'):
+    def __init__(self, nm, dirs, tp="simple"):
         fnames = []
         for dir in dirs:
             fnm = os.path.join(dir, nm)
@@ -246,34 +249,35 @@ class ConfStack(object):
     def _construct(self, tp, fnames):
         self.confs = []
         for fname in fnames:
-            if tp.lower() == 'simple':
+            if tp.lower() == "simple":
                 conf = ConfSimple(fname)
             else:
                 conf = ConfTree(fname)
             self.confs.append(conf)
 
     # Accepts / returns binary strings (non-unicode)
-    def getbin(self, nm, sk = b''):
-        if type(nm) != type(b'') or type(sk) != type(b''):
-           raise TypeError("getbin: parameters must be binary not unicode")
+    def getbin(self, nm, sk=b""):
+        if type(nm) != type(b"") or type(sk) != type(b""):
+            raise TypeError("getbin: parameters must be binary not unicode")
         for conf in self.confs:
             value = conf.getbin(nm, sk)
             if value is not None:
                 return value
         return None
 
-    def get(self, nm, sk = b''):
+    def get(self, nm, sk=b""):
         dodecode = False
-        if type(nm) == type(u''):
+        if type(nm) == type(""):
             dodecode = True
-            nm = nm.encode('utf-8')
-        if type(sk) == type(u''):
-            sk = sk.encode('utf-8')
-        #v = ConfSimple.getbin(self, nm, sk)
+            nm = nm.encode("utf-8")
+        if type(sk) == type(""):
+            sk = sk.encode("utf-8")
+        # v = ConfSimple.getbin(self, nm, sk)
         v = self.getbin(nm, sk)
         if v is not None and dodecode:
-            v = v.decode('utf-8')
+            v = v.decode("utf-8")
         return v
+
 
 # Split string of strings, with possible quoting and escaping.
 # The default is do do Recoll stringToStrings emulation: whitespace
@@ -283,8 +287,7 @@ class ConfStack(object):
 #
 # This is not the shlex default and can be changed by setting the
 # parameters
-def stringToStrings(s, quotes = '"', escape = '\\', escapedquotes = '"',
-                    whitespace = None):
+def stringToStrings(s, quotes='"', escape="\\", escapedquotes='"', whitespace=None):
     lex = shlex.shlex(s, posix=True)
     lex.whitespace_split = True
     if quotes is not None:
@@ -304,15 +307,21 @@ def stringToStrings(s, quotes = '"', escape = '\\', escapedquotes = '"',
         l.append(tok)
     return l
 
+
 def stringsToString(vs):
     out = []
     for s in vs:
-        if s.find(" ") != -1 or s.find("\t") != -1 or s.find("\\") != -1 or \
-               s.find('"') != -1:
-            out.append('"' + s.replace('\\', '\\\\').replace('"', '\\"') + '"')
+        if (
+            s.find(" ") != -1
+            or s.find("\t") != -1
+            or s.find("\\") != -1
+            or s.find('"') != -1
+        ):
+            out.append('"' + s.replace("\\", "\\\\").replace('"', '\\"') + '"')
         else:
             out.append(s)
     return " ".join(out)
+
 
 def valToBool(s):
     if not s:
@@ -322,7 +331,7 @@ def valToBool(s):
         return val != 0
     except:
         pass
-    if type(s) == type(b''):
+    if type(s) == type(b""):
         s = s.decode("UTF-8")
     return s[0] in "tTyY"
 
@@ -336,6 +345,7 @@ try:
     from collections.abc import MutableMapping
 except:
     from collections import MutableMapping
+
 
 class CaseInsensitiveDict(MutableMapping):
     """
@@ -365,6 +375,7 @@ class CaseInsensitiveDict(MutableMapping):
     behavior is undefined.
 
     """
+
     def __init__(self, data=None, **kwargs):
         self._store = dict()
         if data is None:
@@ -390,11 +401,7 @@ class CaseInsensitiveDict(MutableMapping):
 
     def lower_items(self):
         """Like iteritems(), but with all lowercase keys."""
-        return (
-            (lowerkey, keyval[1])
-            for (lowerkey, keyval)
-            in self._store.items()
-        )
+        return ((lowerkey, keyval[1]) for (lowerkey, keyval) in self._store.items())
 
     def __eq__(self, other):
         if isinstance(other, collections.Mapping):
@@ -406,7 +413,7 @@ class CaseInsensitiveDict(MutableMapping):
 
     # Copy is required
     def copy(self):
-         return CaseInsensitiveDict(self._store.values())
+        return CaseInsensitiveDict(self._store.values())
 
     def __repr__(self):
-        return '%s(%r)' % (self.__class__.__name__, dict(self.items()))
+        return "%s(%r)" % (self.__class__.__name__, dict(self.items()))

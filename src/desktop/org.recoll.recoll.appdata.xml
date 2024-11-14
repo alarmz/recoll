@@ -1,31 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2024 Jean-Francois Dockes <jfd@recoll.org> -->
-  <component type="desktop">
-    <id>org.recoll.recoll</id>
-    <launchable type="desktop-id">recoll-searchgui.desktop</launchable>
-    <metadata_license>CC0-1.0</metadata_license>
-    <name>Recoll</name>
-    <summary>Recoll, the multi-platform desktop document search tool</summary>
-    <description>
-      <p>Recoll finds keywords inside documents text as well as file names.
-        - It can search most document formats.
-        - It can reach any storage place: files, archive members, email
-          attachments, transparently handling decompression.
-        - One click will open the document inside a native editor or
-          display an even quicker text preview.
-      </p>
-    </description>
-    <url type="homepage">https://www.recoll.org/</url>
-    <url type="bugtracker">https://framagit.org/medoc92/recoll/-/issues</url>
-    <url type="donation">https://www.lesbonscomptes.com/donations</url>
-    <releases>
-      <release version="1.38.0"/>
-    </releases>
-    <project_license>GPL-2.0+</project_license>
-    <developer_name>Jean-Francois Dockes</developer_name>
-    <screenshots>
-      <screenshot type="default">
-        <image>https://www.recoll.org/pics/recoll-1.32.png</image>
-      </screenshot>
-    </screenshots>
-  </component>
+<component type="desktop-application">
+  <id>org.recoll.recoll</id>
+  <launchable type="desktop-id">recoll-searchgui.desktop</launchable>
+  <metadata_license>CC0-1.0</metadata_license>
+  <name>Recoll</name>
+  <summary>Full-text search for your desktop</summary>
+  <description>
+    <p>Recoll finds keywords inside documents text as well as file names.
+      - It can search most document formats.
+      - It can reach any storage place: files, archive members, email
+        attachments, transparently handling decompression.
+      - One click will open the document inside a native editor or
+        display an even quicker text preview.
+    </p>
+  </description>
+  <content_rating type="oars-1.1" />
+  <url type="homepage">https://www.recoll.org/</url>
+  <url type="bugtracker">https://framagit.org/medoc92/recoll/-/issues</url>
+  <url type="donation">https://www.lesbonscomptes.com/donations</url>
+  <url type="vcs-browser">https://framagit.org/medoc92/recoll</url>
+  <releases>
+    <release version="1.40.3" date="2024-10-14" />
+  </releases>
+  <project_license>GPL-2.0+</project_license>
+  <developer id="org.dockes">
+    <name>Jean-Francois Dockes</name>
+  </developer>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://www.recoll.org/pics/recoll-1.32.png</image>
+      <caption>Search result list</caption>
+    </screenshot>
+  </screenshots>
+</component>

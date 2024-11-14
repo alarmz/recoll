@@ -74,7 +74,7 @@ std::string make_abstract(Rcl::Doc& doc, Rcl::Query& query, bool asSnippets,
     std::vector<Rcl::Snippet> snippets;
     std::ostringstream str;
     int cnt = 0;
-    if (query.makeDocAbstract(doc, &g_hiliter, snippets, 0, -1, true)) {
+    if (query.makeDocAbstract(doc, &g_hiliter, snippets, asSnippets?snipcount:0, -1, true)) {
         for (const auto& snippet : snippets) {
             if (snipcount > 0 && ++cnt > snipcount)
                 break;

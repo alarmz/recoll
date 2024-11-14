@@ -2,7 +2,6 @@
 AUTHORS
 CMakeLists.txt
 COPYING
-ChangeLog
 INSTALL
 README
 RECOLL-VERSION.txt

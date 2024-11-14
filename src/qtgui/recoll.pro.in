@@ -245,7 +245,10 @@ macx: {
 
   APP_FILTERS.files = \
   ../filters/abiword.xsl \
+  ../filters/archivextract.py \
   ../filters/cmdtalk.py \
+  ../filters/cnsplitter.py \
+  ../python/recoll/recoll/conftree.py \
   ../filters/fb2.xsl \
   ../filters/gnumeric.xsl \
   ../filters/kosplitter.py \
@@ -254,17 +257,19 @@ macx: {
   ../filters/opendoc-body.xsl \
   ../filters/opendoc-flat.xsl \
   ../filters/opendoc-meta.xsl \
-  ../filters/openxml-xls-body.xsl \
-  ../filters/openxml-word-body.xsl \
   ../filters/openxml-meta.xsl \
+  ../filters/openxml-word-body.xsl \
+  ../filters/openxml-xls-body.xsl \
   ../filters/ppt-dump.py \
   ../filters/rcl7z.py \
   ../filters/rclaptosidman \
+  ../filters/rclaspell-sugg.py \
   ../filters/rclaudio.py \
   ../filters/rclbasehandler.py \
   ../filters/rclbibtex.sh \
   ../filters/rclcheckneedretry.sh \
   ../filters/rclchm.py \
+  ../python/recoll/recoll/rclconfig.py \
   ../filters/rcldia.py \
   ../filters/rcldjvu.py \
   ../filters/rcldoc.py \
@@ -281,18 +286,25 @@ macx: {
   ../filters/rclimg \
   ../filters/rclimg.py \
   ../filters/rclinfo.py \
+  ../filters/rclipynb.py \
+  ../filters/rcljoplin.py \
   ../filters/rclkar.py \
   ../filters/rclkwd \
   ../filters/rcllatinclass.py \
   ../filters/rcllatinstops.zip \
+  ../filters/rcllink.py \
   ../filters/rcllyx \
   ../filters/rclman \
+  ../filters/rclmd.py \
   ../filters/rclmidi.py \
-  ../filters/rclocrcache.py \
+  ../filters/rclnamefilter.py \
+  ../filters/rclnull.py \
   ../filters/rclocr.py \
   ../filters/rclocrabbyy.py \
+  ../filters/rclocrcache.py \
   ../filters/rclocrtesseract.py \
   ../filters/rclopxml.py \
+  ../filters/rclorgmode.py \
   ../filters/rclpdf.py \
   ../filters/rclppt.py \
   ../filters/rclps \
@@ -302,10 +314,12 @@ macx: {
   ../filters/rclrar.py \
   ../filters/rclrtf.py \
   ../filters/rclscribus \
+  ../filters/rclsfz.py \
   ../filters/rclshowinfo \
   ../filters/rcltar.py \
   ../filters/rcltex \
   ../filters/rcltext.py \
+  ../filters/rcltxtlines.py \
   ../filters/rcluncomp \
   ../filters/rcluncomp.py \
   ../filters/rclwar.py \
@@ -317,11 +331,10 @@ macx: {
   ../filters/recoll-we-move-files.py \
   ../filters/recollepub.zip \
   ../filters/svg.xsl \
+  ../filters/thunderbird-open-message.sh \
   ../filters/xls-dump.py \
   ../filters/xlsxmltocsv.py \
-  ../filters/xml.xsl \
-  ../python/recoll/recoll/conftree.py \
-  ../python/recoll/recoll/rclconfig.py
+  ../filters/xml.xsl
   APP_FILTERS.path = Contents/Resources/filters
 
   APP_IMAGES.files = \

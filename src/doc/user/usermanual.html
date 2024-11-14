@@ -11,7 +11,7 @@
   <meta name="generator" content=
   "DocBook XSL Stylesheets Vsnapshot">
   <meta name="description" content=
-  "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license can be found at the following location: GNU web site. This document introduces full text search notions and describes the installation and use of the Recoll application. This version describes Recoll 1.39.">
+  "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license can be found at the following location: GNU web site. This document introduces full text search notions and describes the installation and use of the Recoll application. This version describes Recoll 1.40.">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084"
 alink="#0000FF">
@@ -54,7 +54,7 @@ alink="#0000FF">
             and describes the installation and use of the
             <span class="application">Recoll</span> application.
             This version describes <span class=
-            "application">Recoll</span> 1.39.</p>
+            "application">Recoll</span> 1.40.</p>
           </div>
         </div>
       </div>
@@ -130,66 +130,76 @@ alink="#0000FF">
                 <dt><span class="sect2">2.3.3. <a href=
                 "#RCL.INDEXING.CONFIG.SENS">Index case and
                 diacritics sensitivity</a></span></dt>
-                <dt><span class="sect2">2.3.4. <a href=
-                "#RCL.INDEXING.CONFIG.THREADS">Indexing threads
-                configuration (<span class=
-                "application">Unix</span>-like
-                systems)</a></span></dt>
-                <dt><span class="sect2">2.3.5. <a href=
-                "#RCL.INDEXING.CONFIG.MULTIDX">Using multiple
-                temporary indexes to improve indexing
-                time</a></span></dt>
               </dl>
             </dd>
             <dt><span class="sect1">2.4. <a href=
+            "#RCL.INDEXING.PERF">Indexing performance and resource
+            usage</a></span></dt>
+            <dd>
+              <dl>
+                <dt><span class="sect2">2.4.1. <a href=
+                "#RCL.INDEXING.PERF.THREADS">Indexing threads
+                configuration (<span class=
+                "application">Unix</span>-like
+                systems)</a></span></dt>
+                <dt><span class="sect2">2.4.2. <a href=
+                "#RCL.INDEXING.PERF.MULTIDX">Using multiple
+                temporary indexes to improve indexing
+                time</a></span></dt>
+                <dt><span class="sect2">2.4.3. <a href=
+                "#RCL.INDEXING.QUIET">Quieting down the indexing
+                process</a></span></dt>
+              </dl>
+            </dd>
+            <dt><span class="sect1">2.5. <a href=
             "#RCL.INDEXING.OPERATION">Index update
             scheduling</a></span></dt>
             <dd>
               <dl>
-                <dt><span class="sect2">2.4.1. <a href=
+                <dt><span class="sect2">2.5.1. <a href=
                 "#RCL.INDEXING.PERIODIC">Periodic
                 indexing</a></span></dt>
-                <dt><span class="sect2">2.4.2. <a href=
+                <dt><span class="sect2">2.5.2. <a href=
                 "#RCL.INDEXING.MONITOR">Real time
                 indexing</a></span></dt>
               </dl>
             </dd>
-            <dt><span class="sect1">2.5. <a href=
+            <dt><span class="sect1">2.6. <a href=
             "#RCL.INDEXING.EXTRAMETA">Incorporating external
             metadata</a></span></dt>
             <dd>
               <dl>
-                <dt><span class="sect2">2.5.1. <a href=
+                <dt><span class="sect2">2.6.1. <a href=
                 "#RCL.INDEXING.EXTATTR"><span class=
                 "application">Unix</span>-like systems and
                 <span class="application">MacOS</span> systems:
                 using extended attributes</a></span></dt>
-                <dt><span class="sect2">2.5.2. <a href=
+                <dt><span class="sect2">2.6.2. <a href=
                 "#RCL.INDEXING.EXTTAGS">Using a command to
                 importing external metadata</a></span></dt>
               </dl>
             </dd>
-            <dt><span class="sect1">2.6. <a href=
+            <dt><span class="sect1">2.7. <a href=
             "#RCL.INDEXING.NOTES">Miscellaneous indexing
             notes</a></span></dt>
             <dd>
               <dl>
-                <dt><span class="sect2">2.6.1. <a href=
+                <dt><span class="sect2">2.7.1. <a href=
                 "#RCL.INDEXING.PUNCTUATION">Indexing punctuation
                 characters (1.39)</a></span></dt>
-                <dt><span class="sect2">2.6.2. <a href=
+                <dt><span class="sect2">2.7.2. <a href=
                 "#RCL.INDEXING.PDF">The PDF input
                 handler</a></span></dt>
-                <dt><span class="sect2">2.6.3. <a href=
+                <dt><span class="sect2">2.7.3. <a href=
                 "#RCL.INDEXING.OCR">Running OCR on image
                 documents</a></span></dt>
-                <dt><span class="sect2">2.6.4. <a href=
+                <dt><span class="sect2">2.7.4. <a href=
                 "#RCL.INDEXING.STT">Running a speech to text
                 program on audio files</a></span></dt>
-                <dt><span class="sect2">2.6.5. <a href=
+                <dt><span class="sect2">2.7.5. <a href=
                 "#RCL.INDEXING.REMOVABLE">Removable
                 volumes</a></span></dt>
-                <dt><span class="sect2">2.6.6. <a href=
+                <dt><span class="sect2">2.7.6. <a href=
                 "#RCL.INDEXING.WEBQUEUE"><span class=
                 "application">Unix</span>-like systems: indexing
                 visited Web pages</a></span></dt>
@@ -389,7 +399,7 @@ alink="#0000FF">
               </dl>
             </dd>
             <dt><span class="sect1">5.4. <a href=
-            "#RCL.INSTALL.CONFIG">Configuration
+            "#RCL.INSTALL.CONFIG">Settings, configuration
             overview</a></span></dt>
             <dd>
               <dl>
@@ -441,7 +451,7 @@ alink="#0000FF">
       <p>This document introduces full text search notions and
       describes the installation and use of the <span class=
       "application">Recoll</span> application. It is updated for
-      <span class="application">Recoll</span> 1.39.</p>
+      <span class="application">Recoll</span> 1.40.</p>
       <p><span class="application">Recoll</span> was for a long
       time dedicated to Unix-like systems. It was only lately
       (2015) ported to <span class="application">MS-Windows</span>.
@@ -488,9 +498,20 @@ alink="#0000FF">
         "command"><strong>recoll</strong></span> GUI go to:
         <span class="guimenu">Preferences</span> → <span class=
         "guimenuitem">Indexing configuration</span>, then adjust
-        the <span class="guilabel">Top directories</span> section,
-        which defines the directories from which the filesystem
+        the <span class="guilabel">Start folders</span> section (or
+        <span class="guilabel">Top directories</span> in older
+        <span class="application">Recoll</span> versions), which
+        defines the directories from which the filesystem
         exploration starts.</p>
+        <p>By default, the indexer process writes all errors to its
+        <code class="literal">stderr</code> output, which may be
+        lost if you started the GUI from the desktop. You may find
+        it useful to assign a file name to the <span class=
+        "guilabel">Indexer log file name</span> entry on the above
+        indexing preferences screen. With the default level of 3,
+        this will list all processed documents, and all errors
+        (lines beginning with <code class=
+        "literal">:2:</code>).</p>
         <p>On <span class="application">Unix</span>-like systems,
         you may need to install the appropriate <a class="link"
         href="#RCL.INSTALL.EXTERNAL" title=
@@ -499,8 +520,13 @@ alink="#0000FF">
         "application">antiword</span> for <span class=
         "application">Microsoft Word</span> files). The
         <span class="application">Windows</span> package is
-        self-contained and includes most useful auxiliary
-        programs.</p>
+        self-contained and includes most useful auxiliary programs.
+        After the indexing ran, the <span class=
+        "command"><strong>recoll</strong></span> GUI <span class=
+        "guimenu">Tools</span> → <span class="guimenuitem">Missing
+        helpers</span> menu entry will show a list of missing
+        supporting applications for the documents found in the
+        indexed area.</p>
       </div>
       <div class="sect1">
         <div class="titlepage">
@@ -783,7 +809,7 @@ alink="#0000FF">
         this happens depends on the indexing mode. There are
         provisions to <a class="link" href=
         "#RCL.INDEXING.REMOVABLE" title=
-        "2.6.5.&nbsp;Removable volumes">avoid deleting data</a> for
+        "2.7.5.&nbsp;Removable volumes">avoid deleting data</a> for
         an umounted removable volume.</p>
         <p>The following sections give an overview of different
         aspects of the indexing processes and configuration, with
@@ -816,7 +842,7 @@ alink="#0000FF">
             "list-style-type: disc;">
               <li class="listitem">
                 <p><b><a class="link" href="#RCL.INDEXING.PERIODIC"
-                title="2.4.1.&nbsp;Periodic indexing">Periodic (or
+                title="2.5.1.&nbsp;Periodic indexing">Periodic (or
                 batch) indexing</a> .&nbsp;</b><span class=
                 "command"><strong>recollindex</strong></span> is
                 executed at discrete times. On <span class=
@@ -835,7 +861,7 @@ alink="#0000FF">
               </li>
               <li class="listitem">
                 <p><b><a class="link" href="#RCL.INDEXING.MONITOR"
-                title="2.4.2.&nbsp;Real time indexing">Real time
+                title="2.5.2.&nbsp;Real time indexing">Real time
                 indexing</a> .&nbsp;</b><span class=
                 "command"><strong>recollindex</strong></span> runs
                 permanently as a daemon and uses a file system
@@ -852,8 +878,8 @@ alink="#0000FF">
             <div class="titlepage">
               <div>
                 <div>
-                  <h4 class="title"><a name="id1540" id=
-                  "id1540"></a>Choosing an indexing mode</h4>
+                  <h4 class="title"><a name="id1550" id=
+                  "id1550"></a>Choosing an indexing mode</h4>
                 </div>
               </div>
             </div>
@@ -863,7 +889,7 @@ alink="#0000FF">
             indexing on a big documentation directory, and real
             time indexing on a small home directory), or by
             <a class="link" href="#RCL.INDEXING.MONITOR" title=
-            "2.4.2.&nbsp;Real time indexing">configuring the index
+            "2.5.2.&nbsp;Real time indexing">configuring the index
             so that only a subset of the tree will be
             monitored.</a></p>
             <p>The choice of method and the parameters used can be
@@ -1142,10 +1168,10 @@ indexedmimetypes = application/pdf</pre>
             </div>
           </div>
         </div>
-        <p>The default location for the index data is the
-        <code class="filename">xapiandb</code> subdirectory of the
-        <span class="application">Recoll</span> configuration
-        directory, typically <code class=
+        <p>The default index location is the <code class=
+        "filename">xapiandb</code> subdirectory of the <span class=
+        "application">Recoll</span> configuration directory,
+        typically <code class=
         "filename">$HOME/.recoll/xapiandb/</code> on <span class=
         "application">Unix</span>-like systems or <code class=
         "filename">C:/Users/[me]/Appdata/Local/Recoll/xapiandb</code>
@@ -1334,8 +1360,8 @@ indexedmimetypes = application/pdf</pre>
           </div>
           <p><span class="application">Recoll</span> versions 1.38
           and newer have an option to use <a class="link" href=
-          "#RCL.INDEXING.CONFIG.MULTIDX" title=
-          "2.3.5.&nbsp;Using multiple temporary indexes to improve indexing time">
+          "#RCL.INDEXING.PERF.MULTIDX" title=
+          "2.4.2.&nbsp;Using multiple temporary indexes to improve indexing time">
           multiple temporary indexes and a final merge</a>
           internally. This was designed as a CPU performance
           optimization (increasing parallelism), but it may also
@@ -1357,7 +1383,7 @@ indexedmimetypes = application/pdf</pre>
         </div>
         <p>Variables stored inside the <a class="link" href=
         "#RCL.INSTALL.CONFIG" title=
-        "5.4.&nbsp;Configuration overview"><span class=
+        "5.4.&nbsp;Settings, configuration overview"><span class=
         "application">Recoll</span> configuration files</a> control
         which areas of the file system are indexed, and how files
         are processed. The values can be set by editing the text
@@ -1378,18 +1404,19 @@ indexedmimetypes = application/pdf</pre>
         empty configuration files, which you can then edit.</p>
         <p>The configuration is documented inside the <a class=
         "link" href="#RCL.INSTALL.CONFIG" title=
-        "5.4.&nbsp;Configuration overview">installation chapter</a>
-        of this document, or in the <a class="ulink" href=
-        "https://www.recoll.org/manpages/recoll.conf.5.html"
+        "5.4.&nbsp;Settings, configuration overview">installation
+        chapter</a> of this document, or in the <a class="ulink"
+        href="https://www.recoll.org/manpages/recoll.conf.5.html"
         target="_top"><span class="citerefentry"><span class=
         "refentrytitle">recoll.conf</span>(5)</span></a> manual
         page. Both documents are automatically generated from the
         comments inside the configuration file.</p>
-        <p>The most immediately useful variable is probably
-        <a class="link" href=
-        "#RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS"><code class=
+        <p>The most immediately useful variable is <a class="link"
+        href="#RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS"><code class=
         "varname">topdirs</code></a>, which lists the subtrees and
-        files to be indexed.</p>
+        files to be indexed. The variable name is a bit misleading
+        for native English speakers, so the corresponding GUI label
+        is <span class="guilabel">Start folders</span>.</p>
         <p>The applications needed to index file types other than
         text, HTML or email (e.g.: pdf, postscript, ms-word...) are
         described in the <a class="link" href=
@@ -1426,7 +1453,7 @@ indexedmimetypes = application/pdf</pre>
           parameters</span>, <span class="guilabel">Web
           history</span> (<a class="link" href=
           "#RCL.INDEXING.WEBQUEUE" title=
-          "2.6.6.&nbsp;Unix-like systems: indexing visited Web pages">details</a>)
+          "2.7.6.&nbsp;Unix-like systems: indexing visited Web pages">details</a>)
           and <span class="guilabel">Search parameters</span>.</p>
           <p>The <span class="guilabel">Global parameters</span>
           tab allows setting global variables, like the lists of
@@ -1448,7 +1475,7 @@ indexedmimetypes = application/pdf</pre>
           "literal">ToolTip</code> popup on the text label. For
           more detail, you may need to refer to the <a class="link"
           href="#RCL.INSTALL.CONFIG" title=
-          "5.4.&nbsp;Configuration overview">configuration
+          "5.4.&nbsp;Settings, configuration overview">configuration
           section</a> of this guide.</p>
           <p>The configuration tool normally respects the comments
           and most of the formatting inside the configuration file,
@@ -1715,13 +1742,25 @@ indexedmimetypes = application/pdf</pre>
           expanded, and all combinations searched for, the
           multiplicative expansion may become unmanageable.</p>
         </div>
+      </div>
+      <div class="sect1">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title" style="clear: both"><a name=
+              "RCL.INDEXING.PERF" id=
+              "RCL.INDEXING.PERF"></a>2.4.&nbsp;Indexing
+              performance and resource usage</h2>
+            </div>
+          </div>
+        </div>
         <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
                 <h3 class="title"><a name=
-                "RCL.INDEXING.CONFIG.THREADS" id=
-                "RCL.INDEXING.CONFIG.THREADS"></a>2.3.4.&nbsp;Indexing
+                "RCL.INDEXING.PERF.THREADS" id=
+                "RCL.INDEXING.PERF.THREADS"></a>2.4.1.&nbsp;Indexing
                 threads configuration (<span class=
                 "application">Unix</span>-like systems)</h3>
               </div>
@@ -1735,133 +1774,116 @@ indexedmimetypes = application/pdf</pre>
           <pre class="programlisting">
             thrQSizes = -1 -1 -1
           </pre>
-          <div class="sect3">
-            <div class="titlepage">
-              <div>
-                <div>
-                  <h4 class="title"><a name=
-                  "RCL.INDEXING.CONFIG.THREADS.DOCPREP" id=
-                  "RCL.INDEXING.CONFIG.THREADS.DOCPREP"></a>Multithreading
-                  for document preparation</h4>
-                </div>
-              </div>
-            </div>
-            <p>The <span class="application">Recoll</span> indexing
-            process <span class=
-            "command"><strong>recollindex</strong></span> can use
-            multithreading to speed up indexing on multiprocessor
-            systems. This is currently enabled on <span class=
-            "application">MacOS</span> systems and <span class=
-            "application">Unix</span>-like systems systems, but not
-            under <span class="application">Windows</span>.</p>
-            <p>The data processing used to index files is divided
-            in several stages and some of the stages can be
-            executed by multiple threads. The stages are:</p>
-            <div class="orderedlist">
-              <ol class="orderedlist" type="1">
-                <li class="listitem">
-                  <p>File system walking: this is always performed
-                  by the main thread.</p>
-                </li>
-                <li class="listitem">
-                  <p>File conversion and data extraction.</p>
-                </li>
-                <li class="listitem">
-                  <p>Text processing (splitting, stemming,
-                  etc.).</p>
-                </li>
-                <li class="listitem">
-                  <p><span class="application">Xapian</span> index
-                  update.</p>
-                </li>
-              </ol>
-            </div>
-            <p>You can also read a <a class="ulink" href=
-            "https://www.recoll.org/pages/idxthreads/threadingRecoll.html"
-            target="_top">longer document</a> about the
-            transformation of <span class=
-            "application">Recoll</span> indexing to
-            multithreading.</p>
-            <p>The threads configuration is controlled by two
-            configuration file parameters.</p>
-            <div class="variablelist">
-              <dl class="variablelist">
-                <dt><span class="term"><code class=
-                "varname">thrQSizes</code></span></dt>
-                <dd>
-                  <p>This variable defines the job input queues
-                  configuration. There are three possible queues
-                  for stages 2, 3 and 4, and this parameter should
-                  give the queue depth for each stage (three
-                  integer values). If a value of -1 is used for a
-                  given stage, no queue is used, and the thread
-                  will go on performing the next stage. In
-                  practise, deep queues have not been shown to
-                  increase performance. A value of 0 for the first
-                  queue tells <span class=
-                  "application">Recoll</span> to perform
-                  autoconfiguration (no need for anything else in
-                  this case, thrTCounts is not used) - this is the
-                  default configuration.</p>
-                </dd>
-                <dt><span class="term"><code class=
-                "varname">thrTCounts</code></span></dt>
-                <dd>
-                  <p>This defines the number of threads used for
-                  each stage. If a value of -1 is used for one of
-                  the queue depths, the corresponding thread count
-                  is ignored. It makes no sense to use a value
-                  other than 1 for the last stage because updating
-                  the <span class="application">Xapian</span> index
-                  is necessarily single-threaded (and protected by
-                  a mutex).</p>
-                </dd>
-              </dl>
-            </div>
-            <div class="note" style=
-            "margin-left: 0.5in; margin-right: 0.5in;">
-              <h3 class="title">Note</h3>
-              <p>If the first value in <code class=
-              "varname">thrQSizes</code> is 0, <code class=
-              "varname">thrTCounts</code> is ignored.</p>
-            </div>
-            <p>The following example would use three queues (of
-            depth 2), and 4 threads for converting source
-            documents, 2 for processing their text, and one to
-            update the index. This was tested to be the best
-            configuration on the test system (quadri-processor with
-            multiple disks).</p>
-            <pre class="programlisting">
+          <p>The <span class="application">Recoll</span> indexing
+          process <span class=
+          "command"><strong>recollindex</strong></span> can use
+          multithreading to speed up indexing on multiprocessor
+          systems. This is currently enabled on <span class=
+          "application">MacOS</span> systems and <span class=
+          "application">Unix</span>-like systems systems, but not
+          under <span class="application">Windows</span>.</p>
+          <p>The data processing used to index files is divided in
+          several stages and some of the stages can be executed by
+          multiple threads. The stages are:</p>
+          <div class="orderedlist">
+            <ol class="orderedlist" type="1">
+              <li class="listitem">
+                <p>File system walking: this is always performed by
+                the main thread.</p>
+              </li>
+              <li class="listitem">
+                <p>File conversion and data extraction.</p>
+              </li>
+              <li class="listitem">
+                <p>Text processing (splitting, stemming, etc.).</p>
+              </li>
+              <li class="listitem">
+                <p><span class="application">Xapian</span> index
+                update.</p>
+              </li>
+            </ol>
+          </div>
+          <p>You can also read a <a class="ulink" href=
+          "https://www.recoll.org/pages/idxthreads/threadingRecoll.html"
+          target="_top">longer document</a> about the
+          transformation of <span class="application">Recoll</span>
+          indexing to multithreading.</p>
+          <p>The threads configuration is controlled by two
+          configuration file parameters.</p>
+          <div class="variablelist">
+            <dl class="variablelist">
+              <dt><span class="term"><code class=
+              "varname">thrQSizes</code></span></dt>
+              <dd>
+                <p>This variable defines the job input queues
+                configuration. There are three possible queues for
+                stages 2, 3 and 4, and this parameter should give
+                the queue depth for each stage (three integer
+                values). If a value of -1 is used for a given
+                stage, no queue is used, and the thread will go on
+                performing the next stage. In practise, deep queues
+                have not been shown to increase performance. A
+                value of 0 for the first queue tells <span class=
+                "application">Recoll</span> to perform
+                autoconfiguration (no need for anything else in
+                this case, thrTCounts is not used) - this is the
+                default configuration.</p>
+              </dd>
+              <dt><span class="term"><code class=
+              "varname">thrTCounts</code></span></dt>
+              <dd>
+                <p>This defines the number of threads used for each
+                stage. If a value of -1 is used for one of the
+                queue depths, the corresponding thread count is
+                ignored. It makes no sense to use a value other
+                than 1 for the last stage because updating the
+                <span class="application">Xapian</span> index is
+                necessarily single-threaded (and protected by a
+                mutex).</p>
+              </dd>
+            </dl>
+          </div>
+          <div class="note" style=
+          "margin-left: 0.5in; margin-right: 0.5in;">
+            <h3 class="title">Note</h3>
+            <p>If the first value in <code class=
+            "varname">thrQSizes</code> is 0, <code class=
+            "varname">thrTCounts</code> is ignored.</p>
+          </div>
+          <p>The following example would use three queues (of depth
+          2), and 4 threads for converting source documents, 2 for
+          processing their text, and one to update the index. This
+          was tested to be the best configuration on the test
+          system (quadri-processor with multiple disks).</p>
+          <pre class="programlisting">
             thrQSizes = 2 2 2
             thrTCounts =  4 2 1
           </pre>
-            <p>The following example would use a single queue, and
-            the complete processing for each document would be
-            performed by a single thread (several documents will
-            still be processed in parallel in most cases). The
-            threads will use mutual exclusion when entering the
-            index update stage. In practise the performance would
-            be close to the precedent case in general, but worse in
-            certain cases (e.g. a Zip archive would be performed
-            purely sequentially), so the previous approach is
-            preferred. YMMV... The 2 last values for thrTCounts are
-            ignored.</p>
-            <pre class="programlisting">
+          <p>The following example would use a single queue, and
+          the complete processing for each document would be
+          performed by a single thread (several documents will
+          still be processed in parallel in most cases). The
+          threads will use mutual exclusion when entering the index
+          update stage. In practise the performance would be close
+          to the precedent case in general, but worse in certain
+          cases (e.g. a Zip archive would be performed purely
+          sequentially), so the previous approach is preferred.
+          YMMV... The 2 last values for thrTCounts are ignored.</p>
+          <pre class="programlisting">
             thrQSizes = 2 -1 -1
             thrTCounts =  6 1 1
           </pre>
-            <p>The following example would disable multithreading.
-            Indexing will be performed by a single thread.</p>
-            <pre class="programlisting">thrQSizes = -1 -1 -1</pre>
-          </div>
+          <p>The following example would disable multithreading.
+          Indexing will be performed by a single thread.</p>
+          <pre class="programlisting">thrQSizes = -1 -1 -1</pre>
         </div>
         <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
                 <h3 class="title"><a name=
-                "RCL.INDEXING.CONFIG.MULTIDX" id=
-                "RCL.INDEXING.CONFIG.MULTIDX"></a>2.3.5.&nbsp;Using
+                "RCL.INDEXING.PERF.MULTIDX" id=
+                "RCL.INDEXING.PERF.MULTIDX"></a>2.4.2.&nbsp;Using
                 multiple temporary indexes to improve indexing
                 time</h3>
               </div>
@@ -1899,6 +1921,39 @@ indexedmimetypes = application/pdf</pre>
           probable that this approach would not work well on
           spinning disks, at least not in its current form.</p>
         </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name="RCL.INDEXING.QUIET" id=
+                "RCL.INDEXING.QUIET"></a>2.4.3.&nbsp;Quieting down
+                the indexing process</h3>
+              </div>
+            </div>
+          </div>
+          <p>The <span class="application">Recoll</span> indexing
+          process, <span class=
+          "command"><strong>recollindex</strong></span> is usually
+          configured to have very low priority and not disturb
+          other activity on the machine. Still, on an idle system,
+          even with multithreading disabled, it will use 100% of
+          one core if needed and available. This may be enough to
+          get a laptop fan to spin up in some cases. To prevent
+          this, we want to limit the CPU utilisation for every
+          short time quanta (e.g. not more than 20 mS for every 100
+          mS).</p>
+          <p>This would be extremely difficult to do from inside
+          the indexing process, because of the many places where
+          intensive CPU usage takes place, some not under our
+          control (<span class="application">Xapian</span> or
+          external helpers). Happily enough, on Linux systems, you
+          can use the <span class="application">cgroup</span>
+          facility to throttle the process CPU usage. This is
+          further documented on the <a class="ulink" href=
+          "https://www.recoll.org/faqsandhowtos/cgroups_instructions.html"
+          target="_top"><span class="application">Recoll</span> WEB
+          site</a></p>
+        </div>
       </div>
       <div class="sect1">
         <div class="titlepage">
@@ -1906,7 +1961,7 @@ indexedmimetypes = application/pdf</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.INDEXING.OPERATION" id=
-              "RCL.INDEXING.OPERATION"></a>2.4.&nbsp;Index update
+              "RCL.INDEXING.OPERATION"></a>2.5.&nbsp;Index update
               scheduling</h2>
             </div>
           </div>
@@ -1916,7 +1971,7 @@ indexedmimetypes = application/pdf</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.PERIODIC"
-                id="RCL.INDEXING.PERIODIC"></a>2.4.1.&nbsp;Periodic
+                id="RCL.INDEXING.PERIODIC"></a>2.5.1.&nbsp;Periodic
                 indexing</h3>
               </div>
             </div>
@@ -2107,7 +2162,7 @@ indexedmimetypes = application/pdf</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.MONITOR"
-                id="RCL.INDEXING.MONITOR"></a>2.4.2.&nbsp;Real time
+                id="RCL.INDEXING.MONITOR"></a>2.5.2.&nbsp;Real time
                 indexing</h3>
               </div>
             </div>
@@ -2328,7 +2383,7 @@ fs.inotify.max_user_watches=32768</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.INDEXING.EXTRAMETA" id=
-              "RCL.INDEXING.EXTRAMETA"></a>2.5.&nbsp;Incorporating
+              "RCL.INDEXING.EXTRAMETA"></a>2.6.&nbsp;Incorporating
               external metadata</h2>
             </div>
           </div>
@@ -2338,7 +2393,7 @@ fs.inotify.max_user_watches=32768</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.EXTATTR"
-                id="RCL.INDEXING.EXTATTR"></a>2.5.1.&nbsp;<span class="application">Unix</span>-like
+                id="RCL.INDEXING.EXTATTR"></a>2.6.1.&nbsp;<span class="application">Unix</span>-like
                 systems and <span class="application">MacOS</span>
                 systems: using extended attributes</h3>
               </div>
@@ -2413,7 +2468,7 @@ setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/f
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.EXTTAGS"
-                id="RCL.INDEXING.EXTTAGS"></a>2.5.2.&nbsp;Using a
+                id="RCL.INDEXING.EXTTAGS"></a>2.6.2.&nbsp;Using a
                 command to importing external metadata</h3>
               </div>
             </div>
@@ -2496,7 +2551,7 @@ metadatacmds = ; <em class=
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.INDEXING.NOTES" id=
-              "RCL.INDEXING.NOTES"></a>2.6.&nbsp;Miscellaneous
+              "RCL.INDEXING.NOTES"></a>2.7.&nbsp;Miscellaneous
               indexing notes</h2>
             </div>
           </div>
@@ -2507,7 +2562,7 @@ metadatacmds = ; <em class=
               <div>
                 <h3 class="title"><a name=
                 "RCL.INDEXING.PUNCTUATION" id=
-                "RCL.INDEXING.PUNCTUATION"></a>2.6.1.&nbsp;Indexing
+                "RCL.INDEXING.PUNCTUATION"></a>2.7.1.&nbsp;Indexing
                 punctuation characters (1.39)</h3>
               </div>
             </div>
@@ -2541,7 +2596,7 @@ metadatacmds = ; <em class=
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.PDF" id=
-                "RCL.INDEXING.PDF"></a>2.6.2.&nbsp;The PDF input
+                "RCL.INDEXING.PDF"></a>2.7.2.&nbsp;The PDF input
                 handler</h3>
               </div>
             </div>
@@ -2554,12 +2609,17 @@ metadatacmds = ; <em class=
           <p>In consequence, the <span class=
           "command"><strong>rclpdf.py</strong></span> PDF input
           handler has more complex capabilities than most others,
-          and it is also more configurable. Specifically,
-          <span class="command"><strong>rclpdf.py</strong></span>
-          has the following features:</p>
+          and it is also more configurable, because some extra
+          features need executing external commands, so that they
+          are not enabled by default. Specifically, <span class=
+          "command"><strong>rclpdf.py</strong></span> has the
+          following optional features:</p>
           <div class="itemizedlist">
             <ul class="itemizedlist" style=
             "list-style-type: disc;">
+              <li class="listitem">
+                <p>It can extract PDF outlines and bookmarks.</p>
+              </li>
               <li class="listitem">
                 <p>It can be configured to extract specific
                 metadata tags from an XMP packet.</p>
@@ -2572,11 +2632,30 @@ metadatacmds = ; <em class=
                 text is empty. This is done by executing an
                 external program and is now described in a
                 <a class="link" href="#RCL.INDEXING.OCR" title=
-                "2.6.3.&nbsp;Running OCR on image documents">separate
+                "2.7.3.&nbsp;Running OCR on image documents">separate
                 section</a>, because the OCR framework can also be
                 used with non-PDF image files.</p>
               </li>
             </ul>
+          </div>
+          <div class="sect3">
+            <div class="titlepage">
+              <div>
+                <div>
+                  <h4 class="title"><a name=
+                  "RCL.INDEXING.PDF.OUTLINE" id=
+                  "RCL.INDEXING.PDF.OUTLINE"></a>Extracting PDF
+                  outlines and bookmarks</h4>
+                </div>
+              </div>
+            </div>
+            <p>These data elements will be extracted if
+            <code class="literal">pdfoutline</code> is set in the
+            configuration file and the <span class=
+            "command"><strong>pdftohtml</strong></span> command
+            (from <span class="application">poppler-tools</span> is
+            available). Executing the command takes extra time,
+            which is why the feature is not enabled by default.</p>
           </div>
           <div class="sect3">
             <div class="titlepage">
@@ -2667,7 +2746,7 @@ pass</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.OCR" id=
-                "RCL.INDEXING.OCR"></a>2.6.3.&nbsp;Running OCR on
+                "RCL.INDEXING.OCR"></a>2.7.3.&nbsp;Running OCR on
                 image documents</h3>
               </div>
             </div>
@@ -2752,7 +2831,7 @@ pdfocrlang = eng</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.STT" id=
-                "RCL.INDEXING.STT"></a>2.6.4.&nbsp;Running a speech
+                "RCL.INDEXING.STT"></a>2.7.4.&nbsp;Running a speech
                 to text program on audio files</h3>
               </div>
             </div>
@@ -2776,7 +2855,7 @@ pdfocrlang = eng</pre>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.REMOVABLE"
                 id=
-                "RCL.INDEXING.REMOVABLE"></a>2.6.5.&nbsp;Removable
+                "RCL.INDEXING.REMOVABLE"></a>2.7.5.&nbsp;Removable
                 volumes</h3>
               </div>
             </div>
@@ -3000,7 +3079,7 @@ recollindex -c "$confdir"</pre>
               <div>
                 <h3 class="title"><a name="RCL.INDEXING.WEBQUEUE"
                 id=
-                "RCL.INDEXING.WEBQUEUE"></a>2.6.6.&nbsp;<span class="application">Unix</span>-like
+                "RCL.INDEXING.WEBQUEUE"></a>2.7.6.&nbsp;<span class="application">Unix</span>-like
                 systems: indexing visited Web pages</h3>
               </div>
             </div>
@@ -6168,7 +6247,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
             "literal">issub</code> and <code class=
             "literal">date</code> criteria always affect the whole
             query (they are applied as a final filter), even if set
-            with other terms inside a parenthese.</p>
+            with other terms inside a parenthesis.</p>
           </div>
           <div class="note" style=
           "margin-left: 0.5in; margin-right: 0.5in;">
@@ -6542,12 +6621,11 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
         Each line in the file defines a group.</p>
         <p>Example:</p>
         <pre class="programlisting">
-        hi hello "good morning"
+hi hello "good morning"
 
-        # not sure about "au revoir" though. Is this english ?
-        bye goodbye "see you" \
-        "au revoir" 
-      </pre>
+# not sure about "au revoir" though. Is this english ?
+bye goodbye "see you" \
+"au revoir"</pre>
         <p>As usual, lines beginning with a <code class=
         "literal">#</code> are comments, empty lines are ignored,
         and lines can be continued by ending them with a
@@ -6648,8 +6726,8 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
         href="#RCL.INSTALL.CONFIG.PTRANS" title=
         "5.4.7.&nbsp;The ptrans file"><code class=
         "filename">ptrans</code></a> configuration file, which can
-        be edited by hand or from the GUI external indexes
-        configuration dialog: <span class=
+        be edited with a plain text editor or by using the GUI
+        external indexes configuration dialog: <span class=
         "guimenu">Preferences</span> → <span class=
         "guimenuitem">External index dialog</span>, then click the
         <span class="guilabel">Paths translations</span> button on
@@ -6744,15 +6822,11 @@ C: = Z:</pre>
         <code class="literal">C</code> will make the term
         case-sensitive, and <code class="literal">D</code> will
         make it diacritics-sensitive. Examples:</p>
-        <pre class="programlisting">
-        "us"C
-      </pre>
+        <pre class="programlisting">"us"C</pre>
         <p>will search for the term <code class="literal">us</code>
         exactly (<code class="literal">Us</code> will not be a
         match).</p>
-        <pre class="programlisting">
-        "resume"D
-      </pre>
+        <pre class="programlisting">"resume"D</pre>
         <p>will search for the term <code class=
         "literal">resume</code> exactly (<code class=
         "literal">résumé</code> will not be a match).</p>
@@ -7213,7 +7287,6 @@ C: = Z:</pre>
           "5.4.4.&nbsp;The mimemap file"><code class=
           "filename">mimemap</code> file</a>. Example:</p>
           <pre class="programlisting">
-
 .doc = application/msword</pre>
           <p>If no suffix association is found for the file name,
           recent <span class="application">Recoll</span> will use
@@ -7229,17 +7302,15 @@ C: = Z:</pre>
           "filename">mimeconf</code> file</a>. A sample will
           probably be better than a long explanation:</p>
           <pre class="programlisting">
+[index]
+application/msword = exec antiword -t -i 1 -m UTF-8;\
+mimetype = text/plain ; charset=utf-8
 
-          [index]
-          application/msword = exec antiword -t -i 1 -m UTF-8;\
-          mimetype = text/plain ; charset=utf-8
+application/ogg = exec rclogg
 
-          application/ogg = exec rclogg
+text/rtf = exec unrtf --nopict --html; charset=iso-8859-1; mimetype=text/html
 
-          text/rtf = exec unrtf --nopict --html; charset=iso-8859-1; mimetype=text/html
-
-          application/x-chm = execm rclchm.py
-        </pre>
+application/x-chm = execm rclchm.py</pre>
           <p>The fragment specifies that:</p>
           <div class="itemizedlist">
             <ul class="itemizedlist" style=
@@ -7311,15 +7382,14 @@ C: = Z:</pre>
           <p>For filters producing HTML, the output could be very
           minimal like the following example:</p>
           <pre class="programlisting">
-          &lt;html&gt;
-            &lt;head&gt;
-              &lt;meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/&gt;
-            &lt;/head&gt;
-            &lt;body&gt;
-              Some text content
-            &lt;/body&gt;
-          &lt;/html&gt;
-          </pre>
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Some text content
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
           <p>You should take care to escape some characters inside
           the text by transforming them into appropriate entities.
           At the very minimum, "<code class="literal">&amp;</code>"
@@ -7361,19 +7431,17 @@ C: = Z:</pre>
           preference to the file modification date. The date format
           should be as follows:</p>
           <pre class="programlisting">
-          &lt;meta name="date" content="YYYY-mm-dd HH:MM:SS"&gt;
-          or
-          &lt;meta name="date" content="YYYY-mm-ddTHH:MM:SS"&gt;
-        </pre>
+&lt;meta name="date" content="YYYY-mm-dd HH:MM:SS"&gt;</pre>
+          <p>or</p>
+          <pre class=
+          "programlisting">&lt;meta name="date" content="YYYY-mm-ddTHH:MM:SS"&gt;</pre>
           <p>Example:</p>
           <pre class="programlisting">
-          &lt;meta name="date" content="2013-02-24 17:50:00"&gt;
-        </pre>
+&lt;meta name="date" content="2013-02-24 17:50:00"&gt;</pre>
           <p>Input handlers also have the possibility to "invent"
           field names. This should also be output as meta tags:</p>
           <pre class="programlisting">
-          &lt;meta name="somefield" content="Some textual data" /&gt;
-        </pre>
+&lt;meta name="somefield" content="Some textual data" /&gt;</pre>
           <p>You can embed HTML markup inside the content of custom
           fields, for improving the display inside result lists. In
           this case, add a (wildly non-standard) <code class=
@@ -7381,8 +7449,8 @@ C: = Z:</pre>
           "application">Recoll</span> that the value is HTML and
           should not be escaped for display.</p>
           <pre class="programlisting">
-          &lt;meta name="somefield" markup="html" content="Some &lt;i&gt;textual&lt;/i&gt; data" /&gt;
-        </pre>
+&lt;meta name="somefield" markup="html" content="Some &lt;i&gt;textual&lt;/i&gt; data" /&gt;
+</pre>
           <p>As written above, the processing of fields is
           described in a <a class="link" href="#RCL.PROGRAM.FIELDS"
           title="4.2.&nbsp;Field data processing">further
@@ -8899,84 +8967,89 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
             <p>First a quick look at an indexer main part, using
             pseudo-Python3 code:</p>
             <pre class="programlisting">
-    # Connect to the recoll index. This will use the <code class=
+# Connect to the recoll index. This will use the <code class=
 "literal">RECOLL_CONFDIR</code> variable, set
-    # by the parent recollindex process, to use the right index.
-    rcldb = recoll.connect(writable=1)
+# by the parent recollindex process, to use the right index.
+rcldb = recoll.connect(writable=1)
 
-    # Important: tell the Recoll db that we are going to update documents for the
-    # <em class=
+# Important: tell the Recoll db that we are going to update documents for the
+# <em class=
 "replaceable"><code>MYBACK</code></em> backend. All other documents will be marked as present so as
-    # not to be affect by the subsequent purge.
-    rcldb.preparePurge("MYBACK")
+# not to be affect by the subsequent purge.
+rcldb.preparePurge("MYBACK")
 
-    # Walk your dataset (of course your code will not look like this)
-    for mydoc in mydoclist:
-        # Compute the doc unique identifier and the signature corresponding to its update state
-        # (e.g. mtime and size for a file).
-        udi = mydoc.udi()
-        sig = mydoc.sig()
-        # Check with recoll if the document needs updating. This has the side-effect or marking
-        # it present.
-        if not rcldb.needUpdate(udi, sig):
-            continue
-        # The document data does not exist in the index or needs updating. Create and add a Recoll
-        # Doc object
-        doc = recoll.Doc()
-        doc.mimetype = "some/type"
-        # Say that the document belongs to this indexer
-        doc.rclbes = "MYBACK"
-        # The url will be passed back to you along with the udi if the <code class="literal">fetch</code>
-        # method is called later (for previewing), or may be used for opening the document with
-        # its native app from Recoll. The udi has a maximum size because it is used as a Xapian
-        # term. The url has no such limitation.
-        doc.url = "someurl"
-        doc.sig = sig
-        # Of course add other fields like "text" (duh), "author" etc. See the samples.
-        doc.text = mydoc.text()
-        # [...]
-        # Then add or update the data in the index.
-        self.db.addOrUpdate(udi, doc)
+# Walk your dataset (of course your code will not look like this)
+for mydoc in mydoclist:
+    # Compute the doc unique identifier and the signature corresponding to its update state
+    # (e.g. mtime and size for a file).
+    udi = mydoc.udi()
+    sig = mydoc.sig()
+    # Check with recoll if the document needs updating. This has the side-effect or marking
+    # it present.
+    if not rcldb.needUpdate(udi, sig):
+        continue
+    # The document data does not exist in the index or needs updating. Create and add a Recoll
+    # Doc object
+    doc = recoll.Doc()
+    doc.mimetype = "some/type"
+    # Say that the document belongs to this indexer
+    doc.rclbes = "MYBACK"
+    # The url will be passed back to you along with the udi if the <code class="literal">fetch</code>
+    # method is called later (for previewing), or may be used for opening the document with
+    # its native app from Recoll. The udi has a maximum size because it is used as a Xapian
+    # term. The url has no such limitation.
+    doc.url = "someurl"
+    doc.sig = sig
+    # Of course add other fields like "text" (duh), "author" etc. See the samples.
+    doc.text = mydoc.text()
+    # [...]
+    # Then add or update the data in the index.
+    self.db.addOrUpdate(udi, doc)
 
-    # Finally call purge to delete the data for documents which were not seen at all.
-    db.purge()
-</pre>
+# Finally call purge to delete the data for documents which were not seen at all.
+db.purge()</pre>
             <p>The Recoll source tree has two samples of external
             indexers.</p>
             <div class="itemizedlist">
               <ul class="itemizedlist" style=
               "list-style-type: disc;">
-                <li class="listitem"><a class="ulink" href=
-                "https://framagit.org/medoc92/recoll/-/blob/master/src/python/samples/rclmbox.py"
-                target="_top">rclmbox.py</a> indexes a directory
-                containing <code class="literal">mbox</code> folder
-                files. Of course it is not really useful because
-                <span class="application">Recoll</span> can do this
-                by itself, but it exercises most features in the
-                update interface, and it has both top-level and
-                embedded documents so it demonstrates the uses of
-                the <code class="literal">ipath</code> values.</li>
-                <li class="listitem"><a class="ulink" href=
-                "https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rcljoplin.py"
-                target="_top">rcljoplin.py</a> indexes a
-                <span class="application">Joplin</span> application
-                main <code class="literal">notes</code> SQL table.
-                <span class="application">Joplin</span> sets an an
-                update date attribute for each record in the table,
-                so each note record can be processed as a
-                standalone document (no <code class=
-                "literal">ipath</code> necessary). The sample has
-                full preview and open support (the latter using a
-                <span class="application">Joplin</span> callback
-                URL which allows displaying the result note inside
-                the native app), so it could actually be useful to
-                perform a unified search of the <span class=
-                "application">Joplin</span> data and the regular
-                <span class="application">Recoll</span> data. As of
-                <span class="application">Recoll</span> 1.37.0, the
-                Joplin indexer is part of the default installation
-                (see the features section of the Web site for more
-                information).</li>
+                <li class="listitem">
+                  <p><a class="ulink" href=
+                  "https://framagit.org/medoc92/recoll/-/blob/master/src/python/samples/rclmbox.py"
+                  target="_top">rclmbox.py</a> indexes a directory
+                  containing <code class="literal">mbox</code>
+                  folder files. Of course it is not really useful
+                  because <span class="application">Recoll</span>
+                  can do this by itself, but it exercises most
+                  features in the update interface, and it has both
+                  top-level and embedded documents so it
+                  demonstrates the uses of the <code class=
+                  "literal">ipath</code> values.</p>
+                </li>
+                <li class="listitem">
+                  <p><a class="ulink" href=
+                  "https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rcljoplin.py"
+                  target="_top">rcljoplin.py</a> indexes a
+                  <span class="application">Joplin</span>
+                  application main <code class=
+                  "literal">notes</code> SQL table. <span class=
+                  "application">Joplin</span> sets an an update
+                  date attribute for each record in the table, so
+                  each note record can be processed as a standalone
+                  document (no <code class="literal">ipath</code>
+                  necessary). The sample has full preview and open
+                  support (the latter using a <span class=
+                  "application">Joplin</span> callback URL which
+                  allows displaying the result note inside the
+                  native app), so it could actually be useful to
+                  perform a unified search of the <span class=
+                  "application">Joplin</span> data and the regular
+                  <span class="application">Recoll</span> data. As
+                  of <span class="application">Recoll</span>
+                  1.37.0, the Joplin indexer is part of the default
+                  installation (see the features section of the Web
+                  site for more information).</p>
+                </li>
               </ul>
             </div>
             <p>See the comments inside the scripts for more
@@ -9062,7 +9135,7 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
         few others).</p>
         <p>You should also maybe have a look at the <a class="link"
         href="#RCL.INSTALL.CONFIG" title=
-        "5.4.&nbsp;Configuration overview">configuration
+        "5.4.&nbsp;Settings, configuration overview">configuration
         section</a> (but this may not be necessary for a quick test
         with default parameters). Most parameters can be more
         conveniently set from the GUI interface.</p>
@@ -9186,81 +9259,75 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
           </div>
           <p>The following prerequisites are described in broad
           terms and Debian package names. The dependencies should
-          be available as packages on most common Unix derivatives,
-          and it should be quite uncommon that you would have to
-          build one of them. Finding the right package name for
-          other systems is left to the sagacity of the reader.</p>
+          be available as packages on most common <span class=
+          "application">Unix</span>-like systems, and it should be
+          quite uncommon that you would have to build one of them.
+          Finding the right package name for non-Debian systems is
+          left to the sagacity of the reader.</p>
           <p>Up to version 1.37, the <span class=
           "application">Recoll</span> build process used the
           <span class="application">GNU autotools</span>. Versions
           1.38 and later use <span class=
-          "application">meson/ninja</span> instead. In the
-          following, most configuration options are still defined
-          in terms of autotools <code class=
-          "literal">--enable-xxx</code>, <code class=
-          "literal">--disable-xxx</code>. These can be translated
-          to -Dxxx=true -Dxxx=false options for <span class=
-          "command"><strong>meson setup</strong></span></p>
+          "application">meson/ninja</span> instead.</p>
           <p>If you do not need the GUI, you can avoid all GUI
-          dependencies by disabling its build. (See the configure
+          dependencies by disabling its build: see the configure
           section further down: <code class=
-          "literal">--disable-qtgui</code>).</p>
+          "literal">-Dqtgui=false</code>.</p>
+          <p>Check the <a class="ulink" href=
+          "https://www.recoll.org/pages/download.html" target=
+          "_top"><span class="application">Recoll</span> download
+          page</a> for up to date <span class=
+          "application">Recoll</span> version information and links
+          to source release files in <span class=
+          "command"><strong>tar</strong></span> format.</p>
           <p>The shopping list follows:</p>
           <div class="itemizedlist">
             <ul class="itemizedlist" style=
             "list-style-type: disc;">
               <li class="listitem">
-                <p>If you start from git code, you will need the
-                <span class="command"><strong>git</strong></span>
-                command (<code class="literal">git</code>), and the
-                <span class=
-                "command"><strong>autoconf</strong></span>,
-                <span class=
-                "command"><strong>automake</strong></span> and
-                <span class=
-                "command"><strong>libtool</strong></span> triad
-                (<code class="literal">autoconf</code>,
-                <code class="literal">automake</code>, <code class=
-                "literal">libtool</code>). These are not needed for
-                building from tar distributions.</p>
+                <p>If you start from git repository source code,
+                you will need the <span class=
+                "command"><strong>git</strong></span>, obviously
+                (package: <code class="literal">git</code>).</p>
               </li>
               <li class="listitem">
-                <p>The pkg-config command and gettext package are
-                needed for configuring the build (<code class=
-                "literal">pkg-config</code>, <code class=
-                "literal">gettext</code>).</p>
+                <p>On <span class="application">Unix</span>-like
+                systems systems, you will need the <span class=
+                "command"><strong>meson</strong></span> and
+                <span class="command"><strong>ninja</strong></span>
+                commands. (package: <code class=
+                "literal">meson</code>, this will bring
+                <code class="literal">ninja</code> as a
+                dependency). Not needed on <span class=
+                "application">MacOS</span> systems at the
+                moment.</p>
+              </li>
+              <li class="listitem">
+                <p>The pkg-config command is needed for configuring
+                the build (package: <code class=
+                "literal">pkg-config</code>).</p>
               </li>
               <li class="listitem">
                 <p>The <span class=
-                "command"><strong>make</strong></span> command
-                (<code class="literal">make</code> which will
-                actually install <span class="application">GNU
-                make</span> on Linux). If you get strange error
-                messages about dependency tracking from
-                <span class="command"><strong>configure</strong></span>,
-                you probably forgot to install <span class=
-                "command"><strong>make</strong></span>.</p>
+                "command"><strong>make</strong></span> command is
+                needed for building the GUI, unneeded if you
+                disable this. (package: <code class=
+                "literal">make</code>).</p>
               </li>
               <li class="listitem">
                 <p>A C++ compiler with at least C++17 compatibility
                 (<code class="literal">g++</code> or <code class=
-                "literal">clang</code>). Versions 1.33.4 and older
-                only require c++11.</p>
+                "literal">clang</code>). <span class=
+                "application">Recoll</span> Versions 1.33.4 and
+                older only required c++11.</p>
               </li>
               <li class="listitem">
                 <p>The <span class=
                 "command"><strong>bison</strong></span> command is
-                not generally needed, but might be if some file
-                modification times are not right.</p>
-              </li>
-              <li class="listitem">
-                <p>If you want to process CHM files, you will need
-                libchm (<code class="literal">libchm-dev</code>),
-                else you can set the <code class=
-                "literal">--disable-python-chm</code> option to the
-                <span class=
-                "command"><strong>configure</strong></span>
-                command.</p>
+                not generally needed, but might be if you modify
+                the query language yacc source or if some file
+                modification times are not right (package:
+                <code class="literal">bison</code>).</p>
               </li>
               <li class="listitem">
                 <p>For building the documentation: the <span class=
@@ -9268,32 +9335,21 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                 and the Docbook XML and style sheet files. You can
                 avoid this dependency by disabling documentation
                 building with the <code class=
-                "literal">--disable-userdoc</code> <span class=
-                "command"><strong>configure</strong></span>
-                option.</p>
+                "literal">-Duserdoc=false</code> setup option.</p>
               </li>
               <li class="listitem">
                 <p>Development files for <a class="ulink" href=
                 "https://www.xapian.org" target="_top"><span class=
                 "application">Xapian core</span></a> (<code class=
                 "literal">libxapian-dev</code>).</p>
-                <div class="important" style=
-                "margin-left: 0.5in; margin-right: 0.5in;">
-                  <h3 class="title">Important</h3>
-                  <p>If you are building Xapian for an older CPU
-                  (before Pentium 4 or Athlon 64), you need to add
-                  the <code class="option">--disable-sse</code>
-                  flag to the <span class=
-                  "command"><strong>configure</strong></span>
-                  command. Else all Xapian applications will crash
-                  with an <code class="literal">illegal
-                  instruction</code> error.</p>
-                </div>
               </li>
               <li class="listitem">
                 <p>Development files for <span class=
-                "application">libxslt</span> (<code class=
-                "literal">libxslt1-dev</code>).</p>
+                "application">libxml2</span> and <span class=
+                "application">libxslt</span> (packages:
+                <code class="literal">libxslt1-dev</code>, which
+                will pull <code class=
+                "literal">libxml2-dev</code>).</p>
               </li>
               <li class="listitem">
                 <p>Development files for <span class=
@@ -9302,49 +9358,55 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
               </li>
               <li class="listitem">
                 <p>Development files for <span class=
-                "application">libaspell</span> (<code class=
-                "literal">libaspell-dev</code>). Can be avoided
-                with the <code class=
-                "literal">--disable-aspell</code> option to
-                <span class=
-                "command"><strong>configure</strong></span>.</p>
-              </li>
-              <li class="listitem">
-                <p>If you want to build the GUI: development files
-                for <a class="ulink" href=
-                "https://qt-project.org/downloads" target=
-                "_top"><span class="application">Qt 5</span></a>.
-                Else give the <code class=
-                "literal">--disable-qtgui</code> option to the
-                <span class=
-                "command"><strong>configure</strong></span>
-                command. You will probably need <code class=
-                "literal">qtbase5-dev</code> and <code class=
-                "literal">qttools5-dev-tools</code> I can never
-                remember what other packages to install, but
-                installing the Qt5 Webkit, (or Qt5 Webengine if you
-                set <code class=
-                "literal">--enable-webengine</code>) will usually
-                bring them as dependencies (<code class=
-                "literal">libqt5webkit5-dev</code> or <code class=
-                "literal">qtwebengine5dev</code>). The <span class=
-                "application">Recoll</span> GUI can use either
-                Webkit or Webengine for displaying the results.</p>
+                "application">libmagic</span> (<code class=
+                "literal">libmagic-dev</code>).</p>
               </li>
               <li class="listitem">
                 <p>Development files for <span class=
-                "application">Python3</span> (<code class=
-                "literal">python3-all-dev</code>, <code class=
-                "literal">python3-setuptools</code>). You can use
-                the <code class=
-                "literal">--disable-python-module</code> option for
-                disabling the build of the Python extension. On
-                older systems still supporting Python2, you can
-                also install <code class=
-                "literal">python2-dev</code> and <code class=
-                "literal">python-setuptools</code>. The build will
-                test for the presence of the python2 and/or python3
-                commands and behave accordingly.</p>
+                "application">libaspell</span> (package:
+                <code class="literal">libaspell-dev</code>). Can be
+                avoided with the <code class=
+                "literal">-Daspell=false</code> setup option.</p>
+              </li>
+              <li class="listitem">
+                <p>If you want to process CHM files, you will need
+                libchm (<code class="literal">libchm-dev</code>),
+                else you can set the <code class=
+                "literal">-Dpython-chm=false</code> option to the
+                setup command.</p>
+              </li>
+              <li class="listitem">
+                <p>If you want the daemon indexer process to
+                monitor the session for quitting, you need the X11
+                development library (package: <code class=
+                "literal">libx11-dev</code>). Else use the
+                -Dx11mon=false setup option.</p>
+              </li>
+              <li class="listitem">
+                <p>If you want to build the GUI: <span class=
+                "command"><strong>qmake</strong></span> and
+                development files for <a class="ulink" href=
+                "https://qt-project.org/downloads" target=
+                "_top"><span class="application">Qt 5</span></a>.
+                Else give the <code class=
+                "literal">-Dqtgui=false</code> setup option.
+                Packages: <code class="literal">qtbase5-dev</code>,
+                <code class="literal">qttools5-dev-tools</code>,
+                <code class="literal">libqt5webkit5-dev</code>.
+                Replace <code class=
+                "literal">libqt5webkit5-dev</code> with
+                <code class="literal">libqt5webengine5</code> if
+                you use -Dwebengine=true.</p>
+              </li>
+              <li class="listitem">
+                <p>Development files for <span class=
+                "application">Python3</span> (packages:
+                <code class="literal">python3-all-dev</code>,
+                <code class="literal">python3-setuptools</code>).
+                You can use the <code class=
+                "literal">-Dpython-module=false</code> setup option
+                for disabling the build of the Python
+                extension.</p>
               </li>
               <li class="listitem">
                 <p>You may also need <a class="ulink" href=
@@ -9356,10 +9418,6 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
               </li>
             </ul>
           </div>
-          <p>Check the <a class="ulink" href=
-          "https://www.recoll.org/pages/download.html" target=
-          "_top"><span class="application">Recoll</span> download
-          page</a> for up to date version information.</p>
         </div>
         <div class="sect2">
           <div class="titlepage">
@@ -9388,52 +9446,57 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                 <div>
                   <h4 class="title"><a name=
                   "RCL.INSTALL.BUILDING.BUILDING.CONFIGURE" id=
-                  "RCL.INSTALL.BUILDING.BUILDING.CONFIGURE"></a>Configure
-                  options:</h4>
+                  "RCL.INSTALL.BUILDING.BUILDING.CONFIGURE"></a>meson
+                  setup options</h4>
                 </div>
               </div>
             </div>
-            <p>Translate the following to <code class=
-            "literal">-Dxxx=true/-Dxxx=false</code> for
-            <span class="command"><strong>meson
-            setup</strong></span>.</p>
-            <p><code class="option">--without-aspell</code> will
+            <p>Of course the usual <span class=
+            "command"><strong>meson</strong></span> <code class=
+            "literal">setup</code> options, like <code class=
+            "option">-Dprefix=/usr</code> apply.</p>
+            <p><code class="option">-Daspell=false</code> will
             disable the code for phonetic matching of search
             terms.</p>
-            <p><code class="option">--with-fam</code> or
-            <code class="option">--with-inotify</code> will enable
+            <p><code class="option">-Dfam=true</code> or
+            <code class="option">-Dinotify=true</code> will enable
             the code for real time indexing. Inotify support is
-            enabled by default on Linux systems.</p>
-            <p><code class="option">--with-qzeitgeist</code> will
+            enabled by default on Linux systems. <span class=
+            "application">MacOS</span> systems and <span class=
+            "application">Windows</span> platforms now have real
+            time indexing enabled by default and need no setup
+            options.</p>
+            <p><code class="option">-Dqzeitgeist=true</code> will
             enable sending <span class=
             "application">Zeitgeist</span> events about the visited
             search results, and needs the <span class=
             "application">qzeitgeist</span> package.</p>
-            <p><code class="option">--disable-qtgui</code> will
+            <p><code class="option">-Dqtgui=false</code> will
             disable the Qt graphical interface, which allows
             building the indexer and the command line search
             program in absence of a Qt environment.</p>
-            <p><code class="option">--disable-webkit</code> will
+            <p><code class="option">-Dwebkit=false</code> will
             implement the result list with a <span class=
             "application">Qt</span> QTextBrowser instead of a
             WebKit widget if you do not or can't depend on the
             latter.</p>
-            <p><code class="option">--enable-webengine</code> will
+            <p><code class="option">-Dwebengine=true</code> will
             enable the use of Qt Webengine (only meaningful if the
             Qt GUI is enabled), in place or Qt Webkit.</p>
-            <p><code class="option">--disable-webpreview</code>: do
+            <p><code class="option">-Dwebpreview=false</code>: do
             not implement the GUI preview windows with webkit or
             webengine instead of qtextbrowser. Using webxx will
             usually produce a better display, but will sometimes
-            fail to display anything because of JS issues.</p>
-            <p><code class="option">--enable-guidebug</code> will
+            fail to display anything because of javascript
+            issues.</p>
+            <p><code class="option">-Dguidebug=true</code> will
             build the recoll GUI program with debug symbols. This
             makes it very big (~50MB), which is why it is stripped
             by default.</p>
-            <p><code class="option">--disable-idxthreads</code> is
-            available from version 1.19 to suppress multithreading
-            inside the indexing process. You can also use the
-            run-time configuration to restrict <span class=
+            <p><code class="option">-Didxthreads=false</code> will
+            suppress multithreading inside the indexing process.
+            You can also use the run-time configuration to restrict
+            <span class=
             "command"><strong>recollindex</strong></span> to using
             a single thread, but the compile-time option may
             disable a few more unused locks. This only applies to
@@ -9441,13 +9504,24 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
             (data input). The <span class=
             "application">Recoll</span> monitor mode always uses at
             least two threads of execution.</p>
-            <p><code class="option">--disable-python-module</code>
+            <p><code class="option">-Dpython-module=false</code>
             will avoid building the <span class=
-            "application">Python</span> module.</p>
-            <p><code class="option">--disable-python-chm</code>
-            will avoid building the Python libchm interface used to
+            "application">Python</span> extension.</p>
+            <p><code class="option">-Dpython-chm=false</code> will
+            avoid building the Python libchm interface used to
             index CHM files.</p>
-            <p><code class="option">--enable-camelcase</code> will
+            <p><code class="option">-Dpython-aspell=false</code>
+            will avoid building the Python libaspell interface.
+            This is used to supplement queries with spelling
+            guesses.</p>
+            <p><code class="option">-Dindexer=false</code> will
+            prevent building the indexer. Possibly useful if you
+            just need the lib (e.g. for the Python extension).</p>
+            <p><code class="option">-Dsimdutf=false</code> will
+            prevent the use of the <span class=
+            "application">simdutf</span> code normally used to
+            speed up character code conversions.</p>
+            <p><code class="option">-Dcamelcase=true</code> will
             enable splitting <em class=
             "replaceable"><code>camelCase</code></em> words. This
             is not enabled by default as it has the unfortunate
@@ -9458,50 +9532,42 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
             "literal">"my sql manual"</code> but not <code class=
             "literal">"mysql manual"</code> (only inside phrase
             searches).</p>
-            <p><code class="option">--with-file-command</code>
-            Specify the version of the 'file' command to use (e.g.:
-            --with-file-command=/usr/local/bin/file). Can be useful
-            to enable the gnu version on systems where the native
-            one is bad.</p>
-            <p><code class="option">--disable-x11mon</code> Disable
+            <p><code class="option">-Dlibmagic=false</code>:
+            disable the use of libmagic (use a <code class=
+            "literal">file</code>-like command instead).</p>
+            <p><code class=
+            "option">-Dfile-command=somecommand</code> Specify the
+            version of the 'file' command to use (e.g.:
+            -Dfile-command=/usr/local/bin/file). Can be useful to
+            enable the gnu version on systems where the native one
+            is bad.</p>
+            <p><code class="option">-Dx11mon=false</code> Disable
             <span class="application">X11</span> connection
-            monitoring inside recollindex. Together with
-            --disable-qtgui, this allows building recoll without
+            monitoring inside <span class=
+            "command"><strong>recollindex</strong></span>. Together
+            with -Dqtgui=false, this allows building recoll without
             <span class="application">Qt</span> and <span class=
             "application">X11</span>.</p>
-            <p><code class="option">--disable-userdoc</code> will
+            <p><code class="option">-Duserdoc=false</code> will
             avoid building the user manual. This avoids having to
             install the Docbook XML/XSL files and the TeX toolchain
             used for translating the manual to PDF.</p>
-            <p><code class="option">--enable-recollq</code> Enable
+            <p><code class="option">-Drecollq=true</code> Enable
             building the <span class=
             "command"><strong>recollq</strong></span> command line
             query tool (recoll -t without need for Qt). This is
-            done by default if --disable-qtgui is set but this
+            done by default if -Dqtgui=false is used but this
             option enables forcing it.</p>
-            <p><code class="option">--disable-pic</code>
-            (<span class="application">Recoll</span> versions up to
-            1.21 only) will compile <span class=
-            "application">Recoll</span> with position-dependant
-            code. This is incompatible with building the KIO or the
-            <span class="application">Python</span> or <span class=
-            "application">PHP</span> extensions, but might yield
-            very marginally faster code.</p>
-            <p><code class="option">--without-systemd</code>
-            Disable the automatic installation of systemd unit
-            files. Normally unit files are installed if the install
-            path can be detected.</p>
-            <p><code class=
-            "option">--with-system-unit-dir=DIR</code> Provide an
-            install path for the systemd system unit template
-            file.</p>
-            <p><code class="option">--with-user-unit-dir=DIR</code>
+            <p><code class="option">-Dsystemd=false</code> Disable
+            the automatic installation of systemd unit files.
+            Normally unit files are installed if the install path
+            can be detected.</p>
+            <p><code class="option">-Dsystem-unit-dir=DIR</code>
+            Provide an install path for the systemd system unit
+            template file.</p>
+            <p><code class="option">-Duser-unit-dir=DIR</code>
             Provide an install path for the systemd user unit
             file.</p>
-            <p>Of course the usual <span class=
-            "application">autoconf</span> <span class=
-            "command"><strong>configure</strong></span> options,
-            like <code class="option">--prefix</code> apply.</p>
           </div>
           <div class="sect3">
             <div class="titlepage">
@@ -9515,50 +9581,14 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                 </div>
               </div>
             </div>
-            <p>For versions up to 1.37.x:</p>
-            <pre class="screen"><strong class=
-            "userinput"><code>cd recoll-xxx</code></strong>
-<strong class="userinput"><code>./configure <em class=
-"replaceable"><code>[options]</code></em></code></strong>
-<strong class="userinput"><code>make</code></strong>
-<strong class=
-"userinput"><code>(practices usual hardship-repelling invocations)</code></strong></pre>
-            <p>For versions 1.38 and later:</p>
+            <p>For versions 1.38 and later (else check the manual
+            inside the older source):</p>
             <pre class="screen"><strong class=
             "userinput"><code>cd recoll-xxx</code></strong>
 <strong class="userinput"><code>meson setup <em class=
 "replaceable"><code>[options]</code></em> build</code></strong>
 <strong class="userinput"><code>ninja -C build</code></strong>
             </pre>
-          </div>
-          <div class="sect3">
-            <div class="titlepage">
-              <div>
-                <div>
-                  <h4 class="title"><a name=
-                  "RCL.INSTALL.BUILDING.BUILDING.GIT" id=
-                  "RCL.INSTALL.BUILDING.BUILDING.GIT"></a>Building
-                  from git code</h4>
-                </div>
-              </div>
-            </div>
-            <p>Nothing special is needed for 1.38 and later
-            (<span class="application">meson/ninja</span>).</p>
-            <p>For older versions using the <span class=
-            "application">autotools</span>:</p>
-            <p>When building from source cloned from the git
-            repository, you also need to install <span class=
-            "application">autoconf</span>, <span class=
-            "application">automake</span>, and <span class=
-            "application">libtool</span> and you must execute
-            <code class="literal">sh autogen.sh</code> in the top
-            source directory before running <code class=
-            "literal">configure</code>.</p>
-            <p>You will also need to run <span class=
-            "command"><strong>configure</strong></span> with
-            <code class="literal">--disable-userdoc</code> or
-            install the Docbook XML/XSL files needed for
-            translating the Docbook XML manual into HTML.</p>
           </div>
         </div>
         <div class="sect2">
@@ -9571,11 +9601,9 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
               </div>
             </div>
           </div>
-          <p>Use <strong class="userinput"><code>sudo make
-          install</code></strong> or <strong class=
-          "userinput"><code>sudo ninja install</code></strong> in
-          your build tree. This will copy the commands to
-          <code class="filename"><em class=
+          <p>Use <strong class="userinput"><code>sudo ninja
+          install</code></strong> in your build tree. This will
+          copy the commands to <code class="filename"><em class=
           "replaceable"><code>prefix</code></em>/bin</code> and the
           sample configuration files, scripts and other shared data
           to <code class="filename"><em class=
@@ -9611,8 +9639,8 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.INSTALL.CONFIG" id=
-              "RCL.INSTALL.CONFIG"></a>5.4.&nbsp;Configuration
-              overview</h2>
+              "RCL.INSTALL.CONFIG"></a>5.4.&nbsp;Settings,
+              configuration overview</h2>
             </div>
           </div>
         </div>
@@ -9620,19 +9648,19 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
         "command"><strong>recoll</strong></span> GUI are set
         through the <span class="guilabel">Preferences</span> menu
         and stored in the standard Qt place (<code class=
-        "filename">$HOME/.config/Recoll.org/recoll.conf</code>).
-        You probably do not want to edit this by hand.</p>
+        "filename">$HOME/.config/Recoll.org/recoll.conf</code>).</p>
         <p><span class="application">Recoll</span> indexing options
         are set inside text configuration files located in a
         configuration directory. There can be several such
         directories, each of which defines the parameters for one
         index.</p>
-        <p>The configuration files can be edited by hand or through
-        the <span class="guilabel">Index configuration</span>
-        dialog (<span class="guilabel">Preferences</span> menu).
-        The GUI tool will try to respect your formatting and
-        comments as much as possible, so it is quite possible to
-        use both approaches on the same configuration.</p>
+        <p>The configuration files can be edited with a plain text
+        editor or through the <span class="guilabel">Index
+        configuration</span> dialog (<span class=
+        "guilabel">Preferences</span> menu). The GUI tool will try
+        to respect your formatting and comments as much as
+        possible, so it is quite possible to use both approaches on
+        the same configuration.</p>
         <p>For each index, there are at least two sets of
         configuration files. System-wide configuration files are
         kept in a directory named like <code class=
@@ -9656,28 +9684,26 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
         option parameter to <span class=
         "command"><strong>recoll</strong></span> and <span class=
         "command"><strong>recollindex</strong></span>.</p>
-        <p>In addition (as of <span class=
-        "application">Recoll</span> version 1.19.7), it is possible
-        to specify two additional configuration directories which
-        will be stacked before and after the user configuration
-        directory. These are defined by the <code class=
-        "envar">RECOLL_CONFTOP</code> and <code class=
-        "envar">RECOLL_CONFMID</code> environment variables. Values
-        from configuration files inside the top directory will
-        override user ones, values from configuration files inside
-        the middle directory will override system ones and be
-        overridden by user ones. These two variables may be of use
-        to applications which augment <span class=
-        "application">Recoll</span> functionality, and need to add
-        configuration data without disturbing the user's files.
-        Please note that the two, currently single, values will
-        probably be interpreted as colon-separated lists in the
-        future: do not use colon characters inside the directory
-        paths.</p>
+        <p>In addition, it is possible to specify two additional
+        configuration directories which will be stacked before and
+        after the user configuration directory. These are defined
+        by the <code class="envar">RECOLL_CONFTOP</code> and
+        <code class="envar">RECOLL_CONFMID</code> environment
+        variables. Values from configuration files inside the top
+        directory will override user ones, values from
+        configuration files inside the middle directory will
+        override system ones and be overridden by user ones. These
+        two variables may be of use to applications which augment
+        <span class="application">Recoll</span> functionality, and
+        need to add configuration data without disturbing the
+        user's files. Please note that the two, currently single,
+        values will probably be interpreted as colon-separated
+        lists in the future: do not use colon characters inside the
+        directory paths.</p>
         <p>If the default configuration directory does not exist
-        when <span class="command"><strong>recoll</strong></span>
-        or <span class=
-        "command"><strong>recollindex</strong></span> are started,
+        when either <span class=
+        "command"><strong>recoll</strong></span> or <span class=
+        "command"><strong>recollindex</strong></span> is started,
         it will be created with a set of empty configuration files.
         <span class="command"><strong>recoll</strong></span> will
         give you a chance to edit the configuration file before
@@ -9686,35 +9712,36 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
         immediately. To avoid mistakes, the automatic directory
         creation will only occur for the default location, not if
         <code class="option">-c</code> or <code class=
-        "envar">RECOLL_CONFDIR</code> were used (in the latter
-        cases, you will have to create the directory).</p>
+        "envar">RECOLL_CONFDIR</code> were used, in which case, you
+        will have to create the directory.</p>
         <p>All configuration files share the same format. For
         example, a short extract of the main configuration file
         might look as follows:</p>
         <pre class="programlisting">
-        # Space-separated list of files and directories to index.
-        topdirs =  ~/docs /usr/share/doc
+# Space-separated list of files and directories to index.
+topdirs =  ~/docs /usr/share/doc
 
-        [~/somedirectory-with-utf8-txt-files]
-        defaultcharset = utf-8
-      </pre>
+[~/somedirectory-with-utf8-txt-files]
+defaultcharset = utf-8</pre>
         <p>There are three kinds of lines:</p>
         <div class="itemizedlist">
           <ul class="itemizedlist" style="list-style-type: disc;">
             <li class="listitem">
-              <p>Comment (starts with <span class=
-              "emphasis"><em>#</em></span>) or empty.</p>
+              <p>Comment lines start with a hash mark <span class=
+              "emphasis"><em>#</em></span>.</p>
             </li>
             <li class="listitem">
-              <p>Parameter affectation (<span class=
-              "emphasis"><em>name = value</em></span>).</p>
+              <p>Parameter assignment: <span class=
+              "emphasis"><em>name = value</em></span>.</p>
             </li>
             <li class="listitem">
-              <p>Section definition ([<span class=
-              "emphasis"><em>somedirname</em></span>]).</p>
+              <p>Section definitions: [<span class=
+              "emphasis"><em>somedirname</em></span>].</p>
             </li>
           </ul>
         </div>
+        <p>Lines which are empty or only containing white space are
+        ignored.</p>
         <p>Long lines can be broken by ending each incomplete part
         with a backslash (<code class="literal">\</code>).</p>
         <p>Depending on the type of configuration file, section
@@ -9738,7 +9765,8 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
         </div>
         <p>When found at the beginning of a file path, the tilde
         character (~) is expanded to the name of the user's home
-        directory, as a shell would do.</p>
+        directory, as a shell would do. The same convention is used
+        on <span class="application">Windows</span>.</p>
         <p>Some parameters are lists of strings. White space is
         used for separation. List elements with embedded spaces can
         be quoted using double-quotes. Double quotes inside these
@@ -9748,10 +9776,9 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
         the physical newline with backslash, even inside quoted
         strings.</p>
         <pre class="programlisting">
-        astringlist =  "some string \
-        with spaces"
-        thesame = "some string with spaces"        
-      </pre>
+astringlist =  "some string \
+with spaces"
+thesame = "some string with spaces"</pre>
         <p>Parameters which are not part of string lists can't be
         quoted, and leading and trailing space characters are
         stripped before the value is used.</p>
@@ -9896,10 +9923,10 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                 "RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS"></a><span class="term"><code class="varname">topdirs</code></span></dt>
                 <dd>
                   <p>Space-separated list of files or directories
-                  to recursively index. Default to ~ (indexes
-                  $HOME). You can use symbolic links in the list,
-                  they will be followed, independently of the value
-                  of the followLinks variable.</p>
+                  to recursively index. You can use symbolic links
+                  in the list, they will be followed, independently
+                  of the value of the followLinks variable. The
+                  default value is ~ : recursively index $HOME.</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.MONITORDIRS" id=
@@ -11410,6 +11437,15 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
                   default is off because OCR is so very slow.</p>
                 </dd>
                 <dt><a name=
+                "RCL.INSTALL.CONFIG.RECOLLCONF.PDFOUTLINE" id=
+                "RCL.INSTALL.CONFIG.RECOLLCONF.PDFOUTLINE"></a><span class="term"><code class="varname">pdfoutline</code></span></dt>
+                <dd>
+                  <p>Extract outlines and bookmarks from PDF
+                  documents (needs pdftohtml). This is not enabled
+                  by default because it is rarely needed, and the
+                  extra command takes a little time.</p>
+                </dd>
+                <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.PDFATTACH" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.PDFATTACH"></a><span class="term"><code class="varname">pdfattach</code></span></dt>
                 <dd>
@@ -11711,23 +11747,22 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
           and only the first occurrence will be used for headers
           that occur several times).</p>
           <pre class="programlisting">[prefixes]
-        # Index mailmytag contents (with the given prefix)
-        mailmytag = XMTAG
+# Index mailmytag contents (with the given prefix)
+mailmytag = XMTAG
 
-        [stored]
-        # Store mailmytag inside the document data record (so that it can be
-        # displayed - as %(mailmytag) - in result lists).
-        mailmytag = 
+[stored]
+# Store mailmytag inside the document data record (so that it can be
+# displayed - as %(mailmytag) - in result lists).
+mailmytag = 
 
-        [queryaliases]
-        filename = fn
-        containerfilename = cfn
+[queryaliases]
+filename = fn
+containerfilename = cfn
 
-        [mail]
-        # Extract the X-My-Tag mail header, and use it internally with the
-        # mailmytag field name
-        x-my-tag = mailmytag
-        </pre>
+[mail]
+# Extract the X-My-Tag mail header, and use it internally with the
+# mailmytag field name
+x-my-tag = mailmytag</pre>
           <div class="sect3">
             <div class="titlepage">
               <div>
@@ -11805,7 +11840,7 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
           located in one place. Example:</p>
           <pre class=
           "programlisting">[~/.kde/share/apps/okular/docdata]
-        .xml = application/x-okular-notes</pre>
+.xml = application/x-okular-notes</pre>
           <p>The <code class="varname">recoll_noindex</code>
           <code class="filename">mimemap</code> variable has been
           moved to <code class="filename">recoll.conf</code> and
@@ -11878,8 +11913,7 @@ index = /path/to/recoll/src/python/samples/rclmbox.py index
 Big Books = dir:"~/My Books" size&gt;10K
 My Docs = dir:"~/My Documents"
 Small Books = dir:"~/My Books" size&lt;10K
-System Docs = dir:/usr/share/doc
-        </pre>
+System Docs = dir:/usr/share/doc</pre>
           <p>The above definition would create four filter
           checkboxes, labelled <code class="literal">Big
           Books</code>, <code class="literal">My Docs</code>,
@@ -11899,8 +11933,7 @@ System Docs = dir:/usr/share/doc
 d:Big Books = dir:"~/My Books" size&gt;10K
 c:My Docs = dir:"~/My Documents"
 b:Small Books = dir:"~/My Books" size&lt;10K
-a:System Docs = dir:/usr/share/doc
-        </pre>
+a:System Docs = dir:/usr/share/doc</pre>
           <p>As you may have guessed, The default <code class=
           "literal">[guifilters]</code> section looks like:</p>
           <pre class="programlisting">[guifilters]
@@ -11909,8 +11942,7 @@ spreadsheet = rclcat:spreadsheet
 presentation = rclcat:presentation
 media = rclcat:media
 message = rclcat:message
-other = rclcat:other
-        </pre>
+other = rclcat:other</pre>
         </div>
         <div class="sect2">
           <div class="titlepage">
@@ -12066,13 +12098,12 @@ other = rclcat:other
           comparisons are textual). An example should make things
           sufficiently clear</p>
           <pre class="programlisting">
-          [/home/me/.recoll/xapiandb]
-          /this/directory/moved = /to/this/place
+[/home/me/.recoll/xapiandb]
+/this/directory/moved = /to/this/place
 
-          [/path/to/additional/xapiandb]
-          /server/volume1/docdir = /net/server/volume1/docdir
-          /server/volume2/docdir = /net/server/volume2/docdir
-        </pre>
+[/path/to/additional/xapiandb]
+/server/volume1/docdir = /net/server/volume1/docdir
+/server/volume2/docdir = /net/server/volume2/docdir</pre>
         </div>
         <div class="sect2">
           <div class="titlepage">
@@ -12116,8 +12147,7 @@ other = rclcat:other
                   "filename">~/.recoll/mimemap</code>), add the
                   following line:</p>
                   <pre class="programlisting">
-            .blob = application/x-blobapp
-          </pre>
+.blob = application/x-blobapp</pre>
                   <p>Note that the MIME type is made up here, and
                   you could call it <em class=
                   "replaceable"><code>diesel/oil</code></em> just
@@ -12129,8 +12159,7 @@ other = rclcat:other
                   the <code class="literal">[view]</code> section,
                   add:</p>
                   <pre class="programlisting">
-              application/x-blobapp = blobviewer %f
-            </pre>
+application/x-blobapp = blobviewer %f</pre>
                   <p>We are supposing that <em class=
                   "replaceable"><code>blobviewer</code></em> wants
                   a file name parameter here, you would use

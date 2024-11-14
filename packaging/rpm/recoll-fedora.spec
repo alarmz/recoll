@@ -3,7 +3,7 @@
 
 Summary:        Desktop full text search tool with Qt GUI
 Name:           recoll
-Version:        1.40.1
+Version:        1.40.3
 Release:        2%{?dist}
 License:        GPLv2+
 URL:            https://www.recoll.org
@@ -152,7 +152,7 @@ echo "%{_libdir}/recoll" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/recoll-%{_arc
 
 %files
 %license COPYING
-%doc ChangeLog README
+%doc README
 %{_sysconfdir}/ld.so.conf.d/recoll-%{_arch}.conf
 %{_bindir}/recoll
 %{_bindir}/recollindex

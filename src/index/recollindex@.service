@@ -11,6 +11,12 @@ Restart=on-failure
 RestartSec=30
 ExecStart=/usr/bin/recollindex -m -D -x -w 10 -c /home/%i/.recoll
 User=%i
+# CPU usage control examples. If you set this low, you probably also want to configure the
+# recollindex multithreading parameters in recoll.conf. Use thrTCounts to limit the number of
+# threads, or disable multithreading altogether with thrQSizes = -1 -1 -1
+# CPUQuota=40% # the indexer will use no more than 40% of one CPU core.
+# CPUQuota=100% # the indexer will use no more than 100% of one CPU core.
+# CPUQuota=250% # the indexer will use no more than the capacity of two and half CPU cores.
 
 [Install]
 WantedBy=multi-user.target
