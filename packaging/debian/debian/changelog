@@ -1,3 +1,19 @@
+recoll (1.40.4-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Python extension: fix db.getdoc() unable to use external index.
+  * GUI: raise the preview window when activated again.
+  * GUI: add menu entry to access the online webhelp manual.
+  * Fix indexing fb2 files with imbricated sections.
+  * Document using CPUQuota parameters with systemd to throttle the
+    indexer CPU use.
+  * Mac OS: add missing files in install to fix zip archive processing.
+  * recollq: fix -p/-g options always showing limited number of snippets.
+  * XSLT-based handlers: accept an absolute path for the stylesheet.
+  * GUI preferences: fix many tooltips not shown in the index preferences
+    section.
+    
+ -- Jean-Francois Dockes <jf@dockes.org>  Fri, 15 Nov 2024 10:00:00 +0100
+
 recoll (1.40.3-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Synonyms: fix the index-time feature enabling search phrase
