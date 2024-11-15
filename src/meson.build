@@ -91,14 +91,19 @@ endif
 
 recoll_datadir = get_option('prefix') / get_option('datadir') / 'recoll'
 
-add_project_arguments(
-    [
+defineslist =     [
         '-DBUILDING_RECOLL',
         '-DREADFILE_ENABLE_ZLIB',
         '-DREADFILE_ENABLE_MINIZ',
         '-DREADFILE_ENABLE_MD5',
         '-DRECOLL_DATADIR="' + recoll_datadir + '"',
-    ],
+    ]
+if get_option('appimage')
+    defineslist += '-DRECOLL_APPIMAGE'
+endif
+
+add_project_arguments(
+    defineslist,
     language: 'cpp',
 )
 

@@ -4,6 +4,8 @@ Priority: optional
 Maintainer: Jean-Francois Dockes <jfd@recoll.org>
 Build-Depends: bison,
                debhelper (>= 10),
+# Note: for buster, uninstall meson pkg, pip-install up to date meson and remove the deps for
+# building 
                meson,
                ninja-build,
                dh-python,

@@ -161,6 +161,7 @@ echo "%{_libdir}/recoll" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/recoll-%{_arc
 %{_datadir}/metainfo/org.recoll.recoll.appdata.xml
 %{_datadir}/applications/recoll-searchgui.desktop
 %{_datadir}/icons/hicolor/48x48/apps/recoll.png
+%{_datadir}/icons/hicolor/scalable/apps/recoll.svg
 %{_datadir}/pixmaps/recoll.png
 %{python3_sitearch}/recoll
 %{python3_sitearch}/recollchm

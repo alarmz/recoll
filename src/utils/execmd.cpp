@@ -445,6 +445,18 @@ int ExecCmd::startExec(const string& cmd, const vector<string>& args,
         LOGDEB("ExecCmd::startExec: (" << has_input << "|" << has_output << ") " << command << "\n");
     }
 
+#ifdef RECOLL_APPIMAGE
+    // When recoll is built for an appimage: we want to unset LD_LIBRARY_PATH and use the local
+    // system libs for executing a local command. This includes our script interpreters. Hopefully
+    // all our scripts live in recoll/filters...
+    bool no_ld_lib_path{false};
+    const char *appdir = getenv("APPDIR");
+    if (appdir && 
+        (cmd.find(appdir) == std::string::npos || cmd.find("recoll/filters") != std::string::npos)) {
+        no_ld_lib_path = true;
+    }
+#endif // RECOLL_APPIMAGE
+
     // The resource manager ensures resources are freed if we return early
     ExecCmdRsrc e(m);
 
@@ -491,7 +503,13 @@ int ExecCmd::startExec(const string& cmd, const vector<string>& args,
         if (eqpos == string::npos) {
             continue;
         }
-        envmap[entry.substr(0, eqpos)] = entry.substr(eqpos+1);
+        auto nm = entry.substr(0, eqpos);
+#ifdef RECOLL_APPIMAGE
+        if (no_ld_lib_path && nm == "LD_LIBRARY_PATH") {
+            continue;
+        }
+#endif // RECOLL_APPIMAGE
+        envmap[nm] = entry.substr(eqpos+1);
     }
     for (const auto& entry : m->m_env) {
         string::size_type eqpos = entry.find_first_of("=");
