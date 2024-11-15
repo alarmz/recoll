@@ -134,6 +134,8 @@ i18n/recoll_zh_CN.ts \
 i18n/recoll_zh.ts
 
 windows {
+  # NOTE: Copy this file into recoll-win.pro before building
+  
   # QT += webkit webkitwidgets
   # DEFINES += USING_WEBKIT
 
@@ -144,7 +146,7 @@ windows {
   DEFINES += __WIN32__
   DEFINES += UNICODE
   RC_FILE = recoll.rc
-  QCBUILDLOC = Desktop_Qt_5_15_2_MSVC2019_32bit
+  QCBUILDLOC = Desktop_Qt_6_7_3_MSVC2019_64bit
 
   HEADERS += \
     winschedtool.h
@@ -157,26 +159,19 @@ windows {
               ../utils ../aspell ../rcldb ../qtgui ../xaposix \
               confgui widgets
     
-  contains(QMAKE_CC, gcc){
-    # MingW
-    QMAKE_CXXFLAGS += -Wno-unused-parameter
-    LIBS += \
-    C:/recoll/src/build-librecoll-Desktop_Qt_5_8_0_MinGW_32bit-Release/release/librecoll.dll
-  }
-
   contains(QMAKE_CC, cl){
-    # MSVC
-    RECOLLDEPS = ../../../recolldeps/msvc
+    # MSVC. 
+    RECOLLDEPS = $$PWD/../../../recolldeps/msvc
     DEFINES += USING_STATIC_LIBICONV
     SOURCES += ../windows/getopt.cc
     PRE_TARGETDEPS = \
-      ../build-librecoll-$$QCBUILDLOC-Release/release/recoll.lib
+      $$PWD/../qmake/build/librecoll/$$QCBUILDLOC-Release/release/recoll.lib
     LIBS += \
-      -L../build-librecoll-$$QCBUILDLOC-Release/release -lrecoll \
+      $$PWD/../qmake/build/librecoll/$$QCBUILDLOC-Release/release/recoll.lib \
       $$RECOLLDEPS/libxml2/libxml2-2.9.4+dfsg1/win32/bin.msvc/libxml2.lib \
       $$RECOLLDEPS/libxslt/libxslt-1.1.29/win32/bin.msvc/libxslt.lib \
-      -L../build-libxapian-$$QCBUILDLOC-Release/release -llibxapian \
-      -L$$RECOLLDEPS/build-libiconv-$$QCBUILDLOC-Release/release -llibiconv \
+      $$PWD/../qmake/build/libxapian/$$QCBUILDLOC-Release/release/libxapian.lib \
+      $$RECOLLDEPS/wlibiconv/build/$$QCBUILDLOC-Release/release/iconv.lib \
       $$RECOLLDEPS/libmagic/src/lib/libmagic.lib \
       $$RECOLLDEPS/regex/libregex.lib \
       $$RECOLLDEPS/zlib-1.2.11/zdll.lib \

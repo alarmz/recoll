@@ -21,17 +21,17 @@ windows {
 
   contains(QMAKE_CC, cl){
     # Visual Studio
-    QCBUILDLOC = Desktop_Qt_6_7_2_MSVC2019_64bit
-    RECOLLDEPS = ../../../recolldeps/msvc
+    QCBUILDLOC = Desktop_Qt_6_7_3_MSVC2019_64bit
+    RECOLLDEPS = $$PWD/../../../recolldeps/msvc
     SOURCES += ../windows/getopt.cc
     PRE_TARGETDEPS = \
-      ../build-librecoll-$$QCBUILDLOC-Release/release/recoll.lib
+      $$PWD/../qmake/build/librecoll/$$QCBUILDLOC-Release/release/recoll.lib
     LIBS += \
-      -L../build-librecoll-$$QCBUILDLOC-Release/release -lrecoll \
+      $$PWD/../qmake/build/librecoll/$$QCBUILDLOC-Release/release/recoll.lib \
       $$RECOLLDEPS/libxml2/libxml2-2.9.4+dfsg1/win32/bin.msvc/libxml2.lib \
       $$RECOLLDEPS/libxslt/libxslt-1.1.29/win32/bin.msvc/libxslt.lib \
-      -L../build-libxapian-$$QCBUILDLOC-Release/release -llibxapian \
-      -L$$RECOLLDEPS/wlibiconv/build-libiconv-$$QCBUILDLOC-Release/release/ -liconv \
+      $$PWD/build/libxapian/$$QCBUILDLOC-Release/release/libxapian.lib \
+      $$RECOLLDEPS/wlibiconv/build/$$QCBUILDLOC-Release/release/iconv.lib \
       $$RECOLLDEPS/libmagic/src/lib/libmagic.lib \
       $$RECOLLDEPS/regex/libregex.lib \
       $$RECOLLDEPS/zlib-1.2.11/zdll.lib \
