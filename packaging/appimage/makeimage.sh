@@ -1,12 +1,14 @@
 #!/bin/sh
 
-# Note: this supposes that all used python version have been installed with make altinstall
+# Note: this supposes that all used python version have been built
+# from source and installed with make altinstall
 
-RECOLL=/home/dockes/recoll/
-UNRTF=/home/dockes/unrtf
-ANTIWORD=/home/dockes/antiword
-APPDIR=/home/dockes/AppDir/
-DEPLOYBINDIR=/home/dockes
+DOCKHOME=/home/dockes/tmp/distrohomes/deb10
+RECOLL=$DOCKHOME/recoll
+UNRTF=$DOCKHOME/unrtf
+ANTIWORD=$DOCKHOME/antiword
+APPDIR=$DOCKHOME/AppDir/
+DEPLOYBINDIR=$DOCKHOME
 
 
 auxprogs()
