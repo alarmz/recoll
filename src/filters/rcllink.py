@@ -48,6 +48,7 @@ import rclexecm
 import sys
 from rclbasehandler import RclBaseHandler
 
+
 class LinkDump(RclBaseHandler):
     def html_text(self, fn):
         self.em.setmimetype("application/pdf")
@@ -60,13 +61,14 @@ class LinkDump(RclBaseHandler):
         return path
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # The --open option is a hack because it could conflict with rclexecm wanting to use
     # --open in the future. The "Open" code is in this sample script, just for the sake of
     # simplicity, as the GUI also looks in the filters directory for "Open" commands so there is no
     # need to deal with the PATH
     if len(sys.argv) > 2 and sys.argv[1] == "--open":
         import subprocess
+
         with open(sys.argv[2], "rb") as f:
             path = f.read()
         path = path.decode("UTF-8")

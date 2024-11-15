@@ -46,13 +46,15 @@ from archivextract import ArchiveExtractor
 using_unrar = False
 try:
     from unrar import rarfile
+
     using_unrar = True
 except Exception as ex:
     try:
         from rarfile import RarFile
     except:
         print("RECFILTERROR HELPERNOTFOUND python3:rarfile/python3:unrar")
-        sys.exit(1);
+        sys.exit(1)
+
 
 # Requires RarFile python module. Try "sudo pip install rarfile" or
 # install it with the system package manager
@@ -60,39 +62,42 @@ except Exception as ex:
 # Also for many files, you will need the non-free version of unrar
 # (https://www.rarlab.com/rar_add.htm). The unrar-free version fails
 # with the message "Failed the read enough data"
-# 
+#
 # This is identical to rclzip.py except I did a search/replace from zip
 # to rar, and changed this comment.
 class RarExtractor(ArchiveExtractor):
     def __init__(self, em):
         super().__init__(em)
 
-
     def extractone(self, ipath):
-        #self.em.rclog("extractone: [%s]" % ipath)
+        # self.em.rclog("extractone: [%s]" % ipath)
         docdata = ""
         isdir = False
-        
+
         try:
             if using_unrar:
-                if type(ipath) == type(b''):
-                    ipath = ipath.decode('UTF-8')
+                if type(ipath) == type(b""):
+                    ipath = ipath.decode("UTF-8")
                 rarinfo = self.rar.getinfo(ipath)
                 # dll.hpp RHDF_DIRECTORY: 0x20
-                isdir = ((rarinfo.flag_bits & 0x20) != 0)
+                isdir = (rarinfo.flag_bits & 0x20) != 0
             else:
                 rarinfo = self.rar.getinfo(ipath)
                 isdir = rarinfo.isdir()
         except Exception as err:
-            self.em.rclog("extractone: using_unrar %d rar.getinfo failed: [%s]"
-                          % (using_unrar,err))
+            self.em.rclog(
+                "extractone: using_unrar %d rar.getinfo failed: [%s]"
+                % (using_unrar, err)
+            )
             return (True, docdata, ipath, False)
 
         if not isdir:
             try:
                 if rarinfo.file_size > self.em.maxmembersize:
-                    self.em.rclog("extractone: entry %s size %d too big" %
-                              (ipath, rarinfo.file_size))
+                    self.em.rclog(
+                        "extractone: entry %s size %d too big"
+                        % (ipath, rarinfo.file_size)
+                    )
                     docdata = ""
                 else:
                     docdata = self.rar.read(ipath)
@@ -106,13 +111,13 @@ class RarExtractor(ArchiveExtractor):
             self.em.setmimetype("application/x-fsdirectory")
 
         iseof = rclexecm.RclExecM.noteof
-        if self.currentindex >= len(self.rar.namelist()) -1:
+        if self.currentindex >= len(self.rar.namelist()) - 1:
             iseof = rclexecm.RclExecM.eofnext
         return (ok, docdata, rclexecm.makebytes(ipath), iseof)
 
     def closefile(self):
         self.rar = None
-        
+
     ###### File type handler api, used by rclexecm ---------->
     def openfile(self, params):
         self.currentindex = -1
@@ -125,17 +130,17 @@ class RarExtractor(ArchiveExtractor):
                 # lib than I wish to. This is used on Windows anyway,
                 # where all Recoll paths are utf-8
                 fn = filename.decode("UTF-8")
-                self.rar = rarfile.RarFile(fn, 'rb')
+                self.rar = rarfile.RarFile(fn, "rb")
             else:
                 # The previous versions passed the file name to
                 # RarFile. But the py3 version of this wants an str as
                 # input, which is wrong of course, as filenames are
                 # binary. Circumvented by passing the open file
-                f = open(filename, 'rb')
+                f = open(filename, "rb")
                 self.rar = RarFile(f)
             return True
         except Exception as err:
-            self.em.rclog("RarFile: %s"%err)
+            self.em.rclog("RarFile: %s" % err)
             return False
 
     def namelist(self):
@@ -143,7 +148,7 @@ class RarExtractor(ArchiveExtractor):
 
     # getipath from ArchiveExtractor
     # getnext from ArchiveExtractor
-    
+
 
 # Main program: create protocol handler and extractor and run them
 proto = rclexecm.RclExecM()

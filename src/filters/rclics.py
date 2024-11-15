@@ -21,15 +21,17 @@ if usemodule != "internal":
         if forcevobject:
             raise Exception
         from icalendar import Calendar, Event
+
         usemodule = "icalendar"
     except:
         try:
             import vobject
+
             usemodule = "vobject"
         except:
             print("RECFILTERROR HELPERNOTFOUND python3:icalendar")
             print("RECFILTERROR HELPERNOTFOUND python3:vobject")
-            sys.exit(1);
+            sys.exit(1)
 
 
 class IcalExtractor:
@@ -40,12 +42,12 @@ class IcalExtractor:
 
     def extractone(self, index):
         if index >= len(self.contents):
-            return(False, "", "", True)
+            return (False, "", "", True)
         docdata = self.contents[index]
-        #self.em.rclog(docdata)
+        # self.em.rclog(docdata)
 
         iseof = rclexecm.RclExecM.noteof
-        if self.currentindex >= len(self.contents) -1:
+        if self.currentindex >= len(self.contents) - 1:
             iseof = rclexecm.RclExecM.eofnext
         self.em.setmimetype("text/plain")
         return (True, docdata, str(index), iseof)
@@ -71,9 +73,15 @@ class IcalExtractor:
                 self.em.rclog("Openfile: read or parse error: %s" % str(e))
                 return False
             self.contents = cal.walk()
-            self.contents = [item.as_string() for item in self.contents
-                             if (item.name == "VEVENT" or item.name == "VTODO"
-                                 or item.name == "VJOURNAL")]
+            self.contents = [
+                item.as_string()
+                for item in self.contents
+                if (
+                    item.name == "VEVENT"
+                    or item.name == "VTODO"
+                    or item.name == "VJOURNAL"
+                )
+            ]
         else:
             try:
                 cal = vobject.readOne(calstr)
@@ -85,25 +93,25 @@ class IcalExtractor:
                 for ev in lst:
                     self.contents.append(ev.serialize())
 
-        #self.em.rclog("openfile: Entry count: %d"%(len(self.contents)))
+        # self.em.rclog("openfile: Entry count: %d"%(len(self.contents)))
         return True
 
     def getipath(self, params):
         try:
-            if params["ipath"] == b'':
+            if params["ipath"] == b"":
                 index = 0
             else:
                 index = int(params["ipath"])
         except:
             return (False, "", "", True)
         return self.extractone(index)
-        
+
     def getnext(self, params):
 
         if self.currentindex == -1:
             # Return "self" doc
             self.currentindex = 0
-            self.em.setmimetype(b'text/plain')
+            self.em.setmimetype(b"text/plain")
             if len(self.contents) == 0:
                 eof = rclexecm.RclExecM.eofnext
             else:
@@ -114,9 +122,10 @@ class IcalExtractor:
             self.em.rclog("getnext: EOF hit")
             return (False, "", "", rclexecm.RclExecM.eofnow)
         else:
-            ret= self.extractone(self.currentindex)
+            ret = self.extractone(self.currentindex)
             self.currentindex += 1
             return ret
+
 
 # Trivial splitter: cut objects on BEGIN/END (only for 'interesting' objects)
 # ignore all other syntax
@@ -124,47 +133,46 @@ class ICalSimpleSplitter:
     # Note that if an 'interesting' element is nested inside another one,
     # it will not be extracted (stay as text in external event). This is
     # not an issue and I don't think it can happen with the current list
-    interesting = (b'VTODO', b'VEVENT', b'VJOURNAL')
+    interesting = (b"VTODO", b"VEVENT", b"VJOURNAL")
 
     def splitcalendar(self, fin):
-        curblkname = b''
-        curblk = b''
+        curblkname = b""
+        curblk = b""
 
         lo = []
         for line in fin:
             line = line.rstrip()
-            if line == b'':
+            if line == b"":
                 continue
 
             if curblkname:
-                curblk = curblk + line + b'\n'
+                curblk = curblk + line + b"\n"
 
-            l = line.split(b':')
+            l = line.split(b":")
             if len(l) < 2:
                 continue
 
             # If not currently inside a block and we see an
             # 'interesting' BEGIN, start block
-            if curblkname == b'' and l[0].upper() == b'BEGIN':
+            if curblkname == b"" and l[0].upper() == b"BEGIN":
                 name = l[1].upper()
                 if name in ICalSimpleSplitter.interesting:
                     curblkname = name
-                    curblk = curblk + line + b'\n'
+                    curblk = curblk + line + b"\n"
 
             # If currently accumulating block lines, check for end
-            if curblkname and l[0].upper() == b'END' and \
-                   l[1].upper() == curblkname:
+            if curblkname and l[0].upper() == b"END" and l[1].upper() == curblkname:
                 lo.append(curblk)
-                curblkname = b''
-                curblk = b''
+                curblkname = b""
+                curblk = b""
 
         if curblk:
             lo.append(curblk)
-            curblkname = b''
-            curblk = b''
+            curblkname = b""
+            curblk = b""
 
         return lo
- 
+
 
 proto = rclexecm.RclExecM()
 extract = IcalExtractor(proto)

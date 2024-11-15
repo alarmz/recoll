@@ -28,22 +28,25 @@ import glob
 
 import rclexecm
 
-_mswindows = (sys.platform == "win32")
+_mswindows = sys.platform == "win32"
 if _mswindows:
     ocrlangfile = "rclocrlang.txt"
 else:
     ocrlangfile = ".rclocrlang"
 
-_okexts = ('.pdf', '.tif', '.tiff', '.jpg', '.png', '.jpeg')
+_okexts = (".pdf", ".tif", ".tiff", ".jpg", ".png", ".jpeg")
 
 abbyyocrcmd = ""
 abbyocrdir = ""
 
+
 def _deb(s):
     rclexecm.logmsg(s)
 
+
 def cleanocr():
     pass
+
 
 # Return true if abbyy appears to be available
 def ocrpossible(config, path):
@@ -57,9 +60,9 @@ def ocrpossible(config, path):
             return False
         global abbyyocrdir
         abbyyocrdir = os.path.dirname(abbyyocrcmd)
-    
+
     # Check input format
-    base,ext = os.path.splitext(path)
+    base, ext = os.path.splitext(path)
     ext = ext.lower()
     if ext in _okexts:
         return True
@@ -120,24 +123,34 @@ def runocr(config, path):
 
     try:
         out = subprocess.check_output(
-            [abbyyocrcmd, "-lpp", "BookArchiving_Accuracy",
-             "-rl", ocrlang,
-             "-tet", "UTF8",
-             "-f", "TextUnicodeDefaults",
-             "-if", path,
-             "-c"],
-            env = my_env,
-            stderr=subprocess.DEVNULL)
+            [
+                abbyyocrcmd,
+                "-lpp",
+                "BookArchiving_Accuracy",
+                "-rl",
+                ocrlang,
+                "-tet",
+                "UTF8",
+                "-f",
+                "TextUnicodeDefaults",
+                "-if",
+                path,
+                "-c",
+            ],
+            env=my_env,
+            stderr=subprocess.DEVNULL,
+        )
     except Exception as e:
-        _deb("%s failed: %s" % (abbyyocrcmd,e))
+        _deb("%s failed: %s" % (abbyyocrcmd, e))
         return False, ""
     return True, out
-            
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     import rclconfig
+
     config = rclconfig.RclConfig()
-    path =  sys.argv[1]
+    path = sys.argv[1]
     if ocrpossible(config, path):
         ok, data = runocr(config, sys.argv[1])
     else:

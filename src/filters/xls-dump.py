@@ -6,6 +6,7 @@
 #
 from builtins import range
 import sys, os.path, optparse
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "msodump.zip"))
 import traceback
 
@@ -14,7 +15,8 @@ from msodumper import xlsparser, msocrypto
 
 from msodumper.globals import error
 
-def equalsName (name, array):
+
+def equalsName(name, array):
     if len(name) != len(array):
         return False
 
@@ -24,48 +26,51 @@ def equalsName (name, array):
 
     return True
 
-def isOleStream (dirname):
+
+def isOleStream(dirname):
     """Determine whether or not a stream is an OLE stream.
 
-According to the spec, an OLE stream is always named '\1Ole'."""
+    According to the spec, an OLE stream is always named '\1Ole'."""
 
-    name = [0x01, 0x4F, 0x6C, 0x65] # 0x01, 'Ole'
+    name = [0x01, 0x4F, 0x6C, 0x65]  # 0x01, 'Ole'
     return equalsName(dirname, name)
 
-def isCompObjStream (dirname):
-    name = [0x01, 0x43, 0x6F, 0x6D, 0x70, 0x4F, 0x62, 0x6A] # 0x01, 'CompObj'
+
+def isCompObjStream(dirname):
+    name = [0x01, 0x43, 0x6F, 0x6D, 0x70, 0x4F, 0x62, 0x6A]  # 0x01, 'CompObj'
     return equalsName(dirname, name)
+
 
 class XLDumper(object):
 
-    def __init__ (self, filepath, params):
+    def __init__(self, filepath, params):
         self.filepath = filepath
         self.params = params
         self.strm = None
         self.strmData = None
 
-    def __printDirHeader (self, direntry, byteLen):
+    def __printDirHeader(self, direntry, byteLen):
         dirname = direntry.Name
         dirname = globals.encodeName(dirname)
         globals.outputln("")
-        globals.outputln("="*globals.OutputWidth)
+        globals.outputln("=" * globals.OutputWidth)
         if direntry.isStorage():
-            globals.outputln("%s (storage)"%dirname)
+            globals.outputln("%s (storage)" % dirname)
         else:
-            globals.outputln("%s (stream, size: %d bytes)"%(dirname, byteLen))
-        globals.outputln("-"*globals.OutputWidth)
+            globals.outputln("%s (stream, size: %d bytes)" % (dirname, byteLen))
+        globals.outputln("-" * globals.OutputWidth)
 
-    def __parseFile (self):
-        file = open(self.filepath, 'rb')
+    def __parseFile(self):
+        file = open(self.filepath, "rb")
         self.strmData = xlsstream.StreamData()
         self.strm = xlsstream.XLStream(file.read(), self.params, self.strmData)
         file.close()
 
-    def dumpXML (self):
+    def dumpXML(self):
         self.__parseFile()
         dirs = self.strm.getDirectoryEntries()
         docroot = node.Root()
-        root = docroot.appendElement('xls-dump')
+        root = docroot.appendElement("xls-dump")
 
         for d in dirs:
             if d.Name != b"Workbook":
@@ -76,12 +81,12 @@ class XLDumper(object):
             data = self.__readSubStreamXML(dirstrm)
             self.__dumpDataAsXML(data, root)
 
-        node.prettyPrint(globals.utfwriter(), docroot, utf8 = self.params.utf8)
+        node.prettyPrint(globals.utfwriter(), docroot, utf8=self.params.utf8)
 
-    def dumpCanonicalXML (self):
+    def dumpCanonicalXML(self):
         self.__parseFile()
         docroot = node.Root()
-        root = docroot.appendElement('xls-dump')
+        root = docroot.appendElement("xls-dump")
 
         dirEntries = self.strm.getDirectoryEntries()
         for entry in dirEntries:
@@ -95,9 +100,9 @@ class XLDumper(object):
             wbmodel.encrypted = self.strmData.encrypted
             root.appendChild(wbmodel.createDOM())
 
-        node.prettyPrint(globals.utfwriter(), docroot, utf8 = self.params.utf8)
+        node.prettyPrint(globals.utfwriter(), docroot, utf8=self.params.utf8)
 
-    def dump (self):
+    def dump(self):
         self.__parseFile()
         self.strm.printStreamInfo()
         self.strm.printHeader()
@@ -127,7 +132,7 @@ class XLDumper(object):
 
             elif dirname == b"EncryptionInfo":
                 globals.dumpBytes(dirstrm.bytes, 512)
-                globals.outputln("-"*globals.OutputWidth)
+                globals.outputln("-" * globals.OutputWidth)
                 info = msocrypto.EncryptionInfo(dirstrm.bytes)
                 info.read()
                 info.output()
@@ -142,7 +147,7 @@ class XLDumper(object):
             else:
                 globals.dumpBytes(dirstrm.bytes, 512)
 
-    def __readSubStream (self, strm):
+    def __readSubStream(self, strm):
         try:
             # read bytes from BOF to EOF.
             header = 0x0000
@@ -152,11 +157,11 @@ class XLDumper(object):
         except xlsstream.EndOfStream:
             return False
 
-    def __readOleStream (self, dirstrm):
+    def __readOleStream(self, dirstrm):
         strm = olestream.OLEStream(dirstrm.bytes)
         strm.read()
 
-    def __readCompObjStream (self, dirstrm):
+    def __readCompObjStream(self, dirstrm):
         try:
             strm = olestream.CompObjStream(dirstrm.bytes)
             strm.read()
@@ -166,10 +171,10 @@ class XLDumper(object):
     def __dumpDataAsXML(self, data, root):
         if isinstance(data, tuple):
             newRoot = root.appendElement(data[0])
-            if isinstance(data[1], dict): # attrs
-                for key,val in data[1].iteritems():
+            if isinstance(data[1], dict):  # attrs
+                for key, val in data[1].iteritems():
                     newRoot.setAttr(key, val)
-                if len(data) > 2: # data has a list of children
+                if len(data) > 2:  # data has a list of children
                     self.__dumpDataAsXML(data[2], newRoot)
             else:
                 self.__dumpDataAsXML(data[1], newRoot)
@@ -177,9 +182,9 @@ class XLDumper(object):
             for x in data:
                 self.__dumpDataAsXML(x, root)
         else:
-            pass # we're skipping all unknown elems
+            pass  # we're skipping all unknown elems
 
-    def __readSubStreamXML (self, strm):
+    def __readSubStreamXML(self, strm):
         handlers = []
         try:
             while True:
@@ -190,7 +195,7 @@ class XLDumper(object):
         parser = xlsparser.XlsParser(handlers)
         return parser.dumpData()
 
-    def __buildWorkbookModel (self, strm):
+    def __buildWorkbookModel(self, strm):
         model = xlsmodel.Workbook()
         try:
             while True:
@@ -200,20 +205,52 @@ class XLDumper(object):
 
         return model
 
-def main ():
+
+def main():
     parser = optparse.OptionParser()
-    parser.add_option("-d", "--debug", action="store_true", dest="debug", default=False,
-        help="Turn on debug mode")
-    parser.add_option("--show-sector-chain", action="store_true", dest="show_sector_chain", default=False,
-        help="Show sector chain information at the start of the output.")
-    parser.add_option("--show-stream-pos", action="store_true", dest="show_stream_pos", default=False,
-        help="Show the position of each record relative to the stream.")
-    parser.add_option("--dump-mode", dest="dump_mode", default="flat", metavar="MODE",
-        help="Specify the dump mode.  Possible values are: 'flat', 'xml', or 'canonical-xml'.  The default value is 'flat'.")
-    parser.add_option("--catch", action="store_true", dest="catch_exceptions", default=False,
-        help="Catch exceptions and try to continue.")
-    parser.add_option("--utf-8", action="store_true", dest="utf8", default=False,
-        help="Output strings as UTF-8.")
+    parser.add_option(
+        "-d",
+        "--debug",
+        action="store_true",
+        dest="debug",
+        default=False,
+        help="Turn on debug mode",
+    )
+    parser.add_option(
+        "--show-sector-chain",
+        action="store_true",
+        dest="show_sector_chain",
+        default=False,
+        help="Show sector chain information at the start of the output.",
+    )
+    parser.add_option(
+        "--show-stream-pos",
+        action="store_true",
+        dest="show_stream_pos",
+        default=False,
+        help="Show the position of each record relative to the stream.",
+    )
+    parser.add_option(
+        "--dump-mode",
+        dest="dump_mode",
+        default="flat",
+        metavar="MODE",
+        help="Specify the dump mode.  Possible values are: 'flat', 'xml', or 'canonical-xml'.  The default value is 'flat'.",
+    )
+    parser.add_option(
+        "--catch",
+        action="store_true",
+        dest="catch_exceptions",
+        default=False,
+        help="Catch exceptions and try to continue.",
+    )
+    parser.add_option(
+        "--utf-8",
+        action="store_true",
+        dest="utf8",
+        default=False,
+        help="Output strings as UTF-8.",
+    )
     options, args = parser.parse_args()
     params = globals.params
     params.debug = options.debug
@@ -221,18 +258,18 @@ def main ():
     params.showStreamPos = options.show_stream_pos
     params.catchExceptions = options.catch_exceptions
     params.utf8 = options.utf8
-    
+
     if len(args) < 1:
         globals.error("takes at least one argument\n")
         parser.print_help()
         sys.exit(1)
 
     dumper = XLDumper(args[0], params)
-    if options.dump_mode == 'flat':
+    if options.dump_mode == "flat":
         dumper.dump()
-    elif options.dump_mode == 'xml':
+    elif options.dump_mode == "xml":
         dumper.dumpXML()
-    elif options.dump_mode == 'canonical-xml' or options.dump_mode == 'cxml':
+    elif options.dump_mode == "canonical-xml" or options.dump_mode == "cxml":
         try:
             dumper.dumpCanonicalXML()
         except Exception as err:
@@ -243,11 +280,12 @@ def main ():
             globals.error("Dump failed")
             sys.exit(1)
     else:
-        error("unknown dump mode: '%s'\n"%options.dump_mode)
+        error("unknown dump mode: '%s'\n" % options.dump_mode)
         parser.print_help()
         sys.exit(1)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main()
 
 # vim:set filetype=python shiftwidth=4 softtabstop=4 expandtab:

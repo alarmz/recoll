@@ -22,8 +22,8 @@ import rclexecm
 import rclxslt
 import rclgenxslt
 
-if __name__ == '__main__':
-    sheetfile = os.path.join(os.path.dirname(__file__), 'fb2.xsl')
+if __name__ == "__main__":
+    sheetfile = os.path.join(os.path.dirname(__file__), "fb2.xsl")
     with open(sheetfile) as f:
         stylesheet_all = f.read()
     proto = rclexecm.RclExecM()

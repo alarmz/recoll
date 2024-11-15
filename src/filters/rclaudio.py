@@ -23,10 +23,10 @@ except ImportError:
 
 re_pairnum = re.compile(r"[([]*([0-9]+),\s*([0-9]+)")
 
-_htmlprefix = b'''<html><head>
+_htmlprefix = b"""<html><head>
 <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
-</head><body><pre>'''
-_htmlsuffix = b'''</pre></body></html>'''
+</head><body><pre>"""
+_htmlsuffix = b"""</pre></body></html>"""
 
 # The 'Easy' mutagen tags conversions are incomplete. We do it ourselves.
 # TPA,TPOS,disc DISCNUMBER/TOTALDISCS
@@ -39,159 +39,160 @@ _htmlsuffix = b'''</pre></body></html>'''
 # this, which was wrong, the latter is a vaguely defined "music
 # category" thing.
 tagdict = {
-    'ALBUM ARTIST': 'ALBUMARTIST',
-    'ALBUM': 'ALBUM',
-    'ALBUMARTIST': 'ALBUMARTIST',
-    'ALBUMARTISTSORT': 'ALBUMARTISTSORT',
-    'ALBUMSORT': 'ALBUMSORT',
-    'ARTIST': 'ARTIST',
-    'ARTISTSORT': 'ARTISTSORT',
-    'BPM': 'BPM',
-    'COM': 'COMMENT',
-    'COMM': 'COMMENT',
-    'COMMENT': 'COMMENT',
-    'COMPILATION': 'COMPILATION',
-    'COMPOSER': 'COMPOSER',
-    'COMPOSERSORT': 'COMPOSERSORT',
-    'CONDUCTOR': 'CONDUCTOR',
-    'CONTENTGROUP': 'CONTENTGROUP',
-    'COPYRIGHT': 'COPYRIGHT',
-    'DATE': 'DATE',
-    'DISCNUMBER': 'DISCNUMBER',
-    'DISCSUBTITLE': 'DISCSUBTITLE',
-    'DISCTOTAL': 'TOTALDISCS',
-    'ENCODEDBY': 'ENCODEDBY',
-    'ENSEMBLE': 'ORCHESTRA',
-    'GENRE': 'GENRE',
-    'GROUP': 'GROUP',
-    'ISRC': 'ISRC',
-    'LABEL': 'LABEL',
-    'LANGUAGE': 'LANGUAGE',
-    'LYRICIST': 'LYRICIST',
-    'LYRICS': 'LYRICS',
-    'MOOD': 'MOOD',
-    'ORCHESTRA': 'ORCHESTRA',
-    'PERFORMER': 'PERFORMER',
-    'POP': 'RATING1',
-    'POPM': 'RATING1',
-    'ORIGINALARTIST': 'ORIGINALARTIST',
-    'ORIGINALDATE': 'ORIGINALDATE',
-    'RELEASEDATE': 'RELEASEDATE',
-    'REMIXER': 'REMIXER',
-    'SUBTITLE': 'SUBTITLE',
-    'TAL': 'ALBUM',
-    'TALB': 'ALBUM',
-    'TBP': 'BPM',
-    'TBPM': 'BPM',
-    'TCM': 'COMPOSER',
-    'TCMP': 'COMPILATION',
-    'TCO': 'GENRE',
-    'TCOM': 'COMPOSER',
-    'TCON': 'GENRE',
-    'TCOP': 'COPYRIGHT',
-    'TCP': 'COMPILATION',
-    'TCR': 'COPYRIGHT',
-    'TDA': 'DATE',
-    'TDAT': 'DATE',
-    'TDOR': 'ORIGINALDATE',
-    'TDRC': 'DATE',
-    'TDRL': 'RELEASEDATE',
-    'TEN': 'ENCODEDBY',
-    'TENC': 'ENCODEDBY',
-    'TEXT': 'LYRICIST',
-    'TIT1': 'CONTENTGROUP',
-    'TIT2': 'TITLE',
-    'TIT3': 'SUBTITLE',
-    'TITLE': 'TITLE',
-    'TITLESORT': 'TITLESORT',
-    'TLA': 'LANGUAGE',
-    'TLAN': 'LANGUAGE',
-    'TMOO': 'MOOD',
-    'TOA': 'ORIGINALARTIST',
-    'TOPE': 'ORIGINALARTIST',
-    'TOR': 'ORIGINALDATE',
-    'TORY': 'ORIGINALDATE',
-    'TOTALDISCS': 'TOTALDISCS',
-    'TOTALTRACKS': 'TOTALTRACKS',
-    'TP1': 'ARTIST',
-    'TP2': 'ALBUMARTIST',
-    'TP3': 'CONDUCTOR',
-    'TP4': 'REMIXER',
-    'TPA': 'DISCNUMBER',
-    'TPB': 'LABEL',
-    'TPE1': 'ARTIST',
-    'TPE2': 'ALBUMARTIST',
-    'TPE3': 'CONDUCTOR',
-    'TPE4': 'REMIXER',
-    'TPOS': 'DISCNUMBER',
-    'TPUB': 'LABEL',
-    'TRACK': 'TRACKNUMBER',
-    'TRACKNUM': 'TRACKNUMBER',
-    'TRACKNUMBER': 'TRACKNUMBER',
-    'TRACKTOTAL': 'TOTALTRACKS',
-    'TRC': 'ISRC',
-    'TRCK': 'TRACKNUMBER',
-    'TRDA': 'DATE',
-    'TRK': 'TRACKNUMBER',
-    'TS2': 'ALBUMARTISTSORT',
-    'TSA': 'ALBUMSORT',
-    'TSC': 'COMPOSERSORT',
-    'TSO2': 'ALBUMARTISTSORT',
-    'TSOA': 'ALBUMSORT',
-    'TSOC': 'COMPOSERSORT',
-    'TSOP': 'ARTISTSORT',
-    'TSOT': 'TITLESORT',
-    'TSP': 'ARTISTSORT',
-    'TSRC': 'ISRC',
-    'TSST': 'DISCSUBTITLE',
-    'TST': 'TITLESORT',
-    'TT1': 'CONTENTGROUP',
-    'TT2': 'TITLE',
-    'TT3': 'SUBTITLE',
-    'TXT': 'LYRICIST',
-    'TXXX:ORCHESTRA': 'ORCHESTRA',
-    'TXX:ORCHESTRA': 'ORCHESTRA',
-    'TYE': 'DATE',
-    'TYER': 'DATE',# wikipedia id3: YEAR
-    'ULT': 'LYRICS',
-    'USLT': 'LYRICS',
-    'SLT': 'LYRICS',
-    'SYLT': 'LYRICS',
-    'YEAR': 'DATE',
-    'aART': 'ALBUMARTIST',
-    'cond': 'CONDUCTOR',
-    'cpil': 'COMPILATION',
-    'cprt': 'COPYRIGHT',
-    'disk': 'DISCNUMBER',
-    'gnre': 'GENRE',
-    'labl': 'LABEL',
-    'soaa': 'ALBUMARTISTSORT',
-    'soal': 'ALBUMSORT',
-    'soar': 'ARTISTSORT',
-    'soco': 'COMPOSERSORT',
-    'sonm': 'TITLESORT',
-    'tmpo': 'BPM',
-    'trkn': 'TRACKNUMBER',
-    '\xa9ART': 'ARTIST',
-    '\xa9alb': 'ALBUM',
-    '\xa9cmt': 'COMMENT',
-    '\xa9con': 'CONDUCTOR',
-    '\xa9day': 'DATE',
-    '\xa9gen': 'GENRE',
-    '\xa9grp': 'CONTENTGROUP',
-    '\xa9lyr': 'LYRICS',
-    '\xa9nam': 'TITLE',
-    '\xa9ope': 'ORIGINALARTIST',
-    '\xa9too': 'ENCODEDBY',
-    '\xa9wrt': 'COMPOSER',
-    }
+    "ALBUM ARTIST": "ALBUMARTIST",
+    "ALBUM": "ALBUM",
+    "ALBUMARTIST": "ALBUMARTIST",
+    "ALBUMARTISTSORT": "ALBUMARTISTSORT",
+    "ALBUMSORT": "ALBUMSORT",
+    "ARTIST": "ARTIST",
+    "ARTISTSORT": "ARTISTSORT",
+    "BPM": "BPM",
+    "COM": "COMMENT",
+    "COMM": "COMMENT",
+    "COMMENT": "COMMENT",
+    "COMPILATION": "COMPILATION",
+    "COMPOSER": "COMPOSER",
+    "COMPOSERSORT": "COMPOSERSORT",
+    "CONDUCTOR": "CONDUCTOR",
+    "CONTENTGROUP": "CONTENTGROUP",
+    "COPYRIGHT": "COPYRIGHT",
+    "DATE": "DATE",
+    "DISCNUMBER": "DISCNUMBER",
+    "DISCSUBTITLE": "DISCSUBTITLE",
+    "DISCTOTAL": "TOTALDISCS",
+    "ENCODEDBY": "ENCODEDBY",
+    "ENSEMBLE": "ORCHESTRA",
+    "GENRE": "GENRE",
+    "GROUP": "GROUP",
+    "ISRC": "ISRC",
+    "LABEL": "LABEL",
+    "LANGUAGE": "LANGUAGE",
+    "LYRICIST": "LYRICIST",
+    "LYRICS": "LYRICS",
+    "MOOD": "MOOD",
+    "ORCHESTRA": "ORCHESTRA",
+    "PERFORMER": "PERFORMER",
+    "POP": "RATING1",
+    "POPM": "RATING1",
+    "ORIGINALARTIST": "ORIGINALARTIST",
+    "ORIGINALDATE": "ORIGINALDATE",
+    "RELEASEDATE": "RELEASEDATE",
+    "REMIXER": "REMIXER",
+    "SUBTITLE": "SUBTITLE",
+    "TAL": "ALBUM",
+    "TALB": "ALBUM",
+    "TBP": "BPM",
+    "TBPM": "BPM",
+    "TCM": "COMPOSER",
+    "TCMP": "COMPILATION",
+    "TCO": "GENRE",
+    "TCOM": "COMPOSER",
+    "TCON": "GENRE",
+    "TCOP": "COPYRIGHT",
+    "TCP": "COMPILATION",
+    "TCR": "COPYRIGHT",
+    "TDA": "DATE",
+    "TDAT": "DATE",
+    "TDOR": "ORIGINALDATE",
+    "TDRC": "DATE",
+    "TDRL": "RELEASEDATE",
+    "TEN": "ENCODEDBY",
+    "TENC": "ENCODEDBY",
+    "TEXT": "LYRICIST",
+    "TIT1": "CONTENTGROUP",
+    "TIT2": "TITLE",
+    "TIT3": "SUBTITLE",
+    "TITLE": "TITLE",
+    "TITLESORT": "TITLESORT",
+    "TLA": "LANGUAGE",
+    "TLAN": "LANGUAGE",
+    "TMOO": "MOOD",
+    "TOA": "ORIGINALARTIST",
+    "TOPE": "ORIGINALARTIST",
+    "TOR": "ORIGINALDATE",
+    "TORY": "ORIGINALDATE",
+    "TOTALDISCS": "TOTALDISCS",
+    "TOTALTRACKS": "TOTALTRACKS",
+    "TP1": "ARTIST",
+    "TP2": "ALBUMARTIST",
+    "TP3": "CONDUCTOR",
+    "TP4": "REMIXER",
+    "TPA": "DISCNUMBER",
+    "TPB": "LABEL",
+    "TPE1": "ARTIST",
+    "TPE2": "ALBUMARTIST",
+    "TPE3": "CONDUCTOR",
+    "TPE4": "REMIXER",
+    "TPOS": "DISCNUMBER",
+    "TPUB": "LABEL",
+    "TRACK": "TRACKNUMBER",
+    "TRACKNUM": "TRACKNUMBER",
+    "TRACKNUMBER": "TRACKNUMBER",
+    "TRACKTOTAL": "TOTALTRACKS",
+    "TRC": "ISRC",
+    "TRCK": "TRACKNUMBER",
+    "TRDA": "DATE",
+    "TRK": "TRACKNUMBER",
+    "TS2": "ALBUMARTISTSORT",
+    "TSA": "ALBUMSORT",
+    "TSC": "COMPOSERSORT",
+    "TSO2": "ALBUMARTISTSORT",
+    "TSOA": "ALBUMSORT",
+    "TSOC": "COMPOSERSORT",
+    "TSOP": "ARTISTSORT",
+    "TSOT": "TITLESORT",
+    "TSP": "ARTISTSORT",
+    "TSRC": "ISRC",
+    "TSST": "DISCSUBTITLE",
+    "TST": "TITLESORT",
+    "TT1": "CONTENTGROUP",
+    "TT2": "TITLE",
+    "TT3": "SUBTITLE",
+    "TXT": "LYRICIST",
+    "TXXX:ORCHESTRA": "ORCHESTRA",
+    "TXX:ORCHESTRA": "ORCHESTRA",
+    "TYE": "DATE",
+    "TYER": "DATE",  # wikipedia id3: YEAR
+    "ULT": "LYRICS",
+    "USLT": "LYRICS",
+    "SLT": "LYRICS",
+    "SYLT": "LYRICS",
+    "YEAR": "DATE",
+    "aART": "ALBUMARTIST",
+    "cond": "CONDUCTOR",
+    "cpil": "COMPILATION",
+    "cprt": "COPYRIGHT",
+    "disk": "DISCNUMBER",
+    "gnre": "GENRE",
+    "labl": "LABEL",
+    "soaa": "ALBUMARTISTSORT",
+    "soal": "ALBUMSORT",
+    "soar": "ARTISTSORT",
+    "soco": "COMPOSERSORT",
+    "sonm": "TITLESORT",
+    "tmpo": "BPM",
+    "trkn": "TRACKNUMBER",
+    "\xa9ART": "ARTIST",
+    "\xa9alb": "ALBUM",
+    "\xa9cmt": "COMMENT",
+    "\xa9con": "CONDUCTOR",
+    "\xa9day": "DATE",
+    "\xa9gen": "GENRE",
+    "\xa9grp": "CONTENTGROUP",
+    "\xa9lyr": "LYRICS",
+    "\xa9nam": "TITLE",
+    "\xa9ope": "ORIGINALARTIST",
+    "\xa9too": "ENCODEDBY",
+    "\xa9wrt": "COMPOSER",
+}
+
 
 def tobytes(s):
-    if type(s) == type(b''):
+    if type(s) == type(b""):
         return s
-    if type(s) != type(''):
+    if type(s) != type(""):
         s = str(s)
-    return s.encode('utf-8', errors='replace')
+    return s.encode("utf-8", errors="replace")
 
 
 # mp3:      album, title, artist, genre, date, tracknumber
@@ -213,9 +214,10 @@ class AudioTagExtractor(RclBaseHandler):
         self.tagfix = None
         if tagfixerfn:
             import runpy
+
             try:
                 d = runpy.run_path(tagfixerfn)
-                self.tagfix = d['tagfix']
+                self.tagfix = d["tagfix"]
                 self.tagfix()
             except Exception as ex:
                 self.em.rclog("tagfix script import failed: %s" % ex)
@@ -226,18 +228,16 @@ class AudioTagExtractor(RclBaseHandler):
         for prop in dir(mutf.info):
             self.em.rclog(f"mutinfo: {prop} -> {getattr( mutf.info, prop)}")
 
-
     def _fixrating(self, minf):
-        if 'RATING1' in minf:
-            if not 'RATING' in minf:
-                val = int(minf['RATING1']) // 51 + 1
+        if "RATING1" in minf:
+            if not "RATING" in minf:
+                val = int(minf["RATING1"]) // 51 + 1
                 if val > 5:
                     val = 5
                 if val < 1:
                     val = 1
-                minf['RATING'] = str(val)
-            del minf['RATING1']
-
+                minf["RATING"] = str(val)
+            del minf["RATING1"]
 
     def _embeddedImageFormat(self, mutf):
         # self.em.rclog("_embeddedImage: MIME: %s"%mutf.mime)
@@ -250,21 +250,21 @@ class AudioTagExtractor(RclBaseHandler):
         # First pretend that this is an ID3. These can come inside multiple file formats, so don't
         # try to select on mime.
         for tagname in mutf.keys():
-            if tagname.startswith('APIC:'):
+            if tagname.startswith("APIC:"):
                 # self.em.rclog("mp3 img: %s" % mutf[tagname].mime)
-                return 'jpg' if mutf[tagname].mime == 'image/jpeg' else 'png'
+                return "jpg" if mutf[tagname].mime == "image/jpeg" else "png"
 
-        if 'audio/flac' in mime:
+        if "audio/flac" in mime:
             if mutf.pictures:
-                return 'jpg' if mutf.pictures[0].mime == 'image/jpeg' else 'png'
-        elif 'audio/mp4' in mime:
-            if 'covr' in mutf.keys():
-                format = mutf['covr'][0].imageformat
+                return "jpg" if mutf.pictures[0].mime == "image/jpeg" else "png"
+        elif "audio/mp4" in mime:
+            if "covr" in mutf.keys():
+                format = mutf["covr"][0].imageformat
                 if format == mutagen.mp4.AtomDataType.JPEG:
-                    return 'jpg'
+                    return "jpg"
                 else:
-                    return 'png'
-        return ''
+                    return "png"
+        return ""
 
     def parsedate(self, dt):
         """Try to make sense of data found in the date fields.
@@ -282,13 +282,17 @@ class AudioTagExtractor(RclBaseHandler):
         removed the alias, and set dmtime from the parsed date value.
         """
         try:
-            dt = dt.decode('utf-8', errors='ignore')
+            dt = dt.decode("utf-8", errors="ignore")
             if len(dt) > 10:
                 dt = dt[0:10]
-            date_parts = dt.split('-')
-            if len(date_parts) > 3 or len(date_parts) == 2 or len(date_parts[0]) != 4 or \
-               date_parts[0] == '0000':
-                return ''
+            date_parts = dt.split("-")
+            if (
+                len(date_parts) > 3
+                or len(date_parts) == 2
+                or len(date_parts[0]) != 4
+                or date_parts[0] == "0000"
+            ):
+                return ""
             if len(date_parts) == 1:
                 pdt = datetime.datetime.strptime(dt, "%Y")
             elif len(date_parts) == 3:
@@ -304,29 +308,34 @@ class AudioTagExtractor(RclBaseHandler):
         Not all file types supply all or even use the same property names.
         Translate to consistent str keys and encoded values into our fields dict.
         """
-        for prop, dflt in [('sample_rate', 44100), ('channels', 2), ('length', 0), ('bitrate', 0)]:
+        for prop, dflt in [
+            ("sample_rate", 44100),
+            ("channels", 2),
+            ("length", 0),
+            ("bitrate", 0),
+        ]:
             try:
                 minf[prop] = getattr(mutf.info, prop)
             except Exception as e:
                 # self.em.rclog("NO %s prop: %s" % (prop, e))
                 minf[prop] = dflt
 
-        if minf['bitrate'] == 0 and minf['length'] > 0:
-            br = int(os.path.getsize(filename) * 8 / minf['length'])
-            minf['bitrate'] = br
+        if minf["bitrate"] == 0 and minf["length"] > 0:
+            br = int(os.path.getsize(filename) * 8 / minf["length"])
+            minf["bitrate"] = br
 
-        minf['duration'] = minf['length']
-        del minf['length']
+        minf["duration"] = minf["length"]
+        del minf["length"]
 
         # Bits/samp is named sample_size or bits_per_sample (depend on file tp)
         try:
-            minf['bits_per_sample'] = getattr(mutf.info, 'bits_per_sample')
+            minf["bits_per_sample"] = getattr(mutf.info, "bits_per_sample")
         except:
             try:
-                minf['bits_per_sample'] = getattr(mutf.info, 'sample_size')
+                minf["bits_per_sample"] = getattr(mutf.info, "sample_size")
             except:
                 # self.em.rclog("using default bits_per_sample")
-                minf['bits_per_sample'] = 16
+                minf["bits_per_sample"] = 16
 
         for tag, val in minf.items():
             minf[tag] = tobytes(val)
@@ -343,11 +352,11 @@ class AudioTagExtractor(RclBaseHandler):
         if tag.find("COMM:") == 0:
             tag = "COMM"
         #     TXXX:TOTALTRACKS TXXX:ORCHESTRA
-        elif tag.find('TXXX:') == 0:
+        elif tag.find("TXXX:") == 0:
             tag = tag[5:]
             if tag.startswith("QuodLibet::"):
                 tag = tag[11:]
-        elif tag.find('TXX:') == 0:
+        elif tag.find("TXX:") == 0:
             tag = tag[4:]
 
         if tag.upper() in tagdict:
@@ -379,7 +388,7 @@ class AudioTagExtractor(RclBaseHandler):
                     if mo:
                         val = (mo.group(1), mo.group(2))
                     else:
-                        val = val.split('/')
+                        val = val.split("/")
                 else:
                     # self.em.rclog(f"{k} : tuple: {val} tp1 {type(val[0])} tp2 {type(val[1])}")
                     pass
@@ -414,7 +423,13 @@ class AudioTagExtractor(RclBaseHandler):
                     val = val.split("\x00")
                 # Change list to string for sending up to recoll.
                 try:
-                    if isinstance(val, (list, tuple,)):
+                    if isinstance(
+                        val,
+                        (
+                            list,
+                            tuple,
+                        ),
+                    ):
                         if isinstance(val[0], str):
                             val = " | ".join(val)
                         else:
@@ -436,10 +451,10 @@ class AudioTagExtractor(RclBaseHandler):
                 self.em.rclog(f"tag: {tag} {minf[ntag]}: {err}. fn {filename}")
 
         self._fixrating(minf)
-        if 'orchestra' in minf:
-            val = minf['orchestra']
-            if val.startswith(b'orchestra='):
-                minf['orchestra'] = val[10:]
+        if "orchestra" in minf:
+            val = minf["orchestra"]
+            if val.startswith(b"orchestra="):
+                minf["orchestra"] = val[10:]
         # self.em.rclog(f"minf after tags {minf}")
 
     def transcribe_via_whisper(self, filename: str):
@@ -474,11 +489,15 @@ class AudioTagExtractor(RclBaseHandler):
                     sys.exit(1)
 
                 if sttdataset not in whisper.available_models():
-                    self.em.rclog(f"Invalid stt model specified, skipping speech transcription "
-                                  "for {filename}.")
+                    self.em.rclog(
+                        f"Invalid stt model specified, skipping speech transcription "
+                        "for {filename}."
+                    )
                 else:
                     if device_name:
-                        stt_model = whisper.load_model(name=sttdataset, device=device_name)
+                        stt_model = whisper.load_model(
+                            name=sttdataset, device=device_name
+                        )
                     else:
                         stt_model = whisper.load_model(name=sttdataset)
                     try:
@@ -486,16 +505,20 @@ class AudioTagExtractor(RclBaseHandler):
                         raw_result = stt_model.transcribe(filename)
                         del stt_model
                     except Exception as ex:
-                        self.em.rclog(f"Whisper speech to text transcription error: {ex}, "
-                                      "skipping transcription of {filename}.")
+                        self.em.rclog(
+                            f"Whisper speech to text transcription error: {ex}, "
+                            "skipping transcription of {filename}."
+                        )
                     finally:
                         torch.cuda.empty_cache()
                         gc.collect()
                         # self.em.rclog(torch.cuda.memory_summary())
             # self.em.rclog(f"Released stt file lock for: {filename}.")
         except Exception as ex:
-            self.em.rclog(f"Whisper speech to text lock error: {ex}, skipping transcription "
-                          "of {filename}.")
+            self.em.rclog(
+                f"Whisper speech to text lock error: {ex}, skipping transcription "
+                "of {filename}."
+            )
         return raw_result
 
     def speech_to_text(self, filename: str):
@@ -518,6 +541,7 @@ class AudioTagExtractor(RclBaseHandler):
 
         import rclocrcache
         import json
+
         # The cache can find data either based on file metadata, or, in case, e.g. the file has been
         # renamed, based on a data hash. We limit the hash size to 3mb (which will be taken as 3 1mb
         # slices at the beginning, middle and end of the file
@@ -545,10 +569,9 @@ class AudioTagExtractor(RclBaseHandler):
             else:
                 output_array.append("")
         if self.preview_mode == "yes":
-            return '\n'.join([e for e in output_array if e])
+            return "\n".join([e for e in output_array if e])
         else:
-            return '\f\n'.join(output_array)
-
+            return "\f\n".join(output_array)
 
     def html_text(self, filename):
         # self.em.rclog(f"processing {filename}")
@@ -588,7 +611,7 @@ class AudioTagExtractor(RclBaseHandler):
                 # that the emptiness will be consistent for all file types. The point of detecting
                 # this would be to avoid error messages and useless retries.
                 if not strex:
-                    return b''
+                    return b""
                 else:
                     raise Exception(f"Open failed: {strex}")
             # self._showMutaInfo(mutf)
@@ -599,24 +622,24 @@ class AudioTagExtractor(RclBaseHandler):
             # Check for embedded image. We just set a flag.
             embdimg = self._embeddedImageFormat(mutf)
             if embdimg:
-                #self.em.rclog("Embedded image format: %s" % embdimg)
-                minf['embdimg'] = tobytes(embdimg)
+                # self.em.rclog("Embedded image format: %s" % embdimg)
+                minf["embdimg"] = tobytes(embdimg)
 
-        self.em.setfield("charset", b'utf-8')
+        self.em.setfield("charset", b"utf-8")
         if self.tagfix:
             self.tagfix(minf)
 
-        if 'date' in minf:
-            uxtime = self.parsedate(minf['date'])
+        if "date" in minf:
+            uxtime = self.parsedate(minf["date"])
             if uxtime:
-                minf['dmtime'] = uxtime
+                minf["dmtime"] = uxtime
 
         for tag, val in minf.items():
             # self.em.rclog("%s -> %s" % (tag, val))
             self.em.setfield(tag, val)
             # Compat with old version
-            if tag == 'artist':
-                self.em.setfield('author', val)
+            if tag == "artist":
+                self.em.setfield("author", val)
         html_output = _htmlprefix
         #################
         # Document text: use the mutagen pprint function. The values may be somewhat
@@ -630,15 +653,15 @@ class AudioTagExtractor(RclBaseHandler):
 
         stt_results = b""
         if self.process_stt and "LYRICS" not in mutf:
-            stt_results = self.speech_to_text(filename.decode('utf-8')).encode('utf-8')
+            stt_results = self.speech_to_text(filename.decode("utf-8")).encode("utf-8")
         html_output += docdata
-        html_output += "\n".encode('utf-8') + stt_results
+        html_output += "\n".encode("utf-8") + stt_results
         html_output += _htmlsuffix
         # self.em.rclog(f"Results: {html_output}")
         return html_output
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     proto = rclexecm.RclExecM()
     extract = AudioTagExtractor(proto)
     rclexecm.main(proto, extract)

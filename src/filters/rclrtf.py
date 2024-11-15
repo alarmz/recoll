@@ -24,6 +24,7 @@ import re
 import sys
 import os
 
+
 # Processing the output from unrtf
 class RTFProcessData:
     def __init__(self, em):
@@ -38,8 +39,10 @@ class RTFProcessData:
     def takeLine(self, line):
         if not self.gothead:
             if self.patendhead.search(line):
-                self.out.append(b'<meta http-equiv="Content-Type" ' + \
-                             b'content="text/html;charset=UTF-8">')
+                self.out.append(
+                    b'<meta http-equiv="Content-Type" '
+                    + b'content="text/html;charset=UTF-8">'
+                )
                 self.out.append(line)
                 self.gothead = 1
             elif not self.patcharset.search(line):
@@ -48,7 +51,8 @@ class RTFProcessData:
             self.out.append(line)
 
     def wrapData(self):
-        return b'\n'.join(self.out)
+        return b"\n".join(self.out)
+
 
 class RTFFilter:
     def __init__(self, em):
@@ -57,7 +61,7 @@ class RTFFilter:
 
     def reset(self):
         self.ntry = 0
-            
+
     def getCmd(self, fn):
         if self.ntry:
             return ([], None)
@@ -68,7 +72,8 @@ class RTFFilter:
         else:
             return ([], None)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if not rclexecm.which("unrtf"):
         print("RECFILTERROR HELPERNOTFOUND unrtf")
         sys.exit(1)

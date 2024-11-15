@@ -22,19 +22,21 @@ import rclexecm
 import sys
 from rclbasehandler import RclBaseHandler
 
+
 class TxtDump(RclBaseHandler):
     def __init__(self, em):
         super(TxtDump, self).__init__(em)
 
     def html_text(self, fn):
         # No charset, so recoll will have to use its config to guess it
-        html = b'<html><head><title></title></head><body><pre>'
+        html = b"<html><head><title></title></head><body><pre>"
         with open(fn, "rb") as f:
             html += rclexecm.htmlescape(f.read())
-        html += b'</pre></body></html>'
+        html += b"</pre></body></html>"
         return html
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     proto = rclexecm.RclExecM()
     extract = TxtDump(proto)
     rclexecm.main(proto, extract)

@@ -28,6 +28,7 @@ import getopt
 import traceback
 import signal
 
+
 def makebytes(data):
     if data is None:
         return b""
@@ -35,6 +36,7 @@ def makebytes(data):
         return data
     else:
         return data.encode("UTF-8")
+
 
 ############################################
 # CmdTalk implements the communication protocol with the master
@@ -52,12 +54,13 @@ class CmdTalk(object):
         self.infile = infile
         self.exitfunc = exitfunc
         self.fields = {}
-        
+
         if sys.platform == "win32":
             import msvcrt
+
             msvcrt.setmode(self.outfile.fileno(), os.O_BINARY)
             msvcrt.setmode(self.infile.fileno(), os.O_BINARY)
-        
+
         try:
             self.debugfile
         except:
@@ -70,8 +73,8 @@ class CmdTalk(object):
             self.errfout = open(self.debugfile, "a")
         else:
             self.errfout = sys.stderr
-        
-    def log(self, s, doexit = 0, exitvalue = 1):
+
+    def log(self, s, doexit=0, exitvalue=1):
         print("CMDTALK: %s: %s" % (self.myname, s), file=self.errfout)
         if doexit:
             if self.exitfunc:
@@ -87,25 +90,25 @@ class CmdTalk(object):
             # See https://bugs.python.org/issue11395
             # In any case, just break it up
             total = len(data)
-            bs = 4*1024
+            bs = 4 * 1024
             offset = 0
             while total > 0:
                 if total < bs:
                     tow = total
                 else:
                     tow = bs
-                #self.log("Total %d Writing %d to stdout: %s" % (total,tow,data[offset:offset+tow]))
-                outfile.write(data[offset:offset+tow])
+                # self.log("Total %d Writing %d to stdout: %s" % (total,tow,data[offset:offset+tow]))
+                outfile.write(data[offset : offset + tow])
                 offset += tow
                 total -= tow
-                
+
     # Read single parameter from process input: line with param name and size
     # followed by data. The param name is returned as str/unicode, the data
     # as bytes
     def readparam(self):
         inf = self.infile.buffer
         s = inf.readline()
-        if s == b'':
+        if s == b"":
             if self.exitfunc:
                 self.exitfunc(0)
             # Our father process is probably going to send us a SIGTERM.  On some platforms (BSD,
@@ -117,31 +120,32 @@ class CmdTalk(object):
             signal.signal(signal.SIGTERM, signal.SIG_IGN)
             sys.exit(0)
 
-        s = s.rstrip(b'\n')
+        s = s.rstrip(b"\n")
 
-        if s == b'':
-            return ('', b'')
+        if s == b"":
+            return ("", b"")
         l = s.split()
         if len(l) != 2:
-            self.log(b'bad line: [' + s + b']', 1, 1)
+            self.log(b"bad line: [" + s + b"]", 1, 1)
 
-        paramname = l[0].decode('ASCII').rstrip(':')
+        paramname = l[0].decode("ASCII").rstrip(":")
         paramsize = int(l[1])
         if paramsize > 0:
             paramdata = inf.read(paramsize)
             if len(paramdata) != paramsize:
-                self.log("Bad read: wanted %d, got %d" %
-                      (paramsize, len(paramdata)), 1, 1)
+                self.log(
+                    "Bad read: wanted %d, got %d" % (paramsize, len(paramdata)), 1, 1
+                )
         else:
-            paramdata = b''
+            paramdata = b""
         if not self.nodecodeinput:
             try:
-                paramdata = paramdata.decode('utf-8')
+                paramdata = paramdata.decode("utf-8")
             except Exception as ex:
                 self.log("Exception decoding param: %s" % ex)
-                paramdata = b''
-                
-        #self.log("paramname [%s] paramsize %d value [%s]" %
+                paramdata = b""
+
+        # self.log("paramname [%s] paramsize %d value [%s]" %
         #          (paramname, paramsize, paramdata))
         return (paramname, paramdata)
 
@@ -150,19 +154,17 @@ class CmdTalk(object):
         l = len(data)
         self.outfile.buffer.write(makebytes("%s: %d\n" % (nm, l)))
         self.breakwrite(self.outfile.buffer, data)
-        
 
     # Send answer
     def answer(self, outfields):
-        for nm,value in outfields.items():
-            #self.log("Senditem: [%s] -> [%s]" % (nm, value))
+        for nm, value in outfields.items():
+            # self.log("Senditem: [%s] -> [%s]" % (nm, value))
             self.senditem(nm, value)
-            
+
         # End of message: empty line
         print(file=self.outfile)
         self.outfile.flush()
-        #self.log("done writing data")
-
+        # self.log("done writing data")
 
     # Call processor with input params, send result. This base version works with, for example
     # the cmdtalkplugin processor.
@@ -187,7 +189,7 @@ class CmdTalk(object):
     # Loop on messages from our master
     def mainloop(self, processor):
         while 1:
-            #self.log("waiting for command")
+            # self.log("waiting for command")
 
             params = dict()
 
@@ -215,25 +217,25 @@ def main(proto, processor):
 
     # Not running the main loop: run one processor call for debugging
     def usage():
-        print("Usage: cmdtalk.py pname pvalue [pname pvalue...]",
-              file=sys.stderr)
+        print("Usage: cmdtalk.py pname pvalue [pname pvalue...]", file=sys.stderr)
         sys.exit(1)
+
     def debprint(out, s):
-        proto.breakwrite(out, makebytes(s+'\n'))
-        
+        proto.breakwrite(out, makebytes(s + "\n"))
+
     args = sys.argv[1:]
     if len(args) == 0 or len(args) % 2 != 0:
         usage()
     params = dict()
-    for i in range(int(len(args)/2)):
-        params[args[2*i]] = args[2*i+1]
+    for i in range(int(len(args) / 2)):
+        params[args[2 * i]] = args[2 * i + 1]
     res = processor.process(params)
 
     ioout = sys.stdout.buffer
 
-    for nm,value in res.items():
-        #self.log("Senditem: [%s] -> [%s]" % (nm, value))
+    for nm, value in res.items():
+        # self.log("Senditem: [%s] -> [%s]" % (nm, value))
         bdata = makebytes(value)
         debprint(ioout, "%s->" % nm)
         proto.breakwrite(ioout, bdata)
-        ioout.write(b'\n')
+        ioout.write(b"\n")

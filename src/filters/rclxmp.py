@@ -28,8 +28,10 @@ import sys
 
 xmp_index_re = re.compile(r"\[[0-9+]\]$")
 
+
 def rclxmp_enabled():
     return can_xmp
+
 
 def rclxmp(filename):
     if not can_xmp:
@@ -56,11 +58,10 @@ def rclxmp(filename):
                     out[k] = entry[1]
     return out, ""
 
+
 if __name__ == "__main__":
     d, err = rclxmp(sys.argv[1])
     if d:
         print("Data: %s" % d)
     else:
         print("Error: %s" % err)
-        
-

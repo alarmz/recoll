@@ -23,6 +23,7 @@ import rclxslt
 import gzip
 from rclbasehandler import RclBaseHandler
 
+
 class XSLTExtractor(RclBaseHandler):
     def __init__(self, em, stylesheet, gzip=False):
         super(XSLTExtractor, self).__init__(em)
@@ -31,7 +32,7 @@ class XSLTExtractor(RclBaseHandler):
 
     def html_text(self, fn):
         if self.dogz:
-            data = gzip.open(fn, 'rb').read()
+            data = gzip.open(fn, "rb").read()
         else:
-            data = open(fn, 'rb').read()
+            data = open(fn, "rb").read()
         return rclxslt.apply_sheet_data(self.stylesheet, data)

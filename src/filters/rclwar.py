@@ -5,6 +5,7 @@
 import rclexecm
 import tarfile
 
+
 class WarExtractor:
     def __init__(self, em):
         self.em = em
@@ -24,7 +25,7 @@ class WarExtractor:
 
     def closefile(self):
         self.tar = None
-        
+
     ###### File type handler api, used by rclexecm ---------->
     def openfile(self, params):
         self.currentindex = -1
@@ -52,15 +53,18 @@ class WarExtractor:
 
         tarinfo = self.tar.next()
         if tarinfo is None:
-            #self.em.rclog("getnext: EOF hit")
+            # self.em.rclog("getnext: EOF hit")
             self.closefile()
             return (False, "", "", rclexecm.RclExecM.eofnow)
         else:
             ret = self.extractone(tarinfo)
-            if ret[3] == rclexecm.RclExecM.eofnext or \
-               ret[3] == rclexecm.RclExecM.eofnow:
+            if (
+                ret[3] == rclexecm.RclExecM.eofnext
+                or ret[3] == rclexecm.RclExecM.eofnow
+            ):
                 self.closefile()
             return ret
+
 
 # Main program: create protocol handler and extractor and run them
 proto = rclexecm.RclExecM()

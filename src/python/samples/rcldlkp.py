@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 __doc__ = """
 An example indexer for an arbitrary multi-document file format.
 Not supposed to run ''as-is'' or be really useful.
@@ -21,8 +21,10 @@ import re
 
 rclconf = "/Users/dockes/.recoll-dlkp"
 
+
 def udi(docfile, numrec):
     return docfile + "#" + str(numrec)
+
 
 ###############################################################
 def index_rec(db, numrec, rec):
@@ -56,24 +58,27 @@ def index_rec(db, numrec, rec):
         doc.sig = str(fmtime)
     db.addOrUpdate(udi(docfile, numrec), doc)
 
+
 def output_rec(rec):
     # Escape html
     rec = unicode(rec, "iso-8859-1").encode("utf-8")
-    rec = rec.replace("<", "&lt;");
-    rec = rec.replace("&", "&amp;");
-    rec = rec.replace('"', "&dquot;");
-    print '<html><head>'
-    print '<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">'
-    print '</head><body><pre>'
-    print rec
-    print '</pre></body></html>'
+    rec = rec.replace("<", "&lt;")
+    rec = rec.replace("&", "&amp;")
+    rec = rec.replace('"', "&dquot;")
+    print("<html><head>")
+    print('<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">')
+    print("</head><body><pre>")
+    print(rec)
+    print("</pre></body></html>")
 
 
 ################################################################
 
+
 def usage():
     sys.stderr.write("Usage: rcldlkp.py <filename> [<recnum>]\n")
     exit(1)
+
 
 if len(sys.argv) < 2:
     usage()
@@ -85,15 +90,14 @@ if len(sys.argv) > 2:
 else:
     targetnum = None
 
-#print docfile, targetnum
-
 stdata = os.stat(docfile)
 fmtime = stdata[stat.ST_MTIME]
 fbytes = stdata[stat.ST_SIZE]
-f = open(docfile, 'r')
+f = open(docfile, "r")
 
 if targetnum == None:
     import recoll
+
     db = recoll.connect(confdir=rclconf, writable=1)
     if not db.needUpdate(udi(docfile, 0), str(fmtime)):
         exit(0)
@@ -114,4 +118,3 @@ for line in f:
 
 if targetnum == None:
     index_rec(db, 0, "")
-

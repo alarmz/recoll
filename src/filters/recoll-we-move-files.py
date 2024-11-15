@@ -13,7 +13,7 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program; if not, write to the
 #  Free Software Foundation, Inc.,
-#51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 """ Move pages created by the recoll-we extension from the download directory to the recoll web queue.
 
@@ -32,6 +32,7 @@ import sys
 import os
 import re
 import getopt
+
 try:
     from hashlib import md5 as md5
 except:
@@ -43,29 +44,32 @@ try:
 except:
     import rclconfig
 
-_mswindows = (sys.platform == "win32")
+_mswindows = sys.platform == "win32"
 
 verbosity = 0
+
+
 def logdeb(s):
     if verbosity >= 4:
-        print("%s"%s, file=sys.stderr)
+        print("%s" % s, file=sys.stderr)
+
 
 # # wnloaded instances of the same page are suffixed with (nn) by the
 # browser.  We are passed a list of (hash, instancenum, filename)
 # triplets, sort it, and keep only the latest file.
 def delete_previous_instances(l, downloadsdir):
-    l.sort(key = lambda e: "%s-%05d"%(e[0], e[1]), reverse=True)
+    l.sort(key=lambda e: "%s-%05d" % (e[0], e[1]), reverse=True)
     ret = {}
     i = 0
     while i < len(l):
-        hash,num,fn = l[i]
-        logdeb("Found %s"%fn)
+        hash, num, fn = l[i]
+        logdeb("Found %s" % fn)
         ret[hash] = fn
         j = 1
         while i + j < len(l):
-            if l[i+j][0] == hash:
-                ofn = l[i+j][2]
-                logdeb("Deleting %s"%ofn)
+            if l[i + j][0] == hash:
+                ofn = l[i + j][2]
+                logdeb("Deleting %s" % ofn)
                 os.unlink(os.path.join(downloadsdir, ofn))
                 j += 1
             else:
@@ -73,10 +77,12 @@ def delete_previous_instances(l, downloadsdir):
         i += j
     return ret
 
-fn_re = re.compile(r'recoll-we-([mc])-([0-9a-f]+)(\([0-9]+\))?\.rclwe')
+
+fn_re = re.compile(r"recoll-we-([mc])-([0-9a-f]+)(\([0-9]+\))?\.rclwe")
+
 
 def list_all_files(dir):
-    files=os.listdir(dir)
+    files = os.listdir(dir)
     mfiles = []
     cfiles = []
     for fn in files:
@@ -88,20 +94,29 @@ def list_all_files(dir):
             if not num:
                 num = "(0)"
             num = int(num.strip("()"))
-            if mc == 'm':
+            if mc == "m":
                 mfiles.append([hash, num, fn])
             else:
                 cfiles.append([hash, num, fn])
-    return mfiles,cfiles
+    return mfiles, cfiles
+
 
 #######################
 def msg(s):
     print(f"{s}", file=sys.stderr)
+
+
 def usage():
     msg("Usage: recoll-we-move-files.py [-c <recollconfigdir>]")
-    msg(" The script needs the recoll configuration directory. This can be set either through")
-    msg(" the RECOLL_CONFDIR environment variable or the '-c' command line option (which takes")
-    msg(" precedence). If none is set, the default configuration directory will be used.")
+    msg(
+        " The script needs the recoll configuration directory. This can be set either through"
+    )
+    msg(
+        " the RECOLL_CONFDIR environment variable or the '-c' command line option (which takes"
+    )
+    msg(
+        " precedence). If none is set, the default configuration directory will be used."
+    )
     sys.exit(1)
 
 
@@ -110,8 +125,8 @@ if not len(args) == 0:
     usage()
 
 configdir = None
-for opt,val in opts:
-    #logdeb(f"opt {opt} val {val}")
+for opt, val in opts:
+    # logdeb(f"opt {opt} val {val}")
     if opt == "-c":
         configdir = val
         if not os.path.isdir(val):
@@ -140,10 +155,10 @@ if not webqueuedir:
     else:
         webqueuedir = "~/.recollweb/ToIndex"
 webqueuedir = os.path.expanduser(webqueuedir)
-os.makedirs(webqueuedir, exist_ok = True)
+os.makedirs(webqueuedir, exist_ok=True)
 
 
-#logdeb(f"recoll confdir [{configdir}] downloadsdir [{downloadsdir}] webqueuedir [{webqueuedir}]")
+# logdeb(f"recoll confdir [{configdir}] downloadsdir [{downloadsdir}] webqueuedir [{webqueuedir}]")
 
 # Get the lists of all files created by the browser addon
 mfiles, cfiles = list_all_files(downloadsdir)
@@ -152,8 +167,8 @@ mfiles, cfiles = list_all_files(downloadsdir)
 mfiles = delete_previous_instances(mfiles, downloadsdir)
 cfiles = delete_previous_instances(cfiles, downloadsdir)
 
-#logdeb("Mfiles: %s"% mfiles)
-#logdeb("Cfiles: %s"% cfiles)
+# logdeb("Mfiles: %s"% mfiles)
+# logdeb("Cfiles: %s"% cfiles)
 
 # Move files to webqueuedir target directory
 # The webextensions plugin creates the metadata files first. So it may
@@ -162,9 +177,10 @@ cfiles = delete_previous_instances(cfiles, downloadsdir)
 for hash in cfiles.keys():
     if hash in mfiles.keys():
         newname = "firefox-recoll-web-" + hash
-        shutil.move(os.path.join(downloadsdir, cfiles[hash]),
-                    os.path.join(webqueuedir, newname))
-        shutil.move(os.path.join(downloadsdir, mfiles[hash]),
-                    os.path.join(webqueuedir, "_" + newname))
-
-
+        shutil.move(
+            os.path.join(downloadsdir, cfiles[hash]), os.path.join(webqueuedir, newname)
+        )
+        shutil.move(
+            os.path.join(downloadsdir, mfiles[hash]),
+            os.path.join(webqueuedir, "_" + newname),
+        )

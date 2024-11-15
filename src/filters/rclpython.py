@@ -19,11 +19,11 @@
 #   as intermediate
 
 
-__version__ = '0.3'
-__date__ = '2005-07-04'
-__license__ = 'GPL'
+__version__ = "0.3"
+__date__ = "2005-07-04"
+__license__ = "GPL"
 
-__author__ = 'Jürgen Hermann, Mike Brown, Christopher Arndt'
+__author__ = "Jürgen Hermann, Mike Brown, Christopher Arndt"
 
 # Imports
 import rclexecm
@@ -38,17 +38,17 @@ import keyword, token, tokenize
 #############################################################################
 
 _KEYWORD = token.NT_OFFSET + 1
-_TEXT    = token.NT_OFFSET + 2
+_TEXT = token.NT_OFFSET + 2
 
 _css_classes = {
-    token.NUMBER:       'number',
-    token.OP:           'operator',
-    token.STRING:       'string',
-    tokenize.COMMENT:   'comment',
-    token.NAME:         'name',
-    token.ERRORTOKEN:   'error',
-    _KEYWORD:           'keyword',
-    _TEXT:              'text',
+    token.NUMBER: "number",
+    token.OP: "operator",
+    token.STRING: "string",
+    tokenize.COMMENT: "comment",
+    token.NAME: "name",
+    token.ERRORTOKEN: "error",
+    _KEYWORD: "keyword",
+    _TEXT: "text",
 }
 
 # python3.8 token.py sends an ENCODING token which we ignore
@@ -56,8 +56,9 @@ try:
     token_encoding_type = token.ENCODING
 except:
     token_encoding_type = 62
-    
-_HTML_HEADER = """\
+
+_HTML_HEADER = (
+    """\
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
   "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -67,7 +68,9 @@ _HTML_HEADER = """\
   <meta name="Generator" content="colorize.py (version %s)">
 </head>
 <body>
-""" % __version__
+"""
+    % __version__
+)
 
 _HTML_FOOTER = """\
 </body>
@@ -111,27 +114,26 @@ pre.code {
 
 """
 
+
 class Parser:
-    """ Send colored python source.
-    """
+    """Send colored python source."""
 
     stylesheet = _STYLESHEET
 
     def __init__(self, raw, out=sys.stdout):
-        """ Store the source text.
-        """
+        """Store the source text."""
         self.raw = raw.expandtabs().strip()
         self.out = out
 
     def format(self):
-        """ Parse and send the colored source.
-        """
+        """Parse and send the colored source."""
         # store line offsets in self.lines
         self.lines = [0, 0]
         pos = 0
         while 1:
-            pos = self.raw.find(b'\n', pos) + 1
-            if not pos: break
+            pos = self.raw.find(b"\n", pos) + 1
+            if not pos:
+                break
             self.lines.append(pos)
         self.lines.append(len(self.raw))
 
@@ -141,23 +143,24 @@ class Parser:
         self.out.write(rclexecm.makebytes(self.stylesheet))
         self.out.write(b'<pre class="code">\n')
         try:
-            for a,b,c,d,e in tokenize.tokenize(text.readline):
-                self(a,b,c,d,e)
+            for a, b, c, d, e in tokenize.tokenize(text.readline):
+                self(a, b, c, d, e)
         except Exception as ex:
             # There are other possible exceptions, for example for a
             # bad encoding line (->SyntaxError). e.g. # -*- coding: lala -*-
-            self.out.write(("<h3>ERROR: %s</h3>\n" % ex).encode('utf-8'))
-        self.out.write(b'\n</pre>')
+            self.out.write(("<h3>ERROR: %s</h3>\n" % ex).encode("utf-8"))
+        self.out.write(b"\n</pre>")
 
     def __call__(self, toktype, toktext, startpos, endpos, line):
-        """ Token handler.
-        """
+        """Token handler."""
         srow, scol = startpos
         erow, ecol = endpos
         if 0:
-            print("type %s %s text %s start %s %s end %s %s<br>\n" % \
-                  (toktype, token.tok_name[toktype], toktext, \
-                   srow, scol,erow,ecol), file=sys.stderr)
+            print(
+                "type %s %s text %s start %s %s end %s %s<br>\n"
+                % (toktype, token.tok_name[toktype], toktext, srow, scol, erow, ecol),
+                file=sys.stderr,
+            )
 
         # calculate new positions
         oldpos = self.pos
@@ -169,7 +172,7 @@ class Parser:
 
         # handle newlines
         if toktype in [token.NEWLINE, tokenize.NL]:
-            self.out.write(b'\n')
+            self.out.write(b"\n")
             return
 
         # send the original whitespace, if needed
@@ -186,12 +189,12 @@ class Parser:
             toktype = token.OP
         elif toktype == token.NAME and keyword.iskeyword(toktext):
             toktype = _KEYWORD
-        css_class = _css_classes.get(toktype, 'text')
+        css_class = _css_classes.get(toktype, "text")
 
         # send text
         self.out.write(rclexecm.makebytes('<span class="%s">' % (css_class,)))
         self.out.write(rclexecm.makebytes(html.escape(toktext)))
-        self.out.write(b'</span>')
+        self.out.write(b"</span>")
 
 
 def colorize_file(file=None, outstream=sys.stdout, standalone=True):
@@ -205,26 +208,27 @@ def colorize_file(file=None, outstream=sys.stdout, standalone=True):
     """
 
     from os.path import basename
-    if hasattr(file, 'read'):
+
+    if hasattr(file, "read"):
         sourcefile = file
         file = None
         try:
             filename = basename(file.name)
         except:
-            filename = 'STREAM'
+            filename = "STREAM"
     elif file is not None:
         try:
-            sourcefile = open(file, 'rb')
+            sourcefile = open(file, "rb")
             filename = basename(file)
         except IOError:
             raise SystemExit("File %s unknown." % file)
     else:
         sourcefile = sys.stdin
-        filename = 'STDIN'
+        filename = "STDIN"
     source = sourcefile.read()
 
     if standalone:
-        outstream.write(rclexecm.makebytes(_HTML_HEADER % {'title': filename}))
+        outstream.write(rclexecm.makebytes(_HTML_HEADER % {"title": filename}))
     Parser(source, out=outstream).format()
     if standalone:
         outstream.write(rclexecm.makebytes(_HTML_FOOTER))
@@ -245,9 +249,10 @@ class PythonDump(RclBaseHandler):
             return out.getvalue()
         else:
             self.outputmimetype = "text/plain"
-            return open(fn, 'rb').read()
+            return open(fn, "rb").read()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     proto = rclexecm.RclExecM()
     extract = PythonDump(proto)
     rclexecm.main(proto, extract)

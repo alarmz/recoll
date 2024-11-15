@@ -31,9 +31,11 @@ import subprocess
 unzip = None
 sevenz = None
 
+
 class SFZExtractor(RclBaseHandler):
     def __init__(self, em):
         super(SFZExtractor, self).__init__(em)
+
     def html_text(self, fn):
         if unzip:
             cmd = [unzip, "-p", rclexecm.subprocfile(fn), "index.html"]
@@ -43,7 +45,8 @@ class SFZExtractor(RclBaseHandler):
         data = subprocess.check_output(cmd)
         return data
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unzip = rclexecm.which("unzip")
     if not unzip:
         sevenz = rclexecm.which("7z")

@@ -33,10 +33,13 @@ import cmdtalk
 # interface as konlpy https://pypi.org/project/python-mecab-ko/
 try:
     import mecab
+
     usingkonlpy = False
 except:
     import konlpy.tag
+
     usingkonlpy = True
+
 
 class Processor(object):
     def __init__(self, proto):
@@ -48,7 +51,8 @@ class Processor(object):
     def _init_tagger(self, taggername):
         global usingkonlpy
         if not usingkonlpy and taggername != "Mecab":
-            from konlpy.tag import Okt,Mecab,Komoran
+            from konlpy.tag import Okt, Mecab, Komoran
+
             usingkonlpy = True
         if taggername == "Okt":
             self.tagger = konlpy.tag.Okt()
@@ -67,30 +71,30 @@ class Processor(object):
             self.tagsKomoran = True
         else:
             raise Exception("Bad tagger name " + taggername)
-        
+
     def process(self, params):
-        if 'data' not in params:
-            return {'error':'No data field in parameters'}
+        if "data" not in params:
+            return {"error": "No data field in parameters"}
         if not (self.tagsOkt or self.tagsMecab or self.tagsKomoran):
-            if 'tagger' not in params:
-                return {'error':'No "tagger" field in parameters'}
-            self._init_tagger(params['tagger']);
+            if "tagger" not in params:
+                return {"error": 'No "tagger" field in parameters'}
+            self._init_tagger(params["tagger"])
 
         spliteojeol = False
         if spliteojeol:
-            data = params['data'].split()
+            data = params["data"].split()
             pos = []
             for d in data:
                 pos += self.tagger.pos(d)
         else:
-            pos = self.tagger.pos(params['data'])
-            
-        #proto.log("POS: %s" % pos)
+            pos = self.tagger.pos(params["data"])
+
+        # proto.log("POS: %s" % pos)
         text = ""
         tags = ""
         for e in pos:
             word = e[0]
-            word = word.replace('\t', ' ')
+            word = word.replace("\t", " ")
             text += word + "\t"
             tag = e[1]
             if self.tagsOkt:
@@ -108,7 +112,7 @@ class Processor(object):
             else:
                 pass
             tags += tag + "\t"
-        return {'text': text, 'tags': tags}
+        return {"text": text, "tags": tags}
 
 
 proto = cmdtalk.CmdTalk()

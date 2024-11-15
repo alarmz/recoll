@@ -26,13 +26,14 @@ import json
 import rclexecm
 from rclbasehandler import RclBaseHandler
 
+
 class IPYNBextractor(RclBaseHandler):
 
     def __init__(self, em):
         super(IPYNBextractor, self).__init__(em)
 
     def html_text(self, fn):
-        text = open(fn, 'rb').read()
+        text = open(fn, "rb").read()
         data = json.loads(text)
         mdtext = ""
         if "worksheets" in data:
@@ -50,8 +51,8 @@ class IPYNBextractor(RclBaseHandler):
                 for line in cell[key]:
                     mdtext += line
                 mdtext += "\n"
-        #print("%s"%mdtext, file=sys.stderr)
-        self.outputmimetype = 'text/plain'
+        # print("%s"%mdtext, file=sys.stderr)
+        self.outputmimetype = "text/plain"
         return mdtext
 
 

@@ -6,13 +6,16 @@
 #
 
 import sys, os.path, getopt, traceback
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "msodump.zip"))
 from msodumper import ole, pptstream, globals, olestream
 from msodumper.globals import error
 
-def usage (exname):
+
+def usage(exname):
     exname = os.path.basename(exname)
-    msg = """Usage: %s [options] [ppt file]
+    msg = (
+        """Usage: %s [options] [ppt file]
 
 Options:
   --help        displays this help message.
@@ -20,25 +23,27 @@ Options:
   --dump-text   extract and print the textual content
   --no-raw-dumps suppress raw hex dumps of uninterpreted areas
   --id-select=id1[,id2 ...] limit output to selected record Ids
-""" % exname
+"""
+        % exname
+    )
     print(msg)
 
 
 class PPTDumper(object):
 
-    def __init__ (self, filepath, params):
+    def __init__(self, filepath, params):
         self.filepath = filepath
         self.params = params
 
-    def __printDirHeader (self, dirname, byteLen):
+    def __printDirHeader(self, dirname, byteLen):
         dirname = globals.encodeName(dirname)
         globals.outputln("")
-        globals.outputln("="*68)
-        globals.outputln("%s (size: %d bytes)"%(dirname, byteLen))
-        globals.outputln("-"*68)
+        globals.outputln("=" * 68)
+        globals.outputln("%s (size: %d bytes)" % (dirname, byteLen))
+        globals.outputln("-" * 68)
 
-    def dump (self):
-        file = open(self.filepath, 'rb')
+    def dump(self):
+        file = open(self.filepath, "rb")
         strm = pptstream.PPTFile(file.read(), self.params)
         file.close()
         strm.printStreamInfo()
@@ -54,31 +59,31 @@ class PPTDumper(object):
             try:
                 dirstrm = strm.getDirectoryStreamByName(dirname)
             except Exception as err:
-                error("getDirectoryStreamByName(%s): %s\n" % (dirname,str(err)))
+                error("getDirectoryStreamByName(%s): %s\n" % (dirname, str(err)))
                 # The previous version was killed by the exception
                 # here, so the equivalent is to break, but maybe there
                 # is no reason to do so.
                 break
             self.__printDirHeader(dirname, len(dirstrm.bytes))
-            if  sdirname == b"PowerPoint Document":
+            if sdirname == b"PowerPoint Document":
                 if not self.__readSubStream(dirstrm):
                     result = False
-            elif  sdirname == b"Current User":
+            elif sdirname == b"Current User":
                 if not self.__readSubStream(dirstrm):
                     result = False
-            elif  sdirname == b"\x05DocumentSummaryInformation":
+            elif sdirname == b"\x05DocumentSummaryInformation":
                 strm = olestream.PropertySetStream(dirstrm.bytes)
                 strm.read()
             else:
                 globals.dumpBytes(dirstrm.bytes, 512)
         return result
 
-    def __readSubStream (self, strm):
+    def __readSubStream(self, strm):
         # read all records in substream
         return strm.readRecords()
 
 
-def main (args):
+def main(args):
     exname, args = args[0], args[1:]
     if len(args) < 1:
         print("takes at least one argument")
@@ -86,30 +91,40 @@ def main (args):
         return
 
     try:
-        opts, args = getopt.getopt(args, "h",
-                                   ["help", "debug", "show-sector-chain",
-                                    "no-struct-output", "dump-text",
-                                    "id-select=", "no-raw-dumps"])
+        opts, args = getopt.getopt(
+            args,
+            "h",
+            [
+                "help",
+                "debug",
+                "show-sector-chain",
+                "no-struct-output",
+                "dump-text",
+                "id-select=",
+                "no-raw-dumps",
+            ],
+        )
         for opt, arg in opts:
-            if opt in ['-h', '--help']:
+            if opt in ["-h", "--help"]:
                 usage(exname)
                 return
-            elif opt in ['--debug']:
+            elif opt in ["--debug"]:
                 globals.params.debug = True
-            elif opt in ['--show-sector-chain']:
+            elif opt in ["--show-sector-chain"]:
                 globals.params.showSectorChain = True
-            elif opt in ['--no-struct-output']:
+            elif opt in ["--no-struct-output"]:
                 globals.params.noStructOutput = True
-            elif opt in ['--dump-text']:
+            elif opt in ["--dump-text"]:
                 globals.params.dumpText = True
-            elif opt in ['--no-raw-dumps']:
+            elif opt in ["--no-raw-dumps"]:
                 globals.params.noRawDumps = True
-            elif opt in ['--id-select']:
+            elif opt in ["--id-select"]:
                 globals.params.dumpedIds = arg.split(",")
-                globals.params.dumpedIds = \
-                    set([int(val) for val in globals.params.dumpedIds if val])
+                globals.params.dumpedIds = set(
+                    [int(val) for val in globals.params.dumpedIds if val]
+                )
             else:
-                error("unknown option %s\n"%opt)
+                error("unknown option %s\n" % opt)
                 usage()
 
     except getopt.GetoptError:
@@ -128,7 +143,8 @@ def main (args):
         error("Could not parse")
         sys.exit(1)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     main(sys.argv)
 
 # vim:set filetype=python shiftwidth=4 softtabstop=4 expandtab:

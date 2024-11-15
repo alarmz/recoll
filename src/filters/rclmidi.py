@@ -10,10 +10,10 @@
 # publish, distribute, sublicense, and/or sell copies of the Software,
 # and to permit persons to whom the Software is furnished to do so,
 # subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be
 # included in all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
 # EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 # MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
@@ -22,55 +22,67 @@
 # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-# 
+#
 
 import sys
 from struct import unpack, pack
 
+
 def next_byte_as_int(data):
     return next(data)
+
+
 def next_byte_as_char(data):
     return bytes([next(data)])
+
 
 ##
 ## Constants
 ##
 
 OCTAVE_MAX_VALUE = 12
-OCTAVE_VALUES = list(range( OCTAVE_MAX_VALUE ))
+OCTAVE_VALUES = list(range(OCTAVE_MAX_VALUE))
 
-NOTE_NAMES = ['C','C#','D','D#','E','F','F#','G','G#','A','A#','B']
+NOTE_NAMES = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
 WHITE_KEYS = [0, 2, 4, 5, 7, 9, 11]
 BLACK_KEYS = [1, 3, 6, 8, 10]
-NOTE_PER_OCTAVE = len( NOTE_NAMES )
-NOTE_VALUES = list(range( OCTAVE_MAX_VALUE * NOTE_PER_OCTAVE ))
+NOTE_PER_OCTAVE = len(NOTE_NAMES)
+NOTE_VALUES = list(range(OCTAVE_MAX_VALUE * NOTE_PER_OCTAVE))
 NOTE_NAME_MAP_FLAT = {}
 NOTE_VALUE_MAP_FLAT = []
 NOTE_NAME_MAP_SHARP = {}
 NOTE_VALUE_MAP_SHARP = []
 
-for value in list(range( 128 )):
+for value in list(range(128)):
     noteidx = value % NOTE_PER_OCTAVE
     octidx = value / OCTAVE_MAX_VALUE
     name = NOTE_NAMES[noteidx]
-    if len( name ) == 2:
+    if len(name) == 2:
         # sharp note
-        flat = NOTE_NAMES[noteidx+1] + 'b'
-        NOTE_NAME_MAP_FLAT['%s-%d' % (flat, octidx)] = value
-        NOTE_NAME_MAP_SHARP['%s-%d' % (name, octidx)] = value
-        NOTE_VALUE_MAP_FLAT.append( '%s-%d' % (flat, octidx) )
-        NOTE_VALUE_MAP_SHARP.append( '%s-%d' % (name, octidx) )
-        globals()['%s_%d' % (name[0] + 's', octidx)] = value
-        globals()['%s_%d' % (flat, octidx)] = value
+        flat = NOTE_NAMES[noteidx + 1] + "b"
+        NOTE_NAME_MAP_FLAT["%s-%d" % (flat, octidx)] = value
+        NOTE_NAME_MAP_SHARP["%s-%d" % (name, octidx)] = value
+        NOTE_VALUE_MAP_FLAT.append("%s-%d" % (flat, octidx))
+        NOTE_VALUE_MAP_SHARP.append("%s-%d" % (name, octidx))
+        globals()["%s_%d" % (name[0] + "s", octidx)] = value
+        globals()["%s_%d" % (flat, octidx)] = value
     else:
-        NOTE_NAME_MAP_FLAT['%s-%d' % (name, octidx)] = value
-        NOTE_NAME_MAP_SHARP['%s-%d' % (name, octidx)] = value
-        NOTE_VALUE_MAP_FLAT.append( '%s-%d' % (name, octidx) )
-        NOTE_VALUE_MAP_SHARP.append( '%s-%d' % (name, octidx) )
-        globals()['%s_%d' % (name, octidx)] = value
+        NOTE_NAME_MAP_FLAT["%s-%d" % (name, octidx)] = value
+        NOTE_NAME_MAP_SHARP["%s-%d" % (name, octidx)] = value
+        NOTE_VALUE_MAP_FLAT.append("%s-%d" % (name, octidx))
+        NOTE_VALUE_MAP_SHARP.append("%s-%d" % (name, octidx))
+        globals()["%s_%d" % (name, octidx)] = value
 
-BEATNAMES = ['whole', 'half', 'quarter', 'eighth', 'sixteenth', 'thiry-second', 'sixty-fourth']
-BEATVALUES = [4, 2, 1, .5, .25, .125, .0625]
+BEATNAMES = [
+    "whole",
+    "half",
+    "quarter",
+    "eighth",
+    "sixteenth",
+    "thiry-second",
+    "sixty-fourth",
+]
+BEATVALUES = [4, 2, 1, 0.5, 0.25, 0.125, 0.0625]
 WHOLE = 0
 HALF = 1
 QUARTER = 2
@@ -87,10 +99,12 @@ EventMIDI : Concrete class used to describe MIDI Events.
 Inherits from Event.
 """
 
+
 class EventMeta(type):
     def __init__(cls, name, bases, dict):
-        if name not in ['Event', 'MetaEvent', 'NoteEvent']:
+        if name not in ["Event", "MetaEvent", "NoteEvent"]:
             EventFactory.register_event(cls, bases)
+
 
 class Event(object, metaclass=EventMeta):
     length = 0
@@ -99,94 +113,104 @@ class Event(object, metaclass=EventMeta):
 
     class __metaclass__(type):
         def __init__(cls, name, bases, dict):
-            if name not in ['Event', 'MetaEvent', 'NoteEvent']:
+            if name not in ["Event", "MetaEvent", "NoteEvent"]:
                 EventFactory.register_event(cls, bases)
 
     def __init__(self):
-        """ event type derived from __class__ """
-        self.type       = self.__class__.__name__
+        """event type derived from __class__"""
+        self.type = self.__class__.__name__
         """ midi channel """
-        self.channel    = 0
+        self.channel = 0
         """ midi tick """
-        self.tick       = 0
+        self.tick = 0
         """ delay in ms """
-        self.msdelay    = 0
+        self.msdelay = 0
         """ data after statusmsg """
-        self.data       = b''
+        self.data = b""
         """ track number """
-        self.track      = 0
+        self.track = 0
         """ sort order """
-        self.order      = None
+        self.order = None
 
     def is_event(cls, statusmsg):
-        return (cls.statusmsg == (statusmsg & 0xF0))
+        return cls.statusmsg == (statusmsg & 0xF0)
+
     is_event = classmethod(is_event)
 
     def __str__(self):
-        return "%s @%d %dms C%d T%d" % (self.name, 
-                            self.tick,
-                            self.msdelay,
-                            self.channel,
-                            self.track)
+        return "%s @%d %dms C%d T%d" % (
+            self.name,
+            self.tick,
+            self.msdelay,
+            self.channel,
+            self.track,
+        )
 
     def __cmp__(self, other):
-        if self.tick < other.tick: return -1
-        elif self.tick > other.tick: return 1
+        if self.tick < other.tick:
+            return -1
+        elif self.tick > other.tick:
+            return 1
         return 0
+
     def __lt__(self, other):
         return self.tick < other.tick
+
     def __eq__(self, other):
         return self.tick == other.tick
 
     def adjust_msdelay(self, tempo):
         rtick = self.tick - tempo.tick
         self.msdelay = int((rtick * tempo.mpt) + tempo.msdelay)
-     
-    def decode(self, tick, statusmsg, track, runningstatus=b''):
-        assert(self.is_event(statusmsg))
+
+    def decode(self, tick, statusmsg, track, runningstatus=b""):
+        assert self.is_event(statusmsg)
         self.tick = tick
         self.channel = statusmsg & 0x0F
-        self.data = b''
+        self.data = b""
         if runningstatus:
             self.data += runningstatus
         remainder = self.length - len(self.data)
         if remainder:
-            self.data += bytes.join(b'', [next_byte_as_char(track)
-                                         for x in range(remainder)])
+            self.data += bytes.join(
+                b"", [next_byte_as_char(track) for x in range(remainder)]
+            )
         self.decode_data()
 
     def decode_data(self):
         pass
 
-    
+
 """
 MetaEvent is a special subclass of Event that is not meant to
 be used as a concrete class.  It defines a subset of Events known
 as the Meta  events.
 """
-    
+
+
 class MetaEvent(Event):
     statusmsg = 0xFF
     metacommand = 0x0
-    name = 'Meta Event'
+    name = "Meta Event"
 
     def is_event(cls, statusmsg):
-        return (cls.statusmsg == statusmsg)
+        return cls.statusmsg == statusmsg
+
     is_event = classmethod(is_event)
 
     def is_meta_event(cls, metacmd):
-        return (cls.metacommand == metacmd)
+        return cls.metacommand == metacmd
+
     is_meta_event = classmethod(is_meta_event)
 
     def decode(self, tick, command, track):
-        assert(self.is_meta_event(command))
+        assert self.is_meta_event(command)
         self.tick = tick
         self.channel = 0
-        if not hasattr(self, 'order'):
+        if not hasattr(self, "order"):
             self.order = None
         len = read_varlen(track)
-        self.data = bytes.join(b'', [next_byte_as_char(track)
-                                     for x in range(len)])
+        self.data = bytes.join(b"", [next_byte_as_char(track) for x in range(len)])
         self.decode_data()
 
 
@@ -195,10 +219,11 @@ EventFactory is a singleton that you should not instantiate.  It is
 a helper class that assists you in building MIDI event objects.
 """
 
+
 class EventFactory(object):
     EventRegistry = []
     MetaEventRegistry = []
-    
+
     def __init__(self):
         self.RunningStatus = None
         self.RunningTick = 0
@@ -209,7 +234,8 @@ class EventFactory(object):
         elif (Event in bases) or (NoteEvent in bases):
             cls.EventRegistry.append(event)
         else:
-            raise ValueError("Unknown bases class in event type: "+event.name)
+            raise ValueError("Unknown bases class in event type: " + event.name)
+
     register_event = classmethod(register_event)
 
     def parse_midi_event(self, track):
@@ -241,22 +267,23 @@ class EventFactory(object):
                 if self.RunningStatus:
                     cached_stsmsg, etype = self.RunningStatus
                     evi = etype()
-                    evi.decode(self.RunningTick, 
-                            cached_stsmsg, track, bytes([stsmsg]))
+                    evi.decode(self.RunningTick, cached_stsmsg, track, bytes([stsmsg]))
                     return evi
                 else:
                     raise Warning("Unknown MIDI Event: " + repr(stsmsg))
 
+
 class NoteEvent(Event):
     length = 2
-    fields = ['pitch', 'velocity']
+    fields = ["pitch", "velocity"]
 
     def __str__(self):
-        return "%s [ %s(%s) %d ]" % \
-                            (super(NoteEvent, self).__str__(),
-                                NOTE_VALUE_MAP_SHARP[self.pitch],
-                                self.pitch,
-                                self.velocity)
+        return "%s [ %s(%s) %d ]" % (
+            super(NoteEvent, self).__str__(),
+            NOTE_VALUE_MAP_SHARP[self.pitch],
+            self.pitch,
+            self.velocity,
+        )
 
     def decode_data(self):
         self.pitch = self.data[0]
@@ -265,33 +292,38 @@ class NoteEvent(Event):
 
 class NoteOnEvent(NoteEvent):
     statusmsg = 0x90
-    name = 'Note On'
+    name = "Note On"
+
 
 class NoteOffEvent(NoteEvent):
     statusmsg = 0x80
-    name = 'Note Off'
+    name = "Note Off"
+
 
 class AfterTouchEvent(Event):
     statusmsg = 0xA0
     length = 2
-    name = 'After Touch'
+    name = "After Touch"
 
     def __str__(self):
-        return "%s [ %s %s ]" % \
-                            (super(AfterTouchEvent, self).__str__(),
-                                hex(ord(self.data[0])),
-                                hex(ord(self.data[1])))
+        return "%s [ %s %s ]" % (
+            super(AfterTouchEvent, self).__str__(),
+            hex(ord(self.data[0])),
+            hex(ord(self.data[1])),
+        )
+
 
 class ControlChangeEvent(Event):
     statusmsg = 0xB0
     length = 2
-    name = 'Control Change'
-    
+    name = "Control Change"
+
     def __str__(self):
-        return "%s [ %s %s ]" % \
-                            (super(ControlChangeEvent, self).__str__(),
-                                hex(ord(self.data[0])),
-                                hex(ord(self.data[1])))
+        return "%s [ %s %s ]" % (
+            super(ControlChangeEvent, self).__str__(),
+            hex(ord(self.data[0])),
+            hex(ord(self.data[1])),
+        )
 
     def decode_data(self):
         self.control = self.data[0]
@@ -301,12 +333,13 @@ class ControlChangeEvent(Event):
 class ProgramChangeEvent(Event):
     statusmsg = 0xC0
     length = 1
-    name = 'Program Change'
+    name = "Program Change"
 
     def __str__(self):
-        return "%s [ %s ]" % \
-                            (super(ProgramChangeEvent, self).__str__(),
-                                hex(ord(self.data[0])))
+        return "%s [ %s ]" % (
+            super(ProgramChangeEvent, self).__str__(),
+            hex(ord(self.data[0])),
+        )
 
     def decode_data(self):
         self.value = self.data[0]
@@ -315,23 +348,26 @@ class ProgramChangeEvent(Event):
 class ChannelAfterTouchEvent(Event):
     statusmsg = 0xD0
     length = 1
-    name = 'Channel After Touch'
+    name = "Channel After Touch"
 
     def __str__(self):
-        return "%s [ %s ]" % \
-                            (super(ChannelAfterTouchEvent,self).__str__(),
-                                hex(ord(self.data[0])))
+        return "%s [ %s ]" % (
+            super(ChannelAfterTouchEvent, self).__str__(),
+            hex(ord(self.data[0])),
+        )
+
 
 class PitchWheelEvent(Event):
     statusmsg = 0xE0
     length = 2
-    name = 'Pitch Wheel'
+    name = "Pitch Wheel"
 
     def __str__(self):
-        return "%s [ %s %s ]" % \
-                            (super(PitchWheelEvent, self).__str__(),
-                                hex(ord(self.data[0])),
-                                hex(ord(self.data[1])))
+        return "%s [ %s %s ]" % (
+            super(PitchWheelEvent, self).__str__(),
+            hex(ord(self.data[0])),
+            hex(ord(self.data[1])),
+        )
 
     def decode_data(self):
         first = self.data[0]
@@ -341,155 +377,165 @@ class PitchWheelEvent(Event):
 
 class SysExEvent(Event):
     statusmsg = 0xF0
-    name = 'SysEx'
+    name = "SysEx"
 
     def is_event(cls, statusmsg):
-        return (cls.statusmsg == statusmsg)
+        return cls.statusmsg == statusmsg
+
     is_event = classmethod(is_event)
 
     def decode(self, tick, statusmsg, track):
         self.tick = tick
         self.channel = statusmsg & 0x0F
         len = read_varlen(track)
-        self.data = bytes.join(b'', [next_byte_as_char(track)
-                                     for x in range(len)])
+        self.data = bytes.join(b"", [next_byte_as_char(track) for x in range(len)])
+
 
 class SequenceNumberMetaEvent(MetaEvent):
-    name = 'Sequence Number'
+    name = "Sequence Number"
     metacommand = 0x00
 
+
 class TextMetaEvent(MetaEvent):
-    name = 'Text'
+    name = "Text"
     metacommand = 0x01
 
     def __str__(self):
-        return "%s [ %s ]" % \
-                            (super(TextMetaEvent, self).__str__(),
-                            self.data)
+        return "%s [ %s ]" % (super(TextMetaEvent, self).__str__(), self.data)
+
 
 class CopyrightMetaEvent(MetaEvent):
-    name = 'Copyright Notice'
+    name = "Copyright Notice"
     metacommand = 0x02
 
+
 class TrackNameEvent(MetaEvent):
-    name = 'Track Name'
+    name = "Track Name"
     metacommand = 0x03
     order = 3
 
     def __str__(self):
-        return "%s [ %s ]" % \
-                            (super(TrackNameEvent, self).__str__(),
-                            self.data)
+        return "%s [ %s ]" % (super(TrackNameEvent, self).__str__(), self.data)
+
 
 class InstrumentNameEvent(MetaEvent):
-    name = 'Instrument Name'
+    name = "Instrument Name"
     metacommand = 0x04
     order = 4
 
     def __str__(self):
-        return "%s [ %s ]" % \
-                            (super(InstrumentNameEvent, self).__str__(),
-                            self.data)
+        return "%s [ %s ]" % (super(InstrumentNameEvent, self).__str__(), self.data)
 
 
 class LryricsEvent(MetaEvent):
-    name = 'Lyrics'
+    name = "Lyrics"
     metacommand = 0x05
 
     def __str__(self):
-        return "%s [ %s ]" % \
-                            (super(LryricsEvent, self).__str__(),
-                            self.data)
+        return "%s [ %s ]" % (super(LryricsEvent, self).__str__(), self.data)
 
 
 class MarkerEvent(MetaEvent):
-    name = 'Marker'
+    name = "Marker"
     metacommand = 0x06
 
+
 class CuePointEvent(MetaEvent):
-    name = 'Cue Point'
+    name = "Cue Point"
     metacommand = 0x07
 
+
 class UnknownEvent(MetaEvent):
-    name = 'whoknows?'
+    name = "whoknows?"
     metacommand = 0x09
 
-class ChannelPrefixEvent(MetaEvent):
-    name = 'Cue Point'
-    metacommand = 0x20
 
 class ChannelPrefixEvent(MetaEvent):
-    name = 'Cue Point'
+    name = "Cue Point"
     metacommand = 0x20
+
+
+class ChannelPrefixEvent(MetaEvent):
+    name = "Cue Point"
+    metacommand = 0x20
+
 
 class PortEvent(MetaEvent):
-    fields = ['port']
-    name = 'MIDI Port/Cable'
+    fields = ["port"]
+    name = "MIDI Port/Cable"
     metacommand = 0x21
     order = 5
 
     def __str__(self):
-        return "%s [ port: %d ]" % \
-                            (super(PortEvent, self).__str__(),
-                            self.port)
+        return "%s [ port: %d ]" % (super(PortEvent, self).__str__(), self.port)
 
     def decode_data(self):
-        assert(len(self.data) == 1)
+        assert len(self.data) == 1
         self.port = self.data[0]
 
+
 class TrackLoopEvent(MetaEvent):
-    name = 'Track Loop'
+    name = "Track Loop"
     metacommand = 0x2E
 
+
 class EndOfTrackEvent(MetaEvent):
-    name = 'End of Track'
+    name = "End of Track"
     metacommand = 0x2F
     order = 2
 
+
 class SetTempoEvent(MetaEvent):
-    fields = ['mpqn', 'tempo']
-    name = 'Set Tempo'
+    fields = ["mpqn", "tempo"]
+    name = "Set Tempo"
     metacommand = 0x51
     order = 1
 
     def __str__(self):
-        return "%s [ mpqn: %d tempo: %d ]" % \
-                            (super(SetTempoEvent, self).__str__(),
-                            self.mpqn, self.tempo)
+        return "%s [ mpqn: %d tempo: %d ]" % (
+            super(SetTempoEvent, self).__str__(),
+            self.mpqn,
+            self.tempo,
+        )
 
     def __setattr__(self, item, value):
-        if item == 'mpqn':
-            self.__dict__['mpqn'] = value
-            self.__dict__['tempo'] = float(6e7) / value 
-        elif item == 'tempo':
-            self.__dict__['tempo'] = value
-            self.__dict__['mpqn'] = int(float(6e7) / value)
+        if item == "mpqn":
+            self.__dict__["mpqn"] = value
+            self.__dict__["tempo"] = float(6e7) / value
+        elif item == "tempo":
+            self.__dict__["tempo"] = value
+            self.__dict__["mpqn"] = int(float(6e7) / value)
         else:
             self.__dict__[item] = value
 
     def decode_data(self):
-        assert(len(self.data) == 3)
+        assert len(self.data) == 3
         self.mpqn = (self.data[0] << 16) + (self.data[1] << 8) + self.data[2]
         self.tempo = float(6e7) / self.mpqn
 
 
 class SmpteOffsetEvent(MetaEvent):
-    name = 'SMPTE Offset'
+    name = "SMPTE Offset"
     metacommand = 0x54
 
+
 class TimeSignatureEvent(MetaEvent):
-    fields = ['numerator', 'denominator', 'metronome', 'thirtyseconds']
-    name = 'Time Signature'
+    fields = ["numerator", "denominator", "metronome", "thirtyseconds"]
+    name = "Time Signature"
     metacommand = 0x58
     order = 0
 
     def __str__(self):
-        return "%s [ %d/%d  metro: %d  32nds: %d ]" % \
-                            (super(TimeSignatureEvent, self).__str__(),
-                                self.numerator, self.denominator,
-                                self.metronome, self.thirtyseconds)
+        return "%s [ %d/%d  metro: %d  32nds: %d ]" % (
+            super(TimeSignatureEvent, self).__str__(),
+            self.numerator,
+            self.denominator,
+            self.metronome,
+            self.thirtyseconds,
+        )
+
     def decode_data(self):
-        assert(len(self.data) == 4)
+        assert len(self.data) == 4
         self.numerator = self.data[0]
         # Weird: the denominator is two to the power of the data variable
         self.denominator = 2 ** self.data[1]
@@ -498,15 +544,17 @@ class TimeSignatureEvent(MetaEvent):
 
 
 class KeySignatureEvent(MetaEvent):
-    name = 'Key Signature'
+    name = "Key Signature"
     metacommand = 0x59
 
+
 class BeatMarkerEvent(MetaEvent):
-    name = 'Beat Marker'
+    name = "Beat Marker"
     metacommand = 0x7F
 
+
 class SequencerSpecificEvent(MetaEvent):
-    name = 'Sequencer Specific'
+    name = "Sequencer Specific"
     metacommand = 0x7F
 
 
@@ -533,8 +581,7 @@ class TempoMap(list):
         last = None
         for event in self:
             if last:
-                event.msdelay = last.msdelay + \
-                    int(last.mpt * (event.tick - last.tick))
+                event.msdelay = last.msdelay + int(last.mpt * (event.tick - last.tick))
             last = event
 
     def get_tempo(self, offset=0):
@@ -544,6 +591,7 @@ class TempoMap(list):
                 return last
             last = tm
         return last
+
 
 class EventStreamIterator(object):
     def __init__(self, stream, window):
@@ -609,10 +657,11 @@ class EventStreamIterator(object):
         return ret
 
 
-
 """
 EventStream : Class used to describe a collection of MIDI Events.
 """
+
+
 class EventStream(object):
     def __init__(self):
         self.format = 1
@@ -629,7 +678,7 @@ class EventStream(object):
 
     def __set_resolution(self, resolution):
         # XXX: Add code to rescale notes
-        assert(not self.trackpool)
+        assert not self.trackpool
         self.__resolution = resolution
         self.beatmap = []
         for value in BEATVALUES:
@@ -637,8 +686,10 @@ class EventStream(object):
 
     def __get_resolution(self):
         return self.__resolution
-    resolution = property(__get_resolution, __set_resolution, None,
-                                "Ticks per quarter note")
+
+    resolution = property(
+        __get_resolution, __set_resolution, None, "Ticks per quarter note"
+    )
 
     def add_track(self):
         if self.curtrack == None:
@@ -647,7 +698,7 @@ class EventStream(object):
             self.curtrack += 1
         self.tracklist[self.curtrack] = []
         # Don't: when reading from a file trackcount comes from the header
-        #self.trackcount += 1
+        # self.trackcount += 1
 
     def get_current_track_number(self):
         return self.curtrack
@@ -711,7 +762,7 @@ class EventStream(object):
         self.trackpool.sort()
         for track in self.tracklist.values():
             track.sort()
-    
+
     def textdump(self):
         for event in self.trackpool:
             print("%s" % event)
@@ -726,10 +777,12 @@ class EventStream(object):
         return iter(self.trackpool)
 
     def __len__(self):
-        print("LEN: len(self.tracklist): %d trackcount: %d" % \
-              (len(self.tracklist), self.trackcount))
-        
-        assert(len(self.tracklist) == self.trackcount)
+        print(
+            "LEN: len(self.tracklist): %d trackcount: %d"
+            % (len(self.tracklist), self.trackcount)
+        )
+
+        assert len(self.tracklist) == self.trackcount
         return self.trackcount
 
     def __getitem__(self, intkey):
@@ -791,6 +844,7 @@ class EventStream(object):
             tempo = self.tempomap.get_tempo(self.endoftrack.tick)
             self.endoftrack.adjust_msdelay(tempo)
 
+
 class EventStreamReader(object):
     def __init__(self, instream, outstream):
         self.eventfactory = None
@@ -801,24 +855,25 @@ class EventStreamReader(object):
             outstream = EventStream()
         cls(instream, outstream)
         return outstream
+
     read = classmethod(read)
-    
+
     def parse(self, instream, outstream):
         self.midistream = outstream
         self.instream = instream
-        if type(instream) in (type(b''), type(u'')):
-            self.instream = open(instream, 'rb')
+        if type(instream) in (type(b""), type("")):
+            self.instream = open(instream, "rb")
         self.parse_file_header()
-        for track in range(self.midistream.trackcount):  
+        for track in range(self.midistream.trackcount):
             trksz = self.parse_track_header()
             self.eventfactory = EventFactory()
             self.midistream.add_track()
             self.parse_track(trksz)
-        
+
     def parse_file_header(self):
         # First four bytes are MIDI header
         magic = self.instream.read(4)
-        if magic != b'MThd':
+        if magic != b"MThd":
             raise TypeError("Bad header in MIDI file.")
         # next four bytes are header size
         # next two bytes specify the format version
@@ -834,11 +889,11 @@ class EventStreamReader(object):
         # in the header are padding
         if hdrsz > DEFAULT_MIDI_HEADER_SIZE:
             self.instream.read(hdrsz - DEFAULT_MIDI_HEADER_SIZE)
-            
+
     def parse_track_header(self):
         # First four bytes are Track header
         magic = self.instream.read(4)
-        if magic != b'MTrk':
+        if magic != b"MTrk":
             raise TypeError("Bad track header in MIDI file: " + magic)
         # next four bytes are header size
         trksz = unpack(">L", self.instream.read(4))[0]
@@ -852,7 +907,8 @@ class EventStreamReader(object):
                 self.midistream.add_event(event)
             except StopIteration:
                 break
-                
+
+
 def read_varlen(data):
     NEXTBYTE = 1
     value = 0
@@ -863,11 +919,12 @@ def read_varlen(data):
             # no next BYTE
             NEXTBYTE = 0
         # mask out the 8th bit
-        chr = chr & 0x7f
+        chr = chr & 0x7F
         # shift last value up 7 bits
         value = value << 7
         # add new value
         value += chr
     return value
+
 
 read_midifile = EventStreamReader.read

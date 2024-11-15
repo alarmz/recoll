@@ -17,7 +17,8 @@ try:
     import sys
 except:
     print("RECFILTERROR HELPERNOTFOUND python3:sys")
-    sys.exit(1);
+    sys.exit(1)
+
 
 # Our class.
 class rclTXTLINES:
@@ -38,7 +39,7 @@ class rclTXTLINES:
         """Open the text file, create a contents array"""
         self.currentindex = -1
         try:
-            f = open(params["filename"].decode('UTF-8'), "r")
+            f = open(params["filename"].decode("UTF-8"), "r")
         except Exception as err:
             self.em.rclog("openfile: open failed: [%s]" % err)
             return False
@@ -66,11 +67,10 @@ class rclTXTLINES:
                 eof = rclexecm.RclExecM.noteof
             return (True, "", "", eof)
 
-
         if self.currentindex >= len(self.lines):
             return (False, "", "", rclexecm.RclExecM.eofnow)
         else:
-            ret= self.extractone(self.currentindex)
+            ret = self.extractone(self.currentindex)
             self.currentindex += 1
             return ret
 

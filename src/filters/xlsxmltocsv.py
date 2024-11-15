@@ -35,10 +35,11 @@ else:
     sepstring = b","
     dquote = b'"'
 
+
 class XlsXmlHandler(xml.sax.handler.ContentHandler):
     def __init__(self):
         self.output = []
-        
+
     def startElement(self, name, attrs):
         if name == "worksheet":
             if "name" in attrs:
@@ -49,18 +50,20 @@ class XlsXmlHandler(xml.sax.handler.ContentHandler):
             if "value" in attrs:
                 value = attrs["value"].encode("UTF-8")
             else:
-                value = b''
+                value = b""
             if "col" in attrs:
                 self.cells[int(attrs["col"])] = value
             else:
-                #??
+                # ??
                 self.output.append(b"%s%s" % (value.encode("UTF-8"), sepstring))
         elif name == "formula-cell":
             if "formula-result" in attrs and "col" in attrs:
-                self.cells[int(attrs["col"])] = \
-                             attrs["formula-result"].encode("UTF-8")
-            
-    def endElement(self, name, ):
+                self.cells[int(attrs["col"])] = attrs["formula-result"].encode("UTF-8")
+
+    def endElement(
+        self,
+        name,
+    ):
         if name == "row":
             curidx = 0
             line = []
@@ -68,16 +71,16 @@ class XlsXmlHandler(xml.sax.handler.ContentHandler):
                 line.append(sepstring * (idx - curidx))
                 line.append(b"%s%s%s" % (dquote, value, dquote))
                 curidx = idx
-            self.output.append(b''.join(line))
+            self.output.append(b"".join(line))
         elif name == "worksheet":
-            self.output.append(b'')
+            self.output.append(b"")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     try:
         handler = XlsXmlHandler()
         xml.sax.parse(sys.stdin, handler)
-        print(b'\n'.join(handler.output))
+        print(b"\n".join(handler.output))
     except BaseException as err:
         print("xml-parse: %s\n" % (str(sys.exc_info()[:2]),), file=sys.stderr)
         sys.exit(1)

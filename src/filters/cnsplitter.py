@@ -31,11 +31,11 @@ import cmdtalk
 # interface as konlpy https://pypi.org/project/python-mecab-ko/
 import jieba
 
+
 class Processor(object):
     def __init__(self, proto):
         self.proto = proto
         self.init = False
-        
 
     def _init_tagger(self, taggername):
         # Nothing to do for now, really
@@ -44,17 +44,19 @@ class Processor(object):
         self.init = True
 
     def process(self, params):
-        if 'data' not in params:
-            return {"error":"No data field in parameters"}
+        if "data" not in params:
+            return {"error": "No data field in parameters"}
         # proto.log(f"DATA: {params['data']}")
         if not self.init:
-            self._init_tagger(params["tagger"]);
+            self._init_tagger(params["tagger"])
 
         tokens = jieba.tokenize(params["data"], mode="search")
         result = ""
         for e in tokens:
             # proto.log(f"term: {e}")
-            result += e[0].replace('\t', ' ') + "\t" + str(e[1]) + "\t" + str(e[2]) + "\t"
+            result += (
+                e[0].replace("\t", " ") + "\t" + str(e[1]) + "\t" + str(e[2]) + "\t"
+            )
         return {"wordsandpos": result}
 
 

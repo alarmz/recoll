@@ -13,7 +13,8 @@
 # running, or else toggle between minimized/shown
 
 import gi
-gi.require_version('Wnck', '3.0')
+
+gi.require_version("Wnck", "3.0")
 from gi.repository import Wnck
 from gi.repository import Gtk
 
@@ -21,25 +22,32 @@ import os
 import sys
 from optparse import OptionParser
 
+
 def deb(s):
-    print("%s"%s, file=sys.stderr)
-    
+    print("%s" % s, file=sys.stderr)
+
+
 def main():
     parser = OptionParser()
-    parser.add_option("-m", "--move-away", action="store_true", default=False,
-                      dest="clear_workspace", 
-                      help="iconify to other workspace to avoid crowding panel")
+    parser.add_option(
+        "-m",
+        "--move-away",
+        action="store_true",
+        default=False,
+        dest="clear_workspace",
+        help="iconify to other workspace to avoid crowding panel",
+    )
     (options, args) = parser.parse_args()
 
     screen = Wnck.Screen.get_default()
-    
+
     while Gtk.events_pending():
         Gtk.main_iteration()
 
     recollMain = ""
-    recollwins = [];
+    recollwins = []
     for window in screen.get_windows():
-        #deb(f"Win class name: [{window.get_class_group().get_name()}] name [{window.get_name()}]")
+        # deb(f"Win class name: [{window.get_class_group().get_name()}] name [{window.get_name()}]")
         if window.get_class_group().get_name().lower() == "recoll":
             if window.get_name().lower().startswith("recoll"):
                 recollMain = window
@@ -73,6 +81,6 @@ def main():
                 win.move_to_workspace(otherworkspace)
             win.minimize()
 
-if __name__ == '__main__':
-  main()
-  
+
+if __name__ == "__main__":
+    main()

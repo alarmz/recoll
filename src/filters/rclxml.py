@@ -20,7 +20,7 @@ import sys
 import rclexecm
 import rclgenxslt
 
-stylesheet_all = '''<?xml version="1.0"?>
+stylesheet_all = """<?xml version="1.0"?>
 <xsl:stylesheet version="1.0"
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
@@ -54,9 +54,9 @@ stylesheet_all = '''<?xml version="1.0"?>
   </xsl:template>
 
 </xsl:stylesheet>
-'''
+"""
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     proto = rclexecm.RclExecM()
     extract = rclgenxslt.XSLTExtractor(proto, stylesheet_all)
     rclexecm.main(proto, extract)

@@ -15,30 +15,32 @@ try:
     import tarfile
 except:
     print("RECFILTERROR HELPERNOTFOUND python3:tarfile")
-    sys.exit(1);
+    sys.exit(1)
+
 
 class TarExtractor(ArchiveExtractor):
     def __init__(self, em):
         self.namen = []
         super().__init__(em)
 
-
     def extractone(self, ipath):
-        docdata = b''
+        docdata = b""
         try:
             info = self.tar.getmember(ipath)
             if info.size > self.em.maxmembersize:
                 # skip
-                docdata = b''
-                self.em.rclog("extractone: entry %s size %d too big" % (ipath, info.size))
-                docdata = b'' # raise TarError("Member too big")
+                docdata = b""
+                self.em.rclog(
+                    "extractone: entry %s size %d too big" % (ipath, info.size)
+                )
+                docdata = b""  # raise TarError("Member too big")
             else:
                 docdata = self.tar.extractfile(ipath).read()
             ok = True
         except Exception as err:
             ok = False
         iseof = rclexecm.RclExecM.noteof
-        if self.currentindex >= len(self.namen) -1:
+        if self.currentindex >= len(self.namen) - 1:
             iseof = rclexecm.RclExecM.eofnext
         # We use fsencode, not makebytes, to convert to bytes. The latter would fail if the ipath
         # was actually binary, because it tries to encode to utf-8 but python3 had used fsdecode for
@@ -49,15 +51,17 @@ class TarExtractor(ArchiveExtractor):
     def closefile(self):
         self.tar = None
         self.namen = []
-        
+
     def openfile(self, params):
         self.currentindex = -1
         filename = params["filename"]
         self.namefilter.setforlocation(filename)
         try:
-            self.tar = tarfile.open(name=filename, mode='r')
-            #self.namen = [ y.name for y in filter(lambda z:z.isfile(),self.tar.getmembers())]
-            self.namen = [ y.name for y in [z for z in self.tar.getmembers() if z.isfile()]]
+            self.tar = tarfile.open(name=filename, mode="r")
+            # self.namen = [ y.name for y in filter(lambda z:z.isfile(),self.tar.getmembers())]
+            self.namen = [
+                y.name for y in [z for z in self.tar.getmembers() if z.isfile()]
+            ]
             return True
         except:
             return False
@@ -75,7 +79,7 @@ class TarExtractor(ArchiveExtractor):
 
     def namelist(self):
         return self.namen
-    
+
     # getnext from ArchiveExtractor
 
 

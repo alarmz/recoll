@@ -18,7 +18,7 @@
 
 # Note that .docx and .xlsx are now normally processed by the C++ mh_xslt.cpp
 # module. See the openxml-xxx.xsl files for the style sheets used by the C++.
-# 
+#
 # .pptx and .vsdx are processed by this Python module because the C++ module
 # can't process their multiple document structure (pages) at the moment.
 
@@ -33,7 +33,7 @@ import os
 #
 # Common style sheet for the openxml metadata
 #
-meta_stylesheet = '''<?xml version="1.0"?>
+meta_stylesheet = """<?xml version="1.0"?>
 <xsl:stylesheet 
  xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
  xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties"
@@ -82,13 +82,13 @@ meta_stylesheet = '''<?xml version="1.0"?>
   </xsl:template>
 
 </xsl:stylesheet>
-'''
+"""
 
 #####################################
 # .docx definitions. Not used any more by Recoll in its default config
 
-word_tagmatch = 'w:p'
-word_xmlns_decls = '''xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+word_tagmatch = "w:p"
+word_xmlns_decls = """xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
 xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006"
 xmlns:o="urn:schemas-microsoft-com:office:office"
 xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
@@ -98,51 +98,51 @@ xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing
 xmlns:w10="urn:schemas-microsoft-com:office:word"
 xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
 xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml"
-'''
-word_moretemplates = ''
+"""
+word_moretemplates = ""
 
 
 #####################################
 # .xlsx definitions. Not used any more by Recoll in its default config
 
-xl_tagmatch = 'x:t'
-xl_xmlns_decls='''xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+xl_tagmatch = "x:t"
+xl_xmlns_decls = """xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
 xmlns:x="http://schemas.openxmlformats.org/spreadsheetml/2006/main"
- '''
-xl_moretemplates = ''
+ """
+xl_moretemplates = ""
 
 
 #####################
 # .pptx definitions
 
-pp_tagmatch = 'a:t'
-pp_xmlns_decls = '''xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+pp_tagmatch = "a:t"
+pp_xmlns_decls = """xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
 xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" 
 xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" 
 xmlns:p="http://schemas.openxmlformats.org/presentationml/2006/main"
-'''
+"""
 # I want to suppress text output for all except a:t, don't know how to do it
 # help ! At least get rid of these:
-pp_moretemplates = '''<xsl:template match="p:attrName">
+pp_moretemplates = """<xsl:template match="p:attrName">
 </xsl:template>
-'''
+"""
 
 
 #####################
 # .vsdx definitions
 
-vs_tagmatch = 'Text'
-vs_xmlns_decls = '''xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
+vs_tagmatch = "Text"
+vs_xmlns_decls = """xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
 xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
-'''
-vs_moretemplates = ''
+"""
+vs_moretemplates = ""
 
 
 ##############################
 # Common style sheet (with replaceable parts) for .pptx and .vsdx (also .docx
 # and .xlsx, but not used by default).
 
-content_stylesheet = '''<?xml version="1.0"?>
+content_stylesheet = """<?xml version="1.0"?>
 <xsl:stylesheet @XMLNS_DECLS@ >
 
  <xsl:output omit-xml-declaration="yes"/>
@@ -162,7 +162,8 @@ content_stylesheet = '''<?xml version="1.0"?>
 @MORETEMPLATES@
 
 </xsl:stylesheet>
-'''
+"""
+
 
 class OXExtractor(RclBaseHandler):
     def __init__(self, em):
@@ -171,22 +172,21 @@ class OXExtractor(RclBaseHandler):
 
     # Replace values inside data style sheet, depending on type of doc
     def computestylesheet(self, nm):
-        decls = globals()[nm + '_xmlns_decls']
-        stylesheet = content_stylesheet.replace('@XMLNS_DECLS@', decls)
-        tagmatch = globals()[nm + '_tagmatch']
-        stylesheet = stylesheet.replace('@TAGMATCH@', tagmatch)
-        moretmpl = globals()[nm + '_moretemplates']
-        stylesheet = stylesheet.replace('@MORETEMPLATES@', moretmpl)
+        decls = globals()[nm + "_xmlns_decls"]
+        stylesheet = content_stylesheet.replace("@XMLNS_DECLS@", decls)
+        tagmatch = globals()[nm + "_tagmatch"]
+        stylesheet = stylesheet.replace("@TAGMATCH@", tagmatch)
+        moretmpl = globals()[nm + "_moretemplates"]
+        stylesheet = stylesheet.replace("@MORETEMPLATES@", moretmpl)
 
         return stylesheet
-    
 
     def html_text(self, fn):
 
-        f = open(fn, 'rb')
+        f = open(fn, "rb")
         zip = ZipFile(f)
 
-        docdata = b'<html><head>'
+        docdata = b"<html><head>"
 
         try:
             metadata = zip.read("docProps/core.xml")
@@ -196,18 +196,18 @@ class OXExtractor(RclBaseHandler):
         except Exception as err:
             pass
 
-        docdata += b'</head><body>'
+        docdata += b"</head><body>"
 
         try:
-            content= zip.read('word/document.xml')
-            stl = self.computestylesheet('word')
+            content = zip.read("word/document.xml")
+            stl = self.computestylesheet("word")
             docdata += rclxslt.apply_sheet_data(stl, content)
         except:
             pass
 
         try:
-            content = zip.read('xl/sharedStrings.xml')
-            stl = self.computestylesheet('xl')
+            content = zip.read("xl/sharedStrings.xml")
+            stl = self.computestylesheet("xl")
             docdata += rclxslt.apply_sheet_data(stl, content)
         except:
             pass
@@ -215,45 +215,47 @@ class OXExtractor(RclBaseHandler):
         try:
             stl = None
             # Extract number suffix for numeric sort
-            for prefix in ("ppt/slides/slide","ppt/notesSlides/notesSlide"):
-                exp = prefix + '[0-9]+' + '.xml'
+            for prefix in ("ppt/slides/slide", "ppt/notesSlides/notesSlide"):
+                exp = prefix + "[0-9]+" + ".xml"
                 names = [fn for fn in zip.namelist() if re.match(exp, fn)]
                 for fn in sorted(
-                        names,
-                        key=lambda e,prefix=prefix: int(e[len(prefix):len(e)-4])):
+                    names, key=lambda e, prefix=prefix: int(e[len(prefix) : len(e) - 4])
+                ):
                     if stl is None:
-                        stl = self.computestylesheet('pp')
+                        stl = self.computestylesheet("pp")
                     content = zip.read(fn)
                     if self.forpreview == "yes":
-                        docdata += b"<h2>" + fn.encode("utf-8",errors="ignore") + b"</h2>"
+                        docdata += (
+                            b"<h2>" + fn.encode("utf-8", errors="ignore") + b"</h2>"
+                        )
                     docdata += rclxslt.apply_sheet_data(stl, content)
         except Exception as ex:
-            #self.em.rclog("PPT Exception: %s" % ex)
+            # self.em.rclog("PPT Exception: %s" % ex)
             pass
 
         try:
             stl = None
             # Extract number suffix for numeric sort
-            prefix = 'visio/pages/page'
-            exp = prefix + '[0-9]+' + '.xml'
+            prefix = "visio/pages/page"
+            exp = prefix + "[0-9]+" + ".xml"
             names = [fn for fn in zip.namelist() if re.match(exp, fn)]
             for fn in sorted(
-                    names,
-                    key=lambda e,prefix=prefix: int(e[len(prefix):len(e)-4])):
+                names, key=lambda e, prefix=prefix: int(e[len(prefix) : len(e) - 4])
+            ):
                 if stl is None:
-                    stl = self.computestylesheet('vs')
+                    stl = self.computestylesheet("vs")
                 content = zip.read(fn)
                 docdata += rclxslt.apply_sheet_data(stl, content)
         except Exception as ex:
-            #self.em.rclog("VISIO Exception: %s" % ex)
+            # self.em.rclog("VISIO Exception: %s" % ex)
             pass
-        
-        docdata += b'</body></html>'
+
+        docdata += b"</body></html>"
 
         return docdata
-    
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     proto = rclexecm.RclExecM()
     extract = OXExtractor(proto)
     rclexecm.main(proto, extract)

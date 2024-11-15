@@ -11,7 +11,7 @@ import glob
 
 def _msg(s):
     rclexecm.logmsg(s)
-    
+
 
 sysplat = platform.system()
 if sysplat != "Windows":
@@ -20,14 +20,17 @@ if sysplat != "Windows":
 
 try:
     import msvcrt
+
     msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY)
 except Exception as err:
     _msg("setmode binary failed: %s" % str(err))
 
 sevenz = rclexecm.which("7z")
 if not sevenz:
-    _msg("rcluncomp.py: can't find 7z exe. Maybe set recollhelperpath " \
-          "in recoll.conf ?")
+    _msg(
+        "rcluncomp.py: can't find 7z exe. Maybe set recollhelperpath "
+        "in recoll.conf ?"
+    )
     sys.exit(2)
 
 # Params: uncompression program, input file name, temp directory.
@@ -42,7 +45,7 @@ outdir = sys.argv[3]
 # here because there is little data printed. AFAIK nothing goes to stderr anyway
 try:
     cmd = [sevenz, "e", "-bd", "-y", "-o" + outdir, infile]
-    subprocess.check_output(cmd, stderr = subprocess.PIPE)
+    subprocess.check_output(cmd, stderr=subprocess.PIPE)
     # Don't use os.path.join, we always want to use '/'
     outputname = glob.glob(outdir + "/*")
     # There should be only one file in there..

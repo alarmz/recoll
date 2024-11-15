@@ -17,40 +17,44 @@ import email.utils
 
 from recoll import recoll
 
+
 def logmsg(s):
     print(f"rclmbox.py: {s}", file=sys.stderr)
-    
+
+
 # EDIT
 # Change this for some directory with mbox files, such as a
 # Thunderbird/Icedove mail storage directory.
 mbdir = os.path.expanduser("~/mail")
-#mbdir = os.path.expanduser("~/.icedove/n8n19644.default/Mail/Local Folders/")
+# mbdir = os.path.expanduser("~/.icedove/n8n19644.default/Mail/Local Folders/")
+
 
 # Utility: extract text for named header
-def header_value(msg, nm, to_utf = False):
+def header_value(msg, nm, to_utf=False):
     value = msg.get(nm)
     if value == None:
         return ""
-    #value = value.replace("\n", "")
-    #value = value.replace("\r", "")
+    # value = value.replace("\n", "")
+    # value = value.replace("\r", "")
     parts = email.header.decode_header(value)
-    univalue = u""
+    univalue = ""
     for part in parts:
         try:
             if part[1] != None:
-                univalue += part[0].decode(part[1]) + u" "
+                univalue += part[0].decode(part[1]) + " "
             else:
                 if isinstance(part[0], bytes):
-                    univalue += part[0].decode("cp1252") + u" "
+                    univalue += part[0].decode("cp1252") + " "
                 else:
-                    univalue += part[0] + u" "
+                    univalue += part[0] + " "
         except Exception as err:
             logmsg("Failed decoding header: %s" % err)
             pass
     if to_utf:
-        return univalue.encode('utf-8')
+        return univalue.encode("utf-8")
     else:
         return univalue
+
 
 # Utility: extract text parts from body
 def extract_text(msg):
@@ -58,14 +62,17 @@ def extract_text(msg):
     text = ""
     # We only output the headers for previewing, else they're already
     # output/indexed as fields.
-    if "RECOLL_FILTER_FORPREVIEW" in os.environ and os.environ["RECOLL_FILTER_FORPREVIEW"] == "yes":
+    if (
+        "RECOLL_FILTER_FORPREVIEW" in os.environ
+        and os.environ["RECOLL_FILTER_FORPREVIEW"] == "yes"
+    ):
         text += "From: " + header_value(msg, "From") + "\n"
         text += "To: " + header_value(msg, "To") + "\n"
         text += "Subject: " + header_value(msg, "Subject") + "\n"
         text += "\n"
     for part in msg.walk():
         if part.is_multipart():
-            pass 
+            pass
         else:
             ct = part.get_content_type()
             if ct.lower() == "text/plain":
@@ -81,6 +88,7 @@ def extract_text(msg):
 
 class mbox_indexer:
     """The indexer classs. An object is created for indexing one mbox folder"""
+
     def __init__(self, db, mbfile):
         """Initialize for writable db recoll.Db object and mbfile mbox
         file. We retrieve the the file size and mtime."""
@@ -93,7 +101,7 @@ class mbox_indexer:
         self.parent_udi = self.udi(0)
 
     def sig(self):
-        """Create an update verification value for an mbox file: we use 
+        """Create an update verification value for an mbox file: we use
         the modification time concatenated with the size"""
         return str(self.fmtime) + ":" + str(self.fbytes)
 
@@ -106,7 +114,7 @@ class mbox_indexer:
 
     def index(self):
         if not self.db.needUpdate(self.udi(0), self.sig()):
-            logmsg("Index is up to date for %s"%self.mbfile)
+            logmsg("Index is up to date for %s" % self.mbfile)
             return None
         mb = mailbox.mbox(self.mbfile)
         for msg in mb.values():
@@ -121,20 +129,20 @@ class mbox_indexer:
         doc.url = "file://" + self.mbfile
         doc.sig = self.sig()
         self.db.addOrUpdate(self.parent_udi, doc)
-        
+
     def getdata(self, ipath):
         """Implements the 'fetch' data access interface (called at
         query time from the command line)."""
-        #logmsg("mbox::getdata: ipath: %s" % ipath)
+        # logmsg("mbox::getdata: ipath: %s" % ipath)
         imsgnum = int(ipath)
         mb = mailbox.mbox(self.mbfile)
-        msgnum = 0;
+        msgnum = 0
         for msg in mb.values():
             msgnum += 1
             if msgnum == imsgnum:
                 return extract_text(msg)
         return ""
-        
+
     def index_message(self, msg):
         doc = self.db.doc()
 
@@ -155,12 +163,12 @@ class mbox_indexer:
 
         # Main document text and MIME type
         doc.text = extract_text(msg)
-        doc.dbytes = str(len(doc.text.encode('UTF-8')))
+        doc.dbytes = str(len(doc.text.encode("UTF-8")))
         doc.mimetype = "text/plain"
-        
+
         # Store data for later "up to date" checks
         doc.sig = self.sig()
-        
+
         # The rclbes field is the link between the index data and this
         # script when used at query time
         doc.rclbes = "MBOX"
@@ -173,15 +181,19 @@ class mbox_indexer:
         # want to e.g. delete the document index data (and other ops).
         udi = self.udi(self.msgnum)
 
-        self.db.addOrUpdate(udi, doc, parent_udi = self.parent_udi)
+        self.db.addOrUpdate(udi, doc, parent_udi=self.parent_udi)
+
 
 db = None
+
+
 def handler(signum, frame):
     logmsg(f"Got signal")
     if db:
         db.close()
     logmsg(f"Exiting")
     sys.exit(1)
+
 
 signal.signal(signal.SIGINT, handler)
 signal.signal(signal.SIGTERM, handler)
@@ -201,16 +213,19 @@ def index_mboxdir(dir):
         mbidx.index()
     db.purge()
 
-usage_string='''Usage:
+
+usage_string = """Usage:
 rclmbox.py index
     Index the directory (the path is hard-coded inside the script)
 rclmbox.py <fetch|makesig> udi url ipath
     fetch subdoc data or make signature (query time)
-'''
+"""
+
 
 def usage():
     print("%s" % usage_string, file=sys.stderr)
     sys.exit(1)
+
 
 if len(sys.argv) < 2:
     usage()
@@ -221,14 +236,14 @@ elif len(sys.argv) == 5:
     udi = sys.argv[2]
     url = sys.argv[3]
     ipath = sys.argv[4]
-    
-    mbfile = url.replace('file://', '')
+
+    mbfile = url.replace("file://", "")
     # No need for a db for getdata or makesig.
     mbidx = mbox_indexer(None, mbfile)
 
-    if cmd == 'fetch':
+    if cmd == "fetch":
         print(f"{mbidx.getdata(ipath)}", end="")
-    elif cmd == 'makesig':
+    elif cmd == "makesig":
         print(mbidx.sig(), end="")
     else:
         usage()

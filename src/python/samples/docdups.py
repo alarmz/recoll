@@ -6,6 +6,7 @@ import xapian
 o_index_stripchars = True
 md5wpref = "XM"
 
+
 # Handle caps/diac-stripping option. If the db is raw the prefixes are
 # wrapped with ":"
 def wrap_prefix(prefix):
@@ -13,6 +14,7 @@ def wrap_prefix(prefix):
         return prefix
     else:
         return b":" + prefix + b":"
+
 
 def init_stripchars(xdb):
     global o_index_stripchars
@@ -24,7 +26,7 @@ def init_stripchars(xdb):
             o_index_stripchars = False
         break
     md5wpref = wrap_prefix(b"XM")
-    
+
 
 # Retrieve named value from document data record.
 # The record format is a sequence of nm=value lines
@@ -39,10 +41,11 @@ def get_attributes(xdb, docid, flds, decode=True):
         else:
             e = data.find(b"\n", s)
             if decode:
-                res.append(data[s+len(fld)+1:e].decode('UTF-8'))
+                res.append(data[s + len(fld) + 1 : e].decode("UTF-8"))
             else:
-                res.append(data[s+len(fld)+1:e])
+                res.append(data[s + len(fld) + 1 : e])
     return res
+
 
 # Convenience: retrieve postings as Python list
 def get_postlist(xdb, term):
@@ -50,7 +53,7 @@ def get_postlist(xdb, term):
     for posting in xdb.postlist(term):
         ret.append(posting.docid)
     return ret
-    
+
 
 # Return list of docids having same md5 including self
 def get_dups(xdb, docid):
@@ -64,6 +67,7 @@ def get_dups(xdb, docid):
 
     posts = get_postlist(xdb, md5term)
     return posts
+
 
 # Retrieve all sets of duplicates:
 #   walk the list of all MD5 terms, look up their posting lists, and
@@ -87,20 +91,21 @@ def find_all_dups(xdb):
 # Print docid url ipath for list of docids
 def print_urlipath(xdb, doclist):
     for docid in doclist:
-        url,ipath = get_attributes(xdb, docid, [b"url", b"ipath"])
+        url, ipath = get_attributes(xdb, docid, [b"url", b"ipath"])
         print("%s %s %s" % (docid, url, ipath))
 
+
 def msg(s):
-    print("%s" % s, file = sys.stderr)
-    
+    print("%s" % s, file=sys.stderr)
+
+
 ########## Main program
 
 if len(sys.argv) < 2:
-    msg("Usage: %s /path/to/db [docid [docid ...]]" % \
-          sys.argv[0])
+    msg("Usage: %s /path/to/db [docid [docid ...]]" % sys.argv[0])
     msg(" will print all sets of dups if no docid is given")
     msg(" else only the duplicates for the given docids")
-    
+
     sys.exit(1)
 
 xdbpath = sys.argv[1]
@@ -109,9 +114,9 @@ xdb = xapian.Database(xdbpath)
 init_stripchars(xdb)
 
 try:
-    
+
     if len(sys.argv) == 2:
-        # No docid args, 
+        # No docid args,
         alldups = find_all_dups(xdb)
 
         for dups in alldups:
@@ -122,7 +127,7 @@ try:
             dups = get_dups(xdb, docid)
             if dups is not None and len(dups) > 1:
                 print_urlipath(xdb, dups)
-                
+
 except Exception as e:
     msg("Error: %s" % str(e))
     sys.exit(1)

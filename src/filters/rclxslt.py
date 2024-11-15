@@ -25,18 +25,20 @@ try:
     from lxml import etree
 except:
     print("RECFILTERROR HELPERNOTFOUND python3:lxml")
-    sys.exit(1);
+    sys.exit(1)
+
 
 def _apply_sheet_doc(sheet, doc):
     styledoc = etree.fromstring(sheet)
     transform = etree.XSLT(styledoc)
     return bytes(transform(doc))
 
+
 def apply_sheet_data(sheet, data):
     doc = etree.fromstring(data)
     return _apply_sheet_doc(sheet, doc)
 
+
 def apply_sheet_file(sheet, fn):
     doc = etree.parse(fn)
     return _apply_sheet_doc(sheet, doc)
-

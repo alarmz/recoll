@@ -36,13 +36,13 @@ from hwp5.transforms import BaseTransform
 from hwp5.xmlmodel import Hwp5File as xml_Hwp5File
 from hwp5.utils import cached_property
 
+
 # Associate HTML meta names and hwp summaryinfo values
 def metafields(summaryinfo):
-    yield(('Description', summaryinfo.subject + " " +
-           summaryinfo.comments))
-    yield(('Author', summaryinfo.author))
-    yield(('Keywords', summaryinfo.keywords))
-    yield(('Date', summaryinfo.lastSavedTime))
+    yield (("Description", summaryinfo.subject + " " + summaryinfo.comments))
+    yield (("Author", summaryinfo.author))
+    yield (("Keywords", summaryinfo.keywords))
+    yield (("Date", summaryinfo.lastSavedTime))
 
 
 # Extractor class. We use hwp summaryinfo to extract metadata and code
@@ -53,7 +53,7 @@ class HWP5Dump(RclBaseHandler):
 
     def html_text(self, fn):
         # hwp wants str filenames. This is unfortunate
-        fn = fn.decode('utf-8')
+        fn = fn.decode("utf-8")
         try:
             hwpfile = fs_Hwp5File(fn)
         except Exception as ex:
@@ -62,15 +62,15 @@ class HWP5Dump(RclBaseHandler):
         try:
             tt = hwpfile.summaryinfo.title.strip()
             if tt:
-                tt = rclexecm.htmlescape(tt.encode('utf-8'))
-                self.em.setfield('caption', tt)
+                tt = rclexecm.htmlescape(tt.encode("utf-8"))
+                self.em.setfield("caption", tt)
 
-            for k,v in metafields(hwpfile.summaryinfo):
+            for k, v in metafields(hwpfile.summaryinfo):
                 v = "{0}".format(v)
                 v = v.strip()
                 if v:
-                    v = rclexecm.htmlescape(v.encode('utf-8'))
-                    k = k.encode('utf-8')
+                    v = rclexecm.htmlescape(v.encode("utf-8"))
+                    k = k.encode("utf-8")
                     self.em.setfield(k, v)
         except Exception as e:
             self.em.rclog("Exception: %s" % e)
@@ -83,7 +83,8 @@ class HWP5Dump(RclBaseHandler):
         # version for the old approach.
         return rclexecm.execPythonScript(["hwp5html", "--html", fn])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     proto = rclexecm.RclExecM()
     extract = HWP5Dump(proto)
     rclexecm.main(proto, extract)

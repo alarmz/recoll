@@ -35,16 +35,18 @@ def pathHash(path, maxlen):
     HASHLEN = 22
     if len(path) <= maxlen:
         return path
-    digest = hashlib.md5(path[maxlen-HASHLEN:]).digest()
+    digest = hashlib.md5(path[maxlen - HASHLEN :]).digest()
     adigest = base64.b64encode(digest)
     adigest = adigest[:-2]
-    return path[:maxlen-HASHLEN] + adigest
+    return path[: maxlen - HASHLEN] + adigest
+
 
 def make_udi(path, ipath=b""):
     PATHHASHLEN = 150
-    path +=  b"|"
+    path += b"|"
     path += ipath
     return pathHash(path, PATHHASHLEN)
+
 
 # Return xapian posting list contents as Python list
 def get_postlist(xdb, term):
@@ -52,6 +54,7 @@ def get_postlist(xdb, term):
     for posting in xdb.postlist(term):
         ret.append(posting.docid)
     return ret
+
 
 # Retrieve named value from document data record.
 # The record format is a sequence of nm=value lines
@@ -66,15 +69,17 @@ def get_attributes(xdb, docid, flds, decode=True):
         else:
             e = data.find(b"\n", s)
             if decode:
-                res.append(data[s+len(fld)+1:e].decode('UTF-8'))
+                res.append(data[s + len(fld) + 1 : e].decode("UTF-8"))
             else:
-                res.append(data[s+len(fld)+1:e])
+                res.append(data[s + len(fld) + 1 : e])
     return res
+
 
 def msg(s):
     print("%s" % s, file=sys.stderr)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Usage: rcldocdata <path>", file=sys.stderr)
         sys.exit(1)
@@ -100,13 +105,10 @@ if __name__ == '__main__':
         sys.exit(1)
 
     docid = postlist[0]
-    res = get_attributes(xdb, docid, ['sig', 'fbytes'])
+    res = get_attributes(xdb, docid, ["sig", "fbytes"])
     msg("Document signature %s file size %s" % (res[0], res[1]))
     fbstr = res[1]
-    tmstr = res[0][len(fbstr):]
+    tmstr = res[0][len(fbstr) :]
     ts = int(tmstr)
     msg("Doc ref uxtime: %s" % tmstr)
-    msg("Doc ref date %s" % datetime.utcfromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
-    
-        
-    
+    msg("Doc ref date %s" % datetime.utcfromtimestamp(ts).strftime("%Y-%m-%d %H:%M:%S"))

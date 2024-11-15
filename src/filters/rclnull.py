@@ -22,15 +22,19 @@ import sys
 import rclexecm
 from rclbasehandler import RclBaseHandler
 
+
 class NullDump(RclBaseHandler):
     def __init__(self, em):
         super(NullDump, self).__init__(em)
 
     def html_text(self, fn):
-        return b'<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">' \
-            b'<title></title></head><body><pre></pre></body></html>'
+        return (
+            b'<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">'
+            b"<title></title></head><body><pre></pre></body></html>"
+        )
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     proto = rclexecm.RclExecM()
     extract = NullDump(proto)
     rclexecm.main(proto, extract)

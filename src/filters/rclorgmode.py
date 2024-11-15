@@ -15,7 +15,7 @@
 # Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-'''Read an org-mode file, optionally break it into subdocs" along level 1 headings'''
+"""Read an org-mode file, optionally break it into subdocs" along level 1 headings"""
 
 import sys
 import re
@@ -23,6 +23,7 @@ import re
 import rclexecm
 import rclconfig
 import conftree
+
 
 class OrgModeExtractor:
     def __init__(self, em):
@@ -32,15 +33,15 @@ class OrgModeExtractor:
         self.docs = []
         config = rclconfig.RclConfig()
         self.createsubdocs = conftree.valToBool(config.getConfParam("orgmodesubdocs"))
-        
+
     def extractone(self, index):
         if index >= len(self.docs):
-            return(False, "", "", True)
+            return (False, "", "", True)
         docdata = self.docs[index]
-        #self.em.rclog(docdata)
+        # self.em.rclog(docdata)
 
         iseof = rclexecm.RclExecM.noteof
-        if self.currentindex >= len(self.docs) -1:
+        if self.currentindex >= len(self.docs) - 1:
             iseof = rclexecm.RclExecM.eofnext
         self.em.setmimetype("text/x-orgmode-sub")
         try:
@@ -69,19 +70,19 @@ class OrgModeExtractor:
         # because it's not a proper entry.
         self.selftext = self.docs[0]
         self.docs = self.docs[1:]
-        #self.em.rclog("openfile: Entry count: %d" % len(self.docs))
+        # self.em.rclog("openfile: Entry count: %d" % len(self.docs))
         return True
 
     def getipath(self, params):
         try:
-            if params["ipath"] == b'':
+            if params["ipath"] == b"":
                 index = 0
             else:
                 index = int(params["ipath"])
         except:
             return (False, "", "", True)
         return self.extractone(index)
-        
+
     def getnext(self, params):
         if not self.createsubdocs:
             return (True, self.selftext, "", rclexecm.RclExecM.eofnext)
@@ -89,7 +90,7 @@ class OrgModeExtractor:
         if self.currentindex == -1:
             # Return "self" doc
             self.currentindex = 0
-            self.em.setmimetype(b'text/plain')
+            self.em.setmimetype(b"text/plain")
             if len(self.docs) == 0:
                 eof = rclexecm.RclExecM.eofnext
             else:
@@ -100,7 +101,7 @@ class OrgModeExtractor:
             self.em.rclog("getnext: EOF hit")
             return (False, "", "", rclexecm.RclExecM.eofnow)
         else:
-            ret= self.extractone(self.currentindex)
+            ret = self.extractone(self.currentindex)
             self.currentindex += 1
             return ret
 

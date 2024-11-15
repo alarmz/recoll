@@ -22,22 +22,22 @@ import os
 import sys
 import rclexecm
 
+
 class RclBaseHandler(object):
-    '''Base Object for simple extractors.
+    """Base Object for simple extractors.
 
     This implements the boilerplate code for simple extractors for file types with a single
     document. The derived class would typically need only to implement the html_text method to
     return the document text in HTML format by default, but any output MIME value is also possible
     by setting self.outputmimetype (do *not* call self.em.setmimetype(), the value would be
     clobbered.
-    '''
-    
+    """
+
     def __init__(self, em):
         self.em = em
 
-
     def extractone(self, params):
-        #self.em.rclog("extractone fn %s mt %s" % (params["filename"], \
+        # self.em.rclog("extractone fn %s mt %s" % (params["filename"], \
         #                                          params["mimetype"]))
         if not "filename" in params:
             self.em.rclog("extractone: no file name")
@@ -49,35 +49,32 @@ class RclBaseHandler(object):
         else:
             self.inputmimetype = None
 
-        self.outputmimetype = 'text/html'
+        self.outputmimetype = "text/html"
         try:
             # Note: "html_text" can change self.outputmimetype and
             # output text/plain
             html = self.html_text(fn)
         except Exception as err:
-            #import traceback
-            #traceback.print_exc()
+            # import traceback
+            # traceback.print_exc()
             self.em.rclog("%s : %s" % (fn, err))
             return (False, "", "", rclexecm.RclExecM.eofnow)
 
         self.em.setmimetype(self.outputmimetype)
         return (True, html, "", rclexecm.RclExecM.eofnext)
-        
 
     ###### File type handler api, used by rclexecm ---------->
     def openfile(self, params):
         self.currentindex = 0
         return True
 
-
     def getipath(self, params):
         return self.extractone(params)
-
 
     def getnext(self, params):
         if self.currentindex >= 1:
             return (False, "", "", rclexecm.RclExecM.eofnow)
         else:
-            ret= self.extractone(params)
+            ret = self.extractone(params)
             self.currentindex += 1
             return ret

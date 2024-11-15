@@ -34,32 +34,47 @@ import rclconfig
 import rclocrcache
 import rclexecm
 
+
 def _deb(s):
     rclexecm.logmsg("rclocr: %s" % s)
 
+
 ocrcleanupmodule = None
+
+
 @atexit.register
 def finalcleanup():
     if ocrcleanupmodule:
         ocrcleanupmodule.cleanocr()
 
+
 def signal_handler(sig, frame):
     sys.exit(1)
 
-# Not all signals necessary exist on all systems, use catch
-try: signal.signal(signal.SIGHUP, signal_handler)
-except: pass
-try: signal.signal(signal.SIGINT, signal_handler)
-except: pass
-try: signal.signal(signal.SIGQUIT, signal_handler)
-except: pass
-try: signal.signal(signal.SIGTERM, signal_handler)
-except: pass
 
-    
+# Not all signals necessary exist on all systems, use catch
+try:
+    signal.signal(signal.SIGHUP, signal_handler)
+except:
+    pass
+try:
+    signal.signal(signal.SIGINT, signal_handler)
+except:
+    pass
+try:
+    signal.signal(signal.SIGQUIT, signal_handler)
+except:
+    pass
+try:
+    signal.signal(signal.SIGTERM, signal_handler)
+except:
+    pass
+
+
 def Usage():
     _deb("Usage: rclocr.py <imagefilename>")
     sys.exit(1)
+
 
 def breakwrite(f, data):
     # On Windows, writing big chunks can fail with a "not enough space"
@@ -67,14 +82,14 @@ def breakwrite(f, data):
     # See https://bugs.python.org/issue11395
     # In any case, just break it up
     total = len(data)
-    bs = 4*1024
+    bs = 4 * 1024
     offset = 0
     while total > 0:
         if total < bs:
             tow = total
         else:
             tow = bs
-        f.write(data[offset:offset+tow])
+        f.write(data[offset : offset + tow])
         offset += tow
         total -= tow
 
@@ -97,7 +112,7 @@ if incache:
         _deb("error writing: %s" % e)
         sys.exit(1)
     sys.exit(0)
-    
+
 #### Data not in cache
 
 # Retrieve configured OCR program names and try to load the
@@ -111,7 +126,7 @@ if not ocrprogs:
     _deb("No ocrprogs variable in recoll configuration")
     sys.exit(0)
 
-#_deb("ocrprogs: %s" % ocrprogs)
+# _deb("ocrprogs: %s" % ocrprogs)
 
 proglist = ocrprogs.split(" ")
 ok = False
@@ -130,7 +145,7 @@ if not ok:
     _deb("No OCR module could be loaded")
     sys.exit(1)
 
-#_deb("Using ocr module %s" % modulename)
+# _deb("Using ocr module %s" % modulename)
 
 # The OCR module will retrieve its specific parameters from the
 # configuration
@@ -140,8 +155,7 @@ status, data = ocr.runocr(config, path)
 if not status:
     _deb("runocr failed")
     sys.exit(1)
-    
+
 cache.store(path, data)
 sys.stdout.buffer.write(data)
 sys.exit(0)
-

@@ -25,8 +25,9 @@ import codecs
 
 from rclbasehandler import RclBaseHandler
 
-    
+
 _BOMLEN = len(codecs.BOM_UTF8)
+
 
 class DJVUExtractor(RclBaseHandler):
 
@@ -35,29 +36,42 @@ class DJVUExtractor(RclBaseHandler):
         self.djvutxt = rclexecm.which("djvutxt")
         if not self.djvutxt:
             print("RECFILTERROR HELPERNOTFOUND djvutxt")
-            sys.exit(1);
+            sys.exit(1)
         self.djvused = rclexecm.which("djvused")
 
-
     def html_text(self, fn):
-        self.em.setmimetype('text/html')
+        self.em.setmimetype("text/html")
         fn = rclexecm.subprocfile(fn)
         # Extract metadata
         metadata = b""
         if self.djvused:
             try:
                 metadata = subprocess.check_output(
-                    [self.djvused, fn, "-u", "-e", "select;print-meta;select 1;print-meta"])
+                    [
+                        self.djvused,
+                        fn,
+                        "-u",
+                        "-e",
+                        "select;print-meta;select 1;print-meta",
+                    ]
+                )
             except Exception as e:
                 self.em.rclog(f"djvused failed: {e}")
-        fields = (b"author", b"title", b"booktitle", b"publisher", b"editor", b"year",
-                  b"creationdate")
+        fields = (
+            b"author",
+            b"title",
+            b"booktitle",
+            b"publisher",
+            b"editor",
+            b"year",
+            b"creationdate",
+        )
         metadic = {}
         for f in fields:
             metadic[f] = b""
         if metadata.startswith(codecs.BOM_UTF8):
             metadata = metadata[_BOMLEN:]
-        
+
         for line in metadata.splitlines():
             ll = line.split(b"\t")
             if len(ll) >= 2:
@@ -65,19 +79,28 @@ class DJVUExtractor(RclBaseHandler):
                 if nm in fields:
                     value = (b" ".join(ll[1:])).strip(b' \t"')
                     metadic[nm] += value + b" "
-        #self.em.rclog(f"METADIC: {metadic}")
+        # self.em.rclog(f"METADIC: {metadic}")
 
         # Main text
         txtdata = subprocess.check_output([self.djvutxt, fn])
 
         data = b"<html><head>\n"
         if metadic[b"title"]:
-            data += b"<title>" + rclexecm.htmlescape(metadic[b"title"].strip()) + b"</title>\n"
+            data += (
+                b"<title>"
+                + rclexecm.htmlescape(metadic[b"title"].strip())
+                + b"</title>\n"
+            )
         data += b'<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">\n'
         for nm in [nm for nm in fields if nm != b"title"]:
             if metadic[nm]:
-                data += b'<meta name="' + nm + b'" content="' + \
-                    rclexecm.htmlescape(metadic[nm].strip()) + b'">\n' 
+                data += (
+                    b'<meta name="'
+                    + nm
+                    + b'" content="'
+                    + rclexecm.htmlescape(metadic[nm].strip())
+                    + b'">\n'
+                )
         data += b"</head><body><pre>"
 
         data += rclexecm.htmlescape(txtdata)

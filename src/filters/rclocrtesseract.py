@@ -27,11 +27,12 @@ import glob
 
 import rclexecm
 
-_mswindows = (sys.platform == "win32")
+_mswindows = sys.platform == "win32"
 if _mswindows:
     ocrlangfile = "rclocrlang.txt"
     import platform
-    if platform.machine().endswith('64'):
+
+    if platform.machine().endswith("64"):
         # See comments in ../windows/mkinstdir.sh about the setup of the poppler installation
         popplerdir = "poppler/Library/bin/"
     else:
@@ -40,16 +41,19 @@ else:
     popplerdir = ""
     ocrlangfile = ".rclocrlang"
 
-_okexts = ('.tif', '.tiff', '.jpg', '.png', '.jpeg')
+_okexts = (".tif", ".tiff", ".jpg", ".png", ".jpeg")
 
 tesseractcmd = None
 pdftoppmcmd = None
 pdftocairocmd = None
 
+
 def _deb(s):
     rclexecm.logmsg("rclocrtesseract: %s" % s)
 
+
 tmpdir = None
+
 
 def _maybemaketmpdir():
     global tmpdir
@@ -89,14 +93,14 @@ def ocrpossible(config, path):
     if not os.path.isfile(tesseractcmd):
         _deb("tesseractcmd parameter [%s] is not a file" % tesseractcmd)
         return False
-    
+
     # Check input format
-    base,ext = os.path.splitext(path)
+    base, ext = os.path.splitext(path)
     ext = ext.lower()
     if ext in _okexts:
         return True
 
-    if ext == '.pdf':
+    if ext == ".pdf":
         # Check for pdftoppm or pdftocairo. pdftocairo, can produce a multi-page pdf and make the
         # rest simpler, but the legacy code used pdftoppm, and some poppler installs do not include
         # pdftocairo.
@@ -162,32 +166,42 @@ def _pdftesseract(config, path):
 
     tesseractlang = _guesstesseractlang(config, path)
 
-    #tesserrorfile = os.path.join(tmpdir.getpath(), "tesserrorfile")
+    # tesserrorfile = os.path.join(tmpdir.getpath(), "tesserrorfile")
     tmpfile = os.path.join(tmpdir.getpath(), "ocrXXXXXX")
 
     # Split pdf pages
     try:
         tmpdir.vacuumdir()
         if pdftocairocmd:
-            cmd = [pdftocairocmd, "-tiff", "-tiffcompression", "lzw", "-r", "300", path, tmpfile]
+            cmd = [
+                pdftocairocmd,
+                "-tiff",
+                "-tiffcompression",
+                "lzw",
+                "-r",
+                "300",
+                path,
+                tmpfile,
+            ]
         else:
             cmd = [pdftoppmcmd, "-r", "300", path, tmpfile]
-            #_deb("Executing %s" % cmd)
+            # _deb("Executing %s" % cmd)
         subprocess.check_call(cmd)
     except Exception as e:
-        _deb("%s failed: %s" % (pdftoppmcmd,e))
+        _deb("%s failed: %s" % (pdftoppmcmd, e))
         return b""
 
     # Note: unfortunately, pdftoppm silently fails if the temp file
     # system is full. There is no really good way to check for
     # this. We consider any empty file to signal an error
-    
+
     pages = glob.glob(tmpfile + "*")
     for f in pages:
         size = os.path.getsize(f)
         if os.path.getsize(f) == 0:
-            _deb("pdftoppm created empty files. "
-                 "Suspecting full file system, failing")
+            _deb(
+                "pdftoppm created empty files. " "Suspecting full file system, failing"
+            )
             return False, ""
 
     nenv = os.environ.copy()
@@ -195,22 +209,24 @@ def _pdftesseract(config, path):
     if cnthreads:
         try:
             nthreads = int(cnthreads)
-            nenv['OMP_THREAD_LIMIT'] = cnthreads
+            nenv["OMP_THREAD_LIMIT"] = cnthreads
         except:
             pass
 
     for f in sorted(pages):
-        out = b''
+        out = b""
         try:
             out = subprocess.check_output(
                 [tesseractcmd, f, f, "-l", tesseractlang],
-                stderr=subprocess.STDOUT, env=nenv)
+                stderr=subprocess.STDOUT,
+                env=nenv,
+            )
         except Exception as e:
-            _deb("%s failed: %s" % (tesseractcmd,e))
+            _deb("%s failed: %s" % (tesseractcmd, e))
 
-        errlines = out.split(b'\n')
+        errlines = out.split(b"\n")
         if len(errlines) > 5:
-            _deb("Tesseract error output: %d %s" % (len(errlines),out))
+            _deb("Tesseract error output: %d %s" % (len(errlines), out))
 
     # Concatenate the result files
     txtfiles = glob.glob(tmpfile + "*" + ".txt")
@@ -218,7 +234,7 @@ def _pdftesseract(config, path):
     for f in sorted(txtfiles):
         data += open(f, "rb").read()
 
-    return True,data
+    return True, data
 
 
 def _simpletesseract(config, path):
@@ -226,10 +242,11 @@ def _simpletesseract(config, path):
 
     try:
         out = subprocess.check_output(
-            [tesseractcmd, path, 'stdout', '-l', tesseractlang],
-            stderr=subprocess.DEVNULL)
+            [tesseractcmd, path, "stdout", "-l", tesseractlang],
+            stderr=subprocess.DEVNULL,
+        )
     except Exception as e:
-        _deb("%s failed: %s" % (tesseractcmd,e))
+        _deb("%s failed: %s" % (tesseractcmd, e))
         return False, ""
     return True, out
 
@@ -237,20 +254,19 @@ def _simpletesseract(config, path):
 # run ocr on the input path and output the result data.
 def runocr(config, path):
     _maybemaketmpdir()
-    base,ext = os.path.splitext(path)
+    base, ext = os.path.splitext(path)
     ext = ext.lower()
     if ext in _okexts:
         return _simpletesseract(config, path)
     else:
         return _pdftesseract(config, path)
 
-   
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     import rclconfig
+
     config = rclconfig.RclConfig()
-    path =  sys.argv[1]
+    path = sys.argv[1]
     if ocrpossible(config, path):
         ok, data = runocr(config, sys.argv[1])
     else:

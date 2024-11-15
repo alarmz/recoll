@@ -143,6 +143,7 @@ import glob
 
 from rclexecm import logmsg as _deb
 
+
 def _catslash(p):
     if p and p[-1] != "/":
         p += "/"
@@ -158,9 +159,9 @@ _recoll_tmpdir = _catslash(_recoll_tmpdir)
 class OCRCache(object):
     def __init__(self, conf, hashmb=0):
         """Initialize the cache object using parameters from conf, a RclConfig object.
-        
+
         Keyword arguments:
-        hashmb -- if non zero we only hash the amount of data specified by the value (mb). 
+        hashmb -- if non zero we only hash the amount of data specified by the value (mb).
           Data slices will be taken from the start, middle, and end of the file.
         """
         self.config = conf
@@ -172,11 +173,11 @@ class OCRCache(object):
         self.pathdir = os.path.join(self.cachedir, "paths")
         for dir in (self.objdir, self.pathdir):
             os.makedirs(dir, exist_ok=True)
-        
+
     # Compute sha1 of path, as two parts of 2 and 38 chars
     def _hashpath(self, path):
         if type(path) != type(b""):
-            path = path.encode('utf-8')
+            path = path.encode("utf-8")
         m = hashlib.sha1()
         m.update(path)
         h = m.hexdigest()
@@ -184,7 +185,7 @@ class OCRCache(object):
 
     def _hashslice(self, hobj, f, offs, slicesz):
         """Update hash with data slice from file"""
-        #_deb(f"Hashing {slicesz} at {offs}")
+        # _deb(f"Hashing {slicesz} at {offs}")
         f.seek(int(offs))
         cnt = 0
         while cnt < slicesz:
@@ -194,14 +195,14 @@ class OCRCache(object):
                 break
             hobj.update(d)
             cnt += len(d)
-            
+
     def _hashdata(self, path):
         """Compute sha1 of path data contents, as two parts of 2 and 38 chars.
 
         If hashmb was set on init, we compute a partial hash in three slices at the start,
         middle and end of the file, with a total size of hashmb * MBs.
         """
-        #_deb("Hashing DATA")
+        # _deb("Hashing DATA")
         sz = os.path.getsize(path)
         hobj = hashlib.sha1()
         hashbytes = self.hashmb * 1000000
@@ -209,17 +210,17 @@ class OCRCache(object):
             if not self.hashmb or sz <= hashbytes:
                 self._hashslice(hobj, f, 0, sz)
             else:
-                slicesz = hashbytes/3
-                for offs in (0, sz/2 - slicesz/2, sz - slicesz):
+                slicesz = hashbytes / 3
+                for offs in (0, sz / 2 - slicesz / 2, sz - slicesz):
                     self._hashslice(hobj, f, offs, slicesz)
         h = hobj.hexdigest()
-        #_deb(f"DATA hash {h[0:2]} {h[2:]}")
+        # _deb(f"DATA hash {h[0:2]} {h[2:]}")
         return h[0:2], h[2:]
 
     def _readpathfile(self, ppf):
         """Read path file and return values. We do not decode the image path
         as this is only used for purging"""
-        with open(ppf, 'r') as f:
+        with open(ppf, "r") as f:
             line = f.read()
         dd, df, tm, sz, pth = line.split()
         tm = int(tm)
@@ -272,8 +273,9 @@ class OCRCache(object):
     # Create path file with given elements.
     def _updatepathfile(self, pd, pf, dd, df, tm, sz, path):
         global _tmpdir, _recoll_tmpdir
-        if (_tmpdir and path.startswith(_tmpdir)) or \
-           (_recoll_tmpdir and path.startswith(_recoll_tmpdir)):
+        if (_tmpdir and path.startswith(_tmpdir)) or (
+            _recoll_tmpdir and path.startswith(_recoll_tmpdir)
+        ):
             _deb(f"ocrcache: not storing path data for temporary file {path}")
             return
         dir = os.path.join(self.pathdir, pd)
@@ -303,7 +305,7 @@ class OCRCache(object):
 
     def erase(self, path):
         """Unconditionally erase cached data for input data file path"""
-        ok=True
+        ok = True
         pd, pf = self._hashpath(path)
         pfn = os.path.join(self.pathdir, pd, pf)
         try:
@@ -323,7 +325,7 @@ class OCRCache(object):
             ok = False
             _deb(f"Ocrcache: failed deleting {dpfn}: {ex}")
         return ok
-    
+
     # Retrieve cached OCR'd data for image path. Possibly update the
     # path file as a side effect (case where the image has moved, but
     # the data has not changed).
@@ -340,7 +342,9 @@ class OCRCache(object):
 
         if not pincache:
             # File may have moved. Create/Update path file for next time
-            _deb(f"ocrcache::get: data ok but path file for {path} does not exist: creating it")
+            _deb(
+                f"ocrcache::get: data ok but path file for {path} does not exist: creating it"
+            )
             pd, pf, tm, sz = self._newpathattrs(path)
             self._updatepathfile(pd, pf, dd, df, tm, sz, path)
 
@@ -386,14 +390,14 @@ class OCRCache(object):
         (concatenate data file subdir and file name)"""
         # _deb("_pgdt_pathcb: %s" % f)
         dd, df, tm, sz, orgpath = self._readpathfile(f)
-        self._pgdt_alldatafns.add(dd+df)
+        self._pgdt_alldatafns.add(dd + df)
 
     def _pgdt_datacb(self, datafn):
         """Get a datafile name and check that it is referenced by a previously
         seen pathfile"""
         p1, fn = os.path.split(datafn)
         p2, dn = os.path.split(p1)
-        tst = dn+fn
+        tst = dn + fn
         if tst in self._pgdt_alldatafns:
             _deb("purgedata: ok         : %s" % datafn)
             pass
@@ -413,7 +417,7 @@ class OCRCache(object):
         self._pgdt_alldatafns = set()
         self._walk(self.pathdir, self._pgdt_pathcb)
         self._walk(self.objdir, self._pgdt_datacb)
-   
+
 
 if __name__ == "__main__":
     import rclconfig
@@ -426,36 +430,39 @@ if __name__ == "__main__":
         print("Usage: rclocrcache.py --erase <imgdatapath>", file=f)
         sys.exit(1)
 
-    opts, args = getopt.getopt(sys.argv[1:], "h",
-                               ["help", "purge", "purgedata", "store", "get", "erase", "hashmb="])
+    opts, args = getopt.getopt(
+        sys.argv[1:],
+        "h",
+        ["help", "purge", "purgedata", "store", "get", "erase", "hashmb="],
+    )
     purgedata = False
     action = ""
     hashmb = 0
-    
+
     for opt, arg in opts:
-        if opt in ['-h', '--help']:
+        if opt in ["-h", "--help"]:
             Usage(sys.stdout)
-        elif opt in ['--purgedata']:
+        elif opt in ["--purgedata"]:
             purgedata = True
-        elif opt in ['--hashmb']:
+        elif opt in ["--hashmb"]:
             hashmb = int(arg)
-        elif opt in ['--purge']:
+        elif opt in ["--purge"]:
             if len(args) != 0:
                 Usage()
             action = "purge"
-        elif opt in ['--store']:
+        elif opt in ["--store"]:
             if len(args) != 2:
                 Usage()
             imgdatapath = args[0]
             ocrdatapath = args[1]
             ocrdata = open(ocrdatapath, "rb").read()
             action = "store"
-        elif opt in ['--get']:
+        elif opt in ["--get"]:
             if len(args) != 1:
                 Usage()
             imgdatapath = args[0]
             action = "get"
-        elif opt in ['--erase']:
+        elif opt in ["--erase"]:
             if len(args) != 1:
                 Usage()
             imgdatapath = args[0]

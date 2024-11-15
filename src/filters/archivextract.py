@@ -19,14 +19,14 @@
 import rclexecm
 import rclnamefilter
 
+
 class ArchiveExtractor:
-    '''Common code for archive processors (zip,7z,rar,tar...)'''
+    """Common code for archive processors (zip,7z,rar,tar...)"""
 
     def __init__(self, em):
         self.em = em
         self.currentindex = 0
         self.namefilter = rclnamefilter.NameFilter(em)
-
 
     def getipath(self, params):
         ipath = params["ipath"]
@@ -41,12 +41,11 @@ class ArchiveExtractor:
             self.em.rclog("extractone: failed: [%s]" % err)
             return (ok, data, ipath, eof)
 
-
     def getnext(self, params):
         if self.currentindex == -1:
             # Return "self" doc
             self.currentindex = 0
-            self.em.setmimetype('text/plain')
+            self.em.setmimetype("text/plain")
             if len(self.namelist()) == 0:
                 self.closefile()
                 eof = rclexecm.RclExecM.eofnext
@@ -64,7 +63,7 @@ class ArchiveExtractor:
         if entryname is None:
             self.closefile()
             return (False, "", "", rclexecm.RclExecM.eofnow)
-            
+
         ret = self.extractone(entryname)
         self.currentindex += 1
         if ret[3] != rclexecm.RclExecM.noteof:

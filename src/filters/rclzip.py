@@ -27,6 +27,7 @@ from zipfile import ZipFile
 import rclexecm
 from archivextract import ArchiveExtractor
 
+
 # Note about file names (python 2.6. 2.7, don't know about 3.)
 #
 # There is a bit in zip entries to indicate if the filename is encoded
@@ -43,7 +44,7 @@ from archivextract import ArchiveExtractor
 # the string encoded as utf-8. When reading, if the input is utf-8, we
 # turn it to unicode and use this to access the zip member, else we
 # use the binary string.
-# 
+#
 # In the case where an archive member name is a valid non-ascii utf-8
 # string, but the flag is not set (which could probably happen if the
 # archiver did not try to detect utf-8 file names), this will fail,
@@ -64,7 +65,7 @@ from archivextract import ArchiveExtractor
 # the display), which is expected, but unzip succeeds in guessing the
 # correct encoding, I have no idea how, but apparently the magic
 # occurs in process.c:GetUnicodeData(), which succeeds in finding an
-# utf-8 string which zipfile does not see (to be checked: was a quick look). 
+# utf-8 string which zipfile does not see (to be checked: was a quick look).
 # Anyway: this is a python zipfile issue.
 class ZipExtractor(ArchiveExtractor):
     def __init__(self, em):
@@ -72,9 +73,9 @@ class ZipExtractor(ArchiveExtractor):
         self.f = None
         self.zip = None
         super().__init__(em)
-        
+
     def closefile(self):
-        #self.em.rclog("Closing %s" % self.filename)
+        # self.em.rclog("Closing %s" % self.filename)
         if self.zip:
             self.zip.close()
         if self.f:
@@ -83,16 +84,17 @@ class ZipExtractor(ArchiveExtractor):
         self.zip = None
 
     def extractone(self, ipath):
-        #self.em.rclog("extractone: [%s]" % ipath)
+        # self.em.rclog("extractone: [%s]" % ipath)
         docdata = ""
         try:
             info = self.zip.getinfo(ipath)
             # There could be a 4GB Iso in the zip. We have to set a limit
             if info.file_size > self.em.maxmembersize:
-                self.em.rclog("extractone: entry %s size %d too big" %
-                              (ipath, info.file_size))
+                self.em.rclog(
+                    "extractone: entry %s size %d too big" % (ipath, info.file_size)
+                )
                 docdata = ""
-                #raise BadZipfile()
+                # raise BadZipfile()
             else:
                 docdata = self.zip.read(ipath)
             try:
@@ -111,7 +113,7 @@ class ZipExtractor(ArchiveExtractor):
         except Exception as err:
             ok = False
         iseof = rclexecm.RclExecM.noteof
-        if self.currentindex >= len(self.zip.namelist()) -1:
+        if self.currentindex >= len(self.zip.namelist()) - 1:
             self.closefile()
             iseof = rclexecm.RclExecM.eofnext
         return (ok, docdata, rclexecm.makebytes(ipath), iseof)
@@ -127,7 +129,7 @@ class ZipExtractor(ArchiveExtractor):
             # Note: py3 ZipFile wants an str file name, which
             # is wrong: file names are binary. But it accepts an
             # open file, and open() has no such restriction
-            self.f = open(filename, 'rb')
+            self.f = open(filename, "rb")
             self.zip = ZipFile(self.f)
             return True
         except Exception as err:
@@ -136,10 +138,10 @@ class ZipExtractor(ArchiveExtractor):
 
     def namelist(self):
         return self.zip.namelist()
-    
+
     # getipath from ArchiveExtractor
     # getnext inherited from ArchiveExtractor
-    
+
 
 # Main program: create protocol handler and extractor and run them
 proto = rclexecm.RclExecM()

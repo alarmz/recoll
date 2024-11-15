@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 Modified from github:honza/mutt-notmuch-py
 
@@ -37,7 +37,7 @@ def digest(filename):
 
 def pick_all_mail(messages):
     for m in messages:
-        if 'All Mail' in m:
+        if "All Mail" in m:
             return m
 
 
@@ -51,14 +51,14 @@ def command(cmd):
 
 
 def main(dest_box, is_gmail):
-    query = raw_input('Query: ')
+    query = raw_input("Query: ")
 
-    command('mkdir -p %s/cur' % dest_box)
-    command('mkdir -p %s/new' % dest_box)
+    command("mkdir -p %s/cur" % dest_box)
+    command("mkdir -p %s/new" % dest_box)
 
     empty_dir(dest_box)
 
-    files = command('recoll -t -b -q %s' % query).split('\n')
+    files = command("recoll -t -b -q %s" % query).split("\n")
 
     data = defaultdict(list)
     messages = []
@@ -73,7 +73,7 @@ def main(dest_box, is_gmail):
             sha = digest(f)
             data[sha].append(f)
         except IOError:
-            print('File %s does not exist' % f)
+            print("File %s does not exist" % f)
 
     for sha in data:
         if is_gmail and len(data[sha]) > 1:
@@ -85,28 +85,37 @@ def main(dest_box, is_gmail):
         if not m:
             continue
 
-        target = os.path.join(dest_box, 'cur', os.path.basename(m))
+        target = os.path.join(dest_box, "cur", os.path.basename(m))
         if not os.path.exists(target):
-            print "symlink [%s] -> [%s]" % (m, target)
+            print("symlink [%s] -> [%s]" % (m, target))
             os.symlink(m, target)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     p = OptionParser("usage: %prog [OPTIONS] [RESULTDIR]")
-    p.add_option('-g', '--gmail', dest='gmail',
-                 action='store_true', default=True,
-                 help='gmail-specific behavior')
-    p.add_option('-G', '--not-gmail', dest='gmail',
-                 action='store_false',
-                 help='gmail-specific behavior')
+    p.add_option(
+        "-g",
+        "--gmail",
+        dest="gmail",
+        action="store_true",
+        default=True,
+        help="gmail-specific behavior",
+    )
+    p.add_option(
+        "-G",
+        "--not-gmail",
+        dest="gmail",
+        action="store_false",
+        help="gmail-specific behavior",
+    )
     (options, args) = p.parse_args()
 
     if args:
         dest = args[0]
     else:
-        dest = os.path.expanduser('~/.cache/mutt_results')
+        dest = os.path.expanduser("~/.cache/mutt_results")
         if not os.path.exists(dest):
             os.makedirs(dest)
-        
+
     # Use expanduser() so that os.symlink() won't get weirded out by tildes.
-    main(os.path.expanduser(dest).rstrip('/'), options.gmail)
+    main(os.path.expanduser(dest).rstrip("/"), options.gmail)

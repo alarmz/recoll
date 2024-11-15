@@ -8,14 +8,15 @@ import xlsxmltocsv
 import sys
 import xml.sax
 
+
 class XLSProcessData:
-    def __init__(self, em, ishtml = False):
+    def __init__(self, em, ishtml=False):
         self.em = em
         self.out = []
         self.gotdata = 0
         self.xmldata = []
         self.ishtml = ishtml
-        
+
     def takeLine(self, line):
         if not line:
             return
@@ -23,23 +24,26 @@ class XLSProcessData:
             self.out.append(line)
             return
         if not self.gotdata:
-            self.out.append(b'''<html><head>''' + \
-                        b'''<meta http-equiv="Content-Type" ''' + \
-                        b'''content="text/html;charset=UTF-8">''' + \
-                        b'''</head><body><pre>''')
+            self.out.append(
+                b"""<html><head>"""
+                + b"""<meta http-equiv="Content-Type" """
+                + b"""content="text/html;charset=UTF-8">"""
+                + b"""</head><body><pre>"""
+            )
             self.gotdata = True
         self.xmldata.append(line)
 
     def wrapData(self):
         if not self.gotdata:
             raise Exception("xls-dump returned no data")
-            return b''
+            return b""
         if self.ishtml:
-            return b'\n'.join(self.out)
-        handler =  xlsxmltocsv.XlsXmlHandler()
-        xml.sax.parseString(b'\n'.join(self.xmldata), handler)
-        self.out.append(rclexecm.htmlescape(b'\n'.join(handler.output)))
-        return b'\n'.join(self.out) + b'</pre></body></html>'
+            return b"\n".join(self.out)
+        handler = xlsxmltocsv.XlsXmlHandler()
+        xml.sax.parseString(b"\n".join(self.xmldata), handler)
+        self.out.append(rclexecm.htmlescape(b"\n".join(handler.output)))
+        return b"\n".join(self.out) + b"</pre></body></html>"
+
 
 class XLSFilter:
     def __init__(self, em):
@@ -49,15 +53,15 @@ class XLSFilter:
     def reset(self):
         self.ntry = 0
         pass
-            
+
     def getCmd(self, fn):
         if self.ntry:
             return ([], None)
         self.ntry = 1
         # Some HTML files masquerade as XLS
         try:
-            data = open(fn, 'rb').read(512)
-            if data.find(b'html') != -1 or data.find(b'HTML') != -1:
+            data = open(fn, "rb").read(512)
+            if data.find(b"html") != -1 or data.find(b"HTML") != -1:
                 return ("cat", XLSProcessData(self.em, True))
         except Exception as err:
             self.em.rclog("Error reading %s:%s" % (fn, str(err)))
@@ -66,13 +70,22 @@ class XLSFilter:
         if cmd:
             # xls-dump.py often exits 1 with valid data. Ignore exit value
             # We later treat an empty output as an error
-            return ([sys.executable, cmd, "--dump-mode=canonical-xml", \
-                     "--utf-8", "--catch"],
-                    XLSProcessData(self.em), rclexec1.Executor.opt_ignxval)
+            return (
+                [
+                    sys.executable,
+                    cmd,
+                    "--dump-mode=canonical-xml",
+                    "--utf-8",
+                    "--catch",
+                ],
+                XLSProcessData(self.em),
+                rclexec1.Executor.opt_ignxval,
+            )
         else:
             return ([], None)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if not rclexecm.which("xls-dump.py"):
         print("RECFILTERROR HELPERNOTFOUND ppt-dump.py")
         sys.exit(1)

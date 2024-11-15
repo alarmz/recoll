@@ -54,6 +54,7 @@ import signal
 def msg(s):
     print(f"rcljoplin.py: {s}", file=sys.stderr)
 
+
 try:
     from recoll import recoll
     from recoll import rclconfig
@@ -64,20 +65,26 @@ except:
 
 # Signal termination handling: try to cleanly close the index
 rcldb = None
+
+
 def handler(signum, frame):
     if rcldb:
         rcldb.close()
     msg(f"Got signal, exiting")
     sys.exit(1)
 
+
 signal.signal(signal.SIGINT, handler)
 signal.signal(signal.SIGTERM, handler)
+
 
 class joplin_indexer:
     def __init__(self, rclconfdir, sqfile):
         self.rclconfdir = rclconfdir
-        self.forpreview = "RECOLL_FILTER_FORPREVIEW" in os.environ and \
-            os.environ["RECOLL_FILTER_FORPREVIEW"] == "yes"
+        self.forpreview = (
+            "RECOLL_FILTER_FORPREVIEW" in os.environ
+            and os.environ["RECOLL_FILTER_FORPREVIEW"] == "yes"
+        )
         self.sqconn = None
         try:
             if os.path.exists(sqfile):
@@ -91,20 +98,20 @@ class joplin_indexer:
                 stmt = "SELECT ocr_text FROM resources LIMIT 1"
                 c.execute(stmt)
             except Exception as ex:
-                #msg(f"Testing for ocr_text column: {ex}")
+                # msg(f"Testing for ocr_text column: {ex}")
                 self.has_ocr_text = False
-            
+
     def ok(self):
         if self.sqconn:
             return True
         return False
-    
+
     def _sig(self, note):
         """Create update verification value for note: updated_time looks ok"""
         return str(note["updated_time"])
 
     def sigfromid(self, id):
-        #msg(f"sigfromid: {id}")
+        # msg(f"sigfromid: {id}")
         if not self.sqconn:
             return ""
         c = self.sqconn.cursor()
@@ -112,9 +119,9 @@ class joplin_indexer:
         c.execute(stmt, (id,))
         r = c.fetchone()
         if r:
-            return self._sig({"updated_time":r[0]})
+            return self._sig({"updated_time": r[0]})
         return ""
-        
+
     def _udi(self, note):
         """Create unique document identifier for message. This should
         be shorter than 150 bytes, which we optimistically don't check
@@ -124,7 +131,7 @@ class joplin_indexer:
     # Walk the table, check if the index is up to date for each note, update if needed.
     def index(self):
         if not self.sqconn:
-            return 
+            return
         global rcldb
         rcldb = recoll.connect(confdir=self.rclconfdir, writable=1)
         # Important: this marks all non-joplin documents as present. Else our call to purge() would
@@ -137,16 +144,16 @@ class joplin_indexer:
         stmt = "SELECT " + ",".join(cols) + " FROM notes"
         c.execute(stmt)
         for r in c:
-            note = dict((nm,val) for nm, val in zip(cols, r))
+            note = dict((nm, val) for nm, val in zip(cols, r))
             if not rcldb.needUpdate(self._udi(note), self._sig(note)):
-                #msg(f"Index is up to date for {note['id']}")
+                # msg(f"Index is up to date for {note['id']}")
                 continue
-            #msg(f"Indexing {str(note)[0:200]}")
+            # msg(f"Indexing {str(note)[0:200]}")
             self._index_note(rcldb, note)
 
         rcldb.purge()
         rcldb.close()
-        
+
     # Index one note record
     def _index_note(self, rcldb, note):
         doc = rcldb.doc()
@@ -160,12 +167,12 @@ class joplin_indexer:
         # Main document text and MIME type
         doc.text = note["body"]
         doc.text += self._extract_resources_text(note["id"])
-        doc.dbytes = str(len(doc.text.encode('UTF-8')))
+        doc.dbytes = str(len(doc.text.encode("UTF-8")))
         doc.mimetype = "application/x-joplin-note"
-        
+
         # Store data for later "up to date" checks
         doc.sig = self._sig(note)
-        
+
         # The rclbes field is the link between the index data and this
         # script when used at query time
         doc.rclbes = "JOPLIN"
@@ -205,7 +212,6 @@ class joplin_indexer:
                         text += "Attachment OCR'd text: \n"
                     text += ocr_text + "\n"
         return text
-    
 
     def getdata(self, sqfile, id):
         """Implements the 'fetch' data access interface (called at
@@ -245,13 +251,12 @@ def update_config(confdir):
     conf.set("index", scriptpath + " index", "JOPLIN")
 
 
-
 ########
 # Main program. This is called from cron or the command line for indexing, or called from the recoll
 # main code with a specific command line for retrieving data, checking up-to-date-ness (for
 # previewing mostly), or updating the index.
 
-usage_string="""Usage:
+usage_string = """Usage:
 rcljoplin.py config Update the recoll configuration to include the Joplin parameters.
 rcljoplin.py index
     Index the joplin notes table (the path to the sqlite db is hard-coded inside the script)
@@ -259,11 +264,13 @@ rcljoplin.py <fetch|makesig> <udi> <url> <ipath>
     fetch subdoc data or make signature (query time). ipath must be set but is ignored
 """
 
+
 # Note: the -c option is only for command line tests, the recoll process always sets the config in
 # RECOLL_CONFDIR
 def usage(f=sys.stderr):
     print(f"{usage_string}", file=f)
     sys.exit(1)
+
 
 confdir = None
 try:
@@ -271,12 +278,12 @@ try:
 except Exception as err:
     print(err, file=sys.stderr)
     usage()
-for o,a in options:
+for o, a in options:
     if o in ("-h", "--help"):
         usage(sys.stdout)
     elif o in ("-c", "--config"):
         confdir = a
-        
+
 if len(args) == 0:
     usage()
 cmd = args[0]
@@ -296,7 +303,7 @@ if cmd == "index":
 elif cmd == "config":
     update_config(confdir)
     sys.exit(0)
-        
+
 # cmd [fetch|makesig] udi url ipath.
 # We ignore url and ipath
 if len(args) != 4:
@@ -305,9 +312,9 @@ if len(args) != 4:
 udi = sys.argv[2]
 
 fetcher = joplin_indexer(confdir, joplindb)
-if cmd == 'fetch':
+if cmd == "fetch":
     print(f"{fetcher.getdata(joplindb, udi)}", end="")
-elif cmd == 'makesig':
+elif cmd == "makesig":
     print(f"{fetcher.sigfromid(udi)}", end="")
 else:
     usage()

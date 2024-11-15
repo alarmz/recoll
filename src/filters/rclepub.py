@@ -16,7 +16,8 @@ try:
     import epub
 except:
     print("RECFILTERROR HELPERNOTFOUND python3:epub")
-    sys.exit(1);
+    sys.exit(1)
+
 
 class rclEPUB:
     """RclExecM slave worker for extracting all text from an EPUB
@@ -43,19 +44,28 @@ class rclEPUB:
         if title:
             data += "<title>" + rclexecm.htmlescape(title) + "</title>\n"
         if author:
-            data += '<meta name="author" content="' + \
-                rclexecm.htmlescape(author).strip() + '">\n'
+            data += (
+                '<meta name="author" content="'
+                + rclexecm.htmlescape(author).strip()
+                + '">\n'
+            )
         if meta.description:
-            data += '<meta name="description" content="' + \
-                rclexecm.htmlescape(meta.description) + '">\n'
+            data += (
+                '<meta name="description" content="'
+                + rclexecm.htmlescape(meta.description)
+                + '">\n'
+            )
         for value in meta.subjects:
-            data += '<meta name="dc:subject" content="' + \
-                rclexecm.htmlescape(value) + '">\n' 
+            data += (
+                '<meta name="dc:subject" content="'
+                + rclexecm.htmlescape(value)
+                + '">\n'
+            )
         data += "</head>"
-        return data.encode('UTF-8')
+        return data.encode("UTF-8")
 
     def _catbodies(self):
-        data = b'<body>'
+        data = b"<body>"
         ids = []
         if self.book.opf.spine:
             for id, linear in self.book.opf.spine.itemrefs:
@@ -66,21 +76,21 @@ class rclEPUB:
 
         for id in ids:
             item = self.book.get_item(id)
-            if item is None or item.media_type != 'application/xhtml+xml':
+            if item is None or item.media_type != "application/xhtml+xml":
                 continue
             doc = self.book.read_item(item)
-            doc = re.sub(rb'<\?.*\?>', b'', doc)
-            doc = re.sub(rb'<html.*<body[^>]*>', b'', doc, 1, flags=re.DOTALL|re.I)
-            doc = re.sub(rb'</body>', b'', doc, flags=re.I)
-            doc = re.sub(rb'</html>', b'', doc, flags=re.I)
+            doc = re.sub(rb"<\?.*\?>", b"", doc)
+            doc = re.sub(rb"<html.*<body[^>]*>", b"", doc, 1, flags=re.DOTALL | re.I)
+            doc = re.sub(rb"</body>", b"", doc, flags=re.I)
+            doc = re.sub(rb"</html>", b"", doc, flags=re.I)
             data += doc
 
-        data += b'</body></html>'
+        data += b"</body></html>"
         return data
 
     def _selfdoc(self):
         data = self._docheader()
-        self.em.setmimetype('text/html')
+        self.em.setmimetype("text/html")
         if len(self.contents) == 0:
             self.closefile()
             eof = rclexecm.RclExecM.eofnext
@@ -91,9 +101,9 @@ class rclEPUB:
     def extractone(self, id):
         """Extract one path-named internal file from the EPUB file"""
 
-        #self.em.rclog("extractone: [%s]"%(path))
+        # self.em.rclog("extractone: [%s]"%(path))
         iseof = rclexecm.RclExecM.noteof
-        if self.currentindex >= len(self.contents) -1:
+        if self.currentindex >= len(self.contents) - 1:
             iseof = rclexecm.RclExecM.eofnext
 
         try:
@@ -101,8 +111,11 @@ class rclEPUB:
             if item is None:
                 raise Exception("Item not found for id %s" % (id,))
             doc = self.book.read_item(item)
-            doc = re.sub(rb'</[hH][eE][aA][dD]>',
-                         b'<meta name="rclaptg" content="epub"></head>', doc)
+            doc = re.sub(
+                rb"</[hH][eE][aA][dD]>",
+                b'<meta name="rclaptg" content="epub"></head>',
+                doc,
+            )
             self.em.setmimetype(rclepub_html_mtype)
             return (True, doc, id, iseof)
         except Exception as err:
@@ -122,18 +135,17 @@ class rclEPUB:
         self.currentindex = -1
         self.contents = []
         try:
-            self.book = epub.open_epub(params["filename"].decode('UTF-8'))
+            self.book = epub.open_epub(params["filename"].decode("UTF-8"))
         except Exception as err:
             self.em.rclog("openfile: epub.open failed: [%s]" % err)
             return False
         for id, item in self.book.opf.manifest.items():
-            if item.media_type == 'application/xhtml+xml':
+            if item.media_type == "application/xhtml+xml":
                 self.contents.append(id)
         return True
-        
 
     def getipath(self, params):
-        return self.extractone(params["ipath"].decode('UTF-8'))
+        return self.extractone(params["ipath"].decode("UTF-8"))
 
     def getnext(self, params):
         if self.catenate:
@@ -153,11 +165,14 @@ class rclEPUB:
             return (False, "", "", rclexecm.RclExecM.eofnow)
         else:
             ret = self.extractone(self.contents[self.currentindex])
-            if ret[3] == rclexecm.RclExecM.eofnext or \
-               ret[3] == rclexecm.RclExecM.eofnow:
+            if (
+                ret[3] == rclexecm.RclExecM.eofnext
+                or ret[3] == rclexecm.RclExecM.eofnow
+            ):
                 self.closefile()
             self.currentindex += 1
             return ret
+
 
 proto = rclexecm.RclExecM()
 extract = rclEPUB(proto)

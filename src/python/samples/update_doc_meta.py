@@ -6,21 +6,24 @@ from getopt import getopt
 from recoll import recoll
 from recoll import fsudi
 
+
 def msg(s):
     print(f"{s}", file=sys.stderr)
-    
+
+
 def usage():
     msg("Usage: update_doc_meta.py [-c <configdir>] <filepath>")
     sys.exit(1)
 
-confdir=""
+
+confdir = ""
 
 try:
     options, args = getopt(sys.argv[1:], "c:")
 except Exception as ex:
     msg(ex)
     sys.exit(1)
-for opt,val in options:
+for opt, val in options:
     if opt == "-c":
         confdir = val
     else:
@@ -48,4 +51,4 @@ q = db.query()
 q.execute("author:somestrangeauthorname")
 for doc in q:
     print(f"{doc.url}")
-    print(f"doc title: [{doc['title']}] author [{doc['author']}] sig [{doc['sig']}]")    
+    print(f"doc title: [{doc['title']}] author [{doc['author']}] sig [{doc['sig']}]")

@@ -33,16 +33,18 @@ def pathHash(path, maxlen):
     HASHLEN = 22
     if len(path) <= maxlen:
         return path
-    digest = hashlib.md5(path[maxlen-HASHLEN:]).digest()
+    digest = hashlib.md5(path[maxlen - HASHLEN :]).digest()
     adigest = base64.b64encode(digest)
     adigest = adigest[:-2]
-    return path[:maxlen-HASHLEN] + adigest
+    return path[: maxlen - HASHLEN] + adigest
+
 
 def make_udi(path, ipath=b""):
     PATHHASHLEN = 150
-    path +=  b"|"
+    path += b"|"
     path += ipath
     return pathHash(path, PATHHASHLEN)
+
 
 # Return xapian posting list contents as Python list
 def get_postlist(xdb, term):
@@ -51,7 +53,8 @@ def get_postlist(xdb, term):
         ret.append(posting.docid)
     return ret
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     if len(sys.argv) != 1:
         print("Usage: rclnotindexed", file=sys.stderr)
         print(" reads paths on stdin", file=sys.stderr)
@@ -69,6 +72,5 @@ if __name__ == '__main__':
         if len(postlist) == 0:
             sys.stdout.buffer.write(path + b"\n")
         elif len(postlist) > 1:
-            sys.stdout.buffer.write("!! Multiple document entries for: " +
-                                        path + b"\n")
+            sys.stdout.buffer.write("!! Multiple document entries for: " + path + b"\n")
             sys.exit(1)

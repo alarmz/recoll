@@ -39,13 +39,15 @@ dirdepth = 4
 # Default count of directories for which we print the totals
 ndirsprinted = 20
 
+
 def msg(s):
     print(f"{s}", file=sys.stderr)
-    
+
+
 # Retrieve named value(s) from a recoll document data record.
 # The record format is a sequence of nm=value lines
 def get_attributes(xdb, xdocid, flds, decode=True):
-    #msg(f"get_attributes xdocid {xdocid} flds {flds} decode {decode}")
+    # msg(f"get_attributes xdocid {xdocid} flds {flds} decode {decode}")
     doc = xdb.get_document(xdocid)
     data = doc.get_data()
     res = []
@@ -56,24 +58,25 @@ def get_attributes(xdb, xdocid, flds, decode=True):
         else:
             e = data.find(b"\n", s)
             if decode:
-                res.append(data[s+len(fld)+1:e].decode('UTF-8'))
+                res.append(data[s + len(fld) + 1 : e].decode("UTF-8"))
             else:
-                res.append(data[s+len(fld)+1:e])
+                res.append(data[s + len(fld) + 1 : e])
     return res
+
 
 # Sample code. Not called and does nothing at the moment. Sample code for looking at doc terms in
 # more detail
 def doc_details(xdb, xdocid):
-    #xdoc = xdb.get_document(xdocid)
-    #for term in xdoc.termlist():
-        #msg(f"TERM {term.term}")
-        #for position in xdb.positionlist(xdocid, term.term):
-            #poscount +=1
-    #msg(f"Positions count {poscount}")
+    # xdoc = xdb.get_document(xdocid)
+    # for term in xdoc.termlist():
+    # msg(f"TERM {term.term}")
+    # for position in xdb.positionlist(xdocid, term.term):
+    # poscount +=1
+    # msg(f"Positions count {poscount}")
     pass
-    
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     # Note: the -c option is only for command line tests, the recoll process always sets the config
     # in RECOLL_CONFDIR
     def usage(f=sys.stderr):
@@ -81,22 +84,32 @@ if __name__ == '__main__':
         print(f"Usage: {prog} [OPTION]...", file=f)
         print(f" -h, --help         show this help", file=f)
         print(f" -c, --config       select Recoll configuration directory", file=f)
-        print(f" -n, --files-count  set the size of the file list"
-              f" (default {nfilesprinted})", file=f)
-        print(f" -d, --depth        set the depth of the selected directories (default {dirdepth})",
-              file=f)
-        print(f" -N, --dirs-count   set the size of the directory list (default {ndirsprinted})",
-              file=f)
+        print(
+            f" -n, --files-count  set the size of the file list"
+            f" (default {nfilesprinted})",
+            file=f,
+        )
+        print(
+            f" -d, --depth        set the depth of the selected directories (default {dirdepth})",
+            file=f,
+        )
+        print(
+            f" -N, --dirs-count   set the size of the directory list (default {ndirsprinted})",
+            file=f,
+        )
         sys.exit(1)
 
     confdir = None
     try:
-        options, args = getopt.getopt(sys.argv[1:], "hc:d:N:n:",
-                                      ["help", "config=", "files-count=", "depth=", "dirs-count="])
+        options, args = getopt.getopt(
+            sys.argv[1:],
+            "hc:d:N:n:",
+            ["help", "config=", "files-count=", "depth=", "dirs-count="],
+        )
     except Exception as err:
         print(err, file=sys.stderr)
         usage()
-    for o,a in options:
+    for o, a in options:
         if o in ("-h", "--help"):
             usage(sys.stdout)
         elif o in ("-c", "--config"):
@@ -107,7 +120,7 @@ if __name__ == '__main__':
             ndirsprinted = int(a)
         elif o in ("-n", "--files-count"):
             nfilesprinted = int(a)
-        
+
     if len(args) != 0:
         usage()
 
@@ -126,7 +139,14 @@ if __name__ == '__main__':
         if xdocid % 10000 == 0:
             msg(f"Walking whole Xapian term list: docid {xdocid}/{lastxdocid}")
         try:
-            url = get_attributes(xdb, xdocid, [b"url",], decode=False)[0]
+            url = get_attributes(
+                xdb,
+                xdocid,
+                [
+                    b"url",
+                ],
+                decode=False,
+            )[0]
         except Exception as ex:
             msg(f"get_attributes failed: {ex}")
             continue
@@ -145,13 +165,13 @@ if __name__ == '__main__':
             print(f"{e[0]} {path}")
             i += 1
         path = os.path.dirname(path)
-        #print(f"PATH {path}")
+        # print(f"PATH {path}")
         l = path.split(b"/")
         if len(l) < dirdepth:
             dir = path
         else:
-            dir = b"/".join(l[0:dirdepth+1])
-        #print(f"DIR {dir}")
+            dir = b"/".join(l[0 : dirdepth + 1])
+        # print(f"DIR {dir}")
         if dir in dirsizes:
             dirsizes[dir] += e[0]
         else:
@@ -159,6 +179,6 @@ if __name__ == '__main__':
 
     # Print the biggest directories
     print("\nDirectory sizes:")
-    dirsizes  = sorted(dirsizes.items(), key = lambda entry: entry[1], reverse = True)
+    dirsizes = sorted(dirsizes.items(), key=lambda entry: entry[1], reverse=True)
     for dir, sz in dirsizes[0:ndirsprinted]:
         print(f"{sz} {dir}")
