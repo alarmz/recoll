@@ -79,6 +79,7 @@ bool TextSplit::o_processCJK{true};
 int  TextSplit::o_CJKNgramLen{2};
 bool TextSplit::o_noNumbers{false};
 bool TextSplit::o_deHyphenate{false};
+// Max word size in Unicode characters
 int  TextSplit::o_maxWordLength{40};
 int  TextSplit::o_maxWordsInSpan{6};
 
@@ -392,15 +393,18 @@ inline bool TextSplit::emitterm(bool isspan, const string& w, int pos, size_t bt
     PRETEND_USE(isspan);
 #endif
 
-    int l = int(w.length());
-    if (l == 0 || l > o_maxWordLength) {
-        discarded(w, pos, btstart, btend, WORD_TOO_LONG);
-        return true;
+    // If the size in bytes is > max size in unicode chars, compute the Unicode length.
+    // The bytes test saves a bit of CPU as most words will skip the unicode test.
+    // In theory we know the character size, but in practise, it was lost somewhere in the maze.
+    if (w.size() == 0 || w.size() >= (size_t)o_maxWordLength) {
+        int l = utf8len(w);
+        if (l == 0 || l > o_maxWordLength) {
+            discarded(w, pos, btstart, btend, WORD_TOO_LONG);
+            return true;
+        }
     }
-    if (l == 1) {
-        // 1 byte word: we index single ASCII letters and digits, but nothing else. We might want to
-        // turn this into a test for a single utf8 character instead ? TBD: the calling code should
-        // know the size in characters, so turning this to an Unicode test could be for free.
+    if (w.size() == 1) {
+        // 1 byte word: we index single ASCII letters and digits, but nothing else. Why?
         unsigned int c = ((unsigned int)w[0]) & 0xff;
         if (charclasses[c] != A_ULETTER && charclasses[c] != A_LLETTER && charclasses[c] != DIGIT &&
             (!(m_flags & TXTS_KEEPWILD) || charclasses[c] != WILD)  ) {
@@ -409,10 +413,10 @@ inline bool TextSplit::emitterm(bool isspan, const string& w, int pos, size_t bt
         }
     }
     // Detect doublons. Happens...?
-    if (pos != m_prevpos || l != m_prevlen) {
+    if (pos != m_prevpos || w.size() != m_prevlen) {
         bool ret = takeword(w, pos, btstart, btend);
         m_prevpos = pos;
-        m_prevlen = int(w.length());
+        m_prevlen = w.size();
         return ret;
     }
     LOGDEB2("TextSplit::emitterm:dup: [" << w << "] pos " << pos << "\n");

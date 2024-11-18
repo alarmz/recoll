@@ -175,7 +175,8 @@ private:
     static bool o_noNumbers;  // false
     static bool o_deHyphenate; // false
     static int o_CJKNgramLen; // 2
-    static int o_maxWordLength; // 40
+    // Max term size in unicode characters.
+    static int o_maxWordLength; // set to 40 in texsplit.cpp
     static int o_maxWordsInSpan; // 6
 
     int         m_flags;
@@ -203,7 +204,7 @@ private:
     // It may happen that our cleanup would result in emitting the
     // same term twice. We try to avoid this
     int           m_prevpos{-1};
-    int           m_prevlen;
+    size_t        m_prevlen;
 
 #ifdef TEXTSPLIT_STATS
     // Stats counters. These are processed in TextSplit rather than by a 
