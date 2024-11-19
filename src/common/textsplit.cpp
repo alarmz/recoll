@@ -316,7 +316,7 @@ int TextSplit::whatcc(unsigned int c)
 #endif
 
 // Hangul detection and options. If no external tagger is configured, we process HANGUL as generic
-// CJK (n-grams)
+// CJK (n-grams): IS_HANGUL will be false and IS_CJK true.
 #define UNICODE_IN_HANGUL_RANGE(p)             \
         (((p) >= 0x1100 && (p) <= 0x11FF) ||   \
          ((p) >= 0x3130 && (p) <= 0x318F) ||   \
@@ -330,7 +330,7 @@ int TextSplit::whatcc(unsigned int c)
 #define UNICODE_IS_HANGUL(p) false
 #endif
 
-// Same for Chinese
+// Same for Chinese: everything in cjk ranges which is not katakana or hangul
 #define UNICODE_IN_CHINESE_RANGE(p) \
     (UNICODE_IS_CJK(p) && !(UNICODE_IN_KATAKANA_RANGE(p) || UNICODE_IN_HANGUL_RANGE(p)))
 #ifdef CHINESE_AS_WORDS
@@ -339,14 +339,31 @@ int TextSplit::whatcc(unsigned int c)
 #define UNICODE_IS_CHINESE(p) false
 #endif
 
+// Tibetan. For now, uses n-grams. Not CJK though so handled a bit differently (because not in the
+// big CJK range)
+#define UNICODE_IN_TIBETAN_RANGE(p) \
+    ((p) > 0x0f00 && (p) <= 0x0fff)
+#define UNICODE_IS_TIBETAN(p) UNICODE_IN_TIBETAN_RANGE(p)
+
+#define UNICODE_IN_TESTNGRAM_RANGE(p) \
+    ((p) >= 'A' && (p) <= 'B')
+#ifdef TESTING_NGRAMS
+#define UNICODE_IS_TESTNGRAM(p) UNICODE_IN_TESTNGRAM_RANGE(p)
+#else
+#define UNICODE_IS_TESTNGRAM(p) false
+#endif
+
 bool TextSplit::isSpace(int c)
 {
     return whatcc(c) == SPACE;
 }
 bool TextSplit::isCJK(int c)
 {
-    PRETEND_USE(c);
     return UNICODE_IS_CJK(c);
+}
+bool TextSplit::noStemming(int c)
+{
+    return UNICODE_IS_CJK(c) || UNICODE_IS_TIBETAN(c);
 }
 bool TextSplit::isKATAKANA(int c)
 {
@@ -365,18 +382,21 @@ bool TextSplit::isCHINESE(int c)
 }
 bool TextSplit::isNGRAMMED(int c)
 {
-    PRETEND_USE(c);
-    return UNICODE_IS_CJK(c) && !UNICODE_IS_KATAKANA(c) && !UNICODE_IS_HANGUL(c);
+    return UNICODE_IS_TIBETAN(c) || UNICODE_IS_TESTNGRAM(c) || 
+        (UNICODE_IS_CJK(c) && !UNICODE_IS_KATAKANA(c) && !UNICODE_IS_HANGUL(c) &&
+         !UNICODE_IS_CHINESE(c));
 }
 
 
 // This is used to detect katakana/other transitions, which must trigger a word split (there is not
 // always a separator, and katakana is otherwise treated like other, in the same routine, unless CJK
 // which has its span reader causing a word break)
-enum CharSpanClass {CSC_HANGUL, CSC_CHINESE, CSC_CJK, CSC_KATAKANA, CSC_OTHER};
+enum CharSpanClass {CSC_OTHER, CSC_HANGUL, CSC_CHINESE, CSC_CJK, CSC_KATAKANA, CSC_TIBETAN,
+                    CSC_TESTNGRAM};
 std::vector<CharFlags> csc_names {
     CHARFLAGENTRY(CSC_HANGUL), CHARFLAGENTRY(CSC_CHINESE), CHARFLAGENTRY(CSC_CJK),
-    CHARFLAGENTRY(CSC_KATAKANA), CHARFLAGENTRY(CSC_OTHER)};
+    CHARFLAGENTRY(CSC_KATAKANA), CHARFLAGENTRY(CSC_OTHER), CHARFLAGENTRY(CSC_TIBETAN),
+    CHARFLAGENTRY(CSC_TESTNGRAM)};
 
 // Final term checkpoint: do some checking (the kind which is simpler to do here than in the main
 // loop), then send term to our client.
@@ -644,19 +664,25 @@ bool TextSplit::text_to_words(const string &in)
         // segment AND a specific processor (e.g. external Hangul word segmenter) has been
         // configured. In other words, CJK characters are processed by the generic ngram term
         // generator, except if a language-specific processor has been implemented and configured.
+        bool gospecial = true;
         if (UNICODE_IS_KATAKANA(c)) {
             csc = CSC_KATAKANA;
         } else if (UNICODE_IS_HANGUL(c)) {
             csc = CSC_HANGUL;
         } else if (UNICODE_IS_CHINESE(c)) {
             csc = CSC_CHINESE;
+        } else if (UNICODE_IS_TIBETAN(c)) {
+            csc = CSC_TIBETAN;
+        } else if (UNICODE_IS_TESTNGRAM(c)) {
+            csc = CSC_TESTNGRAM;
         } else if (UNICODE_IS_CJK(c)) {
             csc = CSC_CJK;
         } else {
+            gospecial = false;
             csc = CSC_OTHER;
         }
-        if (o_processCJK && (csc == CSC_CJK || csc == CSC_HANGUL || csc == CSC_CHINESE)) {
-            // CJK character hit. Hangul and Chineseprocessing may be special.
+        if (o_processCJK && gospecial) {
+            // Using ngrams with possible exceptions for Hangul and Chinese if so configured.
 
             // Do like at EOF with the current non-cjk data.
             if (m_wordLen || m_span.length()) {

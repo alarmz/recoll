@@ -32,14 +32,16 @@ int CJKSplitter::max_ngramlen()
     return o_CJKMaxNgramLen;
 }
 
-// We output ngrams for exemple for char input a b c and ngramlen== 2, 
-// we generate: a ab b bc c as words
+// Note that this should probably be renamed NGRAMSplitter as this is also used for, e.g. Tibetan
+// and maybe others in the future.
 //
-// This is very different from the normal behaviour, so we don't use
-// the doemit() and emitterm() routines
+// We output ngrams.
+// For example: for input "abc" and ngramlen==2, we generate: a ab b bc c as words.
 //
-// The routine is sort of a mess and goes to show that we'd probably
-// be better off converting the whole buffer to utf32 on entry...
+// This is very different from the normal behaviour, so we don't use doemit() or emitterm().
+//
+// The routine is sort of a mess and goes to show that we'd probably be better off converting the
+// whole buffer to utf32 on entry...
 bool CJKSplitter::text_to_words(Utf8Iter& it, unsigned int *cp, int& wordpos)
 {
     LOGDEB1("cjk_to_words: wordpos " << wordpos << "\n");
@@ -58,6 +60,7 @@ bool CJKSplitter::text_to_words(Utf8Iter& it, unsigned int *cp, int& wordpos)
     bool spacebefore{false};
     for (; !it.eof() && !it.error(); it++) {
         c = *it;
+        LOGDEB1("Processing [" << (std::string)it << "]\n");
         // We had a version which ignored whitespace for some time,
         // but this was a bad idea. Only break on a non-cjk
         // *alphabetic* character, except if following punctuation, in
@@ -65,7 +68,13 @@ bool CJKSplitter::text_to_words(Utf8Iter& it, unsigned int *cp, int& wordpos)
         // cjk+numeric spans, or punctuated cjk spans to be
         // continually indexed as cjk. The best approach is a matter
         // of appreciation...
-        if ((spacebefore || (c > 255 || isalpha(c))) && !TextSplit::isCJK(c)) {
+        if ((spacebefore || (c > 255
+#ifdef TESTING_NGRAMS
+                             || islower(c)
+#else
+                             || isalpha(c)
+#endif
+                 )) && !TextSplit::isNGRAMMED(c)) {
             // Return to normal handler
             break;
         }
@@ -110,8 +119,10 @@ bool CJKSplitter::text_to_words(Utf8Iter& it, unsigned int *cp, int& wordpos)
                 // buffer. Strip it from the output words. This means that the offs/size will be
                 // slightly off (->highlights), to be fixed one day.
                 auto word = mybuf.substr(myboffs[i], mybuf.size() - myboffs[i]);
+                LOGDEB1("EMITTING [" << trimstring(word, "\r\n\f \t") << "] at pos " <<
+                        wordpos - (nchars - i - 1) << '\n');
                 if (!m_sink.takeword(trimstring(word, "\r\n\f \t"), 
-                              wordpos - (nchars - i - 1), boffs[i], btend)) {
+                                     wordpos - (nchars - i - 1), boffs[i], btend)) {
                     return false;
                 }
             }
@@ -133,6 +144,8 @@ bool CJKSplitter::text_to_words(Utf8Iter& it, unsigned int *cp, int& wordpos)
         int btend = int(it.getBpos()); // Current char is out
         // See comment before takeword above.
         auto word = mybuf.substr(myboffs[0], mybuf.size() - myboffs[0]);
+        LOGDEB1("EMITTING [" << trimstring(word, "\r\n\f \t") << "] at pos " <<
+                wordpos - nchars << '\n');
         if (!m_sink.takeword(trimstring(word, "\r\n\f \t"), wordpos - nchars, boffs[0], btend)) {
             return false;
         }

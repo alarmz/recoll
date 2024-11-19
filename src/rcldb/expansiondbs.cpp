@@ -99,11 +99,11 @@ bool createExpansionDbs(Xapian::WritableDatabase& wdb, const vector<string>& lan
             if (has_prefix(term))
                 continue;
 
-            // Detect and skip CJK terms.
+            // Detect and skip CJK and other ngrammed terms.
             Utf8Iter utfit(term);
             if (utfit.eof()) // Empty term?? Seems to happen.
                 continue;
-            if (TextSplit::isCJK(*utfit)) {
+            if (TextSplit::noStemming(*utfit)) {
                 // LOGDEB("stemskipped: Skipping CJK\n");
                 continue;
             }

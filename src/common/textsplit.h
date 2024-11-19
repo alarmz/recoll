@@ -26,6 +26,10 @@ class Utf8Iter;
 class RclConfig;
 class CNSplitter;
 
+// If this is defined, we treat upper-case ASCII with ngrams: easier for me to look at and see
+// issues as I don't read any of the actual scripts.
+//#define TESTING_NGRAMS
+
 /** 
  * Split text into words. 
  * 
@@ -118,6 +122,9 @@ public:
     /* Not split in words */
     static bool isNGRAMMED(int c);
     static bool isSpace(int c);
+    /* At the moment, this is the union of ranges which could be processed as ngrams or with a
+       dictionary-based splitter: i.e. CJK + Tibetan */
+    static bool noStemming(int c);
     
     /** Statistics about word length (average and dispersion) can detect bad data like undecoded
      * base64 or other mis-identified pieces of data taken as text. In practise, this keeps some

@@ -1528,8 +1528,9 @@ bool Db::isSpellingCandidate(const std::string& term, bool with_aspell)
 
     Utf8Iter u8i(term);
     if (with_aspell) {
-        // If spelling with aspell, CJK scripts are not candidates
-        if (TextSplit::isCJK(*u8i))
+        // If spelling with aspell, CJK and other scripts we process with ngrams are not
+        // candidates. Same test as for stemming.
+        if (TextSplit::noStemming(*u8i))
             return false;
     } else {
 #ifdef TESTING_XAPIAN_SPELL

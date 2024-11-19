@@ -488,7 +488,8 @@ void Query::Native::abstractCreateSnippetsVector(
         }
         Utf8Iter uit(ent.second);
         bool newcjk = false;
-        if (TextSplit::isNGRAMMED(*uit))
+        // We reuse the noStemming test which is currently CJK or Tibetan.
+        if (TextSplit::noStemming(*uit))
             newcjk = true;
         if (!incjk || (incjk && !newcjk))
             chunk += " ";
