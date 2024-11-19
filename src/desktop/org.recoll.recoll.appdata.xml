@@ -7,13 +7,12 @@
   <name>Recoll</name>
   <summary>Full-text search for your desktop</summary>
   <description>
-    <p>Recoll finds keywords inside documents text as well as file names.
-      - It can search most document formats.
-      - It can reach any storage place: files, archive members, email
-        attachments, transparently handling decompression.
-      - One click will open the document inside a native editor or
-        display an even quicker text preview.
-    </p>
+    <p>Recoll finds keywords inside documents text as well as file names.</p>
+    <ul>
+      <li>It can search most document formats.</li>
+      <li>It can reach any storage place: files, archive members, email attachments, transparently handling decompression.</li>
+      <li>One click will open the document inside a native editor or display an even quicker text preview.</li>
+    </ul>
   </description>
   <content_rating type="oars-1.1" />
   <url type="homepage">https://www.recoll.org/</url>
