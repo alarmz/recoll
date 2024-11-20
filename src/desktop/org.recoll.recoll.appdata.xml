@@ -20,7 +20,7 @@
   <url type="donation">https://www.lesbonscomptes.com/donations</url>
   <url type="vcs-browser">https://framagit.org/medoc92/recoll</url>
   <releases>
-    <release version="1.40.4" date="2024-11-15" />
+    <release version="1.41.0pre1" date="2024-11-19" />
   </releases>
   <project_license>GPL-2.0+</project_license>
   <developer id="org.dockes">

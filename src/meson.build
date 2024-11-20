@@ -25,7 +25,7 @@ project(
     license: 'GPL 2+',
     # We'd like to use version: files('RECOLL-VERSION.txt') but this is a 0.56 feature. 
     # Ubuntu focal has 0.53 and is supported until 2025-04.
-    version: '1.40.4', # VERSIONCOMMENT keep this here, used by setversion.sh
+    version: '1.41.0pre1', # VERSIONCOMMENT keep this here, used by setversion.sh
     # Note: follow_symlinks will be needed in the future but not supported by all the versions we
     # need at the moment
     default_options: ['cpp_std=c++17', 'buildtype=debugoptimized',
@@ -38,7 +38,7 @@ project(
 # independently, but the future rule should be to only change the API with the minor (38) and use
 # this for the soversion. Just in case we ever actually define an API...
 recoll_soversion = '39'
-recoll_soversion_minor = '.1.0'
+recoll_soversion_minor = '.2.0'
 
 cpp = meson.get_compiler('cpp')
 cc = meson.get_compiler('c')
