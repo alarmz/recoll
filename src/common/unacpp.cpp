@@ -49,9 +49,7 @@ bool unacmaybefold(const string &in, string &out, UnacOp what)
     if (status < 0) {
         if (cout)
             free(cout);
-        char cerrno[20];
-        sprintf(cerrno, "%d", errno);
-        out = string("unac_string failed, errno : ") + cerrno;
+        out = string("unac_string failed, errno : ") + std::to_string(errno);
         return false;
     }
     out.assign(cout, out_len);

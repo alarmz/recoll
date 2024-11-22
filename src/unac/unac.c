@@ -13082,7 +13082,7 @@ static void debug_print(const char* message, ...)
     va_start(args, message);
     if(vsnprintf(unac_message_buffer, UNAC_MAXIMUM_MESSAGE_SIZE, message, args) < 0) {
         char tmp[UNAC_MAXIMUM_MESSAGE_SIZE];
-        sprintf(tmp, "[message larger than %d, truncated]", UNAC_MAXIMUM_MESSAGE_SIZE);
+        snprintf(tmp, sizeof(tmp), "[message larger than %d, truncated]", UNAC_MAXIMUM_MESSAGE_SIZE);
         debug_doprint(tmp, debug_appdata);
     }
     va_end(args);

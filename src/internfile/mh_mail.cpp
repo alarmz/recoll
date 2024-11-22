@@ -295,9 +295,7 @@ bool MimeHandlerMail::processAttach()
     }
 
     // Ipath
-    char nbuf[20];
-    sprintf(nbuf, "%d", m_idx);
-    m_metaData[cstr_dj_keyipath] = nbuf;
+    m_metaData[cstr_dj_keyipath] = std::to_string(m_idx);
 
     return true;
 }
@@ -365,9 +363,7 @@ bool MimeHandlerMail::processMsg(Binc::MimePart *doc, int depth)
         if (depth == 1) {
             time_t t = rfc2822DateToUxTime(decoded);
             if (t != (time_t)-1) {
-                char ascuxtime[100];
-                sprintf(ascuxtime, "%ld", (long)t);
-                m_metaData[cstr_dj_keymd] = ascuxtime;
+                m_metaData[cstr_dj_keymd] = std::to_string(t);
             } else {
                 // Leave mtime field alone, ftime will be used instead.
                 LOGDEB("rfc2822Date...: failed: [" << decoded << "]\n");

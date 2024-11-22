@@ -544,11 +544,9 @@ bool MimeHandlerMbox::next_document()
     }
     LOGDEB2("Message text length " << msgtxt.size() << "\n");
     LOGDEB2("Message text: [" << msgtxt << "]\n");
-    char buf[20];
     // m->msgnum was incremented when hitting the next From_ or eof, so the data
     // is for m->msgnum - 1
-    sprintf(buf, "%d", m->msgnum - 1); 
-    m_metaData[cstr_dj_keyipath] = buf;
+    m_metaData[cstr_dj_keyipath] = std::to_string(m->msgnum - 1);
     m_metaData[cstr_dj_keymt] = "message/rfc822";
     if (iseof) {
         LOGDEB2("MimeHandlerMbox::next: eof hit\n");

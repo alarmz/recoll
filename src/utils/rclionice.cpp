@@ -42,10 +42,8 @@ bool rclionice(const string& clss, const string& cdata)
         args.push_back(cdata);
     }
     
-    char cpid[100];
-    sprintf(cpid, "%d", getpid());
     args.push_back("-p");
-    args.push_back(cpid);
+    args.push_back(std::to_string(getpid()));
 
     ExecCmd cmd;
     int status = cmd.doexec(ionicexe, args);

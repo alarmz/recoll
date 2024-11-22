@@ -240,9 +240,9 @@ void SpellW::doExpand()
         for (vector<Rcl::TermMatchEntry>::iterator it = res.entries.begin(); 
              it != res.entries.end(); it++) {
             LOGDEB2("SpellW::expand: " << it->wcf << " [" << it->term << "]\n");
-            char num[30];
+            char num[40];
             if (it->wcf)
-                sprintf(num, "%d / %d",  it->docs, it->wcf);
+                snprintf(num, sizeof(num), "%d / %d",  it->docs, it->wcf);
             else
                 num[0] = 0;
             resTW->setRowCount(row+1);

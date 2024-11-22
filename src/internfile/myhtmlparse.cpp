@@ -378,14 +378,9 @@ MyHtmlParser::opening_tag(const string &tag)
                         decode_entities(content);
                         struct tm tm;
                         memset(&tm, 0, sizeof(tm));
-                        if (strptime(content.c_str(), 
-                                     " %Y-%m-%d %H:%M:%S ", &tm) ||
-                            strptime(content.c_str(), 
-                                     "%Y-%m-%dT%H:%M:%S", &tm)
-                            ) {
-                            char ascuxtime[100];
-                            sprintf(ascuxtime, "%ld", (long)mktime(&tm));
-                            dmtime = ascuxtime;
+                        if (strptime(content.c_str(), " %Y-%m-%d %H:%M:%S ", &tm) ||
+                            strptime(content.c_str(), "%Y-%m-%dT%H:%M:%S", &tm) ) {
+                            dmtime = std::to_string(mktime(&tm));
                         }
                     } else if (name == "robots") {
                     } else {

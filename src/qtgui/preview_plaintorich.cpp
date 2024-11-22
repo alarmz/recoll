@@ -134,7 +134,7 @@ string  PlainToRichQtPreview::termAnchorName(int i) const
 {
     static const char *termAnchorNameBase = "TRM";
     char acname[sizeof(termAnchorNameBase) + 20];
-    sprintf(acname, "%s%d", termAnchorNameBase, i);
+    snprintf(acname, sizeof(acname), "%s%d", termAnchorNameBase, i);
     return string(acname);
 }
 

@@ -125,7 +125,7 @@ void rwSettings(bool writing)
         }
         for (auto clause : prefs.advSearchClauses) {
             char buf[20];
-            sprintf(buf, "%d ", clause);
+            snprintf(buf, sizeof(buf), "%d ", clause);
             advSearchClauses += QString::fromUtf8(buf);
         }
     }

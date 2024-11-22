@@ -87,7 +87,7 @@ bool RclDynConf::insertNew(const string &sk, DynConfEntry &n, DynConfEntry &s, i
     unsigned int hi = names.empty() ? 0 : (unsigned int)atoi(names.back().c_str());
     hi++;
     char nname[20];
-    sprintf(nname, "%010u", hi);
+    snprintf(nname, sizeof(nname), "%010u", hi);
 
     string value;
     n.encode(value);

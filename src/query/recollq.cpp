@@ -105,9 +105,7 @@ void output_fields(std::vector<std::string> fields, Rcl::Doc& doc,
         if (fld == "abstract") {
             base64_encode(make_abstract(doc, query, asSnippets, snipcnt, showlines, hldata), out);
         } else if (fld == "xdocid") {
-            char cdocid[30];
-            sprintf(cdocid, "%lu", (unsigned long)doc.xdocid);
-            base64_encode(cdocid, out);
+            base64_encode(std::to_string(doc.xdocid), out);
         } else {
             base64_encode(doc.meta[fld], out);
         }
@@ -484,8 +482,6 @@ int recollq(RclConfig **cfp, int argc, char **argv)
                 titleorfn = path_getsimple(url);
             }
 
-            char cpc[20];
-            sprintf(cpc, "%d", doc.pc);
             cout
                 << doc.mimetype << "\t"
                 << "[" << doc.url << "]" << "\t" 

@@ -1947,9 +1947,7 @@ bool Db::addOrUpdate(const string &udi, const string &parent_udi, Doc &doc)
         }   
         if (!doc.pcbytes.empty())
             RECORD_APPEND(record, Doc::keypcs, doc.pcbytes);
-        char sizebuf[30]; 
-        sprintf(sizebuf, "%u", (unsigned int)doc.text.length());
-        RECORD_APPEND(record, Doc::keyds, sizebuf);
+        RECORD_APPEND(record, Doc::keyds, std::to_string(doc.text.length()));
 
         // Note that we add the signature both as a value and in the data record
         if (!doc.sig.empty()) {

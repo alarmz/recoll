@@ -63,7 +63,7 @@ static bool eCrontabWriteFile(const vector<string>& lines, string& reason)
     args.push_back("-");
     if ((status = croncmd.doexec("crontab", args, &crontab, nullptr))) {
         char nbuf[30]; 
-        sprintf(nbuf, "0x%x", status);
+        snprintf(nbuf, sizeof(nbuf), "0x%x", status);
         reason = string("Exec crontab -l failed: status: ") + nbuf;
         return false;
     }

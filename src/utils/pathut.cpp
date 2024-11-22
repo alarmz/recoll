@@ -1486,7 +1486,7 @@ int Pidfile::read_pid()
         return -1;
     }
 
-    char buf[16];
+    char buf[20];
     auto i = sys_read(fd, buf, sizeof(buf) - 1);
     ::close(fd);
     if (i <= 0) {
@@ -1579,11 +1579,9 @@ int Pidfile::write_pid()
         m_reason = "ftruncate failed";
         return -1;
     }
-    char pidstr[20];
-    sprintf(pidstr, "%u", int(getpid()));
-    auto lenpid = strlen(pidstr);
+    std::string pidstr = std::to_string(getpid());
     ::lseek(fd, 0, 0);
-    if (sys_write(fd, pidstr, lenpid) != static_cast<ssize_t>(lenpid)) {
+    if (sys_write(fd, pidstr.cstr(), pidstr.size()) != static_cast<ssize_t>(pidstr.size())) {
         m_reason = "write failed";
         return -1;
     }

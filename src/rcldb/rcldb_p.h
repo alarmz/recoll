@@ -287,7 +287,7 @@ class Db::Native {
         // to read. I'd wager that this does not make much of a difference. 10 ascii bytes gives us
         // 10 billion docs, which is enough (says I).
         char buf[30];
-        sprintf(buf, "%010d", did);
+        snprintf(buf, sizeof(buf), "%010d", did);
         return buf;
     }
 

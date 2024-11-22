@@ -94,7 +94,7 @@ const char *RclIntf::event_name(int code)
     case IN_IGNORED: return "IN_IGNORED";  // Watch was removed
     default: {
         static char msg[50];
-        sprintf(msg, "Unknown event 0x%x", code);
+        snprintf(msg, sizeof(msg), "Unknown event 0x%x", code);
         return msg;
     }
     };

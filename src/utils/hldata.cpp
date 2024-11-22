@@ -287,7 +287,7 @@ string HighlightData::toString() const
     }
     out.append("\nGroups: ");
     char cbuf[200];
-    sprintf(cbuf, "index_term_groups size %d ugroups size %d",
+    snprintf(cbuf, sizeof(cbuf), "index_term_groups size %d ugroups size %d",
             int(index_term_groups.size()), int(ugroups.size()));
     out.append(cbuf);
 

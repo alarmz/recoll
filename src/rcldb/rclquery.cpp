@@ -478,14 +478,14 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
     doc.pc = pc;
     char buf[200];
     if (collapsecount > 0) {
-        sprintf(buf,"%3d%% (%d)", pc, collapsecount + 1);
+        snprintf(buf, sizeof(buf), "%3d%% (%d)", pc, collapsecount + 1);
     } else {
-        sprintf(buf,"%3d%%", pc);
+        snprintf(buf, sizeof(buf), "%3d%%", pc);
     }
     doc.meta[Doc::keyrr] = buf;
 
     if (collapsecount > 0) {
-        sprintf(buf, "%d", collapsecount);
+        snprintf(buf, sizeof(buf), "%d", collapsecount);
         doc.meta[Rcl::Doc::keycc] = buf;
     }
 

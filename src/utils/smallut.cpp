@@ -1208,7 +1208,7 @@ std::string valToString(const std::vector<CharFlags>& flags, unsigned int val)
             return flag.yesname;
 
     char mybuf[100];
-    sprintf(mybuf, "Unknown Value 0x%x", val);
+    snprintf(mybuf, sizeof(mybuf), "Unknown Value 0x%x", val);
     return mybuf;
 }
 

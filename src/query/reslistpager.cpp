@@ -210,9 +210,8 @@ void ResListPager::displayDoc(RclConfig *config, int i, Rcl::Doc& doc,
     }
 
     // Result number
-    char numbuf[20];
     int docnumforlinks = m_winfirst + 1 + i;
-    sprintf(numbuf, "%d", docnumforlinks);
+    std::string numbuf = std::to_string(docnumforlinks);
 
     // Document date: either doc or file modification times
     string datebuf;
@@ -293,8 +292,7 @@ void ResListPager::displayDoc(RclConfig *config, int i, Rcl::Doc& doc,
     else
         chunk += "<p style='margin: 0px;padding: 0px;clear: both;'>";
 
-    char xdocidbuf[100];
-    sprintf(xdocidbuf, "%lu", doc.xdocid);
+    std::string xdocidbuf = std::to_string(doc.xdocid);
     
     // Configurable stuff
     map<string, string> subs;

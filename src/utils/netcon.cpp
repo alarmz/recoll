@@ -698,9 +698,7 @@ int NetconData::send(const char *buf, int cnt, int expedited)
 
     // Note: byte count may be different from cnt if fd is non-blocking
     if (ret < 0) {
-        char fdcbuf[20];
-        sprintf(fdcbuf, "%d", m_fd);
-        LOGSYSERR("NetconData::send", "send", fdcbuf);
+        LOGSYSERR("NetconData::send", "send", std::to_string(m_fd));
     }
     return ret;
 }
@@ -1167,7 +1165,7 @@ int NetconServLis::initperms(int port)
     }
 
     char sport[30];
-    sprintf(sport, "%d", port);
+    snprintf(sport, sizeof(sport), "%d", port);
     return initperms(sport);
 }
 
@@ -1184,16 +1182,16 @@ int NetconServLis::initperms(const char *serv)
     }
 
     char keyname[100];
-    sprintf(keyname, "%s_okaddrs", serv);
+    snprintf(keyname, sizeof(keyname), "%s_okaddrs", serv);
     if (genparams->getparam(keyname, &okaddrs, 1) < 0) {
         serv = "default";
-        sprintf(keyname, "%s_okaddrs", serv);
+        snprintf(keyname, sizeof(keyname), "%s_okaddrs", serv);
         if (genparams->getparam(keyname, &okaddrs) < 0) {
             LOGERR("NetconServLis::initperms: no okaddrs found in config file\n");
             return -1;
         }
     }
-    sprintf(keyname, "%s_okmasks", serv);
+    snprintf(keyname, sizeof(keyname), "%s_okmasks", serv);
     if (genparams->getparam(keyname, &okmasks)) {
         LOGERR("NetconServLis::initperms: okmasks not found\n");
         return -1;
