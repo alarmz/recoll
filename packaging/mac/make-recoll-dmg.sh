@@ -13,8 +13,8 @@ usage()
 #### Adjustable things
 top=~/Recoll
 # The possibly bogus version we have in paths (may be harcoded in the .pro)
-qcbuildloc=Qt_6_6_3_for_macOS
-deploy=~/Qt/6.6.3/macos/bin/macdeployqt
+qcbuildloc=Qt_6_7_3_for_macOS
+deploy=~/Qt/6.7.3/macos/bin/macdeployqt
 
 #### Locations depending on the above, should not change much
 toprecoll=$top/recoll/src

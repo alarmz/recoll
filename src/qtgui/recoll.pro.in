@@ -180,7 +180,7 @@ windows {
 }
 
 macx: {
-  QCBUILDLOC=Qt_6_6_3_for_macOS
+  QCBUILDLOC=Qt_6_7_3_for_macOS
 
   QT += widgets webenginewidgets
   DEFINES += USING_WEBENGINE
