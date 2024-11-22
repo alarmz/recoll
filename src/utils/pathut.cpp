@@ -1581,7 +1581,7 @@ int Pidfile::write_pid()
     }
     std::string pidstr = std::to_string(getpid());
     ::lseek(fd, 0, 0);
-    if (sys_write(fd, pidstr.cstr(), pidstr.size()) != static_cast<ssize_t>(pidstr.size())) {
+    if (sys_write(fd, pidstr.c_str(), pidstr.size()) != static_cast<ssize_t>(pidstr.size())) {
         m_reason = "write failed";
         return -1;
     }
