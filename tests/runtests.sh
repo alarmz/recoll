@@ -115,7 +115,10 @@ test -n "$RECOLL_TESTDATA" || fatal RECOLL_TESTDATA is not set
 test -n "$TMPDIR" || fatal TMPDIR is not set
 
 if iswindows; then
-    checkcmds recollq recollindex || exit 1
+    checkcmds recollq || exit 1
+    if test x$noindex = x ; then
+        checkcmds recollindex || exit 1
+    fi
     export MSYS2_ARG_CONV_EXCL='*'
     # badsuffs[1] notypes onlynames: tests need 'file' for mime id. onlynames is easy to fix.
     # casediac, cjk koi8r: needs utf8 on the command line
@@ -135,7 +138,10 @@ if iswindows; then
               djvu dvi Maildir Maildir1 man empty nonumbers pdf-annots \
               pdf-ocr pdfattach postscript purple pythonapi scribus xattr xml"
 else
-    checkcmds recollq recollindex pxattr xadump pdftk || exit 1
+    checkcmds recollq pxattr xadump pdftk || exit 1
+    if test x$noindex = x ; then
+        checkcmds recollindex || exit 1
+    fi
     excluded="non-auto"
     iscmd pdftk
     pdftk=$iscmdresult
@@ -162,7 +168,7 @@ toptmp=${TMPDIR:-/tmp}/recolltsttmp
 test X"$toptmp" = X && fatal "empty toptmp??"
 test X"$toptmp" = X/ && fatal "toptmp == / ??"
 if test -d "$toptmp" ; then
-   rm -rf $toptmp/*
+   rm -f $toptmp/*.diffs $toptmp/*.err  $toptmp/*.out
 fi
 mkdir -p $toptmp || fatal cant create temp dir $toptmp
 

@@ -1,0 +1,10 @@
+Expecting tibetan.html
+1 results
+text/html	[file:///home/dockes/projets/fulltext/testrecoll/tibetan/tibetan.html]	[tibetan.html]	1821	bytes	
+Expecting tibetanfalsehits.html
+1 results
+text/html	[file:///home/dockes/projets/fulltext/testrecoll/tibetan/tibetanfalsehits.html]	[tibetanfalsehits.html]	178	bytes	
+Expecting tibetan.html and tibetanconfound.html
+2 results
+text/html	[file:///home/dockes/projets/fulltext/testrecoll/tibetan/tibetan.html]	[tibetan.html]	1821	bytes	
+text/html	[file:///home/dockes/projets/fulltext/testrecoll/tibetan/tibetanconfound.html]	[tibetanconfound.html]	207	bytes	
