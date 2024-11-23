@@ -269,6 +269,10 @@ alink="#0000FF">
                 <dt><span class="sect2">3.2.17. <a href=
                 "#RCL.SEARCH.GUI.CUSTOM">Customizing the search
                 interface</a></span></dt>
+                <dt><span class="sect2">3.2.18. <a href=
+                "#RCL.SEARCH.GUI.CMDLINE">The <span class=
+                "command"><strong>recoll</strong></span> GUI
+                command line options</a></span></dt>
               </dl>
             </dd>
             <dt><span class="sect1">3.3. <a href=
@@ -5674,6 +5678,50 @@ recollindex -c "$confdir"</pre>
             </div>
           </div>
         </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name="RCL.SEARCH.GUI.CMDLINE"
+                id="RCL.SEARCH.GUI.CMDLINE"></a>3.2.18.&nbsp;The
+                <span class=
+                "command"><strong>recoll</strong></span> GUI
+                command line options</h3>
+              </div>
+            </div>
+          </div>
+          <p>The <span class=
+          "command"><strong>recoll</strong></span> command has a
+          number of useful command line options.</p>
+          <p><code class="option">-c <em class=
+          "replaceable"><code>configdir</code></em></code>
+          specifies a non-default configuration directory.</p>
+          <p><code class="option">-L <em class=
+          "replaceable"><code>lang</code></em></code> can be used
+          to use a different language for the GUI labels than the
+          one which would be chosen according to the system locale.
+          Some translations are quite incomplete and you may prefer
+          to see the English messages, even if your machine is
+          generally setup for, e.g. Spanish. Example:</p>
+          <pre class="programlisting">recoll -L en</pre>
+          <p><code class="option">-q <em class=
+          "replaceable"><code>query</code></em></code> specifies a
+          query to be run when the program starts. It takes a
+          single argument, which must be quoted if it contains
+          white space.</p>
+          <p><code class="option">-o/-l/-f/-a</code> specify the
+          type of query. The default is to interpret the
+          <code class="option">-q</code> argument as a query
+          language string. You can use these options to interpret
+          the argument as an <code class="literal">Any Term</code>,
+          <code class="literal">File Name</code> or <code class=
+          "literal">All Terms</code> query instead.</p>
+          <p>The <code class="option">-t</code> option will tell
+          the program to behave exactly like the <span class=
+          "command"><strong>recollq</strong></span> command,
+          printing the results to the standard output (terminal)
+          instead of starting a graphical window.</p>
+        </div>
       </div>
       <div class="sect1">
         <div class="titlepage">
@@ -9943,11 +9991,11 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDNAMES" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDNAMES"></a><span class="term"><code class="varname">skippedNames</code></span></dt>
                 <dd>
-                  <p>Files and directories which should be ignored.
-                  White space separated list of wildcard patterns
-                  (simple ones, not paths, must contain no '/'
-                  characters), which will be tested against file
-                  and directory names.</p>
+                  <p>File and directory names which should be
+                  ignored. White space separated list of wildcard
+                  patterns (simple ones, not paths, must contain no
+                  '/' characters), which will be tested against
+                  file and directory names.</p>
                   <p>Have a look at the default configuration for
                   the initial value, some entries may not suit your
                   situation. The easiest way to see it is through
@@ -9972,25 +10020,28 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDNAMES-" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDNAMES-"></a><span class="term"><code class="varname">skippedNames-</code></span></dt>
                 <dd>
-                  <p>List of name endings to remove from the
-                  default skippedNames list.</p>
+                  <p>List of name patterns to remove from the
+                  default skippedNames list. Allows modifying the
+                  list in the local configuration without copying
+                  it.</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDNAMES+" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDNAMES+"></a><span class="term"><code class="varname">skippedNames+</code></span></dt>
                 <dd>
-                  <p>List of name endings to add to the default
-                  skippedNames list.</p>
+                  <p>List of name patterns to add to the default
+                  skippedNames list. Allows modifying the list in
+                  the local configuration without copying it.</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.ONLYNAMES" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.ONLYNAMES"></a><span class="term"><code class="varname">onlyNames</code></span></dt>
                 <dd>
-                  <p>Regular file name filter patterns If this is
-                  set, only the file names not in skippedNames and
-                  matching one of the patterns will be considered
-                  for indexing. Can be redefined per subtree. Does
-                  not apply to directories.</p>
+                  <p>Regular file name filter patterns. This is
+                  normally empty. If set, only the file names not
+                  in skippedNames and matching one of the patterns
+                  will be considered for indexing. Can be redefined
+                  per subtree. Does not apply to directories.</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.NOCONTENTSUFFIXES"
@@ -10058,7 +10109,7 @@ thesame = "some string with spaces"</pre>
                   <p>The default value contains the usual mount
                   point for removable media to remind you that it
                   is in most cases a bad idea to have Recoll work
-                  on these Explicitly adding '/media/xxx' to the
+                  on these. Explicitly adding '/media/xxx' to the
                   'topdirs' variable will override this.</p>
                 </dd>
                 <dt><a name=
@@ -10139,7 +10190,7 @@ thesame = "some string with spaces"</pre>
                 </a><span class="term"><code class=
                 "varname">indexedmimetypes</code></span></dt>
                 <dd>
-                  <p>Restrictive list of indexed mime types.
+                  <p>Restrictive list of indexed MIME types.
                   Normally not set (in which case all supported
                   types are indexed). If it is set, only the types
                   from the list will have their contents indexed.
@@ -10165,16 +10216,16 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.NOMD5TYPES" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.NOMD5TYPES"></a><span class="term"><code class="varname">nomd5types</code></span></dt>
                 <dd>
-                  <p>Don't compute md5 for these types. md5
-                  checksums are used only for deduplicating
-                  results, and can be very expensive to compute on
-                  multimedia or other big files. This list lets you
-                  turn off md5 computation for selected types. It
-                  is global (no redefinition for subtrees). At the
-                  moment, it only has an effect for external
-                  handlers (exec and execm). The file types can be
-                  specified by listing either MIME types (e.g.
-                  audio/mpeg) or handler names (e.g.
+                  <p>MIME types for which we don't compute a md5
+                  hash. md5 checksums are used only for
+                  deduplicating results, and can be very expensive
+                  to compute on multimedia or other big files. This
+                  list lets you turn off md5 computation for
+                  selected types. It is global (no redefinition for
+                  subtrees). At the moment, it only has an effect
+                  for external handlers (exec and execm). The file
+                  types can be specified by listing either MIME
+                  types (e.g. audio/mpeg) or handler names (e.g.
                   rclaudio.py).</p>
                 </dd>
                 <dt><a name=
@@ -10200,6 +10251,19 @@ thesame = "some string with spaces"</pre>
                   disable.</p>
                 </dd>
                 <dt><a name=
+                "RCL.INSTALL.CONFIG.RECOLLCONF.TEXTFILEPAGEKBS" id=
+                "RCL.INSTALL.CONFIG.RECOLLCONF.TEXTFILEPAGEKBS"></a><span class="term"><code class="varname">textfilepagekbs</code></span></dt>
+                <dd>
+                  <p>Page size for text files. If this is set,
+                  text/plain files will be divided into documents
+                  of approximately this size. This will reduce
+                  memory usage at index time and help with loading
+                  data in the preview window at query time.
+                  Particularly useful with very big files, such as
+                  application or system logs. Also see
+                  textfilemaxmbs and compressedfilemaxkbs.</p>
+                </dd>
+                <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.TEXTUNKNOWNASPLAIN"
                 id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.TEXTUNKNOWNASPLAIN"></a><span class="term"><code class="varname">textunknownasplain</code></span></dt>
@@ -10208,8 +10272,8 @@ thesame = "some string with spaces"</pre>
                   Allows indexing misc. text files identified as
                   text/whatever by 'file' or 'xdg-mime' without
                   having to explicitely set config entries for
-                  them. This works fine for indexing (but will
-                  cause processing of a lot of garbage though), but
+                  them. This works fine for indexing (also will
+                  cause processing of a lot of useless files), but
                   the documents indexed this way will be opened by
                   the desktop viewer, even if text/plain has a
                   specific editor.</p>
@@ -10219,7 +10283,7 @@ thesame = "some string with spaces"</pre>
                 id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.INDEXALLFILENAMES"></a><span class="term"><code class="varname">indexallfilenames</code></span></dt>
                 <dd>
-                  <p>Index the file names of unprocessed files
+                  <p>Index the file names of unprocessed files.
                   Index the names of files the contents of which we
                   don't index because of an excluded or unsupported
                   MIME type.</p>
@@ -10234,11 +10298,12 @@ thesame = "some string with spaces"</pre>
                   <p>Use a system mechanism as last resort to guess
                   a MIME type. Depending on platform and version, a
                   compile-time configuration will decide if this
-                  executes a command or uses libmagic. This is
-                  generally useful, but will usually cause the
-                  indexing of many bogus extension-less 'text'
-                  files. See 'systemfilecommand' for the command
-                  used.</p>
+                  actually executes a command or uses libmagic.
+                  This last-resort identification (if the
+                  suffix-based one failed) is generally useful, but
+                  will cause the indexing of many bogus
+                  extension-less 'text' files. Also see
+                  'systemfilecommand'.</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.SYSTEMFILECOMMAND"
@@ -10248,7 +10313,7 @@ thesame = "some string with spaces"</pre>
                   <p>Command to use for guessing the MIME type if
                   the internal methods fail. This is ignored on
                   Windows or with Recoll 1.38+ if compiled with
-                  --enable-libmagic (the default). Otherwise, this
+                  libmagic enabled (the default). Otherwise, this
                   should be a "file -i" workalike. The file path
                   will be added as a last parameter to the command
                   line. "xdg-mime" works better than the
@@ -10265,24 +10330,11 @@ thesame = "some string with spaces"</pre>
                   plugins create the copies of visited pages.</p>
                 </dd>
                 <dt><a name=
-                "RCL.INSTALL.CONFIG.RECOLLCONF.TEXTFILEPAGEKBS" id=
-                "RCL.INSTALL.CONFIG.RECOLLCONF.TEXTFILEPAGEKBS"></a><span class="term"><code class="varname">textfilepagekbs</code></span></dt>
-                <dd>
-                  <p>Page size for text files. If this is set,
-                  text/plain files will be divided into documents
-                  of approximately this size. Will reduce memory
-                  usage at index time and help with loading data in
-                  the preview window at query time. Particularly
-                  useful with very big files, such as application
-                  or system logs. Also see textfilemaxmbs and
-                  compressedfilemaxkbs.</p>
-                </dd>
-                <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.MEMBERMAXKBS" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.MEMBERMAXKBS"></a><span class="term"><code class="varname">membermaxkbs</code></span></dt>
                 <dd>
                   <p>Size limit for archive members. This is passed
-                  to the filters in the environment as
+                  to the MIME handlers in the environment as
                   RECOLL_FILTER_MAXMEMBERKB.</p>
                 </dd>
               </dl>
@@ -10403,12 +10455,12 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.INDEXEDPUNCTUATION"></a><span class="term"><code class="varname">indexedpunctuation</code></span></dt>
                 <dd>
                   <p>String of UTF-8 punctuation characters to be
-                  indexed as words The resulting terms will then be
-                  searchable and, for example, by setting the
+                  indexed as words. The resulting terms will then
+                  be searchable and, for example, by setting the
                   parameter to "%€" (without the double quotes),
                   you would be able to search separately for "100%"
                   or "100€" Note that "100%" or "100 %" would be
-                  indexed in the same way, the characters are there
+                  indexed in the same way, the characters are their
                   own word separators.</p>
                 </dd>
                 <dt><a name=
@@ -10416,7 +10468,7 @@ thesame = "some string with spaces"</pre>
                 id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.BACKSLASHASLETTER"></a><span class="term"><code class="varname">backslashasletter</code></span></dt>
                 <dd>
-                  <p>Process backslash as normal letter. This may
+                  <p>Process backslash as a normal letter. This may
                   make sense for people wanting to index TeX
                   commands as such but is not of much general
                   use.</p>
@@ -10434,11 +10486,11 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.MAXTERMLENGTH" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.MAXTERMLENGTH"></a><span class="term"><code class="varname">maxtermlength</code></span></dt>
                 <dd>
-                  <p>Maximum term length in bytes. Words longer
-                  than this will be discarded. The default is 40
-                  and used to be hard-coded, but it can now be
-                  adjusted. You may need an index reset if you
-                  change the value.</p>
+                  <p>Maximum term length in Unicode characters.
+                  Words longer than this will be discarded. The
+                  default is 40 and used to be hard-coded, but it
+                  can now be adjusted. You may need an index reset
+                  if you change the value.</p>
                 </dd>
                 <dt><a name="RCL.INSTALL.CONFIG.RECOLLCONF.NOCJK"
                 id=

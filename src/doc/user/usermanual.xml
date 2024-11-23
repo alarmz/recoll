@@ -3928,7 +3928,34 @@ recollindex -c "$confdir"</programlisting>
         </sect3>
       </sect2>
 
+      <sect2 id="RCL.SEARCH.GUI.CMDLINE">
+        <title>The <command>recoll</command> GUI command line options</title>
+
+        <para>The <command>recoll</command> command has a number of useful command line
+        options.</para> 
+        <para><option>-c <replaceable>configdir</replaceable></option> specifies a non-default
+        configuration directory.</para>
+        <para><option>-L <replaceable>lang</replaceable></option> can be used to use a different
+        language for the GUI labels than the one which would be chosen according to the system
+        locale. Some translations are quite incomplete and you may prefer to see the English
+        messages, even if your machine is generally setup for, e.g. Spanish. Example:
+        <programlisting>recoll -L en</programlisting></para>
+        <para><option>-q <replaceable>query</replaceable></option> specifies a query to be run when
+        the program starts. It takes a single argument, which must be quoted if it contains white
+        space.</para>
+        <para><option>-o/-l/-f/-a</option> specify the type of query. The default is to interpret
+        the <option>-q</option> argument as a query language string. You can use these options to
+        interpret the argument as an <literal>Any Term</literal>, <literal>File Name</literal> or
+        <literal>All Terms</literal> query instead.</para>
+        <para>The <option>-t</option> option will tell the program to behave exactly like the
+        <command>recollq</command> command, printing the results to the standard output (terminal)
+        instead of starting a graphical window.</para>
+
+      </sect2>
+
     </sect1> <!-- search GUI -->
+
+
 
     <sect1 id="RCL.SEARCH.KIO">
       <title>Searching with the KDE KIO slave</title>
