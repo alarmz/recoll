@@ -5,8 +5,15 @@ recoll \- user interface for the Recoll full text search system
 .SH SYNOPSIS
 .B recoll
 [
+.B \-h
+]
+[
 .B \-c
 <configdir>
+]
+[
+.B \-L
+<lang>
 ]
 [
 .B \-o
@@ -18,7 +25,26 @@ recoll \- user interface for the Recoll full text search system
 .B \-a
 ]
 [
-.B \-t
+.B \-q
+<query>
+]
+
+.B recoll -t
+[
+.B \-h
+]
+[
+.B \-c
+<configdir>
+]
+[
+.B \-o
+|
+.B \-l
+|
+.B \-f
+|
+.B \-a
 ]
 [
 .B \-q
@@ -34,14 +60,28 @@ recoll \- user interface for the Recoll full text search system
 .SH DESCRIPTION
 In the first form, the
 .B recoll
-command will start the graphical user interface for querying the 
-.B Recoll 
-database.
+command will start the index query graphical user interface. On the first run, this will create the
+user configuration which can be customized before starting the index creation.
 .PP
-On the first run, 
+In the second form (with a
+.B \-t
+option),
 .B recoll
-will create the user configuration which can be customized
-before starting the first indexation.
+will behave like the
+.B recollq
+command. It will not start a GUI, but will run the query and output the results to the
+terminal (standard output). This will also be the case if
+.B recoll
+is called as 
+.B recollq
+through a link. Additional options understood by the 
+.B recollq
+command may be specified in this case. These can control the output format and the maximum number of
+results to be printed.  Please refer to the command help obtained through the
+.B \-t \-h
+options, or to the
+.B recollq
+manual page for a full description.
 .PP
 The 
 .B \-c 
@@ -66,38 +106,20 @@ is specified, the query string will be interpreted as a
 .I file name
 simple search query. If 
 .B \-l
-is specified, the query string will be interpreted as a
+is specified (or, by default, without any option), the query string will be interpreted as a
 .I query language
 simple search query.
 .PP
-If 
-.B \-t
-is specified, or if
-.B recoll
-is called as
-.B recollq
-(through a link), the Graphical User Interface will not be started, and results
-will be printed to the standard output. Additional options understood by
-the 
-.B recollq
-command may be specified in this case. These can control the output format
-and the maximum number of results to be printed.
-.PP
-Please refer to online help for a full description.
-.PP
-In the second form, the 
+In the third form, the 
 .B recoll
 command can be used to start a native viewer for a document indexed by
 Recoll. It will understand a final URL fragment (separated by a '#'
 character) to indicate an 
 .I ipath
-, the specifier for the part of the Recoll document access path which is is
-internal to a container such as a mbox folder or a zip archive, and will,
-if needed, create a temporary file to let a normal system utility display
-the document.
-.PP
-The second form is mostly used for opening embedded documents from the
-Ubuntu Unity Recoll lens.
+, the specifier for the part of the Recoll document access path which is internal to a container
+such as a mbox folder or a zip archive, and will, if needed, create a temporary file to let a normal
+system utility display the document. This form is mostly used for opening embedded documents from
+an external desktop search interface.
 .SH SEE ALSO
 .PP 
 recollindex(1) recollq(1) recoll.conf(5) 
