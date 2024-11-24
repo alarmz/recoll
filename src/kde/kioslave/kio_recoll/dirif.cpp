@@ -125,7 +125,7 @@ static const UDSEntry resultToUDSEntry(const Rcl::Doc& doc, int num)
     // Use the result number to designate the file in case we are
     // asked to access it
     char cnum[30];
-    sprintf(cnum, "%04d", num);
+    snprintf(cnum, sizeof(cnum), "%04d", num);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, resultBaseName + cnum);
 
     // Display the real file name

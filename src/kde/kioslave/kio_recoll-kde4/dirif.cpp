@@ -103,7 +103,8 @@ static const UDSEntry resultToUDSEntry(const Rcl::Doc& doc, int num)
 //    kDebug() << doc.url.c_str();
 
     entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, url.fileName());
-    char cnum[30];sprintf(cnum, "%04d", num);
+    char cnum[30];
+    snprintf(cnum, sizeof(cnum), "%04d", num);
     entry.insert(KIO::UDSEntry::UDS_NAME, resultBaseName + cnum);
 
     if (!doc.mimetype.compare("application/x-fsdirectory") || 
