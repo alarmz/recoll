@@ -179,7 +179,17 @@ windows {
   }
 }
 
-macx: {
+@MESONRAN@ = "MESONRAN"
+defineTest(macxbundlebuild) {
+    # If the MESONRAN variable exists, meson did run, not a bundle build
+    equals($$MESONRAN, "MESONRAN") {
+      return(false)
+    } else {
+      return(true)
+    }
+}
+
+macx:macxbundlebuild() {
   QCBUILDLOC=Qt_6_7_3_for_macOS
 
   QT += widgets webenginewidgets
@@ -385,7 +395,7 @@ macx: {
   QMAKE_BUNDLE_DATA = APP_EXAMPLES APP_EXAMPLES_MAC APP_FILTERS APP_IMAGES APP_DOC
 }
 
-unix:!macx {
+unix:!macxbundlebuild() {
 
 VPATH = @srcdir@
 

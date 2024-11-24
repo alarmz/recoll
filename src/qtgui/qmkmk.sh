@@ -27,3 +27,10 @@ fi
 cd $dir
 ${QMAKE} $fn $*
 ${MAKE} -j $ncpus
+
+if test `uname -s` = Darwin ; then
+    # qmake will create a recoll.app and put the bin in there. The alternative to an installation
+    # to $bindir would be to create the full bundle in place but this would make things extremely
+    # different on the mac
+    cp -p recoll.app/Contents/MacOS/recoll recoll
+fi

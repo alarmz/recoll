@@ -27,6 +27,9 @@ else
 endif
 qtgui_conf.set('LIBRECOLL_FOR_QMAKE', librecoll.full_path())
 
+# Tell qmake that we are running an unix-type build, not a macx qcreator one
+qtgui_conf.set('MESONRAN', 'MESONRAN')
+
 # Tried xapian.get_pkgconfig_variable('libs')/'--libs'/'Libs' with no success
 pkgc = find_program('pkg-config')
 libstr = run_command(pkgc, ['--libs', 'xapian-core'], check: true).stdout().strip()
