@@ -1,3 +1,9 @@
+kio-recoll (1.41.0-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Follow main release
+  
+ -- Jean-Francois Dockes <jf@dockes.org>  Sun, 24 Nov 2024 16:30:00 +0100
+
 kio-recoll (1.40.1-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Follow main release

@@ -1,3 +1,11 @@
+recoll (1.41.0-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Version bump due to small text splitter changes for Tibetan support
+  * Tibetan support: process with n-grams.
+  * Adjust build for building on Mac OS with Homebrew packages.
+  
+ -- Jean-Francois Dockes <jf@dockes.org>  Sun, 24 Nov 2024 16:30:00 +0100
+
 recoll (1.40.4-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Python extension: fix db.getdoc() unable to use external index.
