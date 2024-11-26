@@ -20,7 +20,30 @@
   <url type="donation">https://www.lesbonscomptes.com/donations</url>
   <url type="vcs-browser">https://framagit.org/medoc92/recoll</url>
   <releases>
-    <release version="1.41.0" date="2024-11-24" />
+    <release version="1.41.0" date="2024-11-24">
+      <description>
+        <p>Version bump due to small text splitter changes for Tibetan support</p>
+        <ul>
+          <li>Tibetan support: process with n-grams.</li>
+          <li>Adjust build for building on Mac OS with Homebrew packages.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.40.4" date="2024-11-15">
+      <description>
+        <ul>
+          <li>Python extension: fix db.getdoc() unable to use external index.</li>
+          <li>GUI: raise the preview window when activated again.</li>
+          <li>GUI: add menu entry to access the online webhelp manual.</li>
+          <li>Fix indexing fb2 files with imbricated sections.</li>
+          <li>Document using CPUQuota parameters with systemd to throttle the indexer CPU use.</li>
+          <li>Mac OS: add missing files in install to fix zip archive processing.</li>
+          <li>recollq: fix -p/-g options always showing limited number of snippets.</li>
+          <li>XSLT-based handlers: accept an absolute path for the stylesheet.</li>
+          <li>GUI preferences: fix many tooltips not shown in the index preferences section.</li>
+        </ul>
+      </description>
+    </release>
   </releases>
   <project_license>GPL-2.0+</project_license>
   <developer id="org.dockes">
