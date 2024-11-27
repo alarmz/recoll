@@ -56,6 +56,7 @@ unix:!mac {
 
 mac {
   QCBUILDLOC=Qt_6_7_3_for_macOS
+  RECOLLDEPS = $$PWD/../../..
   QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
   QMAKE_CXXFLAGS += -std=c++11 -pthread -Wno-unused-parameter
   DEFINES += RECOLL_AS_MAC_BUNDLE
@@ -67,5 +68,6 @@ mac {
   LIBS += \
      $$PWD/build/librecoll/$$QCBUILDLOC-Release/librecoll.a \
      $$PWD/build/libxapian/$$QCBUILDLOC-Release/liblibxapian.a \
+     $$RECOLLDEPS/libmagic/src/.libs/libmagic.a \
      -lxslt -lxml2 -liconv -lz
 }

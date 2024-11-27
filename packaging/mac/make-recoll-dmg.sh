@@ -44,6 +44,9 @@ cp $top/antiword/antiword $bindir || exit 1
 mkdir -p $datadir/antiword || exit 1
 cp $top/antiword/Resources/* $datadir/antiword || exit 1
 
+# Libmagic data
+cp $top/libmagic/magic/magic.mgc $datadir
+
 # Poppler: slight modification and special build of poppler 24.04.0 with static linking of
 # pdfinfo and pdftotext, see the 00-JF-README.txt in the relocatable-for-recoll branch in the
 # local source.  poppler-data is a copy of ubuntu 22.04 /usr/share/poppler

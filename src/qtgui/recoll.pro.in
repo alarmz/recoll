@@ -191,14 +191,13 @@ defineTest(macxbundlebuild) {
 
 macx:macxbundlebuild() {
   QCBUILDLOC=Qt_6_7_3_for_macOS
+  RECOLLDEPS = $$PWD/../../..
+  QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
+  QMAKE_CXXFLAGS += -pthread -Wno-unused-parameter
+  DEFINES += RECOLL_AS_MAC_BUNDLE
 
   QT += widgets webenginewidgets
   DEFINES += USING_WEBENGINE
-
-  QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
-  QMAKE_CXXFLAGS += -pthread -Wno-unused-parameter
-
-  DEFINES += RECOLL_AS_MAC_BUNDLE
   
   HEADERS += \
     crontool.h \
@@ -219,10 +218,13 @@ macx:macxbundlebuild() {
   INCLUDEPATH += ../common ../index ../internfile ../query ../unac \
               ../utils ../aspell ../rcldb ../qtgui ../xaposix \
               confgui widgets
+
   PRE_TARGETDEPS = $$PWD/../qmake/build/librecoll/$$QCBUILDLOC-Release/librecoll.a
+
   LIBS += \
     $$PWD/../qmake/build/librecoll/$$QCBUILDLOC-Release/librecoll.a \
     $$PWD/../qmake/build/libxapian/$$QCBUILDLOC-Release/liblibxapian.a \
+    $$RECOLLDEPS/libmagic/src/.libs/libmagic.a \
     -lxslt -lxml2 -liconv -lz
 
   ICON = images/recoll.icns

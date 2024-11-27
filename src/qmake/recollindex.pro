@@ -72,19 +72,23 @@ unix:!mac {
 
 mac {
   QCBUILDLOC=Qt_6_7_3_for_macOS
+  RECOLLDEPS = $$PWD/../../..
   QMAKE_APPLE_DEVICE_ARCHS = x86_64 arm64
-  QMAKE_CXXFLAGS += -std=c++11 -pthread -Wno-unused-parameter
-  DEFINES += RECOLL_AS_MAC_BUNDLE \
-     RCL_MONITOR RCL_USE_FSEVENTS DISABLE_X11MON
+  QMAKE_CXXFLAGS += -pthread -Wno-unused-parameter
+  DEFINES += RECOLL_AS_MAC_BUNDLE
+
   SOURCES += \
     ../utils/execmd.cpp \
     ../utils/netcon.cpp \
     ../utils/rclionice.cpp
+
   PRE_TARGETDEPS = $$PWD/build/librecoll/$$QCBUILDLOC-Release/librecoll.a
+
   LIBS += \
      $$PWD/build/librecoll/$$QCBUILDLOC-Release/librecoll.a \
      $$PWD/build/libxapian/$$QCBUILDLOC-Release/liblibxapian.a \
-     -F/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks -framework CoreServices \
+     $$RECOLLDEPS/libmagic/src/.libs/libmagic.a \
+     -F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks \
+        -framework CoreServices \
      -lxslt -lxml2 -liconv -lz
 }
-
