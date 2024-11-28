@@ -1,9 +1,3 @@
-commit 802a6c4f0f5a64ac5e3884a321d998f4b784fbe6
-Author: Jean-Francois Dockes <jf@dockes.org>
-Date:   Sat Apr 27 19:17:07 2024 +0200
-
-    Recoll: slightly modified for pdfinfo and pdftotext to be relocatable on MacOS
-
 diff --git a/00-JF-README.txt b/00-JF-README.txt
 new file mode 100644
 index 00000000..1e6339e2
