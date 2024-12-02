@@ -343,10 +343,8 @@ bool ConfIndexW::setupWebHistoryPanel(int idx)
     ConfParamW *cparam = m_w->addParam(
         idx, ConfTabsW::CFPT_FN, "webcachedir",
         tr("Web page store directory name"),
-        tr("The name for a directory where to store the copies "
-           "of visited web pages.<br>"
-           "A non-absolute path is taken relative to the "
-           "configuration directory."), 1);
+        tr("The name for a directory where to store the copies of visited web pages.<br>"
+           "A non-absolute path is taken relative to the configuration directory."), 1);
     m_w->enableLink(bparam, cparam);
 
     cparam = m_w->addParam(
@@ -354,8 +352,7 @@ bool ConfIndexW::setupWebHistoryPanel(int idx)
         tr("Entries will be recycled once the size is reached."
            "<br>"
            "Only increasing the size really makes sense because "
-           "reducing the value will not truncate an existing "
-           "file (only waste space at the end)."
+           "reducing the value will not truncate an existing file (only waste space at the end)."
             ), -1, 1000*1000); // Max 1TB...
     m_w->enableLink(bparam, cparam);
 
@@ -378,6 +375,15 @@ bool ConfIndexW::setupWebHistoryPanel(int idx)
     m_w->addBlurb(idx, tr("Note: old pages will be erased to make space for "
                           "new ones when the maximum size is reached. "
                           "Current size: %1").arg(u8s2qs(displayableBytes(sz))));
+
+    cparam = m_w->addParam(
+        idx, ConfTabsW::CFPT_FN, "webdownloadsdir",
+        tr("Browser add-on download folder"),
+        tr("Only set this if you set the \"Downloads subdirectory\" parameter in the Web browser "
+           "add-on settings. <br>In this case, it should be the full path to the directory "
+           "(e.g. /home/[me]/Downloads/my-subdir)"), 1);
+    m_w->enableLink(bparam, cparam);
+
     m_w->endOfList(idx);
     return true;
 }
