@@ -421,6 +421,9 @@ static const vector<CharFlags> expandModStrings{
     {SearchDataClause::SDCM_NOTERMS, "noterms"},
     {SearchDataClause::SDCM_NOSYNS, "nosyns"},
     {SearchDataClause::SDCM_PATHELT, "pathelt"},
+    {SearchDataClause::SDCM_FILTER, "filter"},
+    {SearchDataClause::SDCM_EXPANDPHRASE, "expandphrase"},
+    {SearchDataClause::SDCM_NOWILDEXP, "nowildexp"},
 };
 
 /** Expand term into term list, using appropriate mode: stem, wildcards, 
@@ -469,11 +472,12 @@ bool SearchDataClauseSimple::expandTerm(Rcl::Db &db,
     bool haswild = term.find_first_of(cstr_minwilds) != string::npos;
 
     // If there are no wildcards, add term to the list of user-entered terms
-    if (!haswild) {
+    bool dowildexp = !getNoWildExp() && haswild;
+    if (!dowildexp) {
         m_hldata.uterms.insert(term);
         sterm = term;
     }
-    // No stem expansion if there are wildcards or if prevented by caller
+    // No stem expansion if there are wildcards (even if nowildexp) or if prevented by caller
     bool nostemexp = (mods & SDCM_NOSTEMMING) != 0;
     if (haswild || getStemLang().empty()) {
         LOGDEB2("expandTerm: found wildcards or stemlang empty: no exp\n");
@@ -486,7 +490,7 @@ bool SearchDataClauseSimple::expandTerm(Rcl::Db &db,
     bool pathelt = (mods & SDCM_PATHELT) != 0;
     
     // noexpansion can be modified further down by possible case/diac expansion
-    bool noexpansion = nostemexp && !haswild && !synonyms; 
+    bool noexpansion = nostemexp && !dowildexp && !synonyms; 
 
     if (o_index_stripchars) {
         diac_sensitive = case_sensitive = false;
@@ -542,10 +546,10 @@ bool SearchDataClauseSimple::expandTerm(Rcl::Db &db,
         termmatchsens |= Db::ET_SYNEXP;
     if (pathelt) 
         termmatchsens |= Db::ET_PATHELT;
-    Db::MatchType mtyp = haswild ? Db::ET_WILD : nostemexp ? Db::ET_NONE : Db::ET_STEM;
+    Db::MatchType mtyp = dowildexp ? Db::ET_WILD : nostemexp ? Db::ET_NONE : Db::ET_STEM;
     TermMatchResult res;
     if (!db.termMatch(mtyp | termmatchsens, getStemLang(),
-                      term, res, maxexpand,  m_field, multiwords)) {
+                      term, res, maxexpand, m_field, multiwords)) {
         // Let it go through
     }
 

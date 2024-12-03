@@ -295,6 +295,7 @@ public:
                    SDCM_FILTER = 0x100,
                    // Terms inside phrases are not expanded if this is not set (by 'x' modifier)
                    SDCM_EXPANDPHRASE = 0x200,
+                   SDCM_NOWILDEXP = 0x400,
     };
     enum Relation {REL_CONTAINS, REL_EQUALS, REL_LT, REL_LTE, REL_GT, REL_GTE};
 
@@ -332,6 +333,8 @@ public:
         return m_parentSearch ? m_parentSearch->getAutoCase() : true;
     }
     bool getNoWildExp() {
+        if (m_modifiers & SDCM_NOWILDEXP)
+            return true;
         return m_parentSearch ? m_parentSearch->getNoWildExp() : false;
     }
     int getMaxExp() {
