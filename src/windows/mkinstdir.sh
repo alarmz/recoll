@@ -22,8 +22,6 @@ test -d $DESTDIR || mkdir $DESTDIR || fatal cant create $DESTDIR
 ################################
 # Local values (to be adjusted)
 
-BUILD=MSVC
-#BUILD=MINGW
 #WEB=WEBKIT
 WEB=WEBENGINE
 
@@ -40,8 +38,8 @@ LIBMAGIC=${RCLDEPS}/msvc/libmagic
 QTA=Desktop_Qt_6_7_3_MSVC2019_64bit-Release
 qtsdir=release
 QTBIN=C:/Qt/6.7.3/msvc2019_64/bin
+# mingwbin has dlls for aux programs built with mingw (wpd, pff, aspell)
 MINGWBIN=${RCLDEPS}/gcclibs
-LIBS32=${RCLDEPS}/libs32
 
 # We use the mingw-compiled aspell program for building the dict
 ASPELL=${RCLDEPS}/mingw/aspell-0.60.7/aspell-installed
@@ -62,12 +60,10 @@ PYTHONMINOR=12
 PYTHON=${RCLDEPS}python-3.12.4-embed-amd64
 UNRTF=${RCLDEPS}unrtf
 ANTIWORD=${RCLDEPS}antiword
-PYXSLT=${RCLDEPS}pyxslt
-PYEXIV2=${RCLDEPS}pyexiv2
+mv pyPYEXIV2=${RCLDEPS}pyexiv2
 EPUB=${RCLDEPS}epub-0.5.2
 FUTURE=${RCLDEPS}python2-future
 POPPLER=${RCLDEPS}poppler-22.04.0/
-POPPLER32=${RCLDEPS}poppler-0.68.0/bin/
 LIBWPD=${RCLDEPS}libwpd/libwpd-0.10.0/
 LIBREVENGE=${RCLDEPS}libwpd/librevenge-0.0.1.jfd/
 CHM=${RCLDEPS}pychm
@@ -99,22 +95,7 @@ copyqt()
     export PATH
     $QTBIN/windeployqt recoll.exe || exit 1
 
-    if test $BUILD = MINGW;then
-        # Apparently because the webkit part was grafted "by hand" on
-	# the Qt set, we need to copy some dll explicitly
-	addlibs="Qt5Core.dll Qt5Multimedia.dll \
-	   Qt5MultimediaWidgets.dll Qt5Network.dll Qt5OpenGL.dll \
-	   Qt5Positioning.dll Qt5PrintSupport.dll Qt5Sensors.dll \
-	   Qt5Sql.dll icudt57.dll \
-	   icuin57.dll icuuc57.dll libQt5WebKit.dll \
-	   libQt5WebKitWidgets.dll \
-	   libxml2-2.dll libxslt-1.dll"
-        for i in $addlibs;do
-            chkcp $QTBIN/$i $DESTDIR
-        done
-        chkcp $QTBIN/libwinpthread-1.dll $DESTDIR
-        chkcp $QTBIN/libstdc++-6.dll $DESTDIR
-    elif test $WEB = WEBKIT ; then
+    if test $WEB = WEBKIT ; then
         addlibs="icudt65.dll icuin65.dll icuuc65.dll libxml2.dll libxslt.dll \
           Qt5WebKit.dll Qt5WebKitWidgets.dll"
         for i in $addlibs;do
@@ -143,15 +124,10 @@ copyrecoll()
     chkcp $RCLQ $DESTDIR 
     chkcp $RCLS $DESTDIR 
     chkcp $ZLIB/zlib1.dll $DESTDIR
-    if test $BUILD = MINGW;then
-        chkcp $LIBXAPIAN $DESTDIR
-	chkcp $LIBR $DESTDIR 
-        chkcp $MINGWBIN/libgcc_s_dw2-1.dll $DESTDIR
-    else
-        chkcp $XAPC $DESTDIR
-	chkcp $LIBXML $DESTDIR
-	chkcp $LIBXSLT $DESTDIR
-    fi
+    chkcp $XAPC $DESTDIR
+    chkcp $LIBXML $DESTDIR
+    chkcp $LIBXSLT $DESTDIR
+
     chkcp $RCL/COPYING                  $DESTDIR/COPYING.txt
     chkcp $RCL/doc/user/usermanual.html $DESTDIR/Share/doc
     chkcp $RCL/doc/user/docbook-xsl.css $DESTDIR/Share/doc
@@ -189,7 +165,6 @@ copyrecoll()
 
 copyantiword()
 {
-    # MINGW
     bindir=$ANTIWORD/
     test -d $Filters/Resources || mkdir -p $FILTERS/Resources || exit 1
     chkcp  $bindir/antiword.exe            $FILTERS
@@ -198,7 +173,7 @@ copyantiword()
 
 copyunrtf()
 {
-     bindir=$UNRTF/Windows/
+    bindir=$UNRTF/Windows/
 
     test -d $FILTERS/Share || mkdir -p $FILTERS/Share || exit 1
     chkcp  $bindir/unrtf.exe               $FILTERS
@@ -235,13 +210,6 @@ copypyexiv2()
     chkcp $PYEXIV2/libexiv2python.pyd $FILTERS/
 }
 
-# Replaced by lxml for python3
-copypyxslt()
-{
-    chkcp $PYXSLT/libxslt.py $FILTERS/
-    cp -rp $PYXSLT/* $FILTERS
-}
-
 copypoppler()
 {
     # Note: the recent poppler build which we ship comes from conda builds, and it includes
@@ -255,12 +223,6 @@ copypoppler()
         chkcp $POPPLER/Library/bin/`basename $f` $FILTERS/poppler/Library/bin/
     done
     cp -rp $POPPLER/share $FILTERS/poppler
-
-    # Old 32 bits poppler 0.68. Comes without poppler-data.
-    test -d $FILTERS/poppler32 || mkdir $FILTERS/poppler32 || fatal cant create poppler32 directory
-    for f in pdftotext.exe pdfinfo.exe pdftoppm.exe $POPPLER32/*.dll ; do
-        chkcp $POPPLER32/`basename $f` $FILTERS/poppler32
-    done
 }
 
 copywpd()
@@ -276,8 +238,8 @@ copywpd()
     chkcp $LIBWPD/src/conv/html/.libs/wpd2html.exe $DEST
     chkcp $MINGWBIN/libgcc_s_dw2-1.dll $DEST
     chkcp $MINGWBIN/libstdc++-6.dll $DEST
-    chkcp $LIBS32/zlib1.dll $DEST
     chkcp $MINGWBIN/libwinpthread-1.dll $DEST
+    chkcp $MINGWBIN/zlib1.dll $DEST
 }
 
 copychm()
@@ -289,8 +251,8 @@ copychm()
 copypff()
 {
     DEST=$FILTERS
-    cp -rp $LIBPFF $DEST || fatal "can't copy pffinstall"
-	DEST=$DEST/pffinstall/mingw32/bin
+    cp -rp $LIBPFF $DEST || fatal "can't copy $LIBPFF"
+    DEST=$DEST/pffinstall/mingw32/bin
     chkcp $LIBPFF/mingw32/bin/pffexport.exe $DEST
     chkcp $MINGWBIN/libgcc_s_dw2-1.dll $DEST
     chkcp $MINGWBIN/libstdc++-6.dll $DEST
@@ -323,27 +285,25 @@ copypyrecoll()
     # NOTE: the python 3.10 build outputs logging error messages
     # (ValueError: underlying buffer has been detached), but this does
     # not seem to affect the build
-    if test $BUILD = MSVC ; then
-        DEST=${DESTDIR}/Share/dist
-        test -d $DEST || mkdir $DEST || fatal cant create $DEST
-        rm -f ${DEST}/Recoll*.egg ${DEST}/Recoll*.whl
-        for v in 10 11 12;do
-            PYRCLDIST=${PYRECOLL}/dist/Recoll-${VERSION}-cp3${v}-cp3${v}-win_amd64.whl
-            if test ! -f ${PYRCLDIST}; then
-                pushd ${PYRECOLL}
-                # NOTE: with recent Python versions you need to install the wheel module for this
-                # to work: xxx/python -m pip install wheel
-                "/c/Program Files/Python3${v}/python" setup-win.py bdist_wheel
-                popd
-            fi
-            chkcp ${PYRCLDIST} $DEST
-            # If this is the right version for our embedded python, install the extension
-            #(needed, e.g. for the Joplin indexer).
-            if test "$v" = "$PYTHONMINOR";then
-                ${DESTDIR}/Share/filters/python/python -m pip install --no-user ${PYRCLDIST} || exit 1
-            fi
-        done
-    fi
+    DEST=${DESTDIR}/Share/dist
+    test -d $DEST || mkdir $DEST || fatal cant create $DEST
+    rm -f ${DEST}/Recoll*.egg ${DEST}/Recoll*.whl
+    for v in 10 11 12;do
+        PYRCLDIST=${PYRECOLL}/dist/Recoll-${VERSION}-cp3${v}-cp3${v}-win_amd64.whl
+        if test ! -f ${PYRCLDIST}; then
+            pushd ${PYRECOLL}
+            # NOTE: with recent Python versions you need to install the wheel module for this
+            # to work: xxx/python -m pip install wheel
+            "/c/Program Files/Python3${v}/python" setup-win.py bdist_wheel
+            popd
+        fi
+        chkcp ${PYRCLDIST} $DEST
+        # If this is the right version for our embedded python, install the extension
+        #(needed, e.g. for the Joplin indexer).
+        if test "$v" = "$PYTHONMINOR";then
+            ${DESTDIR}/Share/filters/python/python -m pip install --no-user ${PYRCLDIST} || exit 1
+        fi
+    done
 }
 
 # First check that the config is ok
