@@ -33,10 +33,19 @@ project(
                      ],
     meson_version: '>=0.53',
 )
-# Note: 1.38.0 had 1.38.0 for soversion, which was a mistake, because the SONAME was xxx.1 For now
+
+# Shared lib versions.
+# 1.38.0 had 1.38.0 for soversion, which was a mistake, because the SONAME was xxx.1 For now
 # this is not very important because we don't really package the lib users (python, kde stuff)
-# independently, but the future rule should be to only change the API with the minor (38) and use
-# this for the soversion. Just in case we ever actually define an API...
+# independently, but the future rule should be to only change the soversion if the ABI changed.
+#
+# Linked binaries only depend on soversion, e.g. ldd recollindex: librecoll.so.39 which is a
+# link to, e.g., .so.39.2.0
+#
+# The soversion_minor is not important except as an indicator of the actual code version which
+# produced the lib, so it should change every time. I wonder if it would make sense to use the
+# recoll version (e.g. 39.40.0 for the full soversion.soversion_minor coming with recoll
+# 1.40.0). This could then be set by setversion.sh
 recoll_soversion = '39'
 recoll_soversion_minor = '.2.0'
 
