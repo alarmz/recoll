@@ -29,7 +29,6 @@
 #include <map>
 #include <string>
 #include <algorithm>
-#include <iostream>
 #include <unordered_map>
 #include <mutex>
 
@@ -75,6 +74,13 @@ static inline bool is_except_char(unsigned short c, string& trans)
 #include <stdio.h>
 #include <stdarg.h>
 #endif /* HAVE_VSNPRINTF */
+
+#ifndef __cplusplus
+typedef int bool;
+static const int true = 1;
+static const int false = 0;
+#define nullptr NULL
+#endif
 
 #include "unac.h"
 #include "unac_version.h"
@@ -13354,6 +13360,8 @@ const char* unac_version(void)
 }
 
 #ifdef BUILDING_RECOLL
+// unac only processes the basic plane (builder.in) so we are certain that we are
+// only dealing with characters encoded as a single short.
 void unac_set_except_translations(const char *spectrans)
 {
     except_trans.clear();
