@@ -479,9 +479,10 @@ misinterpreted it, at which point we just stop processing the file.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.WEBCACHEDIR">
 <term><varname>webcachedir</varname></term>
-<listitem><para>Directory where we store the archived web pages. This is only used by the web history indexing code
-Default: cachedir/webcache if cachedir is set, else
-$RECOLL_CONFDIR/webcache
+<listitem><para>Directory where we store the archived web pages after they are processed. This is only used by the Web history indexing code. Note that this is different from
+webdownloadsdir which tells the indexer where the web pages are stored by the browser, before they
+are indexed and stored into webcachedir.
+Default: cachedir/webcache if cachedir is set, else $RECOLL_CONFDIR/webcache
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.WEBCACHEMAXMBS">
 <term><varname>webcachemaxmbs</varname></term>
@@ -500,9 +501,9 @@ possible to change it.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.WEBDOWNLOADSDIR">
 <term><varname>webdownloadsdir</varname></term>
-<listitem><para>The path to browser downloads directory. This is
-where the new browser add-on extension has to create the files. They are
-then moved by a script to webqueuedir.
+<listitem><para>The path to the browser add-on download directory. This tells the indexer where the Web browser add-on stores the web page data. The data is
+then moved by a script to webqueuedir, then processed, and finally stored in webcachedir for
+future previews.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.WEBCACHEKEEPINTERVAL">
 <term><varname>webcachekeepinterval</varname></term>

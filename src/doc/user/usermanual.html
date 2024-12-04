@@ -165,18 +165,13 @@ alink="#0000FF">
               </dl>
             </dd>
             <dt><span class="sect1">2.6. <a href=
-            "#RCL.INDEXING.EXTRAMETA">Incorporating external
+            "#RCL.INDEXING.FIELDS">Fields and
             metadata</a></span></dt>
             <dd>
               <dl>
                 <dt><span class="sect2">2.6.1. <a href=
-                "#RCL.INDEXING.EXTATTR"><span class=
-                "application">Unix</span>-like systems and
-                <span class="application">MacOS</span> systems:
-                using extended attributes</a></span></dt>
-                <dt><span class="sect2">2.6.2. <a href=
-                "#RCL.INDEXING.EXTTAGS">Using a command to
-                importing external metadata</a></span></dt>
+                "#RCL.INDEXING.EXTRAMETA">Incorporating external
+                metadata</a></span></dt>
               </dl>
             </dd>
             <dt><span class="sect1">2.7. <a href=
@@ -2369,7 +2364,7 @@ fs.inotify.max_user_watches=32768</pre>
             changing files.&nbsp;</b>When using the real time
             monitor, it may happen that some files need to be
             indexed, but change so often that they impose an
-            excessive load for the system.<span class=
+            excessive load for the system. <span class=
             "application">Recoll</span> provides a configuration
             option to specify the minimum time before which a file,
             specified by a wildcard pattern, cannot be reindexed.
@@ -2386,167 +2381,231 @@ fs.inotify.max_user_watches=32768</pre>
           <div>
             <div>
               <h2 class="title" style="clear: both"><a name=
-              "RCL.INDEXING.EXTRAMETA" id=
-              "RCL.INDEXING.EXTRAMETA"></a>2.6.&nbsp;Incorporating
-              external metadata</h2>
+              "RCL.INDEXING.FIELDS" id=
+              "RCL.INDEXING.FIELDS"></a>2.6.&nbsp;Fields and
+              metadata</h2>
             </div>
           </div>
         </div>
+        <p>Apart from the main text content, documents usually
+        aggregate other data elements, such as an author names,
+        dates, abstracts, etc. These are usually called metadata
+        elements because they qualify or describe the data rather
+        than being part of it. <span class=
+        "application">Recoll</span> has a slightly more general
+        notion of <code class="literal">field</code> to mean any
+        named piece of data associated with a document.</p>
+        <p>Fields are extracted by the document handlers when
+        processing a document and further used by <span class=
+        "application">Recoll</span> for searching or displaying
+        results.</p>
+        <p>Some fields, like e.g. a file modification time, have a
+        strict and predefined usage. For most fields though, the
+        processing is entirely configurable and defined in the
+        <a class="link" href="#RCL.INSTALL.CONFIG.FIELDS" title=
+        "5.4.3.&nbsp;The fields file"><code class=
+        "filename">fields</code> configuration file</a></p>
+        <p>Fields have two main processing options (at least one of
+        which will be set if they are processed at all):</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc;">
+            <li class="listitem">
+              <p>Their content can be indexed. This makes them
+              searchable.</p>
+            </li>
+            <li class="listitem">
+              <p>Their content can be stored in the index as
+              document attribute data. This makes them displayable
+              as part of a result list entry.</p>
+            </li>
+          </ul>
+        </div>
+        <p>These options are preset in the default <code class=
+        "filename">fields</code> file for common elements like a
+        title or an author name.</p>
+        <p>The terms from indexed fields are stored in the inverted
+        index with a specific prefix, which makes them searchable
+        by specifying the field name (e.g. <code class=
+        "literal">author</code>:<em class=
+        "replaceable"><code>Balzac</code></em>). The terms can
+        optionally also be used for the main index section to
+        provide hits for non-prefixed searches. This is decided by
+        an attribute in the <code class="filename">fields</code>
+        file.</p>
+        <p>In most cases, field data is provided by the document
+        itself, for example, by HTML <code class=
+        "literal">&lt;meta&gt;</code> elements. They can also be
+        obtained from other sources, this is described in the
+        following section.</p>
         <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="RCL.INDEXING.EXTATTR"
-                id="RCL.INDEXING.EXTATTR"></a>2.6.1.&nbsp;<span class="application">Unix</span>-like
-                systems and <span class="application">MacOS</span>
-                systems: using extended attributes</h3>
+                <h3 class="title"><a name="RCL.INDEXING.EXTRAMETA"
+                id=
+                "RCL.INDEXING.EXTRAMETA"></a>2.6.1.&nbsp;Incorporating
+                external metadata</h3>
               </div>
             </div>
           </div>
-          <p>User extended attributes are named pieces of
-          information that most modern file systems can attach to
-          any file.</p>
-          <p><span class="application">Recoll</span> processes all
-          extended attributes as document fields. Note that most
-          fields are not indexed by default, you need to activate
-          them by defining a prefix in the <a class="link" href=
-          "#RCL.INSTALL.CONFIG.FIELDS" title=
-          "5.4.3.&nbsp;The fields file"><code class=
-          "filename">fields</code> configuration file</a>.</p>
-          <p>A <a class="ulink" href=
-          "https://www.freedesktop.org/wiki/CommonExtendedAttributes"
-          target="_top">freedesktop standard</a> defines a few
-          special attributes, which are handled as such by
-          <span class="application">Recoll</span>:</p>
-          <div class="variablelist">
-            <dl class="variablelist">
-              <dt><span class="term">mime_type</span></dt>
-              <dd>
-                <p>If set, this overrides any other determination
-                of the file MIME type.</p>
-              </dd>
-              <dt><span class="term">charset</span></dt>
-              <dd>
-                <p>If set, this defines the file character set
-                (mostly useful for plain text files).</p>
-              </dd>
-            </dl>
-          </div>
-          <p>By default, other attributes are handled as
-          <span class="application">Recoll</span> fields of the
-          same name.</p>
-          <p>On Linux, the <code class="literal">user</code> prefix
-          is removed from the name.</p>
-          <p>The name translation can be configured more precisely,
-          inside the <a class="link" href=
-          "#RCL.INSTALL.CONFIG.FIELDS.XATTR" title=
-          "Extended attributes in the fields file"><code class=
-          "filename">fields</code> configuration file</a>.</p>
-          <div class="note" style=
-          "margin-left: 0.5in; margin-right: 0.5in;">
-            <h3 class="title">Setting the document
-            modification/creation date</h3>
-            <p>Some documents have an internal date attribute (e.g.
-            emails), but most get their date from the file
-            modification time. It is possible to set a document
-            date different from the file's by setting a specific
-            extended attribute. For obscure and uninteresting
-            reasons, the harcoded name of the attribute is
-            <code class="literal">modificationdate</code>. Its
-            contents should be the ASCII representation of a
-            decimal integer representing the Unix time (seconds
-            since the epoch). An example Linux command line for
-            setting this particular field follow. The substituted
-            <span class="command"><strong>date</strong></span>
-            prints the example date parameter in Unix time format
-            (seconds since the epoch).</p>
-            <pre class="programlisting">
-setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/file</pre>
-            <p>The date substitution will then be automatic, you do
-            not need to customize the <code class=
-            "filename">fields</code> file.</p>
-          </div>
-        </div>
-        <div class="sect2">
-          <div class="titlepage">
-            <div>
+          <div class="sect3">
+            <div class="titlepage">
               <div>
-                <h3 class="title"><a name="RCL.INDEXING.EXTTAGS"
-                id="RCL.INDEXING.EXTTAGS"></a>2.6.2.&nbsp;Using a
-                command to importing external metadata</h3>
+                <div>
+                  <h4 class="title"><a name="RCL.INDEXING.EXTATTR"
+                  id="RCL.INDEXING.EXTATTR"></a><span class=
+                  "application">Unix</span>-like systems and
+                  <span class="application">MacOS</span> systems:
+                  using extended attributes</h4>
+                </div>
               </div>
             </div>
+            <p>User extended attributes are named pieces of
+            information that most modern file systems can attach to
+            any file.</p>
+            <p><span class="application">Recoll</span> processes
+            all extended attributes as document fields. Note that
+            most fields are not indexed by default, you need to
+            activate them by defining a prefix in the <a class=
+            "link" href="#RCL.INSTALL.CONFIG.FIELDS" title=
+            "5.4.3.&nbsp;The fields file"><code class=
+            "filename">fields</code> configuration file</a>.</p>
+            <p>A <a class="ulink" href=
+            "https://www.freedesktop.org/wiki/CommonExtendedAttributes"
+            target="_top">freedesktop standard</a> defines a few
+            special attributes, which are handled as such by
+            <span class="application">Recoll</span>:</p>
+            <div class="variablelist">
+              <dl class="variablelist">
+                <dt><span class="term">mime_type</span></dt>
+                <dd>
+                  <p>If set, this overrides any other determination
+                  of the file MIME type.</p>
+                </dd>
+                <dt><span class="term">charset</span></dt>
+                <dd>
+                  <p>If set, this defines the file character set
+                  (mostly useful for plain text files).</p>
+                </dd>
+              </dl>
+            </div>
+            <p>By default, other attributes are handled as
+            <span class="application">Recoll</span> fields of the
+            same name.</p>
+            <p>On Linux, the <code class="literal">user</code>
+            prefix is removed from the name.</p>
+            <p>The name translation can be configured more
+            precisely, inside the <a class="link" href=
+            "#RCL.INSTALL.CONFIG.FIELDS.XATTR" title=
+            "Extended attributes in the fields file"><code class=
+            "filename">fields</code> configuration file</a>.</p>
+            <div class="note" style=
+            "margin-left: 0.5in; margin-right: 0.5in;">
+              <h3 class="title">Setting the document
+              modification/creation date</h3>
+              <p>Some documents have an internal date attribute
+              (e.g. emails), but most get their date from the file
+              modification time. It is possible to set a document
+              date different from the file's by setting a specific
+              extended attribute. For obscure and uninteresting
+              reasons, the harcoded name of the attribute is
+              <code class="literal">modificationdate</code>. Its
+              contents should be the ASCII representation of a
+              decimal integer representing the Unix time (seconds
+              since the epoch). An example Linux command line for
+              setting this particular field follow. The substituted
+              <span class="command"><strong>date</strong></span>
+              prints the example date parameter in Unix time format
+              (seconds since the epoch).</p>
+              <pre class="programlisting">
+          setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/file</pre>
+              <p>The date substitution will then be automatic, you
+              do not need to customize the <code class=
+              "filename">fields</code> file.</p>
+            </div>
           </div>
-          <p>During indexing, it is possible to import metadata for
-          each file by executing commands. This allows, for
-          example, extracting tag data from an external application
-          and storing it in a field for indexing.</p>
-          <p>See the <a class="link" href=
-          "#RCL.INSTALL.CONFIG.RECOLLCONF.METADATACMDS">section
-          about the <code class="literal">metadatacmds</code>
-          field</a> in the main configuration chapter for a
-          description of the configuration syntax.</p>
-          <p>For example, if you would want <span class=
-          "application">Recoll</span> to use tags managed by
-          <span class="application">tmsu</span> in a field named
-          <em class="replaceable"><code>tags</code></em>, you would
-          add the following to the configuration file:</p>
-          <pre class="programlisting">[/some/area/of/the/fs]
+          <div class="sect3">
+            <div class="titlepage">
+              <div>
+                <div>
+                  <h4 class="title"><a name="RCL.INDEXING.EXTTAGS"
+                  id="RCL.INDEXING.EXTTAGS"></a>Using a command for
+                  importing external metadata</h4>
+                </div>
+              </div>
+            </div>
+            <p>During indexing, it is possible to import metadata
+            for each file by executing commands. This allows, for
+            example, extracting tag data from an external
+            application and storing it in a field for indexing.</p>
+            <p>See the <a class="link" href=
+            "#RCL.INSTALL.CONFIG.RECOLLCONF.METADATACMDS">section
+            about the <code class="literal">metadatacmds</code>
+            field</a> in the main configuration chapter for a
+            description of the configuration syntax.</p>
+            <p>For example, if you would want <span class=
+            "application">Recoll</span> to use tags managed by
+            <span class="application">tmsu</span> in a field named
+            <em class="replaceable"><code>tags</code></em>, you
+            would add the following to the configuration file:</p>
+            <pre class="programlisting">[/some/area/of/the/fs]
 metadatacmds = ; <em class=
-"replaceable"><code>tags</code></em> = tmsu tags %f
-        </pre>
-          <p>Note the initial semi-colon after the equal sign.</p>
-          <div class="note" style=
-          "margin-left: 0.5in; margin-right: 0.5in;">
-            <h3 class="title">Note</h3>
-            <p>Depending on the <span class=
-            "application">tmsu</span> version, you may need/want to
-            add options like <code class=
-            "literal">--database=/some/db</code>.</p>
+"replaceable"><code>tags</code></em> = tmsu tags %f</pre>
+            <p>Note the initial semi-colon after the equal
+            sign.</p>
+            <p>You may want to restrict this processing to a subset
+            of the directory tree, because it may slow down
+            indexing a bit (<code class=
+            "literal">[some/area/of/the/fs]</code>).</p>
+            <p>In the example above, the output of <span class=
+            "command"><strong>tmsu</strong></span> is used to set a
+            field named <em class=
+            "replaceable"><code>tags</code></em>. The field name is
+            arbitrary and could be <em class=
+            "replaceable"><code>tmsu</code></em> or <em class=
+            "replaceable"><code>myfield</code></em> just the same,
+            but <em class="replaceable"><code>tags</code></em> is
+            an alias for the standard <span class=
+            "application">Recoll</span> <code class=
+            "literal">keywords</code> field, and the <span class=
+            "command"><strong>tmsu</strong></span> output will just
+            augment its contents. This will avoid the need to
+            extend the <a class="link" href="#RCL.PROGRAM.FIELDS"
+            title="4.2.&nbsp;Field data processing">field
+            configuration</a>.</p>
+            <div class="note" style=
+            "margin-left: 0.5in; margin-right: 0.5in;">
+              <h3 class="title">Note</h3>
+              <p>Depending on the <span class=
+              "application">tmsu</span> version, you may need/want
+              to add options like <code class=
+              "literal">--database=/some/db</code>.</p>
+            </div>
+            <p>After setting or updating the parameter, you will
+            need to tell <span class="application">Recoll</span> to
+            reindex the affected files. Just reset the index or see
+            <span class=
+            "command"><strong>recollindex</strong></span> options
+            <code class="literal">-e</code> or <code class=
+            "literal">-r</code>.</p>
+            <p>You will then be able to search the field from the
+            query language: <em class=
+            "replaceable"><code>tags:some/alternate/values</code></em>
+            or <em class=
+            "replaceable"><code>tags:all,these,values</code></em>.</p>
+            <p>Tags changes will not be detected by the indexer if
+            the file itself did not change. One possible workaround
+            would be to update the file <code class=
+            "literal">ctime</code> when you modify the tags, which
+            would be consistent with how extended attributes
+            function. A pair of <span class=
+            "command"><strong>chmod</strong></span> commands could
+            accomplish this, or a <code class="literal">touch
+            -a</code>. Alternatively, just couple the tag update
+            with a <code class="literal">recollindex -e -i</code>
+            <em class=
+            "replaceable"><code>/path/to/the/file</code></em>.</p>
           </div>
-          <p>You may want to restrict this processing to a subset
-          of the directory tree, because it may slow down indexing
-          a bit (<code class=
-          "literal">[some/area/of/the/fs]</code>).</p>
-          <p>In the example above, the output of <span class=
-          "command"><strong>tmsu</strong></span> is used to set a
-          field named <em class=
-          "replaceable"><code>tags</code></em>. The field name is
-          arbitrary and could be <em class=
-          "replaceable"><code>tmsu</code></em> or <em class=
-          "replaceable"><code>myfield</code></em> just the same,
-          but <em class="replaceable"><code>tags</code></em> is an
-          alias for the standard <span class=
-          "application">Recoll</span> <code class=
-          "literal">keywords</code> field, and the <span class=
-          "command"><strong>tmsu</strong></span> output will just
-          augment its contents. This will avoid the need to extend
-          the <a class="link" href="#RCL.PROGRAM.FIELDS" title=
-          "4.2.&nbsp;Field data processing">field
-          configuration</a>.</p>
-          <p>After setting or updating the parameter, you will need
-          to tell <span class="application">Recoll</span> to
-          reindex the affected files. Just reset the index or see
-          <span class="command"><strong>recollindex</strong></span>
-          options <code class="literal">-e</code> or <code class=
-          "literal">-r</code>.</p>
-          <p>You will then be able to search the field from the
-          query language: <em class=
-          "replaceable"><code>tags:some/alternate/values</code></em>
-          or <em class=
-          "replaceable"><code>tags:all,these,values</code></em>.</p>
-          <p>Tags changes will not be detected by the indexer if
-          the file itself did not change. One possible workaround
-          would be to update the file <code class=
-          "literal">ctime</code> when you modify the tags, which
-          would be consistent with how extended attributes
-          function. A pair of <span class=
-          "command"><strong>chmod</strong></span> commands could
-          accomplish this, or a <code class="literal">touch
-          -a</code>. Alternatively, just couple the tag update with
-          a <code class="literal">recollindex -e -i</code>
-          <em class=
-          "replaceable"><code>/path/to/the/file</code></em>.</p>
         </div>
       </div>
       <div class="sect1">
@@ -2840,7 +2899,7 @@ pdfocrlang = eng</pre>
               </div>
             </div>
           </div>
-          <p>If the <span class="orgname">OpenAI</span>
+          <p>If the <code class="literal">OpenAI</code>
           <span class="application">Whisper</span> program is
           available and the appropriate parameters set in the
           configuration files, the <span class=
@@ -3144,17 +3203,19 @@ recollindex -c "$confdir"</pre>
           <div class="itemizedlist">
             <ul class="itemizedlist" style=
             "list-style-type: disc;">
-              <li class="listitem"><code class=
-              "option">--webcache-compact</code> will recover the
-              space from erased entries. It may need to use twice
-              the disk space currently needed for the Web
-              cache.</li>
-              <li class="listitem"><code class=
-              "option">--webcache-burst <em class=
-              "replaceable"><code>destdir</code></em></code> will
-              extract all current entries into pairs of metadata
-              and data files created inside <em class=
-              "replaceable"><code>destdir</code></em></li>
+              <li class="listitem">
+                <p><code class="option">--webcache-compact</code>
+                will recover the space from erased entries. It may
+                need to use twice the disk space currently needed
+                for the Web cache.</p>
+              </li>
+              <li class="listitem">
+                <p><code class="option">--webcache-burst <em class=
+                "replaceable"><code>destdir</code></em></code> will
+                extract all current entries into pairs of metadata
+                and data files created inside <em class=
+                "replaceable"><code>destdir</code></em></p>
+              </li>
             </ul>
           </div>
           <p>You can find more details on Web indexing, its usage
@@ -3597,7 +3658,7 @@ recollindex -c "$confdir"</pre>
             list of those which registered with the desktop for the
             document MIME type, on a case by case basis.</p>
           </div>
-          <div class="sect3">
+          <div class="simplesect">
             <div class="titlepage">
               <div>
                 <div>
@@ -3619,7 +3680,7 @@ recollindex -c "$confdir"</pre>
             rather stay on the suggestion screen because several
             terms need replacement.</p>
           </div>
-          <div class="sect3">
+          <div class="simplesect">
             <div class="titlepage">
               <div>
                 <div>
@@ -4077,7 +4138,8 @@ recollindex -c "$confdir"</pre>
             No automatic renaming will be performed.</p>
           </div>
           <p>Here follows an example window:</p>
-          <p><img src="frag-sample.png"></p>
+          <div class="mediaobject"><img src=
+          "frag-sample.png"></div>
           <p>And the corresponding configuration file:</p>
           <pre class="programlisting">
 &lt;?xml version="1.0" encoding="UTF-8"?&gt;
@@ -5922,15 +5984,22 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
           <div class="itemizedlist">
             <ul class="itemizedlist" style=
             "list-style-type: disc;">
-              <li class="listitem"><em class=
-              "replaceable"><code>Eugenie</code></em></li>
-              <li class="listitem"><em class=
-              "replaceable"><code>author:balzac</code></em></li>
-              <li class="listitem"><em class=
-              "replaceable"><code>dc:title:grandet</code></em></li>
-              <li class="listitem"><em class=
-              "replaceable"><code>dc:title:"eugenie
-              grandet"</code></em></li>
+              <li class="listitem">
+                <p><em class=
+                "replaceable"><code>Eugenie</code></em></p>
+              </li>
+              <li class="listitem">
+                <p><em class=
+                "replaceable"><code>author:balzac</code></em></p>
+              </li>
+              <li class="listitem">
+                <p><em class=
+                "replaceable"><code>dc:title:grandet</code></em></p>
+              </li>
+              <li class="listitem">
+                <p><em class="replaceable"><code>dc:title:"eugenie
+                grandet"</code></em></p>
+              </li>
             </ul>
           </div>
           <p>The colon, if present, means "contains". Xesam defines
@@ -10775,8 +10844,12 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.WEBCACHEDIR"></a><span class="term"><code class="varname">webcachedir</code></span></dt>
                 <dd>
                   <p>Directory where we store the archived web
-                  pages. This is only used by the web history
-                  indexing code Default: cachedir/webcache if
+                  pages after they are processed. This is only used
+                  by the Web history indexing code. Note that this
+                  is different from webdownloadsdir which tells the
+                  indexer where the web pages are stored by the
+                  browser, before they are indexed and stored into
+                  webcachedir. Default: cachedir/webcache if
                   cachedir is set, else
                   $RECOLL_CONFDIR/webcache</p>
                 </dd>
@@ -10807,10 +10880,12 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.WEBDOWNLOADSDIR" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.WEBDOWNLOADSDIR"></a><span class="term"><code class="varname">webdownloadsdir</code></span></dt>
                 <dd>
-                  <p>The path to browser downloads directory. This
-                  is where the new browser add-on extension has to
-                  create the files. They are then moved by a script
-                  to webqueuedir.</p>
+                  <p>The path to the browser add-on download
+                  directory. This tells the indexer where the Web
+                  browser add-on stores the web page data. The data
+                  is then moved by a script to webqueuedir, then
+                  processed, and finally stored in webcachedir for
+                  future previews.</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.WEBCACHEKEEPINTERVAL"

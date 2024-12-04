@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
-        "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V5.1//EN"
+        "http://www.oasis-open.org/docbook/xml/5.1/docbookx.dtd" [
 
 <!ENTITY RCL "<application>Recoll</application>">
 <!ENTITY RCLWEB "<ulink url='https://www.recoll.org/'>https://www.recoll.org/</ulink>">
@@ -1400,7 +1400,7 @@ fvwm</programlisting>
             <title>&LIN;: increasing resources for inotify</title>
             <para>On Linux systems, monitoring a big tree may need
               increasing the resources available to inotify, which are
-              normally defined in <filename>/etc/sysctl.conf</filename>.</para>
+              normally defined in <filename>/etc/sysctl.conf</filename>.
             <programlisting>### inotify
 #
 # cat  /proc/sys/fs/inotify/max_queued_events   - 16384
@@ -1413,7 +1413,7 @@ fs.inotify.max_queued_events=32768
 fs.inotify.max_user_instances=256
 fs.inotify.max_user_watches=32768</programlisting>
           
-            <para>Especially, you will need to trim your tree or adjust
+              Especially, you will need to trim your tree or adjust
               the <literal>max_user_watches</literal> value if indexing exits with
               a message about errno <literal>ENOSPC</literal> (28) from
               <function>inotify_add_watch</function>.</para>
@@ -1422,13 +1422,11 @@ fs.inotify.max_user_watches=32768</programlisting>
           <formalpara>
             <title>Slowing down the reindexing rate for fast changing files</title>
             <para>When using the real time monitor, it may happen that some
-              files need to be indexed, but change so often that they impose an
-              excessive load for the system.</para>
-
-            <para>&RCL; provides a configuration option to specify the minimum
-              time before which a file, specified by a wildcard pattern, cannot be reindexed. See
-              the <varname>mondelaypatterns</varname> parameter in the
-              <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.MISC">configuration
+              files need to be indexed, but change so often that they impose an excessive load for
+              the system.  &RCL; provides a configuration option to specify the minimum time before
+              which a file, specified by a wildcard pattern, cannot be reindexed. See the
+              <varname>mondelaypatterns</varname> parameter in the <link
+              linkend="RCL.INSTALL.CONFIG.RECOLLCONF.MISC">configuration
             section</link>.</para> 
           </formalpara>
           
@@ -1436,118 +1434,154 @@ fs.inotify.max_user_watches=32768</programlisting>
       </sect2>
     </sect1>
 
-    <sect1 id="RCL.INDEXING.EXTRAMETA">
-      <title>Incorporating external metadata</title>
+    <sect1 id="RCL.INDEXING.FIELDS">
+      <title>Fields and metadata</title>
 
-      <sect2 id="RCL.INDEXING.EXTATTR">
-        <title>&LIN; and &MAC;: using extended attributes</title>
+      <para>Apart from the main text content, documents usually aggregate other data elements, such
+      as an author names, dates, abstracts, etc. These are usually called metadata
+      elements because they qualify or describe the data rather than being part of it. &RCL; has a
+      slightly more general notion of <literal>field</literal> to mean any named piece of
+      data associated with a document.</para>
 
-        <para>User extended attributes are named pieces of information that most modern file systems
-          can attach to any file.</para>
+      <para>Fields are extracted by the document handlers when processing a document and further
+      used by &RCL; for searching or displaying results.</para>
+      <para>Some fields, like e.g. a file modification time, have a strict and predefined
+      usage. For most fields though, the processing is entirely configurable and defined in the 
+      <link linkend="RCL.INSTALL.CONFIG.FIELDS"><filename>fields</filename>
+      configuration file</link></para>
 
-        <para>&RCL; processes all extended attributes as document fields. Note that most
+      <para>Fields have two main processing options (at least one of which will be set if they are
+      processed at all):
+      <itemizedlist>
+        <listitem><para>Their content can be indexed. This makes them searchable.</para></listitem>
+        <listitem><para>Their content can be stored in the index as document attribute data.
+        This makes them displayable as part of a result list entry.</para></listitem>
+      </itemizedlist>
+      </para>
+
+      <para>These options are preset in the default <filename>fields</filename> file for common
+      elements like a title or an author name.</para>
+
+      <para>The terms from indexed fields are stored in the inverted index with a specific prefix,
+      which makes them searchable by specifying the field name
+      (e.g. <literal>author</literal>:<replaceable>Balzac</replaceable>). The terms can optionally
+      also be used for the main index section to provide hits for non-prefixed searches. This is
+      decided by an attribute in the <filename>fields</filename> file.</para>
+
+      <para>In most cases, field data is provided by the document itself, for example, by HTML
+      <literal>&lt;meta&gt;</literal> elements. They can also be obtained from other sources, this
+      is described in the following section.</para>
+
+      <sect2 id="RCL.INDEXING.EXTRAMETA">
+        <title>Incorporating external metadata</title>
+
+        <sect3 id="RCL.INDEXING.EXTATTR">
+          <title>&LIN; and &MAC;: using extended attributes</title>
+
+          <para>User extended attributes are named pieces of information that most modern file
+          systems can attach to any file.</para>
+
+          <para>&RCL; processes all extended attributes as document fields. Note that most
           fields are not indexed by default, you need to activate them by defining a prefix in
           the <link linkend="RCL.INSTALL.CONFIG.FIELDS"><filename>fields</filename>
-            configuration file</link>.</para> 
+          configuration file</link>.</para> 
 
-        <para>A <ulink url="https://www.freedesktop.org/wiki/CommonExtendedAttributes">freedesktop
-            standard</ulink> defines a few special attributes, which are handled as such by &RCL;:
+          <para>A <ulink url="https://www.freedesktop.org/wiki/CommonExtendedAttributes">freedesktop
+          standard</ulink> defines a few special attributes, which are handled as such by &RCL;:
           <variablelist>
             <varlistentry>
               <term>mime_type</term>
               <listitem><para>If set, this overrides any other
-                  determination of the file MIME type.</para></listitem>
+              determination of the file MIME type.</para></listitem>
             </varlistentry>
             <varlistentry>
               <term>charset</term>
               <listitem><para>If set, this defines the file character set
-                  (mostly useful for plain text files).</para></listitem>
+              (mostly useful for plain text files).</para></listitem>
             </varlistentry>
           </variablelist>
-        </para>
+          </para>
 
-        <para>By default, other attributes are handled as &RCL; fields of the same name.</para>
+          <para>By default, other attributes are handled as &RCL; fields of the same name.</para>
 
-        <para>On Linux, the <literal>user</literal> prefix is removed from the name.</para>
+          <para>On Linux, the <literal>user</literal> prefix is removed from the name.</para>
 
-        <para>The name translation can be configured more precisely, inside the
+          <para>The name translation can be configured more precisely, inside the
           <link linkend="RCL.INSTALL.CONFIG.FIELDS.XATTR"><filename>fields</filename> configuration
-            file</link>.</para>
+          file</link>.</para>
 
-        <note><title>Setting the document modification/creation date</title>
+          <note><title>Setting the document modification/creation date</title>
           <para>Some documents have an internal date attribute (e.g. emails), but most get their
-            date from the file modification time. It is possible to set a document date different
-            from the file's by setting a specific extended attribute. For obscure and uninteresting
-            reasons, the harcoded name of the attribute is <literal>modificationdate</literal>.  Its
-            contents should be the ASCII representation of a decimal integer representing the Unix
-            time (seconds since the epoch). An example Linux command line for setting this
-            particular field follow. The substituted <command>date</command> prints the example date
-            parameter in Unix time format (seconds since the epoch).
-            <programlisting><![CDATA[
-setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/file]]></programlisting>
+          date from the file modification time. It is possible to set a document date different
+          from the file's by setting a specific extended attribute. For obscure and uninteresting
+          reasons, the harcoded name of the attribute is <literal>modificationdate</literal>.  Its
+          contents should be the ASCII representation of a decimal integer representing the Unix
+          time (seconds since the epoch). An example Linux command line for setting this
+          particular field follow. The substituted <command>date</command> prints the example date
+          parameter in Unix time format (seconds since the epoch).
+          <programlisting><![CDATA[
+          setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/file]]></programlisting>
 
-            The date substitution will then be automatic, you do not need to customize
-        the <filename>fields</filename> file.</para></note>
+          The date substitution will then be automatic, you do not need to customize
+          the <filename>fields</filename> file.</para></note>
 
-      </sect2>
+        </sect3>
 
-      <sect2 id="RCL.INDEXING.EXTTAGS">
-        <title>Using a command to importing external metadata</title>
+        <sect3 id="RCL.INDEXING.EXTTAGS">
+          <title>Using a command for importing external metadata</title>
 
-        <para>During indexing, it is possible to import metadata for each file by executing
+          <para>During indexing, it is possible to import metadata for each file by executing
           commands. This allows, for example, extracting tag data from an external application and
           storing it in a field for indexing.</para>
 
-        <para>See the 
+          <para>See the 
           <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.METADATACMDS">section about
           the <literal>metadatacmds</literal> field</link> in the main configuration chapter for a
           description of the configuration syntax.</para>
 
-        <para>For example, if you would want &RCL; to use tags managed by
+          <para>For example, if you would want &RCL; to use tags managed by
           <application>tmsu</application> in a field named
           <replaceable>tags</replaceable>, you would add the following to the
           configuration file:</para>
 
-        <programlisting>[/some/area/of/the/fs]
-metadatacmds = ; <replaceable>tags</replaceable> = tmsu tags %f
-        </programlisting>
+          <programlisting>[/some/area/of/the/fs]
+metadatacmds = ; <replaceable>tags</replaceable> = tmsu tags %f</programlisting>
 
-        <para>Note the initial semi-colon after the equal sign.</para>
+          <para>Note the initial semi-colon after the equal sign.</para>
 
-        <note><para>Depending on the <application>tmsu</application> version, you may need/want to
-            add options like <literal>--database=/some/db</literal>.</para></note>
-        
-        <para>You may want to restrict this processing to a subset of the directory tree, because it
-        may slow down indexing a bit  (<literal>[some/area/of/the/fs]</literal>).</para>
+          <para>You may want to restrict this processing to a subset of the directory tree, because
+          it may slow down indexing a bit (<literal>[some/area/of/the/fs]</literal>).</para>
 
-
-        <para>In the example above, the output of <command>tmsu</command> is
+          <para>In the example above, the output of <command>tmsu</command> is
           used to set a field named <replaceable>tags</replaceable>. The field name is arbitrary and
           could be <replaceable>tmsu</replaceable> or <replaceable>myfield</replaceable> just the
           same, but <replaceable>tags</replaceable> is an alias for the standard
           &RCL; <literal>keywords</literal> field, and the <command>tmsu</command> output will just
           augment its contents. This will avoid the need to extend
           the <link linkend="RCL.PROGRAM.FIELDS">field
-            configuration</link>.</para>
+          configuration</link>.</para>
+          <note><para>Depending on the <application>tmsu</application> version, you may need/want to
+          add options like <literal>--database=/some/db</literal>.</para></note>
 
-        <para>After setting or updating the parameter, you will need to tell &RCL; to reindex the
+          <para>After setting or updating the parameter, you will need to tell &RCL; to reindex the
           affected files. Just reset the index or see <command>recollindex</command>
           options <literal>-e</literal> or <literal>-r</literal>.</para>
 
-        <para>You will then be able to search
+          <para>You will then be able to search
           the field from the query language: <replaceable>tags:some/alternate/values</replaceable>
           or <replaceable>tags:all,these,values</replaceable>.</para>
 
-        <para>Tags changes will not be detected by the indexer if the file itself did not
+          <para>Tags changes will not be detected by the indexer if the file itself did not
           change. One possible workaround would be to update the file <literal>ctime</literal> when
           you modify the tags, which would be consistent with how extended attributes function. A
           pair of <command>chmod</command> commands could accomplish this, or a
           <literal>touch -a</literal>.  Alternatively, just couple the tag update with a
           <literal>recollindex -e -i</literal> <replaceable>/path/to/the/file</replaceable>.</para>
 
+        </sect3>
       </sect2>
     </sect1>
-    
+  
     <sect1 id="RCL.INDEXING.NOTES">
       <title>Miscellaneous indexing notes</title>
 
@@ -1731,7 +1765,7 @@ pdfocrlang = eng</programlisting>
       <sect2 id="RCL.INDEXING.STT">
         <title>Running a speech to text program on audio files</title>
 
-        <para>If the <orgname>OpenAI</orgname> <application>Whisper</application> program is
+        <para>If the <literal>OpenAI</literal> <application>Whisper</application> program is
           available and the appropriate parameters set in the configuration files, the &RCL; audio
           file handler will run speech to text recognition on audio files and the resulting text
           will be indexed. See the
@@ -1949,13 +1983,13 @@ recollindex -c "$confdir"</programlisting>
         <para>The <command>recollindex</command> command has two options to
           help manage the Web cache:</para>
         <itemizedlist>
-          <listitem><option>--webcache-compact</option> will recover
+          <listitem><para><option>--webcache-compact</option> will recover
             the space from erased entries. It may need to use twice the disk space
-            currently needed for the Web cache.</listitem>
-          <listitem><option>--webcache-burst <replaceable>destdir</replaceable></option>
+            currently needed for the Web cache.</para></listitem>
+          <listitem><para><option>--webcache-burst <replaceable>destdir</replaceable></option>
             will extract all current entries into pairs of metadata and data
             files created
-            inside <replaceable>destdir</replaceable></listitem>
+            inside <replaceable>destdir</replaceable></para></listitem>
         </itemizedlist>
 
         <para>You can find more details on Web indexing, its usage and configuration
@@ -2282,7 +2316,7 @@ recollindex -c "$confdir"</programlisting>
         </simplesect>
 
 
-        <sect3 id="RCL.SEARCH.GUI.RESLIST.SUGGS">
+        <simplesect id="RCL.SEARCH.GUI.RESLIST.SUGGS">
           <title>No results: the spelling suggestions</title>
 
           <para>When a search yields no result, and if the
@@ -2294,10 +2328,10 @@ recollindex -c "$confdir"</programlisting>
           if you would rather stay on the suggestion screen because several
           terms need replacement.</para>
 
-        </sect3>
+        </simplesect>
 
 
-        <sect3 id="RCL.SEARCH.GUI.RESULTLIST.MENU">
+        <simplesect id="RCL.SEARCH.GUI.RESULTLIST.MENU">
           <title>The result list right-click menu</title>
 
           <para>Apart from the preview and edit links, you can display a
@@ -2377,7 +2411,7 @@ recollindex -c "$confdir"</programlisting>
           it, its search function will also be primed with one of the
           search terms.</para>
 
-        </sect3>
+        </simplesect>
 
       </sect2>
 
@@ -2655,7 +2689,8 @@ recollindex -c "$confdir"</programlisting>
       </note>
 
       <para>Here follows an example window:</para>
-      <para><imagedata fileref="frag-sample.png"></imagedata></para>
+      <para><mediaobject><imageobject><imagedata fileref="frag-sample.png"></imagedata>
+      </imageobject></mediaobject></para>
 
       <para>And the corresponding configuration file:
         <programlisting><![CDATA[
@@ -3809,25 +3844,27 @@ recollindex -c "$confdir"</programlisting>
 
             <variablelist>
               <varlistentry>
-                <term>%A</term><listitem><para>Abstract. If <literal>%s</literal> is not
-                    present, this will be either the document <literal>abstract</literal> attribute if
-                    one is present, or the synthetic snippets abstract. If <literal>%s</literal> is
-                    present, this will be the document abstract or empty.</para></listitem></varlistentry>
+                <term>%A</term><listitem><para>Abstract. If <literal>%s</literal> is not present,
+                this will be either the document <literal>abstract</literal> attribute if one is
+                present, or the synthetic snippets abstract. If <literal>%s</literal> is present,
+                this will be the document abstract or
+              empty.</para></listitem></varlistentry>
 
               <varlistentry><term>%D</term><listitem><para>Date.</para></listitem></varlistentry>
 
               <varlistentry><term>%I</term><listitem><para>Icon image name. This is normally
-                    determined from the MIME type. The associations are defined inside the 
-                    <link linkend="RCL.INSTALL.CONFIG.MIMECONF"><filename>mimeconf</filename>
-                    configuration file</link>. If a thumbnail for the file is found at the standard
-                    Freedesktop location, this will be displayed instead.</para></listitem></varlistentry>
+              determined from the MIME type. The associations are defined inside the 
+              <link linkend="RCL.INSTALL.CONFIG.MIMECONF"><filename>mimeconf</filename>
+              configuration file</link>. If a thumbnail for the file is found at the standard
+              Freedesktop location, this will be displayed instead.</para></listitem></varlistentry>
 
               <varlistentry><term>%K</term><listitem><para>Keywords.</para></listitem></varlistentry>
 
               <varlistentry><term>%L</term><listitem><para>Precooked Preview, Edit, and possibly
                     Snippets links.</para></listitem></varlistentry>
 
-              <varlistentry><term>%M</term><listitem><para>MIME type.</para></listitem></varlistentry>
+              <varlistentry><term>%M</term><listitem><para>MIME
+              type.</para></listitem></varlistentry> 
 
               <varlistentry><term>%N</term><listitem><para>result Number inside the result
                     page.</para></listitem></varlistentry>
@@ -3836,9 +3873,11 @@ recollindex -c "$confdir"</programlisting>
                     embedded document, this is the parent folder for the top level container
                     file.</para></listitem></varlistentry> 
 
-              <varlistentry><term>%R</term><listitem><para>Relevance percentage.</para></listitem></varlistentry>
+              <varlistentry><term>%R</term><listitem><para>Relevance
+              percentage.</para></listitem></varlistentry> 
 
-              <varlistentry><term>%S</term><listitem><para>Size information.</para></listitem></varlistentry>
+              <varlistentry><term>%S</term><listitem><para>Size
+              information.</para></listitem></varlistentry> 
 
               <varlistentry><term>%s</term><listitem><para>Synthetic "snippets" abstract (selected
                     text around search terms found in the document.</para></listitem></varlistentry>
@@ -3846,25 +3885,27 @@ recollindex -c "$confdir"</programlisting>
               <varlistentry><term>%T</term><listitem><para>Title if this is set, else
                     Filename.</para></listitem></varlistentry> 
               
-              <varlistentry><term>%t</term><listitem><para>Title or empty.</para></listitem></varlistentry>
+              <varlistentry><term>%t</term><listitem><para>Title or
+              empty.</para></listitem></varlistentry> 
 
-              <varlistentry><term>%(filename)</term><listitem><para>File name.</para></listitem></varlistentry>
+              <varlistentry><term>%(filename)</term><listitem><para>File
+              name.</para></listitem></varlistentry> 
 
               <varlistentry><term>%U</term><listitem><para>Url</para></listitem></varlistentry>
 
             </variablelist>
             </para>
 
-            <para>In addition to the predefined values above, all strings
-              like <literal>%(fieldname)</literal> will be replaced by the value of the field 
-              named <literal>fieldname</literal> for this document. Only stored fields can be accessed
-              in this way, the value of indexed but not stored fields is not known at this point in
-              the search process (see <link linkend="RCL.PROGRAM.FIELDS">field
-                configuration</link>). There are currently very few fields stored by default, apart from
-              the values above (only <literal>author</literal> and <literal>filename</literal>), so
-              this feature will need some custom local configuration to be useful. An example
-              candidate would be the <literal>recipient</literal> field which is generated by the
-              message input handlers.</para>
+            <para>In addition to the predefined values above, all strings like
+            <literal>%(fieldname)</literal> will be replaced by the value of the field named
+            <literal>fieldname</literal> for this document. Only stored fields can be accessed in
+            this way, the value of indexed but not stored fields is not known at this point in the
+            search process (see <link linkend="RCL.PROGRAM.FIELDS">field
+            configuration</link>). There are currently very few fields stored by default, apart from
+            the values above (only <literal>author</literal> and <literal>filename</literal>), so
+            this feature will need some custom local configuration to be useful. An example
+            candidate would be the <literal>recipient</literal> field which is generated by the
+            message input handlers.</para>
 
             <para>The format of the Preview, Edit, and Snippets links is 
               <literal>&lt;a href="P%N"&gt;</literal>, <literal>&lt;a href="E%N"&gt;</literal>
@@ -3923,7 +3964,8 @@ recollindex -c "$confdir"</programlisting>
             site, with pictures to show how they look.</ulink></para>
 
             <para>It is also possible to 
-            <link linkend="RCL.SEARCH.GUI.CUSTOM.ABSSEP">define the value of the snippet separator inside the abstract section</link>.</para>
+            <link linkend="RCL.SEARCH.GUI.CUSTOM.ABSSEP">define the value of the snippet separator
+            inside the abstract section</link>.</para> 
           </sect4>
         </sect3>
       </sect2>
@@ -4105,10 +4147,10 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
       and a value, separated by a colon (the field separator is the last
       colon in the element). Examples:
         <itemizedlist>
-          <listitem><replaceable>Eugenie</replaceable></listitem>
-          <listitem><replaceable>author:balzac</replaceable></listitem>
-          <listitem><replaceable>dc:title:grandet</replaceable></listitem>
-          <listitem><replaceable>dc:title:"eugenie grandet"</replaceable></listitem>
+          <listitem><para><replaceable>Eugenie</replaceable></para></listitem>
+          <listitem><para><replaceable>author:balzac</replaceable></para></listitem>
+          <listitem><para><replaceable>dc:title:grandet</replaceable></para></listitem>
+          <listitem><para><replaceable>dc:title:"eugenie grandet"</replaceable></para></listitem>
         </itemizedlist>
       </para>
 
@@ -4446,8 +4488,8 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
                 <link linkend="RCL.SEARCH.GUI.COMPLEX.PHRASEANDPROX">here</link>.</para>
           </listitem>
 
-          <listitem><para><literal>s</literal> (1.22) can be used to turn off synonym expansion, if a
-              synonyms file is in place.</para></listitem>
+          <listitem><para><literal>s</literal> (1.22) can be used to turn off synonym expansion, if
+          a synonyms file is in place.</para></listitem>
 
           <listitem><para><literal>x</literal> (1.33.2) will enable the expansion of terms inside a
               phrase search (the default is for phrases to be searched verbatim). Also see
@@ -4736,12 +4778,12 @@ bye goodbye "see you" \
 
 
       <formalpara><title>Example entry from a <filename>ptrans</filename> file:</title>
-        <programlisting>[/path/to/external/xapiandb]
+      <para><programlisting>[/path/to/external/xapiandb]
 /some/index/path = /some/local/path</programlisting>
         This would decide that, for the index stored
         in <literal>/path/to/external/xapiandb</literal>, any occurence
         of <literal>/some/index/path</literal> should be replaced
-        with <literal>/some/local/path</literal> when presenting a result.</formalpara>
+        with <literal>/some/local/path</literal> when presenting a result.</para></formalpara>
 
       <note><title>Windows note</title><para>At the moment, the path comparisons done for path
           translation under MS Windows are case sensitive (this will be fixed at some point). Use
@@ -5380,9 +5422,8 @@ or
       </itemizedlist>
       </para>
 
-      <para>You can find more information in the 
-      <link linkend="RCL.INSTALL.CONFIG.FIELDS">section about the <filename>fields</filename> file</link>, 
-      or in comments inside the file.</para> 
+      <para>You can find more information in the <link linkend="RCL.INSTALL.CONFIG.FIELDS">section
+      about the <filename>fields</filename> file</link>, or in comments inside the file.</para>
 
       <para>You can also have a look at the 
       <ulink url="&FAQS;HandleCustomField">example in the FAQs area</ulink>, 
