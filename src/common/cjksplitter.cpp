@@ -32,8 +32,7 @@ int CJKSplitter::max_ngramlen()
     return o_CJKMaxNgramLen;
 }
 
-// Note that this should probably be renamed NGRAMSplitter as this is also used for, e.g. Tibetan
-// and maybe others in the future.
+// Note that this should probably be renamed NGRAMSplitter as this is also used for other scripts.
 //
 // We output ngrams.
 // For example: for input "abc" and ngramlen==2, we generate: a ab b bc c as words.

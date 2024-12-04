@@ -260,7 +260,8 @@ int TextSplit::whatcc(unsigned int c)
     }
 }
 
-// CJK Unicode character detection. CJK text is generally indexed using an n-gram method.
+// Chinese, Japanese, Korean Unicode character ranges. CJK text is generally indexed using an n-gram
+// method.
 // Exceptions:
 //  Hangul: we can use an external text linguistic-aware segmenter.
 //  Chinese: same. Using Jieba
@@ -315,8 +316,8 @@ int TextSplit::whatcc(unsigned int c)
 #define UNICODE_IS_KATAKANA(p) false
 #endif
 
-// Hangul detection and options. If no external tagger is configured, we process HANGUL as generic
-// CJK (n-grams): IS_HANGUL will be false and IS_CJK true.
+// Hangul ranges and options. If no external tagger is configured, we process HANGUL as generic CJK
+// (n-grams): IS_HANGUL will be false and IS_CJK true.
 #define UNICODE_IN_HANGUL_RANGE(p)             \
         (((p) >= 0x1100 && (p) <= 0x11FF) ||   \
          ((p) >= 0x3130 && (p) <= 0x318F) ||   \
@@ -330,10 +331,11 @@ int TextSplit::whatcc(unsigned int c)
 #define UNICODE_IS_HANGUL(p) false
 #endif
 
-// Same for Chinese: everything in cjk ranges which is not katakana or hangul
+// Chinese ranges: everything in CJK range defined above which is not Katakana or Hangul
 #define UNICODE_IN_CHINESE_RANGE(p) \
     (UNICODE_IS_CJK(p) && !(UNICODE_IN_KATAKANA_RANGE(p) || UNICODE_IN_HANGUL_RANGE(p)))
 #ifdef CHINESE_AS_WORDS
+// If we are not using an external text splitter, IS_CJK will be true and IS_CHINESE false
 #define UNICODE_IS_CHINESE(p) (o_extchinesetagger && UNICODE_IN_CHINESE_RANGE(p))
 #else
 #define UNICODE_IS_CHINESE(p) false
@@ -345,6 +347,22 @@ int TextSplit::whatcc(unsigned int c)
     ((p) > 0x0f00 && (p) <= 0x0fff)
 #define UNICODE_IS_TIBETAN(p) UNICODE_IN_TIBETAN_RANGE(p)
 
+// Thai and Lao range are contiguous
+#define UNICODE_IN_THAI_LAO_RANGE(p) \
+    ((p) > 0x0e00 && (p) <= 0x0eff)
+#define UNICODE_IS_THAI_OR_LAO(p) UNICODE_IN_THAI_LAO_RANGE(p)
+
+// Burmese
+#define UNICODE_IN_BURMESE_RANGE(p) \
+    ((p) > 0x1000 && (p) <= 0x109f)
+#define UNICODE_IS_BURMESE(p) UNICODE_IN_BURMESE_RANGE(p)
+
+// Non CJK scripts processed as ngrams
+#define UNICODE_IS_OTHER_NGRAM(p) (UNICODE_IS_TIBETAN(p) || UNICODE_IS_THAI_OR_LAO(p) || \
+                                   UNICODE_IS_BURMESE(p))
+
+// Just for testing the ngram splitter: this European reader finds it easier to look at results when
+// using a simple A-Z range.
 #define UNICODE_IN_TESTNGRAM_RANGE(p) \
     ((p) >= 'A' && (p) <= 'B')
 #ifdef TESTING_NGRAMS
@@ -363,7 +381,7 @@ bool TextSplit::isCJK(int c)
 }
 bool TextSplit::noStemming(int c)
 {
-    return UNICODE_IS_CJK(c) || UNICODE_IS_TIBETAN(c);
+    return UNICODE_IS_CJK(c) || UNICODE_IS_OTHER_NGRAM(c);
 }
 bool TextSplit::isKATAKANA(int c)
 {
@@ -382,7 +400,7 @@ bool TextSplit::isCHINESE(int c)
 }
 bool TextSplit::isNGRAMMED(int c)
 {
-    return UNICODE_IS_TIBETAN(c) || UNICODE_IS_TESTNGRAM(c) || 
+    return UNICODE_IS_OTHER_NGRAM(c) || UNICODE_IS_TESTNGRAM(c) || 
         (UNICODE_IS_CJK(c) && !UNICODE_IS_KATAKANA(c) && !UNICODE_IS_HANGUL(c) &&
          !UNICODE_IS_CHINESE(c));
 }
@@ -391,11 +409,11 @@ bool TextSplit::isNGRAMMED(int c)
 // This is used to detect katakana/other transitions, which must trigger a word split (there is not
 // always a separator, and katakana is otherwise treated like other, in the same routine, unless CJK
 // which has its span reader causing a word break)
-enum CharSpanClass {CSC_OTHER, CSC_HANGUL, CSC_CHINESE, CSC_CJK, CSC_KATAKANA, CSC_TIBETAN,
+enum CharSpanClass {CSC_OTHER, CSC_HANGUL, CSC_CHINESE, CSC_CJK, CSC_KATAKANA, CSC_OTHERNGRAM,
                     CSC_TESTNGRAM};
 std::vector<CharFlags> csc_names {
     CHARFLAGENTRY(CSC_HANGUL), CHARFLAGENTRY(CSC_CHINESE), CHARFLAGENTRY(CSC_CJK),
-    CHARFLAGENTRY(CSC_KATAKANA), CHARFLAGENTRY(CSC_OTHER), CHARFLAGENTRY(CSC_TIBETAN),
+    CHARFLAGENTRY(CSC_KATAKANA), CHARFLAGENTRY(CSC_OTHER), CHARFLAGENTRY(CSC_OTHERNGRAM),
     CHARFLAGENTRY(CSC_TESTNGRAM)};
 
 // Final term checkpoint: do some checking (the kind which is simpler to do here than in the main
@@ -671,8 +689,8 @@ bool TextSplit::text_to_words(const string &in)
             csc = CSC_HANGUL;
         } else if (UNICODE_IS_CHINESE(c)) {
             csc = CSC_CHINESE;
-        } else if (UNICODE_IS_TIBETAN(c)) {
-            csc = CSC_TIBETAN;
+        } else if (UNICODE_IS_OTHER_NGRAM(c)) {
+            csc = CSC_OTHERNGRAM;
         } else if (UNICODE_IS_TESTNGRAM(c)) {
             csc = CSC_TESTNGRAM;
         } else if (UNICODE_IS_CJK(c)) {

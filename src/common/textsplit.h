@@ -123,7 +123,7 @@ public:
     static bool isNGRAMMED(int c);
     static bool isSpace(int c);
     /* At the moment, this is the union of ranges which could be processed as ngrams or with a
-       dictionary-based splitter: i.e. CJK + Tibetan */
+       dictionary-based splitter: i.e. CJK + other SE-Asian scripts */
     static bool noStemming(int c);
     
     /** Statistics about word length (average and dispersion) can detect bad data like undecoded

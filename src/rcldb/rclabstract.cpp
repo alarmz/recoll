@@ -488,7 +488,7 @@ void Query::Native::abstractCreateSnippetsVector(
         }
         Utf8Iter uit(ent.second);
         bool newcjk = false;
-        // We reuse the noStemming test which is currently CJK or Tibetan.
+        // We reuse the noStemming test which is currently CJK and other se-asian scripts.
         if (TextSplit::noStemming(*uit))
             newcjk = true;
         if (!incjk || (incjk && !newcjk))
