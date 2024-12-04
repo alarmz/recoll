@@ -49,11 +49,6 @@ AM_MAINTAINER_MODE
 
 AM_ICONV
 
-#AC_CHECK_FUNCS(iconv_open,,AC_MSG_ERROR([
-#iconv_open not found try to install replacement from
-#http://www.gnu.org/software/libiconv/
-#ftp://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.8.tar.gz]))
-
 AC_CHECK_FUNCS(vsnprintf)
 
 AC_OUTPUT(Makefile unac.pc unac.spec t_unac builder, chmod +x t_unac)

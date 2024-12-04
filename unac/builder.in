@@ -77,8 +77,8 @@ sub main {
 	# mostly based on blocks when it should use the Unicode
 	# script property. In practise, for the script concerned,
 	# this does not look to be an issue currently
-	# (following comment made for japanese but also concerns
-	#  other exceptions)
+	# (the following comment was made for japanese but also applies
+	#  to other exceptions)
 	# For kana japanese characters, we don't want to strip
 	# accents as I'm told that they are essential and
 	# stripping them does not make sense. 
@@ -101,6 +101,12 @@ sub main {
 	    && !(hex $code_value >= 0x0980 && hex $code_value <= 0x09ff)
             # Tamil
 	    && !(hex $code_value >= 0x0b80 && hex $code_value <= 0x0bff)
+            # Thai and Lao 
+	    && !(hex $code_value >= 0x0e00 && hex $code_value <= 0x0eff)
+            # Tibetan
+	    && !(hex $code_value >= 0x0f00 && hex $code_value <= 0x0fff)
+            # Burmese
+	    && !(hex $code_value >= 0x1000 && hex $code_value <= 0x109f)
 	    ) {
 	    # If a decomposition exists, record it
 	    if($character_decomposition_mapping =~ /(<.*>)?\s*(.+)/) {
