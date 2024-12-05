@@ -1,0 +1,56 @@
+.TH RECOLL.CONF 5 "14 November 2012"
+.SH NAME
+recoll.conf \- main personal configuration file for Recoll
+.SH DESCRIPTION
+This file defines the index configuration for the Recoll full-text search
+system.
+.LP
+The system-wide configuration file is normally located inside
+/usr/[local]/share/recoll/examples. Any parameter set in the common file
+may be overridden by setting it in the specific index configuration file, by default:
+.IR $HOME/.recoll/recoll.conf
+.LP
+All recoll commands will accept a
+.B \-c
+option or use the $RECOLL_CONFDIR environment variable to specify a non-default index configuration
+directory.
+.LP
+A short extract of the file might look as follows:
+.LP
+.nf
+
+# Space-separated list of directories to index.
+topdirs =  ~/docs /usr/share/doc
+
+[~/somedirectory-with-utf8-txt-files]
+defaultcharset = utf-8
+
+.fi
+.LP
+There are three kinds of lines:
+.IP \(bu
+Comment or empty.
+.IP \(bu
+Parameter affectation.
+.IP \(bu
+Section definition.
+.LP
+Empty lines or lines beginning with # are ignored.
+.LP
+Affectation lines are in the form 'name = value'. In the following description, they also have a
+type, which is mostly indicative. The two non-obvious ones are 'fn': file path, and 'dfn': directory
+path.
+.LP
+Section lines allow redefining a parameter for a directory subtree. Some of
+the parameters used for indexing are looked up hierarchically from the
+more to the less specific. Not all parameters can be meaningfully
+redefined, this is specified for each in the next section.
+.LP
+The tilde character (~) is expanded in file names to the name of the user's
+home directory.
+.LP
+Some 'string' values are lists, which is only indicated by their description. In this case white
+space is used for separation, and elements with embedded spaces can be quoted with double-quotes.
+
+.SH OPTIONS
+

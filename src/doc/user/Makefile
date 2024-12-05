@@ -13,6 +13,10 @@
 #XSLDIR="/opt/local/share/xsl/docbook-xsl/"
 #Linux
 XSLDIR="/usr/share/xml/docbook/stylesheet/docbook-xsl/"
+
+# Note: this is where I find the confxml utility at home. The source is in src/utils, you can build
+# it with:
+#    c++ -std=c++17 -I. confxml.cpp -o confxml -lrecoll
 UTILBUILDS=/home/dockes/tmp/builds/medocutils/
 
 HTMLDUMPER = lynx -dump

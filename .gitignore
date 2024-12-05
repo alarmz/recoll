@@ -34,8 +34,6 @@
 .vs
 CMakeLists.txt.user
 CMakeSettings.json
-Makefile
-Makefile.in
 TAGS
 \#*
 __pycache__
