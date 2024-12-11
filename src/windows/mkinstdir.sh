@@ -44,10 +44,8 @@ MINGWBIN=${RCLDEPS}/gcclibs
 # We use the mingw-compiled aspell program for building the dict
 ASPELL=${RCLDEPS}/mingw/aspell-0.60.7/aspell-installed
 # We use an msvc-built aspell lib for supporting a python extension
-# used by the suggestion script The extension is built separately and
-# copied into the bundled Python installation manually. This is just
-# for the record, the variable is not used currently
-#LIBASPELL=${RCLDEPS}/msvc/aspell-0.60.7/
+# used by the suggestion script
+LIBASPELL=${RCLDEPS}/msvc/aspell-0.60.7/
 
 
 RCLW=$RCL/
@@ -56,11 +54,12 @@ RCLIDX=$RCLW/qmake/build/recollindex/${QTA}/${qtsdir}/recollindex.exe
 RCLQ=$RCLW/qmake/build/recollq/${QTA}/${qtsdir}/recollq.exe
 RCLS=$RCLW/qmake/build/rclstartw/${QTA}/${qtsdir}/rclstartw.exe
 XAPC=$RCLW/qmake/build/xapian-check/${QTA}/${qtsdir}/xapian-check.exe
+# Embedded Python version and tree
 PYTHONMINOR=12
 PYTHON=${RCLDEPS}python-3.12.4-embed-amd64
 UNRTF=${RCLDEPS}unrtf
 ANTIWORD=${RCLDEPS}antiword
-mv pyPYEXIV2=${RCLDEPS}pyexiv2
+PYEXIV2=${RCLDEPS}pyexiv2
 EPUB=${RCLDEPS}epub-0.5.2
 FUTURE=${RCLDEPS}python2-future
 POPPLER=${RCLDEPS}poppler-22.04.0/
@@ -274,6 +273,17 @@ copyaspell()
     chkcp $MINGWBIN/libgcc_s_dw2-1.dll $DEST
     chkcp $MINGWBIN/libstdc++-6.dll $DEST
     chkcp $MINGWBIN/libwinpthread-1.dll $DEST
+
+    # Build and install the Python aspell expansion. We use the normal
+    # Python install as the embedded one does not have the build files
+    # (.h etc.).
+    pushd ${RCL}/python/pyaspell
+    "/c/Program Files/Python3${PYTHONMINOR}/python" setup-win.py bdist_wheel || exit 1
+    PYASPDIST=dist/aspell_python_py3-1.15-cp3${PYTHONMINOR}-cp3${PYTHONMINOR}-win_amd64.whl
+    ${DESTDIR}/Share/filters/python/python -m pip install --no-user ${PYASPDIST} || exit 1
+    chkcp $LIBASPELL/build/${QTA}/${qtsdir}/aspell.dll \
+          ${DESTDIR}/Share/filters/python/lib/site-packages
+    popd
 }
 
 # Recoll python package. Only when compiled with msvc as this is what
@@ -293,7 +303,7 @@ copypyrecoll()
         if test ! -f ${PYRCLDIST}; then
             pushd ${PYRECOLL}
             # NOTE: with recent Python versions you need to install the wheel module for this
-            # to work: xxx/python -m pip install wheel
+            # to work: xxx/python -m pip install setuptools wheel
             "/c/Program Files/Python3${v}/python" setup-win.py bdist_wheel
             popd
         fi
@@ -326,13 +336,13 @@ done
 # copyrecoll must stay before copyqt so that windeployqt can do its thing
 copyrecoll
 copyqt
-copyaspell
+copypython
 copypoppler
 copyantiword
 copyunrtf
 copywpd
 copypff
-copypython
+copyaspell
 copypyrecoll
 copymagic
 
