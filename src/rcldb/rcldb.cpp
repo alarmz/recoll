@@ -158,7 +158,7 @@ Db::Native::~Native()
         if (status) {
             LOGDEB1("Native::~Native: worker status " << status << "\n");
         }
-        if (m_tmpdbcnt > 0) {
+        if (m_tmpdbinitidx > 0) {
             status = m_mwqueue.setTerminateAndWait();
             if (status) {
                 LOGDEB1("Native::~Native: worker status " << status << "\n");
@@ -169,6 +169,9 @@ Db::Native::~Native()
 }
 
 #ifdef IDX_THREADS
+// Index update primary (unique) worker thread. If we are using multiple temporary indexes, new
+// documents (only) will be queued by addOrUpdateWrite() to the temp indexes queue which has one
+// worker thread per temporary index.
 void *DbUpdWorker(void* vdbp)
 {
     recoll_threadinit();
@@ -211,10 +214,17 @@ void *DbUpdWorker(void* vdbp)
     }
 }
 
+// Temporary index update worker thread. If we are configured to use temporary indexes,
+// addOrUpdateWrite() pushes new documents to our input queue instead of updating the main
+// index. The workqueue is configured with as many workers as there are temp indexes. Each thread
+// picks up the first available index when starting up (m_tmpdbinitidx counter), then fetches docs
+// from the queue and updates its index.
 void *DbMUpdWorker(void* vdbp)
 {
     Db::Native *ndbp = (Db::Native *)vdbp;
     WorkQueue<DbUpdTask*> *tqp = &(ndbp->m_mwqueue);
+
+    // Starting up. Grab the first available temporary index.
     int dbidx;
     {
         std::lock_guard<std::mutex> lock(ndbp->m_initidxmutex);
@@ -224,50 +234,51 @@ void *DbMUpdWorker(void* vdbp)
             abort();
         }
     }
-    LOGINF("DbMUpdWorker: thread for index " << dbidx << " started\n");
     Xapian::WritableDatabase& xwdb = ndbp->m_tmpdbs[dbidx];
+    LOGINF("DbMUpdWorker: thread for index " << dbidx << " started\n");
+
+    // Fetch documents from the queue and update my index.
     DbUpdTask *tsk = nullptr;
     for (;;) {
         size_t qsz = -1;
         if (!tqp->take(&tsk, &qsz)) {
-            LOGDEB0("DbMUpdWorker: flushing index " << dbidx << "\n");
+            LOGDEB0("DbMUpdWorker: eoq, flushing index " << dbidx << "\n");
             xwdb.commit();
             tqp->workerExit();
             return (void*)1;
         }
-        bool status = false;
-        Xapian::docid did = 0;
-        std::string ermsg;
-        switch (tsk->op) {
-        case DbUpdTask::AddOrUpdate:
-            LOGDEB("DbMUpdWorker: got add/update task, ql " << qsz << "\n");
-            try {
-                did = xwdb.add_document(*(tsk->doc.get()));
-                status = true;
-            } XCATCHERROR(ermsg);
-            if (!ermsg.empty()) {
-                LOGERR("DbMupdWorker::add_document failed: " << ermsg << "\n");
-                status = false;
-                break;
-            }
-            XAPTRY(xwdb.set_metadata(ndbp->rawtextMetaKey(did), tsk->rawztext), xwdb, ermsg);
-            if (!ermsg.empty()) {
-                LOGERR("DbMUpdWorker: set_metadata failed: " << ermsg << "\n");
-                status = false;
-            }                
-            LOGINFO("Db::add: docid " << did << " added [" << tsk->udi << "]\n");
-            break;
-        default:
-            LOGERR("DbMUpdWorker: op not AddOrUpdate: " << tsk->op << " !!\n");
+        if (tsk->op != DbUpdTask::AddOrUpdate) {
+            LOGFAT("DbMUpdWorker: op not AddOrUpdate: " << tsk->op << " !!\n");
             abort();
         }
+        LOGDEB("DbMUpdWorker: got add/update task, ql " << qsz << "\n");
+
+        Xapian::docid did = 0;
+        std::string ermsg;
+        bool status = false;
+        XAPTRY(did = xwdb.add_document(*(tsk->doc.get())), xwdb, ermsg);
+        if (!ermsg.empty()) {
+            LOGERR("DbMupdWorker::add_document failed: " << ermsg << "\n");
+        } else {
+            XAPTRY(xwdb.set_metadata(ndbp->rawtextMetaKey(tsk->uniterm), tsk->rawztext), xwdb, ermsg);
+            if (!ermsg.empty()) {
+                LOGERR("DbMUpdWorker: set_metadata failed: " << ermsg << "\n");
+            } else {
+                status = true;
+                LOGINFO("Db::add: docid " << did << " added [" << tsk->udi << "]\n");
+            }
+        }
+
+        delete tsk;
+
         if (!status) {
-            LOGERR("DbMUpdWorker: xxWrite failed\n");
+            LOGERR("DbMUpdWorker: index update failed\n");
             tqp->workerExit();
-            delete tsk;
             return (void*)0;
         }
-        delete tsk;
+
+        // Flushing is triggered by the doc creation thread. This results into all indexes being
+        // flushed at more or less the same time which is probably not optimal.
         bool needflush = false;
         {
             std::lock_guard<std::mutex> lock(ndbp->m_initidxmutex);
@@ -427,12 +438,16 @@ bool Db::Native::subDocs(const string &udi, int idxi, vector<Xapian::docid>& doc
     }
 }
 
+bool Db::Native::docidToUdi(Xapian::docid xid, std::string& udi)
+{
+    auto xdoc = xrdb.get_document(xid);
+    return xdocToUdi(xdoc, udi);
+}
+
 bool Db::Native::xdocToUdi(Xapian::Document& xdoc, string &udi)
 {
     Xapian::TermIterator xit;
-    XAPTRY(xit = xdoc.termlist_begin();
-           xit.skip_to(wrap_prefix(udi_prefix)),
-           xrdb, m_rcldb->m_reason);
+    XAPTRY(xit = xdoc.termlist_begin(); xit.skip_to(wrap_prefix(udi_prefix)), xrdb, m_rcldb->m_reason);
     if (!m_rcldb->m_reason.empty()) {
         LOGERR("xdocToUdi: xapian error: " << m_rcldb->m_reason << "\n");
         return false;
@@ -646,7 +661,7 @@ bool Db::Native::dbDataToRclDoc(Xapian::docid docid, std::string &data, Doc &doc
     doc.meta[Doc::keyurl] = doc.url;
     doc.meta[Doc::keymt] = doc.dmtime.empty() ? doc.fmtime : doc.dmtime;
     if (fetchtext) {
-        getRawText(docid, doc.text);
+        getRawText(doc.meta[Doc::keyudi], docid, doc.text);
     }
     return true;
 }
@@ -725,24 +740,33 @@ int Db::Native::getPageNumberForPosition(const vector<int>& pbreaks, int pos)
     return int(it - pbreaks.begin() + 1);
 }
 
-bool Db::Native::getRawText(Xapian::docid docid_combined, string& rawtext)
+bool Db::Native::getRawText(const std::string& udi, Xapian::docid docid_combined, string& rawtext)
 {
     if (!m_storetext) {
         LOGDEB("Db::Native::getRawText: document text not stored in index\n");
         return false;
     }
+    auto uniterm = make_uniterm(udi);
 
-    // Xapian get_metadata only works on a single index (else of
-    // course, unicity of keys can't be ensured). When using multiple
-    // indexes, we need to open the right one.
+    // When using multiple indexes, we need to open the right one (because of the old docid use).
     size_t dbidx = whatDbIdx(docid_combined);
     Xapian::docid docid = whatDbDocid(docid_combined);
     string reason;
+    // We try with the uniterm key now in use, and try to fallback on the docid in case we have an
+    // old index.
     if (dbidx != 0) {
         Xapian::Database db(m_rcldb->m_extraDbs[dbidx-1]);
-        XAPTRY(rawtext = db.get_metadata(rawtextMetaKey(docid)), db, reason);
+        XAPTRY(rawtext = db.get_metadata(rawtextMetaKey(uniterm)), db, reason);
+        if (!reason.empty() || rawtext.empty()) {
+            reason.clear();
+            XAPTRY(rawtext = db.get_metadata(rawtextMetaKey(docid)), db, reason);
+        }
     } else {
-        XAPTRY(rawtext = xrdb.get_metadata(rawtextMetaKey(docid)), xrdb, reason);
+        XAPTRY(rawtext = xrdb.get_metadata(rawtextMetaKey(uniterm)), xrdb, reason);
+        if (!reason.empty() || rawtext.empty()) {
+            reason.clear();
+            XAPTRY(rawtext = xrdb.get_metadata(rawtextMetaKey(docid)), xrdb, reason);
+        }
     }
     if (!reason.empty()) {
         LOGERR("Rcl::Db::getRawText: could not get value: " << reason << "\n");
@@ -755,6 +779,26 @@ bool Db::Native::getRawText(Xapian::docid docid_combined, string& rawtext)
     inflateToBuf(rawtext.c_str(), rawtext.size(), cbuf);
     rawtext.assign(cbuf.getBuf(), cbuf.getCnt());
     return true;
+}
+
+bool Db::Native::fsFull()
+{
+    // Check file system full every mbyte of indexed text. It's a bit wasteful
+    // to do this after having prepared the document, but it needs to be in
+    // the single-threaded section.
+    if (m_rcldb->m_maxFsOccupPc > 0 && 
+        (m_rcldb->m_occFirstCheck || (m_rcldb->m_curtxtsz - m_rcldb->m_occtxtsz) / MB >= 1)) {
+        LOGDEB0("Db::add: checking file system usage\n");
+        int pc;
+        m_rcldb->m_occFirstCheck = 0;
+        if (fsocc(m_rcldb->m_basedir, &pc) && pc >= m_rcldb->m_maxFsOccupPc) {
+            LOGERR("Db::add: stop indexing: file system " << pc << " %" <<
+                   " full > max " << m_rcldb->m_maxFsOccupPc << " %" << "\n");
+            return true;
+        }
+        m_rcldb->m_occtxtsz = m_rcldb->m_curtxtsz;
+    }
+    return false;
 }
 
 // Note: we're passed a Xapian::Document* because Xapian
@@ -773,26 +817,13 @@ bool Db::Native::addOrUpdateWrite(
     std::unique_lock<std::mutex> lock(m_mutex);
 #endif
 
-    // Check file system full every mbyte of indexed text. It's a bit wasteful
-    // to do this after having prepared the document, but it needs to be in
-    // the single-threaded section.
-    if (m_rcldb->m_maxFsOccupPc > 0 && 
-        (m_rcldb->m_occFirstCheck || 
-         (m_rcldb->m_curtxtsz - m_rcldb->m_occtxtsz) / MB >= 1)) {
-        LOGDEB("Db::add: checking file system usage\n");
-        int pc;
-        m_rcldb->m_occFirstCheck = 0;
-        if (fsocc(m_rcldb->m_basedir, &pc) && pc >= m_rcldb->m_maxFsOccupPc) {
-            LOGERR("Db::add: stop indexing: file system " << pc << " %" <<
-                   " full > max " << m_rcldb->m_maxFsOccupPc << " %" << "\n");
-            return false;
-        }
-        m_rcldb->m_occtxtsz = m_rcldb->m_curtxtsz;
+    if (fsFull()) {
+        return false;
     }
-
+    
 #ifdef IDX_THREADS
-    if (!docexists && m_tmpdbcnt > 0) {
-        // New doc. Send it to the temp dbs
+    if (!docexists && m_tmpdbinitidx > 0) {
+        // New doc and we are using temporary indexes to speed things up, send it to the temp db queue
         DbUpdTask *tp = new DbUpdTask(
             DbUpdTask::AddOrUpdate, udi, uniterm, std::move(newdocument_ptr), textlen, rawztext);
         if (!m_mwqueue.put(tp)) {
@@ -823,7 +854,7 @@ bool Db::Native::addOrUpdateWrite(
         return false;
     }
 
-    XAPTRY(xwdb.set_metadata(rawtextMetaKey(did), rawztext), xwdb, m_rcldb->m_reason);
+    XAPTRY(xwdb.set_metadata(rawtextMetaKey(uniterm), rawztext), xwdb, m_rcldb->m_reason);
     if (!m_rcldb->m_reason.empty()) {
         LOGERR("Db::addOrUpdate: set_metadata error: " << m_rcldb->m_reason << "\n");
         // This only affects snippets, so let's say not fatal
@@ -1054,7 +1085,7 @@ bool Db::getDocRawText(Doc& doc)
         LOGERR("Db::getDocRawText: called on non-opened db\n");
         return false;
     }
-    return m_ndb->getRawText(doc.xdocid, doc.text);
+    return m_ndb->getRawText(doc.meta[Doc::keyudi], doc.xdocid, doc.text);
 }
 
 // Note: xapian has no close call, we delete and recreate the db
@@ -1074,7 +1105,7 @@ bool Db::close()
             LOGDEB("Rcl::Db:close: xapian will close. May take some time\n");
 #ifdef IDX_THREADS
             m_ndb->m_wqueue.closeShop();
-            if (m_ndb->m_tmpdbcnt > 0) {
+            if (m_ndb->m_tmpdbinitidx > 0) {
                 m_ndb->m_mwqueue.closeShop();
             }
             waitUpdIdle();
@@ -1085,7 +1116,7 @@ bool Db::close()
             }
 
 #ifdef IDX_THREADS
-            if (m_ndb->m_tmpdbcnt > 0) {
+            if (m_ndb->m_tmpdbinitidx > 0) {
                 mergeAndCompact();
             }
 #endif // IDX_THREADS
@@ -1103,13 +1134,12 @@ bool Db::close()
 void Db::mergeAndCompact()
 {
 #ifdef IDX_THREADS
-    if (m_ndb->m_tmpdbcnt <= 0)
+    if (m_ndb->m_tmpdbinitidx <= 0)
         return;
     
     // Note: the commits() have been called by waitUpdIdle() above.
-    LOGINF("Rcl::Db::close: starting merge of " << m_ndb->m_tmpdbcnt <<
-           " temporary indexes\n");
-    for (int i = 0; i < m_ndb->m_tmpdbcnt; i++) {
+    LOGINF("Rcl::Db::close: starting merge of " << m_ndb->m_tmpdbinitidx << " temporary indexes\n");
+    for (int i = 0; i < m_ndb->m_tmpdbinitidx; i++) {
         m_ndb->xwdb.add_database(m_ndb->m_tmpdbs[i]);
     }
     string dbdir = m_config->getDbDir();
@@ -2141,7 +2171,7 @@ void Db::waitUpdIdle()
     if (m_ndb->m_iswritable && m_ndb->m_havewriteq) {
         Chrono chron;
         m_ndb->m_wqueue.waitIdle();
-        if (m_ndb->m_tmpdbcnt > 0) {
+        if (m_ndb->m_tmpdbinitidx > 0) {
             m_ndb->m_mwqueue.waitIdle();
         }
         // We flush here just for correct measurement of the thread work time
@@ -2149,7 +2179,7 @@ void Db::waitUpdIdle()
         try {
             LOGINF("DbMUpdWorker: flushing main index\n");
             m_ndb->xwdb.commit();
-            for (int i = 0; i < m_ndb->m_tmpdbcnt; i++) {
+            for (int i = 0; i < m_ndb->m_tmpdbinitidx; i++) {
                 LOGDEB("DbMUpdWorker: flushing index " << i << "\n");
                 m_ndb->m_tmpdbs[i].commit();
             }
@@ -2184,9 +2214,9 @@ bool Db::doFlush()
         return false;
     }
 #ifdef IDX_THREADS
-    if (m_ndb->m_tmpdbcnt > 0) {
+    if (m_ndb->m_tmpdbinitidx > 0) {
         std::lock_guard<std::mutex> lock(m_ndb->m_initidxmutex);
-        for (int i = 0; i < m_ndb->m_tmpdbcnt; i++) {
+        for (int i = 0; i < m_ndb->m_tmpdbinitidx; i++) {
             m_ndb->m_tmpdbflushflags[i] = 1;
         }
     }
@@ -2689,7 +2719,7 @@ bool Db::getDoc(const string& udi, int idxi, Doc& doc, bool fetchtext)
     Xapian::docid docid = m_ndb->getDoc(udi, idxi, xdoc);
     if (docid) {
         string data = xdoc.get_data();
-        doc.meta[Rcl::Doc::keyudi] = udi;
+        doc.meta[Doc::keyudi] = udi;
         return m_ndb->dbDataToRclDoc(docid, data, doc, fetchtext);
     } else {
         // Document found in history no longer in the

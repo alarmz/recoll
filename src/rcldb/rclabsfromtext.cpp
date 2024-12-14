@@ -406,8 +406,15 @@ int Query::Native::abstractFromText(
 {
     PRETEND_USE(chron);
     LOGABS("abstractFromText: entry: " << chron.millis() << "mS\n");
+
+    std::string udi;
+    if (!ndb->docidToUdi(docid, udi)) {
+        LOGERR("Query::Native::abstractFromText: can't retrieve udi\n");
+        return ABSRES_ERROR;
+    }
+        
     string rawtext;
-    if (!ndb->getRawText(docid, rawtext)) {
+    if (!ndb->getRawText(udi, docid, rawtext)) {
         LOGDEB0("abstractFromText: can't fetch text\n");
         return ABSRES_ERROR;
     }

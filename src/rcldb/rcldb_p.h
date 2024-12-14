@@ -45,6 +45,7 @@
 #include "rclconfig.h"
 #include "cstr.h"
 #include "rclutil.h"
+#include "md5.h"
 
 namespace Rcl {
 
@@ -174,7 +175,10 @@ class Db::Native {
     void maybeStartThreads();
     friend void *DbUpdWorker(void*);
 
+    //// Temporary mergeable indexes parameters and data
+    // Count from config. May be overriden by general thread config
     int m_tmpdbcnt{0};
+    // After startup: actual number of initialized temporary indexes
     int m_tmpdbinitidx{0};
     std::mutex m_initidxmutex;
     WorkQueue<DbUpdTask*> m_mwqueue;
@@ -218,6 +222,9 @@ class Db::Native {
      */
     bool purgeFileWrite(bool onlyOrphans, const std::string& udi, const std::string& uniterm);
 
+    /** Check if file system too full according to its state and our parameters */
+    bool fsFull();
+    
     bool getPagePositions(Xapian::docid docid, std::vector<int>& vpos);
     int getPageNumberForPosition(const std::vector<int>& pbreaks, int pos);
 
@@ -239,6 +246,7 @@ class Db::Native {
     /** Retrieve the unique document identifier for a given Xapian document, using the document
      * termlist */
     bool xdocToUdi(Xapian::Document& xdoc, std::string &udi);
+    bool docidToUdi(Xapian::docid xid, std::string& udi);
 
     /** Check if doc is indexed by term */
     bool hasTerm(const std::string& udi, int idxi, const std::string& term);
@@ -281,17 +289,26 @@ class Db::Native {
     /** Check if a page position list is defined */
     bool hasPages(Xapian::docid id);
 
+    // Document stored text Xapian metadata key. We initially used the document id, but this does
+    // not work for merging temporary indexes (collisions). We now use the doc unique term.
+    std::string rawtextMetaKey(const std::string& uniterm) {
+        std::string digest;
+        return MD5String(uniterm, digest);
+    }
+
+    // Initial key used for the stored text Xapian metadata key. This subsists in old indexes, so
+    // it's used as a fallback when querying if we don't find the new key. Initial comment:
+    // Xapian's Olly Betts advises to use a key which will sort the same as the docid (which we do),
+    // and to use Xapian's pack.h:pack_uint_preserving_sort() which is efficient but hard to
+    // read. I'd wager that this does not make much of a difference. 10 ascii bytes gives us 10
+    // billion docs, which is enough (says I).
     std::string rawtextMetaKey(Xapian::docid did) {
-        // Xapian's Olly Betts advises to use a key which will sort the same as the docid (which we
-        // do), and to use Xapian's pack.h:pack_uint_preserving_sort() which is efficient but hard
-        // to read. I'd wager that this does not make much of a difference. 10 ascii bytes gives us
-        // 10 billion docs, which is enough (says I).
         char buf[30];
         snprintf(buf, sizeof(buf), "%010d", did);
         return buf;
     }
 
-    bool getRawText(Xapian::docid docid, std::string& rawtext);
+    bool getRawText(const std::string& udi, Xapian::docid docid, std::string& rawtext);
 
     void deleteDocument(Xapian::docid docid) {
         std::string metareason;
