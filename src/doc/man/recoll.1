@@ -16,6 +16,9 @@ recoll \- user interface for the Recoll full text search system
 <lang>
 ]
 [
+.B \-w
+]
+[
 .B \-o
 |
 .B \-l
@@ -87,6 +90,14 @@ The
 .B \-c 
 option specifies the configuration directory name, overriding the
 default or $RECOLL_CONFDIR.
+.PP
+With the 
+.B \-w
+option, the GUI starts minimized, which can be useful for starting it automatically with the
+desktop.
+.B \-W
+is similar, but will only show a system tray icon. It can only be used if the system tray option is
+set in the preferences.
 .PP
 The 
 .B \-q 

@@ -966,6 +966,14 @@ thrQSizes = -1 -1 -1
 
 2.4.2. Using multiple temporary indexes to improve indexing time
 
+Note
+
+   The underlying code is buggy between 1.38 and 1.41.0, fixed in 1.41.1.
+   The bug affects the storing of document texts inside the index, so it
+   only affects snippets generation inside result lists. If this result
+   lists snippets are important to you, do not use the function with an
+   affected release.
+
    In some cases, either when the input documents are simple and require
    little processing (e.g. HTML files), or possibly with a high number of
    available cores, the single-threaded Xapian index updates can become
@@ -977,6 +985,10 @@ thrQSizes = -1 -1 -1
    opposed to multithreading for document preparation, it can also have a
    (slight) negative impact in some cases, so that it is not enabled by
    default.
+
+   In most cases, this should also be turned off after the initial index
+   creation is done, because it is extremely detrimental to the speed of
+   small incremental updates.
 
    The parameter which controls the number of temporary indexes in
    recoll.conf is named thrTmpDbCnt. The default value is 0, meaning that

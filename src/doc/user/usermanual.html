@@ -1888,6 +1888,16 @@ indexedmimetypes = application/pdf</pre>
               </div>
             </div>
           </div>
+          <div class="note" style=
+          "margin-left: 0.5in; margin-right: 0.5in;">
+            <h3 class="title">Note</h3>
+            <p>The underlying code is buggy between 1.38 and
+            1.41.0, fixed in 1.41.1. The bug affects the storing of
+            document texts inside the index, so it only affects
+            snippets generation inside result lists. If this result
+            lists snippets are important to you, do not use the
+            function with an affected release.</p>
+          </div>
           <p>In some cases, either when the input documents are
           simple and require little processing (e.g. HTML files),
           or possibly with a high number of available cores, the
@@ -1901,6 +1911,10 @@ indexedmimetypes = application/pdf</pre>
           document preparation, it can also have a (slight)
           negative impact in some cases, so that it is not enabled
           by default.</p>
+          <p>In most cases, this should also be turned off after
+          the initial index creation is done, because it is
+          extremely detrimental to the speed of small incremental
+          updates.</p>
           <p>The parameter which controls the number of temporary
           indexes in <code class="filename">recoll.conf</code> is
           named <code class="literal">thrTmpDbCnt</code>. The

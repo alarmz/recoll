@@ -1067,18 +1067,29 @@ indexedmimetypes = application/pdf</programlisting>
       <sect2 id="RCL.INDEXING.PERF.MULTIDX">
         <title>Using multiple temporary indexes to improve indexing time</title>
 
+        <note><para>The underlying code is buggy between 1.38 and 1.41.0, fixed in 1.41.1. The bug
+        affects the storing of document texts inside the index, so it only affects snippets
+        generation inside result lists. If this result lists snippets are important to you, do not
+        use the function with an affected release.</para></note>
+        
         <para>In some cases, either when the input documents are simple and require little
-          processing (e.g. HTML files), or possibly with a high number of available cores, the
-          single-threaded Xapian index updates can become the performance bottleneck for
-          indexing.</para>
+        processing (e.g. HTML files), or possibly with a high number of available cores, the
+        single-threaded Xapian index updates can become the performance bottleneck for
+        indexing.</para>
+
         <para>In this case, it is possible to configure the indexer (&RCL; 1.38 and later) for using
-          multiple temporary indexes which are merged at the end of the operation. This can
-          provide a huge gain in performance, but, as opposed to multithreading for document
-          preparation, it can also have a (slight) negative impact in some cases, so that it is not
-          enabled by default.</para>
+        multiple temporary indexes which are merged at the end of the operation. This can
+        provide a huge gain in performance, but, as opposed to multithreading for document
+        preparation, it can also have a (slight) negative impact in some cases, so that it is not
+        enabled by default.</para>
+
+        <para>In most cases, this should also be turned off after the initial index creation is
+        done, because it is extremely detrimental to the speed of small incremental updates.</para>
+
         <para>The parameter which controls the number of temporary indexes
-          in <filename>recoll.conf</filename> is named <literal>thrTmpDbCnt</literal>. The default
-          value is 0, meaning that no temporary indexes are used.</para>
+        in <filename>recoll.conf</filename> is named <literal>thrTmpDbCnt</literal>. The default
+        value is 0, meaning that no temporary indexes are used.</para>
+
         <para>If your document set is big, and you are using a processor with many cores for
         indexing, especially if the input documents are simple, it may be worth it to experiment
         with the value. For example, with a partial Wikipedia dump (many HTML small files), indexing
@@ -1086,6 +1097,7 @@ indexedmimetypes = application/pdf</programlisting>
         machine. More detail in
         this <ulink url="https://www.recoll.org/pages/idxthreads/threadingRecoll.html#_the_xapian_bottleneck_and_how_it_was_resolved_thanks_to_xapian">article
             on the Recoll WEB site</ulink>.</para>
+
         <para>All the tests were performed on SSDs, it is quite probable that this approach would
           not work well on spinning disks, at least not in its current form.</para>
         
