@@ -59,9 +59,12 @@ desktop/recoll_index_on_ac.sh
 desktop/recollindex.desktop
 doc/
 doc/man/
+doc/man/Makefile
 doc/man/rclgrep.1
 doc/man/recoll.1
 doc/man/recoll.conf.5
+doc/man/recoll.conf.5-header
+doc/man/recoll.conf.5-trailer
 doc/man/recollindex.1
 doc/man/recollq.1
 doc/man/xadump.1
@@ -624,7 +627,6 @@ unac/README-simdutf.md
 unac/README.recoll
 unac/simdutf.cpp
 unac/simdutf.h
-unac/unac.c
 unac/unac.cpp
 unac/unac.h
 unac/unac_version.h
@@ -645,6 +647,7 @@ utils/cmdtalk.cpp
 utils/cmdtalk.h
 utils/conftree.cpp
 utils/conftree.h
+utils/confxml.cpp
 utils/copyfile.cpp
 utils/copyfile.h
 utils/cpuconf.cpp

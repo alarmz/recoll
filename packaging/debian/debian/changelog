@@ -1,3 +1,13 @@
+recoll (1.41.1-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Fix bug losing stored texts when using multiple temporary indexes for
+    indexing.
+  * Process Thai, Lao and Burmese with ngrams, same as Tibetan.
+  * Query language: add 'w' modifier to specify that wildcard characters
+    are not special.
+
+ -- Jean-Francois Dockes <jf@dockes.org>  Sat, 12 Dec 2024 19:13:00 +0100
+
 recoll (1.41.0-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Version bump due to small text splitter changes for Tibetan support

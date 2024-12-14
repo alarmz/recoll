@@ -3,7 +3,7 @@
 
 Summary:        Desktop full text search tool with Qt GUI
 Name:           recoll
-Version:        1.41.0
+Version:        1.41.1
 Release:        2%{?dist}
 License:        GPLv2+
 URL:            https://www.recoll.org
