@@ -12,5 +12,5 @@ sed -i -E -e '/VERSIONCOMMENT/c\'\
 meson.build
 
 sed -i -E -e '/<release version=/c\'\
-"    <release version=\"$VERSION\" date=\"$DATE\" />" \
+"    <release version=\"$VERSION\" date=\"$DATE\">" \
 desktop/org.recoll.recoll.appdata.xml
