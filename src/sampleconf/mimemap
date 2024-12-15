@@ -159,6 +159,9 @@
 .fodt = application/vnd.oasis.opendocument.text-flat-xml
 .fods = application/vnd.oasis.opendocument.spreadsheet-flat-xml
 
+# Apple
+.pages = application/vnd.apple.pages
+
 # ms openxml
 # .docm = application/vnd.ms-word.document.macroEnabled.12
 .docm = application/vnd.openxmlformats-officedocument.wordprocessingml.document

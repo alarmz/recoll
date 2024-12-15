@@ -313,6 +313,7 @@ macx:macxbundlebuild() {
   ../filters/rclopxml.py \
   ../filters/rclorgmode.py \
   ../filters/rclpdf.py \
+  ../filters/rclpages.py \
   ../filters/rclppt.py \
   ../filters/rclps \
   ../filters/rclpst.py \

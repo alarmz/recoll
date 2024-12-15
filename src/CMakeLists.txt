@@ -432,6 +432,7 @@ set(filter_files
     filters/rclocrtesseract.py
     filters/rclopxml.py
     filters/rclorgmode.py
+    filters/rclpages.py
     filters/rclpdf.py
     filters/rclppt.py
     filters/rclps

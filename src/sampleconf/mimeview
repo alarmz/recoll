@@ -80,19 +80,13 @@ application/vnd.oasis.opendocument.spreadsheet-flat-xml = libreoffice %f
 application/vnd.oasis.opendocument.text-flat-xml = libreoffice %f
 application/vnd.oasis.opendocument.text-template = libreoffice %f
 
-application/vnd.openxmlformats-officedocument.wordprocessingml.document = \
- libreoffice %f
-application/vnd.openxmlformats-officedocument.wordprocessingml.template = \
- libreoffice %f
-application/vnd.openxmlformats-officedocument.presentationml.template = \
- libreoffice %f
+application/vnd.openxmlformats-officedocument.wordprocessingml.document = libreoffice %f
+application/vnd.openxmlformats-officedocument.wordprocessingml.template = libreoffice %f
+application/vnd.openxmlformats-officedocument.presentationml.template = libreoffice %f
 application/vnd.ms-visio.drawing = libreoffice %f
-application/vnd.openxmlformats-officedocument.presentationml.presentation = \
- libreoffice %f
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet = \
- libreoffice %f
-application/vnd.openxmlformats-officedocument.spreadsheetml.template =\
- libreoffice %f
+application/vnd.openxmlformats-officedocument.presentationml.presentation = libreoffice %f
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet = libreoffice %f
+application/vnd.openxmlformats-officedocument.spreadsheetml.template = libreoffice %f
 application/vnd.sun.xml.calc = libreoffice %f
 application/vnd.sun.xml.calc.template = libreoffice %f
 application/vnd.sun.xml.draw = libreoffice %f
@@ -104,6 +98,7 @@ application/vnd.sun.xml.writer = libreoffice %f
 application/vnd.sun.xml.writer.global = libreoffice %f
 application/vnd.sun.xml.writer.template = libreoffice %f
 application/vnd.wordperfect = libreoffice %f
+application/vnd.apple.pages = libreoffice %f
 text/rtf = libreoffice %f
 application/rtf = libreoffice %f
 

@@ -160,6 +160,8 @@ application/ogg = execm rclaudio.py
 application/pdf = execm rclpdf.py
 application/postscript = exec rclps
 application/sql = internal text/plain
+# Not enabled by default because execs soffice, very slow
+# application/vnd.apple.pages = execm rclpages.py
 application/vnd.wordperfect = exec wpd2html;mimetype=text/html
 application/x-7z-compressed = execm rcl7z.py
 application/x-abiword = internal xsltproc abiword.xsl
@@ -304,6 +306,7 @@ application/vnd.sun.xml.math  = wordprocessing
 application/vnd.sun.xml.writer = wordprocessing
 application/vnd.sun.xml.writer.global = wordprocessing
 application/vnd.sun.xml.writer.template = wordprocessing
+application/vnd.apple.pages = wordprocessing
 application/vnd.wordperfect = wordprocessing
 application/x-7z-compressed = archive
 application/x-abiword = wordprocessing
@@ -426,6 +429,7 @@ text = \
       application/vnd.sun.xml.writer \
       application/vnd.sun.xml.writer.global \
       application/vnd.sun.xml.writer.template \
+      application/vnd.apple.pages \
       application/vnd.wordperfect \
       application/x-abiword \
       application/vnd.ms-office \
