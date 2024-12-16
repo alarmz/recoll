@@ -20,7 +20,7 @@
   <url type="donation">https://www.lesbonscomptes.com/donations</url>
   <url type="vcs-browser">https://framagit.org/medoc92/recoll</url>
   <releases>
-    <release version="1.41.1" date="2024-12-14">
+    <release version="1.41.0" date="2024-11-24">
       <description>
         <p>Version bump due to small text splitter changes for Tibetan support</p>
         <ul>
@@ -29,7 +29,7 @@
         </ul>
       </description>
     </release>
-    <release version="1.41.1" date="2024-12-14">
+    <release version="1.40.4" date="2024-11-15">
       <description>
         <ul>
           <li>Python extension: fix db.getdoc() unable to use external index.</li>
