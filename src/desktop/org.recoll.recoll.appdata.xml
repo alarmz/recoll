@@ -20,6 +20,11 @@
   <url type="donation">https://www.lesbonscomptes.com/donations</url>
   <url type="vcs-browser">https://framagit.org/medoc92/recoll</url>
   <releases>
+    <release version="1.41.1" date="2024-12-14">
+      <description>
+        <li>New recoll release</li>
+      </description>
+    </release>
     <release version="1.41.0" date="2024-11-24">
       <description>
         <p>Version bump due to small text splitter changes for Tibetan support</p>

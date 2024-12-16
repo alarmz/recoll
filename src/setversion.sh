@@ -11,6 +11,20 @@ sed -i -E -e '/VERSIONCOMMENT/c\'\
 "    version: '$VERSION', # VERSIONCOMMENT keep this here, used by setversion.sh" \
 meson.build
 
-sed -i -E -e '/<release version=/c\'\
-"    <release version=\"$VERSION\" date=\"$DATE\">" \
+
+## This sort of works for extracting the changelog lines, but it would
+## be complicated to make it really right because of multiline entries
+## etc.
+#changelines=`awk '/^recoll/{flag = 1;next};/^ --/{exit} {if ($0=="") next;printf "<li>%s</li>\\\\\n", $0}' \
+#  ../packaging/debian/debian/changelog `
+#cat <<EOF
+#$changelines
+#EOF
+
+sed -i -E -e "/<releases>/a\
+\ \ \ \ <release version=\"$VERSION\" date=\"$DATE\">\\
+      <description>\\
+        <li>New recoll release</li>\\
+      </description>\\
+    </release>" \
 desktop/org.recoll.recoll.appdata.xml
