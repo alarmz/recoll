@@ -24,7 +24,9 @@ meson.build
 sed -i -E -e "/<releases>/a\
 \ \ \ \ <release version=\"$VERSION\" date=\"$DATE\">\\
       <description>\\
-        <li>New recoll release</li>\\
+        <ul>\\
+          <li>New recoll release</li>\\
+        </ul>\\
       </description>\\
     </release>" \
 desktop/org.recoll.recoll.appdata.xml

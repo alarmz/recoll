@@ -22,7 +22,9 @@
   <releases>
     <release version="1.41.1" date="2024-12-14">
       <description>
-        <li>New recoll release</li>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
       </description>
     </release>
     <release version="1.41.0" date="2024-11-24">
