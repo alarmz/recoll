@@ -15,7 +15,7 @@ Build-Depends: cdbs,
                libxapian-dev,
                libxslt1-dev,
                zlib1g-dev
-Standards-Version: 3.9.7
+Standards-Version: 4.7.0
 Homepage: http://www.recoll.org/
 
 Package: kio-recoll

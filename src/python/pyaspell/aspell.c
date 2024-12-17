@@ -126,7 +126,7 @@ static PyObject* AspellStringList2PythonList(const AspellStringList* wordlist) {
 	elements = aspell_string_list_elements(wordlist);
 	while ( (word=aspell_string_enumeration_next(elements)) != 0)
 		if (PyList_Append(list, Py_BuildValue("s", word)) == -1) {
-			PyErr_SetString(PyExc_Exception, "It is almost impossible, but happend! Can't append element to the list.");
+			PyErr_SetString(PyExc_Exception, "It is almost impossible, but happened! Can't append element to the list.");
 			delete_aspell_string_enumeration(elements);
 			Py_DECREF(list);
 			return NULL;

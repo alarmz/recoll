@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 7),
                recoll,
                python-recoll,
                python
-Standards-Version: 3.9.3
+Standards-Version: 4.7.0
 
 Package: recoll-lens
 Architecture: all

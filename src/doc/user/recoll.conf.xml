@@ -76,18 +76,18 @@ subsection.
 </para><para>
 Any value in the list must be textually consistent with the values in topdirs, no attempts are
 made to resolve symbolic links. In practise, if, as is frequently the case, /home is a link to
-/usr/home, your default topdirs will have a single entry '~' which will be translated to
-'/home/yourlogin'. In this case, any skippedPaths entry should start with '/home/yourlogin' *not*
-with '/usr/home/yourlogin'.
+/usr/home, your default topdirs will have a single entry "~" which will be translated to
+"/home/yourlogin". In this case, any skippedPaths entry should start with "/home/yourlogin" *not*
+with "/usr/home/yourlogin".
 </para><para>
 The index and configuration directories will automatically be added to the list.
 </para><para>
-The expressions are matched using 'fnmatch(3)' with the FNM_PATHNAME flag set by default. This
-means that '/' characters must be matched explicitly. You can set 'skippedPathsFnmPathname' to 0
-to disable the use of FNM_PATHNAME (meaning that '/*/dir3' will match '/dir1/dir2/dir3').
+The expressions are matched using "fnmatch(3)" with the FNM_PATHNAME flag set by default. This
+means that "/" characters must be matched explicitly. You can set "skippedPathsFnmPathname" to 0
+to disable the use of FNM_PATHNAME (meaning that "/*/dir3" will match "/dir1/dir2/dir3").
 </para><para>
 The default value contains the usual mount point for removable media to remind you that it is in
-most cases a bad idea to have Recoll work on these. Explicitly adding '/media/xxx' to the 'topdirs'
+most cases a bad idea to have Recoll work on these. Explicitly adding "/media/xxx" to the "topdirs"
 variable will override this.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDPATHSFNMPATHNAME">
@@ -130,8 +130,8 @@ See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
 indexing. The default is to ignore symbolic links to avoid
 multiple indexing of linked files. No effort is made to avoid duplication
 when this option is set to true. This option can be set individually for
-each of the 'topdirs' members by using sections. It can not be changed
-below the 'topdirs' level. Links in the 'topdirs' list itself are always
+each of the "topdirs" members by using sections. It can not be changed
+below the "topdirs" level. Links in the "topdirs" list itself are always
 followed.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.INDEXEDMIMETYPES">
@@ -176,7 +176,7 @@ see textfilemaxmbs and compressedfilemaxkbs.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.TEXTUNKNOWNASPLAIN">
 <term><varname>textunknownasplain</varname></term>
-<listitem><para>Process unknown text/xxx files as text/plain Allows indexing misc. text files identified as text/whatever by 'file' or 'xdg-mime'
+<listitem><para>Process unknown text/xxx files as text/plain Allows indexing misc. text files identified as text/whatever by "file" or "xdg-mime"
 without having to explicitely set config entries for them. This works fine for indexing (also will
 cause processing of a lot of useless files), but the documents indexed this way will be opened by
 the desktop viewer, even if text/plain has a specific editor.
@@ -191,7 +191,7 @@ unsupported MIME type.
 <listitem><para>Use a system mechanism as last resort to guess a MIME type. Depending on platform and version, a compile-time configuration will decide if this
 actually executes a command or uses libmagic.  This last-resort identification (if the
 suffix-based one failed) is generally useful, but will cause the indexing of many bogus
-extension-less 'text' files. Also see 'systemfilecommand'. 
+extension-less "text" files. Also see "systemfilecommand". 
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.SYSTEMFILECOMMAND">
 <term><varname>systemfilecommand</varname></term>
@@ -270,7 +270,7 @@ In some special circumstances, you may want to dispense with them.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.DEHYPHENATE">
 <term><varname>dehyphenate</varname></term>
-<listitem><para>Determines if we index 'coworker' also when the input is 'co-worker'. This is new in version 1.22, and on by default. Setting the variable to off allows
+<listitem><para>Determines if we index "coworker" also when the input is "co-worker". This is new in version 1.22, and on by default. Setting the variable to off allows
 restoring the previous behaviour.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.INDEXEDPUNCTUATION">
@@ -328,8 +328,8 @@ See https://www.recoll.org/pages/recoll-chinese.html for instructions.
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.INDEXSTEMMINGLANGUAGES">
 <term><varname>indexstemminglanguages</varname></term>
 <listitem><para>Languages for which to create stemming expansion
-data. Stemmer names can be found by executing 'recollindex
--l', or this can also be set from a list in the GUI. The values are full
+data. Stemmer names can be found by executing "recollindex
+-l", or this can also be set from a list in the GUI. The values are full
 language names, e.g. english, french...
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.DEFAULTCHARSET">
@@ -337,7 +337,7 @@ language names, e.g. english, french...
 <listitem><para>Default character
 set. This is used for files which do not contain a
 character set definition (e.g.: text/plain). Values found inside files,
-e.g. a 'charset' tag in HTML documents, will override it. If this is not
+e.g. a "charset" tag in HTML documents, will override it. If this is not
 set, the default character set is the one defined by the NLS environment
 ($LC_ALL, $LC_CTYPE, $LANG), or ultimately iso-8859-1 (cp-1252 in fact).
 If for some reason you want a general default which does not match your
@@ -428,7 +428,7 @@ Example: metadatacmds = ; tags = tmsu tags %f; rclmulti1 = cmdOutputsConf %f
 <term><varname>cachedir</varname></term>
 <listitem><para>Top directory for Recoll data. Recoll data
 directories are normally located relative to the configuration directory
-(e.g. ~/.recoll/xapiandb, ~/.recoll/mboxcache). If 'cachedir' is set, the
+(e.g. ~/.recoll/xapiandb, ~/.recoll/mboxcache). If "cachedir" is set, the
 directories are stored under the specified value instead (e.g. if
 cachedir is ~/.cache/recoll, the default dbdir would be
 ~/.cache/recoll/xapiandb).  This affects dbdir, webcachedir,
@@ -463,7 +463,7 @@ directory.
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.MBOXCACHEDIR">
 <term><varname>mboxcachedir</varname></term>
 <listitem><para>Directory location for storing mbox message offsets cache
-files. This is normally 'mboxcache' under cachedir if set,
+files. This is normally "mboxcache" under cachedir if set,
 or else under the configuration directory, but it may be useful to share
 a directory between different configurations.
 </para></listitem></varlistentry>
@@ -509,8 +509,8 @@ future previews.
 <term><varname>webcachekeepinterval</varname></term>
 <listitem><para>Page recycle interval By default, only one instance of an URL is kept in the cache. This
 can be changed by setting this to a value determining at what frequency
-we keep multiple instances ('day', 'week', 'month',
-'year'). Note that increasing the interval will not erase existing
+we keep multiple instances ("day", "week", "month",
+"year"). Note that increasing the interval will not erase existing
 entries.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.ASPELLDICDIR">
@@ -608,7 +608,7 @@ only errors and warnings. 3 will print information like document updates,
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.LOGFILENAME">
 <term><varname>logfilename</varname></term>
-<listitem><para>Log file destination. Use 'stderr' (default) to write to the
+<listitem><para>Log file destination. Use "stderr" (default) to write to the
 console. </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.IDXLOGLEVEL">
 <term><varname>idxloglevel</varname></term>
@@ -662,11 +662,11 @@ if the configuration directory has been copied from the dataset to
 another location, either because the dataset is readonly and an r/w copy
 is desired, or for performance reasons. This records the original moved
 location before copy, to allow path translation computations.  For
-example if a dataset originally indexed as '/home/me/mydata/config' has
-been mounted to '/media/me/mydata', and the GUI is running from a copied
-configuration, orgidxconfdir would be '/home/me/mydata/config', and
+example if a dataset originally indexed as "/home/me/mydata/config" has
+been mounted to "/media/me/mydata", and the GUI is running from a copied
+configuration, orgidxconfdir would be "/home/me/mydata/config", and
 curidxconfdir (as set in the copied configuration) would be
-'/media/me/mydata/config'.
+"/media/me/mydata/config".
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.IDXRUNDIR">
 <term><varname>idxrundir</varname></term>
@@ -690,12 +690,12 @@ to do otherwise.
 <term><varname>recollhelperpath</varname></term>
 <listitem><para>Additional places to search for helper executables. This is used, e.g., on Windows by the Python code, and on Mac OS by the bundled recoll.app
 (because I could find no reliable way to tell launchd to set the PATH). The example below is for
-Windows. Use ':' as entry separator for Mac and Ux-like systems, ';' is for Windows only.
+Windows. Use ":" as entry separator for Mac and Ux-like systems, ";" is for Windows only.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.IDXABSMLEN">
 <term><varname>idxabsmlen</varname></term>
 <listitem><para>Length of abstracts we store while indexing. Recoll stores an abstract for each indexed file.
-The text can come from an actual 'abstract' section in the
+The text can come from an actual "abstract" section in the
 document or will just be the beginning of the document. It is stored in
 the index so that it can be displayed inside the result lists without
 decoding the original file. The idxabsmlen parameter
@@ -740,7 +740,7 @@ the thing.
 <term><varname>aspellLanguage</varname></term>
 <listitem><para>Language definitions to use when creating the aspell dictionary. The value must match a set of aspell language definition files. You can type "aspell dicts"
 to see a list The default if this is not set is to use the NLS environment to guess the value. The
-values are the 2-letter language codes (e.g. 'en', 'fr'...)
+values are the 2-letter language codes (e.g. "en", "fr"...)
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.ASPELLADDCREATEPARAM">
 <term><varname>aspellAddCreateParam</varname></term>
@@ -842,7 +842,7 @@ values. E.g. if the MIME is video, a script could use: ffmpegthumbnailer -iURL -
 <term><varname>stemexpandphrases</varname></term>
 <listitem><para>Default to applying stem expansion to phrase terms. Recoll normally does not apply stem expansion to terms inside phrase searches.
 Setting this parameter will change the default behaviour to expanding terms inside
-phrases. If set, you can use a 'l' modifier to disable expansion for a specific
+phrases. If set, you can use a "l" modifier to disable expansion for a specific
 instance.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.AUTOSPELLRARITYTHRESHOLD">
@@ -887,7 +887,7 @@ not one attachment is ever found.
 <term><varname>pdfextrameta</varname></term>
 <listitem><para>Extract text from selected XMP metadata tags. This
 is a space-separated list of qualified XMP tag names. Each element can also
-include a translation to a Recoll field name, separated by a '|'
+include a translation to a Recoll field name, separated by a "|"
 character. If the second element is absent, the tag name is used as the
 Recoll field names. You will also need to add specifications to the
 "fields" file to direct processing of the extracted data.
@@ -896,7 +896,7 @@ Recoll field names. You will also need to add specifications to the
 <term><varname>pdfextrametafix</varname></term>
 <listitem><para>Define name of XMP field editing script. This
 defines the name of a script to be loaded for editing XMP field
-values. The script should define a 'MetaFixer' class with a metafix()
+values. The script should define a "MetaFixer" class with a metafix()
 method which will be called with the qualified tag name and value of each
 selected field, for editing or erasing. A new instance is created for
 each document, so that the object can keep state for, e.g. eliminating

@@ -14,7 +14,7 @@ Build-Depends: debhelper (>= 10),
                python3-setuptools
 X-Python3-Version: >= 3.6
 Homepage: https://www.lesbonscomptes.com/recoll
-Standards-Version: 4.2.1
+Standards-Version: 4.7.0
 
 Package: rclgrep
 Architecture: any

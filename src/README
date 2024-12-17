@@ -5317,24 +5317,24 @@ Parameters affecting what documents we index
           values in topdirs, no attempts are made to resolve symbolic
           links. In practise, if, as is frequently the case, /home is a
           link to /usr/home, your default topdirs will have a single entry
-          '~' which will be translated to '/home/yourlogin'. In this case,
-          any skippedPaths entry should start with '/home/yourlogin' *not*
-          with '/usr/home/yourlogin'.
+          "~" which will be translated to "/home/yourlogin". In this case,
+          any skippedPaths entry should start with "/home/yourlogin" *not*
+          with "/usr/home/yourlogin".
 
           The index and configuration directories will automatically be
           added to the list.
 
-          The expressions are matched using 'fnmatch(3)' with the
-          FNM_PATHNAME flag set by default. This means that '/' characters
+          The expressions are matched using "fnmatch(3)" with the
+          FNM_PATHNAME flag set by default. This means that "/" characters
           must be matched explicitly. You can set
-          'skippedPathsFnmPathname' to 0 to disable the use of
-          FNM_PATHNAME (meaning that '/*/dir3' will match
-          '/dir1/dir2/dir3').
+          "skippedPathsFnmPathname" to 0 to disable the use of
+          FNM_PATHNAME (meaning that "/*/dir3" will match
+          "/dir1/dir2/dir3").
 
           The default value contains the usual mount point for removable
           media to remind you that it is in most cases a bad idea to have
-          Recoll work on these. Explicitly adding '/media/xxx' to the
-          'topdirs' variable will override this.
+          Recoll work on these. Explicitly adding "/media/xxx" to the
+          "topdirs" variable will override this.
 
    skippedPathsFnmPathname
           Set to 0 to override use of FNM_PATHNAME for matching skipped
@@ -5373,8 +5373,8 @@ Parameters affecting what documents we index
           symbolic links to avoid multiple indexing of linked files. No
           effort is made to avoid duplication when this option is set to
           true. This option can be set individually for each of the
-          'topdirs' members by using sections. It can not be changed below
-          the 'topdirs' level. Links in the 'topdirs' list itself are
+          "topdirs" members by using sections. It can not be changed below
+          the "topdirs" level. Links in the "topdirs" list itself are
           always followed.
 
    indexedmimetypes
@@ -5422,8 +5422,8 @@ Parameters affecting what documents we index
 
    textunknownasplain
           Process unknown text/xxx files as text/plain Allows indexing
-          misc. text files identified as text/whatever by 'file' or
-          'xdg-mime' without having to explicitely set config entries for
+          misc. text files identified as text/whatever by "file" or
+          "xdg-mime" without having to explicitely set config entries for
           them. This works fine for indexing (also will cause processing
           of a lot of useless files), but the documents indexed this way
           will be opened by the desktop viewer, even if text/plain has a
@@ -5440,8 +5440,8 @@ Parameters affecting what documents we index
           will decide if this actually executes a command or uses
           libmagic. This last-resort identification (if the suffix-based
           one failed) is generally useful, but will cause the indexing of
-          many bogus extension-less 'text' files. Also see
-          'systemfilecommand'.
+          many bogus extension-less "text" files. Also see
+          "systemfilecommand".
 
    systemfilecommand
           Command to use for guessing the MIME type if the internal
@@ -5525,8 +5525,8 @@ Parameters affecting how we generate terms and organize the index
           special circumstances, you may want to dispense with them.
 
    dehyphenate
-          Determines if we index 'coworker' also when the input is
-          'co-worker'. This is new in version 1.22, and on by default.
+          Determines if we index "coworker" also when the input is
+          "co-worker". This is new in version 1.22, and on by default.
           Setting the variable to off allows restoring the previous
           behaviour.
 
@@ -5584,14 +5584,14 @@ Parameters affecting how we generate terms and organize the index
 
    indexstemminglanguages
           Languages for which to create stemming expansion data. Stemmer
-          names can be found by executing 'recollindex -l', or this can
+          names can be found by executing "recollindex -l", or this can
           also be set from a list in the GUI. The values are full language
           names, e.g. english, french...
 
    defaultcharset
           Default character set. This is used for files which do not
           contain a character set definition (e.g.: text/plain). Values
-          found inside files, e.g. a 'charset' tag in HTML documents, will
+          found inside files, e.g. a "charset" tag in HTML documents, will
           override it. If this is not set, the default character set is
           the one defined by the NLS environment ($LC_ALL, $LC_CTYPE,
           $LANG), or ultimately iso-8859-1 (cp-1252 in fact). If for some
@@ -5675,7 +5675,7 @@ Parameters affecting where and how we store things
    cachedir
           Top directory for Recoll data. Recoll data directories are
           normally located relative to the configuration directory (e.g.
-          ~/.recoll/xapiandb, ~/.recoll/mboxcache). If 'cachedir' is set,
+          ~/.recoll/xapiandb, ~/.recoll/mboxcache). If "cachedir" is set,
           the directories are stored under the specified value instead
           (e.g. if cachedir is ~/.cache/recoll, the default dbdir would be
           ~/.cache/recoll/xapiandb). This affects dbdir, webcachedir,
@@ -5705,7 +5705,7 @@ Parameters affecting where and how we store things
 
    mboxcachedir
           Directory location for storing mbox message offsets cache files.
-          This is normally 'mboxcache' under cachedir if set, or else
+          This is normally "mboxcache" under cachedir if set, or else
           under the configuration directory, but it may be useful to share
           a directory between different configurations.
 
@@ -5752,7 +5752,7 @@ Parameters affecting where and how we store things
           Page recycle interval By default, only one instance of an URL is
           kept in the cache. This can be changed by setting this to a
           value determining at what frequency we keep multiple instances
-          ('day', 'week', 'month', 'year'). Note that increasing the
+          ("day", "week", "month", "year"). Note that increasing the
           interval will not erase existing entries.
 
    aspellDicDir
@@ -5849,7 +5849,7 @@ Miscellaneous parameters
           quite verbose and 6 very verbose.
 
    logfilename
-          Log file destination. Use 'stderr' (default) to write to the
+          Log file destination. Use "stderr" (default) to write to the
           console.
 
    idxloglevel
@@ -5903,11 +5903,11 @@ Miscellaneous parameters
           r/w copy is desired, or for performance reasons. This records
           the original moved location before copy, to allow path
           translation computations. For example if a dataset originally
-          indexed as '/home/me/mydata/config' has been mounted to
-          '/media/me/mydata', and the GUI is running from a copied
-          configuration, orgidxconfdir would be '/home/me/mydata/config',
+          indexed as "/home/me/mydata/config" has been mounted to
+          "/media/me/mydata", and the GUI is running from a copied
+          configuration, orgidxconfdir would be "/home/me/mydata/config",
           and curidxconfdir (as set in the copied configuration) would be
-          '/media/me/mydata/config'.
+          "/media/me/mydata/config".
 
    idxrundir
           Indexing process current directory. The input handlers sometimes
@@ -5930,13 +5930,13 @@ Miscellaneous parameters
           used, e.g., on Windows by the Python code, and on Mac OS by the
           bundled recoll.app (because I could find no reliable way to tell
           launchd to set the PATH). The example below is for Windows. Use
-          ':' as entry separator for Mac and Ux-like systems, ';' is for
+          ":" as entry separator for Mac and Ux-like systems, ";" is for
           Windows only.
 
    idxabsmlen
           Length of abstracts we store while indexing. Recoll stores an
           abstract for each indexed file. The text can come from an actual
-          'abstract' section in the document or will just be the beginning
+          "abstract" section in the document or will just be the beginning
           of the document. It is stored in the index so that it can be
           displayed inside the result lists without decoding the original
           file. The idxabsmlen parameter defines the size of the stored
@@ -5981,7 +5981,7 @@ Miscellaneous parameters
           The value must match a set of aspell language definition files.
           You can type "aspell dicts" to see a list The default if this is
           not set is to use the NLS environment to guess the value. The
-          values are the 2-letter language codes (e.g. 'en', 'fr'...)
+          values are the 2-letter language codes (e.g. "en", "fr"...)
 
    aspellAddCreateParam
           Additional option and parameter to aspell dictionary creation
@@ -6077,7 +6077,7 @@ Query-time parameters (no impact on the index)
           normally does not apply stem expansion to terms inside phrase
           searches. Setting this parameter will change the default
           behaviour to expanding terms inside phrases. If set, you can use
-          a 'l' modifier to disable expansion for a specific instance.
+          a "l" modifier to disable expansion for a specific instance.
 
    autoSpellRarityThreshold
           Inverse of the ratio of term occurrence to total db terms over
@@ -6120,7 +6120,7 @@ Parameters for the PDF input script
           Extract text from selected XMP metadata tags. This is a
           space-separated list of qualified XMP tag names. Each element
           can also include a translation to a Recoll field name, separated
-          by a '|' character. If the second element is absent, the tag
+          by a "|" character. If the second element is absent, the tag
           name is used as the Recoll field names. You will also need to
           add specifications to the "fields" file to direct processing of
           the extracted data.
@@ -6128,7 +6128,7 @@ Parameters for the PDF input script
    pdfextrametafix
           Define name of XMP field editing script. This defines the name
           of a script to be loaded for editing XMP field values. The
-          script should define a 'MetaFixer' class with a metafix() method
+          script should define a "MetaFixer" class with a metafix() method
           which will be called with the qualified tag name and value of
           each selected field, for editing or erasing. A new instance is
           created for each document, so that the object can keep state

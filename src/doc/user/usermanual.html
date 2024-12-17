@@ -10176,24 +10176,24 @@ thesame = "some string with spaces"</pre>
                   attempts are made to resolve symbolic links. In
                   practise, if, as is frequently the case, /home is
                   a link to /usr/home, your default topdirs will
-                  have a single entry '~' which will be translated
-                  to '/home/yourlogin'. In this case, any
+                  have a single entry "~" which will be translated
+                  to "/home/yourlogin". In this case, any
                   skippedPaths entry should start with
-                  '/home/yourlogin' *not* with
-                  '/usr/home/yourlogin'.</p>
+                  "/home/yourlogin" *not* with
+                  "/usr/home/yourlogin".</p>
                   <p>The index and configuration directories will
                   automatically be added to the list.</p>
-                  <p>The expressions are matched using 'fnmatch(3)'
+                  <p>The expressions are matched using "fnmatch(3)"
                   with the FNM_PATHNAME flag set by default. This
-                  means that '/' characters must be matched
-                  explicitly. You can set 'skippedPathsFnmPathname'
+                  means that "/" characters must be matched
+                  explicitly. You can set "skippedPathsFnmPathname"
                   to 0 to disable the use of FNM_PATHNAME (meaning
-                  that '/*/dir3' will match '/dir1/dir2/dir3').</p>
+                  that "/*/dir3" will match "/dir1/dir2/dir3").</p>
                   <p>The default value contains the usual mount
                   point for removable media to remind you that it
                   is in most cases a bad idea to have Recoll work
-                  on these. Explicitly adding '/media/xxx' to the
-                  'topdirs' variable will override this.</p>
+                  on these. Explicitly adding "/media/xxx" to the
+                  "topdirs" variable will override this.</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDPATHSFNMPATHNAME"
@@ -10262,9 +10262,9 @@ thesame = "some string with spaces"</pre>
                   multiple indexing of linked files. No effort is
                   made to avoid duplication when this option is set
                   to true. This option can be set individually for
-                  each of the 'topdirs' members by using sections.
-                  It can not be changed below the 'topdirs' level.
-                  Links in the 'topdirs' list itself are always
+                  each of the "topdirs" members by using sections.
+                  It can not be changed below the "topdirs" level.
+                  Links in the "topdirs" list itself are always
                   followed.</p>
                 </dd>
                 <dt><a name=
@@ -10353,7 +10353,7 @@ thesame = "some string with spaces"</pre>
                 <dd>
                   <p>Process unknown text/xxx files as text/plain
                   Allows indexing misc. text files identified as
-                  text/whatever by 'file' or 'xdg-mime' without
+                  text/whatever by "file" or "xdg-mime" without
                   having to explicitely set config entries for
                   them. This works fine for indexing (also will
                   cause processing of a lot of useless files), but
@@ -10385,8 +10385,8 @@ thesame = "some string with spaces"</pre>
                   This last-resort identification (if the
                   suffix-based one failed) is generally useful, but
                   will cause the indexing of many bogus
-                  extension-less 'text' files. Also see
-                  'systemfilecommand'.</p>
+                  extension-less "text" files. Also see
+                  "systemfilecommand".</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.SYSTEMFILECOMMAND"
@@ -10527,8 +10527,8 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.DEHYPHENATE" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.DEHYPHENATE"></a><span class="term"><code class="varname">dehyphenate</code></span></dt>
                 <dd>
-                  <p>Determines if we index 'coworker' also when
-                  the input is 'co-worker'. This is new in version
+                  <p>Determines if we index "coworker" also when
+                  the input is "co-worker". This is new in version
                   1.22, and on by default. Setting the variable to
                   off allows restoring the previous behaviour.</p>
                 </dd>
@@ -10629,7 +10629,7 @@ thesame = "some string with spaces"</pre>
                 <dd>
                   <p>Languages for which to create stemming
                   expansion data. Stemmer names can be found by
-                  executing 'recollindex -l', or this can also be
+                  executing "recollindex -l", or this can also be
                   set from a list in the GUI. The values are full
                   language names, e.g. english, french...</p>
                 </dd>
@@ -10640,7 +10640,7 @@ thesame = "some string with spaces"</pre>
                   <p>Default character set. This is used for files
                   which do not contain a character set definition
                   (e.g.: text/plain). Values found inside files,
-                  e.g. a 'charset' tag in HTML documents, will
+                  e.g. a "charset" tag in HTML documents, will
                   override it. If this is not set, the default
                   character set is the one defined by the NLS
                   environment ($LC_ALL, $LC_CTYPE, $LANG), or
@@ -10781,7 +10781,7 @@ thesame = "some string with spaces"</pre>
                   <p>Top directory for Recoll data. Recoll data
                   directories are normally located relative to the
                   configuration directory (e.g. ~/.recoll/xapiandb,
-                  ~/.recoll/mboxcache). If 'cachedir' is set, the
+                  ~/.recoll/mboxcache). If "cachedir" is set, the
                   directories are stored under the specified value
                   instead (e.g. if cachedir is ~/.cache/recoll, the
                   default dbdir would be ~/.cache/recoll/xapiandb).
@@ -10830,7 +10830,7 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.MBOXCACHEDIR"></a><span class="term"><code class="varname">mboxcachedir</code></span></dt>
                 <dd>
                   <p>Directory location for storing mbox message
-                  offsets cache files. This is normally 'mboxcache'
+                  offsets cache files. This is normally "mboxcache"
                   under cachedir if set, or else under the
                   configuration directory, but it may be useful to
                   share a directory between different
@@ -10912,7 +10912,7 @@ thesame = "some string with spaces"</pre>
                   instance of an URL is kept in the cache. This can
                   be changed by setting this to a value determining
                   at what frequency we keep multiple instances
-                  ('day', 'week', 'month', 'year'). Note that
+                  ("day", "week", "month", "year"). Note that
                   increasing the interval will not erase existing
                   entries.</p>
                 </dd>
@@ -11096,7 +11096,7 @@ thesame = "some string with spaces"</pre>
                 "RCL.INSTALL.CONFIG.RECOLLCONF.LOGFILENAME" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.LOGFILENAME"></a><span class="term"><code class="varname">logfilename</code></span></dt>
                 <dd>
-                  <p>Log file destination. Use 'stderr' (default)
+                  <p>Log file destination. Use "stderr" (default)
                   to write to the console.</p>
                 </dd>
                 <dt><a name=
@@ -11191,12 +11191,12 @@ thesame = "some string with spaces"</pre>
                   original moved location before copy, to allow
                   path translation computations. For example if a
                   dataset originally indexed as
-                  '/home/me/mydata/config' has been mounted to
-                  '/media/me/mydata', and the GUI is running from a
+                  "/home/me/mydata/config" has been mounted to
+                  "/media/me/mydata", and the GUI is running from a
                   copied configuration, orgidxconfdir would be
-                  '/home/me/mydata/config', and curidxconfdir (as
+                  "/home/me/mydata/config", and curidxconfdir (as
                   set in the copied configuration) would be
-                  '/media/me/mydata/config'.</p>
+                  "/media/me/mydata/config".</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.IDXRUNDIR" id=
@@ -11238,8 +11238,8 @@ thesame = "some string with spaces"</pre>
                   the Python code, and on Mac OS by the bundled
                   recoll.app (because I could find no reliable way
                   to tell launchd to set the PATH). The example
-                  below is for Windows. Use ':' as entry separator
-                  for Mac and Ux-like systems, ';' is for Windows
+                  below is for Windows. Use ":" as entry separator
+                  for Mac and Ux-like systems, ";" is for Windows
                   only.</p>
                 </dd>
                 <dt><a name=
@@ -11248,7 +11248,7 @@ thesame = "some string with spaces"</pre>
                 <dd>
                   <p>Length of abstracts we store while indexing.
                   Recoll stores an abstract for each indexed file.
-                  The text can come from an actual 'abstract'
+                  The text can come from an actual "abstract"
                   section in the document or will just be the
                   beginning of the document. It is stored in the
                   index so that it can be displayed inside the
@@ -11327,7 +11327,7 @@ thesame = "some string with spaces"</pre>
                   "aspell dicts" to see a list The default if this
                   is not set is to use the NLS environment to guess
                   the value. The values are the 2-letter language
-                  codes (e.g. 'en', 'fr'...)</p>
+                  codes (e.g. "en", "fr"...)</p>
                 </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.ASPELLADDCREATEPARAM"
@@ -11510,7 +11510,7 @@ thesame = "some string with spaces"</pre>
                   expansion to terms inside phrase searches.
                   Setting this parameter will change the default
                   behaviour to expanding terms inside phrases. If
-                  set, you can use a 'l' modifier to disable
+                  set, you can use a "l" modifier to disable
                   expansion for a specific instance.</p>
                 </dd>
                 <dt><a name=
@@ -11603,7 +11603,7 @@ thesame = "some string with spaces"</pre>
                   This is a space-separated list of qualified XMP
                   tag names. Each element can also include a
                   translation to a Recoll field name, separated by
-                  a '|' character. If the second element is absent,
+                  a "|" character. If the second element is absent,
                   the tag name is used as the Recoll field names.
                   You will also need to add specifications to the
                   "fields" file to direct processing of the
@@ -11616,7 +11616,7 @@ thesame = "some string with spaces"</pre>
                   <p>Define name of XMP field editing script. This
                   defines the name of a script to be loaded for
                   editing XMP field values. The script should
-                  define a 'MetaFixer' class with a metafix()
+                  define a "MetaFixer" class with a metafix()
                   method which will be called with the qualified
                   tag name and value of each selected field, for
                   editing or erasing. A new instance is created for
