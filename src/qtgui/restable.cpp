@@ -608,10 +608,27 @@ void ResTable::setDefRowHeight()
 
 void ResTable::init(QStringList _ifields)
 {
-    QSettings settings;
     QStringList restableFields;
-    if (_ifields.empty()) {
-        restableFields = settings.value(settingskey_fieldlist).toStringList();
+    QString qw;
+    QVariant splittersizes;
+    
+    if (!_ifields.empty()) {
+        restableFields = _ifields;
+    } else {
+        bool locset;
+        if (theconfig->getConfParam("idxlocalguisettings", &locset) && locset) {
+            QSettings settings(
+                u8s2qs(path_cat(theconfig->getConfDir(), "recoll.ini")), QSettings::IniFormat);
+            restableFields = settings.value(settingskey_fieldlist).toStringList();
+            qw = settings.value(settingskey_fieldwiths).toString();
+            splittersizes = settings.value(settingskey_splittersizes);            
+        }
+        if (restableFields.empty()) {
+            QSettings settings;
+            restableFields = settings.value(settingskey_fieldlist).toStringList();
+            qw = settings.value(settingskey_fieldwiths).toString();
+            splittersizes = settings.value(settingskey_splittersizes);
+        }
         if (restableFields.empty()) {
             restableFields.push_back("date");
             restableFields.push_back("title");
@@ -619,9 +636,8 @@ void ResTable::init(QStringList _ifields)
             restableFields.push_back("author");
             restableFields.push_back("url");
         }
-    } else {
-        restableFields = _ifields;
     }
+
     if (!(m_model = new RecollModel(restableFields, this)))
         return;
     tableView->setModel(m_model);
@@ -645,7 +661,6 @@ void ResTable::init(QStringList _ifields)
     QHeaderView *header = tableView->horizontalHeader();
     if (header) {
         if (_ifields.empty()) {
-            QString qw = settings.value(settingskey_fieldwiths).toString();
             vector<string> vw;
             stringToStrings(qs2utf8s(qw), vw);
             vector<int> restableColWidths;
@@ -696,9 +711,9 @@ void ResTable::init(QStringList _ifields)
     connect(m_detail, SIGNAL(anchorClicked(const QUrl&)), this, SLOT(onLinkClicked(const QUrl&)));
     splitter->addWidget(m_detail);
     splitter->setOrientation(Qt::Vertical);
-    QVariant saved = settings.value(settingskey_splittersizes);
-    if (saved != QVariant()) {
-        splitter->restoreState(saved.toByteArray());
+
+    if (splittersizes != QVariant()) {
+        splitter->restoreState(splittersizes.toByteArray());
     } else {
         QList<int> sizes;
         sizes << 355 << 125;
@@ -894,8 +909,15 @@ void ResTable::saveColState()
 {
     if (!m_ismainres)
         return;
-    QSettings settings;
-    settings.setValue(settingskey_splittersizes, splitter->saveState());
+    QSettings gsettings;
+    QSettings lsettings(
+        u8s2qs(path_cat(theconfig->getConfDir(), "recoll.ini")), QSettings::IniFormat);
+    QSettings *settings = &gsettings;
+    bool locset;
+    if (theconfig->getConfParam("idxlocalguisettings", &locset) && locset) {
+        settings = &lsettings;
+    }
+    settings->setValue(settingskey_splittersizes, splitter->saveState());
 
     QHeaderView *header = tableView->horizontalHeader();
     const vector<string>& vf = m_model->getFields();
@@ -917,8 +939,8 @@ void ResTable::saveColState()
         newfields.push_back(u8s2qs(vf[li]));
         newwidths += QString().setNum(header->sectionSize(li)) + QString(" ");
     }
-    settings.setValue(settingskey_fieldlist, newfields);
-    settings.setValue(settingskey_fieldwiths, newwidths);
+    settings->setValue(settingskey_fieldlist, newfields);
+    settings->setValue(settingskey_fieldwiths, newwidths);
 }
 
 void ResTable::onTableView_currentChanged(const QModelIndex& index)

@@ -428,6 +428,12 @@ bool ConfIndexW::setupSearchPanel(int idx)
                      "and compatible with current typical hardware "
                      "configurations."), 0, 1000000);
 
+    m_w->addParam(idx, ConfTabsW::CFPT_BOOL, "idxlocalguisettings",
+                  tr("Store some GUI parameters locally to the index"),
+                  tr("<p>GUI settings are normally stored in a global file, valid for all "
+                     "indexes. Setting this parameter will make some settings, such as the result "
+                     "table setup, specific to the index"));
+
     m_w->endOfList(idx);
     return true;
 }
