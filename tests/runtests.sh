@@ -226,3 +226,33 @@ for dir in $dirs ; do
 done
 
 echo
+
+if iswindows ; then
+    exit 0
+fi
+
+if test x$doraw = x ; then
+    exit 0
+fi
+
+echo "Reindexing in raw index mode"
+sed -i -e 's/indexStripChars = 1/indexStripChars = 0/' config/recoll.conf
+makeindex
+excluded="non-auto empty html langparser1 mail Maildir notypes ooff pythonapi rfc2231 skipped \
+          unacex xls"
+for dir in $dirs ; do
+    skip=0
+    for excl in $excluded;do
+        if test "$dir" = "$excl"/; then
+            skip=1
+            break
+        fi
+    done
+    if test "$skip" -eq 1;then
+        continue
+    fi
+    cd $dir && echo -n "$dir "
+    sh `basename $dir`.sh
+    cd ..
+done
+echo
