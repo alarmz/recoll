@@ -404,9 +404,10 @@ static int win_wlstat(const wchar_t *wpath, struct _stati64 *buffer)
 {
     DWORD attrs = GetFileAttributesW(wpath);
     if (attrs == INVALID_FILE_ATTRIBUTES) {
+        auto error = GetLastError();
         std::string upath;
         wchartoutf8(wpath, upath);
-        LOGERR("GetFileAttributesW failed for " << upath << '\n');
+        LOGDEB0("GetFileAttributesW failed with " << error << " for " << upath << '\n');
         return -1;
     }
     if (attrs & FILE_ATTRIBUTE_REPARSE_POINT) {

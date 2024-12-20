@@ -471,6 +471,11 @@ bool ExecCmd::which(const string& cmd, string& exe, const char* path)
         pep = &s_pathelts;
     }
 
+    if (cmd.empty()) {
+        // Used for the static init of s_pathelts
+        return false;
+    }
+    
     if (path_isabsolute(cmd)) {
         if (is_exe_base(cmd)) {
             exe = cmd;

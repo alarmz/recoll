@@ -422,9 +422,9 @@ RclConfig *recollinit(int flags,
     smallut_init_mt();
     rclutil_init_mt();
     
-    // Init execmd.h static PATH and PATHELT splitting
+    // Init execmd.h static PATH and PATHELT splitting (windows only actually)
     {string bogus;
-        ExecCmd::which("nosuchcmd", bogus);
+        ExecCmd::which("", bogus);
     }
     
     // Init Unac translation exceptions
