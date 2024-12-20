@@ -51,7 +51,7 @@ static inline void bufprefix(char *buf, string pre)
     } else {
         buf[0] = ':';
         for (size_t i= 1; i< pre.length()+1; i++) {
-            buf[i] = prechar[i];
+            buf[i] = prechar[i-1];
         }
         buf[pre.length()+1] = ':';
     }
