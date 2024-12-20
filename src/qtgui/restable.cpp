@@ -618,7 +618,7 @@ void ResTable::init(QStringList _ifields)
         bool locset;
         if (theconfig->getConfParam("idxlocalguisettings", &locset) && locset) {
             QSettings settings(
-                u8s2qs(path_cat(theconfig->getConfDir(), "recoll.ini")), QSettings::IniFormat);
+                u8s2qs(path_cat(theconfig->getConfDir(), "recollgui.ini")), QSettings::IniFormat);
             restableFields = settings.value(settingskey_fieldlist).toStringList();
             qw = settings.value(settingskey_fieldwiths).toString();
             splittersizes = settings.value(settingskey_splittersizes);            
@@ -911,7 +911,7 @@ void ResTable::saveColState()
         return;
     QSettings gsettings;
     QSettings lsettings(
-        u8s2qs(path_cat(theconfig->getConfDir(), "recoll.ini")), QSettings::IniFormat);
+        u8s2qs(path_cat(theconfig->getConfDir(), "recollgui.ini")), QSettings::IniFormat);
     QSettings *settings = &gsettings;
     bool locset;
     if (theconfig->getConfParam("idxlocalguisettings", &locset) && locset) {
