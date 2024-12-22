@@ -41,7 +41,7 @@ project(
 #
 # Linked binaries only depend on soversion, e.g. ldd recollindex: librecoll.so.39 which is a
 # link to, e.g., .so.<version>
-recoll_soversion = '39'
+recoll_soversion = '39' # SONAMECOMMENT keep this here, used by setversion.sh
 
 cpp = meson.get_compiler('cpp')
 cc = meson.get_compiler('c')
