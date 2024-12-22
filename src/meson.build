@@ -23,7 +23,7 @@ project(
     'recoll',
     ['cpp', 'c'],
     license: 'GPL 2+',
-    # We'd like to use version: files('RECOLL-VERSION.txt') but this is a 0.56 feature. 
+    # We'd like to use version: files('RECOLL-VERSION.txt') but this is a 0.57 feature. 
     # Ubuntu focal has 0.53 and is supported until 2025-04.
     version: '1.41.1', # VERSIONCOMMENT keep this here, used by setversion.sh
     # Note: follow_symlinks will be needed in the future but not supported by all the versions we
@@ -40,14 +40,8 @@ project(
 # independently, but the future rule should be to only change the soversion if the ABI changed.
 #
 # Linked binaries only depend on soversion, e.g. ldd recollindex: librecoll.so.39 which is a
-# link to, e.g., .so.39.2.0
-#
-# The soversion_minor is not important except as an indicator of the actual code version which
-# produced the lib, so it should change every time. I wonder if it would make sense to use the
-# recoll version (e.g. 39.40.0 for the full soversion.soversion_minor coming with recoll
-# 1.40.0). This could then be set by setversion.sh
+# link to, e.g., .so.<version>
 recoll_soversion = '39'
-recoll_soversion_minor = '.2.0'
 
 cpp = meson.get_compiler('cpp')
 cc = meson.get_compiler('c')
@@ -392,7 +386,8 @@ if librecoll_needed
         'librecoll',
         librecoll_sources,
         name_prefix: '',
-        version: recoll_soversion + recoll_soversion_minor,
+        soversion: recoll_soversion,
+        version: meson.project_version(),
         include_directories: librecoll_incdir,
         dependencies: librecolldeps,
         install: true,
