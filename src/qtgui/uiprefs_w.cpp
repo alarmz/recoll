@@ -181,6 +181,7 @@ void UIPrefsDialog::setFromPrefs()
     sidefilterdateformatLE->setText(prefs.sidefilterdateformat);
     ignwildsCB->setChecked(prefs.ignwilds);
     pvmaxfldlenSB->setValue(prefs.pvmaxfldlen);
+    singleappCB->setChecked(prefs.singleapp);
     /*INSERTHERE_LOAD*/
 
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -465,6 +466,7 @@ void UIPrefsDialog::accept()
     prefs.sidefilterdateformat = sidefilterdateformatLE->text();
     prefs.ignwilds = ignwildsCB->isChecked();
     prefs.pvmaxfldlen = pvmaxfldlenSB->value();
+    prefs.singleapp = singleappCB->isChecked();
     /*INSERTHERE_ACCEPT*/
 
     // -1 is the qxtconf... predefined value to show the dialog

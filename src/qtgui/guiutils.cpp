@@ -303,13 +303,15 @@ void rwSettings(bool writing)
     SETTING_RW(prefs.sidefilterdateformat, "/Recoll/ui/sidefilterdateformat", String, "");
     SETTING_RW(prefs.ignwilds, "/Recoll/search/ignwilds", Bool, false)
     SETTING_RW(prefs.pvmaxfldlen, "/Recoll/ui/pvmaxfldlen", Int, 200)
+    SETTING_RW(prefs.singleapp, "/Recoll/ui/singleapp", Bool, false)
     /*INSERTHERE*/
     
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
     SETTING_RW(prefs.showTempFileWarning, "Recoll/prefs/showTempFileWarning", Int, -1);
 
+    havereadsettings = true;
     if (nullptr == g_dynconf) {
-        // Happens
+        // Happens if we're called to read the singleapp setting early in main
         return;
     }
     // The extra databases settings. These are stored as a list of
@@ -358,13 +360,11 @@ void rwSettings(bool writing)
 
         // Clean up the list: remove directories which are not
         // actually there: useful for removable volumes.
-        for (auto it = prefs.activeExtraDbs.begin();
-             it != prefs.activeExtraDbs.end();) {
+        for (auto it = prefs.activeExtraDbs.begin(); it != prefs.activeExtraDbs.end();) {
             bool stripped;
             if (!Rcl::Db::testDbDir(*it, &stripped) || 
                 stripped != o_index_stripchars) {
-                LOGINFO("Not a Xapian index or char stripping differs: ["  <<
-                        *it << "]\n");
+                LOGINFO("Not a Xapian index or char stripping differs: ["  << *it << "]\n");
                 it = prefs.activeExtraDbs.erase(it);
             } else {
                 it++;
@@ -417,7 +417,6 @@ void rwSettings(bool writing)
             prefs.asearchSubdirHist.push_back(u8s2qs(dbd));
         }
         prefs.setupDarkCSS();
-        havereadsettings = true;
     }
 }
 

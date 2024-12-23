@@ -108,7 +108,7 @@ FORMS   = \
         webcache.ui \
         widgets/editdialog.ui \
         widgets/listdialog.ui
-        
+
 RESOURCES = recoll.qrc
 
 TRANSLATIONS = \
@@ -135,6 +135,8 @@ i18n/recoll_zh.ts
 
 windows {
   # NOTE: Copy this file into recoll-win.pro before building
+
+  include(singleapplication.pri)
   
   # QT += webkit webkitwidgets
   # DEFINES += USING_WEBKIT
@@ -401,6 +403,8 @@ macx:macxbundlebuild() {
 unix:!macxbundlebuild() {
 
 VPATH = @srcdir@
+# For SingleApplication
+include(@srcdir@/singleapplication.pri)
 
 @QMAKE_ENABLE_WEBKIT@QT += webkitwidgets
 @QMAKE_ENABLE_WEBKIT@DEFINES += USING_WEBKIT

@@ -21,7 +21,11 @@
 #include <iostream>
 #include <memory>
 
-#include <qapplication.h>
+#include <QApplication>
+#ifdef QAPPLICATION_CLASS
+// QAPPLICATION_CLASS is defined by singleapplication.pri
+#include "singleapplication/singleapplication.h"
+#endif
 #include <qtranslator.h>
 #include <qtimer.h>
 #include <qthread.h>
@@ -190,6 +194,28 @@ void applyStyleSheet(const QString& qssfn)
     prefs.checkAppFont();
 }
 
+#ifdef QAPPLICATION_CLASS
+#ifdef Q_OS_WINDOWS
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+
+void raiseWidget(QWidget* widget) {
+#ifdef Q_OS_WINDOWS
+    HWND hwnd = (HWND)widget->winId();
+    // check if widget is minimized to Windows task bar
+    if (::IsIconic(hwnd)) {
+        ::ShowWindow(hwnd, SW_RESTORE);
+    }
+    ::SetForegroundWindow(hwnd);
+#else
+    widget->show();
+    widget->raise();
+    widget->activateWindow();
+#endif
+}
+#endif // QAPPLICATION_CLASS
+
 extern void qInitImages_recoll();
 
 static const char *thisprog;
@@ -244,6 +270,29 @@ Usage(void)
     exit((op_flags & OPT_h)==0);
 }
 
+// Extract the recoll_confdir from the args or env. Done early to setup the singleapp before the
+// full args processing, because we need it before creating the qapplication.
+static std::string get_config(int argc, char **argv)
+{
+    std::string aconf;
+    for (int i = 0; i < argc; i++) {
+        if (!strcmp(argv[i], "-c")) {
+            if (i < argc-1) {
+                aconf = argv[++i];
+                break;
+            }
+        }
+    }
+    if (!aconf.empty())
+        aconf = path_canon(aconf);
+    std::string econf;
+    auto cp = getenv("RECOLL_CONFDIR");
+    if (cp) {
+        econf = path_canon(cp);
+    }
+    return aconf.empty() ? econf : aconf;
+}
+
 int main(int argc, char **argv)
 {
     pathut_setargv0(argv[0]);
@@ -259,23 +308,30 @@ int main(int argc, char **argv)
         }
     }
 
-#ifdef USING_WEBENGINE_nono
-    // Note: this is not used any more because we use a file:// baseUrl so that local access is
-    // allowed (and network access should not, but it fact it is, so we forbid it by setting a
-    // bogus proxy).
+    QCoreApplication::setOrganizationName("Recoll.org");
+    QCoreApplication::setApplicationName("recoll");
 
-    // Old comment, kept around in case we change baseurl again:
-    // The following is necessary for allowing webengine to load local resources (icons)
-    // It is not an issue because we never access remote sites.
-    char arg_disable_web_security[] = "--disable-web-security";
-    int appargc = argc + 1;
-    char** appargv = new char*[appargc+1];
-    for(int i = 0; i < argc; i++) {
-        appargv[i] = argv[i];
+    // Do this very early because of the singleapplication choice. We'll have to do it again once we
+    // have a db config
+    rwSettings(false);
+
+#ifdef QAPPLICATION_CLASS
+    // If the pref for single app is not set, then allow further instances.
+    bool allowsecund = !prefs.singleapp;
+#ifdef _WIN32
+    // On Windows, allow further instances even if prefs.singleapp is set, but then the
+    // secundary will just ping the primary and exit.
+    allowsecund = true;
+#endif // _WIN32
+    auto confforsa = get_config(argc, argv);
+    SingleApplication app(argc, argv, allowsecund, SingleApplication::User, 1000, u8s2qs(confforsa));
+#ifdef _WIN32
+    if (prefs.singleapp && app.isSecondary()) {
+        AllowSetForegroundWindow(DWORD(app.primaryPid()));
+        app.sendMessage("RAISE_WIDGET");
+        return 0;
     }
-    appargv[argc] = arg_disable_web_security;
-    appargv[argc+1] = nullptr;
-    QApplication app(appargc, appargv);
+#endif // _WIN32
 #else
     QApplication app(argc, argv);
 #endif
@@ -294,9 +350,6 @@ int main(int argc, char **argv)
     QNetworkProxy::setApplicationProxy(proxy);
 #endif // Real browser engines
     
-    QCoreApplication::setOrganizationName("Recoll.org");
-    QCoreApplication::setApplicationName("recoll");
-
     string a_config;
     string a_lang;
     string question;
@@ -425,6 +478,14 @@ int main(int argc, char **argv)
     // Create main window and set its size to previous session's
     RclMain w;
     mainWindow = &w;
+
+#ifdef QAPPLICATION_CLASS
+#ifdef Q_OS_WINDOWS
+    QObject::connect(&app, &SingleApplication::receivedMessage, &w, [&w] () { raiseWidget(&w); } );
+#else
+    QObject::connect(&app, &SingleApplication::instanceStarted, &w, [&w] () { raiseWidget(&w); } );
+#endif
+#endif
 
     string dbdir = theconfig->getDbDir();
     if (dbdir.empty()) {

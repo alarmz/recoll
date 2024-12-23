@@ -158,6 +158,7 @@ public:
     QString sidefilterdateformat;
     bool ignwilds{false};
     int pvmaxfldlen{0};
+    bool singleapp{false};
     /*INSERTHERE*/
 
     // See widgets/qxtconfirmationmessage.
