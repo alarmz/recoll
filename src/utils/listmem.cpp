@@ -28,7 +28,7 @@ static char *hexa(unsigned int i)
     return (asc);
 }
 
-static void swap16(unsigned char *d, const unsigned char *s, int n)
+static void l_swap16(unsigned char *d, const unsigned char *s, int n)
 {
     if (n & 1) {
         n >>= 1;
@@ -44,7 +44,7 @@ static void swap16(unsigned char *d, const unsigned char *s, int n)
     }
 }
 
-static void swap32(unsigned char *d, const unsigned char *s, int n)
+static void l_swap32(unsigned char *d, const unsigned char *s, int n)
 {
     if (n & 3) {
         n >>= 2;
@@ -96,9 +96,9 @@ void listmem(ostream& os, const void *_ptr, int siz, int adr, int opts)
             return;
         }
         if (opts & LISTMEM_SWAP16) {
-            swap16(mpt, ptr, siz);
+            l_swap16(mpt, ptr, siz);
         } else if (opts & LISTMEM_SWAP32) {
-            swap32(mpt, ptr, siz);
+            l_swap32(mpt, ptr, siz);
         }
     } else {
         mpt = (unsigned char *)ptr;
