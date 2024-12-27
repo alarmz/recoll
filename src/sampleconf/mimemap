@@ -161,6 +161,8 @@
 
 # Apple
 .pages = application/vnd.apple.pages
+.numbers = application/vnd.apple.numbers
+.key = application/vnd.apple.keynote
 
 # ms openxml
 # .docm = application/vnd.ms-word.document.macroEnabled.12

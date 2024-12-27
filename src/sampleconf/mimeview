@@ -99,6 +99,8 @@ application/vnd.sun.xml.writer.global = libreoffice %f
 application/vnd.sun.xml.writer.template = libreoffice %f
 application/vnd.wordperfect = libreoffice %f
 application/vnd.apple.pages = libreoffice %f
+application/vnd.apple.numbers = libreoffice %f
+application/vnd.apple.keynote = libreoffice %f
 text/rtf = libreoffice %f
 application/rtf = libreoffice %f
 

@@ -160,8 +160,10 @@ application/ogg = execm rclaudio.py
 application/pdf = execm rclpdf.py
 application/postscript = exec rclps
 application/sql = internal text/plain
-# Not enabled by default because execs soffice, very slow
-# application/vnd.apple.pages = execm rclpages.py
+# This is quite slow because it executes soffice, and maybe shoudld not enabled by default.
+application/vnd.apple.pages = execm rclpages.py
+application/vnd.apple.numbers = execm rclpages.py
+application/vnd.apple.keynote = execm rclpages.py
 application/vnd.wordperfect = exec wpd2html;mimetype=text/html
 application/x-7z-compressed = execm rcl7z.py
 application/x-abiword = internal xsltproc abiword.xsl
@@ -307,6 +309,8 @@ application/vnd.sun.xml.writer = wordprocessing
 application/vnd.sun.xml.writer.global = wordprocessing
 application/vnd.sun.xml.writer.template = wordprocessing
 application/vnd.apple.pages = wordprocessing
+application/vnd.apple.numbers = spreadsheet
+application/vnd.apple.keynote = presentation
 application/vnd.wordperfect = wordprocessing
 application/x-7z-compressed = archive
 application/x-abiword = wordprocessing
@@ -487,6 +491,7 @@ text = \
       text/x-tcl
       
 spreadsheet = \
+   application/vnd.apple.numbers \
    application/vnd.ms-excel \
    application/vnd.oasis.opendocument.spreadsheet \
    application/vnd.oasis.opendocument.spreadsheet-flat-xml \
@@ -497,6 +502,7 @@ spreadsheet = \
    application/x-gnumeric \
 
 presentation = \
+  application/vnd.apple.keynote \
   application/vnd.ms-powerpoint \
   application/vnd.oasis.opendocument.graphics \
   application/vnd.oasis.opendocument.presentation \
