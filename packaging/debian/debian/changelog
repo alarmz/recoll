@@ -1,3 +1,17 @@
+recoll (1.42.0pre2-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * GUI: Added "single application" mode, where starting a new instance just
+    activates an existing one.
+  * GUI: added preferences option for a more passive search entry completion.
+  * GUI: New idxlocalguisettings config switch to decide that some GUI settings
+    will be local to the index (only the result table setup at the
+    moment). The settings are stored in $RECOLL_CONFDIR/recollgui.ini
+  * New libreoffice-based handler for Apple Office documents (pages,
+    numbers, keynote).
+  * Raw indexes: fix date processing bug.
+
+ -- Jean-Francois Dockes <jf@dockes.org>  Fri, 27 Dec 2024 09:53:00 +0100
+
 recoll (1.41.1-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Fix bug losing stored texts when using multiple temporary indexes for

@@ -7,8 +7,9 @@ islib=no
 builtlib=
 
 mesonversion=`grep "version: '" meson.build | head -1 | awk '{print $2}' | tr -d "',"`
-if test "$version" != "$mesonversion";then
-    echo versions in meson.build "'$mesonversion'" and RECOLL-VERSION.txt "'$version'" differ
+versionclean=`echo $version |sed -e 's/pre.*//'`
+if test "$versionclean" != "$mesonversion";then
+    echo versions in meson.build "'$mesonversion'" and RECOLL-VERSION.txt "'$versionclean'" differ
     exit 1
 fi
 

@@ -23,6 +23,35 @@
   <url type="donation">https://www.lesbonscomptes.com/donations</url>
   <url type="vcs-browser">https://framagit.org/medoc92/recoll</url>
   <releases>
+    <release version="1.42.0pre2" date="2024-12-27">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.42.0" date="2024-12-27">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.42.0pre1" date="2024-12-27">
+      <description>
+        <ul>
+          <li>GUI: Added "single application" mode, where starting a new instance just activates an
+          existing one.</li>
+          <li>GUI: added preferences option for a more passive search entry completion.</li>
+          <li>GUI: New idxlocalguisettings config switch to decide that some GUI settings
+          will be local to the index (only the result table setup at the
+          moment). The settings are stored in $RECOLL_CONFDIR/recollgui.ini</li>
+          <li>New libreoffice-based handler for Apple Office documents (pages, numbers,
+          keynote).</li> 
+          <li>Raw indexes: fix date processing bug.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.41.1" date="2024-12-14">
       <description>
         <ul>

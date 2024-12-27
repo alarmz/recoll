@@ -4,6 +4,7 @@ CMakeLists.txt
 COPYING
 INSTALL
 README
+RECOLL-SOVERSION.txt
 RECOLL-VERSION.txt
 aspell/
 aspell/rclaspell.cpp
@@ -500,6 +501,14 @@ qtgui/scbase.cpp
 qtgui/scbase.h
 qtgui/searchclause_w.cpp
 qtgui/searchclause_w.h
+qtgui/singleapplication.pri
+qtgui/singleapplication/
+qtgui/singleapplication/LICENSE
+qtgui/singleapplication/README.recoll
+qtgui/singleapplication/singleapplication.cpp
+qtgui/singleapplication/singleapplication.h
+qtgui/singleapplication/singleapplication_p.cpp
+qtgui/singleapplication/singleapplication_p.h
 qtgui/snippets.ui
 qtgui/snippets_w.cpp
 qtgui/snippets_w.h
