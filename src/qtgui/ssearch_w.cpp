@@ -59,6 +59,44 @@
 
 using namespace std;
 
+// If text does not end with space, return last (partial) word and its start offset (>=0) else
+// return -1
+static int getPartialWord(const QString& txt, QString& word)
+{
+    // Extract last word in text
+    if (txt.isEmpty()) {
+        return -1;
+    }
+    int lstidx = txt.size()-1;
+
+    // If the input ends with a space or dquote (phrase input), or
+    // dquote+qualifiers, no partial word.
+    if (txt[lstidx] == ' ') {
+        return -1;
+    }
+    int cs = txt.lastIndexOf("\"");
+    if (cs > 0) {
+        bool dquoteToEndNoSpace{true};
+        for (int i = cs; i <= lstidx; i++) {
+            if (txt[i] == ' ') {
+                dquoteToEndNoSpace = false;
+                break;
+            }
+        }
+        if (dquoteToEndNoSpace) {
+            return -1;
+        }
+    }
+
+    cs = txt.lastIndexOf(" ");
+    if (cs < 0)
+        cs = 0;
+    else
+        cs++;
+    word = txt.right(txt.size() - cs);
+    return cs;
+}
+
 // Max db term matches fetched from the index
 static const int maxdbtermmatch = 20;
 // Visible rows for the completer listview
@@ -109,6 +147,8 @@ QVariant RclCompleterModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+// Compute possible completion for current search state. Entering a space first requests a history
+// list. Otherwise, list a partial word against history and index and fill the model
 void RclCompleterModel::onPartialWord(int tp, const QString& _qtext, const QString& qpartial)
 {
     string partial = qs2u8s(qpartial);
@@ -120,8 +160,7 @@ void RclCompleterModel::onPartialWord(int tp, const QString& _qtext, const QStri
     beginResetModel();
     if ((prefs.ssearchNoComplete && !onlyspace) || tp == SSearch::SST_FNM) {
         // Nocomplete: only look at history by entering space
-        // Filename: no completion for now. We'd need to termatch with
-        // the right prefix?
+        // Filename: no completion for now. We'd need to termatch with the right prefix?
         endResetModel();
         return;
     }
@@ -152,10 +191,10 @@ void RclCompleterModel::onPartialWord(int tp, const QString& _qtext, const QStri
                               partial + "*", rclmatches, maxdbtermmatch)) {
             LOGDEB1("RclCompleterModel: termMatch failed: [" << partial + "*" << "]\n");
         } else {
-            LOGDEB1("RclCompleterModel: termMatch cnt: " << rclmatches.entries.size() << endl);
+            LOGDEB1("RclCompleterModel: termMatch cnt: " << rclmatches.entries.size() << '\n');
         }
         for (const auto& entry : rclmatches.entries) {
-            LOGDEB1("RclCompleterModel: match " << entry.term << endl);
+            LOGDEB1("RclCompleterModel: match " << entry.term << '\n');
             currentlist.push_back({u8s2qs(entry.term), entry.wcf});
         }
     }
@@ -188,6 +227,9 @@ void SSearch::init()
     popup->horizontalHeader()->hide();
     popup->verticalHeader()->hide();
     m_completer->setPopup(popup);
+    // We need unfilteredPopupCompletion, else the completer does not work for completing the last
+    // word of a multiword entry (filters against the whole line contents). Tried
+    // setCompletionPrefix() with no success.
     m_completer->setCompletionMode(QCompleter::UnfilteredPopupCompletion);
     m_completer->setFilterMode(Qt::MatchContains);
     m_completer->setCaseSensitivity(Qt::CaseInsensitive);
@@ -196,10 +238,10 @@ void SSearch::init()
     m_completer->popup()->installEventFilter(this);
     queryText->installEventFilter(this);
     connect(this, SIGNAL(partialWord(int, const QString&, const QString&)),
-            m_completermodel,
-            SLOT(onPartialWord(int,const QString&,const QString&)));
+            m_completermodel, SLOT(onPartialWord(int,const QString&,const QString&)));
     connect(m_completer, SIGNAL(activated(const QString&)), this,
             SLOT(onCompletionActivated(const QString&)));
+
     connect(historyPB, SIGNAL(clicked()), this, SLOT(onHistoryClicked()));
     setupButtons();
     onNewShortcuts();
@@ -277,26 +319,23 @@ void SSearch::onCompleterShown()
         return;
     }
     
-    LOGDEB0("SSearch::onCompleterShown:" <<  
-            " current [" << qs2utf8s(currentText()) <<
-            "] saved [" << qs2utf8s(m_savedEditText) <<
-            "] popup [" << qs2utf8s(text) << "]\n");
+    LOGDEB0("SSearch::onCompleterShown:" <<  " current [" << qs2utf8s(currentText()) <<
+            "] saved [" << qs2utf8s(m_savedEditText) << "] popup [" << qs2utf8s(text) << "]\n");
 
-    // We append the completion part to the end of the current input,
-    // line, and select it so that the user has a clear indication of
-    // what will happen if they type Enter.
-    int pos = queryText->cursorPosition();
-    int len = text.size() - currentText().size();
-    queryText->setText(text);
-    queryText->setCursorPosition(pos);
-    queryText->setSelection(pos, len);
+    if (!prefs.ssearchCompletePassive) {
+        // We append the completion part to the end of the current input, line, and select it so
+        // that the user has a clear indication of what will happen if they type Enter.
+        int pos = queryText->cursorPosition();
+        int len = text.size() - currentText().size();
+        queryText->setText(text);
+        queryText->setCursorPosition(pos);
+        queryText->setSelection(pos, len);
+    }
 }
 
-// This is to avoid that if the user types Backspace or Del while we
-// have inserted / selected the current completion, the lineedit text
-// goes back to what it was, the completion fires, and it looks like
-// nothing was typed. Disable the completionn after Del or Backspace
-// is typed.
+// This is to avoid that if the user types Backspace or Del while we have inserted / selected the
+// current completion, the lineedit text goes back to what it was, the completion fires, and it
+// looks like nothing was typed. Disable the completionn after Del or Backspace is typed.
 bool SSearch::eventFilter(QObject *target, QEvent *event)
 {
     Q_UNUSED(target);
@@ -304,41 +343,41 @@ bool SSearch::eventFilter(QObject *target, QEvent *event)
     if (event->type() != QEvent::KeyPress) {
         return false;
     }
-    LOGDEB1("SSearch::eventFilter: KeyPress event. Target " << target <<
-            " popup "<<m_completer->popup() << " lineedit "<<queryText<< "\n");
-
     QKeyEvent *keyEvent = (QKeyEvent *)event;
-    if (keyEvent->key() == Qt::Key_Backspace ||
-        keyEvent->key()==Qt::Key_Delete) {
+    LOGDEB1("SSearch::eventFilter: KeyPress event: " << keyEvent->key() << " Target " << target <<
+            " popup "<<m_completer->popup() << " lineedit "<<queryText<< "\n");
+    if (keyEvent->key() == Qt::Key_Backspace || keyEvent->key()==Qt::Key_Delete) {
         LOGDEB("SSearch::eventFilter: backspace/delete\n");
         queryText->setCompleter(nullptr);
         return false;
-    } else {
-        if (nullptr == queryText->completer()) {
-            queryText->setCompleter(m_completer);
+    } else if (keyEvent->key() == Qt::Key_Enter || keyEvent->key() == Qt::Key_Return) {
+        if (prefs.ssearchCompletePassive &&
+            queryText->completer() && queryText->completer()->popup() &&
+            queryText->completer()->popup()->isVisible()) {
+            queryText->completer()->popup()->hide();
+            restoreText();
+            return true;
         }
-    }        
+    } else if (nullptr == queryText->completer() && m_completer) {
+        queryText->setCompleter(m_completer);
+    }
     return false;
 }
 
-// onCompletionActivated() is called when an entry is selected in the
-// popup, but the edit text is going to be replaced in any case if
-// there is a current match (we can't prevent it in the signal). If
-// there is no match (e.g. the user clicked the history button and
-// selected an entry), the query text will not be set.
-// So:
+// onCompletionActivated() is called when an entry is selected in the popup, but the edit text is
+// going to be replaced in any case if there is a current match (we can't prevent it in the
+// signal). If there is no match (e.g. the user clicked the history button and selected an entry),
+// the query text will not be set.  So:
 //  - We set the query text to the popup activation value in all cases
-//  - We schedule a callback to set the text to what we want (which is the
-//    concatenation of the user entry before the current partial word and the
-//    pop up data.
-//  - Note that a history click will replace a current partial word,
-//    so that the effect is different if there is a space at the end
-//    of the entry or not: pure concatenation vs replacement of the
+//  - We schedule a callback to set the text to what we want (which is the concatenation of the user
+//    entry before the current partial word and the pop up data.
+//  - Note that a history click will replace a current partial word, so that the effect is different
+//    if there is a space at the end of the entry or not: pure concatenation vs replacement of the
 //    last (partial) word.
 void SSearch::restoreText()
 {
-    LOGDEB("SSearch::restoreText: savedEdit: " << qs2u8s(m_savedEditText) <<
-           endl);
+    LOGDEB("SSearch::restoreText: savedEdit: " << qs2u8s(m_savedEditText) << '\n');
+
     if (!m_savedEditText.trimmed().isEmpty()) {
         // If the popup text begins with the saved text, just let it replace
         if (currentText().lastIndexOf(m_savedEditText) != 0) {
@@ -368,13 +407,14 @@ void SSearch::onHistoryClicked()
     }
 }
 
+// Connected to queryText::textEdited
 void SSearch::searchTextEdited(const QString& text)
 {
     LOGDEB1("SSearch::searchTextEdited: text [" << qs2u8s(text) << "]\n");
     QString pword;
-    int cs = getPartialWord(pword);
+    int cs = getPartialWord(currentText(), pword);
     int tp = searchTypCMB->currentIndex();
-    
+
     m_savedEditText = text.left(cs);
     LOGDEB1("SSearch::searchTextEdited: cs " <<cs<<" pword ["<< qs2u8s(pword) <<
             "] savedEditText [" << qs2u8s(m_savedEditText) << "]\n");
@@ -719,43 +759,4 @@ void SSearch::onWordReplace(const QString& o, const QString& n)
 void SSearch::setAnyTermMode()
 {
     searchTypCMB->setCurrentIndex(SST_ANY);
-}
-
-// If text does not end with space, return last (partial) word and >0
-// else return -1
-int SSearch::getPartialWord(QString& word)
-{
-    // Extract last word in text
-    QString txt = currentText();
-    if (txt.isEmpty()) {
-        return -1;
-    }
-    int lstidx = txt.size()-1;
-
-    // If the input ends with a space or dquote (phrase input), or
-    // dquote+qualifiers, no partial word.
-    if (txt[lstidx] == ' ') {
-        return -1;
-    }
-    int cs = txt.lastIndexOf("\"");
-    if (cs > 0) {
-        bool dquoteToEndNoSpace{true};
-        for (int i = cs; i <= lstidx; i++) {
-            if (txt[i] == ' ') {
-                dquoteToEndNoSpace = false;
-                break;
-            }
-        }
-        if (dquoteToEndNoSpace) {
-            return -1;
-        }
-    }
-
-    cs = txt.lastIndexOf(" ");
-    if (cs < 0)
-        cs = 0;
-    else
-        cs++;
-    word = txt.right(txt.size() - cs);
-    return cs;
 }

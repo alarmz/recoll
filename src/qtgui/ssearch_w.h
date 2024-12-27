@@ -115,7 +115,6 @@ signals:
     void ssearchTypeChanged(int typ);
     
 private:
-    int getPartialWord(QString& word);
     bool startSimpleSearch(const std::string& q, int maxexp = -1);
     bool checkExtIndexes(const std::vector<std::string>& dbs);
 

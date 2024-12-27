@@ -445,6 +445,21 @@
               </widget>
              </item>
              <item>
+              <widget class="QCheckBox" name="ssearchCompletePassiveCB">
+               <property name="toolTip">
+                <string>The completion only changes the entry when activated.</string>
+               </property>
+               <property name="text">
+                <string>Completion: no automatic line editing.</string>
+               </property>
+               <property name="checked">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+             <item>
               <widget class="QCheckBox" name="ssSearchOnCompleteCB">
                <property name="text">
                 <string>Start search on completer popup activation.</string>
@@ -454,8 +469,6 @@
                </property>
               </widget>
              </item>
-            </layout>
-           </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout12">
              <item>

@@ -97,6 +97,8 @@ void UIPrefsDialog::init()
     connect(autoSpellCB, SIGNAL(toggled(bool)), autoSpellMaxDistSB, SLOT(setEnabled(bool)));
     connect(ssNoCompleteCB, SIGNAL(toggled(bool)), ssSearchOnCompleteCB, SLOT(setDisabled(bool)));
     connect(ssNoCompleteCB, SIGNAL(toggled(bool)),
+            ssearchCompletePassiveCB, SLOT(setDisabled(bool)));
+    connect(ssNoCompleteCB, SIGNAL(toggled(bool)),
             showcompleterhitcountsCB, SLOT(setDisabled(bool)));
     connect(ssNoCompleteCB, SIGNAL(toggled(bool)),
             ssearchCompleterHistCntSB, SLOT(setDisabled(bool)));
@@ -182,6 +184,7 @@ void UIPrefsDialog::setFromPrefs()
     ignwildsCB->setChecked(prefs.ignwilds);
     pvmaxfldlenSB->setValue(prefs.pvmaxfldlen);
     singleappCB->setChecked(prefs.singleapp);
+    ssearchCompletePassiveCB->setChecked(prefs.ssearchCompletePassive);
     /*INSERTHERE_LOAD*/
 
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -467,6 +470,7 @@ void UIPrefsDialog::accept()
     prefs.ignwilds = ignwildsCB->isChecked();
     prefs.pvmaxfldlen = pvmaxfldlenSB->value();
     prefs.singleapp = singleappCB->isChecked();
+    prefs.ssearchCompletePassive = ssearchCompletePassiveCB->isChecked();
     /*INSERTHERE_ACCEPT*/
 
     // -1 is the qxtconf... predefined value to show the dialog
