@@ -651,7 +651,7 @@ endif()
 
 if (LINUX)
     set_target_properties(${RECOLL_EXECUTABLES} PROPERTIES
-        INSTALL_RPATH "$ORIGIN/../${CMAKE_INSTALL_LIBDIR}/recoll"
+        INSTALL_RPATH "$ORIGIN/../${CMAKE_INSTALL_LIBDIR}"
         INSTALL_RPATH_USE_LINK_PATH TRUE
     )
 
@@ -666,7 +666,7 @@ if (LINUX)
 
     install(TARGETS librecoll ${RECOLL_EXECUTABLES}
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}/recoll
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     )
 
     install(FILES desktop/recoll-searchgui.desktop
