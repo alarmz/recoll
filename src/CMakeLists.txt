@@ -83,13 +83,20 @@ codesign --force --deep -s - recoll.app
 cmake_minimum_required(VERSION 3.25)
 
 # Load versions from text files
-file(READ "RECOLL-VERSION.txt" RECOLL_VERSION)
-string(STRIP "${RECOLL_VERSION}" RECOLL_VERSION)
+file(READ "RECOLL-VERSION.txt" VERSION_FILE_VERSION)
+string(STRIP "${VERSION_FILE_VERSION}" VERSION_FILE_VERSION)
+# Strip trailing version strings like "X.Y.ZpreN" that CMake doesn't support
+string(REGEX REPLACE
+    "^([0-9]+\\.[0-9]+\\.[0-9]+).*$" "\\1"
+    RECOLL_VERSION "${VERSION_FILE_VERSION}"
+)
 file(READ "RECOLL-SOVERSION.txt" RECOLL_SOVERSION)
 string(STRIP "${RECOLL_SOVERSION}" RECOLL_SOVERSION)
 
 set(_parse_state
-  "RECOLL_VERSION=${RECOLL_VERSION}, RECOLL_SOVERSION=${RECOLL_SOVERSION}")
+    "VERSION_FILE_VERSION=${VERSION_FILE_VERSION}, \
+    RECOLL_VERSION=${RECOLL_VERSION}, \
+    RECOLL_SOVERSION=${RECOLL_SOVERSION}")
 string(LENGTH "${RECOLL_VERSION}" _rcl_ver_len)
 string(LENGTH "${RECOLL_SOVERSION}" _rcl_sover_len)
 if (_rcl_ver_len LESS_EQUAL 0 OR _rcl_sover_len LESS_EQUAL 0)
