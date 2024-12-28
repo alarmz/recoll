@@ -67,6 +67,13 @@ extern std::string url_gpathS(const std::string& url);
 
 bool path_samepath(const std::string& p1, const std::string& p2);
 
+// Translate file name/path to utf8 for indexing.
+// 
+// @param simple If true we extract and process only the simple file name
+// (ignore the path)
+class RclConfig;
+std::string compute_utf8fn(const RclConfig *config, const std::string& ifn, bool simple);
+
 /// Like strftime but guaranteed utf-8 output (esp. useful on Windows)
 struct tm;
 extern std::string utf8datestring(const std::string& format, struct tm *tm);

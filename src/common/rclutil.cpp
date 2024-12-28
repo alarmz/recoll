@@ -501,6 +501,31 @@ string url_gpathS(const string& url)
 #endif
 }
 
+std::string compute_utf8fn(const RclConfig *config, const std::string& ifn, bool simple)
+{
+#ifdef _WIN32
+    PRETEND_USE(config);
+    // On windows file names are read as UTF16 wchar_t and converted to UTF-8
+    // while scanning directories
+    return simple ? path_getsimple(ifn) : ifn;
+#else
+    std::string lfn(simple ? path_getsimple(ifn) : ifn);
+    std::string charset = config->getDefCharset(true);
+    std::string utf8fn; 
+    int ercnt;
+    if (!transcode(lfn, utf8fn, charset, cstr_utf8, &ercnt)) {
+        LOGERR("compute_utf8fn: fn transcode failure from ["  << charset <<
+               "] to UTF-8 for: [" << lfn << "]\n");
+    } else if (ercnt) {
+        LOGDEB("compute_utf8fn: "  << ercnt << " transcode errors from [" <<
+               charset << "] to UTF-8 for: ["  << lfn << "]\n");
+    }
+    LOGDEB1("compute_utf8fn: transcoded from ["  << lfn << "] to ["  <<
+            utf8fn << "] ("  << charset << "->"  << "UTF-8)\n");
+    return utf8fn;
+#endif
+}
+
 std::string utf8datestring(const std::string& format, struct tm *tm)
 {
     string u8date;

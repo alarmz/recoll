@@ -57,7 +57,6 @@ using namespace std;
 #include "expansiondbs.h"
 #include "rclinit.h"
 #include "internfile.h"
-#include "utf8fn.h"
 #include "wipedir.h"
 #ifdef RCL_USE_ASPELL
 #include "rclaspell.h"
@@ -1747,18 +1746,13 @@ bool Db::addOrUpdate(const string &udi, const string &parent_udi, Doc &doc)
         fieldToTraits(cstr_dir, &ftp);
         if (ftp && !ftp->pfx.empty()) {
             string path = url_gpathS(doc.url);
-
 #ifdef _WIN32
-            // Windows file names are case-insensitive, so we
-            // translate to UTF-8 and lowercase
-            string upath = compute_utf8fn(m_config, path, false);            
-            unacmaybefold(upath, path, UNACOP_FOLD);
+            // Windows file names are case-insensitive, and read as UTF-8
+            path = unactolower(path);
 #endif
-
             vector<string> vpath;
             stringToTokens(path, vpath, "/");
-            // If vpath is not /, the last elt is the file/dir name, not a
-            // part of the path.
+            // If vpath is not /, the last elt is the file/dir name, not a part of the path.
             if (vpath.size())
                 vpath.resize(vpath.size()-1);
             splitter.curpos = 0;

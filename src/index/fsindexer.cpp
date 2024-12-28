@@ -46,7 +46,6 @@
 #include "cancelcheck.h"
 #include "rclinit.h"
 #include "extrameta.h"
-#include "utf8fn.h"
 #include "idxdiags.h"
 #include "fsfetcher.h"
 #if defined(HAVE_POSIX_FADVISE)

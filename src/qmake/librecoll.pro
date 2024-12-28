@@ -30,10 +30,10 @@ SOURCES += \
 ../common/plaintorich.cpp \
 ../common/rclconfig.cpp \
 ../common/rclinit.cpp \
+../common/rclutil.cpp \
 ../common/syngroups.cpp \
 ../common/textsplit.cpp \
 ../common/unacpp.cpp \
-../common/utf8fn.cpp \
 ../common/webstore.cpp \
 ../index/exefetcher.cpp \
 ../index/fetcher.cpp \
@@ -109,7 +109,6 @@ SOURCES += \
 ../utils/miniz.cpp \
 ../utils/pathut.cpp \
 ../utils/pxattr.cpp \
-../utils/rclutil.cpp \
 ../utils/readfile.cpp \
 ../utils/smallut.cpp \
 ../utils/strmatcher.cpp \

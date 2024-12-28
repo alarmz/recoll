@@ -167,6 +167,8 @@ set(librecoll_SOURCES
     common/rclconfig.h
     common/rclinit.cpp
     common/rclinit.h
+    common/rclutil.cpp
+    common/rclutil.h
     common/syngroups.cpp
     common/syngroups.h
     common/textsplit.cpp
@@ -174,8 +176,6 @@ set(librecoll_SOURCES
     common/unacpp.cpp
     common/unacpp.h
     common/uproplist.h
-    common/utf8fn.cpp
-    common/utf8fn.h
     index/webqueuefetcher.cpp
     index/webqueuefetcher.h
     index/checkretryfailed.cpp
@@ -340,8 +340,6 @@ set(librecoll_SOURCES
     utils/pxattr.h
     utils/rclionice.cpp
     utils/rclionice.h
-    utils/rclutil.h
-    utils/rclutil.cpp
     utils/readfile.cpp
     utils/readfile.h
     utils/smallut.cpp
