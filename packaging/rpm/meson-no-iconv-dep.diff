@@ -1,0 +1,15 @@
+diff --git a/meson.build b/meson.build
+index 55177508..2b0652ca 100644
+--- a/meson.build
++++ b/meson.build
+@@ -85,8 +85,8 @@ if get_option('testmains') or get_option('python-module') or get_option('indexer
+     if (build_machine.system() == 'freebsd') or (build_machine.system() == 'openbsd')
+         libiconv = cc.find_library('libiconv', required:true, dirs: '/usr/local/lib')
+         librecolldeps += libiconv
+-    else 
+-        librecolldeps += dependency('iconv', method : 'auto')
++#    else 
++#        librecolldeps += dependency('iconv', method : 'auto')
+     endif
+ else
+     librecoll_needed = false
