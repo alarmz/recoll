@@ -3,27 +3,16 @@ import hashlib
 from recoll import recoll
 from recoll import rclextract
 
-if sys.version_info[0] >= 3:
-    ISP3 = True
-else:
-    ISP3 = False
-
-def utf8string(s):
-    if ISP3:
-        return s
-    else:
-        return s.encode('utf8')
-
 db = recoll.connect()
 query = db.query()
 
 # This normally has only one result, a well-known html file
 nres = query.execute("HtmlAttachment_uniqueTerm", stemming=0)
-print("Result count: %d %d" % (nres, query.rowcount))
+print(f"Result count: {nres} {query.rowcount}")
 doc = query.fetchone()
 xtrac = rclextract.Extractor(doc)
 doc = xtrac.textextract(doc.ipath)
-print("Text length: %d"%len(doc.text))
+print(f"Text length: {len(doc.text)}")
 
 refdigest = 'bfbb63f7a245c31767585b45014dbd07'
 
@@ -39,7 +28,7 @@ for doc in query:
         m = hashlib.md5()
         m.update(data)
         digest = m.hexdigest()
-        print(digest)
+        print(f"{digest}")
         if digest != refdigest:
             print("extract.py: wrong digest for extracted file!")
             
