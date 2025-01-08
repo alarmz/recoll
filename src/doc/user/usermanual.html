@@ -144,8 +144,8 @@ alink="#0000FF">
                 systems)</a></span></dt>
                 <dt><span class="sect2">2.4.2. <a href=
                 "#RCL.INDEXING.PERF.MULTIDX">Using multiple
-                temporary indexes to improve indexing
-                time</a></span></dt>
+                temporary indexes to improve indexing time
+                (1.41.1)</a></span></dt>
                 <dt><span class="sect2">2.4.3. <a href=
                 "#RCL.INDEXING.QUIET">Quieting down the indexing
                 process</a></span></dt>
@@ -1360,7 +1360,7 @@ indexedmimetypes = application/pdf</pre>
           <p><span class="application">Recoll</span> versions 1.38
           and newer have an option to use <a class="link" href=
           "#RCL.INDEXING.PERF.MULTIDX" title=
-          "2.4.2.&nbsp;Using multiple temporary indexes to improve indexing time">
+          "2.4.2.&nbsp;Using multiple temporary indexes to improve indexing time (1.41.1)">
           multiple temporary indexes and a final merge</a>
           internally. This was designed as a CPU performance
           optimization (increasing parallelism), but it may also
@@ -1883,8 +1883,8 @@ indexedmimetypes = application/pdf</pre>
                 <h3 class="title"><a name=
                 "RCL.INDEXING.PERF.MULTIDX" id=
                 "RCL.INDEXING.PERF.MULTIDX"></a>2.4.2.&nbsp;Using
-                multiple temporary indexes to improve indexing
-                time</h3>
+                multiple temporary indexes to improve indexing time
+                (1.41.1)</h3>
               </div>
             </div>
           </div>
@@ -1894,7 +1894,7 @@ indexedmimetypes = application/pdf</pre>
             <p>The underlying code is buggy between 1.38 and
             1.41.0, fixed in 1.41.1. The bug affects the storing of
             document texts inside the index, so it only affects
-            snippets generation inside result lists. If this result
+            snippets generation inside result lists. If the result
             lists snippets are important to you, do not use the
             function with an affected release.</p>
           </div>
@@ -1904,9 +1904,8 @@ indexedmimetypes = application/pdf</pre>
           single-threaded Xapian index updates can become the
           performance bottleneck for indexing.</p>
           <p>In this case, it is possible to configure the indexer
-          (<span class="application">Recoll</span> 1.38 and later)
-          for using multiple temporary indexes which are merged at
-          the end of the operation. This can provide a huge gain in
+          to use multiple temporary indexes which are merged at the
+          end of the operation. This can provide a huge gain in
           performance, but, as opposed to multithreading for
           document preparation, it can also have a (slight)
           negative impact in some cases, so that it is not enabled
@@ -11427,6 +11426,19 @@ thesame = "some string with spaces"</pre>
             </div>
             <div class="variablelist">
               <dl class="variablelist">
+                <dt><a name=
+                "RCL.INSTALL.CONFIG.RECOLLCONF.IDXLOCALGUISETTINGS"
+                id=
+                "RCL.INSTALL.CONFIG.RECOLLCONF.IDXLOCALGUISETTINGS">
+                </a><span class="term"><code class=
+                "varname">idxlocalguisettings</code></span></dt>
+                <dd>
+                  <p>Store some GUI parameters locally to the
+                  index. GUI settings are normally stored in a
+                  global file, valid for all indexes. Setting this
+                  parameter will make some settings, such as the
+                  result table setup, specific to the index.</p>
+                </dd>
                 <dt><a name=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.AUTODIACSENS" id=
                 "RCL.INSTALL.CONFIG.RECOLLCONF.AUTODIACSENS"></a><span class="term"><code class="varname">autodiacsens</code></span></dt>

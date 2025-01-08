@@ -745,6 +745,11 @@ lowest "Idle" priority).
 ionice class level parameter if the class supports it. The default is empty, as the default "Idle" class has no
 levels.
 .TP
+.BI "idxlocalguisettings = "bool
+Store some GUI parameters locally to the index. GUI settings are normally stored in a global file, valid for all
+indexes. Setting this parameter will make some settings, such as the result
+table setup, specific to the index.
+.TP
 .BI "autodiacsens = "bool
 auto-trigger diacritics sensitivity (raw index only). IF the index is not stripped, decide if we automatically trigger
 diacritics sensitivity if the search term has accented characters (not in

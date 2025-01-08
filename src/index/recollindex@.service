@@ -1,5 +1,8 @@
-# Instantiate with a username as argument
-# e.g. `systemctl enable recollindex@myuser.service`
+# This is a sample instantiated unit file for starting the indexer
+# https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/9/html/using_systemd_unit_files_to_customize_and_optimize_your_system/assembly_working-with-systemd-unit-files_working-with-systemd#con_working-with-instantiated-units_assembly_working-with-systemd-unit-files
+# Intended as a system service, started at boot time, but running as the argument user name
+# Copy to e.g. /etc/systemd/system or /usr/lib/systemd/system/ and instantiate with a username as argument:
+#  sudo systemctl enable recollindex@myuser.service
 [Unit]
 Description=Recollindex indexing for %i
 After=network-online.target

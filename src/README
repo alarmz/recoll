@@ -54,7 +54,7 @@ Jean-Francois Dockes
                       systems)
 
               2.4.2. [24]Using multiple temporary indexes to improve
-                      indexing time
+                      indexing time (1.41.1)
 
               2.4.3. [25]Quieting down the indexing process
 
@@ -964,13 +964,13 @@ Note
    performed by a single thread.
 thrQSizes = -1 -1 -1
 
-2.4.2. Using multiple temporary indexes to improve indexing time
+2.4.2. Using multiple temporary indexes to improve indexing time (1.41.1)
 
 Note
 
    The underlying code is buggy between 1.38 and 1.41.0, fixed in 1.41.1.
    The bug affects the storing of document texts inside the index, so it
-   only affects snippets generation inside result lists. If this result
+   only affects snippets generation inside result lists. If the result
    lists snippets are important to you, do not use the function with an
    affected release.
 
@@ -979,12 +979,11 @@ Note
    available cores, the single-threaded Xapian index updates can become
    the performance bottleneck for indexing.
 
-   In this case, it is possible to configure the indexer (Recoll 1.38 and
-   later) for using multiple temporary indexes which are merged at the end
-   of the operation. This can provide a huge gain in performance, but, as
-   opposed to multithreading for document preparation, it can also have a
-   (slight) negative impact in some cases, so that it is not enabled by
-   default.
+   In this case, it is possible to configure the indexer to use multiple
+   temporary indexes which are merged at the end of the operation. This
+   can provide a huge gain in performance, but, as opposed to
+   multithreading for document preparation, it can also have a (slight)
+   negative impact in some cases, so that it is not enabled by default.
 
    In most cases, this should also be turned off after the initial index
    creation is done, because it is extremely detrimental to the speed of
@@ -6027,6 +6026,12 @@ Miscellaneous parameters
           default is empty, as the default "Idle" class has no levels.
 
 Query-time parameters (no impact on the index)
+
+   idxlocalguisettings
+          Store some GUI parameters locally to the index. GUI settings are
+          normally stored in a global file, valid for all indexes. Setting
+          this parameter will make some settings, such as the result table
+          setup, specific to the index.
 
    autodiacsens
           auto-trigger diacritics sensitivity (raw index only). IF the

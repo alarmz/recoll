@@ -791,6 +791,12 @@ levels.
 </variablelist></sect3>
 <sect3 id="RCL.INSTALL.CONFIG.RECOLLCONF.QUERY">
 <title>Query-time parameters (no impact on the index) </title><variablelist>
+<varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.IDXLOCALGUISETTINGS">
+<term><varname>idxlocalguisettings</varname></term>
+<listitem><para>Store some GUI parameters locally to the index. GUI settings are normally stored in a global file, valid for all
+indexes. Setting this parameter will make some settings, such as the result
+table setup, specific to the index.
+</para></listitem></varlistentry>
 <varlistentry id="RCL.INSTALL.CONFIG.RECOLLCONF.AUTODIACSENS">
 <term><varname>autodiacsens</varname></term>
 <listitem><para>auto-trigger diacritics sensitivity (raw index only). IF the index is not stripped, decide if we automatically trigger
