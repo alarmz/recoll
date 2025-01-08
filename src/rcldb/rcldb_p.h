@@ -228,7 +228,8 @@ class Db::Native {
     bool getPagePositions(Xapian::docid docid, std::vector<int>& vpos);
     int getPageNumberForPosition(const std::vector<int>& pbreaks, int pos);
 
-    bool dbDataToRclDoc(Xapian::docid docid, std::string &data, Doc &doc, bool fetchtext = false);
+    bool dbDataToRclDoc(Xapian::docid docid, Xapian::Document& xdoc,
+                        std::string &data, Doc &doc, bool fetchtext = false);
 
     size_t whatDbIdx(Xapian::docid id);
     Xapian::docid whatDbDocid(Xapian::docid);

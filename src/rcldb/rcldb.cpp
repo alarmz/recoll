@@ -439,14 +439,20 @@ bool Db::Native::subDocs(const string &udi, int idxi, vector<Xapian::docid>& doc
 
 bool Db::Native::docidToUdi(Xapian::docid xid, std::string& udi)
 {
-    auto xdoc = xrdb.get_document(xid);
+    Xapian::Document xdoc;
+    XAPTRY(xdoc = xrdb.get_document(xid), xrdb, m_rcldb->m_reason);
+    if (!m_rcldb->m_reason.empty()) {
+        LOGERR("Db::Native:docidToUdi: get_document error: " << m_rcldb->m_reason << "\n");
+        return false;
+    }
     return xdocToUdi(xdoc, udi);
 }
 
 bool Db::Native::xdocToUdi(Xapian::Document& xdoc, string &udi)
 {
     Xapian::TermIterator xit;
-    XAPTRY(xit = xdoc.termlist_begin(); xit.skip_to(wrap_prefix(udi_prefix)), xrdb, m_rcldb->m_reason);
+    XAPTRY(xit = xdoc.termlist_begin(); xit.skip_to(wrap_prefix(udi_prefix)),
+           xrdb, m_rcldb->m_reason);
     if (!m_rcldb->m_reason.empty()) {
         LOGERR("xdocToUdi: xapian error: " << m_rcldb->m_reason << "\n");
         return false;
@@ -602,7 +608,8 @@ Xapian::docid Db::Native::getDoc(const string& udi, int idxi, Xapian::Document& 
 }
 
 // Turn data record from db into document fields
-bool Db::Native::dbDataToRclDoc(Xapian::docid docid, std::string &data, Doc &doc, bool fetchtext)
+bool Db::Native::dbDataToRclDoc(Xapian::docid docid, Xapian::Document& xdoc,
+                                std::string &data, Doc &doc, bool fetchtext)
 {
     LOGDEB2("Db::dbDataToRclDoc: data:\n" << data << "\n");
     ConfSimple parms(data, 1, false, false);
@@ -660,7 +667,13 @@ bool Db::Native::dbDataToRclDoc(Xapian::docid docid, std::string &data, Doc &doc
     doc.meta[Doc::keyurl] = doc.url;
     doc.meta[Doc::keymt] = doc.dmtime.empty() ? doc.fmtime : doc.dmtime;
     if (fetchtext) {
-        getRawText(doc.meta[Doc::keyudi], docid, doc.text);
+        std::string &udi = doc.meta[Doc::keyudi];
+        if (udi.empty()) {
+            xdocToUdi(xdoc, udi);
+        }
+        if (!udi.empty()) {
+            getRawText(udi, docid, doc.text);
+        }
     }
     return true;
 }
@@ -692,7 +705,7 @@ bool Db::Native::getPagePositions(Xapian::docid docid, vector<int>& vpos)
         string data = xdoc.get_data();
         Doc doc;
         string mbreaks;
-        if (dbDataToRclDoc(docid, data, doc) && 
+        if (dbDataToRclDoc(docid, xdoc, data, doc) && 
             doc.getmeta(cstr_mbreaks, &mbreaks)) {
             vector<string> values;
             stringToTokens(mbreaks, values, ",");
@@ -1076,15 +1089,6 @@ bool Db::storesDocText()
         return false;
     }
     return m_ndb->m_storetext;
-}
-
-bool Db::getDocRawText(Doc& doc)
-{
-    if (!m_ndb || !m_ndb->m_isopen) {
-        LOGERR("Db::getDocRawText: called on non-opened db\n");
-        return false;
-    }
-    return m_ndb->getRawText(doc.meta[Doc::keyudi], doc.xdocid, doc.text);
 }
 
 // Note: xapian has no close call, we delete and recreate the db
@@ -2714,7 +2718,7 @@ bool Db::getDoc(const string& udi, int idxi, Doc& doc, bool fetchtext)
     if (docid) {
         string data = xdoc.get_data();
         doc.meta[Doc::keyudi] = udi;
-        return m_ndb->dbDataToRclDoc(docid, data, doc, fetchtext);
+        return m_ndb->dbDataToRclDoc(docid, xdoc, data, doc, fetchtext);
     } else {
         // Document found in history no longer in the
         // database.  We return true (because their might be
@@ -2726,12 +2730,40 @@ bool Db::getDoc(const string& udi, int idxi, Doc& doc, bool fetchtext)
     }
 }
 
-bool Db::hasSubDocs(const Doc &idoc)
+// Retrieve UDI for query result document. We do this lazily because it's actually rarely needed and
+// takes about 20% of the document fetch time because of the need to access the term list.
+std::string Db::fetchUdi(Doc& doc)
+{
+    std::string& udi = doc.meta[Doc::keyudi];
+    if (!udi.empty()) {
+        return udi;
+    }
+    if (!doc.xdocid) {
+        return udi;
+    }
+    if (!m_ndb || !m_ndb->m_isopen) {
+        m_reason = "Db::fetchUdi: called on non-opened db\n";
+        return udi;
+    }
+    m_ndb->docidToUdi(doc.xdocid, udi);
+    return udi;
+}
+
+bool Db::getDocRawText(Doc& doc)
+{
+    if (!m_ndb || !m_ndb->m_isopen) {
+        LOGERR("Db::getDocRawText: called on non-opened db\n");
+        return false;
+    }
+    return m_ndb->getRawText(fetchUdi(doc), doc.xdocid, doc.text);
+}
+
+bool Db::hasSubDocs(Doc &idoc)
 {
     if (nullptr == m_ndb)
         return false;
-    string inudi;
-    if (!idoc.getmeta(Doc::keyudi, &inudi) || inudi.empty()) {
+    string inudi = fetchUdi(idoc);
+    if (inudi.empty()) {
         LOGERR("Db::hasSubDocs: no input udi or empty\n");
         return false;
     }
@@ -2759,13 +2791,13 @@ bool Db::hasSubDocs(const Doc &idoc)
 
 // Retrieve all subdocuments of a given one, which may not be a file-level
 // one (in which case, we have to retrieve this first, then filter the ipaths)
-bool Db::getSubDocs(const Doc &idoc, vector<Doc>& subdocs)
+bool Db::getSubDocs(Doc &idoc, vector<Doc>& subdocs)
 {
     if (nullptr == m_ndb)
         return false;
 
-    string inudi;
-    if (!idoc.getmeta(Doc::keyudi, &inudi) || inudi.empty()) {
+    string inudi = fetchUdi(idoc);
+    if (inudi.empty()) {
         LOGERR("Db::getSubDocs: no input udi or empty\n");
         return false;
     }
@@ -2814,13 +2846,10 @@ bool Db::getSubDocs(const Doc &idoc, vector<Doc>& subdocs)
             for (const auto docid : docids) {
                 Xapian::Document xdoc = m_ndb->xrdb.get_document(docid);
                 string data = xdoc.get_data();
-                string docudi;
-                m_ndb->xdocToUdi(xdoc, docudi);
                 Doc doc;
-                doc.meta[Doc::keyudi] = docudi;
                 doc.meta[Doc::keyrr] = "100%";
                 doc.pc = 100;
-                if (!m_ndb->dbDataToRclDoc(docid, data, doc)) {
+                if (!m_ndb->dbDataToRclDoc(docid, xdoc, data, doc)) {
                     LOGERR("Db::getSubDocs: doc conversion error\n");
                     return false;
                 }
@@ -2842,13 +2871,13 @@ bool Db::getSubDocs(const Doc &idoc, vector<Doc>& subdocs)
     return false;
 }
 
-bool Db::getContainerDoc(const Doc &idoc, Doc& ctdoc)
+bool Db::getContainerDoc(Doc &idoc, Doc& ctdoc)
 {
     if (nullptr == m_ndb)
         return false;
 
-    string inudi;
-    if (!idoc.getmeta(Doc::keyudi, &inudi) || inudi.empty()) {
+    string inudi = fetchUdi(idoc);
+    if (!inudi.empty()) {
         LOGERR("Db::getContainerDoc: no input udi or empty\n");
         return false;
     }

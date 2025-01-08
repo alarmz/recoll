@@ -28,28 +28,27 @@ class RclConfig;
 namespace Rcl {
 class Doc;
 class Query;
+class Db;
 };
 
 typedef struct {
     PyObject_HEAD
-    /* Type-specific fields go here. */
     Rcl::Doc *doc;
-    /* Each doc object has a pointer to the global config, for convenience */
-    std::shared_ptr<RclConfig> rclconfig; 
+    /* Each doc object has a pointer to the Db it comes from */
+    std::shared_ptr<Rcl::Db> rcldb; 
 } recoll_DocObject;
 
 struct recoll_DbObject;
 
 typedef struct {
     PyObject_HEAD
-    /* Type-specific fields go here. */
     Rcl::Query *query;
     int         next; // Index of result to be fetched next or -1 if uninit
     int         rowcount; // Number of records returned by last execute
-    std::string      *sortfield; // Need to allocate in here, main program is C.
+    std::string *sortfield; // Need to allocate in here, main program is C.
     int         ascending;
     int         arraysize; // Default size for fetchmany
-    recoll_DbObject* connection;
+    recoll_DbObject *connection;
     bool        fetchtext;
 } recoll_QueryObject;
 

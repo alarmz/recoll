@@ -110,7 +110,7 @@ SearchData_init(recoll_SearchDataObject *self, PyObject *args, PyObject *kwargs)
     } else {
         stemlang = "english";
     }
-    self->sd = std::shared_ptr<Rcl::SearchData>(new Rcl::SearchData(tp, stemlang));
+    self->sd = std::make_shared<Rcl::SearchData>(tp, stemlang);
     return 0;
 }
 
@@ -265,6 +265,7 @@ Doc_dealloc(recoll_DocObject *self)
 {
     LOGDEB0("Doc_dealloc\n");
     deleteZ(self->doc);
+    self->rcldb.reset();
     Py_TYPE(self)->tp_free((PyObject*)self);
 }
 
@@ -310,7 +311,7 @@ Doc_setbinurl(recoll_DocObject *self, PyObject *value)
         PyErr_SetString(PyExc_AttributeError, "doc??");
         return 0;
     }
-    if (!self->rclconfig || !self->rclconfig->ok()) {
+    if (!self->rcldb || !self->rcldb->getConf()->ok()) {
         PyErr_SetString(PyExc_AttributeError, "Configuration not initialized");
         return 0;
     }
@@ -323,7 +324,8 @@ Doc_setbinurl(recoll_DocObject *self, PyObject *value)
         return 0;
     }        
 
-    printableUrl(self->rclconfig->getDefCharset(),self->doc->url, self->doc->meta[Rcl::Doc::keyurl]);
+    printableUrl(self->rcldb->getConf()->getDefCharset(),
+                 self->doc->url, self->doc->meta[Rcl::Doc::keyurl]);
     Py_RETURN_NONE;
 }
 
@@ -376,6 +378,7 @@ Doc_items(recoll_DocObject *self)
 
 static bool idocget(recoll_DocObject *self, const string& key, string& value)
 {
+    LOGDEB1("idocget: key [" << key << "]\n");
     switch (key.at(0)) {
     case 'u':
         if (!key.compare(Rcl::Doc::keyurl)) {
@@ -422,6 +425,11 @@ static bool idocget(recoll_DocObject *self, const string& key, string& value)
             return true;
         }
         break;
+    case 'r':
+        if (!key.compare(Rcl::Doc::keyudi)) {
+            value = self->rcldb->fetchUdi(*self->doc);
+            return true;
+        }        
     case 's':
         if (!key.compare(Rcl::Doc::keysig)) {
             value = self->doc->sig;
@@ -516,7 +524,7 @@ Doc_getattro(recoll_DocObject *self, PyObject *nameobj)
         PyErr_SetString(PyExc_AttributeError, "doc");
         return 0;
     }
-    if (!self->rclconfig || !self->rclconfig->ok()) {
+    if (!self->rcldb || !self->rcldb->getConf()->ok()) {
         PyErr_SetString(PyExc_AttributeError, "Configuration not initialized");
         return 0;
     }
@@ -533,7 +541,7 @@ Doc_getattro(recoll_DocObject *self, PyObject *nameobj)
         Py_RETURN_NONE;
     }
 
-    string key = self->rclconfig->fieldQCanon(name);
+    string key = self->rcldb->getConf()->fieldQCanon(name);
     string value;
     if (idocget(self, key, value)) {
         LOGDEB1("Doc_getattro: [" << key << "] -> [" << value << "]\n");
@@ -551,7 +559,7 @@ Doc_setattro(recoll_DocObject *self, PyObject *nameobj, PyObject *value)
         PyErr_SetString(PyExc_AttributeError, "doc??");
         return -1;
     }
-    if (!self->rclconfig || !self->rclconfig->ok()) {
+    if (!self->rcldb || !self->rcldb->getConf()->ok()) {
         PyErr_SetString(PyExc_AttributeError, "Configuration not initialized");
         return -1;
     }
@@ -567,7 +575,7 @@ Doc_setattro(recoll_DocObject *self, PyObject *nameobj, PyObject *value)
         return -1;
     }
 
-    string key = self->rclconfig->fieldQCanon(name);
+    string key = self->rcldb->getConf()->fieldQCanon(name);
 
     LOGDEB0("Doc_setattr: doc " << self->doc << " [" << key << "] (" << name <<
             ") -> [" << uvalue << "]\n");
@@ -585,7 +593,7 @@ Doc_setattro(recoll_DocObject *self, PyObject *nameobj, PyObject *value)
     case 'u':
         if (key == Rcl::Doc::keyurl) {
             self->doc->url.swap(uvalue);
-            printableUrl(self->rclconfig->getDefCharset(), self->doc->url, 
+            printableUrl(self->rcldb->getConf()->getDefCharset(), self->doc->url, 
                          self->doc->meta[Rcl::Doc::keyurl]);
         }
         break;
@@ -653,7 +661,7 @@ Doc_subscript(recoll_DocObject *self, PyObject *key)
         PyErr_SetString(PyExc_AttributeError, "doc??");
         return NULL;
     }
-    if (!self->rclconfig || !self->rclconfig->ok()) {
+    if (!self->rcldb || !self->rcldb->getConf()->ok()) {
         PyErr_SetString(PyExc_AttributeError, "Configuration not initialized");
         return NULL;
     }
@@ -663,7 +671,7 @@ Doc_subscript(recoll_DocObject *self, PyObject *key)
         Py_RETURN_NONE;
     }
 
-    string skey = self->rclconfig->fieldQCanon(name);
+    string skey = self->rcldb->getConf()->fieldQCanon(name);
     string value;
     if (idocget(self, skey, value)) {
         return PyUnicode_Decode(value.c_str(), value.size(), "UTF-8", "backslashreplace");
@@ -745,8 +753,7 @@ PyTypeObject recoll_DocType = {
 typedef struct recoll_DbObject {
     PyObject_HEAD
     /* Type-specific fields go here. */
-    Rcl::Db *db;
-    std::shared_ptr<RclConfig> rclconfig;
+    std::shared_ptr<Rcl::Db> rcldb;
 } recoll_DbObject;
 
 PyDoc_STRVAR(doc_Query_close,
@@ -893,7 +900,7 @@ Query_execute(recoll_QueryObject* self, PyObject *args, PyObject *kwargs)
     // use the raw pointer.
     string reason;
     std::shared_ptr<Rcl::SearchData> rq = wasaStringToRcl(
-        self->connection->rclconfig.get(), dostem ? stemlang : "", utf8, reason);
+        self->connection->rcldb->getConf(), dostem ? stemlang : "", utf8, reason);
 
     if (!rq) {
         PyErr_SetString(PyExc_ValueError, reason.c_str());
@@ -955,7 +962,7 @@ Query_executesd(recoll_QueryObject* self, PyObject *args, PyObject *kwargs)
 // easier. Needed because we only use the meta array when enumerating keys. Also for url which is
 // also formatted.  But note that some fields are not copied, and are only reachable (through
 // doc_Get, as doc[fldname]) if one knows their name (e.g. xdocid).
-static void movedocfields(std::shared_ptr<RclConfig> rclconfig, Rcl::Doc *doc)
+static void movedocfields(const RclConfig *rclconfig, Rcl::Doc *doc)
 {
     printableUrl(rclconfig->getDefCharset(), doc->url, doc->meta[Rcl::Doc::keyurl]);
     doc->meta[Rcl::Doc::keytp] = doc->mimetype;
@@ -985,7 +992,7 @@ Query_iternext(PyObject *_self)
         PyErr_SetString(PyExc_EnvironmentError, "doc create failed");
         return 0;
     }
-    result->rclconfig = self->connection->rclconfig;
+    result->rcldb = self->connection->rcldb;
     // We used to check against rowcount here, but this was wrong: xapian result count estimate are
     // sometimes wrong, we must go on fetching until we fail
     if (!self->query->getDoc(self->next, *result->doc, self->fetchtext)) {
@@ -993,7 +1000,7 @@ Query_iternext(PyObject *_self)
     }
     self->next++;
 
-    movedocfields(self->connection->rclconfig, result->doc);
+    movedocfields(self->connection->rcldb->getConf(), result->doc);
     return (PyObject *)result;
 }
 
@@ -1485,9 +1492,7 @@ static PyObject *
 Db_close(recoll_DbObject *self)
 {
     LOGDEB("Db_close. self " << self << "\n");
-    delete self->db;
-    self->db = 0;
-    self->rclconfig.reset();
+    self->rcldb.reset();
     Py_RETURN_NONE;
 }
 
@@ -1516,30 +1521,31 @@ Db_init(recoll_DbObject *self, PyObject *args, PyObject *kwargs)
     // recollinit repeatedly, which *should* be ok, except that it
     // resets the log file.
     string reason;
+    RclConfig *rclconfig;
     if (confdir) {
         string cfd = confdir;
-        self->rclconfig = std::shared_ptr<RclConfig>(recollinit(RCLINIT_PYTHON,0,0, reason, &cfd));
+        rclconfig = recollinit(RCLINIT_PYTHON,0,0, reason, &cfd);
     } else {
-        self->rclconfig = std::shared_ptr<RclConfig>(recollinit(RCLINIT_PYTHON, 0, 0, reason, 0));
+        rclconfig = recollinit(RCLINIT_PYTHON, 0, 0, reason, 0);
     }
     LOGDEB("Db_init\n");
 
-    if (!self->rclconfig) {
+    if (!rclconfig) {
         PyErr_SetString(PyExc_EnvironmentError, reason.c_str());
         return -1;
     }
-    if (!self->rclconfig->ok()) {
+    if (!rclconfig->ok()) {
         PyErr_SetString(PyExc_EnvironmentError, "Bad config ?");
         return -1;
     }
     if (writable) {
         // Make sure that we have an updater as there may be non-initialisation calls in other parts
         // of the code
-        statusUpdater(self->rclconfig.get(), true);
+        statusUpdater(rclconfig, true);
     }
-    delete self->db;
-    self->db = new Rcl::Db(self->rclconfig.get());
-    if (!self->db->open(writable ? Rcl::Db::DbUpd : Rcl::Db::DbRO)) {
+    self->rcldb = std::make_shared<Rcl::Db>(rclconfig);
+    delete rclconfig;
+    if (!self->rcldb->open(writable ? Rcl::Db::DbUpd : Rcl::Db::DbRO)) {
         LOGERR("Db_init: db open error\n");
         PyErr_SetString(PyExc_EnvironmentError, "Can't open index");
         return -1;
@@ -1548,13 +1554,13 @@ Db_init(recoll_DbObject *self, PyObject *args, PyObject *kwargs)
     if (extradbs && extradbs != Py_None) {
         if (!PySequence_Check(extradbs)) {
             PyErr_SetString(PyExc_TypeError, "extra_dbs must be a sequence");
-            deleteZ(self->db);
+            self->rcldb.reset();
             return -1;
         }
         int dbcnt = PySequence_Size(extradbs);
         if (dbcnt == -1) {
             PyErr_SetString(PyExc_TypeError, "extra_dbs could not be sized");
-            deleteZ(self->db);
+            self->rcldb.reset();
             return -1;
         }
         for (int i = 0; i < dbcnt; i++) {
@@ -1571,15 +1577,15 @@ Db_init(recoll_DbObject *self, PyObject *args, PyObject *kwargs)
             }
             if (dbname.empty()) {
                 PyErr_SetString(PyExc_TypeError, "extra_dbs items must be bytes or strings");
-                deleteZ(self->db);
+                self->rcldb.reset();
                 Py_DECREF(item);
                 return -1;
             }
             Py_DECREF(item);
             string errmsg = string("extra db could not be opened: ") + dbname;
-            if (!self->db->addQueryDb(dbname)) {
+            if (!self->rcldb->addQueryDb(dbname)) {
                 PyErr_SetString(PyExc_EnvironmentError, errmsg.c_str());
-                deleteZ(self->db);
+                self->rcldb.reset();
                 return -1;
             }
         }
@@ -1592,8 +1598,7 @@ static PyObject *
 Db_query(recoll_DbObject* self)
 {
     LOGDEB("Db_query\n");
-    if (self->db == 0) {
-        LOGERR("Db_query: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         return 0;
     }
@@ -1601,7 +1606,7 @@ Db_query(recoll_DbObject* self)
         PyObject_CallObject((PyObject *)&recoll_QueryType, 0);
     if (!result)
         return 0;
-    result->query = new Rcl::Query(self->db);
+    result->query = new Rcl::Query(self->rcldb.get());
     result->connection = self;
     Py_INCREF(self);
 
@@ -1612,16 +1617,15 @@ static PyObject *
 Db_doc(recoll_DbObject* self)
 {
     LOGDEB("Db_doc\n");
-    if (self->db == 0) {
-        LOGERR("Db_doc: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         return 0;
     }
-    recoll_DocObject *result = (recoll_DocObject *)
-        PyObject_CallObject((PyObject *)&recoll_DocType, 0);
+    recoll_DocObject *result =
+        (recoll_DocObject *)PyObject_CallObject((PyObject *)&recoll_DocType, 0);
     if (!result)
         return 0;
-    result->rclconfig = self->rclconfig;
+    result->rcldb = self->rcldb;
 
     return (PyObject *)result;
 }
@@ -1630,8 +1634,7 @@ static PyObject *
 Db_getDoc(recoll_DbObject* self, PyObject *args, PyObject *kwargs)
 {
     LOGDEB("Db_getDoc\n");
-    if (self->db == 0) {
-        LOGERR("Db_getDoc: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         return 0;
     }
@@ -1647,11 +1650,11 @@ Db_getDoc(recoll_DbObject* self, PyObject *args, PyObject *kwargs)
         (recoll_DocObject *)PyObject_CallObject((PyObject *)&recoll_DocType, 0);
     if (!pydoc)
         return 0;
-    pydoc->rclconfig = self->rclconfig;
-    if (!self->db->getDoc(std::string(udi), idxidx, *(pydoc->doc), true)) {
+    if (!self->rcldb->getDoc(std::string(udi), idxidx, *(pydoc->doc), true)) {
         PyErr_SetString(PyExc_AttributeError, "Doc not found: bad UDI or idx index");
         return 0;
     }
+    pydoc->rcldb = self->rcldb;
     return (PyObject *)pydoc;
 }
 
@@ -1664,13 +1667,12 @@ Db_setAbstractParams(recoll_DbObject *self, PyObject *args, PyObject *kwargs)
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "|ii", (char**)kwlist,
                                      &maxchars, &ctxwords))
         return 0;
-    if (self->db == 0) {
-        LOGERR("Db_setAbstractParams: db not found " << self->db << "\n");
-        PyErr_SetString(PyExc_AttributeError, "db id not found");
+    if (!self->rcldb) {
+        PyErr_SetString(PyExc_AttributeError, "db");
         return 0;
     }
     LOGDEB0("Db_setAbstractParams: mxchrs " << maxchars << ", ctxwrds " << ctxwords << "\n");
-    self->db->setAbstractParams(-1, maxchars, ctxwords);
+    self->rcldb->setAbstractParams(-1, maxchars, ctxwords);
     Py_RETURN_NONE;
 }
 
@@ -1684,8 +1686,7 @@ Db_makeDocAbstract(recoll_DbObject* self, PyObject *args)
                           &recoll_DocType, &pydoc, &recoll_QueryType, &pyquery)) {
         return 0;
     }
-    if (self->db == 0) {
-        LOGERR("Db_makeDocAbstract: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         return 0;
     }
@@ -1741,8 +1742,7 @@ Db_termMatch(recoll_DbObject* self, PyObject *args, PyObject *kwargs)
                                      "utf-8", &lang))
         return 0;
 
-    if (self->db == 0) {
-        LOGERR("Db_termMatch: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         goto out;
     }
@@ -1767,7 +1767,7 @@ Db_termMatch(recoll_DbObject* self, PyObject *args, PyObject *kwargs)
     if (freqs != 0 && PyObject_IsTrue(freqs)) {
         showfreqs = true;
     }
-    if (!self->db->termMatch(typ_sens, lang ? lang : "english", 
+    if (!self->rcldb->termMatch(typ_sens, lang ? lang : "english", 
                              expr, result, maxlen, field ? field : "")) {
         LOGERR("Db_termMatch: db termMatch error\n");
         PyErr_SetString(PyExc_AttributeError, "rcldb termMatch error");
@@ -1800,8 +1800,7 @@ out:
 static PyObject *
 Db_setSynonymsFile(recoll_DbObject *self, PyObject *args)
 {
-    if (self->db == 0) {
-        LOGERR("Db_setSynonymsFile: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         return 0;
     }
@@ -1811,7 +1810,7 @@ Db_setSynonymsFile(recoll_DbObject *self, PyObject *args)
     if (!PyArg_ParseTuple(args, "O&", PyUnicode_FSConverter, &py_path) || py_path == NULL)
         return 0;
     PyBytes_AsStringAndSize((PyObject *)py_path, &c_path, &path_size);
-    if (!self->db->setSynGroupsFile(c_path)) {
+    if (!self->rcldb->setSynGroupsFile(c_path)) {
         LOGERR("Db_setSynonymsFile: setSynGroupsFile failed\n");
         PyErr_SetString(PyExc_AttributeError, "setSynGroupsFile failed");
         return 0;
@@ -1828,14 +1827,13 @@ Db_needUpdate(recoll_DbObject* self, PyObject *args, PyObject *kwds)
     if (!PyArg_ParseTuple(args, "eses:Db_needUpdate", "utf-8", &udi, "utf-8", &sig)) {
         return 0;
     }
-    if (self->db == 0) {
-        LOGERR("Db_needUpdate: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         PyMem_Free(udi);
         PyMem_Free(sig);
         return 0;
     }
-    bool result = self->db->needUpdate(udi, sig);
+    bool result = self->rcldb->needUpdate(udi, sig);
     PyMem_Free(udi);
     PyMem_Free(sig);
     return Py_BuildValue("i", result);
@@ -1849,13 +1847,12 @@ Db_delete(recoll_DbObject* self, PyObject *args, PyObject *kwds)
     if (!PyArg_ParseTuple(args, "es:Db_delete", "utf-8", &udi)) {
         return 0;
     }
-    if (self->db == 0) {
-        LOGERR("Db_delete: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         PyMem_Free(udi);
         return 0;
     }
-    bool result = self->db->purgeFile(udi);
+    bool result = self->rcldb->purgeFile(udi);
     PyMem_Free(udi);
     return Py_BuildValue("i", result);
 }
@@ -1868,13 +1865,12 @@ Db_preparePurge(recoll_DbObject* self, PyObject *args, PyObject *kwds)
     if (!PyArg_ParseTuple(args, "es:Db_preparePurge", "utf-8", &backend)) {
         return 0;
     }
-    if (self->db == 0) {
-        LOGERR("Db_preparePurge: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         PyMem_Free(backend);
         return 0;
     }
-    bool result = self->db->preparePurge(backend);
+    bool result = self->rcldb->preparePurge(backend);
     return Py_BuildValue("i", result);
 }
 
@@ -1882,12 +1878,11 @@ static PyObject *
 Db_purge(recoll_DbObject* self)
 {
     LOGDEB0("Db_purge\n");
-    if (self->db == 0) {
-        LOGERR("Db_purge: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         return 0;
     }
-    bool result = self->db->purge();
+    bool result = self->rcldb->purge();
     return Py_BuildValue("i", result);
 }
 
@@ -1897,8 +1892,7 @@ Db_createStemDbs(recoll_DbObject* self, PyObject* args) {
     PyObject* pylangs;
     std::vector<std::string> langs;
     bool opret;
-    if (self->db == 0) {
-        LOGERR("Db_createStemDbs: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         return 0;
     }
@@ -1931,7 +1925,7 @@ Db_createStemDbs(recoll_DbObject* self, PyObject* args) {
             langs.push_back(std::string(bytes, sz));
         }
     }
-    opret = self->db->createStemDbs(langs);
+    opret = self->rcldb->createStemDbs(langs);
     if (opret) {
         Py_RETURN_NONE;
     } else {
@@ -1957,8 +1951,7 @@ Db_addOrUpdate(recoll_DbObject* self, PyObject *args, PyObject *kwargs)
     string udi = stringfromobject(pyudi);
     string parent_udi = pyparent_udi ? stringfromobject(pyparent_udi) : std::string();
 
-    if (self->db == 0) {
-        LOGERR("Db_addOrUpdate: db not found " << self->db << "\n");
+    if (!self->rcldb) {
         PyErr_SetString(PyExc_AttributeError, "db");
         return 0;
     }
@@ -1970,7 +1963,7 @@ Db_addOrUpdate(recoll_DbObject* self, PyObject *args, PyObject *kwargs)
     if (metaonly) {
         pydoc->doc->metaonly = 1;
     }
-    if (!self->db->addOrUpdate(udi, parent_udi, *pydoc->doc)) {
+    if (!self->rcldb->addOrUpdate(udi, parent_udi, *pydoc->doc)) {
         LOGERR("Db_addOrUpdate: rcldb error\n");
         PyErr_SetString(PyExc_AttributeError, "rcldb error");
         return 0;

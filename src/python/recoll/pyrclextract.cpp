@@ -28,6 +28,7 @@
 #include "internfile.h"
 #include "rclconfig.h"
 #include "rclinit.h"
+#include "rcldb.h"
 
 #include "pyrecoll.h"
 
@@ -39,8 +40,9 @@ typedef struct {
     PyObject_HEAD
     /* Type-specific fields go here. */
     FileInterner *xtr;
-    std::shared_ptr<RclConfig> rclconfig;
+    std::shared_ptr<Rcl::Db> rcldb;
     recoll_DocObject *docobject;
+    RclConfig *localconfig{nullptr};
 } rclx_ExtractorObject;
 
 static void 
@@ -50,8 +52,9 @@ Extractor_dealloc(rclx_ExtractorObject *self)
     if (self->docobject) {
         Py_DECREF(&self->docobject);
     }
-    self->rclconfig.reset();
     delete self->xtr;
+    self->rcldb.reset();
+    deleteZ(self->localconfig);
     Py_TYPE(self)->tp_free((PyObject*)self);
 }
 
@@ -72,8 +75,10 @@ Extractor_init(rclx_ExtractorObject *self, PyObject *args, PyObject *kwargs)
     self->docobject = dobj;
     Py_INCREF(dobj);
 
-    self->rclconfig = dobj->rclconfig;
-    self->xtr = new FileInterner(*dobj->doc, self->rclconfig.get(), FileInterner::FIF_forPreview);
+    self->rcldb = dobj->rcldb;
+    if (nullptr == self->localconfig)
+        self->localconfig = new RclConfig(*self->rcldb->getConf());
+    self->xtr = new FileInterner(*dobj->doc, self->localconfig, FileInterner::FIF_forPreview);
     return 0;
 }
 
@@ -109,7 +114,7 @@ Extractor_textextract(rclx_ExtractorObject* self, PyObject *args, PyObject *kwar
         PyErr_SetString(PyExc_AttributeError, "extract: doc create failed");
         return 0;
     }
-    result->rclconfig = self->rclconfig;
+    result->rcldb = self->rcldb;
 
     FileInterner::Status status = self->xtr->internfile(*(result->doc), ipath);
     if (status != FileInterner::FIDone && status != FileInterner::FIAgain) {
@@ -125,7 +130,7 @@ Extractor_textextract(rclx_ExtractorObject* self, PyObject *args, PyObject *kwar
 
     // Is this actually needed ? Useful for url which is also formatted .
     Rcl::Doc *doc = result->doc;
-    printableUrl(self->rclconfig->getDefCharset(), doc->url, doc->meta[Rcl::Doc::keyurl]);
+    printableUrl(self->rcldb->getConf()->getDefCharset(), doc->url, doc->meta[Rcl::Doc::keyurl]);
     doc->meta[Rcl::Doc::keytp] = doc->mimetype;
     doc->meta[Rcl::Doc::keyipt] = doc->ipath;
     doc->meta[Rcl::Doc::keyfs] = doc->fbytes;
@@ -162,6 +167,8 @@ Extractor_idoctofile(rclx_ExtractorObject* self, PyObject *args, PyObject *kwarg
         return 0;
     }
 
+    if (nullptr == self->localconfig)
+        self->localconfig = new RclConfig(*self->rcldb->getConf());
     // If ipath is empty and we want the original mimetype, we can't use
     // FileInterner::internToFile() because the first conversion was performed by the FileInterner
     // constructor, so that we can't reach the original object this way. Instead, if the data comes
@@ -172,8 +179,7 @@ Extractor_idoctofile(rclx_ExtractorObject* self, PyObject *args, PyObject *kwarg
     LOGDEB("Extractor_idoctofile: ipath [" << ipath << "] mimetype [" << mimetype <<
            "] doc mimetype [" << self->docobject->doc->mimetype << "\n");
     if (ipath.empty() && !mimetype.compare(self->docobject->doc->mimetype)) {
-        status = FileInterner::idocToFile(temp, outfile, self->rclconfig.get(),
-                                          *self->docobject->doc);
+        status = FileInterner::idocToFile(temp, outfile, self->localconfig, *self->docobject->doc);
     } else {
         self->xtr->setTargetMType(mimetype);
         status = self->xtr->interntofile(temp, outfile, ipath, mimetype);

@@ -446,7 +446,6 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
     int pc = 0;
     int collapsecount = 0;
     string data;
-    string udi;
     m_reason.erase();
     for (int xaptries=0; xaptries < 2; xaptries++) {
         try {
@@ -457,9 +456,6 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
             data = xdoc.get_data();
             m_reason.erase();
             Chrono chron;
-            m_db->m_ndb->xdocToUdi(xdoc, udi);
-            LOGDEB2("Query::getDoc: " << chron.millis() << " ms for udi [" <<
-                    udi << "], collapse count " << collapsecount << "\n");
             break;
         } catch (Xapian::DatabaseModifiedError &error) {
             // retry or end of loop
@@ -473,7 +469,6 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
         LOGERR("Query::getDoc: " << m_reason << "\n");
         return false;
     }
-    doc.meta[Rcl::Doc::keyudi] = udi;
 
     doc.pc = pc;
     char buf[200];
@@ -490,7 +485,7 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
     }
 
     // Parse xapian document's data and populate doc fields
-    return m_db->m_ndb->dbDataToRclDoc(docid, data, doc, fetchtext);
+    return m_db->m_ndb->dbDataToRclDoc(docid, xdoc, data, doc, fetchtext);
 }
 
 vector<string> Query::expand(const Doc &doc)

@@ -129,6 +129,7 @@ public:
     friend class Native;
 
     /* General stuff (valid for query or update) ****************************/
+    // @param cfp Configuration: we make a local copy.
     Db(const RclConfig *cfp);
     ~Db();
     Db(const Db&) = delete;
@@ -397,6 +398,11 @@ public:
     /** Same as from dbdir but use index integer index (main==0). Mostly for the python module */
     bool getDoc(const std::string& udi, int idxi, Doc& doc, bool fetchtext=false);
 
+    /** Retrieve the UDI for a query result document. We do this lazily: it's not always
+     *  needed and it takes about 20% of the document fetch time because of the need to
+     *  access the postlist. This both returns the UDI and sets it in the meta array. */
+    std::string fetchUdi(Doc& doc);
+        
     /** Test if documents has sub-documents. 
      *
      * This can always be detected for file-level documents, using the
@@ -409,7 +415,7 @@ public:
      * seen before any children. The flag is stored as a value in the
      * index.
      */
-    bool hasSubDocs(const Doc &idoc);
+    bool hasSubDocs(Doc &idoc);
 
     /** Get subdocuments of given document. 
      *
@@ -418,13 +424,13 @@ public:
      * parent doc is looked for, then its subdocs list is 
      * filtered using the idoc ipath as a prefix.
      */
-    bool getSubDocs(const Doc& idoc, std::vector<Doc>& subdocs);
+    bool getSubDocs(Doc& idoc, std::vector<Doc>& subdocs);
 
     /** Get container (top level file) document. 
      *
      * If the input is not a subdocument, this returns a copy of the input.
      */
-    bool getContainerDoc(const Doc &idoc, Doc& ctdoc);
+    bool getContainerDoc(Doc &idoc, Doc& ctdoc);
     
     /** Get duplicates (md5) of document */
     bool docDups(const Doc& idoc, std::vector<Doc>& odocs);

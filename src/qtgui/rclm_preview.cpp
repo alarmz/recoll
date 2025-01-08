@@ -64,8 +64,7 @@ bool RclMain::containerUpToDate(Rcl::Doc& doc)
     if (ignore_out_of_date_preview || doc.ipath.empty() || rcldb == 0)
         return true;
 
-    string udi;
-    doc.getmeta(Rcl::Doc::keyudi, &udi);
+    string udi = rcldb->fetchUdi(doc);
     if (udi.empty()) {
         // Whatever...
         return true;
