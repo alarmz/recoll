@@ -33,6 +33,9 @@
 #include "rcldoc.h"
 #include "syngroups.h"
 #include "fileudi.h"
+#ifdef RCL_USE_ASPELL
+#include "rclaspell.h"
+#endif
 
 using namespace std;
 
@@ -700,6 +703,107 @@ bool Db::stemDiffers(const string& lang, const string& word,
         LOGDEB2("Rcl::Db::stemDiffers: same for " << word << " and " <<
                 base << "\n");
         return false;
+    }
+    return true;
+}
+
+bool Db::isSpellingCandidate(const std::string& term, bool with_aspell)
+{
+    if (term.empty() || term.length() > 50 || has_prefix(term))
+        return false;
+
+    Utf8Iter u8i(term);
+    if (with_aspell) {
+        // If spelling with aspell, CJK and other scripts we process with ngrams are not
+        // candidates. Same test as for stemming.
+        if (TextSplit::noStemming(*u8i))
+            return false;
+    } else {
+#ifdef TESTING_XAPIAN_SPELL
+        // The Xapian speller (purely proximity-based) can be used for Katakana (when split as words
+        // which is not always completely feasible because of separator-less compounds). Currently
+        // we don't try to use the Xapian speller with other scripts with which it would be usable
+        // in the absence of aspell (it would indeed be better than nothing with e.g. european
+        // languages). This would require a few more config variables, maybe one day.
+        if (!TextSplit::isKATAKANA(*u8i)) {
+            return false;
+        }
+#else
+        return false;
+#endif
+    }
+
+    // Most punctuation chars inhibate stemming. We accept one dash. See o_nospell_chars init in
+    // the rcldb constructor.
+    int ccnt = 0;
+    for (unsigned char c : term) {
+        if (o_nospell_chars[(unsigned int)c] && (c != '-' || ++ccnt > 1))
+            return false;
+    }
+
+    return true;
+}
+
+// At the moment, we only use aspell. The xapian speller code part is only for testing and normally
+// not compiled in.
+bool Db::getSpellingSuggestions(const string& word, vector<string>& suggs)
+{
+    LOGDEB("Db::getSpellingSuggestions:[" << word << "]\n");
+    suggs.clear();
+    if (nullptr == m_ndb) {
+        return false;
+    }
+
+    string term = word;
+
+    if (isSpellingCandidate(term, true)) {
+        // Term is candidate for aspell processing
+#ifdef RCL_USE_ASPELL
+        bool noaspell = false;
+        m_config->getConfParam("noaspell", &noaspell);
+        if (noaspell) {
+            return false;
+        }
+        if (nullptr == m_aspell) {
+            m_aspell = new Aspell(m_config);
+            if (m_aspell) {
+                string reason;
+                m_aspell->init(reason);
+                if (!m_aspell->ok()) {
+                    LOGDEB("Aspell speller init failed: " << reason << "\n");
+                    delete m_aspell;
+                    m_aspell = nullptr;
+                }
+            }
+        }
+
+        if (nullptr == m_aspell) {
+            LOGERR("Db::getSpellingSuggestions: aspell not initialized\n");
+            return false;
+        }
+
+        string reason;
+        if (!m_aspell->suggest(*this, term, suggs, reason)) {
+            LOGERR("Db::getSpellingSuggestions: aspell failed: " << reason << "\n");
+            return false;
+        }
+#endif
+    } else {
+#ifdef TESTING_XAPIAN_SPELL
+        // Was not aspell candidate (e.g.: katakana). Maybe use Xapian speller?
+        if (isSpellingCandidate(term, false)) {
+            if (!o_index_stripchars) {
+                if (!unacmaybefold(word, term, UNACOP_UNACFOLD)) {
+                    LOGINFO("Db::getSpelling: unac failed for [" << word << "]\n");
+                    return false;
+                }
+            }
+            string sugg = m_ndb->xrdb.get_spelling_suggestion(term);
+            if (!sugg.empty()) {
+                suggs.push_back(sugg);
+            }
+        }
+#endif
     }
     return true;
 }

@@ -14,7 +14,6 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-
 #ifndef _rcldb_p_h_included_
 #define _rcldb_p_h_included_
 
@@ -40,6 +39,7 @@
 #include "workqueue.h"
 #endif // IDX_THREADS
 
+#include "termproc.h"
 #include "xmacros.h"
 #include "log.h"
 #include "rclconfig.h"
@@ -50,6 +50,23 @@
 namespace Rcl {
 
 class Query;
+// Some prefixes that we could get from the fields file, but are not going to ever change.
+extern const std::string pathelt_prefix;
+extern const std::string mimetype_prefix;
+extern const std::string udi_prefix;
+extern const std::string parent_prefix;
+extern const std::string unsplitFilenameFieldName;
+extern std::string start_of_field_term;
+extern std::string end_of_field_term;
+extern const std::string page_break_term;
+extern const std::string has_children_term;
+// Synthetic abstract marker (to discriminate from abstract actually found in document)
+extern const std::string cstr_syntAbs;
+extern const std::string cstr_mbreaks;
+// Field name for the unsplit file name. Has to exist in the field file 
+// because of usage in termmatch()
+extern const std::string unsplitFilenameFieldName;
+extern const std::string unsplitfilename_prefix;
 
 inline bool has_prefix(const std::string& trm)
 {
@@ -326,5 +343,81 @@ class Db::Native {
 // stored before this.
 static const unsigned int baseTextPosition = 100000;
 
-}
+// The splitter breaks text into words and adds postings to the Xapian
+// document. We use a single object to split all of the document
+// fields and position jumps to separate fields
+class TextSplitDb : public TextSplitP {
+public:
+    Xapian::Document &doc;   // Xapian document 
+    // Base for document section. Gets large increment when we change
+    // sections, to avoid cross-section proximity matches.
+    Xapian::termpos basepos;
+    // Current relative position. This is the remembered value from
+    // the splitter callback. The term position is reset for each call
+    // to text_to_words(), so that the last value of curpos is the
+    // section size (last relative term position), and this is what
+    // gets added to basepos in addition to the inter-section increment
+    // to compute the first position of the next section.
+    Xapian::termpos curpos;
+    Xapian::WritableDatabase& wdb;
+
+    TextSplitDb(Xapian::WritableDatabase& _wdb, Xapian::Document &d, TermProc *prc)
+        : TextSplitP(prc), doc(d), basepos(1), curpos(0), wdb(_wdb) {}
+
+    // Reimplement text_to_words to insert the begin and end anchor terms.
+    virtual bool text_to_words(const std::string &in) override {
+        std::string ermsg;
+
+        if (!o_no_term_positions) {
+            try {
+                // Index the possibly prefixed start term.
+                doc.add_posting(ft.pfx + start_of_field_term, basepos, ft.wdfinc);
+                ++basepos;
+            } XCATCHERROR(ermsg);
+            if (!ermsg.empty()) {
+                LOGERR("Db: xapian add_posting error " << ermsg << "\n");
+                goto out;
+            }
+        }
+
+        if (!TextSplitP::text_to_words(in)) {
+            LOGDEB("TextSplitDb: TextSplit::text_to_words failed\n");
+            goto out;
+        }
+
+        if (!o_no_term_positions) {
+            try {
+                // Index the possibly prefixed end term.
+                doc.add_posting(ft.pfx + end_of_field_term, basepos + curpos + 1, ft.wdfinc);
+                ++basepos;
+            } XCATCHERROR(ermsg);
+            if (!ermsg.empty()) {
+                LOGERR("Db: xapian add_posting error " << ermsg << "\n");
+                goto out;
+            }
+        }
+
+    out:
+        basepos += curpos + 100;
+        return true;
+    }
+
+    void setTraits(const FieldTraits& ftp) {
+        ft = ftp;
+        if (!ft.pfx.empty())
+            ft.pfx = wrap_prefix(ft.pfx);
+    }
+
+    friend class TermProcIdx;
+
+private:
+    FieldTraits ft;
+};
+
+
+} // namespace Rcl
+
+// Append element to the data record
+#define RECORD_APPEND(R, NM, VAL) {R += NM + "=" + VAL + "\n";}
+
 #endif /* _rcldb_p_h_included_ */

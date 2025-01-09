@@ -180,8 +180,6 @@ void Query::setSortBy(const string& fld, bool ascending) {
             (m_sortAscending ? "ascending" : "descending") << "\n");
 }
 
-static const string parent_prefix{"F"};
-
 class SubdocDecider : public Xapian::MatchDecider {
 public:
     SubdocDecider(bool sel) : MatchDecider(), m_select(sel) {}

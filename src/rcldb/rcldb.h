@@ -593,12 +593,6 @@ private:
 // the most reasonable place.
 std::string version_string();
 
-extern const std::string pathelt_prefix;
-extern const std::string mimetype_prefix;
-extern const std::string unsplitFilenameFieldName;
-extern std::string start_of_field_term;
-extern std::string end_of_field_term;
-
 }
 
 #endif /* _DB_H_INCLUDED_ */

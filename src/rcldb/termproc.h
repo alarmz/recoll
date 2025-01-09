@@ -22,6 +22,7 @@
 #include <set>
 #include <deque>
 
+#include "log.h"
 #include "textsplit.h"
 #include "stoplist.h"
 #include "smallut.h"
