@@ -72,9 +72,9 @@ static std::vector<CmdTalk*> o_talkers;
 
 void cnStaticConfInit(RclConfig *config, const string& tagger)
 {
-    LOGDEB0("cnStaticConfInit\n")
-    std::vector<std::string> cmdvec;
-    if (config->pythonCmd("cnsplitter.py", cmdvec)) {
+    LOGDEB0("cnStaticConfInit\n");
+    std::vector<std::string> cmdvec{"cnsplitter.py"};
+    if (config->processFilterCmd(cmdvec)) {
         auto it = cmdvec.begin();
         o_cmdpath = *it++;
         o_cmdargs.clear();

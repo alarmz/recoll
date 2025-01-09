@@ -78,8 +78,8 @@ bool runWebFilesMoverScript(RclConfig *config)
         // that we are going to execute it one time too many (it will run without doing anything),
         // but we can't set the mtime to after the run in case files are created during the run.
         dirmtime = ndirmtime;
-        vector<string> cmdvec;
-        config->pythonCmd("recoll-we-move-files.py", cmdvec);
+        vector<string> cmdvec{"recoll-we-move-files.py"};
+        config->processFilterCmd(cmdvec);
         ExecCmd cmd;
         cmd.putenv("RECOLL_CONFDIR", config->getConfDir());
         int status = cmd.doexec(cmdvec);

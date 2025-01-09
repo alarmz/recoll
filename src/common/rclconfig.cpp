@@ -2152,17 +2152,6 @@ bool RclConfig::processFilterCmd(std::vector<std::string>& cmd) const
     return true;
 }
 
-// This now does nothing more than processFilterCmd (after we changed to relying on the py extension)
-bool RclConfig::pythonCmd(const std::string& scriptname, std::vector<std::string>& cmd) const
-{
-#ifdef _WIN32
-    cmd = {scriptname};
-#else
-    cmd = {scriptname};
-#endif
-    return processFilterCmd(cmd);
-}
-
 /** 
  * Return decompression command line for given mime type
  */

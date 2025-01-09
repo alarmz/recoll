@@ -62,8 +62,8 @@ static const string magicpage{"NEWPPPAGE"};
 
 void koStaticConfInit(RclConfig *config, const string& tagger)
 {
-    std::vector<std::string> cmdvec;
-    if (config->pythonCmd("kosplitter.py", cmdvec)) {
+    std::vector<std::string> cmdvec{"kosplitter.py"};
+    if (config->processFilterCmd(cmdvec)) {
         auto it = cmdvec.begin();
         o_cmdpath = *it++;
         o_cmdargs.clear();
