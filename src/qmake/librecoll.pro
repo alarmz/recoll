@@ -75,6 +75,7 @@ SOURCES += \
 ../rcldb/rcldb.cpp \
 ../rcldb/rcldoc.cpp \
 ../rcldb/rcldups.cpp \
+../rcldb/rclndb.cpp \
 ../rcldb/rclquery.cpp \
 ../rcldb/rclterms.cpp \
 ../rcldb/rclvalues.cpp \

@@ -56,6 +56,7 @@ extern const std::string mimetype_prefix;
 extern const std::string udi_prefix;
 extern const std::string parent_prefix;
 extern const std::string unsplitFilenameFieldName;
+extern const std::string fileext_prefix;
 extern std::string start_of_field_term;
 extern std::string end_of_field_term;
 extern const std::string page_break_term;
@@ -67,6 +68,9 @@ extern const std::string cstr_mbreaks;
 // because of usage in termmatch()
 extern const std::string unsplitFilenameFieldName;
 extern const std::string unsplitfilename_prefix;
+extern const std::string cstr_RCL_IDX_VERSION_KEY;
+extern const std::string cstr_RCL_IDX_VERSION;
+extern const std::string cstr_RCL_IDX_DESCRIPTOR_KEY;
 
 inline bool has_prefix(const std::string& trm)
 {
@@ -269,9 +273,16 @@ class Db::Native {
     /** Check if doc is indexed by term */
     bool hasTerm(const std::string& udi, int idxi, const std::string& term);
 
+    /** Turn processed document into Xapian document by creating postings, data record etc. */
+    bool docToXdoc(
+        TextSplitDb *splitter, const std::string& parent_udi, const std::string& uniterm,
+        Doc& doc, Xapian::Document& xdoc, std::string& rawztext,
+        std::vector <std::pair<int, int>>& pageincrvec);
+    
     /** Update existing Xapian document for pure extended attrs change */
-    bool docToXdocMetaOnly(TextSplitDb *splitter, const std::string &udi, 
-                           Doc &doc, Xapian::Document& xdoc);
+    bool docToXdocMetaOnly(
+        TextSplitDb *splitter, const std::string &udi, Doc &doc, Xapian::Document& xdoc);
+    
     /** Remove all terms currently indexed for field defined by idx prefix */
     bool clearField(Xapian::Document& xdoc, const std::string& pfx, Xapian::termcount wdfdec);
 
@@ -337,11 +348,30 @@ class Db::Native {
         }
         xwdb.delete_document(docid);
     }
+    std::string rcldocToDbData(
+        Doc& doc, Xapian::Document& newdocument, std::vector <std::pair<int, int>>& pageincrvec);
+
+    // Compute the unique term used to link documents to their origin. 
+    // "Q" + external udi
+    static inline std::string make_uniterm(const std::string& udi) {
+        std::string uniterm(wrap_prefix(udi_prefix));
+        uniterm.append(udi);
+        return uniterm;
+    }
+
+    // Compute parent term used to link documents to their parent document (if any)
+    // "F" + parent external udi
+    static inline std::string make_parentterm(const std::string& udi) {
+        std::string pterm(wrap_prefix(parent_prefix));
+        pterm.append(udi);
+        return pterm;
+    }
 };
 
 // This is the term position offset at which we index the body text. Abstract, keywords, etc.. are
 // stored before this.
 static const unsigned int baseTextPosition = 100000;
+static const int MB = 1024 * 1024;
 
 // The splitter breaks text into words and adds postings to the Xapian
 // document. We use a single object to split all of the document

@@ -60,38 +60,14 @@ using namespace std;
 #include "zlibut.h"
 #include "idxstatus.h"
 #include "rcldoc.h"
+#include "daterange.h"
 
-
-// Recoll index format version is stored in user metadata. When this change,
-// we can't open the db and will have to reindex.
-static const string cstr_RCL_IDX_VERSION_KEY("RCL_IDX_VERSION_KEY");
-static const string cstr_RCL_IDX_VERSION("1");
-static const string cstr_RCL_IDX_DESCRIPTOR_KEY("RCL_IDX_DESCRIPTOR_KEY");
 
 namespace Rcl {
-
-static const int MB = 1024 * 1024;
-
-// Compute the unique term used to link documents to their origin. 
-// "Q" + external udi
-static inline string make_uniterm(const string& udi)
-{
-    string uniterm(wrap_prefix(udi_prefix));
-    uniterm.append(udi);
-    return uniterm;
-}
-
-// Compute parent term used to link documents to their parent document (if any)
-// "F" + parent external udi
-static inline string make_parentterm(const string& udi)
-{
-    // I prefer to be in possible conflict with omega than with
-    // user-defined fields (Xxxx) that we also allow. "F" is currently
-    // not used by omega (2008-07)
-    string pterm(wrap_prefix(parent_prefix));
-    pterm.append(udi);
-    return pterm;
-}
+// Empty string md5s 
+static const string cstr_md5empty("d41d8cd98f00b204e9800998ecf8427e");
+// Characters we strip inside field data
+static const string cstr_nc("\n\r\x0c\\");
 
 Db::Native::Native(Db *db) 
     : m_rcldb(db)
@@ -214,7 +190,8 @@ void *DbMUpdWorker(void* vdbp)
         if (!ermsg.empty()) {
             LOGERR("DbMupdWorker::add_document failed: " << ermsg << "\n");
         } else {
-            XAPTRY(xwdb.set_metadata(ndbp->rawtextMetaKey(tsk->uniterm), tsk->rawztext), xwdb, ermsg);
+            XAPTRY(xwdb.set_metadata(ndbp->rawtextMetaKey(tsk->uniterm), tsk->rawztext),
+                   xwdb, ermsg);
             if (!ermsg.empty()) {
                 LOGERR("DbMUpdWorker: set_metadata failed: " << ermsg << "\n");
             } else {
@@ -768,9 +745,8 @@ bool Db::Native::fsFull()
     return false;
 }
 
-// Note: we're passed a Xapian::Document* because Xapian
-// reference-counting is not mt-safe. We take ownership and need
-// to delete it before returning.
+// Note: we're passed a Xapian::Document* because Xapian reference-counting is not mt-safe. We take
+// ownership and need to delete it before returning.
 bool Db::Native::addOrUpdateWrite(
     const string& udi, const string& uniterm, std::unique_ptr<Xapian::Document> newdocument_ptr, 
     size_t textlen, std::string& rawztext)
@@ -790,7 +766,8 @@ bool Db::Native::addOrUpdateWrite(
     
 #ifdef IDX_THREADS
     if (!docexists && m_tmpdbinitidx > 0) {
-        // New doc and we are using temporary indexes to speed things up, send it to the temp db queue
+        // New doc and we are using temporary indexes to speed things up, send it to the temp db
+        // queue
         DbUpdTask *tp = new DbUpdTask(
             DbUpdTask::AddOrUpdate, udi, uniterm, std::move(newdocument_ptr), textlen, rawztext);
         if (!m_mwqueue.put(tp)) {
@@ -919,7 +896,342 @@ Xapian::docid Db::Native::whatDbDocid(Xapian::docid docid_combined)
     return (docid_combined - 1) / (static_cast<int>(m_rcldb->m_extraDbs.size()) + 1) + 1;
 }
 
-static const string cstr_nc("\n\r\x0c\\");
+static void addDateTerms(Xapian::Document& newdocument, time_t thetime,
+                         const string& dayprefix, const string& monprefix, const string& yearprefix)
+{
+    struct tm tmb;
+    localtime_r(&thetime, &tmb);
+    char buf[50]; // It's actually 9, but use 50 to suppress warnings.
+    snprintf(buf, 50, "%04d%02d%02d", tmb.tm_year+1900, tmb.tm_mon + 1, tmb.tm_mday);
+            
+    // Date (YYYYMMDD)
+    newdocument.add_boolean_term(wrap_prefix(dayprefix) + string(buf)); 
+    // Month (YYYYMM)
+    buf[6] = '\0';
+    newdocument.add_boolean_term(wrap_prefix(monprefix) + string(buf));
+    // Year (YYYY)
+    buf[4] = '\0';
+    newdocument.add_boolean_term(wrap_prefix(yearprefix) + string(buf)); 
+}
+
+bool Db::Native::docToXdoc(
+    TextSplitDb *splitter, const string& parent_udi, const string& uniterm, Doc& doc,
+    Xapian::Document& newdocument, std::string& rawztext,
+    std::vector <std::pair<int, int>>& pageincrvec)
+{
+
+    if (m_rcldb->m_idxTextTruncateLen > 0) {
+        doc.text = truncate_to_word(doc.text, m_rcldb->m_idxTextTruncateLen);
+    }
+        
+    // If the ipath is like a path, index the last element. This is for compound documents like
+    // zip and chm for which the filter uses the file path as ipath.
+    if (!doc.ipath.empty() && 
+        doc.ipath.find_first_not_of("0123456789") != string::npos) {
+        string utf8ipathlast;
+        // We have no idea of the charset here, so let's hope it's ascii or utf-8. We call
+        // transcode to strip the bad chars and pray
+        if (transcode(path_getsimple(doc.ipath), utf8ipathlast, cstr_utf8, cstr_utf8)) {
+            splitter->text_to_words(utf8ipathlast);
+        }
+    }
+
+    // Split and index the path from the url for path-based filtering
+    const FieldTraits *ftp{nullptr};
+    m_rcldb->fieldToTraits(cstr_dir, &ftp);
+    if (ftp && !ftp->pfx.empty()) {
+        string path = url_gpathS(doc.url);
+#ifdef _WIN32
+        // Windows file names are case-insensitive, and read as UTF-8
+        path = unactolower(path);
+#endif
+        vector<string> vpath;
+        stringToTokens(path, vpath, "/");
+        // If vpath is not /, the last elt is the file/dir name, not a part of the path.
+        if (vpath.size())
+            vpath.resize(vpath.size()-1);
+        splitter->curpos = 0;
+        newdocument.add_posting(wrap_prefix(pathelt_prefix), splitter->basepos + splitter->curpos++);
+        for (auto& elt : vpath) {
+            if (elt.length() > 230) {
+                // Just truncate it. May still be useful because of wildcards
+                elt = elt.substr(0, 230);
+            }
+            newdocument.add_posting(wrap_prefix(pathelt_prefix) + elt, 
+                                    splitter->basepos + splitter->curpos++);
+        }
+        splitter->basepos += splitter->curpos + 100;
+    }
+
+    // Index textual metadata.  These are all indexed as text with positions, as we may want to do
+    // phrase searches with them (this makes no sense for keywords by the way).
+    //
+    // The order has no importance, and we set a position gap of 100 between fields to avoid false
+    // proximity matches.
+    for (const auto& [fld, mdata]: doc.meta) {
+        if (mdata.empty()) {
+            continue;
+        }
+        const FieldTraits *ftp{nullptr};
+        m_rcldb->fieldToTraits(fld, &ftp);
+        if (ftp && ftp->valueslot) {
+            LOGDEB("Adding value: for field " << fld << " slot " << ftp->valueslot << "\n");
+            add_field_value(newdocument, *ftp, mdata);
+        }
+
+        // There was an old comment here about not testing for empty prefix, and we indeed did not
+        // test. I don't think that it makes sense any more (and was in disagreement with the LOG
+        // message). Really now: no prefix: no indexing.
+        if (ftp && !ftp->pfx.empty()) {
+            LOGDEB0("Db::add: field [" << fld << "] pfx [" <<
+                    ftp->pfx << "] inc " << ftp->wdfinc << ": [" << mdata << "]\n");
+            splitter->setTraits(*ftp);
+            if (!splitter->text_to_words(mdata)) {
+                LOGDEB("Db::addOrUpdate: split failed for " << fld << "\n");
+            }
+        } else {
+            LOGDEB0("Db::add: no prefix for field [" << fld << "], no indexing\n");
+        }
+    }
+
+    // Reset to no prefix and default params
+    splitter->setTraits(FieldTraits());
+
+    if (splitter->curpos < baseTextPosition)
+        splitter->basepos = baseTextPosition;
+
+    // Split and index the body text
+    LOGDEB2("Db::add: split body: [" << doc.text << "]\n");
+#ifdef TEXTSPLIT_STATS
+    splitter->resetStats();
+#endif
+    if (!splitter->text_to_words(doc.text)) {
+        LOGDEB("Db::addOrUpdate: split failed for main text\n");
+    } else {
+        if (m_storetext) {
+            ZLibUtBuf buf;
+            deflateToBuf(doc.text.c_str(), doc.text.size(), buf);
+            rawztext.assign(buf.getBuf(), buf.getCnt());
+        }
+    }
+
+#ifdef TEXTSPLIT_STATS
+    // Reject bad data. unrecognized base64 text is characterized by high avg word length and high
+    // variation (because there are word-splitters like +/ inside the data).
+    TextSplit::Stats::Values v = splitter->getStats();
+    // v.avglen > 15 && v.sigma > 12 
+    if (v.count > 200 && (v.avglen > 10 && v.sigma / v.avglen > 0.8)) {
+        LOGINFO("RclDb::addOrUpdate: rejecting doc for bad stats count " <<
+                v.count << " avglen " << v.avglen << " sigma " << v.sigma << " url [" << doc.url <<
+                "] ipath [" << doc.ipath << "] text " << doc.text << "\n");
+        return true;
+    }
+#endif
+
+    ////// Special terms for other metadata. No positions for these.
+
+    // Mime type. We check the traits in case the user has disabled mimetype indexing by setting
+    // the prefixes entry to empty. Otherwise, can't change the prefix, it's 'T'
+    m_rcldb->fieldToTraits(cstr_mimetype, &ftp);
+    if (ftp && !ftp->pfx.empty()) {
+        newdocument.add_boolean_term(wrap_prefix(mimetype_prefix) + doc.mimetype);
+    }
+
+    // Simple file name indexed unsplit for specific "file name" searches. This is not the same as a
+    // filename: clause inside the query language.
+    // We also add a term for the filename extension if any.
+    m_rcldb->fieldToTraits(unsplitFilenameFieldName, &ftp);
+    if (ftp && !ftp->pfx.empty()) {
+        string utf8fn;
+        if (doc.getmeta(Doc::keyfn, &utf8fn) && !utf8fn.empty()) {
+            string fn;
+            if (unacmaybefold(utf8fn, fn, UNACOP_UNACFOLD)) {
+                // We should truncate after extracting the extension, but this is a pathological
+                // case anyway
+                if (fn.size() > 230)
+                    utf8truncate(fn, 230);
+                string::size_type pos = fn.rfind('.');
+                if (pos != string::npos && pos != fn.length() - 1) {
+                    newdocument.add_boolean_term(wrap_prefix(fileext_prefix) + fn.substr(pos + 1));
+                }
+                newdocument.add_term(wrap_prefix(unsplitfilename_prefix) + fn, 0);
+            }
+        }
+    }
+        
+    newdocument.add_boolean_term(uniterm);
+    // Parent term. This is used to find all descendents, mostly to delete them when the parent goes
+    // away
+    if (!parent_udi.empty()) {
+        newdocument.add_boolean_term(make_parentterm(parent_udi));
+    }
+
+    // Fields used for selecting by date. Note that this only works for years AD 0-9999 (no
+    // crash elsewhere, but things won't work).
+    time_t mtime = atoll(doc.dmtime.empty() ? doc.fmtime.c_str() : doc.dmtime.c_str());
+    addDateTerms(newdocument, mtime, xapday_prefix, xapmonth_prefix, xapyear_prefix);
+#ifdef EXT4_BIRTH_TIME
+    // Selecting by birth time.
+    std::string sbirtime;
+    doc.getmeta(Doc::keybrt, &sbirtime);
+    if (!sbirtime.empty()) {
+        mtime = atoll(sbirtime.c_str());
+        addDateTerms(newdocument, mtime,
+                     xapbriday_prefix, xapbrimonth_prefix, xapbriyear_prefix);
+    }
+#endif
+
+
+    string record = rcldocToDbData(doc, newdocument, pageincrvec);
+    newdocument.set_data(record);
+    return true;
+}
+
+std::string Db::Native::rcldocToDbData(
+    Doc& doc, Xapian::Document& newdocument, std::vector <std::pair<int, int>>& pageincrvec)
+{
+    //////////////////////////////////////////////////////////////////
+    // Document data record. omindex has the following nl separated fields:
+    // - url
+    // - sample
+    // - caption (title limited to 100 chars)
+    // - mime type 
+    //
+    // The title, author, abstract and keywords fields are special,
+    // they always get stored in the document data
+    // record. Configurable other fields can be, too.
+    //
+    // We truncate stored fields abstract, title and keywords to
+    // reasonable lengths and suppress newlines (so that the data
+    // record can keep a simple syntax)
+
+    string record;
+    RECORD_APPEND(record, Doc::keyurl, doc.url);
+    RECORD_APPEND(record, Doc::keytp, doc.mimetype);
+    // We left-zero-pad the times so that they are lexico-sortable
+    leftzeropad(doc.fmtime, 11);
+    RECORD_APPEND(record, Doc::keyfmt, doc.fmtime);
+#ifdef EXT4_BIRTH_TIME
+    {
+        std::string birtime;
+        doc.getmeta(Doc::keybrt, &birtime);
+        if (!birtime.empty()) {
+            leftzeropad(birtime, 11);
+            RECORD_APPEND(record, Doc::keybrt, birtime);
+        }
+    }
+#endif
+    if (!doc.dmtime.empty()) {
+        leftzeropad(doc.dmtime, 11);
+        RECORD_APPEND(record, Doc::keydmt, doc.dmtime);
+    }
+    RECORD_APPEND(record, Doc::keyoc, doc.origcharset);
+
+    if (doc.fbytes.empty())
+        doc.fbytes = doc.pcbytes;
+
+    if (!doc.fbytes.empty()) {
+        RECORD_APPEND(record, Doc::keyfs, doc.fbytes);
+        leftzeropad(doc.fbytes, 12);
+        newdocument.add_value(VALUE_SIZE, doc.fbytes);
+    }
+    if (doc.haschildren) {
+        newdocument.add_boolean_term(has_children_term);
+    }   
+    if (!doc.pcbytes.empty())
+        RECORD_APPEND(record, Doc::keypcs, doc.pcbytes);
+    RECORD_APPEND(record, Doc::keyds, std::to_string(doc.text.length()));
+
+    // Note that we add the signature both as a value and in the data record
+    if (!doc.sig.empty()) {
+        RECORD_APPEND(record, Doc::keysig, doc.sig);
+        newdocument.add_value(VALUE_SIG, doc.sig);
+    }
+
+    if (!doc.ipath.empty())
+        RECORD_APPEND(record, Doc::keyipt, doc.ipath);
+
+    // Fields from the Meta array. Handle title specially because it has a 
+    // different name inside the data record (history...)
+    string& ttref = doc.meta[Doc::keytt];
+    ttref = neutchars(truncate_to_word(ttref, m_rcldb->m_idxMetaStoredLen), cstr_nc);
+    if (!ttref.empty()) {
+        RECORD_APPEND(record, cstr_caption, ttref);
+        ttref.clear();
+    }
+
+    // If abstract is empty, we make up one with the beginning of the
+    // document. This is then not indexed, but part of the doc data so
+    // that we can return it to a query without having to decode the
+    // original file.
+    // Note that the map accesses by operator[] create empty entries if they
+    // don't exist yet.
+    if (m_rcldb->m_idxAbsTruncLen > 0) {
+        string& absref = doc.meta[Doc::keyabs];
+        trimstring(absref, " \t\r\n");
+        if (absref.empty()) {
+            if (!doc.text.empty())
+                absref = cstr_syntAbs +
+                    neutchars(truncate_to_word(doc.text, m_rcldb->m_idxAbsTruncLen), cstr_nc);
+        } else {
+            absref = neutchars(truncate_to_word(absref, m_rcldb->m_idxAbsTruncLen), cstr_nc);
+        }
+        // Do the append here to avoid the different truncation done
+        // in the regular "stored" loop
+        if (!absref.empty()) {
+            RECORD_APPEND(record, Doc::keyabs, absref);
+            absref.clear();
+        }
+    }
+        
+    // Append all regular "stored" meta fields
+    for (const auto& rnm : m_rcldb->m_config->getStoredFields()) {
+        string nm = m_rcldb->m_config->fieldCanon(rnm);
+        if (!doc.meta[nm].empty()) {
+            string value =
+                neutchars(truncate_to_word(doc.meta[nm], m_rcldb->m_idxMetaStoredLen), cstr_nc);
+            RECORD_APPEND(record, nm, value);
+        }
+    }
+
+    // At this point, if the document "filename" field was empty, try to store the "container file
+    // name" value. This is done after indexing because we don't want search matches on this, but
+    // the filename is often useful for display purposes.
+    const string *fnp = nullptr;
+    if (!doc.peekmeta(Rcl::Doc::keyfn, &fnp) || fnp->empty()) {
+        if (doc.peekmeta(Rcl::Doc::keyctfn, &fnp) && !fnp->empty()) {
+            string value = neutchars(truncate_to_word(*fnp, m_rcldb->m_idxMetaStoredLen), cstr_nc);
+            RECORD_APPEND(record, Rcl::Doc::keyfn, value);
+        }
+    }
+
+    // If empty pages (multiple break at same pos) were recorded, save them (this is because we have
+    // no way to record them in the Xapian list). pageincrvec is a termproc member inside rcldb and
+    // was updated by calling the splitter.
+    if (!pageincrvec.empty()) {
+        ostringstream multibreaks;
+        for (unsigned int i = 0; i < pageincrvec.size(); i++) {
+            if (i != 0)
+                multibreaks << ",";
+            multibreaks << pageincrvec[i].first << "," << pageincrvec[i].second;
+        }
+        RECORD_APPEND(record, string(cstr_mbreaks), multibreaks.str());
+    }
+    
+    // If the file's md5 was computed, add value and term.  The value is optionally used for query
+    // result duplicate elimination, and the term to find the duplicates (XM is the prefix for
+    // rclmd5 in fields) We don't do this for empty docs.
+    const string *md5;
+    if (doc.peekmeta(Doc::keymd5, &md5) && !md5->empty() && md5->compare(cstr_md5empty)) {
+        string digest;
+        MD5HexScan(*md5, digest);
+        newdocument.add_value(VALUE_MD5, digest);
+        newdocument.add_boolean_term(wrap_prefix("XM") + *md5);
+    }
+
+    LOGDEB0("Rcl::Db::add: new doc record:\n" << record << "\n");
+    return record;
+}
 
 bool Db::Native::docToXdocMetaOnly(TextSplitDb *splitter, const string &udi, 
                                     Doc &doc, Xapian::Document& xdoc)
