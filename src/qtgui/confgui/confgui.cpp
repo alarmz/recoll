@@ -545,7 +545,7 @@ void ConfParamCStrW::loadValue()
 
 void ConfParamCStrW::setImmediate()
 {
-    connect(m_cmb, SIGNAL(activated(const QString&)), this, SLOT(setValue(const QString&)));
+    connect(m_cmb, SIGNAL(textActivated(const QString&)), this, SLOT(setValue(const QString&)));
 }
 
 ConfParamBoolW::ConfParamBoolW(
