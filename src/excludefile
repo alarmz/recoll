@@ -38,7 +38,6 @@ doc/user/usermanual.pdf
 doc/user/webhelp
 excludefile
 install-sh
-kde/recoll_applet
 libtool
 makesrcdist.sh
 manifest.txt

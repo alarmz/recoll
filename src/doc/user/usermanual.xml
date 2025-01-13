@@ -4899,24 +4899,6 @@ C: = Z:</programlisting></para></note>
             Python script, based on the <application>libwnck</application> window manager interface
             library, which will allow you to do just this. The detailed instructions are
             on <ulink url="&FAQS;HotRecoll">this wiki page</ulink>.</para></listitem>
-        <listitem id="RCL.KICKER-APPLET"><para>The KDE Kicker Recoll applet: this is probably
-            obsolete now. Anyway: The &RCL; source tree contains the source code to
-            the <application>recoll_applet</application>, a small application derived from
-            the <application>find_applet</application>. This can be used to add a small &RCL;
-            launcher to the KDE panel.</para>
-          <para>The applet is not automatically built with the main &RCL; programs, nor is it
-            included with the main source distribution (because the KDE build boilerplate makes it
-            relatively big). You can download its source from the recoll.org download page. Use the
-            omnipotent <userinput>configure;make;make install</userinput> incantation to build and
-            install.</para>
-          <para>You can then add the applet to the panel by right-clicking the panel and choosing
-            the <guilabel>Add applet</guilabel> entry.</para> 
-          <para>The <application>recoll_applet</application> has a small text window where you can
-            type a &RCL; query (in query language form), and an icon which can be used to restrict
-            the search to certain types of files. It is quite primitive, and launches a new recoll
-            GUI instance every time (even if it is already running). You may find it useful
-            anyway.</para>
-        </listitem>
       </itemizedlist>
       </para>
 

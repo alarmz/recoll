@@ -3685,23 +3685,6 @@ C: = Z:
        small Python script, based on the libwnck window manager interface
        library, which will allow you to do just this. The detailed
        instructions are on [233]this wiki page.
-     * The KDE Kicker Recoll applet: this is probably obsolete now.
-       Anyway: The Recoll source tree contains the source code to the
-       recoll_applet, a small application derived from the find_applet.
-       This can be used to add a small Recoll launcher to the KDE panel.
-       The applet is not automatically built with the main Recoll
-       programs, nor is it included with the main source distribution
-       (because the KDE build boilerplate makes it relatively big). You
-       can download its source from the recoll.org download page. Use the
-       omnipotent configure;make;make install incantation to build and
-       install.
-       You can then add the applet to the panel by right-clicking the
-       panel and choosing the Add applet entry.
-       The recoll_applet has a small text window where you can type a
-       Recoll query (in query language form), and an icon which can be
-       used to restrict the search to certain types of files. It is quite
-       primitive, and launches a new recoll GUI instance every time (even
-       if it is already running). You may find it useful anyway.
 
 Chapter 4. Programming interface
 
