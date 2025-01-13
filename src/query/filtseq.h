@@ -39,10 +39,10 @@ public:
     virtual ~DocSeqFiltered() {}
     DocSeqFiltered(const DocSeqFiltered&) = delete;
     DocSeqFiltered& operator=(const DocSeqFiltered&) = delete;
-    virtual bool canFilter() {return true;}
-    virtual bool setFiltSpec(const DocSeqFiltSpec &filtspec);
-    virtual bool getDoc(int num, Rcl::Doc &doc, std::string *sh = nullptr);
-    virtual int getResCnt() {return m_seq->getResCnt();}
+    virtual bool canFilter() override {return true;}
+    virtual bool setFiltSpec(const DocSeqFiltSpec &filtspec) override;
+    virtual bool getDoc(int num, Rcl::Doc &doc, std::string *sh = nullptr) override;
+    virtual int getResCnt() override {return m_seq->getResCnt();}
 private:
     RclConfig     *m_config;    
     DocSeqFiltSpec m_spec;

@@ -47,10 +47,10 @@ static const string cstr_hlfontcolor("<span style='color: blue;'>");
 static const string cstr_hlendfont("</span>");
 class PlainToRichHtReslist : public PlainToRich {
 public:
-    virtual string startMatch(unsigned int) {
+    virtual string startMatch(unsigned int) override {
         return cstr_hlfontcolor;
     }
-    virtual string endMatch() {
+    virtual string endMatch() override {
         return cstr_hlendfont;
     }
 };

@@ -37,10 +37,10 @@ class DocSeqSorted : public DocSeqModifier {
     virtual ~DocSeqSorted() {}
     DocSeqSorted(const DocSeqSorted&) = delete;
     DocSeqSorted& operator=(const DocSeqSorted&) = delete;
-    virtual bool canSort() {return true;}
-    virtual bool setSortSpec(const DocSeqSortSpec &sortspec);
-    virtual bool getDoc(int num, Rcl::Doc &doc, std::string *sh = nullptr);
-    virtual int getResCnt() {return int(m_docsp.size());}
+    virtual bool canSort() override {return true;}
+    virtual bool setSortSpec(const DocSeqSortSpec &sortspec) override;
+    virtual bool getDoc(int num, Rcl::Doc &doc, std::string *sh = nullptr) override;
+    virtual int getResCnt() override {return int(m_docsp.size());}
  private:
     DocSeqSortSpec          m_spec;
     std::vector<Rcl::Doc>   m_docs;
