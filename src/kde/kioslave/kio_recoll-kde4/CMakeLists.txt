@@ -7,9 +7,8 @@ set(CMAKE_SKIP_RPATH TRUE)
 
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 add_definitions(-DKDE_DEFAULT_DEBUG_AREA=7130
-    -DRECOLL_DATADIR=\\"${CMAKE_INSTALL_PREFIX}/share/recoll\\"
-    -DLIBDIR=\\"${CMAKE_INSTALL_PREFIX}/lib\\"
-    -DHAVE_CONFIG_H
+    -DRECOLL_DATADIR="${CMAKE_INSTALL_PREFIX}/share/recoll"
+    -DLIBDIR="${CMAKE_INSTALL_PREFIX}/lib"
 )
 set(CMAKE_CXX_FLAGS "-fPIC ${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}") 
 
@@ -21,6 +20,7 @@ include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES}
   ${rcltop}/query 
   ${rcltop}/rcldb 
   ${rcltop}/utils 
+  ${rcltop}/redhat-linux-build
 )
 
 include_directories (
@@ -41,7 +41,7 @@ foreach(libdir IN ITEMS  ${CMAKE_BINARY_DIR}/../../.libs
     endif()
 endforeach()
 
-set(kio_recoll_SRCS  kio_recoll.cpp htmlif.cpp dirif.cpp ${rcltop}/qtgui/guiutils.cpp)
+set(kio_recoll_SRCS  kio_recoll.cpp htmlif.cpp dirif.cpp)
 
 CHECK_LIBRARY_EXISTS(dl dlopen "" DLOPEN_IN_LIBDL)
 IF(DLOPEN_IN_LIBDL)

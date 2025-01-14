@@ -13,6 +13,8 @@ directory mode is available with both browsers, and also application open dialog
 To try things out, after building and installing, enter "recoll: search terms" in a Dolphin URL
 entry. This should show recoll search results, displayed as directory entries.
 
+Use hrecoll: in konqueror to get the HTML result list version.
+
 You need to build/update the index with recollindex, the KIO slave doesn't deal with indexing at
 all. 
 

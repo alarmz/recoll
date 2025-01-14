@@ -29,7 +29,6 @@ set(rcltop ${CMAKE_CURRENT_SOURCE_DIR}/../../)
 add_definitions(
     -DRECOLL_DATADIR="${CMAKE_INSTALL_PREFIX}/share/recoll"
     -DLIBDIR="${CMAKE_INSTALL_PREFIX}/lib"
-    -DHAVE_CONFIG_H
 )
 
 
@@ -40,6 +39,7 @@ include_directories (
   ${rcltop}/query 
   ${rcltop}/rcldb 
   ${rcltop}/utils 
+  ${rcltop}/redhat-linux-build
 )
 
 include_directories (
