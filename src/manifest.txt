@@ -36,8 +36,9 @@ common/plaintorich.h
 common/rclconfig.cpp
 common/rclconfig.h
 common/rclinit.cpp
-common/rclutil.cpp
 common/rclinit.h
+common/rclutil.cpp
+common/rclutil.h
 common/syngroups.cpp
 common/syngroups.h
 common/textsplit.cpp
@@ -587,6 +588,7 @@ rcldb/rcldb_p.h
 rcldb/rcldoc.cpp
 rcldb/rcldoc.h
 rcldb/rcldups.cpp
+rcldb/rclndb.cpp
 rcldb/rclquery.cpp
 rcldb/rclquery.h
 rcldb/rclquery_p.h
@@ -695,7 +697,6 @@ utils/pxattr.cpp
 utils/pxattr.h
 utils/rclionice.cpp
 utils/rclionice.h
-utils/rclutil.h
 utils/readfile.cpp
 utils/readfile.h
 utils/smallut.cpp

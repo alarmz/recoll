@@ -260,6 +260,7 @@ set(librecoll_SOURCES
     rcldb/rclabstract.cpp
     rcldb/rclabsfromtext.cpp
     rcldb/rcldb.cpp
+    rcldb/rclndb.cpp
     rcldb/rcldb.h
     rcldb/rcldb_p.h
     rcldb/rcldoc.cpp

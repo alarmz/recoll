@@ -3,12 +3,13 @@
 
 Summary:        Desktop full text search tool with Qt GUI
 Name:           recoll
-Version:        1.41.1
-Release:        2%{?dist}
-License:        GPLv2+
+Version:        1.40.4
+Release:        1%{?dist}
+# Automatically converted from old format: GPLv2+ - review is highly recommended.
+License:        GPL-2.0-or-later
 URL:            https://www.recoll.org
 Source0:        https://www.recoll.org/recoll-%{version}.tar.gz
-Source1:        https://www.recoll.org/downloads/gssp-recoll-%{gsspver}.tar.gz
+Source1:        https://www.recoll.org/downloads/src/gssp-recoll-%{gsspver}.tar.gz
 Source10:       qmake-qt5.sh
 BuildRequires:  aspell-devel
 BuildRequires:  bison
@@ -202,6 +203,24 @@ echo "%{_libdir}/recoll" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/recoll-%{_arc
 %{_datadir}/applications/org.recoll.Recoll.SearchProvider.desktop
 
 %changelog
+* Sat Nov 16 2024 Terje Rosten <terjeros@gmail.com> - 1.40.4-1
+- 1.40.4
+
+* Tue Oct 15 2024 Terje Rosten <terjeros@gmail.com> - 1.40.3-1
+- 1.40.3
+
+* Sun Sep 15 2024 Terje Rosten <terjeros@gmail.com> - 1.40.1-1
+- 1.40.1
+
+* Wed Aug 21 2024 Terje Rosten <terjeros@gmail.com> - 1.40.0-1
+- 1.40.0
+
+* Fri Jul 26 2024 Miroslav Suchý <msuchy@redhat.com> - 1.39.1-4
+- convert license to SPDX
+
+* Fri Jul 19 2024 Fedora Release Engineering <releng@fedoraproject.org> - 1.39.1-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_41_Mass_Rebuild
+
 * Sun Jun 30 2024 Terje Rosten <terje.rosten@ntnu.no> - 1.39.1-2
 - Add patch from upstream to fix parallel build
 
