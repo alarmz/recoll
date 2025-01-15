@@ -296,6 +296,13 @@ bool Preview::eventFilter(QObject *target, QEvent *event)
     PreviewTextEdit *edit = currentEditor();
     QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
 
+#if defined(PREVIEW_WEBKIT) || defined(PREVIEW_WEBENGINE)
+    if((keyEvent->key() == Qt::Key_C) && (keyEvent->modifiers().testFlag(Qt::ControlModifier))) {
+        qApp->clipboard()->setText(edit->page()->selectedText());
+        return true;
+    }
+#endif // Webengine or Webkit
+    
     if (m_dynSearchActive) {
         if (keyEvent->key() == Qt::Key_F3) {
             LOGDEB2("Preview::eventFilter: got F3\n");
@@ -1313,6 +1320,14 @@ void PreviewTextEdit::mouseDoubleClickEvent(QMouseEvent *event)
     QTextEdit::mouseDoubleClickEvent(event);
     if (textCursor().hasSelection() && m_preview)
         m_preview->emitWordSelect(textCursor().selectedText());
+#else
+    // Let the parent select the word (probably)
+    PREVIEW_PARENTCLASS::mouseDoubleClickEvent(event);
+    // And send the selection to whom it may concern. This only works with Webkit. With Webengine we
+    // never get called, probably because the event is handled by the page and the widget never sees
+    // it. So the user needs to ^C/^V to copy the word to the search
+    if (hasSelection())
+        m_preview->emitWordSelect(selectedText());
 #endif
 }
 
