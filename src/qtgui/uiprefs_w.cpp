@@ -185,6 +185,7 @@ void UIPrefsDialog::setFromPrefs()
     pvmaxfldlenSB->setValue(prefs.pvmaxfldlen);
     singleappCB->setChecked(prefs.singleapp);
     ssearchCompletePassiveCB->setChecked(prefs.ssearchCompletePassive);
+    previewLinesOverAnchorSB->setValue(prefs.previewLinesOverAnchor);
     /*INSERTHERE_LOAD*/
 
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -471,6 +472,7 @@ void UIPrefsDialog::accept()
     prefs.pvmaxfldlen = pvmaxfldlenSB->value();
     prefs.singleapp = singleappCB->isChecked();
     prefs.ssearchCompletePassive = ssearchCompletePassiveCB->isChecked();
+    prefs.previewLinesOverAnchor = previewLinesOverAnchorSB->value();
     /*INSERTHERE_ACCEPT*/
 
     // -1 is the qxtconf... predefined value to show the dialog

@@ -305,6 +305,7 @@ void rwSettings(bool writing)
     SETTING_RW(prefs.pvmaxfldlen, "/Recoll/ui/pvmaxfldlen", Int, 200)
     SETTING_RW(prefs.singleapp, "/Recoll/ui/singleapp", Bool, false)
     SETTING_RW(prefs.ssearchCompletePassive, "/Recoll/ui/ssearchCompletePassive", Bool, false)
+    SETTING_RW(prefs.previewLinesOverAnchor, "/Recoll/preview/previewLinesOverAnchor", Int, 4)
     /*INSERTHERE*/
     
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.

@@ -97,7 +97,6 @@ public:
     // Try to display html if it exists in the internfile stack.
     bool previewHtml;
     bool previewActiveLinks;
-    int previewLinesOverAnchor{4};
     // Use <pre> tag to display highlighted text/plain inside html (else
     // we use <br> at end of lines, which lets textedit wrap lines).
     enum PlainPre {PP_BR, PP_PRE, PP_PREWRAP};
@@ -161,6 +160,7 @@ public:
     bool ignwilds{false};
     int pvmaxfldlen{0};
     bool singleapp{false};
+    int previewLinesOverAnchor{4};
     /*INSERTHERE*/
 
     // See widgets/qxtconfirmationmessage.
