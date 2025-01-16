@@ -391,10 +391,62 @@ void Preview::emitEditRequested()
     }
 }
 
-// Perform text search. If next is true, we look for the next match of the
-// current search, trying to advance and possibly wrapping around. If next is
-// false, the search string has been modified, we search for the new string, 
-// starting from the current position
+void Preview::walkAnchors(PreviewTextEdit *edit, bool reverse)
+{
+    if (!edit->m_plaintorich->haveAnchors()) {
+        LOGDEB("NO ANCHORS\n");
+        return;
+    }
+    // The combobox indices are equal to the search ugroup indices in hldata, that's how we built
+    // the list.
+    int anchornum;
+    if (reverse) {
+        anchornum = edit->m_plaintorich->prevAnchorNum(m_searchTextFromIndex);
+    } else {
+        anchornum = edit->m_plaintorich->nextAnchorNum(m_searchTextFromIndex);
+    }
+    auto totanchors = edit->m_plaintorich->anchorCount(m_searchTextFromIndex);
+    QString txt = QString("%1/%2").arg(anchornum).arg(totanchors);
+    hitIndicatorLBL->setText(txt);
+    QString aname = edit->m_plaintorich->curAnchorName();
+
+#ifdef PREVIEW_TEXTBROWSER
+    LOGDEB("Calling scrollToAnchor(" << qs2utf8s(aname) << ")\n");
+    edit->scrollToAnchor(aname);
+    // Position the cursor at the anchor (top of viewport) so that searches start from here
+    QTextCursor cursor = edit->cursorForPosition(QPoint(0, 0));
+    edit->setTextCursor(cursor);
+#else
+    LOGDEB1("Highlighting anchor name " << qs2utf8s(aname) << "\n");
+    std::string sjs = R"-(
+            var elements = document.getElementsByClassName('rclhighlight');
+            for (let i = 0; i < elements.length; i++) {
+                elements.item(i).classList.remove('rclhighlight');
+            }
+            var element  = document.getElementById('%1');
+            if (element) {
+                element.classList.add('rclhighlight');
+                element.scrollIntoView();
+                var style = window.getComputedStyle(element, null).getPropertyValue('font-size');
+                var fontSize = parseFloat(style);
+                window.scrollBy(0,-%2 * fontSize);
+            }
+        )-";
+    QString js = QString::fromUtf8(sjs.c_str()).arg(aname).arg(prefs.previewLinesOverAnchor);
+
+    LOGDEB2("Running JS: " << qs2utf8s(js) << "\n");
+#if defined(PREVIEW_WEBKIT)
+    edit->page()->mainFrame()->evaluateJavaScript(js);
+#elif defined(PREVIEW_WEBENGINE)
+    edit->page()->runJavaScript(js);
+#endif
+
+#endif // !TEXTBROWSER
+}
+
+// Perform text search. If next is true, we look for the next match of the current search, trying to
+// advance and possibly wrapping around. If next is false, the search string has been modified, we
+// search for the new string, starting from the current position
 void Preview::doSearch(const QString &_text, bool next, bool reverse, bool wordOnly)
 {
     LOGDEB0("Preview::doSearch: text [" << qs2utf8s(_text) << "] idx " << m_searchTextFromIndex <<
@@ -409,56 +461,19 @@ void Preview::doSearch(const QString &_text, bool next, bool reverse, bool wordO
     }
     QString text = _text;
 
+    // Are we walking hit lists ?
     if (text.isEmpty() || m_searchTextFromIndex != -1) {
-        if (!edit->m_plaintorich->haveAnchors()) {
-            LOGDEB("NO ANCHORS\n");
-            return;
-        }
-        // The combobox indices are equal to the search ugroup indices
-        // in hldata, that's how we built the list.
-        if (reverse) {
-            edit->m_plaintorich->prevAnchorNum(m_searchTextFromIndex);
-        } else {
-            edit->m_plaintorich->nextAnchorNum(m_searchTextFromIndex);
-        }
-        QString aname = edit->m_plaintorich->curAnchorName();
-#ifdef PREVIEW_TEXTBROWSER
-        LOGDEB("Calling scrollToAnchor(" << qs2utf8s(aname) << ")\n");
-        edit->scrollToAnchor(aname);
-        // Position the cursor approximately at the anchor (top of
-        // viewport) so that searches start from here
-        QTextCursor cursor = edit->cursorForPosition(QPoint(0, 0));
-        edit->setTextCursor(cursor);
-#else
-        LOGDEB1("Highlighting anchor name " << qs2utf8s(aname) << "\n");
-        std::string sjs = R"-(
-            var elements = document.getElementsByClassName('rclhighlight');
-            for (let i = 0; i < elements.length; i++) {
-                elements.item(i).classList.remove('rclhighlight');
-            }
-            var element  = document.getElementById('%1');
-            if (element) {
-                element.classList.add('rclhighlight');
-                element.scrollIntoView();
-            }
-        )-";
-        QString js = QString::fromUtf8(sjs.c_str()).arg(aname);
-        LOGDEB2("Running JS: " << qs2utf8s(js) << "\n");
-#if defined(PREVIEW_WEBKIT)
-        edit->page()->mainFrame()->evaluateJavaScript(js);
-#elif defined(PREVIEW_WEBENGINE)
-        edit->page()->runJavaScript(js);
-#endif
-#endif // !TEXTBROWSER
+        walkAnchors(edit, reverse);
         return;
     }
 
+    // Performing incremental text search
+    hitIndicatorLBL->clear();
+
 #ifdef PREVIEW_TEXTBROWSER
-    // If next is false, the user added characters to the current
-    // search string.  We need to reset the cursor position to the
-    // start of the previous match, else incremental search is going
-    // to look for the next occurrence instead of trying to lenghten
-    // the current match
+    // If next is false, the user added characters to the current search string.  We need to reset
+    // the cursor position to the start of the previous match, else incremental search is going to
+    // look for the next occurrence instead of trying to lenghten the current match
     if (!next) {
         QTextCursor cursor = edit->textCursor();
         cursor.setPosition(cursor.anchor(), QTextCursor::KeepAnchor);
@@ -1065,13 +1080,15 @@ bool Preview::loadDocInCurrentTab(const Rcl::Doc &idoc, int docnum)
         }
     }
 
-
-    // Position the editor so that the first search term is visible
+    // Position the editor so that the first search term is visible. Note that doSearch always
+    // advances to the next match, so we hack it away by performing one forward and one backward
+    // search to get back to the first one...
     if (!searchTextCMB->currentText().isEmpty()) {
         // If there is a current search string, perform the search.
         // Do not beep for an automatic search, this is ennoying.
         m_canBeep = false;
         doSearch(searchTextCMB->currentText(), true, false);
+        doSearch(searchTextCMB->currentText(), true, true);
     } else {
         // Position to the first query term
         if (editor->m_plaintorich->haveAnchors()) {
@@ -1085,6 +1102,7 @@ bool Preview::loadDocInCurrentTab(const Rcl::Doc &idoc, int docnum)
             editor->setTextCursor(cursor);
 #else
             doSearch("", false, false);
+            doSearch("", false, true);
 #endif
         }
     }

@@ -39,16 +39,27 @@ public:
     virtual std::string endMatch();
     virtual std::string termAnchorName(int i) const;
     virtual std::string startChunk();
+    // Advance of rewind the current anchor. Returns the current anchor number inside the group
+    // (which may be the total if we're walking the full list), as [1-N].
     int nextAnchorNum(int grpidx);
     int prevAnchorNum(int grpidx);
+    int anchorCount(int grpidx);
     QString curAnchorName() const;
 
 private:
-    int m_curanchor;
+    // Lists of anchor numbers (hit locations) for the term/groups in the query. The map key is an
+    // index into the HighlightData.index_term_groups vector. Using a map and not a vector parallel
+    // to the hldata one because the hits for this specific document will usually be a subset of
+    // index_term_groups
+    std::map<unsigned int, std::vector<int>> m_groupanchors;
+    // Total number of anchors, all terms/groups counfounded. This is equal to the sum of sizes of
+    // the above vectors, kept for convenience.
     int m_lastanchor;
-    // Lists of anchor numbers (match locations) for the term (groups)
-    // in the query (the map key is and index into HighlightData.groups).
-    std::map<unsigned int, std::vector<int> > m_groupanchors;
+    // Current anchor number when walking the hits with an empty search term. This goes from 0 to
+    // m_lastanchor.
+    int m_curanchor;
+    // Walking the lists of matches inside a group: this stores the current index into the anchor
+    // vector from m_groupanchors for the group of identical key.
     std::map<unsigned int, unsigned int> m_groupcuranchors;
     bool m_spacehack{false};
 };

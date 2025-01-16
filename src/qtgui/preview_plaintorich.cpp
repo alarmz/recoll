@@ -148,41 +148,51 @@ int  PlainToRichQtPreview::nextAnchorNum(int grpidx)
     LOGDEB2("nextAnchorNum: group " << grpidx << "\n");
     auto curit = m_groupcuranchors.find(grpidx);
     auto vecit = m_groupanchors.find(grpidx);
-    if (grpidx == -1 || curit == m_groupcuranchors.end() ||
-        vecit == m_groupanchors.end()) {
+    if (grpidx == -1 || curit == m_groupcuranchors.end() || vecit == m_groupanchors.end()) {
         if (m_curanchor >= m_lastanchor)
             m_curanchor = 1;
         else
             m_curanchor++;
+        return m_curanchor;
     } else {
         if (curit->second >= vecit->second.size() -1)
             m_groupcuranchors[grpidx] = 0;
         else 
             m_groupcuranchors[grpidx]++;
         m_curanchor = vecit->second[m_groupcuranchors[grpidx]];
-        LOGDEB2("nextAnchorNum: curanchor now " << m_curanchor << "\n");
+        return m_groupcuranchors[grpidx] + 1;
     }
-    return m_curanchor;
 }
 
 int  PlainToRichQtPreview::prevAnchorNum(int grpidx)
 {
     auto curit = m_groupcuranchors.find(grpidx);
     auto vecit = m_groupanchors.find(grpidx);
-    if (grpidx == -1 || curit == m_groupcuranchors.end() ||
-        vecit == m_groupanchors.end()) {
+    if (grpidx == -1 || curit == m_groupcuranchors.end() || vecit == m_groupanchors.end()) {
         if (m_curanchor <= 1)
             m_curanchor = m_lastanchor;
         else
             m_curanchor--;
+        return m_curanchor;
     } else {
         if (curit->second <= 0)
             m_groupcuranchors[grpidx] = static_cast<unsigned int>(vecit->second.size() -1);
         else 
             m_groupcuranchors[grpidx]--;
         m_curanchor = vecit->second[m_groupcuranchors[grpidx]];
+        return m_groupcuranchors[grpidx] + 1;
     }
-    return m_curanchor;
+}
+
+int PlainToRichQtPreview::anchorCount(int grpidx)
+{
+    if (grpidx == -1)
+        return m_lastanchor;
+    auto vecit = m_groupanchors.find(grpidx);
+    if (vecit == m_groupanchors.end()) {
+        return 0;
+    }
+    return vecit->second.size();
 }
 
 QString  PlainToRichQtPreview::curAnchorName() const
