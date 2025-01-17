@@ -3,27 +3,36 @@
 
 Summary:        Desktop full text search tool with Qt GUI
 Name:           recoll
-Version:        1.35.0
+Version:        1.42.0
 Release:        2%{?dist}
 Group:          Applications/Databases
 License:        GPLv2+
 URL:            http://www.lesbonscomptes.com/recoll/
 Source0:        http://www.lesbonscomptes.com/recoll/recoll-%{version}.tar.gz
-Source10:       qmake-qt6.sh
+Source10:       qmake-qt5.sh
+
 BuildRequires:  aspell-devel
-BuildRequires:  bison
-BuildRequires:  desktop-file-utils
-
-BuildRequires:  qt6-gui-devel
-BuildRequires:  qt6-tools
-BuildRequires:  qt6-webenginewidgets-devel
-BuildRequires:  python3-devel
-BuildRequires:  libxapian-devel
-
-BuildRequires:  extra-cmake-modules
-BuildRequires:  zlib-devel
 BuildRequires:  chmlib-devel
+BuildRequires:  bison
+BuildRequires:  chmlib-devel
+BuildRequires:  desktop-file-utils
+BuildRequires:  extra-cmake-modules
+BuildRequires:  file-devel
+# For leap 15: the default gcc-7 won't cut it
+#BuildRequires:  gcc13-c++
+BuildRequires:  libQt5Gui-devel
+BuildRequires:  libQt5Xml-devel
+BuildRequires:  libqt5-qtwebengine-devel
+BuildRequires:  libqt5-linguist
+#BuildRequires:  qt6-gui-devel
+#BuildRequires:  qt6-tools
+#BuildRequires:  qt6-webenginewidgets-devel
+BuildRequires:  libxapian-devel
 BuildRequires:  libxslt-devel
+BuildRequires:  meson
+BuildRequires:  python3-devel
+BuildRequires:  zlib-devel
+
 Requires:       xdg-utils
 Requires:       aspell
 
@@ -38,39 +47,32 @@ interface.
 %setup -q -n %{name}-%{version}
 
 %build
+# For leap 15: the default gcc-7 won't cut it
+#export CC=gcc-13
+#export CXX=g++-13
 CFLAGS="%{optflags}"; export CFLAGS
 CXXFLAGS="%{optflags}"; export CXXFLAGS
 LDFLAGS="%{?__global_ldflags}"; export LDFLAGS
 
 # force use of custom/local qmake, to inject proper build flags (above)
-install -m755 -D %{SOURCE10} qmake-qt6.sh
-export QMAKE=qmake6
+install -m755 -D %{SOURCE10} qmake-qt5.sh
+export QMAKE=$(pwd)/qmake-qt5.sh
+%meson -Dwebengine=true -Drecollq=true
+%meson_build
 
-%configure --enable-webengine
-make %{?_smp_mflags}
 
 %install
-make install DESTDIR=%{buildroot} STRIP=/bin/true INSTALL='install -p'
+%meson_install
 
 desktop-file-install --delete-original \
   --dir=%{buildroot}/%{_datadir}/applications \
   %{buildroot}/%{_datadir}/applications/%{name}-searchgui.desktop
 
-# use /usr/bin/xdg-open
-rm -f %{buildroot}/usr/share/recoll/filters/xdg-open
+rm -f %{buildroot}/usr/share/man/man1/xadump.1
+rm -f %{buildroot}/usr/share/man/man1/xadump.1.gz
 rm -f %{buildroot}/usr/lib/systemd/system/recollindex@.service
 rm -f %{buildroot}/usr/lib/systemd/user/recollindex.service
-rm -f %{buildroot}/usr/share/man/man1/rclgrep.1
-rm -f %{buildroot}/usr/share/man/man1/rclgrep.1.gz
-rm -f %{buildroot}/usr/*/librecoll.la
 
-# Mix of Python 2 and 3, needs special care
-
-py2_byte_compile () {
-    bytecode_compilation_path="$1"
-    find $bytecode_compilation_path -type f -a -name "*.py" -print0 | xargs -0 %{__python2} -O -c 'import py_compile, sys; [ py_compile.compile(f, dfile=f.partition("%{buildroot}")[2]) for f in sys.argv[1:] ]' || :
-    find $bytecode_compilation_path -type f -a -name "*.py" -print0 | xargs -0 %{__python2} -c 'import py_compile, sys; [ py_compile.compile(f, dfile=f.partition("%{buildroot}")[2]) for f in sys.argv[1:] ]' || :
-}
 
 py3_byte_compile () {
     bytecode_compilation_path="$1"
@@ -107,22 +109,20 @@ exit 0
 %license COPYING
 %doc README
 %{_bindir}/%{name}
+%{_bindir}/%{name}q
 %{_bindir}/%{name}index
 %{_datadir}/%{name}
 %{_datadir}/metainfo/org.recoll.recoll.appdata.xml
 %{_datadir}/applications/%{name}-searchgui.desktop
 %{_datadir}/icons/hicolor/48x48/apps/%{name}.png
+%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 %{_datadir}/pixmaps/%{name}.png
 %{_includedir}/recoll
 %{_libdir}/librecoll*.so
-%{python2_sitearch}/recoll
-%{python2_sitearch}/Recoll*.egg-info
+%{_libdir}/librecoll.so.*
 %{python3_sitearch}/recoll
-%{python3_sitearch}/Recoll*.egg-info
 %{python3_sitearch}/recollaspell.*
-%{python3_sitearch}/recoll_aspell*.egg-info
 %{python3_sitearch}/recollchm
-%{python3_sitearch}/recollchm*.egg-info
 %{_mandir}/man1/%{name}.1*
 %{_mandir}/man1/%{name}q.1*
 %{_mandir}/man1/%{name}index.1*
