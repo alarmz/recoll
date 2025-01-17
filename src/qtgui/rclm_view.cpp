@@ -472,11 +472,6 @@ void RclMain::execViewer(
     ecmd->startExec(execpath, lcmd, false, false);
 }
 
-void RclMain::startManual()
-{
-    startManual(string());
-}
-
 void RclMain::startManual(const string& index)
 {
     string docdir = path_cat(theconfig->getDatadir(), "doc");

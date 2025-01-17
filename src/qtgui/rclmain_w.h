@@ -120,9 +120,8 @@ public slots:
     virtual void showAboutDialog();
     virtual void showMissingHelpers();
     virtual void showActiveTypes();
-    virtual void startManual();
     virtual void startOnlineManual();
-    virtual void startManual(const std::string&);
+    virtual void startManual(const std::string& = std::string());
     virtual void showDocHistory();
     virtual void showExtIdxDialog();
     virtual void setSynEnabled(bool);
