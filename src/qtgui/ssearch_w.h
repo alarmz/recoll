@@ -103,7 +103,7 @@ private slots:
     virtual void searchTextChanged(const QString&);
     virtual void searchTextEdited(const QString&);
     virtual void onCompletionActivated(const QString&);
-    virtual void restoreText();
+    virtual void restoreText(bool startsearch=false);
     virtual void onHistoryClicked();
     virtual void onCompleterShown();
     

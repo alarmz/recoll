@@ -43,6 +43,7 @@
 #include <QShortcut>
 #include <QRegularExpression>
 
+#define LOGGER_LOCAL_LOGINC 4
 #include "log.h"
 #include "guiutils.h"
 #include "searchdata.h"
@@ -335,7 +336,7 @@ void SSearch::onCompleterShown()
 
 // This is to avoid that if the user types Backspace or Del while we have inserted / selected the
 // current completion, the lineedit text goes back to what it was, the completion fires, and it
-// looks like nothing was typed. Disable the completionn after Del or Backspace is typed.
+// looks like nothing was typed. Disable the completion after Del or Backspace is typed.
 bool SSearch::eventFilter(QObject *target, QEvent *event)
 {
     Q_UNUSED(target);
@@ -355,7 +356,7 @@ bool SSearch::eventFilter(QObject *target, QEvent *event)
             queryText->completer() && queryText->completer()->popup() &&
             queryText->completer()->popup()->isVisible()) {
             queryText->completer()->popup()->hide();
-            restoreText();
+            restoreText(true);
             return true;
         }
     } else if (nullptr == queryText->completer() && m_completer) {
@@ -374,9 +375,10 @@ bool SSearch::eventFilter(QObject *target, QEvent *event)
 //  - Note that a history click will replace a current partial word, so that the effect is different
 //    if there is a space at the end of the entry or not: pure concatenation vs replacement of the
 //    last (partial) word.
-void SSearch::restoreText()
+void SSearch::restoreText(bool startsearch)
 {
-    LOGDEB("SSearch::restoreText: savedEdit: " << qs2u8s(m_savedEditText) << '\n');
+    LOGDEB("SSearch::restoreText: ss " << startsearch << " savedEdit: " <<
+           qs2u8s(m_savedEditText) << '\n');
 
     if (!m_savedEditText.trimmed().isEmpty()) {
         // If the popup text begins with the saved text, just let it replace
@@ -386,7 +388,7 @@ void SSearch::restoreText()
         m_savedEditText = "";
     }        
     queryText->setFocus();
-    if (prefs.ssearchStartOnComplete) {
+    if (startsearch || prefs.ssearchStartOnComplete) {
         QTimer::singleShot(0, this, SLOT(startSimpleSearch()));
     }
 }
