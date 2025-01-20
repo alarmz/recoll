@@ -146,6 +146,8 @@ public:
     virtual void getTerms(HighlightData& hld) {
         hld.clear();
     }
+    virtual void getDocTerms(const Rcl::Doc&, std::vector<std::vector<std::string>>&) {
+    }
     virtual std::list<std::string> expand(Rcl::Doc &) {
         return std::list<std::string>();
     }
@@ -225,6 +227,11 @@ public:
         if (!m_seq)
             return;
         m_seq->getTerms(hld);
+    }
+    virtual void getDocTerms(const Rcl::Doc& doc, std::vector<std::vector<std::string>>& terms) override {
+        if (!m_seq)
+            return;
+        m_seq->getDocTerms(doc, terms);
     }
     virtual bool getEnclosing(Rcl::Doc& doc, Rcl::Doc& pdoc) override {
         if (!m_seq)

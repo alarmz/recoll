@@ -37,6 +37,7 @@ public:
     virtual bool getDoc(int num, Rcl::Doc &doc, std::string * = nullptr) override;
     virtual int getResCnt() override;
     virtual void getTerms(HighlightData& hld) override;
+    virtual void getDocTerms(const Rcl::Doc& doc, std::vector<std::vector<std::string>>& terms) override;
 
     // Called to fill-up the snippets window. Ignoers
     // buildabstract/replaceabstract and syntabslen

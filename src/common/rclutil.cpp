@@ -499,6 +499,20 @@ string url_gpathS(const string& url)
 #endif
 }
 
+std::string json_string(const std::string& in)
+{
+    std::string out{'"'};
+    for (const auto c: in) {
+        if (c <= 0x1f || c == '"' || c == '\\') {
+            out += '\\';
+        }
+        out += c;
+    }
+    out += '"';
+    return out;
+}
+
+
 std::string compute_utf8fn(const RclConfig *config, const std::string& ifn, bool simple)
 {
 #ifdef _WIN32

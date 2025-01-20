@@ -42,6 +42,11 @@ void DocSequenceDb::getTerms(HighlightData& hld)
     m_fsdata->getTerms(hld);
 }
 
+void DocSequenceDb::getDocTerms(const Rcl::Doc& doc, std::vector<std::vector<std::string>>& terms)
+{
+    m_q->getDocTerms(doc, terms);
+}
+
 string DocSequenceDb::getDescription() 
 {
     return m_fsdata->getDescription();

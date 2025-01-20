@@ -110,6 +110,8 @@ public:
     /** Get possibly expanded list of query terms */
     bool getQueryTerms(std::vector<std::string>& terms);
 
+    bool getDocTerms(const Doc& doc, std::vector<std::vector<std::string>>& terms);
+    
     /** Build synthetic abstract for document, extracting chunks relevant for
      * the input query. This uses index data only (no access to the file) 
      */

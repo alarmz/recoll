@@ -165,6 +165,107 @@ static bool termNeeded(const std::string& cmd)
 {
     return cmd.find("%s") != std::string::npos;
 }
+static bool jsonNeeded(const std::string& cmd)
+{
+    return cmd.find("%j") != std::string::npos;
+}
+
+template <class T> static std::string json_strings(const T& values)
+{
+    std::string jsondata{'['};
+    for (const auto& s: values) {
+        jsondata += json_string(s) + ',';
+    }
+    if (jsondata.back() == ',')
+        jsondata.pop_back();
+    jsondata += ']';
+    return jsondata;
+}
+
+template <class T> static std::string json_stringdict(const T& values)
+{
+    std::string jsondata{'{'};
+    for (const auto& [k,v]: values) {
+        jsondata += json_string(k) + ": " + json_string(v) + ',';
+    }
+    if (jsondata.back() == ',')
+        jsondata.pop_back();
+    jsondata += '}';
+    return jsondata;
+}
+
+static std::string json_stringVV(const vector<vector<string>>& values)
+{
+    std::string jsondata{'['};
+    for (const auto& grp : values) {
+        jsondata += json_strings(grp) + ',';
+    }
+    if (jsondata.back() == ',')
+        jsondata.pop_back();
+    jsondata += "]";
+    return jsondata;
+}
+
+static std::string jsonData(std::shared_ptr<DocSequence> source, Rcl::Doc& doc)
+{
+    vector<vector<string>> docterms;
+    source->getDocTerms(doc, docterms);
+    HighlightData hldata;
+    source->getTerms(hldata);
+
+    std::string jsondata{"{"};
+    
+    jsondata += "\"qterms\": ";
+    jsondata += json_stringVV(docterms);
+
+    jsondata += ", \"hldata\": {";
+
+    jsondata += "\"uterms\": ";
+    jsondata += json_strings(hldata.uterms);
+    jsondata += ", \"terms\": ";
+    jsondata += json_stringdict(hldata.terms);
+    jsondata += ", \"ugroups\": ";
+    jsondata += json_stringVV(hldata.ugroups);
+
+    jsondata += ", \"termgroups\": [";
+    for (const auto& tg : hldata.index_term_groups) {
+        jsondata += "{\"kind\": ";
+        switch (tg.kind) {
+        case HighlightData::TermGroup::TGK_TERM:
+            jsondata += "\"term\",";
+            jsondata += "\"group\": ";
+            jsondata += json_string(tg.term);
+            break;
+        case HighlightData::TermGroup::TGK_NEAR:
+            jsondata += "\"near\",";
+            jsondata += "\"group\": ";
+            jsondata += json_stringVV(tg.orgroups);
+            jsondata += ", \"slack\": ";
+            jsondata += std::to_string(tg.slack);
+            break;
+        case HighlightData::TermGroup::TGK_PHRASE:
+            jsondata += "\"phrase\",";
+            jsondata += "\"group\": ";
+            jsondata += json_stringVV(tg.orgroups);
+            jsondata += ", \"slack\": ";
+            jsondata += std::to_string(tg.slack);
+            break;
+        }
+        jsondata += "},";
+    }
+    if (jsondata.back() == ',')
+        jsondata.pop_back();
+    jsondata += "]";
+
+    jsondata += ", \"spellexpands\": ";
+    jsondata += json_strings(hldata.spellexpands);
+
+    jsondata += "}";
+
+    jsondata += "}";
+    //std::cerr << "JSONDATA:--" << jsondata << "--\n";
+    return jsondata;
+}
 
 void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int linenum)
 {
@@ -380,11 +481,18 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
     }
 
     // If we are not called with a page number (which would happen for a call from the snippets
-    // window), see if we can compute a page number anyway. 
+    // window), see if we can compute a page number anyway.
     if (m_source &&
         ((pagenum == -1 && pagenumNeeded(cmd)) || (term.empty() && termNeeded(cmd)))) {
         pagenum = m_source->getFirstMatchPage(doc, term);
     }
+
+    // Experimental and undocumented at the moment: query match terms (qualityTerms) and
+    // full hldata as json.
+    string jsondata;
+    if (jsonNeeded(cmd))
+        jsondata = jsonData(m_source, doc);
+
     if (pagenum < 0)
         pagenum = 1;
 
@@ -414,6 +522,7 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
     subs["f"] = fn;
     subs["F"] = fn;
     subs["i"] = FileInterner::getLastIpathElt(doc.ipath);
+    subs["j"] = jsondata;
     subs["l"] = ulltodecstr(linenum);
     subs["M"] = doc.mimetype;
     subs["p"] = ulltodecstr(pagenum);

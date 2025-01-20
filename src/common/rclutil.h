@@ -56,6 +56,8 @@ extern std::string url_gpath(const std::string& url);
 /// Turn absolute path into file:// url
 extern std::string path_pathtofileurl(const std::string& path);
 
+extern std::string json_string(const std::string& in);
+
 /// Transcode to utf-8 if possible or url encoding, for display.
 extern bool printableUrl(const std::string& fcharset, const std::string& in, std::string& out);
 /// Same but, in the case of a Windows local path, also turn "c:/" into

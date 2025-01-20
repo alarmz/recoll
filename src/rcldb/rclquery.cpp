@@ -298,6 +298,33 @@ bool Query::getQueryTerms(vector<string>& terms)
     return true;
 }
 
+bool Query::getDocTerms(const Doc& doc, vector<vector<string>>& oterms)
+{
+    if (!m_db || !m_db->m_ndb || !m_db->m_ndb->m_isopen || !m_nq) {
+        return false;
+    }
+
+    oterms.clear();
+    auto docid = doc.xdocid;
+    vector<string> matchterms;
+    m_nq->getMatchTerms(docid, matchterms);
+    if (matchterms.empty()) {
+        LOGDEB("getDocTerms: empty match term list (field match?)\n");
+        return false;
+    }
+    multimap<double, vector<string> > byQ;
+    m_nq->qualityTerms(docid, matchterms, byQ);
+    if (byQ.empty()) {
+        LOGDEB("qualityTerms returned no terms for docid " << docid << " input terms " <<
+               stringsToString(matchterms) << "\n");
+        return -1;
+    }
+    for (auto mit = byQ.rbegin(); mit != byQ.rend(); mit++) {
+        oterms.push_back(mit->second);
+    }
+    return true;
+}
+
 int Query::makeDocAbstract(const Doc &doc, PlainToRich *plaintorich, vector<Snippet>& abstract, 
                            int maxoccs, int ctxwords, bool sortbypage)
 {
