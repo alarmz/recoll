@@ -250,11 +250,11 @@
     </message>
     <message>
         <source>Top directories</source>
-        <translation>Üst dizinler</translation>
+        <translation type="vanished">Üst dizinler</translation>
     </message>
     <message>
         <source>The list of directories where recursive indexing starts. Default: your home.</source>
-        <translation>Özyinelemeli indesklemenin başlayacağı dizinlerin listesi. Öntanımlı: ev dizininiz.</translation>
+        <translation type="vanished">Özyinelemeli indesklemenin başlayacağı dizinlerin listesi. Öntanımlı: ev dizininiz.</translation>
     </message>
     <message>
         <source>Skipped paths</source>
@@ -433,7 +433,31 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90% to stop at 90% full, 0 or 100 means no limit)</source>
+        <source>Start folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Browser add-on download folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Store some GUI parameters locally to the index</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -496,6 +520,24 @@ This will help searching very big text  files (ie: log files).</translation>
     <message>
         <source>Global</source>
         <translation>Genel</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigSwitchDLG</name>
+    <message>
+        <source>Switch to other configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConfigSwitchW</name>
+    <message>
+        <source>Choose other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose configuration directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1020,7 +1062,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>These are patterns for file or directory  names which should not be indexed.</source>
-        <translation>Bu nitelikler insekslenmemesi  gereken dosya ve dizinler içindir.</translation>
+        <translation type="vanished">Bu nitelikler insekslenmemesi  gereken dosya ve dizinler içindir.</translation>
     </message>
     <message>
         <source>Default character set</source>
@@ -1085,6 +1127,10 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     <message>
         <source>&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</source>
         <translation type="unfinished">&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</translation>
+    </message>
+    <message>
+        <source>These are patterns for file or directory names which should not be indexed.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2033,7 +2079,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&amp;User manual</source>
-        <translation>&amp;Kullanıcı El Kitabı</translation>
+        <translation type="vanished">&amp;Kullanıcı El Kitabı</translation>
     </message>
     <message>
         <source>Recoll</source>
@@ -2321,6 +2367,14 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;User manual (local, one HTML page)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Online manual (Recoll Web site)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4999,6 +5053,62 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If set, starting a new instance on the same index will raise an existing one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The completion only changes the entry when activated.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Completion: no automatic line editing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interface language (needs restart):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Preview</source>
+        <translation type="unfinished">Önizle</translation>
+    </message>
+    <message>
+        <source>Set to 0 to disable details/summary feature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fields display: max field length before using summary:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Number of lines to be shown over a search term found by preview search.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search term line offset:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

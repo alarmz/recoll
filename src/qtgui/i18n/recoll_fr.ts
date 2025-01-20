@@ -250,11 +250,11 @@
     </message>
     <message>
         <source>Top directories</source>
-        <translation>Répertoires de départ</translation>
+        <translation type="vanished">Répertoires de départ</translation>
     </message>
     <message>
         <source>The list of directories where recursive indexing starts. Default: your home.</source>
-        <translation>La liste des répertoires où l&apos;indexation récursive démarre. Défaut: votre répertoire par défaut.</translation>
+        <translation type="vanished">La liste des répertoires où l&apos;indexation récursive démarre. Défaut: votre répertoire par défaut.</translation>
     </message>
     <message>
         <source>Skipped paths</source>
@@ -434,7 +434,35 @@
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90% to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation>Pourcentage d&apos;occupation du disque provoquant l&apos;arrêt de l&apos;indexation&lt;br&gt;(Ex: 90% pour arrêter quand le disque est 90% plein. 0 ou 100 signifient pas de limite)</translation>
+        <translation type="vanished">Pourcentage d&apos;occupation du disque provoquant l&apos;arrêt de l&apos;indexation&lt;br&gt;(Ex: 90% pour arrêter quand le disque est 90% plein. 0 ou 100 signifient pas de limite)</translation>
+    </message>
+    <message>
+        <source>Start folders</source>
+        <translation>Répertoires de départ</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
+        <translation>Liste des répertoires où l&amp;apos;indexation récursive démarre. Défaut: votre répertoire par défaut.</translation>
+    </message>
+    <message>
+        <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
+        <translation>Pourcentage d&apos;occupation du disque provoquant l&apos;arrêt de l&apos;indexation&lt;br&gt;)Ex: 90% pour arrêter quand le disque est 90% plein. 0 ou 100 signifient pas de limite)</translation>
+    </message>
+    <message>
+        <source>Browser add-on download folder</source>
+        <translation>Répertoire de téléchargement utilisé par l&apos;extension du navigateur</translation>
+    </message>
+    <message>
+        <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
+        <translation>Ne changez cette valeur que si vous avez aussi changé la valeur du répertoire de téléchargement dans l&apos;extension.&lt;br&gt;Dans ce cas, utiliser le chemin absolu (ex: /home/[moi]/Téléchargements/monsousdir)</translation>
+    </message>
+    <message>
+        <source>Store some GUI parameters locally to the index</source>
+        <translation>Enregistrer certains paramètres spécifiquement pour cet index</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
+        <translation>&lt;p&gt;Les paramètres de l&apos;interface sont normalement stockés dans un fichier global. En activant ce paramètre, certaines valeurs, comme par exemple la configuration du tableau de résultats, seront spéficiques de l&apos;index</translation>
     </message>
 </context>
 <context>
@@ -496,6 +524,24 @@ Ceci diminue les ressources consommées par l&apos;indexation et aide le chargem
     <message>
         <source>Global</source>
         <translation>Global</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigSwitchDLG</name>
+    <message>
+        <source>Switch to other configuration</source>
+        <translation>Utiliser une autre configuration</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigSwitchW</name>
+    <message>
+        <source>Choose other</source>
+        <translation>Choisir une autre</translation>
+    </message>
+    <message>
+        <source>Choose configuration directory</source>
+        <translation>Choisir un répertoire de configuration</translation>
     </message>
 </context>
 <context>
@@ -1021,7 +1067,7 @@ Cliquez sur Annuler si vous voulez modifier le fichier de configuration avant le
     </message>
     <message>
         <source>These are patterns for file or directory  names which should not be indexed.</source>
-        <translation>Canevas définissant les fichiers ou répertoires qui ne doivent pas etre indexés.</translation>
+        <translation type="vanished">Canevas définissant les fichiers ou répertoires qui ne doivent pas etre indexés.</translation>
     </message>
     <message>
         <source>Default character set</source>
@@ -1086,6 +1132,10 @@ Cliquez sur Annuler si vous voulez modifier le fichier de configuration avant le
     <message>
         <source>&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</source>
         <translation>&lt;i&gt;Les paramètres qui suivent sont définis soit globalement, si la sélection dans la liste ci-dessus est vide ou réduite à la ligne vide, soit pour le répertoire sélectionné. Vous pouvez ajouter et enlever des répertoires en cliquant les boutons +/-.</translation>
+    </message>
+    <message>
+        <source>These are patterns for file or directory names which should not be indexed.</source>
+        <translation>Canevas définissant les fichiers ou répertoires qui ne doivent pas etre indexés.</translation>
     </message>
 </context>
 <context>
@@ -2034,7 +2084,7 @@ Voulez vous afficher le dialogue de préférences ?</translation>
     </message>
     <message>
         <source>&amp;User manual</source>
-        <translation>&amp;Manuel</translation>
+        <translation type="vanished">&amp;Manuel</translation>
     </message>
     <message>
         <source>Recoll</source>
@@ -2323,6 +2373,14 @@ Voulez vous afficher le dialogue de préférences ?</translation>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
         <translation>Choisir une autre configuration (démarre une nouvelle instance remplacant celle-ci)</translation>
+    </message>
+    <message>
+        <source>&amp;User manual (local, one HTML page)</source>
+        <translation>Manuel utilisateur (local, une seule page HTML)</translation>
+    </message>
+    <message>
+        <source>&amp;Online manual (Recoll Web site)</source>
+        <translation>Manuel en ligne (site WEB Recoll)</translation>
     </message>
 </context>
 <context>
@@ -5004,6 +5062,62 @@ La valeur par défaut est 2%</translation>
     <message>
         <source>Side filter dates format (change needs restart)</source>
         <translation>Format pour les dates du filtre (un changement nécessite un redémarrage de l&apos;application)</translation>
+    </message>
+    <message>
+        <source>If set, starting a new instance on the same index will raise an existing one.</source>
+        <translation>Décide si démarrer une nouvelle instance ne fait qu&apos;activer l&apos;instance existente.</translation>
+    </message>
+    <message>
+        <source>Single application</source>
+        <translation>Instance d&apos;application unique</translation>
+    </message>
+    <message>
+        <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
+        <translation>Positionner à zéro pour accélerer le démarrage en évitant le calcul de l&apos;arbre</translation>
+    </message>
+    <message>
+        <source>The completion only changes the entry when activated.</source>
+        <translation>La valeur de complétion ne change l&apos;entrée que si le popup est activé.</translation>
+    </message>
+    <message>
+        <source>Completion: no automatic line editing.</source>
+        <translation>Complétion: pas d&apos;édition automatique de la ligne.</translation>
+    </message>
+    <message>
+        <source>Interface language (needs restart):</source>
+        <translation>Langue d&apos;interface (redémarrage nécessaire)</translation>
+    </message>
+    <message>
+        <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
+        <translation>Note: la plupart des traductions sont incomplètes. Laisser vide pour utiliser l&apos;environnement système.</translation>
+    </message>
+    <message>
+        <source>Preview</source>
+        <translation>Prévisualisation</translation>
+    </message>
+    <message>
+        <source>Set to 0 to disable details/summary feature</source>
+        <translation>Positionner à zéro pour toujours afficher le champ complet</translation>
+    </message>
+    <message>
+        <source>Fields display: max field length before using summary:</source>
+        <translation>Affichage des champs: longueur maximale affichée directement:</translation>
+    </message>
+    <message>
+        <source>Number of lines to be shown over a search term found by preview search.</source>
+        <translation>Nombre de lignes visibles au dessus d&apos;un terme trouvé par la recherche</translation>
+    </message>
+    <message>
+        <source>Search term line offset:</source>
+        <translation>Décalage vertical d&apos;un résultat de recherche</translation>
+    </message>
+    <message>
+        <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
+        <translation>Les caractères joker *?[] seront inactivés et traités comme de la ponctuation </translation>
+    </message>
+    <message>
+        <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
+        <translation>Ignorer les caractères joker dans les modes &quot;Tous les termes&quot; et &quot;Certains termes&quot;</translation>
     </message>
 </context>
 </TS>

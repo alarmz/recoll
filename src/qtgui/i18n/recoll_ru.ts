@@ -86,7 +86,7 @@
         <translation>Загрузить предыдущий сохранённый запрос</translation>
     </message>
     <message>
-        <location filename="../advsearch_w.cpp" line="437"/>
+        <location filename="../advsearch_w.cpp" line="434"/>
         <source>Bad multiplier suffix in size filter</source>
         <translation>Неверный множитель в фильтре размера</translation>
     </message>
@@ -301,14 +301,12 @@
         <translation>Параметры поиска</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="237"/>
         <source>Top directories</source>
-        <translation>Каталоги верхнего уровня</translation>
+        <translation type="vanished">Каталоги верхнего уровня</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="238"/>
         <source>The list of directories where recursive indexing starts. Default: your home.</source>
-        <translation>Список каталогов, где начинается рекурсивное индексирование. По умолчанию: домашний каталог.</translation>
+        <translation type="vanished">Список каталогов, где начинается рекурсивное индексирование. По умолчанию: домашний каталог.</translation>
     </message>
     <message>
         <location filename="../confgui/confguiindex.cpp" line="242"/>
@@ -375,9 +373,23 @@
         <translation type="vanished">Степень заполнения диска в процентах, при которой прекратится индексирование&lt;br&gt;Например, 90% для останова на 90% заполнения; 0 или 100 снимает ограничение</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="290"/>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90% to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation>Степень заполнения диска в процентах, при которой прекратится индексирование&lt;br&gt;Например, 90% для останова на 90% заполнения; 0 или 100 снимает ограничение</translation>
+        <translation type="vanished">Степень заполнения диска в процентах, при которой прекратится индексирование&lt;br&gt;Например, 90% для останова на 90% заполнения; 0 или 100 снимает ограничение</translation>
+    </message>
+    <message>
+        <location filename="../confgui/confguiindex.cpp" line="237"/>
+        <source>Start folders</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../confgui/confguiindex.cpp" line="238"/>
+        <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../confgui/confguiindex.cpp" line="290"/>
+        <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../confgui/confguiindex.cpp" line="292"/>
@@ -450,142 +462,183 @@
         <translation>Имя каталога хранения просмотренных веб-страниц.&lt;br&gt;Путь указывается относительно каталога конфигурации и не является абсолютным.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="353"/>
+        <location filename="../confgui/confguiindex.cpp" line="351"/>
         <source>Max. size for the web store (MB)</source>
         <translation>Предельный размер веб-хранилища (МБ)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="354"/>
+        <location filename="../confgui/confguiindex.cpp" line="352"/>
         <source>Entries will be recycled once the size is reached.&lt;br&gt;Only increasing the size really makes sense because reducing the value will not truncate an existing file (only waste space at the end).</source>
         <translation>Записи будут удалены при достижении максимального размера хранилища.&lt;br&gt;Целесообразно только увеличивать размер, так как уменьшение значения не повлечёт усечение существующего файла (лишь перестанет использовать его хвост).</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="364"/>
+        <location filename="../confgui/confguiindex.cpp" line="361"/>
         <source>Page recycle interval</source>
         <translation>Интервал обновления страницы</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="365"/>
+        <location filename="../confgui/confguiindex.cpp" line="362"/>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
         <translation>&lt;p&gt;По умолчанию в кэше хранится только один экземпляр ссылки. Это можно изменить в настройках, где указывается значение длительности хранения нескольких экземпляров (&apos;день&apos;, &apos;неделя&apos;, &apos;месяц&apos;, &apos;год&apos;). Учтите, что увеличение интервала не сотрёт уже существующие записи.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="378"/>
+        <location filename="../confgui/confguiindex.cpp" line="375"/>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
         <translation>На заметку: старые страницы будут стёрты, чтобы освободилось место для новых, когда будет достигнут предельный объём. Текущий размер: %1</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="389"/>
+        <location filename="../confgui/confguiindex.cpp" line="381"/>
+        <source>Browser add-on download folder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../confgui/confguiindex.cpp" line="382"/>
+        <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../confgui/confguiindex.cpp" line="395"/>
         <source>Automatic diacritics sensitivity</source>
         <translation>Автоматический учёт диакритических знаков</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="390"/>
+        <location filename="../confgui/confguiindex.cpp" line="396"/>
         <source>&lt;p&gt;Automatically trigger diacritics sensitivity if the search term has accented characters (not in unac_except_trans). Else you need to use the query language and the &lt;i&gt;D&lt;/i&gt; modifier to specify diacritics sensitivity.</source>
         <translation>&lt;p&gt;Автоматически включает учёт диакритических знаков, если строка поиска содержит диакритические знаки (кроме unac_except_trans). В противном случае используйте язык запросов и модификатор &lt;i&gt;D&lt;/i&gt; для учёта диакритических знаков.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="397"/>
+        <location filename="../confgui/confguiindex.cpp" line="403"/>
         <source>Automatic character case sensitivity</source>
         <translation>Автоматический учёт регистра</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="398"/>
+        <location filename="../confgui/confguiindex.cpp" line="404"/>
         <source>&lt;p&gt;Automatically trigger character case sensitivity if the entry has upper-case characters in any but the first position. Else you need to use the query language and the &lt;i&gt;C&lt;/i&gt; modifier to specify character-case sensitivity.</source>
         <translation>&lt;p&gt;Автоматически включает учёт регистра, если строка поиска содержит заглавные буквы (кроме первой буквы). В противном случае используйте язык запросов и модификатор &lt;i&gt;C&lt;/i&gt; учёта регистра.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="407"/>
+        <location filename="../confgui/confguiindex.cpp" line="413"/>
         <source>Maximum term expansion count</source>
         <translation>Предельное число однокоренных слов</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="408"/>
+        <location filename="../confgui/confguiindex.cpp" line="414"/>
         <source>&lt;p&gt;Maximum expansion count for a single term (e.g.: when using wildcards). The default of 10 000 is reasonable and will avoid queries that appear frozen while the engine is walking the term list.</source>
         <translation>&lt;p&gt;Предельное число однокоренных слов для одного слова (например, при использовании масок). Значение по умолчанию в 10 000 является разумным и поможет избежать ситуаций, когда запрос кажется зависшим при переборе списка слов.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="415"/>
+        <location filename="../confgui/confguiindex.cpp" line="421"/>
         <source>Maximum Xapian clauses count</source>
         <translation>Предельное число Xapian-предложений</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="416"/>
+        <location filename="../confgui/confguiindex.cpp" line="422"/>
         <source>&lt;p&gt;Maximum number of elementary clauses we add to a single Xapian query. In some cases, the result of term expansion can be multiplicative, and we want to avoid using excessive memory. The default of 100 000 should be both high enough in most cases and compatible with current typical hardware configurations.</source>
         <translation>&lt;p&gt;Предельное число элементарных условий, добавляемых к запросу Xapian. В некоторых случаях результат поиска однокоренных слов может быть избыточным и занять слишком большой объём памяти. Значение по умолчанию в 100 000 достаточно для большинства случаев и подходит для современных аппаратных конфигураций.</translation>
+    </message>
+    <message>
+        <location filename="../confgui/confguiindex.cpp" line="432"/>
+        <source>Store some GUI parameters locally to the index</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../confgui/confguiindex.cpp" line="433"/>
+        <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ConfSubPanelW</name>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="513"/>
+        <location filename="../confgui/confguiindex.cpp" line="520"/>
         <source>Only mime types</source>
         <translation>Только MIME-типы</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="514"/>
+        <location filename="../confgui/confguiindex.cpp" line="521"/>
         <source>An exclusive list of indexed mime types.&lt;br&gt;Nothing else will be indexed. Normally empty and inactive</source>
         <translation>Исчерпывающий перечень индексируемых типов MIME.&lt;br&gt;Другие типы индексироваться не будут. Обычно пуст и неактивен</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="523"/>
+        <location filename="../confgui/confguiindex.cpp" line="530"/>
         <source>Exclude mime types</source>
         <translation>Исключить MIME-типы</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="524"/>
+        <location filename="../confgui/confguiindex.cpp" line="531"/>
         <source>Mime types not to be indexed</source>
         <translation>Типы MIME, индексирование которых проводиться не будет</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="600"/>
+        <location filename="../confgui/confguiindex.cpp" line="607"/>
         <source>Max. compressed file size (KB)</source>
         <translation>Предельный размер сжатого файла (KB)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="601"/>
+        <location filename="../confgui/confguiindex.cpp" line="608"/>
         <source>This value sets a threshold beyond which compressedfiles will not be processed. Set to -1 for no limit, to 0 for no decompression ever.</source>
         <translation>Это значение устанавливает предельный размер сжатых файлов, которые будут обрабатываться. Значение -1 снимает ограничение, 0 отключает распаковку.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="611"/>
+        <location filename="../confgui/confguiindex.cpp" line="618"/>
         <source>Max. text file size (MB)</source>
         <translation>Предельный размер текстового файла (MB)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="612"/>
+        <location filename="../confgui/confguiindex.cpp" line="619"/>
         <source>This value sets a threshold beyond which text files will not be processed. Set to -1 for no limit. 
 This is for excluding monster log files from the index.</source>
         <translation>Это значение устанавливает предельный размер текстовых файлов, которые будут обрабатываться. Значение -1 снимает ограничение.
 Рекомендуется использовать для исключения файлов журнала большого размера из процесса индексирования.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="623"/>
+        <location filename="../confgui/confguiindex.cpp" line="630"/>
         <source>Text file page size (KB)</source>
         <translation>Pазмер страницы текстового файла (КБ)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="624"/>
+        <location filename="../confgui/confguiindex.cpp" line="631"/>
         <source>If this value is set (not equal to -1), text files will be split in chunks of this size for indexing.
 This will help searching very big text  files (ie: log files).</source>
         <translation>Если это значение установлено (т.е. не равно -1), то при индексировании текстовые файлы разбиваются на блоки соответствующего размера.
 Данный параметр полезен при выполнении поиска в очень больших текстовых файлах (например, файлах журналов).</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="635"/>
+        <location filename="../confgui/confguiindex.cpp" line="642"/>
         <source>Max. filter exec. time (s)</source>
         <translation>Пред. время работы фильтра (с)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="636"/>
+        <location filename="../confgui/confguiindex.cpp" line="643"/>
         <source>External filters working longer than this will be aborted. This is for the rare case (ie: postscript) where a document could cause a filter to loop. Set to -1 for no limit.
 </source>
         <translation>Работа внешних фильтров, длящаяся дольше указанного времени, будет прервана. Применяется для редких случаев (например, с фильтром postscript), когда возникает зацикливание фильтра при обработке какого-то документа. Установите значение -1, чтобы снять ограничение.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="671"/>
+        <location filename="../confgui/confguiindex.cpp" line="678"/>
         <source>Global</source>
         <translation>Общее</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigSwitchDLG</name>
+    <message>
+        <location filename="../configswitch.ui" line="14"/>
+        <source>Switch to other configuration</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ConfigSwitchW</name>
+    <message>
+        <location filename="../configswitch.cpp" line="44"/>
+        <source>Choose other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../configswitch.cpp" line="114"/>
+        <source>Choose configuration directory</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -802,19 +855,19 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>FragButs</name>
     <message>
-        <location filename="../fragbuts.cpp" line="147"/>
+        <location filename="../fragbuts.cpp" line="145"/>
         <source>%1 not found.</source>
         <translation>%1 не найден.</translation>
     </message>
     <message>
-        <location filename="../fragbuts.cpp" line="153"/>
+        <location filename="../fragbuts.cpp" line="151"/>
         <source>%1:
  %2</source>
         <translation>%1:
  %2</translation>
     </message>
     <message>
-        <location filename="../fragbuts.cpp" line="160"/>
+        <location filename="../fragbuts.cpp" line="158"/>
         <source>Query Fragments</source>
         <translation>Фрагменты запроса</translation>
     </message>
@@ -882,17 +935,17 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Main</name>
     <message>
-        <location filename="../main.cpp" line="407"/>
+        <location filename="../main.cpp" line="463"/>
         <source>&quot;history&quot; file is damaged, please check or remove it: </source>
         <translation>Файл истории повреждён, проверьте или удалите его: </translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="431"/>
+        <location filename="../main.cpp" line="495"/>
         <source>No db directory in configuration</source>
         <translation>Каталог базы не задан в конфигурации</translation>
     </message>
     <message>
-        <location filename="../main.cpp" line="443"/>
+        <location filename="../main.cpp" line="507"/>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
         <translation>Необходимо включить параметр настройки «Отображать значок в трее»!
@@ -937,17 +990,17 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;С учётом регистра</translation>
     </message>
     <message>
-        <location filename="../preview.ui" line="111"/>
+        <location filename="../preview.ui" line="118"/>
         <source>Previous result document</source>
         <translation>Предыдущий документ с результатами</translation>
     </message>
     <message>
-        <location filename="../preview.ui" line="125"/>
+        <location filename="../preview.ui" line="132"/>
         <source>Next result document</source>
         <translation>Следующий документ с результатами</translation>
     </message>
     <message>
-        <location filename="../preview.ui" line="156"/>
+        <location filename="../preview.ui" line="163"/>
         <source>Open</source>
         <translation>Открыть</translation>
     </message>
@@ -996,67 +1049,67 @@ p, li { white-space: pre-wrap; }
         <translation>Печать</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="719"/>
+        <location filename="../preview_w.cpp" line="741"/>
         <source>Error loading the document: file missing.</source>
         <translation>Ошибка загрузки документа: файл отсутствует.</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="722"/>
+        <location filename="../preview_w.cpp" line="744"/>
         <source>Error loading the document: no permission.</source>
         <translation>Ошибка загрузки документа: нет разрешения.</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="726"/>
+        <location filename="../preview_w.cpp" line="748"/>
         <source>Error loading: backend not configured.</source>
         <translation>Ошибка загрузки: бэкенд не настроен.</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="730"/>
+        <location filename="../preview_w.cpp" line="752"/>
         <source>Error loading the document: other handler error&lt;br&gt;Maybe the application is locking the file ?</source>
         <translation>загрузки документа: ошибка другого обработчика&lt;br&gt;Может, приложение заблокировало файл?</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="733"/>
+        <location filename="../preview_w.cpp" line="755"/>
         <source>Error loading the document: other handler error.</source>
         <translation>Ошибка загрузки документа: ошибка другого обработчика.</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="738"/>
+        <location filename="../preview_w.cpp" line="760"/>
         <source>&lt;br&gt;Attempting to display from stored text.</source>
         <translation>&lt;br&gt;Попытка отобразить из сохранённого текста.</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="772"/>
+        <location filename="../preview_w.cpp" line="794"/>
         <source>Missing helper program: </source>
         <translation>Отсутствует обработчики: </translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="773"/>
+        <location filename="../preview_w.cpp" line="795"/>
         <source>Can&apos;t turn doc into internal representation for </source>
         <translation>Невозможно сконвертировать документ во внутреннее представление для </translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="777"/>
+        <location filename="../preview_w.cpp" line="799"/>
         <source>Canceled</source>
         <translation>Отменено</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="831"/>
+        <location filename="../preview_w.cpp" line="853"/>
         <source>Cancel</source>
         <translation>Отмена</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="866"/>
+        <location filename="../preview_w.cpp" line="888"/>
         <source>Could not fetch stored text</source>
         <translation>Не удалось получить сохранённый текст</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="915"/>
+        <location filename="../preview_w.cpp" line="937"/>
         <source>Creating preview text</source>
         <translation>Создание текста для просмотра</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="978"/>
+        <location filename="../preview_w.cpp" line="1000"/>
         <source>Loading preview text into editor</source>
         <translation>Загрузка текста в редактор</translation>
     </message>
@@ -1064,70 +1117,70 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>PreviewTextEdit</name>
     <message>
-        <location filename="../preview_w.cpp" line="1135"/>
-        <location filename="../preview_w.cpp" line="1146"/>
+        <location filename="../preview_w.cpp" line="1160"/>
+        <location filename="../preview_w.cpp" line="1171"/>
         <source>Show fields</source>
         <translation>Показать поля</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1137"/>
-        <location filename="../preview_w.cpp" line="1142"/>
+        <location filename="../preview_w.cpp" line="1162"/>
+        <location filename="../preview_w.cpp" line="1167"/>
         <source>Show image</source>
         <translation>Показать изображение</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1140"/>
-        <location filename="../preview_w.cpp" line="1147"/>
+        <location filename="../preview_w.cpp" line="1165"/>
+        <location filename="../preview_w.cpp" line="1172"/>
         <source>Show main text</source>
         <translation>Показать основной текст</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1150"/>
+        <location filename="../preview_w.cpp" line="1175"/>
         <source>Reload as Plain Text</source>
         <translation>Перезагрузить как простой текст</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1151"/>
+        <location filename="../preview_w.cpp" line="1176"/>
         <source>Reload as HTML</source>
         <translation>Перезагрузить как HTML</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1153"/>
+        <location filename="../preview_w.cpp" line="1178"/>
         <source>Select All</source>
         <translation>Выделить всё</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1154"/>
+        <location filename="../preview_w.cpp" line="1179"/>
         <source>Copy</source>
         <translation>Копировать</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1157"/>
+        <location filename="../preview_w.cpp" line="1182"/>
         <source>Print</source>
         <translation>Печать</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1160"/>
+        <location filename="../preview_w.cpp" line="1185"/>
         <source>Fold lines</source>
         <translation>Линия сгиба</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1162"/>
+        <location filename="../preview_w.cpp" line="1187"/>
         <source>Preserve indentation</source>
         <translation>Сохранить отступы</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1165"/>
+        <location filename="../preview_w.cpp" line="1190"/>
         <source>Save document to file</source>
         <translation>Сохранить документ в файл</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1167"/>
+        <location filename="../preview_w.cpp" line="1192"/>
         <source>Open document</source>
         <translation>Открыть документ</translation>
     </message>
     <message>
-        <location filename="../preview_w.cpp" line="1323"/>
+        <location filename="../preview_w.cpp" line="1363"/>
         <source>Print Current Preview</source>
         <translation>Печать текущего вида</translation>
     </message>
@@ -1135,69 +1188,73 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="438"/>
+        <location filename="../confgui/confguiindex.cpp" line="450"/>
         <source>&lt;b&gt;Customised subtrees</source>
         <translation>&lt;b&gt;Пользовательские подкаталоги</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="439"/>
+        <location filename="../confgui/confguiindex.cpp" line="451"/>
         <source>The list of subdirectories in the indexed hierarchy &lt;br&gt;where some parameters need to be redefined. Default: empty.</source>
         <translation>Список подкаталогов индексируемого дерева,&lt;br&gt;к которым должны применяться особые параметры. По умолчанию: пусто.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="473"/>
+        <location filename="../confgui/confguiindex.cpp" line="482"/>
         <source>&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</source>
         <translation>&lt;i&gt;</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="496"/>
+        <location filename="../confgui/confguiindex.cpp" line="504"/>
         <source>Skipped names</source>
         <translation>Пропускать</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="497"/>
         <source>These are patterns for file or directory  names which should not be indexed.</source>
-        <translation>Шаблоны имён файлов или каталогов, имена которых не следует индексировать.</translation>
+        <translation type="vanished">Шаблоны имён файлов или каталогов, имена которых не следует индексировать.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="534"/>
+        <location filename="../confgui/confguiindex.cpp" line="505"/>
+        <source>These are patterns for file or directory names which should not be indexed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../confgui/confguiindex.cpp" line="541"/>
         <source>Ignored endings</source>
         <translation>Игнорируемые окончания</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="535"/>
+        <location filename="../confgui/confguiindex.cpp" line="542"/>
         <source>These are file name endings for files which will be indexed by name only 
 (no MIME type identification attempt, no decompression, no content indexing).</source>
         <translation>Окончания имён файлов, индексируемых только по имени
 (без попытки определить типы MIME, разжатия либо индексации содержимого).</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="564"/>
+        <location filename="../confgui/confguiindex.cpp" line="571"/>
         <source>Default&lt;br&gt;character set</source>
         <translation>Кодировка по умолчанию</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="565"/>
+        <location filename="../confgui/confguiindex.cpp" line="572"/>
         <source>Character set used for reading files which do not identify the character set internally, for example pure text files.&lt;br&gt;The default value is empty, and the value from the NLS environnement is used.</source>
         <translation>Кодировка, которая будет использована при чтении файлов, в которых кодировка не указана явно; например, простых текстовых файлов.&lt;br&gt;Значение по умолчанию не установлено и берётся из параметров системы (локали).</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="578"/>
+        <location filename="../confgui/confguiindex.cpp" line="585"/>
         <source>Follow symbolic links</source>
         <translation>Открывать символические ссылки</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="579"/>
+        <location filename="../confgui/confguiindex.cpp" line="586"/>
         <source>Follow symbolic links while indexing. The default is no, to avoid duplicate indexing</source>
         <translation>Открывать символические ссылки при индексировании. По умолчанию действие не выполняется во избежание дублированного индексирования</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="589"/>
+        <location filename="../confgui/confguiindex.cpp" line="596"/>
         <source>Index all file names</source>
         <translation>Индексировать все имена файлов</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="590"/>
+        <location filename="../confgui/confguiindex.cpp" line="597"/>
         <source>Index the names of files for which the contents cannot be identified or processed (no or unsupported mime type). Default true</source>
         <translation>Индексировать имена файлов, содержимое которых невозможно определить или обработать (неизвестный или неподдерживаемый тип MIME). По умолчанию включено</translation>
     </message>
@@ -1351,48 +1408,48 @@ p, li { white-space: pre-wrap; }
         <translation>Также запустить прямо сейчас службу индексирования.</translation>
     </message>
     <message>
-        <location filename="../rtitool.cpp" line="89"/>
+        <location filename="../rtitool.cpp" line="88"/>
         <source>Replacing: </source>
         <translation>Замена: </translation>
     </message>
     <message>
-        <location filename="../rtitool.cpp" line="92"/>
+        <location filename="../rtitool.cpp" line="91"/>
         <source>Replacing file</source>
         <translation>Замена файла</translation>
     </message>
     <message>
-        <location filename="../rtitool.cpp" line="119"/>
+        <location filename="../rtitool.cpp" line="118"/>
         <source>Can&apos;t create: </source>
         <translation>Невозможно создать: </translation>
     </message>
     <message>
-        <location filename="../rtitool.cpp" line="120"/>
-        <location filename="../rtitool.cpp" line="134"/>
+        <location filename="../rtitool.cpp" line="119"/>
+        <location filename="../rtitool.cpp" line="133"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../rtitool.cpp" line="135"/>
+        <location filename="../rtitool.cpp" line="134"/>
         <source>Could not execute recollindex</source>
         <translation>Не удалось запустить recollindex</translation>
     </message>
     <message>
-        <location filename="../rtitool.cpp" line="145"/>
+        <location filename="../rtitool.cpp" line="144"/>
         <source>Deleting: </source>
         <translation>Удаление: </translation>
     </message>
     <message>
-        <location filename="../rtitool.cpp" line="148"/>
+        <location filename="../rtitool.cpp" line="147"/>
         <source>Deleting file</source>
         <translation>Удаление файла</translation>
     </message>
     <message>
-        <location filename="../rtitool.cpp" line="159"/>
+        <location filename="../rtitool.cpp" line="158"/>
         <source>Removing autostart</source>
         <translation>Отмена автозапуска</translation>
     </message>
     <message>
-        <location filename="../rtitool.cpp" line="160"/>
+        <location filename="../rtitool.cpp" line="159"/>
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation>Файл автозапуска удалён. Прервать текущий процесс?</translation>
     </message>
@@ -1400,7 +1457,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RclCompleterModel</name>
     <message>
-        <location filename="../ssearch_w.cpp" line="106"/>
+        <location filename="../ssearch_w.cpp" line="145"/>
         <source> Hits</source>
         <translation> (количество нажатий)</translation>
     </message>
@@ -1408,179 +1465,178 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RclMain</name>
     <message>
-        <location filename="../rclm_idx.cpp" line="48"/>
+        <location filename="../rclm_idx.cpp" line="53"/>
         <source>Indexing in progress: </source>
         <translation>Идёт индексирование:</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="51"/>
+        <location filename="../rclm_idx.cpp" line="56"/>
         <source>None</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="52"/>
+        <location filename="../rclm_idx.cpp" line="57"/>
         <source>Updating</source>
         <translation>Обновление</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="53"/>
+        <location filename="../rclm_idx.cpp" line="58"/>
         <source>Flushing</source>
         <translation>Заполнение</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="54"/>
+        <location filename="../rclm_idx.cpp" line="59"/>
         <source>Purge</source>
         <translation>Очистка</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="55"/>
+        <location filename="../rclm_idx.cpp" line="60"/>
         <source>Stemdb</source>
         <translation>Корнебаза</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="56"/>
+        <location filename="../rclm_idx.cpp" line="61"/>
         <source>Closing</source>
         <translation>Закрытие</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="57"/>
+        <location filename="../rclm_idx.cpp" line="62"/>
         <source>Done</source>
         <translation>Готово</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="58"/>
+        <location filename="../rclm_idx.cpp" line="63"/>
         <source>Monitor</source>
         <translation>Монитор</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="59"/>
+        <location filename="../rclm_idx.cpp" line="64"/>
         <source>Unknown</source>
         <translation>неизвестно</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="63"/>
+        <location filename="../rclm_idx.cpp" line="68"/>
         <source>documents</source>
         <translation>документы</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="63"/>
+        <location filename="../rclm_idx.cpp" line="68"/>
         <source>document</source>
         <translation>документ</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="64"/>
+        <location filename="../rclm_idx.cpp" line="69"/>
         <source>files</source>
         <translation>файлы</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="64"/>
+        <location filename="../rclm_idx.cpp" line="69"/>
         <source>file</source>
         <translation>файл</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="65"/>
+        <location filename="../rclm_idx.cpp" line="70"/>
         <source>errors</source>
         <translation>ошибки</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="65"/>
+        <location filename="../rclm_idx.cpp" line="70"/>
         <source>error</source>
         <translation>ошибка</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="69"/>
+        <location filename="../rclm_idx.cpp" line="74"/>
         <source>total files)</source>
         <translation>всего файлов)</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="144"/>
+        <location filename="../rclm_idx.cpp" line="149"/>
         <source>Indexing interrupted</source>
         <translation>Индексирование прервано</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="147"/>
+        <location filename="../rclm_idx.cpp" line="152"/>
         <source>Indexing failed</source>
         <translation>Не удалось выполнить индексирование</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="149"/>
+        <location filename="../rclm_idx.cpp" line="154"/>
         <source> with additional message: </source>
         <translation> с дополнительным сообщением: </translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="159"/>
+        <location filename="../rclm_idx.cpp" line="164"/>
         <source>Non-fatal indexing message: </source>
         <translation>Сообщение о некритичной ошибке индексирования: </translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="179"/>
-        <location filename="../rclm_idx.cpp" line="212"/>
+        <location filename="../rclm_idx.cpp" line="184"/>
+        <location filename="../rclm_idx.cpp" line="217"/>
         <source>Stop &amp;Indexing</source>
         <translation>О&amp;становить индексирование</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="193"/>
+        <location filename="../rclm_idx.cpp" line="198"/>
         <source>Index locked</source>
         <translation>Индекс заблокирован</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="202"/>
+        <location filename="../rclm_idx.cpp" line="207"/>
         <source>Update &amp;Index</source>
         <translation>Обновить &amp;индекс</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="230"/>
+        <location filename="../rclm_idx.cpp" line="235"/>
         <source>Indexing done</source>
         <translation>Индексация завершена</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="252"/>
+        <location filename="../rclm_idx.cpp" line="257"/>
         <source>Bad paths</source>
         <translation>Неверные пути</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="253"/>
+        <location filename="../rclm_idx.cpp" line="258"/>
         <source>Empty or non-existant paths in configuration file. Click Ok to start indexing anyway (absent data will not be purged from the index):
 </source>
         <translation>Пустые или несуществующие пути в файле конфигурации. Нажмите Ok, если всё равно хотите запустить процесс индексирования (отсутствующие данные не будут убраны из файла индекса):
 </translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="382"/>
+        <location filename="../rclm_idx.cpp" line="387"/>
         <source>Erasing index</source>
         <translation>Стирание индекса</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="382"/>
+        <location filename="../rclm_idx.cpp" line="387"/>
         <source>Reset the index and start from scratch ?</source>
         <translation>Сбросить индекс и начать заново?</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="549"/>
+        <location filename="../rclm_idx.cpp" line="554"/>
         <source>Selection patterns need topdir</source>
         <translation>Для шаблонов отбора требуется topdir</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="550"/>
+        <location filename="../rclm_idx.cpp" line="555"/>
         <source>Selection patterns can only be used with a start directory</source>
         <translation>Шаблоны отбора могут быть использованы только с начальным каталогом</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="572"/>
-        <location filename="../rclm_idx.cpp" line="590"/>
+        <location filename="../rclm_idx.cpp" line="577"/>
+        <location filename="../rclm_idx.cpp" line="595"/>
         <location filename="../rclm_preview.cpp" line="126"/>
-        <location filename="../rclm_preview.cpp" line="171"/>
-        <location filename="../rclm_preview.cpp" line="211"/>
+        <location filename="../rclm_preview.cpp" line="204"/>
         <source>Warning</source>
         <translation>Предупреждение</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="572"/>
+        <location filename="../rclm_idx.cpp" line="577"/>
         <source>Can&apos;t update index: indexer running</source>
         <translation>Невозможно обновить индекс: индексатор уже запущен</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="590"/>
+        <location filename="../rclm_idx.cpp" line="595"/>
         <source>Can&apos;t update index: internal error</source>
         <translation>Невозможно обновить индекс: внутренняя ошибка</translation>
     </message>
@@ -1631,7 +1687,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rclm_preview.cpp" line="75"/>
-        <location filename="../rclm_view.cpp" line="352"/>
+        <location filename="../rclm_view.cpp" line="453"/>
         <source>Can&apos;t access file: </source>
         <translation>Невозможно получить доступ к файлу: </translation>
     </message>
@@ -1666,13 +1722,12 @@ p, li { white-space: pre-wrap; }
         <translation>&gt;Нажмите «Отмена» для возврата к списку. &lt;br&gt;Нажмите «Игнорировать», чтобы открыть просмотр (и запомнить выбор для данного сеанса).</translation>
     </message>
     <message>
-        <location filename="../rclm_preview.cpp" line="172"/>
-        <location filename="../rclm_preview.cpp" line="212"/>
+        <location filename="../rclm_preview.cpp" line="205"/>
         <source>Can&apos;t create preview window</source>
         <translation>Невозможно создать окно просмотра</translation>
     </message>
     <message>
-        <location filename="../rclm_preview.cpp" line="249"/>
+        <location filename="../rclm_preview.cpp" line="242"/>
         <source>This search is not active anymore</source>
         <translation>Этот поиск больше не активен</translation>
     </message>
@@ -1681,58 +1736,58 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">Этот поиск больше не активен</translation>
     </message>
     <message>
-        <location filename="../rclm_preview.cpp" line="269"/>
+        <location filename="../rclm_preview.cpp" line="262"/>
         <source>Cannot retrieve document info from database</source>
         <translation>Невозможно извлечь сведения о документе из базы</translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="69"/>
+        <location filename="../rclm_saveload.cpp" line="66"/>
         <source>No search</source>
         <translation>Результаты поиска отсутствуют</translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="70"/>
+        <location filename="../rclm_saveload.cpp" line="66"/>
         <source>No preserved previous search</source>
         <translation>Отсутствуют сохранённые результаты предыдущего поиска</translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="76"/>
+        <location filename="../rclm_saveload.cpp" line="72"/>
         <source>Choose file to save</source>
         <translation>Выбор файла для сохранения</translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="77"/>
-        <location filename="../rclm_saveload.cpp" line="113"/>
+        <location filename="../rclm_saveload.cpp" line="73"/>
+        <location filename="../rclm_saveload.cpp" line="107"/>
         <source>Saved Queries (*.rclq)</source>
         <translation>Сохраненные запросы (*.rclq)</translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="102"/>
+        <location filename="../rclm_saveload.cpp" line="98"/>
         <source>Write failed</source>
         <translation>Не удалось записать</translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="103"/>
+        <location filename="../rclm_saveload.cpp" line="98"/>
         <source>Could not write to file</source>
         <translation>Не удалось выполнить запись в файл</translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="120"/>
+        <location filename="../rclm_saveload.cpp" line="114"/>
         <source>Read failed</source>
         <translation>Ошибка записи</translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="121"/>
+        <location filename="../rclm_saveload.cpp" line="114"/>
         <source>Could not open file: </source>
         <translation>Не удалось открыть файл: </translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="140"/>
+        <location filename="../rclm_saveload.cpp" line="134"/>
         <source>Load error</source>
         <translation>Ошибка загрузки</translation>
     </message>
     <message>
-        <location filename="../rclm_saveload.cpp" line="141"/>
+        <location filename="../rclm_saveload.cpp" line="134"/>
         <source>Could not load saved query</source>
         <translation>Не удалось загрузить сохранённый запрос</translation>
     </message>
@@ -1749,12 +1804,12 @@ Please check the desktop file</source>
 Проверьте файл .desktop</translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="181"/>
+        <location filename="../rclm_view.cpp" line="282"/>
         <source>No external viewer configured for mime type [</source>
         <translation>Не настроена внешняя программа для просмотра MIME-типа [</translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="204"/>
+        <location filename="../rclm_view.cpp" line="305"/>
         <source>Bad viewer command line for %1: [%2]
 Please check the mimeview file</source>
         <translation>Ошибка командной строки программы просмотра %1: [%2]
@@ -1771,49 +1826,49 @@ Do you want to start the  preferences dialog ?</source>
         <translation type="vanished">В командной строке программы просмотра %1 указан родительский файл, а в URL — сетевой протокол http[s]: не поддерживается</translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="238"/>
+        <location filename="../rclm_view.cpp" line="339"/>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="283"/>
+        <location filename="../rclm_view.cpp" line="384"/>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
         <translation>В командной строке программы просмотра %1 указан родительский файл, а в URL — не file:// : не поддерживается</translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="289"/>
+        <location filename="../rclm_view.cpp" line="390"/>
         <source>Viewer command line for %1 specifies both file and parent file value: unsupported</source>
         <translation>В командной строке программы просмотра %1 указан как сам файл, так и родительский файл: не поддерживается</translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="303"/>
+        <location filename="../rclm_view.cpp" line="404"/>
         <source>Cannot find parent document</source>
         <translation>Невозможно найти родительский документ</translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="338"/>
-        <location filename="../rclmain_w.cpp" line="1034"/>
+        <location filename="../rclm_view.cpp" line="439"/>
+        <location filename="../rclmain_w.cpp" line="1042"/>
         <source>Cannot extract document or create temporary file</source>
         <translation>Невозможно извлечь документ или создать временный файл</translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="358"/>
+        <location filename="../rclm_view.cpp" line="459"/>
         <source>Can&apos;t uncompress file: </source>
         <translation>Невозможно распаковать файл: </translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="373"/>
+        <location filename="../rclm_view.cpp" line="474"/>
         <source>Opening a temporary copy. Edits will be lost if you don&apos;t save&lt;br/&gt;them to a permanent location.</source>
         <translation>Открывается временная копия. Изменения будут утеряны, если их не сохранить&lt;br/&gt;особо.</translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="375"/>
+        <location filename="../rclm_view.cpp" line="476"/>
         <source>Do not show this warning next time (use GUI preferences to restore).</source>
         <translation>Больше не показывать (для восстановления используйте настройки интерфейса).</translation>
     </message>
     <message>
-        <location filename="../rclm_view.cpp" line="459"/>
+        <location filename="../rclm_view.cpp" line="568"/>
         <source>Executing: [</source>
         <translation>Выполняется: [</translation>
     </message>
@@ -1905,189 +1960,189 @@ Do you want to start the preferences dialog ?</source>
         <translation>Дубликаты</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="343"/>
-        <location filename="../rclmain_w.cpp" line="345"/>
-        <location filename="../rclmain_w.cpp" line="347"/>
         <location filename="../rclmain_w.cpp" line="351"/>
         <location filename="../rclmain_w.cpp" line="353"/>
         <location filename="../rclmain_w.cpp" line="355"/>
+        <location filename="../rclmain_w.cpp" line="359"/>
+        <location filename="../rclmain_w.cpp" line="361"/>
+        <location filename="../rclmain_w.cpp" line="363"/>
         <source>Main Window</source>
         <translation>Главное окно</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="343"/>
+        <location filename="../rclmain_w.cpp" line="351"/>
         <source>Clear search</source>
         <translation>Очистить поиск</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="345"/>
+        <location filename="../rclmain_w.cpp" line="353"/>
         <source>Move keyboard focus to search entry</source>
         <translation>Перенести фокус ввода на строку поиска</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="347"/>
+        <location filename="../rclmain_w.cpp" line="355"/>
         <source>Move keyboard focus to search, alt.</source>
         <translation>Перенести фокус ввода на строку поиска, также</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="351"/>
+        <location filename="../rclmain_w.cpp" line="359"/>
         <source>Toggle tabular display</source>
         <translation>Переключить табличное отображение</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="353"/>
+        <location filename="../rclmain_w.cpp" line="361"/>
         <source>Show menu search dialog</source>
         <translation>Показать диалоговое окно поиска</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="355"/>
+        <location filename="../rclmain_w.cpp" line="363"/>
         <source>Move keyboard focus to table</source>
         <translation>Перенести фокус клавиатуры на таблицу</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="370"/>
+        <location filename="../rclmain_w.cpp" line="378"/>
         <source>Tools</source>
         <translation>Инструменты</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="387"/>
+        <location filename="../rclmain_w.cpp" line="395"/>
         <source>Results</source>
         <translation>Результаты</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="441"/>
-        <location filename="../rclmain_w.cpp" line="450"/>
-        <location filename="../rclmain_w.cpp" line="466"/>
-        <location filename="../rclmain_w.cpp" line="481"/>
+        <location filename="../rclmain_w.cpp" line="449"/>
+        <location filename="../rclmain_w.cpp" line="458"/>
+        <location filename="../rclmain_w.cpp" line="474"/>
+        <location filename="../rclmain_w.cpp" line="489"/>
         <source>All</source>
         <translation>Всё</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="441"/>
+        <location filename="../rclmain_w.cpp" line="449"/>
         <source>media</source>
         <translation>медиа</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="441"/>
+        <location filename="../rclmain_w.cpp" line="449"/>
         <source>message</source>
         <translation>сообщение</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="442"/>
+        <location filename="../rclmain_w.cpp" line="450"/>
         <source>other</source>
         <translation>прочее</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="442"/>
+        <location filename="../rclmain_w.cpp" line="450"/>
         <source>presentation</source>
         <translation>презентация</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="443"/>
+        <location filename="../rclmain_w.cpp" line="451"/>
         <source>spreadsheet</source>
         <translation>таблица</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="443"/>
+        <location filename="../rclmain_w.cpp" line="451"/>
         <source>text</source>
         <translation>текст</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="444"/>
-        <location filename="../rclmain_w.cpp" line="949"/>
+        <location filename="../rclmain_w.cpp" line="452"/>
+        <location filename="../rclmain_w.cpp" line="957"/>
         <source>sorted</source>
         <translation>сортированное</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="444"/>
-        <location filename="../rclmain_w.cpp" line="951"/>
+        <location filename="../rclmain_w.cpp" line="452"/>
+        <location filename="../rclmain_w.cpp" line="959"/>
         <source>filtered</source>
         <translation>отфильтрованное</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="451"/>
+        <location filename="../rclmain_w.cpp" line="459"/>
         <source>Document filter</source>
         <translation>Фильтр документов</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="478"/>
+        <location filename="../rclmain_w.cpp" line="486"/>
         <source>F&amp;ilter</source>
         <translation>Ф&amp;ильтр</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="598"/>
+        <location filename="../rclmain_w.cpp" line="606"/>
         <source>Main index open error: </source>
         <translation>Ошибка открытия основного индекса: </translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="599"/>
+        <location filename="../rclmain_w.cpp" line="607"/>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
         <translation>Индекс может быть повреждён. Попробуйте запустить xapian-check или пересоздать индекс?</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="603"/>
+        <location filename="../rclmain_w.cpp" line="611"/>
         <source>Could not open external index. Db not open. Check external indexes list.</source>
         <translation>Не удалось открыть внешний индекс. База не открыта. Проверьте список внешних индексов.</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="777"/>
+        <location filename="../rclmain_w.cpp" line="785"/>
         <source>Can&apos;t set synonyms file (parse error?)</source>
         <translation>Невозможно установить файл синонимов (ошибка разбора?)</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="789"/>
+        <location filename="../rclmain_w.cpp" line="797"/>
         <source>Query results</source>
         <translation>Результаты запроса</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="834"/>
+        <location filename="../rclmain_w.cpp" line="842"/>
         <source>Query in progress.&lt;br&gt;Due to limitations of the indexing library,&lt;br&gt;cancelling will exit the program</source>
         <translation>Идёт обработка запроса.&lt;br&gt;Из-за ограничений библиотеки&lt;br&gt;отмена действия приведёт к закрытию приложения</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="866"/>
+        <location filename="../rclmain_w.cpp" line="874"/>
         <source>Result count (est.)</source>
         <translation>Кол-во результатов (прим.)</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="868"/>
+        <location filename="../rclmain_w.cpp" line="876"/>
         <source>No results found</source>
         <translation>Поиск не дал результатов</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="1030"/>
+        <location filename="../rclmain_w.cpp" line="1038"/>
         <source>Save file</source>
         <translation>Сохранить файл</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="1054"/>
-        <location filename="../rclmain_w.cpp" line="1055"/>
+        <location filename="../rclmain_w.cpp" line="1062"/>
+        <location filename="../rclmain_w.cpp" line="1063"/>
         <source>Sub-documents and attachments</source>
         <translation>Вложенные документы</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="1106"/>
-        <location filename="../rclmain_w.cpp" line="1112"/>
+        <location filename="../rclmain_w.cpp" line="1114"/>
+        <location filename="../rclmain_w.cpp" line="1120"/>
         <source>History data</source>
         <translation>Данные истории</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="1111"/>
+        <location filename="../rclmain_w.cpp" line="1119"/>
         <source>Document history</source>
         <translation>История документов</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="1137"/>
+        <location filename="../rclmain_w.cpp" line="1145"/>
         <source>Confirm</source>
         <translation>Подтвердить</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="1138"/>
+        <location filename="../rclmain_w.cpp" line="1146"/>
         <source>Erasing simple and advanced search history lists, please click Ok to confirm</source>
         <translation>Стираю историю простого и сложного поиска, нажмите Ok для подтверждения</translation>
     </message>
     <message>
-        <location filename="../rclmain_w.cpp" line="1164"/>
+        <location filename="../rclmain_w.cpp" line="1172"/>
         <source>Could not open/create file</source>
         <translation>Не удалось открыть/создать файл</translation>
     </message>
@@ -2175,273 +2230,282 @@ Do you want to start the preferences dialog ?</source>
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="256"/>
         <source>&amp;User manual</source>
-        <translation>&amp;Руководство пользователя</translation>
+        <translation type="vanished">&amp;Руководство пользователя</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="268"/>
+        <location filename="../rclmain.ui" line="256"/>
+        <source>&amp;User manual (local, one HTML page)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rclmain.ui" line="264"/>
+        <source>&amp;Online manual (Recoll Web site)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../rclmain.ui" line="276"/>
         <source>Document &amp;History</source>
         <translation>История &amp;документов</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="271"/>
+        <location filename="../rclmain.ui" line="279"/>
         <source>Document  History</source>
         <translation>История документов</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="283"/>
+        <location filename="../rclmain.ui" line="291"/>
         <source>&amp;Advanced Search</source>
         <translation>Сложный поиск</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="286"/>
+        <location filename="../rclmain.ui" line="294"/>
         <source>Assisted complex search</source>
         <translation>Сложный поиск с поддержкой</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="294"/>
+        <location filename="../rclmain.ui" line="302"/>
         <source>&amp;Sort parameters</source>
         <translation>&amp;Параметры сортировки</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="297"/>
+        <location filename="../rclmain.ui" line="305"/>
         <source>Sort parameters</source>
         <translation>Параметры сортировки</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="309"/>
+        <location filename="../rclmain.ui" line="317"/>
         <source>Term &amp;explorer</source>
         <translation>Обозреватель &amp;терминов</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="312"/>
+        <location filename="../rclmain.ui" line="320"/>
         <source>Term explorer tool</source>
         <translation>Инструмент обзора терминов</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="327"/>
+        <location filename="../rclmain.ui" line="335"/>
         <source>Next page</source>
         <translation>Следующая страница</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="330"/>
+        <location filename="../rclmain.ui" line="338"/>
         <source>Next page of results</source>
         <translation>Следующая страница результатов</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="333"/>
+        <location filename="../rclmain.ui" line="341"/>
         <source>PgDown</source>
         <translation>PgDown</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="348"/>
+        <location filename="../rclmain.ui" line="356"/>
         <source>First page</source>
         <translation>Первая страница</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="351"/>
+        <location filename="../rclmain.ui" line="359"/>
         <source>Go to first page of results</source>
         <translation>Перейти к первой странице результатов</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="354"/>
+        <location filename="../rclmain.ui" line="362"/>
         <source>Shift+PgUp</source>
         <translation>Shift+PgUp</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="369"/>
+        <location filename="../rclmain.ui" line="377"/>
         <source>Previous page</source>
         <translation>Предыдущая страница</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="372"/>
+        <location filename="../rclmain.ui" line="380"/>
         <source>Previous page of results</source>
         <translation>Предыдущая страница результатов</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="375"/>
+        <location filename="../rclmain.ui" line="383"/>
         <source>PgUp</source>
         <translation>PgUp</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="383"/>
+        <location filename="../rclmain.ui" line="391"/>
         <source>&amp;Index configuration</source>
         <translation>Настройка &amp;индекса</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="391"/>
+        <location filename="../rclmain.ui" line="399"/>
         <source>Indexing &amp;schedule</source>
         <translation>&amp;Расписание индексирования</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="399"/>
+        <location filename="../rclmain.ui" line="407"/>
         <source>&amp;GUI configuration</source>
         <translation>Настройка и&amp;нтерфейса</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="407"/>
+        <location filename="../rclmain.ui" line="415"/>
         <source>E&amp;xternal index dialog</source>
         <translation>Настройка &amp;внешнего индекса</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="410"/>
+        <location filename="../rclmain.ui" line="418"/>
         <source>External index dialog</source>
         <translation>Настройка внешнего индекса</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="421"/>
-        <location filename="../rclmain.ui" line="424"/>
+        <location filename="../rclmain.ui" line="429"/>
+        <location filename="../rclmain.ui" line="432"/>
         <source>Enable synonyms</source>
         <translation>Учитывать синонимы</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="432"/>
+        <location filename="../rclmain.ui" line="440"/>
         <source>&amp;Full Screen</source>
         <translation>Во весь &amp;экран</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="435"/>
+        <location filename="../rclmain.ui" line="443"/>
         <source>Full Screen</source>
         <translation>Во весь &amp;экран</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="438"/>
+        <location filename="../rclmain.ui" line="446"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="446"/>
+        <location filename="../rclmain.ui" line="454"/>
         <source>Increase results text font size</source>
         <translation>Увеличить размер шрифта результатов</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="449"/>
+        <location filename="../rclmain.ui" line="457"/>
         <source>Increase Font Size</source>
         <translation>Увеличить размер шрифта</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="457"/>
+        <location filename="../rclmain.ui" line="465"/>
         <source>Decrease results text font size</source>
         <translation>Уменьшить размер шрифта результатов</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="460"/>
+        <location filename="../rclmain.ui" line="468"/>
         <source>Decrease Font Size</source>
         <translation>Уменьшить размер шрифта</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="478"/>
+        <location filename="../rclmain.ui" line="486"/>
         <source>Sort by date, oldest first</source>
         <translation>Сортировать по дате, старые вначале</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="481"/>
+        <location filename="../rclmain.ui" line="489"/>
         <source>Sort by dates from oldest to newest</source>
         <translation>Сортировать по дате от старым к новым</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="496"/>
+        <location filename="../rclmain.ui" line="504"/>
         <source>Sort by date, newest first</source>
         <translation>Сортировать по дате, новые вначале</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="499"/>
+        <location filename="../rclmain.ui" line="507"/>
         <source>Sort by dates from newest to oldest</source>
         <translation>Сортировать по дате от новых к старым</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="504"/>
+        <location filename="../rclmain.ui" line="512"/>
         <source>Show Query Details</source>
         <translation>Показать сведения о запросе</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="516"/>
+        <location filename="../rclmain.ui" line="524"/>
         <source>Show as table</source>
         <translation>Показать в виде таблицы</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="519"/>
+        <location filename="../rclmain.ui" line="527"/>
         <source>Show results in a spreadsheet-like table</source>
         <translation>Показать результаты в виде таблицы</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="524"/>
+        <location filename="../rclmain.ui" line="532"/>
         <source>Save as CSV (spreadsheet) file</source>
         <translation>Сохранить как CSV-файл</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="527"/>
+        <location filename="../rclmain.ui" line="535"/>
         <source>Saves the result into a file which you can load in a spreadsheet</source>
         <translation>Сохранить результат в файл, который можно загрузить в электронную таблицу</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="532"/>
+        <location filename="../rclmain.ui" line="540"/>
         <source>Next Page</source>
         <translation>Следующая страницы</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="537"/>
+        <location filename="../rclmain.ui" line="545"/>
         <source>Previous Page</source>
         <translation>Предыдущая страница</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="542"/>
+        <location filename="../rclmain.ui" line="550"/>
         <source>First Page</source>
         <translation>Первая страница</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="551"/>
+        <location filename="../rclmain.ui" line="559"/>
         <source>Query Fragments</source>
         <translation>Фрагменты запроса</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="559"/>
+        <location filename="../rclmain.ui" line="567"/>
         <source>    With failed files retrying</source>
         <translation>    С повторной обработкой файлов с ошибками</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="562"/>
+        <location filename="../rclmain.ui" line="570"/>
         <source>Next update will retry previously failed files</source>
         <translation>При следующем обновлении будут повторно обработаны файлы с ошибками</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="570"/>
+        <location filename="../rclmain.ui" line="578"/>
         <source>Save last query</source>
         <translation>Сохранить последний запрос</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="575"/>
+        <location filename="../rclmain.ui" line="583"/>
         <source>Load saved query</source>
         <translation>Загрузить последний запрос</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="580"/>
+        <location filename="../rclmain.ui" line="588"/>
         <source>Special Indexing</source>
         <translation>Специальное индексирование</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="583"/>
+        <location filename="../rclmain.ui" line="591"/>
         <source>Indexing with special options</source>
         <translation>Индексирование с особыми параметрами</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="588"/>
+        <location filename="../rclmain.ui" line="596"/>
         <source>Switch Configuration...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="591"/>
+        <location filename="../rclmain.ui" line="599"/>
         <source>Choose another configuration to run on, replacing this process</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="596"/>
+        <location filename="../rclmain.ui" line="604"/>
         <source>Index &amp;statistics</source>
         <translation>&amp;Статистика индекса</translation>
     </message>
     <message>
-        <location filename="../rclmain.ui" line="601"/>
+        <location filename="../rclmain.ui" line="609"/>
         <source>Webcache Editor</source>
         <translation>Редактор веб-кэша</translation>
     </message>
@@ -2578,7 +2642,7 @@ Do you want to start the preferences dialog ?</source>
         <translation>Дата и время</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="490"/>
+        <location filename="../restable.cpp" line="489"/>
         <source>Can&apos;t sort by inverse relevance</source>
         <translation>Нельзя отсортировать в обратном соответствии</translation>
     </message>
@@ -2690,89 +2754,89 @@ Do you want to start the preferences dialog ?</source>
         <translation>Использовать Shift+щелчок мыши, чтобы показать текст.</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="743"/>
-        <location filename="../restable.cpp" line="745"/>
-        <location filename="../restable.cpp" line="748"/>
-        <location filename="../restable.cpp" line="750"/>
-        <location filename="../restable.cpp" line="752"/>
-        <location filename="../restable.cpp" line="754"/>
         <location filename="../restable.cpp" line="757"/>
-        <location filename="../restable.cpp" line="760"/>
+        <location filename="../restable.cpp" line="759"/>
+        <location filename="../restable.cpp" line="762"/>
+        <location filename="../restable.cpp" line="764"/>
+        <location filename="../restable.cpp" line="766"/>
+        <location filename="../restable.cpp" line="768"/>
+        <location filename="../restable.cpp" line="771"/>
+        <location filename="../restable.cpp" line="774"/>
         <source>Result Table</source>
         <translation>Таблица результатов</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="744"/>
+        <location filename="../restable.cpp" line="758"/>
         <source>Open current result document</source>
         <translation>Открыть документ с текущими результатами</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="746"/>
+        <location filename="../restable.cpp" line="760"/>
         <source>Open current result and quit</source>
         <translation>Открыть текущие результаты и выйти</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="748"/>
+        <location filename="../restable.cpp" line="762"/>
         <source>Preview</source>
         <translation>Просмотр</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="750"/>
+        <location filename="../restable.cpp" line="764"/>
         <source>Show snippets</source>
         <translation>Показать выдержки</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="752"/>
+        <location filename="../restable.cpp" line="766"/>
         <source>Show header</source>
         <translation>Показать заголовок</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="755"/>
+        <location filename="../restable.cpp" line="769"/>
         <source>Show vertical header</source>
         <translation>Показать вертикальный заголовок</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="758"/>
+        <location filename="../restable.cpp" line="772"/>
         <source>Copy current result text to clipboard</source>
         <translation>Сохранить текст текущих результатов в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="761"/>
+        <location filename="../restable.cpp" line="775"/>
         <source>Copy result text and quit</source>
         <translation>Скопировать текст результатов и выйти</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="1035"/>
+        <location filename="../restable.cpp" line="1056"/>
         <source>Save table to CSV file</source>
         <translation>Сохранить таблицу в CSV-файл</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="1042"/>
+        <location filename="../restable.cpp" line="1063"/>
         <source>Can&apos;t open/create file: </source>
         <translation>Невозможно открыть/создать файл: </translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="1349"/>
+        <location filename="../restable.cpp" line="1370"/>
         <source>%1 bytes copied to clipboard</source>
         <translation>%1 байт скопировано в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="1413"/>
+        <location filename="../restable.cpp" line="1434"/>
         <source>&amp;Reset sort</source>
         <translation>&amp;Сбросить сортировку</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="1416"/>
+        <location filename="../restable.cpp" line="1437"/>
         <source>&amp;Save as CSV</source>
         <translation>&amp;Сохранить как CSV</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="1419"/>
+        <location filename="../restable.cpp" line="1440"/>
         <source>&amp;Delete column</source>
         <translation>Удалить столбец</translation>
     </message>
     <message>
-        <location filename="../restable.cpp" line="1426"/>
+        <location filename="../restable.cpp" line="1447"/>
         <source>Add &quot;%1&quot; column</source>
         <translation>Добавить столбец &quot;%1&quot;</translation>
     </message>
@@ -2780,73 +2844,73 @@ Do you want to start the preferences dialog ?</source>
 <context>
     <name>SSearch</name>
     <message>
-        <location filename="../ssearch_w.cpp" line="169"/>
+        <location filename="../ssearch_w.cpp" line="209"/>
         <source>Any term</source>
         <translation>Любое слово</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="170"/>
+        <location filename="../ssearch_w.cpp" line="210"/>
         <source>All terms</source>
         <translation>Все слова</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="171"/>
+        <location filename="../ssearch_w.cpp" line="211"/>
         <source>File name</source>
         <translation>Имя файла</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="172"/>
+        <location filename="../ssearch_w.cpp" line="212"/>
         <source>Query language</source>
         <translation>Язык запроса</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="211"/>
+        <location filename="../ssearch_w.cpp" line="254"/>
         <source>Simple search</source>
         <translation>Простой поиск</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="211"/>
+        <location filename="../ssearch_w.cpp" line="254"/>
         <source>History</source>
         <translation>История</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="425"/>
+        <location filename="../ssearch_w.cpp" line="467"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;style&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="426"/>
+        <location filename="../ssearch_w.cpp" line="468"/>
         <source>table, th, td {</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="427"/>
+        <location filename="../ssearch_w.cpp" line="469"/>
         <source>border: 1px solid black;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="428"/>
+        <location filename="../ssearch_w.cpp" line="470"/>
         <source>border-collapse: collapse;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="429"/>
-        <location filename="../ssearch_w.cpp" line="432"/>
+        <location filename="../ssearch_w.cpp" line="471"/>
+        <location filename="../ssearch_w.cpp" line="474"/>
         <source>}</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="430"/>
+        <location filename="../ssearch_w.cpp" line="472"/>
         <source>th,td {</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="431"/>
+        <location filename="../ssearch_w.cpp" line="473"/>
         <source>text-align: center;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="433"/>
+        <location filename="../ssearch_w.cpp" line="475"/>
         <source>&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</source>
         <translation></translation>
     </message>
@@ -2855,188 +2919,188 @@ Do you want to start the preferences dialog ?</source>
         <translation type="vanished">&lt;p&gt;Шпаргалка по языку запросов. Неясно - щёлкните &lt;b&gt;Показать запрос&lt;/b&gt;.&amp;nbsp;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="435"/>
+        <location filename="../ssearch_w.cpp" line="477"/>
         <source>You should really look at the manual (F1)&lt;/p&gt;</source>
         <translation>И впрямь стоит заглянуть в справку (F1)&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="436"/>
+        <location filename="../ssearch_w.cpp" line="478"/>
         <source>&lt;table border=&apos;1&apos; cellspacing=&apos;0&apos;&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="437"/>
+        <location filename="../ssearch_w.cpp" line="479"/>
         <source>&lt;tr&gt;&lt;th&gt;What&lt;/th&gt;&lt;th&gt;Examples&lt;/th&gt;</source>
         <translation>&lt;tr&gt;&lt;th&gt;What&lt;/th&gt;&lt;th&gt;Примеры&lt;/th&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="438"/>
+        <location filename="../ssearch_w.cpp" line="480"/>
         <source>&lt;tr&gt;&lt;td&gt;And&lt;/td&gt;&lt;td&gt;one two&amp;nbsp;&amp;nbsp;&amp;nbsp;one AND two&amp;nbsp;&amp;nbsp;&amp;nbsp;one &amp;&amp; two&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;И&lt;/td&gt;&lt;td&gt;раз два&amp;nbsp;&amp;nbsp;&amp;nbsp;раз AND два&amp;nbsp;&amp;nbsp;&amp;nbsp;раз &amp;&amp; два&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="439"/>
+        <location filename="../ssearch_w.cpp" line="481"/>
         <source>&lt;tr&gt;&lt;td&gt;Or&lt;/td&gt;&lt;td&gt;one OR two&amp;nbsp;&amp;nbsp;&amp;nbsp;one || two&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Или&lt;/td&gt;&lt;td&gt;раз OR два&amp;nbsp;&amp;nbsp;&amp;nbsp;раз || два&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="440"/>
+        <location filename="../ssearch_w.cpp" line="482"/>
         <source>&lt;tr&gt;&lt;td&gt;Complex boolean. OR has priority, use parentheses&amp;nbsp;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Сложное булево. OR в приоритете, используйте скобки&amp;nbsp;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="441"/>
+        <location filename="../ssearch_w.cpp" line="483"/>
         <source>where needed&lt;/td&gt;&lt;td&gt;(one AND two) OR three&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>при надобности&lt;/td&gt;&lt;td&gt;(раз AND два) OR три&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="442"/>
+        <location filename="../ssearch_w.cpp" line="484"/>
         <source>&lt;tr&gt;&lt;td&gt;Not&lt;/td&gt;&lt;td&gt;-term&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Не&lt;/td&gt;&lt;td&gt;-слово&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="443"/>
+        <location filename="../ssearch_w.cpp" line="485"/>
         <source>&lt;tr&gt;&lt;td&gt;Phrase&lt;/td&gt;&lt;td&gt;&quot;pride and prejudice&quot;&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Фраза&lt;/td&gt;&lt;td&gt;&quot;гордыня и предубеждение&quot;&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="444"/>
+        <location filename="../ssearch_w.cpp" line="486"/>
         <source>&lt;tr&gt;&lt;td&gt;Ordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;pride prejudice&quot;o1&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Упорядоченная близость (допуск=1)&lt;/td&gt;&lt;td&gt;&quot;гордыня предубеждение&quot;o1&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="445"/>
+        <location filename="../ssearch_w.cpp" line="487"/>
         <source>&lt;tr&gt;&lt;td&gt;Unordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;prejudice pride&quot;po1&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Неупорядоченная близость (допуск=1)&lt;/td&gt;&lt;td&gt;&quot;предубеждение гордыня&quot;po1&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="446"/>
+        <location filename="../ssearch_w.cpp" line="488"/>
         <source>&lt;tr&gt;&lt;td&gt;Unordered prox. (default slack=10)&lt;/td&gt;&lt;td&gt;&quot;prejudice&amp;nbsp;pride&quot;p&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Неупор. близ. (штат.допуск=10)&lt;/td&gt;&lt;td&gt;&quot;предубеждение&amp;nbsp;гордыня&quot;p&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="434"/>
+        <location filename="../ssearch_w.cpp" line="476"/>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
         <translation>&lt;p&gt;Шпаргалка по языку запросов. Неясно — щёлкните &lt;b&gt;Показать сведения о запросе&lt;/b&gt;.&amp;nbsp;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="447"/>
+        <location filename="../ssearch_w.cpp" line="489"/>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Заглавные буквы для подавления словоформ&lt;/td&gt;&lt;td&gt;Слово&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="448"/>
+        <location filename="../ssearch_w.cpp" line="490"/>
         <source>&lt;tr&gt;&lt;td&gt;Field-specific&lt;/td&gt;&lt;td&gt;author:austen&amp;nbsp;&amp;nbsp;title:prejudice&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;По полям&lt;/td&gt;&lt;td&gt;author:остен&amp;nbsp;&amp;nbsp;title:предубеждение&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="449"/>
+        <location filename="../ssearch_w.cpp" line="491"/>
         <source>&lt;tr&gt;&lt;td&gt;AND inside field (no order)&lt;/td&gt;&lt;td&gt;author:jane,austen&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;AND внутри поля (как угодно)&lt;/td&gt;&lt;td&gt;author:джейн,остен&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="450"/>
+        <location filename="../ssearch_w.cpp" line="492"/>
         <source>&lt;tr&gt;&lt;td&gt;OR inside field&lt;/td&gt;&lt;td&gt;author:austen/bronte&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;OR внутри поля&lt;/td&gt;&lt;td&gt;author:остен/бронте&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="451"/>
+        <location filename="../ssearch_w.cpp" line="493"/>
         <source>&lt;tr&gt;&lt;td&gt;Field names&lt;/td&gt;&lt;td&gt;title/subject/caption&amp;nbsp;&amp;nbsp;author/from&lt;br&gt;recipient/to&amp;nbsp;&amp;nbsp;filename&amp;nbsp;&amp;nbsp;ext&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Имена полей&lt;/td&gt;&lt;td&gt;title/subject/caption&amp;nbsp;&amp;nbsp;author/from&lt;br&gt;recipient/to&amp;nbsp;&amp;nbsp;filename&amp;nbsp;&amp;nbsp;ext&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="452"/>
+        <location filename="../ssearch_w.cpp" line="494"/>
         <source>&lt;tr&gt;&lt;td&gt;Directory path filter&lt;/td&gt;&lt;td&gt;dir:/home/me&amp;nbsp;&amp;nbsp;dir:doc&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Фильтр путей&lt;/td&gt;&lt;td&gt;dir:/home/me&amp;nbsp;&amp;nbsp;dir:doc&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="453"/>
+        <location filename="../ssearch_w.cpp" line="495"/>
         <source>&lt;tr&gt;&lt;td&gt;MIME type filter&lt;/td&gt;&lt;td&gt;mime:text/plain mime:video/*&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Фильтр MIME-типов&lt;/td&gt;&lt;td&gt;mime:text/plain mime:video/*&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="454"/>
+        <location filename="../ssearch_w.cpp" line="496"/>
         <source>&lt;tr&gt;&lt;td&gt;Date intervals&lt;/td&gt;&lt;td&gt;date:2018-01-01/2018-31-12&lt;br&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Промежуток времени&lt;/td&gt;&lt;td&gt;date:2018-01-01/2018-31-12&lt;br&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="455"/>
+        <location filename="../ssearch_w.cpp" line="497"/>
         <source>date:2018&amp;nbsp;&amp;nbsp;date:2018-01-01/P12M&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>date:2018&amp;nbsp;&amp;nbsp;date:2018-01-01/P12M&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="456"/>
+        <location filename="../ssearch_w.cpp" line="498"/>
         <source>&lt;tr&gt;&lt;td&gt;Size&lt;/td&gt;&lt;td&gt;size&amp;gt;100k size&amp;lt;1M&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Размер&lt;/td&gt;&lt;td&gt;size&amp;gt;100k size&amp;lt;1M&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="457"/>
+        <location filename="../ssearch_w.cpp" line="499"/>
         <source>&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="461"/>
+        <location filename="../ssearch_w.cpp" line="503"/>
         <source>Enter file name wildcard expression.</source>
         <translation>Укажите маску имени файла.</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="466"/>
+        <location filename="../ssearch_w.cpp" line="508"/>
         <source>Enter search terms here.</source>
         <translation>Укажите искомые слова.</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="538"/>
+        <location filename="../ssearch_w.cpp" line="580"/>
         <source>Bad query string</source>
         <translation>Неверное значение запроса.</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="545"/>
+        <location filename="../ssearch_w.cpp" line="587"/>
         <source>Out of memory</source>
         <translation>Память исчерпана</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="591"/>
+        <location filename="../ssearch_w.cpp" line="637"/>
         <source>Can&apos;t open index</source>
         <translation>Не могу открыть индекс</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="615"/>
+        <location filename="../ssearch_w.cpp" line="661"/>
         <source>Stemming languages for stored query: </source>
         <translation>Языки словоформ для сохранённого запроса: </translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="617"/>
-        <location filename="../ssearch_w.cpp" line="628"/>
+        <location filename="../ssearch_w.cpp" line="663"/>
+        <location filename="../ssearch_w.cpp" line="674"/>
         <source> differ from current preferences (kept)</source>
         <translation> отличаются от текущих параметров (сохранено)</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="626"/>
+        <location filename="../ssearch_w.cpp" line="672"/>
         <source>Auto suffixes for stored query: </source>
         <translation>Автоматически подставляемые суффиксы для сохранённого запроса: </translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="636"/>
+        <location filename="../ssearch_w.cpp" line="682"/>
         <source>Could not restore external indexes for stored query:&lt;br&gt; </source>
         <translation>Не удалось восстановить внешние индексы для значений отбора:&lt;br&gt; </translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="637"/>
+        <location filename="../ssearch_w.cpp" line="683"/>
         <source>???</source>
         <translation>???</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="638"/>
+        <location filename="../ssearch_w.cpp" line="684"/>
         <source>Using current preferences.</source>
         <translation>Используются текущие настройки.</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="649"/>
+        <location filename="../ssearch_w.cpp" line="695"/>
         <source>Autophrase is set but it was unset for stored query</source>
         <translation>Автофраза задана, но для сохранённого запроса сброшена</translation>
     </message>
     <message>
-        <location filename="../ssearch_w.cpp" line="653"/>
+        <location filename="../ssearch_w.cpp" line="699"/>
         <source>Autophrase is unset but it was set for stored query</source>
         <translation>Автофраза не задана, но для сохранённого запроса задана</translation>
     </message>
@@ -3087,47 +3151,47 @@ Do you want to start the preferences dialog ?</source>
 <context>
     <name>SearchClauseW</name>
     <message>
-        <location filename="../searchclause_w.cpp" line="76"/>
+        <location filename="../searchclause_w.cpp" line="71"/>
         <source>Any</source>
         <translation>Любые</translation>
     </message>
     <message>
-        <location filename="../searchclause_w.cpp" line="77"/>
+        <location filename="../searchclause_w.cpp" line="72"/>
         <source>All</source>
         <translation>Все</translation>
     </message>
     <message>
-        <location filename="../searchclause_w.cpp" line="78"/>
+        <location filename="../searchclause_w.cpp" line="73"/>
         <source>None</source>
         <translation>Нет</translation>
     </message>
     <message>
-        <location filename="../searchclause_w.cpp" line="79"/>
+        <location filename="../searchclause_w.cpp" line="74"/>
         <source>Phrase</source>
         <translation>Фраза</translation>
     </message>
     <message>
-        <location filename="../searchclause_w.cpp" line="80"/>
+        <location filename="../searchclause_w.cpp" line="75"/>
         <source>Proximity</source>
         <translation>Близость</translation>
     </message>
     <message>
-        <location filename="../searchclause_w.cpp" line="81"/>
+        <location filename="../searchclause_w.cpp" line="76"/>
         <source>File name</source>
         <translation>Имя файла</translation>
     </message>
     <message>
-        <location filename="../searchclause_w.cpp" line="84"/>
+        <location filename="../searchclause_w.cpp" line="79"/>
         <source>No field</source>
         <translation>Поле отсутствует</translation>
     </message>
     <message>
-        <location filename="../searchclause_w.cpp" line="98"/>
+        <location filename="../searchclause_w.cpp" line="93"/>
         <source>Select the type of query that will be performed with the words</source>
         <translation>Выберите, какой тип запроса по словам будет произведён</translation>
     </message>
     <message>
-        <location filename="../searchclause_w.cpp" line="99"/>
+        <location filename="../searchclause_w.cpp" line="94"/>
         <source>Number of additional words that may be interspersed with the chosen ones</source>
         <translation>Количество возможных других слов между выбранными</translation>
     </message>
@@ -3292,12 +3356,12 @@ Do you want to start the preferences dialog ?</source>
         <translation>Файл с выводом диагностических сообщений. Будет пересоздан с дальнейшей записью диагностики индексирования (причин пропуска файлов).</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="431"/>
+        <location filename="../rclm_idx.cpp" line="436"/>
         <source>Top indexed entity</source>
         <translation>Верхняя индексируемая сущность</translation>
     </message>
     <message>
-        <location filename="../rclm_idx.cpp" line="437"/>
+        <location filename="../rclm_idx.cpp" line="442"/>
         <source>Diagnostics file</source>
         <translation>Файл журнала</translation>
     </message>
@@ -3495,106 +3559,106 @@ Do you want to start the preferences dialog ?</source>
 <context>
     <name>UIPrefsDialog</name>
     <message>
-        <location filename="../uiprefs_w.cpp" line="70"/>
+        <location filename="../uiprefs_w.cpp" line="90"/>
         <source>Any term</source>
         <translation>Любой</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="71"/>
+        <location filename="../uiprefs_w.cpp" line="91"/>
         <source>All terms</source>
         <translation>Все</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="72"/>
+        <location filename="../uiprefs_w.cpp" line="92"/>
         <source>File name</source>
         <translation>Имя файла</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="73"/>
+        <location filename="../uiprefs_w.cpp" line="93"/>
         <source>Query language</source>
         <translation>Язык запросов</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="74"/>
+        <location filename="../uiprefs_w.cpp" line="94"/>
         <source>Value from previous program exit</source>
         <translation>Значение из предыдущего запуска программы</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="224"/>
-        <location filename="../uiprefs_w.cpp" line="233"/>
-        <location filename="../uiprefs_w.cpp" line="279"/>
-        <location filename="../uiprefs_w.cpp" line="623"/>
-        <location filename="../uiprefs_w.cpp" line="632"/>
+        <location filename="../uiprefs_w.cpp" line="257"/>
+        <location filename="../uiprefs_w.cpp" line="266"/>
+        <location filename="../uiprefs_w.cpp" line="312"/>
+        <location filename="../uiprefs_w.cpp" line="662"/>
+        <location filename="../uiprefs_w.cpp" line="671"/>
         <source>Choose</source>
         <translation>Выбрать</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="251"/>
+        <location filename="../uiprefs_w.cpp" line="284"/>
         <source>error retrieving stemming languages</source>
         <translation>ошибка получения списка языков словоформ</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="312"/>
+        <location filename="../uiprefs_w.cpp" line="345"/>
         <source>Context</source>
         <translation>Контекст</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="313"/>
+        <location filename="../uiprefs_w.cpp" line="346"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="314"/>
+        <location filename="../uiprefs_w.cpp" line="347"/>
         <source>Shortcut</source>
         <translation>Сочетание клавиш</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="315"/>
+        <location filename="../uiprefs_w.cpp" line="348"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="363"/>
+        <location filename="../uiprefs_w.cpp" line="396"/>
         <source>Default QtWebkit font</source>
         <translation>Шрифт QtWebkit по умолчанию</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="515"/>
+        <location filename="../uiprefs_w.cpp" line="554"/>
         <source>Result list paragraph format (erase all to reset to default)</source>
         <translation>Формат абзаца в списке результатов (очистите для сброса к умолчанию)</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="526"/>
+        <location filename="../uiprefs_w.cpp" line="565"/>
         <source>Result list header (default is empty)</source>
         <translation>Заголовок списка результатов (по умолчанию пуст)</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="585"/>
+        <location filename="../uiprefs_w.cpp" line="624"/>
         <source>Choose QSS File</source>
         <translation>Выбрать файл QSS</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="689"/>
+        <location filename="../uiprefs_w.cpp" line="728"/>
         <source>At most one index should be selected</source>
         <translation>Следует выбрать не больше одного индекса</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="752"/>
+        <location filename="../uiprefs_w.cpp" line="791"/>
         <source>Select recoll config directory or xapian index directory (e.g.: /home/me/.recoll or /home/me/.recoll/xapiandb)</source>
         <translation>Выберите каталог настроек recoll или каталог индекса xapian (например: /home/me/.recoll или /home/me/.recoll/xapiandb)</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="766"/>
+        <location filename="../uiprefs_w.cpp" line="805"/>
         <source>The selected directory looks like a Recoll configuration directory but the configuration could not be read</source>
         <translation>Выбранный каталог выглядит как каталог с настройками Recoll, но настройки не выходит прочитать</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="776"/>
+        <location filename="../uiprefs_w.cpp" line="815"/>
         <source>The selected directory does not appear to be a Xapian index</source>
         <translation>Выбранный каталог непохож на индекс Xapian</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="782"/>
+        <location filename="../uiprefs_w.cpp" line="821"/>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation>Невозможно добавить индекс с другими настройками учёта регистра и диакритических знаков.</translation>
     </message>
@@ -3603,12 +3667,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="vanished">Невозможно добавить индекс с другими настройками учёта регистра и диакритических знаков</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="787"/>
+        <location filename="../uiprefs_w.cpp" line="826"/>
         <source>This is the main/local index!</source>
         <translation>Этот индекс является главным/локальным!</translation>
     </message>
     <message>
-        <location filename="../uiprefs_w.cpp" line="796"/>
+        <location filename="../uiprefs_w.cpp" line="835"/>
         <source>The selected directory is already in the index list</source>
         <translation>Этот каталог уже указан в списке индексов</translation>
     </message>
@@ -3829,7 +3893,7 @@ Do you want to start the preferences dialog ?</source>
 <context>
     <name>confgui::ConfParamFNW</name>
     <message>
-        <location filename="../confgui/confgui.cpp" line="624"/>
+        <location filename="../confgui/confgui.cpp" line="614"/>
         <source>Choose</source>
         <translation>Выбрать</translation>
     </message>
@@ -3837,32 +3901,32 @@ Do you want to start the preferences dialog ?</source>
 <context>
     <name>confgui::ConfParamSLW</name>
     <message>
-        <location filename="../confgui/confgui.cpp" line="701"/>
+        <location filename="../confgui/confgui.cpp" line="689"/>
         <source>+</source>
         <translation>+</translation>
     </message>
     <message>
-        <location filename="../confgui/confgui.cpp" line="703"/>
+        <location filename="../confgui/confgui.cpp" line="691"/>
         <source>Add entry</source>
         <translation>Добавить запись</translation>
     </message>
     <message>
-        <location filename="../confgui/confgui.cpp" line="711"/>
+        <location filename="../confgui/confgui.cpp" line="699"/>
         <source>-</source>
         <translation>-</translation>
     </message>
     <message>
-        <location filename="../confgui/confgui.cpp" line="713"/>
+        <location filename="../confgui/confgui.cpp" line="701"/>
         <source>Delete selected entries</source>
         <translation>Удалить выделенные записи</translation>
     </message>
     <message>
-        <location filename="../confgui/confgui.cpp" line="721"/>
+        <location filename="../confgui/confgui.cpp" line="709"/>
         <source>~</source>
         <translation>~</translation>
     </message>
     <message>
-        <location filename="../confgui/confgui.cpp" line="723"/>
+        <location filename="../confgui/confgui.cpp" line="711"/>
         <source>Edit selected entries</source>
         <translation>Изменить выделенные записи</translation>
     </message>
@@ -3885,177 +3949,177 @@ Do you want to start the preferences dialog ?</source>
         <translation>Выбор приложений-редакторов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="64"/>
+        <location filename="../uiprefs.ui" line="77"/>
         <source>Start with simple search mode: </source>
         <translation>Начать с режима простого поиска: </translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="100"/>
+        <location filename="../uiprefs.ui" line="113"/>
         <source>Limit the size of the search history. Use 0 to disable, -1 for unlimited.</source>
         <translation>Ограничения размера истории поиска. 0: отключить, -1: без ограничений.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="103"/>
+        <location filename="../uiprefs.ui" line="116"/>
         <source>Maximum size of search history (0: disable, -1: unlimited):</source>
         <translation>Предельный размер истории поиска (0: отключить, -1: без ограничений):</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="138"/>
+        <location filename="../uiprefs.ui" line="154"/>
         <source>Start with advanced search dialog open.</source>
         <translation>Открывать диалог сложного поиска при запуске.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="148"/>
+        <location filename="../uiprefs.ui" line="164"/>
         <source>Remember sort activation state.</source>
         <translation>Запомнить порядок сортировки результатов.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="166"/>
+        <location filename="../uiprefs.ui" line="185"/>
         <source>Depth of side filter directory tree</source>
         <translation>Глубина бокового дерева каталогов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="206"/>
+        <location filename="../uiprefs.ui" line="225"/>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="209"/>
+        <location filename="../uiprefs.ui" line="228"/>
         <source>Side filter dates format (change needs restart)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="253"/>
+        <location filename="../uiprefs.ui" line="272"/>
         <source>Decide if document filters are shown as radio buttons, toolbar combobox, or menu.</source>
         <translation>Стиль отображения фильтров: в виде селекторов, поля со списком на панели инструментов или меню.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="256"/>
+        <location filename="../uiprefs.ui" line="275"/>
         <source>Document filter choice style:</source>
         <translation>Стиль отображения фильтров:</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="263"/>
+        <location filename="../uiprefs.ui" line="282"/>
         <source>Buttons Panel</source>
         <translation>Панель кнопок</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="273"/>
+        <location filename="../uiprefs.ui" line="292"/>
         <source>Toolbar Combobox</source>
         <translation>Поле со списком</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="283"/>
+        <location filename="../uiprefs.ui" line="302"/>
         <source>Menu</source>
         <translation>Меню</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="297"/>
+        <location filename="../uiprefs.ui" line="316"/>
         <source>Hide some user interface elements.</source>
         <translation>Скрыть некоторые элементы интерфейса</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="300"/>
+        <location filename="../uiprefs.ui" line="319"/>
         <source>Hide:</source>
         <translation>Скрыть:</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="307"/>
+        <location filename="../uiprefs.ui" line="326"/>
         <source>Toolbars</source>
         <translation>Поля со списками</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="317"/>
+        <location filename="../uiprefs.ui" line="336"/>
         <source>Status bar</source>
         <translation>Панель состояния</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="327"/>
+        <location filename="../uiprefs.ui" line="346"/>
         <source>Show button instead.</source>
         <translation>Показывать кнопки.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="330"/>
+        <location filename="../uiprefs.ui" line="349"/>
         <source>Menu bar</source>
         <translation>Панель меню</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="340"/>
+        <location filename="../uiprefs.ui" line="359"/>
         <source>Show choice in menu only.</source>
         <translation>Отображать выбор только в меню.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="343"/>
+        <location filename="../uiprefs.ui" line="362"/>
         <source>Simple search type</source>
         <translation>Тип простого поиска</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="353"/>
+        <location filename="../uiprefs.ui" line="372"/>
         <source>Clear/Search buttons</source>
         <translation>Кнопки Очистить/Поиск</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="367"/>
+        <location filename="../uiprefs.ui" line="386"/>
         <source>Show system tray icon.</source>
         <translation>Отображать значок в трее</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="377"/>
+        <location filename="../uiprefs.ui" line="396"/>
         <source>Close to tray instead of exiting.</source>
         <translation>Сворачивать окно вместо закрытия.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="387"/>
+        <location filename="../uiprefs.ui" line="406"/>
         <source>Generate desktop notifications.</source>
         <translation>Отображать уведомления.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="399"/>
+        <location filename="../uiprefs.ui" line="418"/>
         <source>Suppress all beeps.</source>
         <translation>Отключить звук.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="409"/>
+        <location filename="../uiprefs.ui" line="428"/>
         <source>Show warning when opening temporary file.</source>
         <translation>Отображать предупреждение при открытии временного файла.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="421"/>
+        <location filename="../uiprefs.ui" line="440"/>
         <source>Disable Qt autocompletion in search entry.</source>
         <translation>Отключить автодополнение Qt в строке поиска.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="431"/>
+        <location filename="../uiprefs.ui" line="465"/>
         <source>Start search on completer popup activation.</source>
         <translation>Начинать поиск при активации всплывающего окна автодополнения.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="453"/>
+        <location filename="../uiprefs.ui" line="485"/>
         <source>Maximum number of history entries in completer list</source>
         <translation>Предельное число записей журнала в списке автодополнения</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="456"/>
+        <location filename="../uiprefs.ui" line="488"/>
         <source>Number of history entries in completer:</source>
         <translation>Число записей журнала в автодополнении:</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="491"/>
+        <location filename="../uiprefs.ui" line="526"/>
         <source>Displays the total number of occurences of the term in the index</source>
         <translation>Показывает общее количество вхождений термина в индексе</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="494"/>
+        <location filename="../uiprefs.ui" line="529"/>
         <source>Show hit counts in completer popup.</source>
         <translation>Показывать счётчик нажатий во всплывающем окне автодополнения.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="521"/>
+        <location filename="../uiprefs.ui" line="1152"/>
         <source>Texts over this size will not be highlighted in preview (too slow).</source>
         <translation>Текст большего размера не будет подсвечен при просмотре (слишком медленно).</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="524"/>
+        <location filename="../uiprefs.ui" line="1155"/>
         <source>Maximum text size highlighted for preview (kilobytes)</source>
         <translation>Предельный размер текста, выбранного для просмотра (в килобайтах)</translation>
     </message>
@@ -4064,285 +4128,345 @@ Do you want to start the preferences dialog ?</source>
         <translation type="vanished">Предпочитать для просмотра HTML простому тексту.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="565"/>
+        <location filename="../uiprefs.ui" line="1196"/>
         <source>Prefer HTML to plain text for preview.</source>
         <translation>Предпочитать для просмотра HTML простому тексту.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="575"/>
+        <location filename="../uiprefs.ui" line="1206"/>
         <source>Make links inside the preview window clickable, and start an external browser when they are clicked.</source>
         <translation>Сделать ссылки внутри окна просмотра активными и запускать браузер при щелчке по ссылке.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="578"/>
+        <location filename="../uiprefs.ui" line="1209"/>
         <source>Activate links in preview.</source>
         <translation>Активировать ссылки в режиме просмотра.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="590"/>
+        <location filename="../uiprefs.ui" line="1270"/>
         <source>Lines in PRE text are not folded. Using BR loses some indentation. PRE + Wrap style may be what you want.</source>
         <translation>Строки в тексте PRE нескладные. При использовании BR теряются некоторые отступы. Возможно, PRE + Wrap подойдёт больше.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="593"/>
+        <location filename="../uiprefs.ui" line="1273"/>
         <source>Plain text to HTML line style</source>
         <translation>Стиль отображения строк HTML в простом тексте</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="600"/>
+        <location filename="../uiprefs.ui" line="1280"/>
         <source>&lt;BR&gt;</source>
         <translation>&lt;BR&gt;</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="610"/>
+        <location filename="../uiprefs.ui" line="1290"/>
         <source>&lt;PRE&gt;</source>
         <translation>&lt;PRE&gt;</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="620"/>
+        <location filename="../uiprefs.ui" line="1300"/>
         <source>&lt;PRE&gt; + wrap</source>
         <translation>&lt;PRE&gt; + wrap</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="641"/>
+        <location filename="../uiprefs.ui" line="550"/>
         <source>Highlight CSS style for query terms</source>
         <translation>CSS-стиль подсветки слов запроса</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="657"/>
+        <location filename="../uiprefs.ui" line="566"/>
         <source>Query terms highlighting in results. &lt;br&gt;Maybe try something like &quot;color:red;background:yellow&quot; for something more lively than the default blue...</source>
         <translation>Подсветка терминов в результатах запроса. &lt;br&gt;Можно попробовать что-то более выделяющееся вроде &quot;color:red;background:yellow&quot; вместо цвета по умолчанию...</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="680"/>
+        <location filename="../uiprefs.ui" line="589"/>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
         <translation>Коэффициент масштабирования интерфейса. Полезно, если не устраивает значение по умолчанию.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="683"/>
+        <location filename="../uiprefs.ui" line="592"/>
         <source>Display scale (default 1.0):</source>
         <translation>Размер отображения (по умолчанию 1.0):</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="720"/>
+        <location filename="../uiprefs.ui" line="629"/>
         <source>Application Qt style sheet</source>
         <translation>Внешний вид приложения</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="730"/>
+        <location filename="../uiprefs.ui" line="639"/>
         <source>Resets the style sheet to default</source>
         <translation>Сбросить на вид по умолчению</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="733"/>
+        <location filename="../uiprefs.ui" line="642"/>
         <source>None (default)</source>
         <translation>Нет (по умолчанию)</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="740"/>
+        <location filename="../uiprefs.ui" line="649"/>
         <source>Uses the default dark mode style sheet</source>
         <translation>Использовать тёмную тему по умолчанию</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="743"/>
+        <location filename="../uiprefs.ui" line="652"/>
         <source>Dark mode</source>
         <translation>Тёмная тема</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="750"/>
+        <location filename="../uiprefs.ui" line="659"/>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
         <translation>Откроется диалоговое окно для выбора файла стиля оформления.&lt;br&gt; Для примера откройте /usr/share/recoll/examples/recoll[-dark].qss</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="753"/>
+        <location filename="../uiprefs.ui" line="662"/>
         <source>Choose QSS File</source>
         <translation>Выбрать файл QSS</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="796"/>
+        <location filename="../uiprefs.ui" line="1375"/>
         <source>Shortcuts</source>
         <translation>Сочетания клавиш</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="809"/>
+        <location filename="../uiprefs.ui" line="1388"/>
         <source>Use F1 to  access the manual</source>
         <translation>Для вызова справки нажмите F1</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="829"/>
+        <location filename="../uiprefs.ui" line="1408"/>
         <source>Reset shortcuts defaults</source>
         <translation>Сбросить настройки сочетаний клавиш</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="841"/>
+        <location filename="../uiprefs.ui" line="738"/>
         <source>Result List</source>
         <translation>Список результатов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="857"/>
+        <location filename="../uiprefs.ui" line="62"/>
+        <source>If set, starting a new instance on the same index will raise an existing one.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="65"/>
+        <source>Single application</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="182"/>
+        <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="450"/>
+        <source>The completion only changes the entry when activated.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="453"/>
+        <source>Completion: no automatic line editing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="702"/>
+        <source>Interface language (needs restart):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="705"/>
+        <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="754"/>
         <source>Number of entries in a result page</source>
         <translation>Число записей в списке результатов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="897"/>
+        <location filename="../uiprefs.ui" line="794"/>
         <source>Result list font</source>
         <translation>Шрифт списка результатов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="907"/>
+        <location filename="../uiprefs.ui" line="804"/>
         <source>Opens a dialog to select the result list font</source>
         <translation>Открыть диалоговое окно выбора шрифта списка результатов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="910"/>
+        <location filename="../uiprefs.ui" line="807"/>
         <source>Helvetica-10</source>
         <translation>Helvetica-10</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="917"/>
+        <location filename="../uiprefs.ui" line="814"/>
         <source>Resets the result list font to the system default</source>
         <translation>Сбросить шрифт списка результатов на системный</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="920"/>
-        <location filename="../uiprefs.ui" line="1049"/>
+        <location filename="../uiprefs.ui" line="817"/>
+        <location filename="../uiprefs.ui" line="946"/>
         <source>Reset</source>
         <translation>Сброс</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="944"/>
+        <location filename="../uiprefs.ui" line="841"/>
         <source>Edit result paragraph format string</source>
         <translation>Редактировать строку форматирования параграфа результатов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="953"/>
+        <location filename="../uiprefs.ui" line="850"/>
         <source>Edit result page html header insert</source>
         <translation>Редактировать вставку html-заголовка страницы результатов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="962"/>
+        <location filename="../uiprefs.ui" line="859"/>
         <source>Date format (strftime(3))</source>
         <translation>Формат даты (strftime(3))</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="986"/>
+        <location filename="../uiprefs.ui" line="883"/>
         <source>Abstract snippet separator</source>
         <translation>Условный разделитель выдержек</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1023"/>
+        <location filename="../uiprefs.ui" line="920"/>
         <source>User style to apply to the snippets window.&lt;br&gt; Note: the result page header insert is also included in the snippets window header.</source>
         <translation>Пользовательский стиль оформления для окна просмотра выдержек.&lt;br&gt; На заметку: вставка заголовка страницы результатов также включена в заголовок окна выдержек.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1026"/>
+        <location filename="../uiprefs.ui" line="923"/>
         <source>Snippets window CSS file</source>
         <translation>Файл оформления CSS окна просмотра выдержек</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1036"/>
+        <location filename="../uiprefs.ui" line="933"/>
         <source>Opens a dialog to select the Snippets window CSS style sheet file</source>
         <translation>Откроется окно выбора файла оформления CSS окна просмотра выдержек</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1039"/>
-        <location filename="../uiprefs.ui" line="1642"/>
+        <location filename="../uiprefs.ui" line="936"/>
+        <location filename="../uiprefs.ui" line="1814"/>
         <source>Choose</source>
         <translation>Выбрать</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1046"/>
+        <location filename="../uiprefs.ui" line="943"/>
         <source>Resets the Snippets window style</source>
         <translation>Сбросить стиль оформления окна просмотра выдержек</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1079"/>
+        <location filename="../uiprefs.ui" line="976"/>
         <source>Maximum number of snippets displayed in the snippets window</source>
         <translation>Предельное число выдержек, показываемых в окне просмотра</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1120"/>
+        <location filename="../uiprefs.ui" line="1017"/>
         <source>Sort snippets by page number (default: by weight).</source>
         <translation>Сортировать по номеру страницы (по умолчанию: по объёму)</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1130"/>
+        <location filename="../uiprefs.ui" line="1027"/>
         <source>Display a Snippets link even if the document has no pages (needs restart).</source>
         <translation>Показать ссылку на выдержки, даже если в документе нет страниц (нужен перезапуск).</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1156"/>
+        <location filename="../uiprefs.ui" line="1053"/>
         <source>Result Table</source>
         <translation>Таблица результатов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1162"/>
+        <location filename="../uiprefs.ui" line="1059"/>
         <source>Hide result table header.</source>
         <translation>Скрывать шапку таблицы результатов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1172"/>
+        <location filename="../uiprefs.ui" line="1069"/>
         <source>Show result table row headers.</source>
         <translation>Показывать шапки рядов таблицы результатов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1182"/>
+        <location filename="../uiprefs.ui" line="1079"/>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
         <translation>Отключить сочетания клавиш Ctrl+[0-9]/Shift+[a-z] для перехода по рядам таблицы.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1194"/>
+        <location filename="../uiprefs.ui" line="1091"/>
         <source>To display document text instead of metadata in result table detail area, use:</source>
         <translation>Для отображения в таблице результатов текста документа вместо метаданных используйте: </translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1201"/>
+        <location filename="../uiprefs.ui" line="1098"/>
         <source>left mouse click</source>
         <translation>Щелчок левой кнопкой мыши</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1208"/>
+        <location filename="../uiprefs.ui" line="1105"/>
         <source>Shift+click</source>
         <translation>Shift+щелчок</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1217"/>
+        <location filename="../uiprefs.ui" line="1114"/>
         <source>Do not display metadata when hovering over rows.</source>
         <translation>Не показывать метаданные при наведении курсора на строки.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1241"/>
+        <location filename="../uiprefs.ui" line="1138"/>
+        <source>Preview</source>
+        <translation type="unfinished">Просмотр</translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="1227"/>
+        <source>Set to 0 to disable details/summary feature</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="1230"/>
+        <source>Fields display: max field length before using summary:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="1320"/>
+        <source>Number of lines to be shown over a search term found by preview search.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="1323"/>
+        <source>Search term line offset:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="1420"/>
         <source>Search parameters</source>
         <translation>Параметры поиска</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1247"/>
+        <location filename="../uiprefs.ui" line="1426"/>
         <source>If checked, results with the same content under different names will only be shown once.</source>
         <translation>Показывать результаты с тем же содержанием под разными именами не более одного раза</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1250"/>
+        <location filename="../uiprefs.ui" line="1429"/>
         <source>Hide duplicate results.</source>
         <translation>Скрывать дубликаты.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1264"/>
+        <location filename="../uiprefs.ui" line="1443"/>
         <source>Stemming language</source>
         <translation>Язык словоформ</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1302"/>
+        <location filename="../uiprefs.ui" line="1481"/>
         <source>A search for [rolling stones] (2 terms) will be changed to [rolling or stones or (rolling phrase 2 stones)]. 
 This should give higher precedence to the results where the search terms appear exactly as entered.</source>
         <translation>Поиск [rolling stones] (два слова) будет изменён на [rolling OR stones OR (rolling phrase 2 stones)].</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1306"/>
+        <location filename="../uiprefs.ui" line="1485"/>
         <source>Automatically add phrase to simple searches</source>
         <translation>Автоматически добавлять фразу при простом поиске</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1321"/>
+        <location filename="../uiprefs.ui" line="1500"/>
         <source>Frequency percentage threshold over which we do not use terms inside autophrase. 
 Frequent terms are a major performance issue with phrases. 
 Skipped terms augment the phrase slack, and reduce the autophrase efficiency.
@@ -4353,160 +4477,170 @@ The default value is 2 (percent). </source>
 Значение по умолчанию: 2 (процента). </translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1327"/>
+        <location filename="../uiprefs.ui" line="1506"/>
         <source>Autophrase term frequency threshold percentage</source>
         <translation>Процент порогового значения частоты автофраз</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1372"/>
+        <location filename="../uiprefs.ui" line="1551"/>
         <source>Do we try to build abstracts for result list entries by using the context of query terms ? 
 May be slow for big documents.</source>
         <translation>Создавать описания для результатов поиска с использованием контекста слов запроса?
 Процесс может оказаться медленным для больших документов.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1376"/>
+        <location filename="../uiprefs.ui" line="1555"/>
         <source>Dynamically build abstracts</source>
         <translation>Составлять описания на лету</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1383"/>
+        <location filename="../uiprefs.ui" line="1562"/>
         <source>Do we synthetize an abstract even if the document seemed to have one?</source>
         <translation>Создавать описание, даже когда оно вроде есть для данного документа?</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1386"/>
+        <location filename="../uiprefs.ui" line="1565"/>
         <source>Replace abstracts from documents</source>
         <translation>Заменять описания из документов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1401"/>
+        <location filename="../uiprefs.ui" line="1580"/>
         <source>Synthetic abstract size (characters)</source>
         <translation>Размер создаваемого описания (символов)</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1456"/>
+        <location filename="../uiprefs.ui" line="1635"/>
         <source>Synthetic abstract context words</source>
         <translation>Число слов контекста в описании</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1512"/>
+        <location filename="../uiprefs.ui" line="1691"/>
         <source>The words in the list will be automatically turned to ext:xxx clauses in the query language entry.</source>
         <translation>Список слов, которые будут автоматически преобразованы в расширение файла вида ext:xxx в запросе.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1515"/>
+        <location filename="../uiprefs.ui" line="1694"/>
         <source>Query language magic file name suffixes.</source>
         <translation>Распознавание типа файлов при помощи файла сигнатур (magic file).</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1525"/>
-        <location filename="../uiprefs.ui" line="1629"/>
+        <location filename="../uiprefs.ui" line="1704"/>
+        <location filename="../uiprefs.ui" line="1801"/>
         <source>Enable</source>
         <translation>Включить</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1569"/>
+        <location filename="../uiprefs.ui" line="1738"/>
         <source>Add common spelling approximations for rare terms.</source>
         <translation>Добавлять наиболее подходящие варианты написания для редко встречающихся терминов.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1572"/>
+        <location filename="../uiprefs.ui" line="1741"/>
         <source>Automatic spelling approximation.</source>
         <translation>Автоподбор написания.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1579"/>
+        <location filename="../uiprefs.ui" line="1748"/>
         <source>Max spelling distance</source>
         <translation>Предельное расстояние между написаниями</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1619"/>
+        <location filename="../uiprefs.ui" line="1791"/>
         <source>Synonyms file</source>
         <translation>Файл с синонимами</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1683"/>
+        <location filename="../uiprefs.ui" line="1836"/>
+        <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="1839"/>
+        <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../uiprefs.ui" line="1868"/>
         <source>External Indexes</source>
         <translation>Индексы однокоренных слов</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1700"/>
+        <location filename="../uiprefs.ui" line="1885"/>
         <source>Toggle selected</source>
         <translation>Переключить выделенные</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1707"/>
+        <location filename="../uiprefs.ui" line="1892"/>
         <source>Activate All</source>
         <translation>Включить всё</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1714"/>
+        <location filename="../uiprefs.ui" line="1899"/>
         <source>Deactivate All</source>
         <translation>Выключить всё</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1721"/>
+        <location filename="../uiprefs.ui" line="1906"/>
         <source>Set path translations for the selected index or for the main one if no selection exists.</source>
         <translation>Задать корректировку путей для выбранного или главного индекса, если ничего не выбрано.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1724"/>
+        <location filename="../uiprefs.ui" line="1909"/>
         <source>Paths translations</source>
         <translation>Корректировка путей</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1745"/>
+        <location filename="../uiprefs.ui" line="1930"/>
         <source>Remove from list. This has no effect on the disk index.</source>
         <translation>Удалить из списка. Индекс на диске без изменений.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1748"/>
+        <location filename="../uiprefs.ui" line="1933"/>
         <source>Remove selected</source>
         <translation>Удалить выделенное</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1774"/>
+        <location filename="../uiprefs.ui" line="1959"/>
         <source>Click to add another index directory to the list. You can select either a Recoll configuration directory or a Xapian index.</source>
         <translation>Щёлкните, чтобы добавить другой каталог индекса в список. Можно выбрать каталог конфигурации Recoll или индекс Xapian.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1777"/>
+        <location filename="../uiprefs.ui" line="1962"/>
         <source>Add index</source>
         <translation>Добавить индекс</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1789"/>
+        <location filename="../uiprefs.ui" line="1974"/>
         <source>Misc</source>
         <translation>Разное</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1795"/>
+        <location filename="../uiprefs.ui" line="1980"/>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
         <translation>Ошибка, приводящая к отображению странных символов в подсвеченных словах на тамильском. Обход заключается в том, чтобы вставить дополнительный символ пробела.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1798"/>
+        <location filename="../uiprefs.ui" line="1983"/>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
         <translation>Обходить ошибку QTBUG-78923 в записях на тамильском, вставляя пробел перед якорным текстом.</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1840"/>
+        <location filename="../uiprefs.ui" line="2025"/>
         <source>Apply changes</source>
         <translation>Принять изменения</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1843"/>
+        <location filename="../uiprefs.ui" line="2028"/>
         <source>&amp;OK</source>
         <translation>&amp;ОК</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1859"/>
+        <location filename="../uiprefs.ui" line="2044"/>
         <source>Discard changes</source>
         <translation>Отменить изменения</translation>
     </message>
     <message>
-        <location filename="../uiprefs.ui" line="1862"/>
+        <location filename="../uiprefs.ui" line="2047"/>
         <source>&amp;Cancel</source>
         <translation>Отменить</translation>
     </message>
