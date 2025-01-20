@@ -1,16 +1,22 @@
-recoll (1.42.0pre2-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+recoll (1.42.0-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * GUI: Added "single application" mode, where starting a new instance just
     activates an existing one.
-  * GUI: added preferences option for a more passive search entry completion.
+  * GUI: added default preference option for a more passive search entry
+    completion.
   * GUI: New idxlocalguisettings config switch to decide that some GUI settings
     will be local to the index (only the result table setup at the
     moment). The settings are stored in $RECOLL_CONFDIR/recollgui.ini
+  * GUI: preview: position the search result a few lines below the top.
+  * GUI: preview: fix copy to clipboard, and other glitches.
   * New libreoffice-based handler for Apple Office documents (pages,
     numbers, keynote).
   * Raw indexes: fix date processing bug.
+  * Improve mass result extraction (e.g. from Python) by only retrieving
+    the UDI if explicitly needed.
+  * Mac: support Apple Office formats, using soffice for conversion (slow).
 
- -- Jean-Francois Dockes <jf@dockes.org>  Fri, 27 Dec 2024 09:53:00 +0100
+ -- Jean-Francois Dockes <jf@dockes.org>  Mon, 20 Jan 2025 15:07:00 +0100
 
 recoll (1.41.1-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
