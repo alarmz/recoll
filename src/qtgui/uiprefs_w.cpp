@@ -62,6 +62,28 @@ using std::vector;
 using std::map;
 using std::list;
 
+static std::vector<std::pair<QString, QString>> uilanguages{
+    {"", ""},    
+    {"Czech", "cs"},
+    {"Danish", "da"},
+    {"German", "de"},
+    {"Greek", "el"},
+    {"Spanish", "es"},
+    {"French", "fr"},
+    {"Hungarian", "hu"},
+    {"Italian", "it"},
+    {"Japanese", "ja"},
+    {"Korean", "ko"},
+    {"Lithuanian", "lt"},
+    {"Dutch", "nl"},
+    {"Polish", "pl"},
+    {"Russian", "ru"},
+    {"Swedish", "sv"},
+    {"Turkish", "tr"},
+    {"Ukrainian", "uk"},
+    {"Chinese", "zh_CN"},
+};
+
 void UIPrefsDialog::init()
 {
     // See enum above and keep in order !
@@ -186,6 +208,12 @@ void UIPrefsDialog::setFromPrefs()
     singleappCB->setChecked(prefs.singleapp);
     ssearchCompletePassiveCB->setChecked(prefs.ssearchCompletePassive);
     previewLinesOverAnchorSB->setValue(prefs.previewLinesOverAnchor);
+    for (const auto& [lang,abbrev]: uilanguages) {
+        uilanguageCMB->addItem(lang, abbrev);
+    }
+    auto idx = uilanguageCMB->findData(prefs.uilanguage);
+    if (idx >= 0)
+        uilanguageCMB->setCurrentIndex(idx);
     /*INSERTHERE_LOAD*/
 
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -473,6 +501,7 @@ void UIPrefsDialog::accept()
     prefs.singleapp = singleappCB->isChecked();
     prefs.ssearchCompletePassive = ssearchCompletePassiveCB->isChecked();
     prefs.previewLinesOverAnchor = previewLinesOverAnchorSB->value();
+    prefs.uilanguage = uilanguageCMB->currentData().toString();
     /*INSERTHERE_ACCEPT*/
 
     // -1 is the qxtconf... predefined value to show the dialog

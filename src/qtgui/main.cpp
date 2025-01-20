@@ -427,13 +427,17 @@ int main(int argc, char **argv)
     }
     //    fprintf(stderr, "recollinit done\n");
 
-    // Translations for Qt standard widgets
+    // Interface language
     QString slang;
     if (op_flags & OPT_L) {
         slang = u8s2qs(a_lang);
+    } else if (!prefs.uilanguage.isEmpty()) {
+        slang = prefs.uilanguage;
     } else {
         slang = QLocale::system().name();
     }
+
+    // Translations for Qt standard widgets
     QTranslator qt_trans(0);
     if (qt_trans.load(QString("qt_%1").arg(slang), 
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 0, 0))
@@ -448,12 +452,10 @@ int main(int argc, char **argv)
     // Translations for Recoll
     string translatdir = path_cat(theconfig->getDatadir(), "translations");
     QTranslator translator(0);
-    auto loaded = translator.load(QString("recoll_") + slang,
-                                  translatdir.c_str());
+    auto loaded = translator.load(QString("recoll_") + slang, translatdir.c_str());
     if (loaded)
         app.installTranslator(&translator);
 
-    //    fprintf(stderr, "Translations installed\n");
 
     string historyfile = path_cat(theconfig->getConfDir(), "history");
     g_dynconf = new RclDynConf(historyfile);

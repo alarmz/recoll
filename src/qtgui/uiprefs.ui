@@ -694,6 +694,39 @@
              </property>
             </spacer>
            </item>
+           <item>
+            <layout class="QHBoxLayout">
+             <item>
+              <widget class="QLabel" name="uilanguageLBL">
+               <property name="text">
+                <string>Interface language (needs restart):</string>
+               </property>
+               <property name="toolTip">
+                <string>Note: most translations are incomplete. Leave empty to use the system environment.</string>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="uilanguageCMB">
+               <property name="minimumSize">
+                <size>
+                 <width>10</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="editable">
+                <bool>no</bool>
+               </property>
+               <property name="insertPolicy">
+                <enum>QComboBox::NoInsert</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
           </layout>
          </widget>
         </widget>

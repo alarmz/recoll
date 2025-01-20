@@ -161,6 +161,7 @@ public:
     int pvmaxfldlen{0};
     bool singleapp{false};
     int previewLinesOverAnchor{4};
+    QString uilanguage;
     /*INSERTHERE*/
 
     // See widgets/qxtconfirmationmessage.
