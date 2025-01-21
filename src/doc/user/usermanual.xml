@@ -7,7 +7,7 @@
 <!ENTITY RCLWEB "<ulink url='https://www.recoll.org/'>https://www.recoll.org/</ulink>">
 <!ENTITY FAQS "https://www.recoll.org/faqsandhowtos/">
 <!ENTITY RCLAPPS "<ulink url='https://www.recoll.org/pages/features.html#doctypes'>https://www.recoll.org/pages/features.html</ulink>">
-<!ENTITY RCLVERSION "1.40">
+<!ENTITY RCLVERSION "1.42">
 <!ENTITY XAP "<application>Xapian</application>">
 <!ENTITY WIN "<application>Windows</application>">
 <!ENTITY LIN "<application>Unix</application>-like systems">
@@ -75,7 +75,7 @@
       index your home directory, allowing you to search immediately after indexing completes.</para>
 
       <para>Do not do this if your home directory contains a huge number of documents and you do not
-      want to wait or are very short on disk space. In this case, you may first want to customize
+      want to wait or are very short on disk space. In this case, you may first want to customise
       the <link linkend="RCL.INDEXING.CONFIG">configuration</link> to restrict the indexed area.
       From the <command>recoll</command> GUI go to: <menuchoice>
       <guimenu>Preferences</guimenu>
@@ -1533,7 +1533,7 @@ fs.inotify.max_user_watches=32768</programlisting>
           <programlisting><![CDATA[
           setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/file]]></programlisting>
 
-          The date substitution will then be automatic, you do not need to customize
+          The date substitution will then be automatic, you do not need to customise
           the <filename>fields</filename> file.</para></note>
 
         </sect3>
@@ -2063,22 +2063,19 @@ recollindex -c "$confdir"</programlisting>
 
 
     <sect1 id="RCL.SEARCH.GUI">
-      <title>Searching with the Qt graphical user interface</title>
+      <title>Searching with the Qt graphical user interface (GUI)</title>
 
-      <para>The <command>recoll</command> program provides the main user
-        interface for searching. It is based on the <application>Qt</application> library.</para>
+      <para>The <command>recoll</command> program provides the main user interface for searching. It
+      is based on the <application>Qt</application> library.</para>
 
       <para><command>recoll</command> has two search interfaces:</para>
       <itemizedlist>
-        <listitem><para>Simple search (the default, on the main screen) has
-            a single entry field where you can enter multiple words or a query language
-            query.</para>
-        </listitem>
-        <listitem><para>Advanced search (a panel accessed through the
-            <guilabel>Tools</guilabel> menu or the toolbox bar icon) has multiple entry fields,
-            which you may use to build a logical condition, with additional filtering on file type,
-            location in the file system, modification date, and size.</para>
-        </listitem>
+        <listitem><para>Simple search (the default, on the main screen) has a single entry field
+        where you can enter multiple words or a query language query.</para></listitem>
+        <listitem><para>Advanced search (a panel accessed through the <guilabel>Tools</guilabel>
+        menu or the toolbox bar icon) has multiple entry fields, which you may use to build a
+        logical condition, with additional filtering on file type, location in the file system,
+        modification date, and size.</para></listitem>
       </itemizedlist>
 
       <para>The <guilabel>Advanced Search</guilabel> tool is easier to use, but not actually more
@@ -2232,8 +2229,8 @@ recollindex -c "$confdir"</programlisting>
 
         <para>Clicking the <literal>Open</literal> link will start an external viewer for the
           document. By default, &RCL; lets the desktop choose the appropriate application for most
-          document types. See <link linkend="RCL.SEARCH.GUI.RESLIST.APPLICATIONS">further</link> for
-          customizing the applications.</para>
+          document types. See <link linkend="RCL.SEARCH.GUI.CUSTOM.APPLICATIONS">further</link> for
+          customising the applications.</para>
 
         <para>The <literal>Preview</literal> and <literal>Open</literal>
           links may not be present for all entries. They are only available, respectively, for
@@ -2272,61 +2269,6 @@ recollindex -c "$confdir"</programlisting>
 
 
 
-        <simplesect id="RCL.SEARCH.GUI.RESLIST.APPLICATIONS">
-          <title>Customising the viewers</title>
-
-          <para>By default &RCL; lets the desktop choose what application should be used to open a
-            given document, with exceptions.</para>  
-
-          <para>The details of this behaviour can be customized with the
-            <menuchoice>
-              <guimenu>Preferences</guimenu>
-              <guimenuitem>GUI configuration</guimenuitem>
-              <guimenuitem>User interface</guimenuitem>
-              <guimenuitem>Choose editor applications</guimenuitem>
-            </menuchoice> dialog or by editing
-            the <link linkend="RCL.INSTALL.CONFIG.MIMEVIEW">
-              <filename>mimeview</filename> configuration file.</link></para>
-
-          <para>When <guilabel>Use desktop preferences</guilabel>, at the
-            top of the dialog, is checked, the desktop default is generally
-            used, but there is a small default list of exceptions, for MIME
-            types where the &RCL; choice should override the desktop
-            one. These are applications which are well integrated with
-            &RCL;, for example, on Linux, <application>evince</application>
-            for viewing PDF and Postscript files because of its support for
-            opening the document at a specific page and passing a search
-            string as an argument. You can add or remove document types to
-            the exceptions by using the dialog.</para>
-
-          <para>If you prefer to completely customize the choice of
-            applications, you can uncheck <guilabel>Use desktop
-            preferences</guilabel>, in which case the &RCL; predefined
-            applications will be used, and can be changed for each document
-            type. This is probably not the most convenient approach in most
-            cases.</para> 
-
-          <para>In all cases, the applications choice dialog accepts
-            multiple selections of MIME types in the top section, and lets
-            you define how they are processed in the bottom one. In most
-            cases, you will be using <literal>%f</literal> as a place
-            holder to be replaced by the file name in the application
-            command line.</para>
-
-          <para>You may also change the choice of applications by editing
-            the
-            <link linkend="RCL.INSTALL.CONFIG.MIMEVIEW">
-              <filename>mimeview</filename></link> 
-            configuration file if you find this more convenient.</para>
-
-          <para>Under &LIN;, each result list entry also has a right-click
-            menu with an
-            <guilabel>Open With</guilabel> entry. This lets you choose an
-            application from the list of those which registered with the desktop
-            for the document MIME type, on a case by case basis.</para>
-        </simplesect>
-
-
         <simplesect id="RCL.SEARCH.GUI.RESLIST.SUGGS">
           <title>No results: the spelling suggestions</title>
 
@@ -2342,7 +2284,7 @@ recollindex -c "$confdir"</programlisting>
         </simplesect>
 
 
-        <simplesect id="RCL.SEARCH.GUI.RESULTLIST.MENU">
+        <simplesect id="RCL.SEARCH.GUI.RESLIST.MENU">
           <title>The result list right-click menu</title>
 
           <para>Apart from the preview and edit links, you can display a
@@ -2412,7 +2354,7 @@ recollindex -c "$confdir"</programlisting>
           current result. I can't remember a single instance where this
           function was actually useful to me...</para>
 
-          <para id="RCL.SEARCH.GUI.RESULTLIST.MENU.SNIPPETS">The
+          <para id="RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS">The
           <guilabel>Open Snippets Window</guilabel> entry will only 
           appear for documents which support page breaks (typically
           PDF, Postscript, DVI). The snippets window lists extracts from
@@ -2681,7 +2623,7 @@ recollindex -c "$confdir"</programlisting>
               Fragments</guimenuitem></menuchoice> menu entry will open the dialog.</para>
 
 
-        <para>The contents of the window are entirely customizable, and defined by the contents of a
+        <para>The contents of the window are entirely customisable, and defined by the contents of a
           XML text file, named <filename>fragment-buttons.xml</filename> and which will be looked
           for in the current index configuration directory. The sample file distributed with &RCL;
           contains a number of example filters. This will be automatically copied to the
@@ -3038,11 +2980,10 @@ recollindex -c "$confdir"</programlisting>
       </sect2>
 
       <sect2 id="RCL.SEARCH.GUI.MULTIDB">
-        <title>Multiple indexes</title>
+        <title>Searching across multiple indexes</title>
 
-        <para>See the section describing
-        <link linkend="RCL.INDEXING.CONFIG.MULTIPLE">the use of multiple indexes</link> for
-        generalities. Only the aspects concerning the
+        <para>See the section describing <link linkend="RCL.INDEXING.CONFIG.MULTIPLE">the use of
+        multiple indexes</link> for generalities. Only the aspects concerning the
         <command>recoll</command> GUI are described here.</para>
 
         <para>A <command>recoll</command> program instance is always associated with a main index,
@@ -3533,9 +3474,9 @@ recollindex -c "$confdir"</programlisting>
       </sect2>
 
       <sect2 id="RCL.SEARCH.GUI.CUSTOM">
-        <title>Customizing the search interface</title>
+        <title>Customising the search interface</title>
 
-        <para>You can customize some aspects of the search interface by using
+        <para>You can customise some aspects of the search interface by using
         the <guimenu>GUI configuration</guimenu> entry in the
         <guimenu>Preferences</guimenu> menu.</para>
 
@@ -3543,300 +3484,311 @@ recollindex -c "$confdir"</programlisting>
         interface itself, the parameters used for searching and
         returning results, and what indexes are searched.</para> 
 
+        <para>Most GUI settings are global and do not depend on the index in use. As of &RCL; 1.42,
+        it is possible to specify that some settings will depend on the index. At the moment, only
+        the result table configuration can be saved in such a way.</para>
+        
+        <sect3 id="RCL.SEARCH.GUI.CUSTOM.APPLICATIONS">
+          <title>Choosing the viewer applications</title>
 
-        <formalpara id="RCL.SEARCH.GUI.CUSTOM.UI">
-          <title>User interface parameters:</title>
-          <para>
+          <para>By default &RCL; lets the desktop choose what application should be used to open a
+          given document, with exceptions.</para>  
+
+          <para>The details of this behaviour can be customised with the
+            <menuchoice>
+              <guimenu>Preferences</guimenu>
+              <guimenuitem>GUI configuration</guimenuitem>
+              <guimenuitem>User interface</guimenuitem>
+              <guimenuitem>Choose editor applications</guimenuitem>
+            </menuchoice> dialog or by editing
+            the <link linkend="RCL.INSTALL.CONFIG.MIMEVIEW">
+              <filename>mimeview</filename> configuration file.</link></para>
+
+          <para>When <guilabel>Use desktop preferences</guilabel>, at the top of the dialog, is
+          checked, the desktop default is generally used, but there is a small default list of
+          exceptions, for MIME types where the &RCL; choice should override the desktop one. These
+          are applications which are well integrated with &RCL;, for example, on Linux,
+          <application>evince</application> for viewing PDF and Postscript files because of its
+          support for opening the document at a specific page and passing a search string as an
+          argument. You can add or remove document types to the exceptions by using the
+          dialog.</para>
+
+          <para>If you prefer to completely customise the choice of applications, you can uncheck
+          <guilabel>Use desktop preferences</guilabel>, in which case the &RCL; predefined
+          applications will be used, and can be changed for each document type. This is probably not
+          the most convenient approach in most cases.</para>
+
+          <para>In all cases, the applications choice dialog accepts multiple selections of MIME
+          types in the top section, and lets you define how they are processed in the bottom one. In
+          most cases, you will be using <literal>%f</literal> as a place holder to be replaced by
+          the file name in the application command line.</para>
+
+          <para>You may also change the choice of applications by editing
+            the
+            <link linkend="RCL.INSTALL.CONFIG.MIMEVIEW">
+              <filename>mimeview</filename></link> 
+            configuration file if you find this more convenient.</para>
+
+          <para>Under &LIN;, each result list entry also has a right-click menu with an
+          <guilabel>Open With</guilabel> entry. This lets you choose an application 
+          from the list of those which registered with the desktop for the document MIME type, on
+          a case by case basis.</para>
+        </sect3>
+
+        <sect3 id="RCL.SEARCH.GUI.CUSTOM.PREFERENCES">
+          <title>The GUI preferences dialog</title>
+
+          <para>Many aspects of the &RCL; GUI can be customised from dialogs reached through the
+          <menuchoice>
+            <guimenu>Preferences</guimenu>
+            <guimenuitem>GUI configuration</guimenuitem>
+          </menuchoice> menu choice.</para>
+
+          <para>Not all choices from the different panels will be described below. Many are
+          self-evident or have sufficient tooltip text to provide explanations.</para>
+          
+          <simplesect id="RCL.SEARCH.GUI.CUSTOM.UI">
+            <title>User interface</title>
             <itemizedlist>
+              <listitem><para><guilabel>Choose editor application</guilabel>: this opens the dialog
+              which allows you to select the application to be used to open each MIME type, which
+              was described in detail in the previous section.</para></listitem>
 
-              <listitem><para><guilabel>Highlight color for query
-              terms</guilabel>: Terms from the user query are highlighted in
-              the result list samples and the preview window. The color can
-              be chosen here. Any Qt color string should work (e.g.
-              <literal>red</literal>, <literal>#ff0000</literal>). The
-              default is <literal>blue</literal>.</para>
-              </listitem>
-
-              <listitem><para><guilabel>Style sheet</guilabel>:
-              The name of a <application>Qt</application> style sheet
-              text file which is applied to the whole Recoll application
-              on startup. The default value is empty, but there is a
-              skeleton style sheet (<filename>recoll.qss</filename>)
-              inside the <filename>/usr/share/recoll/examples</filename>
-              directory. Using a style sheet, you can change most
-              <command>recoll</command> graphical parameters:
-              colors, fonts, etc. See the sample file for a few
-              simple examples.</para> 
-              <para>You should be aware that parameters (e.g.: the
-              background color) set inside the &RCL; GUI style sheet
-              will override global system preferences, with possible
-              strange side effects: for example if you set the
-              foreground to a light color and the background to a
-              dark one in the desktop preferences, but only the
-              background is set inside the &RCL; style sheet, and it
-              is light too, then text will appear light-on-light
-              inside the &RCL; GUI.</para>
-              </listitem>
-
-              <listitem><para><guilabel>Maximum text size highlighted for
-              preview</guilabel> Inserting highlights on search term inside
-              the text before inserting it in the preview window involves
-              quite a lot of processing, and can be disabled over the given
-              text size to speed up loading.</para>
-              </listitem>
-
-              <listitem><para><guilabel>Prefer HTML to plain text for
-              preview</guilabel> if set, Recoll will display HTML as such
-              inside the preview window. If this causes problems with the Qt
-              HTML display, you can uncheck it to display the plain text
-              version instead. </para>
-              </listitem>
-
-              <listitem><para><guilabel>Activate links in
-              preview</guilabel> if set, Recoll will turn HTTP links found
-              inside plain text into proper HTML anchors, and clicking a
-              link inside a preview window will start the default browser
-              on the link target.</para> </listitem>
-
-              <listitem><para><guilabel>Plain text to HTML line
-              style</guilabel>: when displaying plain text inside the
-              preview window, &RCL; tries to preserve some of the original
-              text line breaks and indentation. It can either use PRE HTML
-              tags, which will well preserve the indentation but will force
-              horizontal scrolling for long lines, or use BR tags to break
-              at the original line breaks, which will let the editor
-              introduce other line breaks according to the window width,
-              but will lose some of the original indentation. The third
-              option has been available in recent releases and is probably
-              now the best one: use PRE tags with line wrapping.</para>
-              </listitem>
-
-              <listitem><para><guilabel>Choose editor
-              application</guilabel>: this opens a dialog which allows you
-              to select the application to be used to open each MIME
-              type. The default is to use the <command>xdg-open</command>
-              utility, but you can use this dialog to override it, setting
-              exceptions for MIME types that will still be opened according
-              to &RCL; preferences. This is useful for passing parameters
-              like page numbers or search strings to applications that
-              support them (e.g. <application>evince</application>). This
-              cannot be done with <command>xdg-open</command> which only
-              supports passing one parameter.</para>
-              </listitem>
-
-              <listitem><para><guilabel>Disable Qt autocompletion in search
-              entry</guilabel>: this will disable the completion popup. Il
-              will only appear, and display the full history, either if you
-              enter only white space in the search area, or if you click
-              the clock button on the right of the area.</para>
-              </listitem>
-
-              <listitem><para><guilabel>Document filter choice
-              style</guilabel>: this will let you choose if the document
-              categories are displayed as a list or a set of buttons, or a
-              menu.</para>
-              </listitem>
-
-              <listitem><para><guilabel>Start with simple search
-              mode</guilabel>: this lets you choose the value of the simple
-              search type on program startup. Either a fixed value
-              (e.g. <literal>Query Language</literal>, or the value in use
-              when the program last exited.</para></listitem>
-
-              <listitem><para><guilabel>Start with advanced search dialog open
-              </guilabel>: If you use this dialog frequently, checking
-              the entries will get it to open when recoll starts.</para>
-              </listitem>
+              <listitem><para><guilabel>Single application</guilabel>: when checked, starting the
+              &RCL; GUI will activate an existing instance instead of creating a new
+              one.</para></listitem>
               
-              <listitem><para><guilabel>Remember sort activation
-              state</guilabel> if set, Recoll will remember the sort tool
-              stat between invocations. It normally starts with sorting
-              disabled.</para>
-              </listitem>
+              <listitem><para><guilabel>Start with simple search mode</guilabel>: this lets you
+              choose the value of the simple search type on program startup. Either a fixed value
+              (e.g. <literal>Query Language</literal>), or the value in use when the program last
+              exited.</para></listitem>
+
+              <listitem><para><guilabel>Maximum size of search history</guilabel>: limit how many
+              searches are stored in the history. Set to -1 for no limit. The history can be cleared
+              in the <guilabel>File</guilabel> menu.</para></listitem>
+              
+              <listitem><para><guilabel>Start with advanced search dialog open </guilabel>: If you
+              use this dialog frequently, checking the entries will get it to open when the GUI
+              starts.</para></listitem>
+
+              <listitem><para><guilabel>Remember sort activation state</guilabel> if set, the GUI
+              will remember the sort tool state between invocations. It normally starts with sorting
+              disabled.</para></listitem>
+
+              <listitem><para><guilabel>Depth of side filter directory tree</guilabel>: decide how
+              many levels should be shown in the directory filter panel.</para></listitem>
+
+              <listitem><para><guilabel>Side filter dates format</guilabel>: allows changing how
+              dates are displayed in the side filter. See the tooltip for details.</para></listitem>
+
+              <listitem><para><guilabel>Document filter choice style</guilabel>: this will let you
+              choose if the document categories are displayed as a list or a set of buttons, or a
+              menu.</para></listitem>
+
+              <listitem><para><guilabel>Disable Qt autocompletion in search entry</guilabel>: this
+              will disable the completion popup. Il will only appear, and display the full history,
+              either if you enter only white space in the search area, or if you click the clock
+              button on the right of the area.</para></listitem>
+
+              <listitem><para><guilabel>Highlight CSS style for query terms</guilabel>: Terms from
+              the user query are highlighted in the result list and the preview window. The
+              highligthing style can be chosen here, for example <literal>color: blue</literal> or
+              <literal>color: red;background: yellow</literal>. Mostly any CSS style should work.
+              </para></listitem>
+
+              <listitem><para><guilabel>Display scale</guilabel>: This actually adjust the font
+              sizes everywhere inside the GUI and can be used on High resolution displays if the
+              default characters are too small.</para></listitem>
+
+              <listitem><para><guilabel>Style sheet</guilabel>: The name of a
+              <application>Qt</application> style sheet text file which is applied to the whole GUI
+              on startup. The default value is empty, but there is a skeleton style sheet
+              (<filename>recoll.qss</filename>) inside the
+              <filename>/usr/share/recoll/examples</filename> directory. Using a style sheet, you
+              can change most <command>recoll</command> graphical parameters: colors, fonts,
+              etc. See the sample file for a few simple examples.</para> <para>You should be aware
+              that parameters (e.g.: the background color) set inside the &RCL; GUI style sheet will
+              override global system preferences, with possible strange side effects: for example if
+              you set the foreground to a light color and the background to a dark one in the
+              desktop preferences, but only the background is set inside the &RCL; style sheet, and
+              it is light too, then text will appear light-on-light inside the &RCL;
+              GUI.</para></listitem>
 
             </itemizedlist>
-          </para>
-        </formalpara>
-
-
-        <formalpara id="RCL.SEARCH.GUI.CUSTOM.RL">
-          <title>Result list parameters:</title>
-          <para>
-            <itemizedlist>
-              
-              <listitem><para><guilabel>Number of results in a result
-              page</guilabel></para>
-              </listitem>
-
-              <listitem><para><guilabel>Result list font</guilabel>: There is
-              quite a lot of information shown in the result list, and you
-              may want to customize the font and/or font size. The rest of
-              the fonts used by &RCL; are determined by your generic Qt
-              config (try the <command>qtconfig</command> command).</para>
-              </listitem>
-
-              <listitem id="RCL.SEARCH.GUI.CUSTOM.RESULTPARA">
-                <para><guilabel>Edit result list paragraph format string</guilabel>:
-                allows you to change the presentation of each result list
-                entry. See the
-                <link linkend="RCL.SEARCH.GUI.CUSTOM.RESLIST">result list customisation section</link>.
-                </para>
-              </listitem>
-
-              <listitem id="RCL.SEARCH.GUI.CUSTOM.RESULTHEAD">
-                <para><guilabel>Edit result page HTML header insert</guilabel>:
-                allows you to define text inserted at the end of the result
-                page HTML header.  
-                More detail in the
-                <link linkend="RCL.SEARCH.GUI.CUSTOM.RESLIST">result list customisation section</link>.
-                </para>
-              </listitem>
-
-              <listitem>
-                <para><guilabel>Date format</guilabel>: allows specifying the
-                format used for displaying dates inside the result list. This
-                should be specified as an strftime() string (man strftime).</para>
-              </listitem>
-
-              <listitem id="RCL.SEARCH.GUI.CUSTOM.ABSSEP">
-                <para><guilabel>Abstract snippet separator</guilabel>:
-                for synthetic abstracts built from index data, which are
-                usually made of several snippets from different parts of the
-                document, this defines the snippet separator, an ellipsis by
-                default. </para>
-              </listitem>
-
-          </itemizedlist></para>
-        </formalpara>
-
-        <formalpara id="RCL.SEARCH.GUI.CUSTOM.SEARCH">
-          <title>Search parameters:</title>
-          <para>
+          </simplesect>
+     
+          <simplesect id="RCL.SEARCH.GUI.CUSTOM.RL">
+            <title>Result list:</title>
             <itemizedlist>
 
-              <listitem><para><guilabel>Hide duplicate results</guilabel>:
-              decides if result list entries are shown for identical
-              documents found in different places.</para>
-              </listitem>
+              <listitem><para><guilabel>Result list font</guilabel>: There is quite a lot of
+              information shown in the result list, and you may want to customise the font and/or
+              font size. The rest of the fonts used by &RCL; are determined by your generic Qt
+              configuration (try the <command>qtconfig</command> command).</para></listitem>
 
-              <listitem><para><guilabel>Stemming language</guilabel>:
-              stemming obviously depends on the document's language. This
-              listbox will let you chose among the stemming databases which
-              were built during indexing (this is set in the
-              <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF">main configuration file</link>), 
-              or later added with
-              <command>recollindex -s</command> (See the recollindex
-              manual). Stemming languages
-              which are dynamically added will be deleted at the next
-              indexing pass unless they are also added in the configuration
-              file.</para>
-              </listitem>
+              <listitem id="RCL.SEARCH.GUI.CUSTOM.RESULTPARA"><para><guilabel>Edit result list
+              paragraph format string</guilabel>: allows you to change the presentation of each
+              result list entry. See the <link linkend="RCL.SEARCH.GUI.CUSTOM.RESLIST">result list
+              customisation section</link>.</para></listitem>
 
-              <listitem><para>
-                <guilabel>Automatically add phrase to simple searches</guilabel>:
-                a phrase will be automatically built and
-              added to simple searches when looking for
-              <literal>Any terms</literal>. This will give a relevance
-              boost to the results where the search terms appear as a
-              phrase (consecutive and in order).</para>
-              </listitem>
+              <listitem id="RCL.SEARCH.GUI.CUSTOM.RESULTHEAD"><para><guilabel>Edit result page HTML
+              header insert</guilabel>: allows you to define text inserted at the end of the result
+              page HTML header. More detail in the
+              <link linkend="RCL.SEARCH.GUI.CUSTOM.RESLIST">result list customisation</link>
+              section.</para></listitem>
 
-              <listitem><para><guilabel>Autophrase term frequency threshold
-              percentage</guilabel>: very frequent terms should not be included
-              in automatic phrase searches for performance reasons. The
-              parameter defines the cutoff percentage (percentage of the
-              documents where the term appears).</para>
-              </listitem>
+              <listitem><para><guilabel>Date format</guilabel>: allows specifying the format used
+              for displaying dates inside the result list. This should be specified as an strftime()
+              string (man strftime).</para></listitem>
 
-              <listitem><para><guilabel>Replace abstracts from
-              documents</guilabel>: this decides if we should synthesize and
-              display an abstract in place of an explicit abstract found
-              within the document itself.</para>
-              </listitem>
+              <listitem id="RCL.SEARCH.GUI.CUSTOM.ABSSEP"><para><guilabel>Abstract snippet
+              separator</guilabel>: for synthetic abstracts built from index data, which are usually
+              made of several snippets from different parts of the document, this defines the
+              snippet separator, an ellipsis by default.</para></listitem>
 
-              <listitem><para><guilabel>Dynamically build
-              abstracts</guilabel>: this decides if &RCL; tries to build
-              document abstracts (lists of <emphasis>snippets</emphasis>)
-              when displaying the result list. Abstracts are constructed by
-              taking context from the document information, around the search
-              terms.</para>
-              </listitem>
-
-              <listitem><para><guilabel>Synthetic abstract size</guilabel>:
-              adjust to taste...</para>
-              </listitem>
-
-              <listitem><para><guilabel>Synthetic abstract context
-              words</guilabel>: how many words should be displayed around
-              each term occurrence.</para>
-              </listitem>
-
-              <listitem><para><guilabel>Query language magic file name 
-              suffixes</guilabel>: a list of words which automatically get
-              turned into <literal>ext:xxx</literal> file name suffix clauses
-              when starting a query language query (e.g.:
-              <literal>doc xls xlsx...</literal>). 
-              This will save some typing for people who
-              use file types a lot when querying.</para>
-              </listitem>
             </itemizedlist>
-          </para>
-        </formalpara>
+          </simplesect>
 
-        <formalpara id="RCL.SEARCH.GUI.CUSTOM.EXTRADB">
-          <title>External indexes:</title> 
-          <para>This panel will let you browse for additional indexes
-          that you may want to search. External indexes are designated by
-          their database directory (e.g.:
-          <filename>/home/someothergui/.recoll/xapiandb</filename>,
-          <filename>/usr/local/recollglobal/xapiandb</filename>).</para>
-        </formalpara>
+          <simplesect id="RCL.SEARCH.GUI.CUSTOM.PREVIEW">
+            <title>Preview</title>
+            <itemizedlist>
+              <listitem><para><guilabel>Maximum text size highlighted for preview</guilabel>:
+              Disable search term highlighting for texts bigger than the given size to speed up
+              loading. Creating highlights on search terms involves quite a lot of processing, and
+              can be slow.</para></listitem>
 
-        <para>Once entered, the indexes will appear in the
-        <guilabel>External indexes</guilabel> list, and you can
-        chose which ones you want to use at any moment by checking or
-        unchecking their entries.</para> 
+              <listitem><para><guilabel>Prefer HTML to plain text for preview</guilabel>: if set,
+              Recoll will display HTML as such inside the preview window. If this causes display
+              problems, you can uncheck it to display the plain text version instead. A common issue
+              is insufficient contrast on a dark mode display, caused by the document style
+              sheet.</para></listitem>
 
-        <para>Your main database (the one the current configuration
-        indexes to), is always implicitly active. If this is not
-        desirable, you can set up your configuration so that it indexes,
-        for example, an empty directory. An alternative indexer may also
-        need to implement a way of purging the index from stale data,
-        </para>
+              <listitem><para><guilabel>Activate links in preview</guilabel>: if set, Recoll will
+              turn HTTP links found inside plain text into proper HTML anchors, and clicking a link
+              inside a preview window will start the default browser on the link
+              target.</para></listitem>
+
+              <listitem><para><guilabel>Fields display: max field length before using
+              summary</guilabel>: this is used to limit the size of metadata text displayed on the
+              fields view (reached through the right-click popup). Fields over this size will be
+              truncated, with a clickable option to expand.</para></listitem>
+              
+              <listitem><para><guilabel>Plain text to HTML line style</guilabel>: when displaying
+              plain text inside the preview window, &RCL; tries to preserve some of the original
+              text line breaks and indentation. It can either use PRE HTML tags, which will well
+              preserve the indentation but will force horizontal scrolling for long lines, or use BR
+              tags to break at the original line breaks, which will let the editor introduce other
+              line breaks according to the window width, but will lose some of the original
+              indentation. The third option is the default and probably the best one in most cases:
+              use PRE tags with line wrapping.</para></listitem>
+
+              <listitem><para><guilabel>Search term line offset</guilabel>: how many lines to
+              display over a search hit. Allows having some context for the found search
+              term.</para></listitem> 
+            </itemizedlist>
+          </simplesect>
+
+          <simplesect id="RCL.SEARCH.GUI.CUSTOM.SEARCH">
+            <title>Search parameters:</title>
+
+            <itemizedlist>
+
+              <listitem><para><guilabel>Hide duplicate results</guilabel>: decides if result list
+              entries are shown for identical documents found in different places.</para></listitem>
+
+              <listitem><para><guilabel>Stemming language</guilabel>: stemming obviously depends on
+              the document's language. This listbox will let you chose among the stemming databases
+              which were built during indexing (this is set in the <link
+              linkend="RCL.INSTALL.CONFIG.RECOLLCONF">main configuration file</link>), or later
+              added with <command>recollindex -s</command> (See the recollindex manual). Stemming
+              languages which are dynamically added will be deleted at the next indexing pass unless
+              they are also added in the configuration file.</para></listitem>
+
+              <listitem><para><guilabel>Automatically add phrase to simple searches</guilabel>: a
+              phrase will be automatically built and added to simple searches when looking for
+              <literal>Any terms</literal>. This will give a relevance boost to the results where
+              the search terms appear as a phrase (consecutive and in order).</para></listitem>
+
+              <listitem><para><guilabel>Autophrase term frequency threshold percentage</guilabel>:
+              very frequent terms should not be included in automatic phrase searches for
+              performance reasons. The parameter defines the cutoff percentage (percentage of the
+              documents where the term appears).</para></listitem>
+
+              <listitem><para><guilabel>Replace abstracts from documents</guilabel>: this decides if
+              we should synthesize and display an abstract in place of an explicit abstract found
+              within the document itself.</para></listitem>
+
+              <listitem><para><guilabel>Dynamically build abstracts</guilabel>: this decides if
+              &RCL; tries to build document abstracts (lists of <emphasis>snippets</emphasis>) when
+              displaying the result list. Abstracts are constructed by taking context from the
+              document information, around the search terms.</para></listitem>
+
+              <listitem><para><guilabel>Synthetic abstract size</guilabel>: adjust to
+              taste.</para></listitem>
+
+              <listitem><para><guilabel>Synthetic abstract context words</guilabel>: how many words
+              should be displayed around each term occurrence.</para></listitem>
+
+              <listitem><para><guilabel>Query language magic file name suffixes</guilabel>: a list
+              of words which automatically get turned into <literal>ext:xxx</literal> file name
+              suffix clauses when starting a query language query (e.g.: <literal>doc xls
+              xlsx...</literal>).  This will save some typing for people who use file types a lot
+              when querying.</para></listitem>
+
+            </itemizedlist>
+
+          </simplesect>
+
+          <simplesect id="RCL.SEARCH.GUI.CUSTOM.EXTRADB">
+            <title>External indexes:</title> 
+
+            <para>This panel will let you browse for additional indexes that you may want to
+            search. External indexes are designated by their database directory (e.g.:
+            <filename>/home/someothergui/.recoll/xapiandb</filename>,
+            <filename>/usr/local/recollglobal/xapiandb</filename>).</para>
+
+            <para>Once entered, the indexes will appear in the <guilabel>External indexes</guilabel>
+            list, and you can chose which ones you want to use at any moment by checking or
+            unchecking their entries.</para>
+
+            <para>Your main database (the one the current configuration indexes to), is always
+            implicitly active. If this is not desirable, you can set up your configuration so that
+            it indexes, for example, an empty directory. An alternative indexer may also need to
+            implement a way of purging the index from stale data.</para>
+          </simplesect>
+        
+        </sect3>
+
 
         <sect3 id="RCL.SEARCH.GUI.CUSTOM.RESLIST">
           <title>The result list format</title>
 
-          <para>Recoll normally uses a full function HTML processor to
-            display the result list and the 
-          <link linkend="RCL.SEARCH.GUI.RESULTLIST.MENU.SNIPPETS">
-            snippets window</link>. Depending on the version, this may be
-          based on either Qt WebKit or Qt WebEngine.
-          It is then possible to completely customise the result list with full
-          support for CSS and Javascript.</para>
+          <para>Recoll normally uses a full function HTML processor to display the result list and
+          the <link linkend="RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS"> snippets
+          window</link>. Depending on the version, this may be based on either Qt WebKit or Qt
+          WebEngine. It is then possible to completely customise the result list with full support
+          for CSS and Javascript.</para>
 
-          <para>It is also possible to build &RCL; to use a simpler Qt
-            QTextBrowser widget to display the HTML, which may be necessary
-            if the ones above are not ported on the system, or to reduce
-            the application size and dependencies. There are limits to what
-            you can do in this case, but it is still possible to decide
-            what data each result will contain, and how it will be
-            displayed.</para>
+          <para>It is also possible to build &RCL; to use a simpler Qt QTextBrowser widget to
+          display the HTML, which may be necessary if the ones above are not ported on the system,
+          or to reduce the application size and dependencies. There are limits to what you can do in
+          this case, but it is still possible to decide what data each result will contain, and how
+          it will be displayed.</para>
 
-          <para>The result list presentation can be customized by adjusting two elements:
+          <para>The result list presentation can be customised by adjusting two elements:
             <itemizedlist>
               <listitem><para>The paragraph format</para></listitem>
               <listitem><para>HTML code inside the header section. This is also used for the
-                  <link linkend="RCL.SEARCH.GUI.RESULTLIST.MENU.SNIPPETS">snippets window</link>.
+                  <link linkend="RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS">snippets window</link>.
               </para></listitem>
             </itemizedlist>
             The paragraph format and the header fragment can be edited from the <guilabel>Result
             list</guilabel> tab of the <guilabel>GUI configuration</guilabel>.</para>
 
           <para>The header fragment is used both for the result list and the snippets window. The
-            snippets list is a table and has a <literal>snippets</literal> class attribute. Each
-            paragraph in the result list is a table, with class <literal>respar</literal>, but this
-            can be changed by editing the paragraph format.</para>
+          snippets list is a table and has a <literal>snippets</literal> class attribute. Each
+          paragraph in the result list is a table, with class <literal>respar</literal>, but this
+          can be changed by editing the paragraph format.</para>
 
           <para>There are a few examples on the 
             <ulink url="https://www.recoll.org/pages/custom.html">page about 
@@ -3940,39 +3892,38 @@ recollindex -c "$confdir"</programlisting>
 
             <para>The default value for the paragraph format string is:
             <screen><![CDATA[
-            "<table class=\"respar\">\n"
-            "<tr>\n"
-            "<td><a href='%U'><img src='%I' width='64'></a></td>\n"
-            "<td>%L &nbsp;<i>%S</i> &nbsp;&nbsp;<b>%T</b><br>\n"
-            "<span style='white-space:nowrap'><i>%M</i>&nbsp;%D</span>&nbsp;&nbsp;&nbsp; <i>%U</i>&nbsp;%i<br>\n"
-            "%s %A %K</td>\n"
-            "</tr></table>\n"
-            ]]></screen>
+"<table class=\"respar\">\n"
+"<tr>\n"
+"<td><a href='%U'><img src='%I' width='64'></a></td>\n"
+"<td>%L &nbsp;<i>%S</i> &nbsp;&nbsp;<b>%T</b><br>\n"
+"<span style='white-space:nowrap'><i>%M</i>&nbsp;%D</span>&nbsp;&nbsp;&nbsp; <i>%U</i>&nbsp;%i<br>\n"
+"%s %A %K</td>\n"
+"</tr></table>\n"
+]]></screen>
 
-            You may, for example, try the following for a more web-like
-            experience:
-
-            <screen><![CDATA[
-            <u><b><a href="P%N">%T</a></b></u><br>
-            %A<font color=#008000>%U - %S</font> - %L
-            ]]></screen>
-
-            Note that the P%N link in the above paragraph makes the title a
-            preview link. Or the clean looking:
+            You may, for example, try the following for a more web-like experience:
 
             <screen><![CDATA[
-            <img src="%I" align="left">%L <font color="#900000">%R</font>
-            &nbsp;&nbsp;<b>%T&</b><br>%S&nbsp;
-            <font color="#808080"><i>%U</i></font>
-            <table bgcolor="#e0e0e0">
-            <tr><td><div>%A</div></td></tr>
-            </table>%K
-            ]]></screen>
+<u><b><a href="P%N">%T</a></b></u><br>
+%A<font color=#008000>%U - %S</font> - %L
+]]></screen>
+
+            Note that the P%N link in the above paragraph makes the title a preview link. Or the
+            clean looking:
+
+            <screen><![CDATA[
+<img src="%I" align="left">%L <font color="#900000">%R</font>
+&nbsp;&nbsp;<b>%T&</b><br>%S&nbsp;
+<font color="#808080"><i>%U</i></font>
+<table bgcolor="#e0e0e0">
+<tr><td><div>%A</div></td></tr>
+</table>%K
+]]></screen>
             </para>
 
-            <para>These samples, and some others are 
-            <ulink url="https://www.recoll.org/pages/custom.html">on the web
-            site, with pictures to show how they look.</ulink></para>
+            <para>These samples, and some others are
+            <ulink url="https://www.recoll.org/pages/custom.html">on the web site, with pictures to
+            show how they look.</ulink></para>
 
             <para>It is also possible to 
             <link linkend="RCL.SEARCH.GUI.CUSTOM.ABSSEP">define the value of the snippet separator
@@ -4576,12 +4527,6 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
           like <replaceable>author:*@domain.com</replaceable> can
           sometimes be very useful.</para></listitem>
 
-          <listitem><para>For &RCL; version 18 only, when working with a
-          raw index (preserving character case and diacritics), the
-          literal part of a wildcard expression will be matched
-          exactly for case and diacritics. This is not true any
-          more for versions 19 and later.</para></listitem>
-
           <listitem><para>Using a <literal>*</literal> at the end of a
           word can produce more matches than you would think, and
           strange search results. You can use the 
@@ -4660,9 +4605,8 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
     </sect1> <!-- wildchars and anchors -->
 
 
-    
     <sect1 id="RCL.SEARCH.SYNONYMS">
-      <title>Using Synonyms (1.22)</title>
+      <title>Using Synonyms</title>
 
       <formalpara><title>Term synonyms and text search:</title> <para>in general, there are two main
       ways to use term synonyms for searching text:
@@ -6801,10 +6745,10 @@ db.purge()</programlisting>
       configuration files are kept in a directory named
       like <filename>/usr/share/recoll/examples</filename>, and define default values, shared by all
       indexes (the values in these files are often commented out, and just present to indicate the
-      default coded in the program). For each index, a parallel set of files defines the customized
+      default coded in the program). For each index, a parallel set of files defines the customised
       parameters.</para>
 
-      <para>On &LIN;, the default location of the customized configuration is
+      <para>On &LIN;, the default location of the customised configuration is
         the <filename>.recoll</filename> directory in your home. On &WIN; it
         is <filename>C:/Users/[you]/AppData/Local/Recoll</filename>. Most people will only use this
         directory.</para> 

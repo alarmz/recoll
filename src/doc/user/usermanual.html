@@ -11,7 +11,7 @@
   <meta name="generator" content=
   "DocBook XSL Stylesheets Vsnapshot">
   <meta name="description" content=
-  "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license can be found at the following location: GNU web site. This document introduces full text search notions and describes the installation and use of the Recoll application. This version describes Recoll 1.40.">
+  "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license can be found at the following location: GNU web site. This document introduces full text search notions and describes the installation and use of the Recoll application. This version describes Recoll 1.42.">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084"
 alink="#0000FF">
@@ -54,7 +54,7 @@ alink="#0000FF">
             and describes the installation and use of the
             <span class="application">Recoll</span> application.
             This version describes <span class=
-            "application">Recoll</span> 1.40.</p>
+            "application">Recoll</span> 1.42.</p>
           </div>
         </div>
       </div>
@@ -127,6 +127,16 @@ alink="#0000FF">
                 <dt><span class="sect2">2.3.2. <a href=
                 "#RCL.INDEXING.CONFIG.MULTIPLE">Multiple
                 indexes</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#id1342">Creating and using an additional
+                    index: Linux example</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#id1343">Creating an alternate index: Windows
+                    example</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">2.3.3. <a href=
                 "#RCL.INDEXING.CONFIG.SENS">Index case and
                 diacritics sensitivity</a></span></dt>
@@ -172,6 +182,18 @@ alink="#0000FF">
                 <dt><span class="sect2">2.6.1. <a href=
                 "#RCL.INDEXING.EXTRAMETA">Incorporating external
                 metadata</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INDEXING.EXTATTR"><span class=
+                    "application">Unix</span>-like systems and
+                    <span class="application">MacOS</span> systems:
+                    using extended attributes</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INDEXING.EXTTAGS">Using a command for
+                    importing external metadata</a></span></dt>
+                  </dl>
+                </dd>
               </dl>
             </dd>
             <dt><span class="sect1">2.7. <a href=
@@ -185,6 +207,19 @@ alink="#0000FF">
                 <dt><span class="sect2">2.7.2. <a href=
                 "#RCL.INDEXING.PDF">The PDF input
                 handler</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INDEXING.PDF.OUTLINE">Extracting PDF
+                    outlines and bookmarks</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INDEXING.PDF.XMP">XMP fields
+                    extraction</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INDEXING.PDF.ATTACH">PDF attachment
+                    indexing</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">2.7.3. <a href=
                 "#RCL.INDEXING.OCR">Running OCR on image
                 documents</a></span></dt>
@@ -210,7 +245,7 @@ alink="#0000FF">
             "#RCL.SEARCH.INTRODUCTION">Introduction</a></span></dt>
             <dt><span class="sect1">3.2. <a href=
             "#RCL.SEARCH.GUI">Searching with the Qt graphical user
-            interface</a></span></dt>
+            interface (GUI)</a></span></dt>
             <dd>
               <dl>
                 <dt><span class="sect2">3.2.1. <a href=
@@ -241,11 +276,24 @@ alink="#0000FF">
                 <dt><span class="sect2">3.2.9. <a href=
                 "#RCL.SEARCH.GUI.COMPLEX">Assisted Complex Search
                 (A.K.A. "Advanced Search")</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.SEARCH.GUI.COMPLEX.TERMS">Advanced
+                    search: the "find" tab</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.SEARCH.GUI.COMPLEX.FILTER">Advanced
+                    search: the "filter" tab</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.SEARCH.GUI.COMPLEX.HISTORY">Advanced
+                    search history</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">3.2.10. <a href=
                 "#RCL.SEARCH.GUI.TERMEXPLORER">The term explorer
                 tool</a></span></dt>
                 <dt><span class="sect2">3.2.11. <a href=
-                "#RCL.SEARCH.GUI.MULTIDB">Multiple
+                "#RCL.SEARCH.GUI.MULTIDB">Searching across multiple
                 indexes</a></span></dt>
                 <dt><span class="sect2">3.2.12. <a href=
                 "#RCL.SEARCH.GUI.HISTORY">Document
@@ -258,12 +306,37 @@ alink="#0000FF">
                 shortcuts</a></span></dt>
                 <dt><span class="sect2">3.2.15. <a href=
                 "#RCL.SEARCH.GUI.TIPS">Search tips</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.SEARCH.GUI.TIPS.TERMS">Terms and search
+                    expansion</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.SEARCH.GUI.TIPS.PHRASES">Working with
+                    phrases and proximity</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.SEARCH.GUI.TIPS.MISC">Others</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">3.2.16. <a href=
                 "#RCL.SEARCH.SAVING">Saving and restoring
                 queries</a></span></dt>
                 <dt><span class="sect2">3.2.17. <a href=
-                "#RCL.SEARCH.GUI.CUSTOM">Customizing the search
+                "#RCL.SEARCH.GUI.CUSTOM">Customising the search
                 interface</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.SEARCH.GUI.CUSTOM.APPLICATIONS">Choosing
+                    the viewer applications</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.SEARCH.GUI.CUSTOM.PREFERENCES">The GUI
+                    preferences dialog</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.SEARCH.GUI.CUSTOM.RESLIST">The result
+                    list format</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">3.2.18. <a href=
                 "#RCL.SEARCH.GUI.CMDLINE">The <span class=
                 "command"><strong>recoll</strong></span> GUI
@@ -306,8 +379,7 @@ alink="#0000FF">
               </dl>
             </dd>
             <dt><span class="sect1">3.7. <a href=
-            "#RCL.SEARCH.SYNONYMS">Using Synonyms
-            (1.22)</a></span></dt>
+            "#RCL.SEARCH.SYNONYMS">Using Synonyms</a></span></dt>
             <dt><span class="sect1">3.8. <a href=
             "#RCL.SEARCH.PTRANS">Path translations</a></span></dt>
             <dt><span class="sect1">3.9. <a href=
@@ -363,9 +435,44 @@ alink="#0000FF">
                 <dt><span class="sect2">4.3.4. <a href=
                 "#RCL.PROGRAM.PYTHONAPI.SEARCH">Python search
                 interface</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.PROGRAM.PYTHONAPI.RECOLL">The recoll
+                    module</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.PROGRAM.PYTHONAPI.RCLEXTRACT">The
+                    rclextract module</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.PROGRAM.PYTHONAPI.SEARCH.EXAMPLE">Search
+                    API usage example</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.PROGRAM.PYTHONAPI.FSUDI">The fsudi
+                    module</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">4.3.5. <a href=
                 "#RCL.PROGRAM.PYTHONAPI.UPDATE">Python indexing
                 interface</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.PROGRAM.PYTHONAPI.UPDATE.EXTINDEXER">Recoll
+                    external indexers</a></span></dt>
+                    <dt><span class="sect3"><a href="#id1344">The
+                    Python indexing API</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.PROGRAM.PYTHONAPI.UPDATE.CONFIGURATION">External
+                    indexers configuration</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.PROGRAM.PYTHONAPI.UPDATE.SAMPLES">External
+                    indexer samples</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.PROGRAM.PYTHONAPI.UPDATE.ASEXTINDEX">Using
+                    an external indexer index in conjunction with a
+                    regular one</a></span></dt>
+                  </dl>
+                </dd>
               </dl>
             </dd>
           </dl>
@@ -390,6 +497,17 @@ alink="#0000FF">
                 "#RCL.INSTALL.BUILDING.PREREQS">Prerequisites</a></span></dt>
                 <dt><span class="sect2">5.3.2. <a href=
                 "#RCL.INSTALL.BUILDING.BUILDING">Building</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.BUILDING.BUILDING.CONFIGURE">meson
+                    setup options</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.BUILDING.BUILDING.TAR">Normal
+                    procedure, for source extracted from a tar
+                    distribution)</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">5.3.3. <a href=
                 "#RCL.INSTALL.BUILDING.INSTALL">Installing</a></span></dt>
                 <dt><span class="sect2">5.3.4. <a href=
@@ -408,9 +526,60 @@ alink="#0000FF">
                 <dt><span class="sect2">5.4.2. <a href=
                 "#RCL.INSTALL.CONFIG.RECOLLCONF">Recoll main
                 configuration file, recoll.conf</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.WHATDOCS">Parameters
+                    affecting what documents we
+                    index</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.TERMS">Parameters
+                    affecting how we generate terms and organize
+                    the index</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.STORE">Parameters
+                    affecting where and how we store
+                    things</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.PERFS">Parameters
+                    affecting indexing performance and resource
+                    usage</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.MISC">Miscellaneous
+                    parameters</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.QUERY">Query-time
+                    parameters (no impact on the
+                    index)</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.PDF">Parameters
+                    for the PDF input script</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.OCR">Parameters
+                    for OCR processing</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS">
+                    Parameters for running speech to text
+                    conversion</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS">
+                    Parameters for miscellaneous specific
+                    handlers</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF.SPECLOCATIONS">Parameters
+                    set for specific locations</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">5.4.3. <a href=
                 "#RCL.INSTALL.CONFIG.FIELDS">The fields
                 file</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.FIELDS.XATTR">Extended
+                    attributes in the fields file</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">5.4.4. <a href=
                 "#RCL.INSTALL.CONFIG.MIMEMAP">The mimemap
                 file</a></span></dt>
@@ -426,6 +595,18 @@ alink="#0000FF">
                 <dt><span class="sect2">5.4.8. <a href=
                 "#RCL.INSTALL.CONFIG.EXAMPLES">Examples of
                 configuration adjustments</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.EXAMPLES.ADDVIEW">Adding
+                    an external viewer for an non-indexed
+                    type</a></span></dt>
+                    <dt><span class="sect3"><a href=
+                    "#RCL.INSTALL.CONFIG.EXAMPLES.ADDINDEX">Adding
+                    indexing support for a new file
+                    type</a></span></dt>
+                  </dl>
+                </dd>
               </dl>
             </dd>
           </dl>
@@ -450,7 +631,7 @@ alink="#0000FF">
       <p>This document introduces full text search notions and
       describes the installation and use of the <span class=
       "application">Recoll</span> application. It is updated for
-      <span class="application">Recoll</span> 1.40.</p>
+      <span class="application">Recoll</span> 1.42.</p>
       <p><span class="application">Recoll</span> was for a long
       time dedicated to Unix-like systems. It was only lately
       (2015) ported to <span class="application">MS-Windows</span>.
@@ -491,7 +672,7 @@ alink="#0000FF">
         <p>Do not do this if your home directory contains a huge
         number of documents and you do not want to wait or are very
         short on disk space. In this case, you may first want to
-        customize the <a class="link" href="#RCL.INDEXING.CONFIG"
+        customise the <a class="link" href="#RCL.INDEXING.CONFIG"
         title="2.3.&nbsp;Index configuration">configuration</a> to
         restrict the indexed area. From the <span class=
         "command"><strong>recoll</strong></span> GUI go to:
@@ -1619,8 +1800,8 @@ indexedmimetypes = application/pdf</pre>
             <span class="guimenu">Query</span> → <span class=
             "guimenuitem">External index dialog</span>. See the
             <a class="link" href="#RCL.SEARCH.GUI.MULTIDB" title=
-            "3.2.11.&nbsp;Multiple indexes">GUI external indexes
-            section</a> for more details.</p>
+            "3.2.11.&nbsp;Searching across multiple indexes">GUI
+            external indexes section</a> for more details.</p>
           </div>
           <div class="sect3">
             <div class="titlepage">
@@ -2533,7 +2714,7 @@ fs.inotify.max_user_watches=32768</pre>
               <pre class="programlisting">
           setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/file</pre>
               <p>The date substitution will then be automatic, you
-              do not need to customize the <code class=
+              do not need to customise the <code class=
               "filename">fields</code> file.</p>
             </div>
           </div>
@@ -3320,7 +3501,7 @@ recollindex -c "$confdir"</pre>
               <h2 class="title" style="clear: both"><a name=
               "RCL.SEARCH.GUI" id=
               "RCL.SEARCH.GUI"></a>3.2.&nbsp;Searching with the Qt
-              graphical user interface</h2>
+              graphical user interface (GUI)</h2>
             </div>
           </div>
         </div>
@@ -3552,9 +3733,9 @@ recollindex -c "$confdir"</pre>
           default, <span class="application">Recoll</span> lets the
           desktop choose the appropriate application for most
           document types. See <a class="link" href=
-          "#RCL.SEARCH.GUI.RESLIST.APPLICATIONS" title=
-          "Customising the viewers">further</a> for customizing the
-          applications.</p>
+          "#RCL.SEARCH.GUI.CUSTOM.APPLICATIONS" title=
+          "Choosing the viewer applications">further</a> for
+          customising the applications.</p>
           <p>The <code class="literal">Preview</code> and
           <code class="literal">Open</code> links may not be
           present for all entries. They are only available,
@@ -3612,70 +3793,6 @@ recollindex -c "$confdir"</pre>
               <div>
                 <div>
                   <h4 class="title"><a name=
-                  "RCL.SEARCH.GUI.RESLIST.APPLICATIONS" id=
-                  "RCL.SEARCH.GUI.RESLIST.APPLICATIONS"></a>Customising
-                  the viewers</h4>
-                </div>
-              </div>
-            </div>
-            <p>By default <span class="application">Recoll</span>
-            lets the desktop choose what application should be used
-            to open a given document, with exceptions.</p>
-            <p>The details of this behaviour can be customized with
-            the <span class="guimenu">Preferences</span> →
-            <span class="guimenuitem">GUI configuration</span> →
-            <span class="guimenuitem">User interface</span> →
-            <span class="guimenuitem">Choose editor
-            applications</span> dialog or by editing the <a class=
-            "link" href="#RCL.INSTALL.CONFIG.MIMEVIEW" title=
-            "5.4.6.&nbsp;The mimeview file"><code class=
-            "filename">mimeview</code> configuration file.</a></p>
-            <p>When <span class="guilabel">Use desktop
-            preferences</span>, at the top of the dialog, is
-            checked, the desktop default is generally used, but
-            there is a small default list of exceptions, for MIME
-            types where the <span class="application">Recoll</span>
-            choice should override the desktop one. These are
-            applications which are well integrated with
-            <span class="application">Recoll</span>, for example,
-            on Linux, <span class="application">evince</span> for
-            viewing PDF and Postscript files because of its support
-            for opening the document at a specific page and passing
-            a search string as an argument. You can add or remove
-            document types to the exceptions by using the
-            dialog.</p>
-            <p>If you prefer to completely customize the choice of
-            applications, you can uncheck <span class=
-            "guilabel">Use desktop preferences</span>, in which
-            case the <span class="application">Recoll</span>
-            predefined applications will be used, and can be
-            changed for each document type. This is probably not
-            the most convenient approach in most cases.</p>
-            <p>In all cases, the applications choice dialog accepts
-            multiple selections of MIME types in the top section,
-            and lets you define how they are processed in the
-            bottom one. In most cases, you will be using
-            <code class="literal">%f</code> as a place holder to be
-            replaced by the file name in the application command
-            line.</p>
-            <p>You may also change the choice of applications by
-            editing the <a class="link" href=
-            "#RCL.INSTALL.CONFIG.MIMEVIEW" title=
-            "5.4.6.&nbsp;The mimeview file"><code class=
-            "filename">mimeview</code></a> configuration file if
-            you find this more convenient.</p>
-            <p>Under <span class="application">Unix</span>-like
-            systems, each result list entry also has a right-click
-            menu with an <span class="guilabel">Open With</span>
-            entry. This lets you choose an application from the
-            list of those which registered with the desktop for the
-            document MIME type, on a case by case basis.</p>
-          </div>
-          <div class="simplesect">
-            <div class="titlepage">
-              <div>
-                <div>
-                  <h4 class="title"><a name=
                   "RCL.SEARCH.GUI.RESLIST.SUGGS" id=
                   "RCL.SEARCH.GUI.RESLIST.SUGGS"></a>No results:
                   the spelling suggestions</h4>
@@ -3698,9 +3815,9 @@ recollindex -c "$confdir"</pre>
               <div>
                 <div>
                   <h4 class="title"><a name=
-                  "RCL.SEARCH.GUI.RESULTLIST.MENU" id=
-                  "RCL.SEARCH.GUI.RESULTLIST.MENU"></a>The result
-                  list right-click menu</h4>
+                  "RCL.SEARCH.GUI.RESLIST.MENU" id=
+                  "RCL.SEARCH.GUI.RESLIST.MENU"></a>The result list
+                  right-click menu</h4>
                 </div>
               </div>
             </div>
@@ -3797,8 +3914,8 @@ recollindex -c "$confdir"</pre>
             of finding documents related to the current result. I
             can't remember a single instance where this function
             was actually useful to me...</p>
-            <p><a name="RCL.SEARCH.GUI.RESULTLIST.MENU.SNIPPETS"
-            id="RCL.SEARCH.GUI.RESULTLIST.MENU.SNIPPETS"></a>The
+            <p><a name="RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS" id=
+            "RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS"></a>The
             <span class="guilabel">Open Snippets Window</span>
             entry will only appear for documents which support page
             breaks (typically PDF, Postscript, DVI). The snippets
@@ -4122,7 +4239,7 @@ recollindex -c "$confdir"</pre>
           <p>Selecting the <span class="guimenu">Tools</span> →
           <span class="guimenuitem">Query Fragments</span> menu
           entry will open the dialog.</p>
-          <p>The contents of the window are entirely customizable,
+          <p>The contents of the window are entirely customisable,
           and defined by the contents of a XML text file, named
           <code class="filename">fragment-buttons.xml</code> and
           which will be looked for in the current index
@@ -4602,8 +4719,8 @@ recollindex -c "$confdir"</pre>
               <div>
                 <h3 class="title"><a name="RCL.SEARCH.GUI.MULTIDB"
                 id=
-                "RCL.SEARCH.GUI.MULTIDB"></a>3.2.11.&nbsp;Multiple
-                indexes</h3>
+                "RCL.SEARCH.GUI.MULTIDB"></a>3.2.11.&nbsp;Searching
+                across multiple indexes</h3>
               </div>
             </div>
           </div>
@@ -5190,315 +5307,510 @@ recollindex -c "$confdir"</pre>
               <div>
                 <h3 class="title"><a name="RCL.SEARCH.GUI.CUSTOM"
                 id=
-                "RCL.SEARCH.GUI.CUSTOM"></a>3.2.17.&nbsp;Customizing
+                "RCL.SEARCH.GUI.CUSTOM"></a>3.2.17.&nbsp;Customising
                 the search interface</h3>
               </div>
             </div>
           </div>
-          <p>You can customize some aspects of the search interface
+          <p>You can customise some aspects of the search interface
           by using the <span class="guimenu">GUI
           configuration</span> entry in the <span class=
           "guimenu">Preferences</span> menu.</p>
           <p>There are several tabs in the dialog, dealing with the
           interface itself, the parameters used for searching and
           returning results, and what indexes are searched.</p>
-          <p><a name="RCL.SEARCH.GUI.CUSTOM.UI" id=
-          "RCL.SEARCH.GUI.CUSTOM.UI"></a><b>User interface
-          parameters:&nbsp;</b></p>
-          <div class="itemizedlist">
-            <ul class="itemizedlist" style=
-            "list-style-type: disc;">
-              <li class="listitem">
-                <p><span class="guilabel">Highlight color for query
-                terms</span>: Terms from the user query are
-                highlighted in the result list samples and the
-                preview window. The color can be chosen here. Any
-                Qt color string should work (e.g. <code class=
-                "literal">red</code>, <code class=
-                "literal">#ff0000</code>). The default is
-                <code class="literal">blue</code>.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Style sheet</span>: The
-                name of a <span class="application">Qt</span> style
-                sheet text file which is applied to the whole
-                Recoll application on startup. The default value is
-                empty, but there is a skeleton style sheet
-                (<code class="filename">recoll.qss</code>) inside
-                the <code class=
-                "filename">/usr/share/recoll/examples</code>
-                directory. Using a style sheet, you can change most
-                <span class=
-                "command"><strong>recoll</strong></span> graphical
-                parameters: colors, fonts, etc. See the sample file
-                for a few simple examples.</p>
-                <p>You should be aware that parameters (e.g.: the
-                background color) set inside the <span class=
-                "application">Recoll</span> GUI style sheet will
-                override global system preferences, with possible
-                strange side effects: for example if you set the
-                foreground to a light color and the background to a
-                dark one in the desktop preferences, but only the
-                background is set inside the <span class=
-                "application">Recoll</span> style sheet, and it is
-                light too, then text will appear light-on-light
-                inside the <span class="application">Recoll</span>
-                GUI.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Maximum text size
-                highlighted for preview</span> Inserting highlights
-                on search term inside the text before inserting it
-                in the preview window involves quite a lot of
-                processing, and can be disabled over the given text
-                size to speed up loading.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Prefer HTML to plain text
-                for preview</span> if set, Recoll will display HTML
-                as such inside the preview window. If this causes
-                problems with the Qt HTML display, you can uncheck
-                it to display the plain text version instead.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Activate links in
-                preview</span> if set, Recoll will turn HTTP links
-                found inside plain text into proper HTML anchors,
-                and clicking a link inside a preview window will
-                start the default browser on the link target.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Plain text to HTML line
-                style</span>: when displaying plain text inside the
-                preview window, <span class=
-                "application">Recoll</span> tries to preserve some
-                of the original text line breaks and indentation.
-                It can either use PRE HTML tags, which will well
-                preserve the indentation but will force horizontal
-                scrolling for long lines, or use BR tags to break
-                at the original line breaks, which will let the
-                editor introduce other line breaks according to the
-                window width, but will lose some of the original
-                indentation. The third option has been available in
-                recent releases and is probably now the best one:
-                use PRE tags with line wrapping.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Choose editor
-                application</span>: this opens a dialog which
-                allows you to select the application to be used to
-                open each MIME type. The default is to use the
-                <span class=
-                "command"><strong>xdg-open</strong></span> utility,
-                but you can use this dialog to override it, setting
-                exceptions for MIME types that will still be opened
-                according to <span class=
-                "application">Recoll</span> preferences. This is
-                useful for passing parameters like page numbers or
-                search strings to applications that support them
-                (e.g. <span class="application">evince</span>).
-                This cannot be done with <span class=
-                "command"><strong>xdg-open</strong></span> which
-                only supports passing one parameter.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Disable Qt autocompletion
-                in search entry</span>: this will disable the
-                completion popup. Il will only appear, and display
-                the full history, either if you enter only white
-                space in the search area, or if you click the clock
-                button on the right of the area.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Document filter choice
-                style</span>: this will let you choose if the
-                document categories are displayed as a list or a
-                set of buttons, or a menu.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Start with simple search
-                mode</span>: this lets you choose the value of the
-                simple search type on program startup. Either a
-                fixed value (e.g. <code class="literal">Query
-                Language</code>, or the value in use when the
-                program last exited.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Start with advanced
-                search dialog open</span> : If you use this dialog
-                frequently, checking the entries will get it to
-                open when recoll starts.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Remember sort activation
-                state</span> if set, Recoll will remember the sort
-                tool stat between invocations. It normally starts
-                with sorting disabled.</p>
-              </li>
-            </ul>
+          <p>Most GUI settings are global and do not depend on the
+          index in use. As of <span class=
+          "application">Recoll</span> 1.42, it is possible to
+          specify that some settings will depend on the index. At
+          the moment, only the result table configuration can be
+          saved in such a way.</p>
+          <div class="sect3">
+            <div class="titlepage">
+              <div>
+                <div>
+                  <h4 class="title"><a name=
+                  "RCL.SEARCH.GUI.CUSTOM.APPLICATIONS" id=
+                  "RCL.SEARCH.GUI.CUSTOM.APPLICATIONS"></a>Choosing
+                  the viewer applications</h4>
+                </div>
+              </div>
+            </div>
+            <p>By default <span class="application">Recoll</span>
+            lets the desktop choose what application should be used
+            to open a given document, with exceptions.</p>
+            <p>The details of this behaviour can be customised with
+            the <span class="guimenu">Preferences</span> →
+            <span class="guimenuitem">GUI configuration</span> →
+            <span class="guimenuitem">User interface</span> →
+            <span class="guimenuitem">Choose editor
+            applications</span> dialog or by editing the <a class=
+            "link" href="#RCL.INSTALL.CONFIG.MIMEVIEW" title=
+            "5.4.6.&nbsp;The mimeview file"><code class=
+            "filename">mimeview</code> configuration file.</a></p>
+            <p>When <span class="guilabel">Use desktop
+            preferences</span>, at the top of the dialog, is
+            checked, the desktop default is generally used, but
+            there is a small default list of exceptions, for MIME
+            types where the <span class="application">Recoll</span>
+            choice should override the desktop one. These are
+            applications which are well integrated with
+            <span class="application">Recoll</span>, for example,
+            on Linux, <span class="application">evince</span> for
+            viewing PDF and Postscript files because of its support
+            for opening the document at a specific page and passing
+            a search string as an argument. You can add or remove
+            document types to the exceptions by using the
+            dialog.</p>
+            <p>If you prefer to completely customise the choice of
+            applications, you can uncheck <span class=
+            "guilabel">Use desktop preferences</span>, in which
+            case the <span class="application">Recoll</span>
+            predefined applications will be used, and can be
+            changed for each document type. This is probably not
+            the most convenient approach in most cases.</p>
+            <p>In all cases, the applications choice dialog accepts
+            multiple selections of MIME types in the top section,
+            and lets you define how they are processed in the
+            bottom one. In most cases, you will be using
+            <code class="literal">%f</code> as a place holder to be
+            replaced by the file name in the application command
+            line.</p>
+            <p>You may also change the choice of applications by
+            editing the <a class="link" href=
+            "#RCL.INSTALL.CONFIG.MIMEVIEW" title=
+            "5.4.6.&nbsp;The mimeview file"><code class=
+            "filename">mimeview</code></a> configuration file if
+            you find this more convenient.</p>
+            <p>Under <span class="application">Unix</span>-like
+            systems, each result list entry also has a right-click
+            menu with an <span class="guilabel">Open With</span>
+            entry. This lets you choose an application from the
+            list of those which registered with the desktop for the
+            document MIME type, on a case by case basis.</p>
           </div>
-          <p><a name="RCL.SEARCH.GUI.CUSTOM.RL" id=
-          "RCL.SEARCH.GUI.CUSTOM.RL"></a><b>Result list
-          parameters:&nbsp;</b></p>
-          <div class="itemizedlist">
-            <ul class="itemizedlist" style=
-            "list-style-type: disc;">
-              <li class="listitem">
-                <p><span class="guilabel">Number of results in a
-                result page</span></p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Result list font</span>:
-                There is quite a lot of information shown in the
-                result list, and you may want to customize the font
-                and/or font size. The rest of the fonts used by
-                <span class="application">Recoll</span> are
-                determined by your generic Qt config (try the
-                <span class=
-                "command"><strong>qtconfig</strong></span>
-                command).</p>
-              </li>
-              <li class="listitem">
-                <p><a name="RCL.SEARCH.GUI.CUSTOM.RESULTPARA" id=
-                "RCL.SEARCH.GUI.CUSTOM.RESULTPARA"></a><span class=
-                "guilabel">Edit result list paragraph format
-                string</span>: allows you to change the
-                presentation of each result list entry. See the
-                <a class="link" href=
-                "#RCL.SEARCH.GUI.CUSTOM.RESLIST" title=
-                "The result list format">result list customisation
-                section</a>.</p>
-              </li>
-              <li class="listitem">
-                <p><a name="RCL.SEARCH.GUI.CUSTOM.RESULTHEAD" id=
-                "RCL.SEARCH.GUI.CUSTOM.RESULTHEAD"></a><span class=
-                "guilabel">Edit result page HTML header
-                insert</span>: allows you to define text inserted
-                at the end of the result page HTML header. More
-                detail in the <a class="link" href=
-                "#RCL.SEARCH.GUI.CUSTOM.RESLIST" title=
-                "The result list format">result list customisation
-                section</a>.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Date format</span>:
-                allows specifying the format used for displaying
-                dates inside the result list. This should be
-                specified as an strftime() string (man
-                strftime).</p>
-              </li>
-              <li class="listitem">
-                <p><a name="RCL.SEARCH.GUI.CUSTOM.ABSSEP" id=
-                "RCL.SEARCH.GUI.CUSTOM.ABSSEP"></a><span class=
-                "guilabel">Abstract snippet separator</span>: for
-                synthetic abstracts built from index data, which
-                are usually made of several snippets from different
-                parts of the document, this defines the snippet
-                separator, an ellipsis by default.</p>
-              </li>
-            </ul>
+          <div class="sect3">
+            <div class="titlepage">
+              <div>
+                <div>
+                  <h4 class="title"><a name=
+                  "RCL.SEARCH.GUI.CUSTOM.PREFERENCES" id=
+                  "RCL.SEARCH.GUI.CUSTOM.PREFERENCES"></a>The GUI
+                  preferences dialog</h4>
+                </div>
+              </div>
+            </div>
+            <p>Many aspects of the <span class=
+            "application">Recoll</span> GUI can be customised from
+            dialogs reached through the <span class=
+            "guimenu">Preferences</span> → <span class=
+            "guimenuitem">GUI configuration</span> menu choice.</p>
+            <p>Not all choices from the different panels will be
+            described below. Many are self-evident or have
+            sufficient tooltip text to provide explanations.</p>
+            <div class="simplesect">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h5 class="title"><a name=
+                    "RCL.SEARCH.GUI.CUSTOM.UI" id=
+                    "RCL.SEARCH.GUI.CUSTOM.UI"></a>User
+                    interface</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="itemizedlist">
+                <ul class="itemizedlist" style=
+                "list-style-type: disc;">
+                  <li class="listitem">
+                    <p><span class="guilabel">Choose editor
+                    application</span>: this opens the dialog which
+                    allows you to select the application to be used
+                    to open each MIME type, which was described in
+                    detail in the previous section.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Single
+                    application</span>: when checked, starting the
+                    <span class="application">Recoll</span> GUI
+                    will activate an existing instance instead of
+                    creating a new one.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Start with simple
+                    search mode</span>: this lets you choose the
+                    value of the simple search type on program
+                    startup. Either a fixed value (e.g.
+                    <code class="literal">Query Language</code>),
+                    or the value in use when the program last
+                    exited.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Maximum size of
+                    search history</span>: limit how many searches
+                    are stored in the history. Set to -1 for no
+                    limit. The history can be cleared in the
+                    <span class="guilabel">File</span> menu.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Start with advanced
+                    search dialog open</span> : If you use this
+                    dialog frequently, checking the entries will
+                    get it to open when the GUI starts.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Remember sort
+                    activation state</span> if set, the GUI will
+                    remember the sort tool state between
+                    invocations. It normally starts with sorting
+                    disabled.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Depth of side filter
+                    directory tree</span>: decide how many levels
+                    should be shown in the directory filter
+                    panel.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Side filter dates
+                    format</span>: allows changing how dates are
+                    displayed in the side filter. See the tooltip
+                    for details.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Document filter
+                    choice style</span>: this will let you choose
+                    if the document categories are displayed as a
+                    list or a set of buttons, or a menu.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Disable Qt
+                    autocompletion in search entry</span>: this
+                    will disable the completion popup. Il will only
+                    appear, and display the full history, either if
+                    you enter only white space in the search area,
+                    or if you click the clock button on the right
+                    of the area.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Highlight CSS style
+                    for query terms</span>: Terms from the user
+                    query are highlighted in the result list and
+                    the preview window. The highligthing style can
+                    be chosen here, for example <code class=
+                    "literal">color: blue</code> or <code class=
+                    "literal">color: red;background: yellow</code>.
+                    Mostly any CSS style should work.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Display scale</span>:
+                    This actually adjust the font sizes everywhere
+                    inside the GUI and can be used on High
+                    resolution displays if the default characters
+                    are too small.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Style sheet</span>:
+                    The name of a <span class=
+                    "application">Qt</span> style sheet text file
+                    which is applied to the whole GUI on startup.
+                    The default value is empty, but there is a
+                    skeleton style sheet (<code class=
+                    "filename">recoll.qss</code>) inside the
+                    <code class=
+                    "filename">/usr/share/recoll/examples</code>
+                    directory. Using a style sheet, you can change
+                    most <span class=
+                    "command"><strong>recoll</strong></span>
+                    graphical parameters: colors, fonts, etc. See
+                    the sample file for a few simple examples.</p>
+                    <p>You should be aware that parameters (e.g.:
+                    the background color) set inside the
+                    <span class="application">Recoll</span> GUI
+                    style sheet will override global system
+                    preferences, with possible strange side
+                    effects: for example if you set the foreground
+                    to a light color and the background to a dark
+                    one in the desktop preferences, but only the
+                    background is set inside the <span class=
+                    "application">Recoll</span> style sheet, and it
+                    is light too, then text will appear
+                    light-on-light inside the <span class=
+                    "application">Recoll</span> GUI.</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="simplesect">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h5 class="title"><a name=
+                    "RCL.SEARCH.GUI.CUSTOM.RL" id=
+                    "RCL.SEARCH.GUI.CUSTOM.RL"></a>Result
+                    list:</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="itemizedlist">
+                <ul class="itemizedlist" style=
+                "list-style-type: disc;">
+                  <li class="listitem">
+                    <p><span class="guilabel">Result list
+                    font</span>: There is quite a lot of
+                    information shown in the result list, and you
+                    may want to customise the font and/or font
+                    size. The rest of the fonts used by
+                    <span class="application">Recoll</span> are
+                    determined by your generic Qt configuration
+                    (try the <span class=
+                    "command"><strong>qtconfig</strong></span>
+                    command).</p>
+                  </li>
+                  <li class="listitem">
+                    <p><a name="RCL.SEARCH.GUI.CUSTOM.RESULTPARA"
+                    id=
+                    "RCL.SEARCH.GUI.CUSTOM.RESULTPARA"></a><span class="guilabel">Edit
+                    result list paragraph format string</span>:
+                    allows you to change the presentation of each
+                    result list entry. See the <a class="link"
+                    href="#RCL.SEARCH.GUI.CUSTOM.RESLIST" title=
+                    "The result list format">result list
+                    customisation section</a>.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><a name="RCL.SEARCH.GUI.CUSTOM.RESULTHEAD"
+                    id=
+                    "RCL.SEARCH.GUI.CUSTOM.RESULTHEAD"></a><span class="guilabel">Edit
+                    result page HTML header insert</span>: allows
+                    you to define text inserted at the end of the
+                    result page HTML header. More detail in the
+                    <a class="link" href=
+                    "#RCL.SEARCH.GUI.CUSTOM.RESLIST" title=
+                    "The result list format">result list
+                    customisation</a> section.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Date format</span>:
+                    allows specifying the format used for
+                    displaying dates inside the result list. This
+                    should be specified as an strftime() string
+                    (man strftime).</p>
+                  </li>
+                  <li class="listitem">
+                    <p><a name="RCL.SEARCH.GUI.CUSTOM.ABSSEP" id=
+                    "RCL.SEARCH.GUI.CUSTOM.ABSSEP"></a><span class=
+                    "guilabel">Abstract snippet separator</span>:
+                    for synthetic abstracts built from index data,
+                    which are usually made of several snippets from
+                    different parts of the document, this defines
+                    the snippet separator, an ellipsis by
+                    default.</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="simplesect">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h5 class="title"><a name=
+                    "RCL.SEARCH.GUI.CUSTOM.PREVIEW" id=
+                    "RCL.SEARCH.GUI.CUSTOM.PREVIEW"></a>Preview</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="itemizedlist">
+                <ul class="itemizedlist" style=
+                "list-style-type: disc;">
+                  <li class="listitem">
+                    <p><span class="guilabel">Maximum text size
+                    highlighted for preview</span>: Disable search
+                    term highlighting for texts bigger than the
+                    given size to speed up loading. Creating
+                    highlights on search terms involves quite a lot
+                    of processing, and can be slow.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Prefer HTML to plain
+                    text for preview</span>: if set, Recoll will
+                    display HTML as such inside the preview window.
+                    If this causes display problems, you can
+                    uncheck it to display the plain text version
+                    instead. A common issue is insufficient
+                    contrast on a dark mode display, caused by the
+                    document style sheet.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Activate links in
+                    preview</span>: if set, Recoll will turn HTTP
+                    links found inside plain text into proper HTML
+                    anchors, and clicking a link inside a preview
+                    window will start the default browser on the
+                    link target.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Fields display: max
+                    field length before using summary</span>: this
+                    is used to limit the size of metadata text
+                    displayed on the fields view (reached through
+                    the right-click popup). Fields over this size
+                    will be truncated, with a clickable option to
+                    expand.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Plain text to HTML
+                    line style</span>: when displaying plain text
+                    inside the preview window, <span class=
+                    "application">Recoll</span> tries to preserve
+                    some of the original text line breaks and
+                    indentation. It can either use PRE HTML tags,
+                    which will well preserve the indentation but
+                    will force horizontal scrolling for long lines,
+                    or use BR tags to break at the original line
+                    breaks, which will let the editor introduce
+                    other line breaks according to the window
+                    width, but will lose some of the original
+                    indentation. The third option is the default
+                    and probably the best one in most cases: use
+                    PRE tags with line wrapping.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Search term line
+                    offset</span>: how many lines to display over a
+                    search hit. Allows having some context for the
+                    found search term.</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="simplesect">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h5 class="title"><a name=
+                    "RCL.SEARCH.GUI.CUSTOM.SEARCH" id=
+                    "RCL.SEARCH.GUI.CUSTOM.SEARCH"></a>Search
+                    parameters:</h5>
+                  </div>
+                </div>
+              </div>
+              <div class="itemizedlist">
+                <ul class="itemizedlist" style=
+                "list-style-type: disc;">
+                  <li class="listitem">
+                    <p><span class="guilabel">Hide duplicate
+                    results</span>: decides if result list entries
+                    are shown for identical documents found in
+                    different places.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Stemming
+                    language</span>: stemming obviously depends on
+                    the document's language. This listbox will let
+                    you chose among the stemming databases which
+                    were built during indexing (this is set in the
+                    <a class="link" href=
+                    "#RCL.INSTALL.CONFIG.RECOLLCONF" title=
+                    "5.4.2.&nbsp;Recoll main configuration file, recoll.conf">
+                    main configuration file</a>), or later added
+                    with <span class="command"><strong>recollindex
+                    -s</strong></span> (See the recollindex
+                    manual). Stemming languages which are
+                    dynamically added will be deleted at the next
+                    indexing pass unless they are also added in the
+                    configuration file.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Automatically add
+                    phrase to simple searches</span>: a phrase will
+                    be automatically built and added to simple
+                    searches when looking for <code class=
+                    "literal">Any terms</code>. This will give a
+                    relevance boost to the results where the search
+                    terms appear as a phrase (consecutive and in
+                    order).</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Autophrase term
+                    frequency threshold percentage</span>: very
+                    frequent terms should not be included in
+                    automatic phrase searches for performance
+                    reasons. The parameter defines the cutoff
+                    percentage (percentage of the documents where
+                    the term appears).</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Replace abstracts
+                    from documents</span>: this decides if we
+                    should synthesize and display an abstract in
+                    place of an explicit abstract found within the
+                    document itself.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Dynamically build
+                    abstracts</span>: this decides if <span class=
+                    "application">Recoll</span> tries to build
+                    document abstracts (lists of <span class=
+                    "emphasis"><em>snippets</em></span>) when
+                    displaying the result list. Abstracts are
+                    constructed by taking context from the document
+                    information, around the search terms.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Synthetic abstract
+                    size</span>: adjust to taste.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Synthetic abstract
+                    context words</span>: how many words should be
+                    displayed around each term occurrence.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Query language magic
+                    file name suffixes</span>: a list of words
+                    which automatically get turned into
+                    <code class="literal">ext:xxx</code> file name
+                    suffix clauses when starting a query language
+                    query (e.g.: <code class="literal">doc xls
+                    xlsx...</code>). This will save some typing for
+                    people who use file types a lot when
+                    querying.</p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="simplesect">
+              <div class="titlepage">
+                <div>
+                  <div>
+                    <h5 class="title"><a name=
+                    "RCL.SEARCH.GUI.CUSTOM.EXTRADB" id=
+                    "RCL.SEARCH.GUI.CUSTOM.EXTRADB"></a>External
+                    indexes:</h5>
+                  </div>
+                </div>
+              </div>
+              <p>This panel will let you browse for additional
+              indexes that you may want to search. External indexes
+              are designated by their database directory (e.g.:
+              <code class=
+              "filename">/home/someothergui/.recoll/xapiandb</code>,
+              <code class=
+              "filename">/usr/local/recollglobal/xapiandb</code>).</p>
+              <p>Once entered, the indexes will appear in the
+              <span class="guilabel">External indexes</span> list,
+              and you can chose which ones you want to use at any
+              moment by checking or unchecking their entries.</p>
+              <p>Your main database (the one the current
+              configuration indexes to), is always implicitly
+              active. If this is not desirable, you can set up your
+              configuration so that it indexes, for example, an
+              empty directory. An alternative indexer may also need
+              to implement a way of purging the index from stale
+              data.</p>
+            </div>
           </div>
-          <p><a name="RCL.SEARCH.GUI.CUSTOM.SEARCH" id=
-          "RCL.SEARCH.GUI.CUSTOM.SEARCH"></a><b>Search
-          parameters:&nbsp;</b></p>
-          <div class="itemizedlist">
-            <ul class="itemizedlist" style=
-            "list-style-type: disc;">
-              <li class="listitem">
-                <p><span class="guilabel">Hide duplicate
-                results</span>: decides if result list entries are
-                shown for identical documents found in different
-                places.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Stemming language</span>:
-                stemming obviously depends on the document's
-                language. This listbox will let you chose among the
-                stemming databases which were built during indexing
-                (this is set in the <a class="link" href=
-                "#RCL.INSTALL.CONFIG.RECOLLCONF" title=
-                "5.4.2.&nbsp;Recoll main configuration file, recoll.conf">
-                main configuration file</a>), or later added with
-                <span class="command"><strong>recollindex
-                -s</strong></span> (See the recollindex manual).
-                Stemming languages which are dynamically added will
-                be deleted at the next indexing pass unless they
-                are also added in the configuration file.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Automatically add phrase
-                to simple searches</span>: a phrase will be
-                automatically built and added to simple searches
-                when looking for <code class="literal">Any
-                terms</code>. This will give a relevance boost to
-                the results where the search terms appear as a
-                phrase (consecutive and in order).</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Autophrase term frequency
-                threshold percentage</span>: very frequent terms
-                should not be included in automatic phrase searches
-                for performance reasons. The parameter defines the
-                cutoff percentage (percentage of the documents
-                where the term appears).</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Replace abstracts from
-                documents</span>: this decides if we should
-                synthesize and display an abstract in place of an
-                explicit abstract found within the document
-                itself.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Dynamically build
-                abstracts</span>: this decides if <span class=
-                "application">Recoll</span> tries to build document
-                abstracts (lists of <span class=
-                "emphasis"><em>snippets</em></span>) when
-                displaying the result list. Abstracts are
-                constructed by taking context from the document
-                information, around the search terms.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Synthetic abstract
-                size</span>: adjust to taste...</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Synthetic abstract
-                context words</span>: how many words should be
-                displayed around each term occurrence.</p>
-              </li>
-              <li class="listitem">
-                <p><span class="guilabel">Query language magic file
-                name suffixes</span>: a list of words which
-                automatically get turned into <code class=
-                "literal">ext:xxx</code> file name suffix clauses
-                when starting a query language query (e.g.:
-                <code class="literal">doc xls xlsx...</code>). This
-                will save some typing for people who use file types
-                a lot when querying.</p>
-              </li>
-            </ul>
-          </div>
-          <p><a name="RCL.SEARCH.GUI.CUSTOM.EXTRADB" id=
-          "RCL.SEARCH.GUI.CUSTOM.EXTRADB"></a><b>External
-          indexes:&nbsp;</b>This panel will let you browse for
-          additional indexes that you may want to search. External
-          indexes are designated by their database directory (e.g.:
-          <code class=
-          "filename">/home/someothergui/.recoll/xapiandb</code>,
-          <code class=
-          "filename">/usr/local/recollglobal/xapiandb</code>).</p>
-          <p>Once entered, the indexes will appear in the
-          <span class="guilabel">External indexes</span> list, and
-          you can chose which ones you want to use at any moment by
-          checking or unchecking their entries.</p>
-          <p>Your main database (the one the current configuration
-          indexes to), is always implicitly active. If this is not
-          desirable, you can set up your configuration so that it
-          indexes, for example, an empty directory. An alternative
-          indexer may also need to implement a way of purging the
-          index from stale data,</p>
           <div class="sect3">
             <div class="titlepage">
               <div>
@@ -5512,7 +5824,7 @@ recollindex -c "$confdir"</pre>
             </div>
             <p>Recoll normally uses a full function HTML processor
             to display the result list and the <a class="link"
-            href="#RCL.SEARCH.GUI.RESULTLIST.MENU.SNIPPETS">snippets
+            href="#RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS">snippets
             window</a>. Depending on the version, this may be based
             on either Qt WebKit or Qt WebEngine. It is then
             possible to completely customise the result list with
@@ -5526,7 +5838,7 @@ recollindex -c "$confdir"</pre>
             this case, but it is still possible to decide what data
             each result will contain, and how it will be
             displayed.</p>
-            <p>The result list presentation can be customized by
+            <p>The result list presentation can be customised by
             adjusting two elements:</p>
             <div class="itemizedlist">
               <ul class="itemizedlist" style=
@@ -5537,7 +5849,7 @@ recollindex -c "$confdir"</pre>
                 <li class="listitem">
                   <p>HTML code inside the header section. This is
                   also used for the <a class="link" href=
-                  "#RCL.SEARCH.GUI.RESULTLIST.MENU.SNIPPETS">snippets
+                  "#RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS">snippets
                   window</a>.</p>
                 </li>
               </ul>
@@ -5716,31 +6028,31 @@ recollindex -c "$confdir"</pre>
               <p>The default value for the paragraph format string
               is:</p>
               <pre class="screen">
-            "&lt;table class=\"respar\"&gt;\n"
-            "&lt;tr&gt;\n"
-            "&lt;td&gt;&lt;a href='%U'&gt;&lt;img src='%I' width='64'&gt;&lt;/a&gt;&lt;/td&gt;\n"
-            "&lt;td&gt;%L &amp;nbsp;&lt;i&gt;%S&lt;/i&gt; &amp;nbsp;&amp;nbsp;&lt;b&gt;%T&lt;/b&gt;&lt;br&gt;\n"
-            "&lt;span style='white-space:nowrap'&gt;&lt;i&gt;%M&lt;/i&gt;&amp;nbsp;%D&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;i&gt;%U&lt;/i&gt;&amp;nbsp;%i&lt;br&gt;\n"
-            "%s %A %K&lt;/td&gt;\n"
-            "&lt;/tr&gt;&lt;/table&gt;\n"
-            </pre>
+"&lt;table class=\"respar\"&gt;\n"
+"&lt;tr&gt;\n"
+"&lt;td&gt;&lt;a href='%U'&gt;&lt;img src='%I' width='64'&gt;&lt;/a&gt;&lt;/td&gt;\n"
+"&lt;td&gt;%L &amp;nbsp;&lt;i&gt;%S&lt;/i&gt; &amp;nbsp;&amp;nbsp;&lt;b&gt;%T&lt;/b&gt;&lt;br&gt;\n"
+"&lt;span style='white-space:nowrap'&gt;&lt;i&gt;%M&lt;/i&gt;&amp;nbsp;%D&lt;/span&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;i&gt;%U&lt;/i&gt;&amp;nbsp;%i&lt;br&gt;\n"
+"%s %A %K&lt;/td&gt;\n"
+"&lt;/tr&gt;&lt;/table&gt;\n"
+</pre>
               <p>You may, for example, try the following for a more
               web-like experience:</p>
               <pre class="screen">
-            &lt;u&gt;&lt;b&gt;&lt;a href="P%N"&gt;%T&lt;/a&gt;&lt;/b&gt;&lt;/u&gt;&lt;br&gt;
-            %A&lt;font color=#008000&gt;%U - %S&lt;/font&gt; - %L
-            </pre>
+&lt;u&gt;&lt;b&gt;&lt;a href="P%N"&gt;%T&lt;/a&gt;&lt;/b&gt;&lt;/u&gt;&lt;br&gt;
+%A&lt;font color=#008000&gt;%U - %S&lt;/font&gt; - %L
+</pre>
               <p>Note that the P%N link in the above paragraph
               makes the title a preview link. Or the clean
               looking:</p>
               <pre class="screen">
-            &lt;img src="%I" align="left"&gt;%L &lt;font color="#900000"&gt;%R&lt;/font&gt;
-            &amp;nbsp;&amp;nbsp;&lt;b&gt;%T&amp;&lt;/b&gt;&lt;br&gt;%S&amp;nbsp;
-            &lt;font color="#808080"&gt;&lt;i&gt;%U&lt;/i&gt;&lt;/font&gt;
-            &lt;table bgcolor="#e0e0e0"&gt;
-            &lt;tr&gt;&lt;td&gt;&lt;div&gt;%A&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;
-            &lt;/table&gt;%K
-            </pre>
+&lt;img src="%I" align="left"&gt;%L &lt;font color="#900000"&gt;%R&lt;/font&gt;
+&amp;nbsp;&amp;nbsp;&lt;b&gt;%T&amp;&lt;/b&gt;&lt;br&gt;%S&amp;nbsp;
+&lt;font color="#808080"&gt;&lt;i&gt;%U&lt;/i&gt;&lt;/font&gt;
+&lt;table bgcolor="#e0e0e0"&gt;
+&lt;tr&gt;&lt;td&gt;&lt;div&gt;%A&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;%K
+</pre>
               <p>These samples, and some others are <a class=
               "ulink" href=
               "https://www.recoll.org/pages/custom.html" target=
@@ -6596,14 +6908,6 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
                 can sometimes be very useful.</p>
               </li>
               <li class="listitem">
-                <p>For <span class="application">Recoll</span>
-                version 18 only, when working with a raw index
-                (preserving character case and diacritics), the
-                literal part of a wildcard expression will be
-                matched exactly for case and diacritics. This is
-                not true any more for versions 19 and later.</p>
-              </li>
-              <li class="listitem">
                 <p>Using a <code class="literal">*</code> at the
                 end of a word can produce more matches than you
                 would think, and strange search results. You can
@@ -6706,8 +7010,8 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.SEARCH.SYNONYMS" id=
-              "RCL.SEARCH.SYNONYMS"></a>3.7.&nbsp;Using Synonyms
-              (1.22)</h2>
+              "RCL.SEARCH.SYNONYMS"></a>3.7.&nbsp;Using
+              Synonyms</h2>
             </div>
           </div>
         </div>
@@ -9766,10 +10070,10 @@ db.purge()</pre>
         default values, shared by all indexes (the values in these
         files are often commented out, and just present to indicate
         the default coded in the program). For each index, a
-        parallel set of files defines the customized
+        parallel set of files defines the customised
         parameters.</p>
         <p>On <span class="application">Unix</span>-like systems,
-        the default location of the customized configuration is the
+        the default location of the customised configuration is the
         <code class="filename">.recoll</code> directory in your
         home. On <span class="application">Windows</span> it is
         <code class=
@@ -9960,7 +10264,8 @@ thesame = "some string with spaces"</pre>
               <dd>
                 <p>Help for setting up external indexes. See
                 <a class="link" href="#RCL.SEARCH.GUI.MULTIDB"
-                title="3.2.11.&nbsp;Multiple indexes">this
+                title=
+                "3.2.11.&nbsp;Searching across multiple indexes">this
                 paragraph</a> for explanations.</p>
               </dd>
               <dt><span class="term"><code class=

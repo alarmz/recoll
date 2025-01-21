@@ -25,23 +25,22 @@ HTMLDUMPER = lynx -dump
 commonoptions=--stringparam section.autolabel 1 \
   --stringparam section.autolabel.max.depth 2 \
   --stringparam section.label.includes.component.label 1 \
-  --stringparam toc.max.depth 3 \
+  --stringparam toc.max.depth 4 \
+  --stringparam toc.section.depth 3 \
   --stringparam autotoc.label.in.hyperlink 0 \
   --stringparam abstract.notitle.enabled 1 \
   --stringparam html.stylesheet docbook-xsl.css \
   --stringparam generate.toc "book toc,title,figure,table,example,equation"
 
 
-# index.html chunk format target replaced by nicer webhelp (needs separate
-# make) in webhelp/ subdir
+# index.html chunk format target replaced by nicer webhelp (needs separate make) in webhelp/ subdir
 all: usermanual.html webh usermanual.pdf
 
 webh:
 	make -C webhelp
         
 usermanual.html: usermanual.xml recoll.conf.xml
-	xsltproc --xinclude ${commonoptions} \
-            -o tmpfile.html custom.xsl $<
+	xsltproc --xinclude ${commonoptions} -o tmpfile.html custom.xsl $<
 	-tidy -indent tmpfile.html > usermanual.html
 	rm -f tmpfile.html
 	-$(HTMLDUMPER) usermanual.html > ../../README
