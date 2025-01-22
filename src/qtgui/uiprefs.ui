@@ -718,7 +718,7 @@
                 </size>
                </property>
                <property name="editable">
-                <bool>no</bool>
+                <bool>false</bool>
                </property>
                <property name="insertPolicy">
                 <enum>QComboBox::NoInsert</enum>
@@ -1052,7 +1052,7 @@
       <attribute name="title">
        <string>Result Table</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_rst3">
+      <layout class="QVBoxLayout" name="verticalLayout_6">
        <item>
         <widget class="QCheckBox" name="noResTableHeaderCB">
          <property name="text">
@@ -1119,7 +1119,7 @@
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_rst2">
+        <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -1137,7 +1137,7 @@
       <attribute name="title">
        <string>Preview</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_rst3">
+      <layout class="QVBoxLayout" name="verticalLayout_5">
        <item>
         <layout class="QHBoxLayout" stretch="0,0,1">
          <item>
@@ -1356,7 +1356,7 @@
         </layout>
        </item>
        <item>
-        <spacer name="verticalSpacer_rst2">
+        <spacer name="verticalSpacer_3">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
@@ -1985,7 +1985,7 @@ May be slow for big documents.</string>
         </widget>
        </item>
        <item>
-        <spacer name="verticalSpacer_2">
+        <spacer name="verticalSpacer_4">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
          </property>
