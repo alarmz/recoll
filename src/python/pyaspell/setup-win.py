@@ -18,7 +18,7 @@ setup (name = 'aspell-python-py3',
                              libraries = ["aspell"],
                              library_dirs = [
                                  os.path.join(
-                                     recolldeps, "msvc", "aspell-0.60.7", "build",
+                                     recolldeps, "msvc", "aspell-0.60.7", "build", "libaspell",
                                      "Desktop_Qt_6_7_3_MSVC2019_64bit-Release", "release"
                                  ),]
                              ),

@@ -36,7 +36,10 @@ using namespace std;
 
 //////////////////////////////////////////////////////////////////////
 /// Extractor object code
-typedef struct {
+// For some mysterious reason, this struct needs a name else this won't compile with MS c++
+//   error C7626: unnamed class used in typedef name cannot declare members other than non-static
+//     data members, ...
+typedef struct rclx_ExtractorObject {
     PyObject_HEAD
     /* Type-specific fields go here. */
     FileInterner *xtr;

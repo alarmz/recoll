@@ -281,7 +281,7 @@ copyaspell()
     "/c/Program Files/Python3${PYTHONMINOR}/python" setup-win.py bdist_wheel || exit 1
     PYASPDIST=dist/aspell_python_py3-1.15-cp3${PYTHONMINOR}-cp3${PYTHONMINOR}-win_amd64.whl
     ${DESTDIR}/Share/filters/python/python -m pip install --no-user ${PYASPDIST} || exit 1
-    chkcp $LIBASPELL/build/${QTA}/${qtsdir}/aspell.dll \
+    chkcp $LIBASPELL/build/libaspell/${QTA}/${qtsdir}/aspell.dll \
           ${DESTDIR}/Share/filters/python/lib/site-packages
     popd
 }
