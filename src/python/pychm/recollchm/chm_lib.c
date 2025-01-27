@@ -67,6 +67,9 @@
 #include <strings.h>
 #endif
 
+#if defined(_WIN32) && !defined(WIN32)
+#define WIN32
+#endif
 #ifdef WIN32
 #include <windows.h>
 #include <malloc.h>

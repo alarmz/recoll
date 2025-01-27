@@ -103,9 +103,8 @@ copyqt()
     fi
 }
 
-# Note that pychm and pyhwp are pre-copied into the python
-# distribution directory. The latter also needs olefile and six (also
-# copied to the python tree
+# Note that pyhwp is pre-copied into the python distribution directory
+# and also needs olefile and six (also copied to the python tree)
 copypython()
 {
     set -x
@@ -241,11 +240,6 @@ copywpd()
     chkcp $MINGWBIN/zlib1.dll $DEST
 }
 
-copychm()
-{
-    DEST=$FILTERS
-    cp -rp $CHM/chm $DEST || fatal "can't copy pychm"
-}
 
 copypff()
 {
@@ -283,6 +277,18 @@ copyaspell()
     ${DESTDIR}/Share/filters/python/python -m pip install --no-user ${PYASPDIST} || exit 1
     chkcp $LIBASPELL/build/libaspell/${QTA}/${qtsdir}/aspell.dll \
           ${DESTDIR}/Share/filters/python/lib/site-packages
+    popd
+}
+
+copychm()
+{
+    # Build and install the Python chm expansion. We use the normal Python install of the
+    # same version to build as the embedded one does not have the necessary bits (.h
+    # etc.).
+    pushd ${RCL}/python/pychm
+    "/c/Program Files/Python3${PYTHONMINOR}/python" setup.py bdist_wheel || exit 1
+    PYCHMDIST=dist/recollchm-0.8.4.1+git-cp3${PYTHONMINOR}-cp3${PYTHONMINOR}-win_amd64.whl
+    ${DESTDIR}/Share/filters/python/python -m pip install --no-user ${PYCHMDIST} || exit 1
     popd
 }
 
@@ -343,6 +349,7 @@ copyunrtf
 copywpd
 copypff
 copyaspell
+copychm
 copypyrecoll
 copymagic
 
