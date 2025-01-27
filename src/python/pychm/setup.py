@@ -1,7 +1,7 @@
 from setuptools import setup, Extension
 
-# This file is not used on Linux (the module is built with Meson). It is only used on Windows, where
-# we bundle the libchm c files to simplify things
+# This file is not used on Linux (the module is built with Meson and uses the system libchm).
+# This is only used on Windows, where we bundle the libchm necessary C files to make things simpler.
 
 long_description = '''
 Version of the chm package modified to support Python 3 and bundled with Recoll.

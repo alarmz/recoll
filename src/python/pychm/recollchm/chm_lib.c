@@ -331,8 +331,10 @@ static const char _CHMU_LZXC_CONTROLDATA[] =
         "::DataSpace/Storage/MSCompressed/ControlData";
 static const char _CHMU_CONTENT[] =
         "::DataSpace/Storage/MSCompressed/Content";
+#if 0
 static const char _CHMU_SPANINFO[] =
         "::DataSpace/Storage/MSCompressed/SpanInfo";
+#endif // JFD not used causes warnings
 
 /*
  * structures local to this module
@@ -931,6 +933,12 @@ struct chmFile *chm_open(const char *filename)
         }
 
         sbufpos = sbuffer;
+
+        /* JFD: suppress "unitialized" warning. Looking at the code
+           something is probably wrong because window_size is used
+           even when _unmarshal... is not called */
+        memset(&ctlData, 0, sizeof(ctlData));
+
         if (chm_retrieve_object(newHandle, &uiLzxc, sbuffer,
                                 0, sremain) != sremain                       ||
             !_unmarshal_lzxc_control_data(&sbufpos, &sremain,
@@ -1395,8 +1403,8 @@ static Int64 _chm_decompress_block(struct chmFile *h,
         return -1;
 
     /* let the caching system pull its weight! */
-    if (block - blockAlign <= h->lzx_last_block  &&
-        block              >= h->lzx_last_block)
+    if (block - blockAlign <= (unsigned int)h->lzx_last_block  &&
+        block              >= (unsigned int)h->lzx_last_block)
         blockAlign = (block - h->lzx_last_block);
 
     /* check if we need previous blocks */
@@ -1408,7 +1416,7 @@ static Int64 _chm_decompress_block(struct chmFile *h,
             UInt32 curBlockIdx = block - i;
 
             /* check if we most recently decompressed the previous block */
-            if (h->lzx_last_block != curBlockIdx)
+            if ((unsigned int)h->lzx_last_block != curBlockIdx)
             {
                 if ((curBlockIdx % h->reset_blkcount) == 0)
                 {
@@ -1435,7 +1443,7 @@ static Int64 _chm_decompress_block(struct chmFile *h,
 #endif
                 if (!_chm_get_cmpblock_bounds(h, curBlockIdx, &cmpStart, &cmpLen) ||
                     cmpLen < 0                                                    ||
-                    cmpLen > h->reset_table.block_len + 6144                      ||
+                    (UInt64)cmpLen > h->reset_table.block_len + 6144                      ||
                     _chm_fetch_bytes(h, cbuffer, cmpStart, cmpLen) != cmpLen      ||
                     LZXdecompress(h->lzx_state, cbuffer, lbuffer, (int)cmpLen,
                                   (int)h->reset_table.block_len) != DECR_OK)
@@ -1508,7 +1516,7 @@ static Int64 _chm_decompress_region(struct chmFile *h,
     UInt64 nBlock, nOffset;
     UInt64 nLen;
     UInt64 gotLen;
-    UChar *ubuffer;
+    UChar *ubuffer = NULL;
 
     if (len <= 0)
         return (Int64)0;
