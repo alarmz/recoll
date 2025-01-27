@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=40", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "recoll"
+dynamic = ["version"]
+authors = [
+    { name = "J.F. Dockes", email = "jfd@recoll.org" },
+]
+description = "Query/Augment a Recoll full text index"
+license = {file = "COPYING"}
+
+[project.urls]
+Homepage = "https://www.recoll.org"
