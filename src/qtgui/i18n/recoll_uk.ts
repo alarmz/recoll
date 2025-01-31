@@ -5,7 +5,7 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Пошук у меню</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Фільтрувати дати народження</translation>
     </message>
 </context>
 <context>
@@ -414,51 +414,51 @@
     </message>
     <message>
         <source>Process the Web history queue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Обробити чергу історії веб-сторінок</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">за замовчуванням, aspell пропонує варіанти неправильного написання слів, коли запит не має результатів.</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Інтервал перезавантаження сторінки</translation>
     </message>
     <message>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">За замовчуванням в кеші зберігається лише один екземпляр URL-адреси. Це можна змінити, встановивши це значення, що визначає частоту збереження кількох екземплярів (&apos;день&apos;, &apos;тиждень&apos;, &apos;місяць&apos;, &apos;рік&apos;). Зверніть увагу, що збільшення інтервалу не видалить існуючі записи.</translation>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Увага: старі сторінки будуть видалені для звільнення місця для нових, коли досягнутий максимальний розмір. Поточний розмір: %1</translation>
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Початкові теки</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Список папок/каталогів для індексації. Підпапки будуть оброблятися рекурсивно. За замовчуванням: ваш домашній каталог.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відсоток повного порогу диска, при досягненні якого ми припиняємо індексацію&lt;br&gt;(Наприклад, 90 для зупинки на 90% заповнення, 0 або 100 означає відсутність обмежень)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Папка завантаження додатків для браузера</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Встановіть це лише у випадку, якщо ви встановили параметр &quot;Підкаталог завантажень&quot; у налаштуваннях додатку для веб-браузера. У цьому випадку це повинен бути повний шлях до каталогу (наприклад, /home/[me]/Downloads/my-subdir)</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Зберігайте деякі параметри GUI локально в індексі.</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Налаштування GUI зазвичай зберігаються в глобальному файлі, що є дійсним для всіх індексів. Встановлення цього параметра зробить деякі налаштування, такі як налаштування таблиці результатів, конкретними для індексу.</translation>
     </message>
 </context>
 <context>
@@ -526,18 +526,18 @@ This will help searching very big text  files (ie: log files).</source>
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перемкнутися на іншу конфігурацію</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Виберіть інше</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Виберіть каталог конфігурації</translation>
     </message>
 </context>
 <context>
@@ -636,11 +636,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Шлях в індексі</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перекладений шлях</translation>
     </message>
 </context>
 <context>
@@ -826,7 +826,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Потрібно встановити &quot;Показати значок системного лотка&quot; у налаштуваннях!</translation>
     </message>
 </context>
 <context>
@@ -1028,11 +1028,11 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перезавантажити як звичайний текст</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Перезавантажити як HTML</translation>
     </message>
 </context>
 <context>
@@ -1131,7 +1131,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Це шаблони для імен файлів або каталогів, які не повинні індексуватися.</translation>
     </message>
 </context>
 <context>
@@ -1218,15 +1218,15 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Копіювати текст</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скопіювати шлях до файлу</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скопіювати назву файлу</translation>
     </message>
 </context>
 <context>
@@ -1304,8 +1304,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RclCompleterModel</name>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Пошуки</translation>
     </message>
 </context>
 <context>
@@ -1765,8 +1765,8 @@ Please check the desktop file</source>
         <translation>Indexer запущено. Може&apos;доступ до файлу webcache файлу.</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation> з додатковим повідомленням: </translation>
+        <source>with additional message: </source>
+        <translation>з додатковим повідомленням: </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -1964,40 +1964,41 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Змивання</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показати діалогове вікно пошуку меню</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Дублікати</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Фільтрувати каталоги</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Помилка відкриття головного індексу:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Індекс може бути пошкоджений. Можливо, спробуйте запустити xapian-check або перебудувати індекс?</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Цей пошук більше не активний.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Рядок команди переглядача для %1 вказує на батьківський файл, але URL не є file://: непідтримувано</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відсутній переглядач, вказаний у mimeview для %1: %2.
+Бажаєте відкрити діалогове вікно налаштувань?</translation>
     </message>
 </context>
 <context>
@@ -2255,8 +2256,8 @@ Do you want to start the preferences dialog ?</source>
         <translation>Фрагменти запитів</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation>    З помилковою спробою файлів повторна спроба</translation>
+        <source>With failed files retrying</source>
+        <translation>З помилковою спробою файлів повторна спроба</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2328,27 +2329,27 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Збільшити розмір шрифту тексту результатів</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Збільшити розмір шрифту</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Зменшити розмір шрифту тексту результатів</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Зменшити розмір шрифту</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Почати індексацію в реальному часі</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Фільтри мови запитів</translation>
     </message>
     <message>
         <source>Filter dates</source>
@@ -2356,27 +2357,27 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Допомагає складний пошук</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Фільтрувати дати народження</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Конфігурація перемикача...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Виберіть іншу конфігурацію для запуску, замінюючи цей процес.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Керівництво користувача (локальне, одна HTML-сторінка)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Онлайн посібник (веб-сайт Recoll)</translation>
     </message>
 </context>
 <context>
@@ -2421,8 +2422,8 @@ Do you want to start the preferences dialog ?</source>
         <translation>Дата файлу</translation>
     </message>
     <message>
-        <source> Ipath</source>
-        <translation type="vanished"> Іпатія</translation>
+        <source>Ipath</source>
+        <translation type="vanished">Іпатія</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2597,11 +2598,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Це варіант написання був доданий до пошуку:</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ці варіанти написання були додані до пошуку:</translation>
     </message>
 </context>
 <context>
@@ -2716,15 +2717,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Використовуйте Shift + клік, щоб відобразити текст замість цього.</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 байтів скопійовано в буфер обміну</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Скопіюйте текст результату і вийдіть</translation>
     </message>
 </context>
 <context>
@@ -2924,8 +2925,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation>Видалення мов для збереженого запиту: </translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation> відрізняти від поточних параметрів (зберегти)</translation>
+        <source>differ from current preferences (kept)</source>
+        <translation>відрізняти від поточних параметрів (зберегти)</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3093,19 +3094,19 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Простий пошук</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Історія</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Шпаргалка з мовою запитів. У випадку сумнівів: натисніть &lt;b&gt;Показати деталі запиту&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Зробити велику літеру, щоб приглушити розширення стему&lt;/td&gt;&lt;td&gt;Підлога&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
 </context>
 <context>
@@ -3305,11 +3306,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Збільшити розмір шрифту</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Зменшити розмір шрифту</translation>
     </message>
 </context>
 <context>
@@ -3410,11 +3411,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Файл виводу діагностики. Буде обрізаний і отримає діагностику індексації (причини, з яких файли не індексуються).</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Файл діагностики</translation>
     </message>
 </context>
 <context>
@@ -3575,16 +3576,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation>Результати з останнього індексування:</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation>  Документи створено/оновлено</translation>
+        <source>Documents created/updated</source>
+        <translation>Документи створено/оновлено</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation>  Файлів перевірено</translation>
+        <source>Files tested</source>
+        <translation>Файлів перевірено</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation>  Неіндексовані файли</translation>
+        <source>Unindexed files</source>
+        <translation>Неіндексовані файли</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3596,7 +3597,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Помилка розширення заклинання.</translation>
     </message>
 </context>
 <context>
@@ -3691,11 +3692,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Виберіть файл QSS</translation>
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не вдається додати індекс з різним варіантом видалення регістру/діакритичних знаків.</translation>
     </message>
 </context>
 <context>
@@ -4015,7 +4016,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Текстова мітка</translation>
     </message>
 </context>
 <context>
@@ -4042,15 +4043,15 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Зберегти до файлу</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Створення файлу не вдалося:</translation>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Максимальний розмір %1 (Конфігурація індексу). Поточний розмір %2. Позиція запису %3.</translation>
     </message>
 </context>
 <context>
@@ -4069,7 +4070,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Розмір</translation>
     </message>
     <message>
         <source>URL</source>
@@ -4104,7 +4105,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не вдалося створити пакетний файл</translation>
     </message>
 </context>
 <context>
@@ -4918,31 +4919,31 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сховати деякі елементи інтерфейсу користувача.</translation>
     </message>
     <message>
         <source>Hide:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Сховати:</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Панелі інструментів</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Панель стану</translation>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показати кнопку замість.</translation>
     </message>
     <message>
         <source>Menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Рядок меню</translation>
     </message>
     <message>
         <source>Show choice in menu only.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показати лише вибір у меню.</translation>
     </message>
     <message>
         <source>Simple search type</source>
@@ -4950,19 +4951,19 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Clear/Search buttons</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Кнопки Очистити/Пошук</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вимкніть скорочення Ctrl+[0-9]/Shift+[a-z] для переходу до рядків таблиці.</translation>
     </message>
     <message>
         <source>None (default)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Жоден (за замовчуванням)</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Використовує стандартний стильовий аркуш темного режиму.</translation>
     </message>
     <message>
         <source>Dark mode</source>
@@ -4970,23 +4971,23 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Виберіть файл QSS</translation>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Для відображення тексту документа замість метаданих у детальній області таблиці результатів, використовуйте:</translation>
     </message>
     <message>
         <source>left mouse click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">лівий клік мишею</translation>
     </message>
     <message>
         <source>Shift+click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Натисніть Shift+клацання.</translation>
     </message>
     <message>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Відкриває діалогове вікно для вибору файлу таблиці стилів.&lt;br&gt;Перегляньте /usr/share/recoll/examples/recoll[-dark].qss для прикладу.</translation>
     </message>
     <message>
         <source>Result Table</source>
@@ -4994,95 +4995,95 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не відображати метадані при наведенні курсора на рядки.</translation>
     </message>
     <message>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вирішити проблему з Tamil QTBUG-78923, вставивши пробіл перед текстом якоря</translation>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Помилка призводить до відображення дивних круглих символів всередині виділених тамільських слів. Обхідний шлях вставляє додатковий пробіл, що, здається, виправляє проблему.</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Глибина дерева каталогів фільтра бічної панелі</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Коефіцієнт масштабування для інтерфейсу користувача. Корисно, якщо значення за замовчуванням не підходить для вашого роздільної здатності екрану.</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Масштаб відображення (за замовчуванням 1.0):</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Автоматичне наближення за написанням.</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Максимальна відстань написання</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Додайте загальноприйняті приблизні написання для рідкісних термінів.</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Максимальна кількість записів історії в списку автодоповнення</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Кількість записів історії в автодоповнювачі:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показує загальну кількість входжень терміну в індексі.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показати кількість збігів у спливаючому вікні автодоповнення.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Вибір HTML для попереднього перегляду, а не простого тексту.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Дивіться документацію Qt QDateTimeEdit. Наприклад, yyyy-MM-dd. Залиште порожнім, щоб використовувати формат за замовчуванням Qt/System.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Формат дати бічного фільтра (зміна потребує перезапуску)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Якщо встановлено, запуск нового екземпляра на тому ж індексі підніме існуючий.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Одне додаток</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Встановіть на 0, щоб вимкнути та прискорити запуск, уникнувши обчислення дерева.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Завершення змінює запис лише при активації.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Завершення: відсутнє автоматичне редагування рядка.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Мова інтерфейсу (потрібен перезапуск):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Примітка: більшість перекладів неповні. Залиште порожнім, щоб використовувати системне середовище.</translation>
     </message>
     <message>
         <source>Preview</source>
@@ -5090,27 +5091,27 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Встановіть 0, щоб вимкнути функцію деталей/зведення.</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Поля відображення: максимальна довжина поля перед використанням узагальнення:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Кількість рядків, які будуть показані над знайденим пошуковим терміном за допомогою попереднього перегляду.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Зміщення рядка пошукового терміну:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Дикий символ *?[] буде оброблений як розділові знаки замість розширення.</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ігноруйте символи допуску в усіх режимах термінів та будь-яких термінів</translation>
     </message>
 </context>
 </TS>

@@ -5,7 +5,7 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Menü arama</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Doğum tarihlerini filtrele</translation>
     </message>
 </context>
 <context>
@@ -414,51 +414,51 @@
     </message>
     <message>
         <source>Process the Web history queue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Web geçmiş kuyruğunu işle</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">Varsayılan olarak, aspell sorguda sonuç bulunamadığında yanlış yazılmış kelimeler önerir.</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sayfa yenileme aralığı</translation>
     </message>
     <message>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Varsayılan olarak, önbellekte bir URL örneği tutulur. Bu, birden fazla örneği ne sıklıkta tuttuğumuzu belirleyen bir değere ayarlayarak değiştirilebilir (&apos;gün&apos;, &apos;hafta&apos;, &apos;ay&apos;, &apos;yıl&apos;). Aralığı artırmak mevcut girişleri silmeyeceğini unutmayın.</translation>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Not: Maksimum boyuta ulaşıldığında yeni sayfalar için yer açmak için eski sayfalar silinecektir. Mevcut boyut: %1</translation>
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klasörleri Başlat</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İndekslenmesi gereken klasör/dizin listesi. Alt klasörler tekrarlayarak işlenecektir. Varsayılan: eviniz.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arama arayüzünde aşağıdaki metin parçasını İngilizce&apos;den Türkçe&apos;ye çevirin: Disk doluluk eşiği yüzdesi, dizinlemeyi durdurduğumuz yüzde&lt;br&gt;(Örneğin, %90 dolu olduğunda durdurmak için 90, 0 veya 100 sınırsız demektir)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tarayıcı eklentisi indirme klasörü</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sadece bu ayarı yapın, eğer Web tarayıcı eklentisi ayarlarında &quot;İndirme alt dizini&quot; parametresini ayarladıysanız. Bu durumda, dizine tam yol olmalıdır (örneğin /home/[ben]/İndirmelerim/alt-dizin).</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arayüz parametrelerini dizine yerel olarak kaydedin.</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;GUI ayarları genellikle tüm dizinler için geçerli olan bir global dosyada saklanır. Bu parametreyi ayarlamak, sonuç tablosu kurulumu gibi bazı ayarların dizine özgü hale gelmesini sağlar.</translation>
     </message>
 </context>
 <context>
@@ -526,18 +526,18 @@ This will help searching very big text  files (ie: log files).</translation>
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diğer yapılandırmaya geçiş yap</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diğerini seçin.</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yapılandırma dizinini seçiniz.</translation>
     </message>
 </context>
 <context>
@@ -636,11 +636,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İndeksteki yol</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Çevrilen yol</translation>
     </message>
 </context>
 <context>
@@ -825,7 +825,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tercihlerde &quot;Sistem tepsisi simgesini göster&quot; seçeneğinin ayarlanması gerekiyor!</translation>
     </message>
 </context>
 <context>
@@ -1027,11 +1027,11 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Metni Düz Metin Olarak Yeniden Yükle</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTML olarak yeniden yükle</translation>
     </message>
 </context>
 <context>
@@ -1130,7 +1130,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bu, dizin veya dosya adları için dizinlenmemesi gereken desenlerdir.</translation>
     </message>
 </context>
 <context>
@@ -1217,15 +1217,15 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Metni Kopyala</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopyala &amp;Dosya Yolu</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dosya Adını Kopyala</translation>
     </message>
 </context>
 <context>
@@ -1303,8 +1303,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RclCompleterModel</name>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Arama arayüzünde &quot;Hits&quot; ifadesi için Türkçe çeviri: &quot;Sonuçlar&quot;</translation>
     </message>
 </context>
 <context>
@@ -1764,8 +1764,8 @@ Please check the desktop file</translation>
         <translation type="unfinished">Indexer is running. Can&apos;t access webcache file.</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"> with additional message: </translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">with additional message: </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -1963,40 +1963,40 @@ Please check the desktop file</translation>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arama arayüzünde &quot;Flushing&quot; ifadesi için Türkçe çeviri: Temizleme</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Menü arama iletişim kutusunu göster</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Çiftler</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dizinleri filtrele</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ana dizin açma hatası:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dizin bozulmuş olabilir. Belki xapian-check çalıştırmayı deneyin veya dizini yeniden oluşturun?</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bu arama artık aktif değil.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 için görüntüleyici komut satırı üst dosyayı belirtir ancak URL dosya:// değil: desteklenmeyen</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mimeview için belirtilen görüntüleyici %1: %2 bulunamadı. Tercihler iletişim kutusunu başlatmak ister misiniz?</translation>
     </message>
 </context>
 <context>
@@ -2254,8 +2254,8 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Query Fragments</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished">    With failed files retrying</translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">With failed files retrying</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2327,27 +2327,27 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sonuçlar metin font boyutunu artırın.</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yazı Tipi Boyutunu Artır</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sonuçlar metin font boyutunu küçült</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yazı Tipi Boyutunu Küçült</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gerçek zamanlı dizin oluşturucuyu başlatın.</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sorgu Dil Filtreleri</translation>
     </message>
     <message>
         <source>Filter dates</source>
@@ -2355,27 +2355,27 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Karmaşık arama yardımı</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Doğum tarihlerini filtrele</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Anahtar Yapılandırma...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bu işlemi değiştirerek çalıştırmak için başka bir yapılandırma seçin.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kullanıcı kılavuzu (yerel, bir HTML sayfası)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Çevrimiçi kılavuz (Recoll Web sitesi)</translation>
     </message>
 </context>
 <context>
@@ -2420,8 +2420,8 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">File date</translation>
     </message>
     <message>
-        <source> Ipath</source>
-        <translation type="obsolete"> Ipath</translation>
+        <source>Ipath</source>
+        <translation type="obsolete">Ipath</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2596,11 +2596,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bu yazım tahmini aramaya eklendi:</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bu yazım tahminleri aramaya eklendi:</translation>
     </message>
 </context>
 <context>
@@ -2715,15 +2715,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Metni görüntülemek için Shift+tıklayın.</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 bayt panoya kopyalandı.</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sonuç metnini kopyala ve çıkış yap</translation>
     </message>
 </context>
 <context>
@@ -2923,8 +2923,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">Stemming languages for stored query: </translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"> differ from current preferences (kept)</translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">differ from current preferences (kept)</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3092,19 +3092,19 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Basit arama</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tarih</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arama dilini hızlıca öğrenmek için hile sayfası. Şüphe mi var: &lt;b&gt;Arama Detaylarını Göster&lt;/b&gt; tıklayın.</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Kök genişlemesini bastırmak için büyük harf yapın&lt;/td&gt;&lt;td&gt;Zemin&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
 </context>
 <context>
@@ -3304,11 +3304,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yazı tipi boyutunu artır</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yazı tipi boyutunu küçült</translation>
     </message>
 </context>
 <context>
@@ -3409,11 +3409,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tanılama çıktı dosyası. Kısaltılacak ve dizinleme tanıları alacak (dosyaların dizine eklenmemesinin nedenleri).</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Teşhis dosyası</translation>
     </message>
 </context>
 <context>
@@ -3574,16 +3574,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">Results from last indexing:</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished">  Documents created/updated</translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Documents created/updated</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished">  Files tested</translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Files tested</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished">  Unindexed files</translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Unindexed files</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3595,7 +3595,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yazım genişletme hatası.</translation>
     </message>
 </context>
 <context>
@@ -3690,11 +3690,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">QSS Dosyasını Seç</translation>
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Farklı büyük/küçük harf/diyakritik işareti kaldırma seçeneği olan dizini ekleyemem.</translation>
     </message>
 </context>
 <context>
@@ -4014,7 +4014,7 @@ Bu, aranacak sözcüklerin tam olarak girildiği gibi görüntülendiği sonuçl
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">MetinEtiketi</translation>
     </message>
 </context>
 <context>
@@ -4041,15 +4041,15 @@ Bu, aranacak sözcüklerin tam olarak girildiği gibi görüntülendiği sonuçl
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dosyaya Kaydet</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dosya oluşturma başarısız oldu:</translation>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Metin parçasını Türkçe&apos;ye çevirirken, metin arama arayüzü bağlamında çevirmeniz gerekmektedir. Metin parçası: Maksimum boyut %1 (İndeks yapılandırması). Mevcut boyut %2. Yazma konumu %3.</translation>
     </message>
 </context>
 <context>
@@ -4068,7 +4068,7 @@ Bu, aranacak sözcüklerin tam olarak girildiği gibi görüntülendiği sonuçl
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Boyutunuza</translation>
     </message>
     <message>
         <source>URL</source>
@@ -4103,7 +4103,7 @@ Bu, aranacak sözcüklerin tam olarak girildiği gibi görüntülendiği sonuçl
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toplu dosya oluşturulamadı.</translation>
     </message>
 </context>
 <context>
@@ -4917,31 +4917,31 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kullanıcı arayüzü öğelerini gizle.</translation>
     </message>
     <message>
         <source>Hide:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gizle:</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Araç çubukları</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Durum çubuğu</translation>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Düğme yerine göster.</translation>
     </message>
     <message>
         <source>Menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Menü çubuğu</translation>
     </message>
     <message>
         <source>Show choice in menu only.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sadece menüde seçeneği göster.</translation>
     </message>
     <message>
         <source>Simple search type</source>
@@ -4949,19 +4949,19 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Clear/Search buttons</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arama düğmeleri</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tablo satırlarına atlamak için Ctrl+[0-9]/Shift+[a-z] kısayollarını devre dışı bırakın.</translation>
     </message>
     <message>
         <source>None (default)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hiçbiri (varsayılan)</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Varsayılan koyu mod stillerini kullanır.</translation>
     </message>
     <message>
         <source>Dark mode</source>
@@ -4969,23 +4969,23 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">QSS Dosyasını Seç</translation>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sonuç tablosu detay alanında metaveri yerine belge metnini göstermek için şunu kullanın:</translation>
     </message>
     <message>
         <source>left mouse click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">sol fare tıklaması</translation>
     </message>
     <message>
         <source>Shift+click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Shift+click - Kaydırma+tıklama</translation>
     </message>
     <message>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stil sayfası dosyasını seçmek için bir iletişim kutusu açar. Örnek için /usr/share/recoll/examples/recoll[-dark].qss dosyasına bakın.</translation>
     </message>
     <message>
         <source>Result Table</source>
@@ -4993,95 +4993,95 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Satırların üzerine gelindiğinde meta verileri görüntülemeyin.</translation>
     </message>
     <message>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamil QTBUG-78923&apos;i çözmek için bağlantı metninden önce boşluk ekleyerek çalışın.</translation>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hata, vurgulanan Tamil kelimelerin içinde garip daire karakterlerin görüntülenmesine neden olur. Geçici çözüm, sorunu düzelttiği görünen ek bir boşluk karakteri ekler.</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yan filtre dizin ağacının derinliği</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kullanıcı arayüzü için yakınlaştırma faktörü. Varsayılan ekran çözünürlüğünüz için uygun değilse faydalıdır.</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Görüntü ölçeği (varsayılan 1.0):</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Otomatik yazım yaklaşımı.</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimum yazım mesafesi</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nadir terimler için yaygın yazım yaklaşımlarını ekleyin.</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlama listesindeki maksimum geçmiş giriş sayısı</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlamada geçmiş giriş sayısı:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İndeksteki terimin toplam sayısını gösterir.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlama penceresinde vuruş sayılarını göster.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Önizleme için düz metin yerine HTML&apos;yi tercih edin.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aşağıdaki metin parçasını Türkçe&apos;ye çevirin: Qt QDateTimeEdit belgelerine bakın. Ör. yyyy-MM-dd. Varsayılan Qt/Sistem formatını kullanmak için boş bırakın.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yan filtre tarih formatı (değişiklik yeniden başlatmayı gerektirir)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Eğer ayarlanırsa, aynı dizinde yeni bir örnek başlatmak mevcut olan bir örneği yükseltecektir.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tek uygulama</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ağaç hesaplamasını önleyerek başlangıcı hızlandırmak için devre dışı bırakmak için 0 olarak ayarlayın.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlama yalnızca etkinleştirildiğinde girişi değiştirir.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamamlama: otomatik satır düzenleme yok.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arayüz dili (yeniden başlatma gerektirir):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Not: çoğu çeviri eksiktir. Sistem ortamını kullanmak için boş bırakın.</translation>
     </message>
     <message>
         <source>Preview</source>
@@ -5089,27 +5089,27 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ayrıntı/özet özelliğini devre dışı bırakmak için 0 olarak ayarlayın.</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alanlar görüntüle: özet kullanmadan önce maksimum alan uzunluğu:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Önizleme aramasında bulunan bir arama terimi üzerinde gösterilecek satır sayısı.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arama terimi satır ofseti:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Metin arama arayüzünde, Joker karakterler *?[] genişletilmesi yerine noktalama işareti olarak işlenecektir.</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tüm terimler ve Herhangi bir terim modlarında joker karakterleri yok sayın.</translation>
     </message>
 </context>
 </TS>

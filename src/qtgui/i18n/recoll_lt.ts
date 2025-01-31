@@ -5,7 +5,7 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Meniu paieška</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filtruoti gimimo datas</translation>
     </message>
 </context>
 <context>
@@ -414,51 +414,51 @@
     </message>
     <message>
         <source>Process the Web history queue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apdoroti interneto naršyklės istorijos eilę.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(pagal nutylėjimą, aspell siūlo klaidingus rašybos variantus, kai užklausa neturi rezultatų).</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Puslapio perdirbimo intervalas</translation>
     </message>
     <message>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pagal nutylėjimą, podėlyje saugomas tik vienas URL egzempliorius. Tai gali būti pakeista nustatant šį parametrą į reikšmę, nustatančią, kokia dažniu saugome kelis egzempliorius (&apos;diena&apos;, &apos;savaitė&apos;, &apos;mėnuo&apos;, &apos;metai&apos;). Atkreipkite dėmesį, kad padidinus intervalą, esami įrašai nebus ištrinti.</translation>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pastaba: senosios puslapiai bus ištrinti, kad būtų atsiribotas vietos naujiems, kai bus pasiektas maksimalus dydis. Dabartinis dydis: %1</translation>
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pradėti aplankai</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sąrašas aplankų/katalogų, kurie bus indeksuojami. Poaplankiai bus apdorojami rekursyviai. Numatytasis: jūsų namai.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Disko pilnumo ribinis procentas, kai mes sustabdome indeksavimą (Pvz., 90, kad sustotų 90% pilnas, 0 arba 100 reiškia jokio apribojimo)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Naršyklės papildymų atsisiuntimų aplankas</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nustatykite tai tik tada, jei nustatėte &quot;Atsisiuntimų aplanką&quot; parametrą naršyklės papildomo įskiepio nustatymuose. Šiuo atveju tai turėtų būti visi kelio katalogas (pvz., /home/[aš]/Atsisiuntimai/mano-aplankas)</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Saugokite kai kuriuos GUI parametrus vietiniame indekse</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vartotojo sąsajos nustatymai įprastai saugomi globaliame faile, galiojančiame visiems indeksams. Nustatę šį parametrą, kai kurie nustatymai, pvz., rezultatų lentelės sąranka, bus specifiniai indeksui.</translation>
     </message>
 </context>
 <context>
@@ -524,18 +524,18 @@ This will help searching very big text  files (ie: log files).</source>
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Perjungti į kitą konfigūraciją</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pasirinkite kitą</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pasirinkite konfigūracijos katalogą</translation>
     </message>
 </context>
 <context>
@@ -634,11 +634,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kelias indekse</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Išverstas kelias</translation>
     </message>
 </context>
 <context>
@@ -823,7 +823,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reikia nustatyti &quot;Rodyti sistemos dėklą&quot; pasirinkimuose!</translation>
     </message>
 </context>
 <context>
@@ -1025,11 +1025,11 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Perkrauti kaip gryną tekstą</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Perkrauti kaip HTML</translation>
     </message>
 </context>
 <context>
@@ -1128,7 +1128,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Šie yra šablonai failų ar katalogų pavadinimams, kurie neturėtų būti įtraukti į indeksą.</translation>
     </message>
 </context>
 <context>
@@ -1215,15 +1215,15 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopijuoti tekstą</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopijuoti &amp;Failo Kelias</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nukopijuoti failo pavadinimą</translation>
     </message>
 </context>
 <context>
@@ -1301,8 +1301,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RclCompleterModel</name>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Paieškos rezultatai</translation>
     </message>
 </context>
 <context>
@@ -1762,8 +1762,8 @@ Please check the desktop file</translation>
         <translation type="unfinished">Indexer is running. Can&apos;t access webcache file.</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"> with additional message: </translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">with additional message: </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -1961,40 +1961,40 @@ Please check the desktop file</translation>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Naujinimas</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rodyti meniu paieškos dialogą</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dublikatai</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filtruoti katalogus</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pagrindinio indekso atidarymo klaida:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Indeksas gali būti sugadintas. Galbūt bandykite paleisti xapian-check arba atstatyti indeksą?.</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Šis paieškos veiksmas daugiau neveikia.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Peržiūros komandinė eilutė skirta %1 nurodo pagrindinį failą, bet URL nėra file:// : nepalaikomas</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rodyklė, nurodyta mimeview skirta %1: %2, nerasta. Ar norite paleisti nustatymų dialogą?</translation>
     </message>
 </context>
 <context>
@@ -2252,8 +2252,8 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Query Fragments</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished">    With failed files retrying</translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">With failed files retrying</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2325,27 +2325,27 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Padidinkite rezultatų teksto šrifto dydį.</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Padidinti šrifto dydį</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sumažinti rezultatų teksto šrifto dydį.</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sumažinti šrifto dydį</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pradėti realaus laiko indeksatorių</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Užklausos kalbos filtrai</translation>
     </message>
     <message>
         <source>Filter dates</source>
@@ -2353,27 +2353,27 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pagalba sudėtingam paieškos procesui</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filtruoti gimimo datas</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Perjungti konfigūraciją...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pasirinkite kitą konfigūraciją, kurioje paleisti, pakeisdami šį procesą.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vartotojo vadovas (vietinis, viena HTML puslapis)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Interneto vadovas (Recoll tinklalapis)</translation>
     </message>
 </context>
 <context>
@@ -2418,8 +2418,8 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">File date</translation>
     </message>
     <message>
-        <source> Ipath</source>
-        <translation type="obsolete"> Ipath</translation>
+        <source>Ipath</source>
+        <translation type="obsolete">Ipath</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2594,11 +2594,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Šis rašybos variantas buvo pridėtas prie paieškos:</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Šie rašybos spėjimai buvo pridėti prie paieškos:</translation>
     </message>
 </context>
 <context>
@@ -2713,15 +2713,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Naudokite Shift+paspaudimą, norėdami rodyti tekstą.</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 baitų nukopijuota į iškarpinę</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nukopijuokite rezultatų tekstą ir išeikite</translation>
     </message>
 </context>
 <context>
@@ -2921,8 +2921,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">Stemming languages for stored query: </translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"> differ from current preferences (kept)</translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">differ from current preferences (kept)</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3090,19 +3090,19 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paprastas paieška</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Istorija</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Užklausos kalbos atmintinė. Esant abejonėms: spustelėkite &lt;b&gt;Rodyti užklausos informaciją&lt;/b&gt;. &amp;nbsp;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Didelė raidė, kad būtų slopinamas kamieno plėtimas&lt;/td&gt;&lt;td&gt;Apatinis lygis&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
 </context>
 <context>
@@ -3302,11 +3302,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Padidinti šrifto dydį</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sumažinti šrifto dydį</translation>
     </message>
 </context>
 <context>
@@ -3407,11 +3407,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diagnostikos išvesties failas. Bus sutrumpintas ir gaus indeksavimo diagnostiką (priežastys, kodėl failai nebuvo indeksuoti).</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diagnostikos failas</translation>
     </message>
 </context>
 <context>
@@ -3572,16 +3572,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">Results from last indexing:</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished">  Documents created/updated</translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Documents created/updated</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished">  Files tested</translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Files tested</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished">  Unindexed files</translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Unindexed files</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3593,7 +3593,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rašybos plėtros klaida.</translation>
     </message>
 </context>
 <context>
@@ -3688,11 +3688,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pasirinkite QSS failą</translation>
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Negalima pridėti indekso su skirtingu didžiųjų/mažųjų raidžių ar diakritinių ženklų pašalinimo parinktimi.</translation>
     </message>
 </context>
 <context>
@@ -4011,7 +4011,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Teksto etiketė</translation>
     </message>
 </context>
 <context>
@@ -4038,15 +4038,15 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Išsaugoti į failą</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Failo kūrimas nepavyko:</translation>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimalus dydis %1 (Indeksų konfig.). Dabartinis dydis %2. Rašymo pozicija %3.</translation>
     </message>
 </context>
 <context>
@@ -4065,7 +4065,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dydis</translation>
     </message>
     <message>
         <source>URL</source>
@@ -4100,7 +4100,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nepavyko sukurti partijos failo</translation>
     </message>
 </context>
 <context>
@@ -4910,31 +4910,31 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paslėpti kai kuriuos vartotojo sąsajos elementus.</translation>
     </message>
     <message>
         <source>Hide:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slėpti:</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Įrankių juostos</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Būsenos juosta</translation>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rodyti mygtuką vietoj to.</translation>
     </message>
     <message>
         <source>Menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Meniu juosta</translation>
     </message>
     <message>
         <source>Show choice in menu only.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rodyti pasirinkimą tik meniu.</translation>
     </message>
     <message>
         <source>Simple search type</source>
@@ -4942,19 +4942,19 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Clear/Search buttons</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Valyti/Ieškoti mygtukai</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Išjunkite Ctrl+[0-9]/Shift+[a-z] klavišų kombinacijas, skirtas pereiti prie lentelės eilučių.</translation>
     </message>
     <message>
         <source>None (default)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nėra (numatyta)</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Naudoti numatytąjį tamsaus režimo stiliaus lapą</translation>
     </message>
     <message>
         <source>Dark mode</source>
@@ -4962,23 +4962,23 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pasirinkite QSS failą</translation>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Norėdami rodyti dokumento tekstą vietoj metaduomenų rezultatų lentelės detalioje srityje, naudokite:</translation>
     </message>
     <message>
         <source>left mouse click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">kairysis pelės mygtukas</translation>
     </message>
     <message>
         <source>Shift+click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paspauskite ir laikykite mygtuką Shift, tada paspauskite mygtuką.</translation>
     </message>
     <message>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Atidaro dialogo langą, skirtą pasirinkti stiliaus lapo failą.&lt;br&gt;Pažiūrėkite į /usr/share/recoll/examples/recoll[-dark].qss pavyzdžiui.</translation>
     </message>
     <message>
         <source>Result Table</source>
@@ -4986,95 +4986,95 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nerodyti metaduomenų, kai užvedamas pelės žymeklis ant eilučių.</translation>
     </message>
     <message>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Išspręskite Tamil QTBUG-78923, įterpdami tarpą prieš saitų tekstą.</translation>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Klaida sukelia keistus apskritimus simbolius, kurie rodomi paryškintuose tamilų žodžiuose. Laikinas sprendimas įterpia papildomą tarpą, kuri atrodo ištaiso problemą.</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Šoninio filtro katalogo medžio gylis</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Priartinimo veiksnys naudotojo sąsajai. Naudinga, jei numatytasis nėra tinkamas jūsų ekrano raiškai.</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rodymo mastelis (numatytasis 1.0):</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Automatinis rašybos artinimas.</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimalus rašybos atstumas</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pridėkite dažnai naudojamus rašybos artinimus retiems terminams.</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maksimalus istorijos įrašų skaičius užbaigimo sąraše</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Istorijos įrašų skaičius užbaigiklyje:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rodo visą termino pasikartojimų skaičių indekse.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rodyti atitikmenų skaičių iššokančiame lange.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rinkitės HTML, o ne gryną tekstą peržiūrai.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Žr. Qt QDateTimeEdit dokumentaciją. Pvz., yyyy-MM-dd. Palikite tuščią, jei norite naudoti numatytąjį Qt/Sistemos formatą.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Šoninis filtro datos formatas (pakeitimai reikalauja paleidimo iš naujo)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Jei nustatyta, paleidus naują egzempliorių toje pačioje indekso vietoje, bus pakeltas jau esantis.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vienas programos</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nustatykite į 0, kad išjungtumėte ir pagreitumėte paleidimą, vengdami medžio skaičiavimo.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Užbaigimas keičia įrašą tik tuomet, kai jis yra aktyvuotas.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Užbaigimas: automatinio eilučių redagavimo nėra.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vartotojo sąsajos kalba (reikalingas paleidimas iš naujo):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pastaba: dauguma vertimų yra nepilni. Palikite tuščią, jei norite naudoti sistemos aplinką.</translation>
     </message>
     <message>
         <source>Preview</source>
@@ -5082,27 +5082,27 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nustatykite į 0, norėdami išjungti detalų/sumos funkciją.</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Laukų rodymas: maksimalus lauko ilgis prieš naudojant santrauką.</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Eilučių skaičius, kuris bus rodomas virš paieškos raktažodžio, rasto per peržiūros paiešką.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Paieškos termino eilutės poslinkis:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lauko ženklai *?[] bus apdoroti kaip skyrybos ženklai, o ne išplėsti.</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ignoruokite laukinius simbolius visuose terminuose ir bet kuriuose terminuose režimuose.</translation>
     </message>
 </context>
 </TS>

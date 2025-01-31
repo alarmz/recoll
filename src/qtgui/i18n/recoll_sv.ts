@@ -5,7 +5,7 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Menysökning</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filtrera födelsedatum</translation>
     </message>
 </context>
 <context>
@@ -414,51 +414,51 @@
     </message>
     <message>
         <source>Process the Web history queue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bearbeta webbhistorik-kön</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(standardinställningen är att aspell föreslår felstavningar när en sökning inte ger några resultat).</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sidan återvinningsintervall</translation>
     </message>
     <message>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Som standard sparas endast en instans av en URL i cachen. Detta kan ändras genom att ställa in detta på ett värde som bestämmer med vilken frekvens vi behåller flera instanser (&apos;dag&apos;, &apos;vecka&apos;, &apos;månad&apos;, &apos;år&apos;). Observera att att öka intervallet inte kommer att radera befintliga poster.</translation>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Observera: gamla sidor kommer att raderas för att göra plats för nya när den maximala storleken är nådd. Aktuell storlek: %1</translation>
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Startmappar</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Listan över mappar/kataloger som ska indexeras. Undermappar kommer att bearbetas rekursivt. Standard: din hemkatalog.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Disk full threshold percentage vid vilken vi slutar indexera&lt;br&gt;(t.ex. 90 för att sluta vid 90% full, 0 eller 100 innebär ingen begränsning)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Webbläsartillägg hämta mapp</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Endast ställ in detta om du har ställt in parametern &quot;Nedladdningar underkatalog&quot; i webbläsartilläggets inställningar. &lt;br&gt;I så fall ska det vara den fullständiga sökvägen till katalogen (t.ex. /hem/[mig]/Nedladdningar/min-underkatalog)</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spara vissa GUI-parametrar lokalt till indexet.</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;GUI-inställningar lagras normalt i en global fil, giltig för alla index. Att ställa in detta parameter kommer att göra vissa inställningar, såsom resultat-tabelluppställningen, specifika för indexet.</translation>
     </message>
 </context>
 <context>
@@ -526,18 +526,18 @@ Detta kommer att underlätta vid genomsökning av mycket stora textfiler (t.ex. 
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Byt till annan konfiguration</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Välj annat</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Välj konfigurationsmapp</translation>
     </message>
 </context>
 <context>
@@ -636,11 +636,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sökväg i indexet</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Översatt sökväg</translation>
     </message>
 </context>
 <context>
@@ -825,7 +825,7 @@ Klicka på Avbryt om du vill redigera konfigurationsfilen innan indexering start
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Behöver &quot;Visa systemfältikonen&quot; att vara inställd i inställningarna!</translation>
     </message>
 </context>
 <context>
@@ -1027,11 +1027,11 @@ Klicka på Avbryt om du vill redigera konfigurationsfilen innan indexering start
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uppdatera som ren text</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Uppdatera som HTML</translation>
     </message>
 </context>
 <context>
@@ -1130,7 +1130,7 @@ Klicka på Avbryt om du vill redigera konfigurationsfilen innan indexering start
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dessa är mönster för fil- eller mappnamn som inte ska indexeras.</translation>
     </message>
 </context>
 <context>
@@ -1217,15 +1217,15 @@ Klicka på Avbryt om du vill redigera konfigurationsfilen innan indexering start
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopiera text</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopiera sökväg till filen</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopiera filnamn</translation>
     </message>
 </context>
 <context>
@@ -1303,8 +1303,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RclCompleterModel</name>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Träffar</translation>
     </message>
 </context>
 <context>
@@ -1764,8 +1764,8 @@ Kolla desktop-filen.</translation>
         <translation>Indexering körs. Kan inte komma åt Webcache-filen.</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation> med tilläggsmeddelande: </translation>
+        <source>with additional message: </source>
+        <translation>med tilläggsmeddelande: </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -1963,40 +1963,40 @@ Kolla desktop-filen.</translation>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spolar</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa meny sökdialog</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dubbletter</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filtrera kataloger</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Huvudindex öppningsfel:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Indexet kan vara korrupt. Försök kanske köra xapian-check eller återuppbygga indexet?</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Denna sökning är inte längre aktiv.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visningskommandoraden för %1 specificerar överordnad fil men URL:en är inte fil:// : stöds inte</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Den visare som anges i mimeview för %1: %2 hittades inte. Vill du starta inställningsdialogen?</translation>
     </message>
 </context>
 <context>
@@ -2254,8 +2254,8 @@ Do you want to start the preferences dialog ?</source>
         <translation>Sökfragment</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation>    Med misslyckade filers återförsök</translation>
+        <source>With failed files retrying</source>
+        <translation>Med misslyckade filers återförsök</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2327,27 +2327,27 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öka resultattextens teckenstorlek</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öka textstorlek</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Minska textens teckenstorlek för resultat</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Minska teckenstorlek</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Starta realtidsindexeraren</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Frågespråksfilter</translation>
     </message>
     <message>
         <source>Filter dates</source>
@@ -2355,27 +2355,27 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Assisterad komplex sökning</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filtrera födelsedatum</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Växelkonfiguration...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Välj en annan konfiguration att köra på, och ersätt denna process.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Användarmanual (lokal, en HTML-sida)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Online manual (Recoll webbplats)</translation>
     </message>
 </context>
 <context>
@@ -2420,8 +2420,8 @@ Do you want to start the preferences dialog ?</source>
         <translation>Fildatum</translation>
     </message>
     <message>
-        <source> Ipath</source>
-        <translation type="vanished"> Iväg</translation>
+        <source>Ipath</source>
+        <translation type="vanished">Iväg</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2596,11 +2596,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Denna stavning gissning lades till i sökningen:</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dessa stavningstips lades till i sökningen:</translation>
     </message>
 </context>
 <context>
@@ -2715,15 +2715,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Använd Shift+klicka för att visa texten istället.</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 byte kopierades till urklipp.</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kopiera resultattexten och avsluta</translation>
     </message>
 </context>
 <context>
@@ -2923,8 +2923,8 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
         <translation>Igenkända språk för lagrad sökning: </translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation> skiljer sig från aktuella inställningar (hålls)</translation>
+        <source>differ from current preferences (kept)</source>
+        <translation>skiljer sig från aktuella inställningar (hålls)</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3092,19 +3092,19 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enkel sökning</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Historik</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Frågespråksfuskblad. Vid tvekan: klicka på &lt;b&gt;Visa frågedetaljer&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Kapitalisera för att undertrycka stamexpansion&lt;/td&gt;&lt;td&gt;Golv&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
 </context>
 <context>
@@ -3304,11 +3304,11 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öka teckenstorleken</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Minska teckenstorlek</translation>
     </message>
 </context>
 <context>
@@ -3409,11 +3409,11 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diagnostikutdatafil. Kommer att bli avkortad och få indexdiagnostik (orsaker till att filer inte indexeras).</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Diagnostikfil</translation>
     </message>
 </context>
 <context>
@@ -3574,16 +3574,16 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
         <translation>Resultat från senaste indexering:</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation>  Skapade/Uppdaterade dokument</translation>
+        <source>Documents created/updated</source>
+        <translation>Skapade/Uppdaterade dokument</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation>  Testade filer</translation>
+        <source>Files tested</source>
+        <translation>Testade filer</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation>  Ej indexerade filer</translation>
+        <source>Unindexed files</source>
+        <translation>Ej indexerade filer</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3595,7 +3595,7 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Stavningsutvidgningsfel.</translation>
     </message>
 </context>
 <context>
@@ -3690,11 +3690,11 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Välj QSS-fil</translation>
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kan inte lägga till index med olika inställningar för att ta bort storleks- och diakritiska tecken.</translation>
     </message>
 </context>
 <context>
@@ -4014,7 +4014,7 @@ Detta bör ge högre företräde till de träffar där söktermerna visas exakt 
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Textetikett</translation>
     </message>
 </context>
 <context>
@@ -4041,15 +4041,15 @@ Detta bör ge högre företräde till de träffar där söktermerna visas exakt 
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spara till fil</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Filskapande misslyckades:</translation>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximal storlek %1 (Indexkonfig.). Aktuell storlek %2. Skrivposition %3.</translation>
     </message>
 </context>
 <context>
@@ -4068,7 +4068,7 @@ Detta bör ge högre företräde till de träffar där söktermerna visas exakt 
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Storlek</translation>
     </message>
     <message>
         <source>URL</source>
@@ -4103,7 +4103,7 @@ Detta bör ge högre företräde till de träffar där söktermerna visas exakt 
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kunde inte skapa satsfil</translation>
     </message>
 </context>
 <context>
@@ -4917,31 +4917,31 @@ Standardvärdet är 2 (procent). </translation>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dölj vissa användargränssnittselement.</translation>
     </message>
     <message>
         <source>Hide:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dölj:</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verktygsfält</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Statusfält</translation>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa knapp istället.</translation>
     </message>
     <message>
         <source>Menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Menyraden</translation>
     </message>
     <message>
         <source>Show choice in menu only.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa endast val i menyn.</translation>
     </message>
     <message>
         <source>Simple search type</source>
@@ -4949,19 +4949,19 @@ Standardvärdet är 2 (procent). </translation>
     </message>
     <message>
         <source>Clear/Search buttons</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rensa/Sök knappar</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inaktivera genvägarna Ctrl+[0-9]/Shift+[a-z] för att hoppa till tabellrader.</translation>
     </message>
     <message>
         <source>None (default)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inget (standard)</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Använder standardmörkt läge stilark</translation>
     </message>
     <message>
         <source>Dark mode</source>
@@ -4969,23 +4969,23 @@ Standardvärdet är 2 (procent). </translation>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Välj QSS-fil</translation>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">För att visa dokumenttext istället för metadata i detaljområdet i resultat-tabellen, använd:</translation>
     </message>
     <message>
         <source>left mouse click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">vänsterklicka med musen</translation>
     </message>
     <message>
         <source>Shift+click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Shift+klick</translation>
     </message>
     <message>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Öppnar en dialogruta för att välja stilarkiv. &lt;br&gt;Se på /usr/share/recoll/examples/recoll[-dark].qss för ett exempel.</translation>
     </message>
     <message>
         <source>Result Table</source>
@@ -4993,95 +4993,95 @@ Standardvärdet är 2 (procent). </translation>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa inte metadata när du svävar över rader.</translation>
     </message>
     <message>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arbeta runt Tamil QTBUG-78923 genom att infoga mellanslag före ankartexten</translation>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Felet orsakar att konstiga cirkeltecken visas inuti markerade tamiliska ord. Åtgärden infogar ett extra mellanslagstecken som verkar lösa problemet.</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Djupet av sidofilterkatalogträdet</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zoomfaktor för användargränssnittet. Användbart om standardinställningen inte är rätt för din skärmupplösning.</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visningsskala (standard 1.0):</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Automatisk stavning närmar sig.</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximal stavavstånd</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lägg till vanliga stavfel för sällsynta termer.</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Max antal historikposter i kompletteringslistan</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Antal historikposter i autocompleten:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visar det totala antalet förekomster av termen i indexet.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa träffantal i kompletteringspopupen.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Föredra HTML framför ren text för förhandsgranskning.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Se Qt QDateTimeEdit-dokumentationen. T.ex. yyyy-MM-dd. Lämna tomt för att använda standardformatet för Qt/System.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sidofilterdatumformat (ändring kräver omstart)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Om inställd, kommer att starta en ny instans på samma index att höja en befintlig.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Enstaka applikation</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sätt till 0 för att inaktivera och påskynda uppstart genom att undvika trädberäkning.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slutförandet ändrar endast posten när det aktiveras.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Slutförande: ingen automatisk radredigering.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gränsspråk (kräver omstart):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Observera: de flesta översättningar är ofullständiga. Lämna tomt för att använda systemmiljön.</translation>
     </message>
     <message>
         <source>Preview</source>
@@ -5089,27 +5089,27 @@ Standardvärdet är 2 (procent). </translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sätt till 0 för att inaktivera detalj/summeringsfunktionen.</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fältvisning: max fältlängd innan sammanfattning används:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Antal rader som ska visas över en sökterm som hittats av förhandsgranskningssökningen.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sökterm radförskjutning:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Jokertecken *?[] kommer att behandlas som skiljetecken istället för att expanderas.</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ignorera jokertecken i ALLA termer och VILKA termer lägen.</translation>
     </message>
 </context>
 </TS>

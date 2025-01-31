@@ -5,7 +5,7 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">메뉴 검색</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">생년월일 필터링</translation>
     </message>
 </context>
 <context>
@@ -417,7 +417,7 @@
         <translation>웹 기록 큐 처리하기</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
         <translation>디폴트로, 검색에 대한 결과가 없을 때 aspell 이 올바른 맞춤법을 제시합니다</translation>
     </message>
     <message>
@@ -434,31 +434,31 @@
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">폴더 시작</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">색인할 폴더/디렉토리 목록입니다. 하위 폴더는 재귀적으로 처리됩니다. 기본값: 홈 폴더.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">색인을 중지하는 디스크 가득 차는 임계치 백분율&lt;br&gt;(예: 90은 90% 가득 찼을 때 중지, 0 또는 100은 제한 없음)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">브라우저 애드온 다운로드 폴더</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">이것을 설정한 경우에만 &quot;웹 브라우저 추가 기능 설정&quot;에서 &quot;다운로드 하위 디렉토리&quot; 매개변수를 설정하십시오. &lt;br&gt;이 경우에는 디렉토리의 전체 경로여야 합니다 (예: /home/[me]/Downloads/my-subdir)</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">인덱스에 일부 GUI 매개변수를 로컬로 저장합니다.</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;GUI 설정은 일반적으로 모든 색인에 대해 유효한 전역 파일에 저장됩니다. 이 매개변수를 설정하면 결과 테이블 설정과 같은 일부 설정이 해당 색인에 특정해집니다.</translation>
     </message>
 </context>
 <context>
@@ -525,18 +525,18 @@ This will help searching very big text  files (ie: log files).</source>
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다른 구성으로 전환</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다른 것을 선택하세요.</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">구성 디렉토리를 선택하세요.</translation>
     </message>
 </context>
 <context>
@@ -635,11 +635,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">인덱스 경로</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">번역된 경로</translation>
     </message>
 </context>
 <context>
@@ -824,7 +824,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">환경 설정에서 &quot;시스템 트레이 아이콘 표시&quot;를 설정해야 합니다!</translation>
     </message>
 </context>
 <context>
@@ -1026,11 +1026,11 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">일반 텍스트로 다시 불러오기</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">HTML로 다시로드</translation>
     </message>
 </context>
 <context>
@@ -1132,7 +1132,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">이것은 색인되지 말아야 하는 파일 또는 디렉토리 이름에 대한 패턴입니다.</translation>
     </message>
 </context>
 <context>
@@ -1219,15 +1219,15 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">텍스트 복사</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">파일 경로 복사</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">파일 이름 복사</translation>
     </message>
 </context>
 <context>
@@ -1305,8 +1305,8 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RclCompleterModel</name>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">검색 결과</translation>
     </message>
 </context>
 <context>
@@ -1766,7 +1766,7 @@ Please check the desktop file</source>
         <translation>색인 작성이 진행되고 있습니다. 웹 캐시 파일에 접근할 수 없습니다.</translation>
     </message>
     <message>
-        <source> with additional message: </source>
+        <source>with additional message: </source>
         <translation>부가 메세지 : </translation>
     </message>
     <message>
@@ -1964,40 +1964,40 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">플러싱</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">메뉴 검색 대화 상자 표시</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">중복된 항목</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">디렉토리 필터</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">주 색인 열기 오류:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">색인이 손상되었을 수 있습니다. xapian-check를 실행하거나 색인을 다시 빌드해 보세요.</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">이 검색은 더 이상 활성화되지 않았습니다.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1에 대한 뷰어 명령줄이 부모 파일을 지정하지만 URL이 file://이 아닙니다 : 지원되지 않음</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1에 대해 mimeview에서 지정된 뷰어 %2을(를) 찾을 수 없습니다. 환경 설정 대화 상자를 시작하시겠습니까?</translation>
     </message>
 </context>
 <context>
@@ -2255,8 +2255,8 @@ Do you want to start the preferences dialog ?</source>
         <translation>쿼리 프래그먼트</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation>    파일들 재시도 실패</translation>
+        <source>With failed files retrying</source>
+        <translation>파일들 재시도 실패</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2332,7 +2332,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">글꼴 크기 증가</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
@@ -2340,15 +2340,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">글꼴 크기 줄이기</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">실시간 인덱서 시작</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">쿼리 언어 필터</translation>
     </message>
     <message>
         <source>Filter dates</source>
@@ -2356,27 +2356,27 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">보조 복잡한 검색</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">생년월일 필터링</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">스위치 구성...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">이 프로세스를 대체할 다른 구성을 선택하여 실행할 수 있습니다.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">사용자 매뉴얼 (로컬, 하나의 HTML 페이지)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">온라인 매뉴얼 (Recoll 웹 사이트)</translation>
     </message>
 </context>
 <context>
@@ -2421,8 +2421,8 @@ Do you want to start the preferences dialog ?</source>
         <translation>파일 날짜</translation>
     </message>
     <message>
-        <source> Ipath</source>
-        <translation type="vanished"> I경로</translation>
+        <source>Ipath</source>
+        <translation type="vanished">I경로</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2569,7 +2569,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>for</source>
-        <translation> </translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;p&gt;&lt;i&gt;Alternate spellings: &lt;/i&gt;</source>
@@ -2597,11 +2597,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">이 철자 추측이 검색에 추가되었습니다:</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">검색에 이 철자 추측이 추가되었습니다.</translation>
     </message>
 </context>
 <context>
@@ -2716,15 +2716,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">텍스트 검색 GUI에서 다음 텍스트 조각을 한국어로 번역하십시오. 텍스트 조각: Shift+클릭을 사용하여 텍스트를 표시합니다.</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">클립보드에 %1 바이트가 복사되었습니다.</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">결과 텍스트를 복사하고 종료합니다.</translation>
     </message>
 </context>
 <context>
@@ -2923,7 +2923,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation>저장된 쿼리에 대한 형태소 언어들</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
+        <source>differ from current preferences (kept)</source>
         <translation>현재 환경설정과 다르게 유지합니다.</translation>
     </message>
     <message>
@@ -3092,19 +3092,19 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">간단한 검색</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">역사</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;쿼리 언어 치트 시트. 의심이 들면: &lt;b&gt;쿼리 세부 정보 표시&lt;/b&gt;를 클릭하십시오. &amp;nbsp;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;어간 확장 억제를 위해 대문자로 변환&lt;/td&gt;&lt;td&gt;바닥&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
 </context>
 <context>
@@ -3304,11 +3304,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">글꼴 크기를 키우다.</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">글꼴 크기 줄이기</translation>
     </message>
 </context>
 <context>
@@ -3574,16 +3574,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation>최근 색인 작성 결과들</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation>  만들어진/업데이트된 문서들</translation>
+        <source>Documents created/updated</source>
+        <translation>만들어진/업데이트된 문서들</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation>  테스트된 파일들</translation>
+        <source>Files tested</source>
+        <translation>테스트된 파일들</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation>  색인되지 않은 파일들</translation>
+        <source>Unindexed files</source>
+        <translation>색인되지 않은 파일들</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3595,7 +3595,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">주문 확장 오류.</translation>
     </message>
 </context>
 <context>
@@ -3694,7 +3694,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다른 대/발음 기호 제거 옵션을 사용하여 색인을 추가할 수 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -4014,7 +4014,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">텍스트 레이블</translation>
     </message>
 </context>
 <context>
@@ -4041,15 +4041,15 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">파일로 저장</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">파일 생성 실패:</translation>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">최대 크기 %1 (인덱스 구성). 현재 크기 %2. 쓰기 위치 %3.</translation>
     </message>
 </context>
 <context>
@@ -4068,7 +4068,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">크기</translation>
     </message>
     <message>
         <source>URL</source>
@@ -4103,7 +4103,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">일괄 파일을 만들 수 없습니다.</translation>
     </message>
 </context>
 <context>
@@ -4915,7 +4915,7 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">일부 사용자 인터페이스 요소 숨기기.</translation>
     </message>
     <message>
         <source>Hide:</source>
@@ -4995,87 +4995,87 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">버그로 인해 강조된 타밀어 단어 안에 이상한 원 모양의 문자가 표시됩니다. 해결책은 문제를 해결하는 것으로 보이는 추가 공백 문자를 삽입하는 것입니다.</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">사이드 필터 디렉토리 트리의 깊이</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">사용자 인터페이스의 확대/축소 비율. 기본값이 화면 해상도에 맞지 않을 경우 유용합니다.</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">표시 배율 (기본 1.0):</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">자동 맞춤법 근사화.</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">최대 철자 거리</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">희귀한 용어에 대한 일반적인 철자 근사치를 추가하십시오.</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">완성 목록에서의 최대 히스토리 항목 수</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">완성기록에서의 항목 수:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">색인에 용어가 총 몇 번 발생했는지 표시합니다.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">완성기 팝업에서 히트 횟수 표시하기.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">미리보기에 일반 텍스트 대신 HTML을 선호합니다.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Qt QDateTimeEdit 문서를 참조하십시오. 예: yyyy-MM-dd. 기본 Qt/System 형식을 사용하려면 비워 두십시오.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">사이드 필터 날짜 형식 (변경 시 재시작 필요)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">만약 설정되어 있다면, 동일한 인덱스에서 새로운 인스턴스를 시작하면 기존 인스턴스가 발생합니다.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">단일 응용 프로그램</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">트리 계산을 피하여 시작 속도를 높이기 위해 0으로 설정하십시오.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">완료는 활성화될 때에만 항목을 변경합니다.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">완료: 자동 줄 편집 없음.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">인터페이스 언어 (재시작 필요):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">참고: 대부분의 번역은 불완전합니다. 시스템 환경을 사용하려면 비워 두십시오.</translation>
     </message>
     <message>
         <source>Preview</source>
@@ -5083,27 +5083,27 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">세부 정보/요약 기능을 비활성화하려면 0으로 설정하세요.</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">필드 표시: 요약 사용 전 최대 필드 길이:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">미리보기 검색에서 찾은 검색어 위에 표시할 라인 수.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">검색어 라인 오프셋:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">와일드 카드 문자 *?[]는 확장되는 대신 구두점으로 처리됩니다.</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">모든 용어 및 어떤 용어 모드에서 와일드 카드 문자를 무시합니다.</translation>
     </message>
 </context>
 </TS>

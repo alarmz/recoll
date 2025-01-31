@@ -5,7 +5,8 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>搜索菜单</translation>
     </message>
 </context>
@@ -418,7 +419,7 @@
         <translation>索引浏览器历史记录</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
         <translation>默认情况下aspell会在搜索不到结果时给出可能的错误拼写提示</translation>
     </message>
     <message>
@@ -439,31 +440,31 @@
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">开始文件夹</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">要被索引的文件夹/目录列表。子文件夹将被递归处理。默认值：您的主目录。</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">磁盘已满阈值百分比，我们停止索引的百分比（例如，90表示在90%满时停止，0或100表示没有限制）</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">浏览器插件下载文件夹</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">只有在Web浏览器插件设置中设置了“下载子目录”参数时才设置此选项。&lt;br&gt;在这种情况下，它应该是目录的完整路径（例如/home/[me]/Downloads/my-subdir）。</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将一些GUI参数存储到本地索引中。</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;GUI设置通常存储在一个全局文件中，适用于所有索引。设置此参数将使一些设置，如结果表格设置，特定于索引。</translation>
     </message>
 </context>
 <context>
@@ -531,18 +532,18 @@ This will help searching very big text  files (ie: log files).</source>
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">切换到其他配置</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择其他</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择配置目录</translation>
     </message>
 </context>
 <context>
@@ -672,7 +673,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Translated path</source>
-        <translatorcomment>存疑</translatorcomment>
+        <translatorcomment>
+存疑        </translatorcomment>
         <translation>已变换的路径</translation>
     </message>
 </context>
@@ -1187,7 +1189,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">这些是文件或目录名称的模式，不应该被索引。</translation>
     </message>
 </context>
 <context>
@@ -1374,8 +1376,9 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>RclCompleterModel</name>
     <message>
-        <source> Hits</source>
-        <translatorcomment>存疑</translatorcomment>
+        <source>Hits</source>
+        <translatorcomment>
+存疑        </translatorcomment>
         <translation>点击量</translation>
     </message>
 </context>
@@ -1836,7 +1839,7 @@ Please check the desktop file</source>
         <translation>索引器正在运行，无法访问网络缓存文件。</translation>
     </message>
     <message>
-        <source> with additional message: </source>
+        <source>with additional message: </source>
         <translation>带有附加消息：</translation>
     </message>
     <message>
@@ -2038,12 +2041,14 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translatorcomment>存疑</translatorcomment>
+        <translatorcomment>
+存疑        </translatorcomment>
         <translation>显示菜单搜索对话框</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translatorcomment>存疑</translatorcomment>
+        <translatorcomment>
+存疑        </translatorcomment>
         <translation>重复的结果</translation>
     </message>
     <message>
@@ -2328,8 +2333,8 @@ Do you want to start the preferences dialog ?</source>
         <translation>预定义的查询条件</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation>    正在重试失败的文件</translation>
+        <source>With failed files retrying</source>
+        <translation>正在重试失败的文件</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2433,7 +2438,8 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>辅助复杂搜索</translation>
     </message>
     <message>
@@ -2446,11 +2452,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">用户手册（本地，一个HTML页面）</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在线手册（Recoll网站）</translation>
     </message>
 </context>
 <context>
@@ -2495,8 +2501,8 @@ Do you want to start the preferences dialog ?</source>
         <translation>文件日期</translation>
     </message>
     <message>
-        <source> Ipath</source>
-        <translation type="vanished"> 内部路径</translation>
+        <source>Ipath</source>
+        <translation type="vanished">内部路径</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2671,12 +2677,14 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>这个拼写猜测已添加到搜索中：</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>这些拼写猜测已添加到搜索中：</translation>
     </message>
 </context>
@@ -3009,7 +3017,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation>已保存的查询语句的词根语言</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
+        <source>differ from current preferences (kept)</source>
         <translation>与当前的偏好设置不同(已保留)</translation>
     </message>
     <message>
@@ -3182,7 +3190,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>History</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>简单搜索历史记录</translation>
     </message>
     <message>
@@ -3661,15 +3670,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation>上一次索引的结果：</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
+        <source>Documents created/updated</source>
         <translation>文档已创建/更新</translation>
     </message>
     <message>
-        <source>  Files tested</source>
+        <source>Files tested</source>
         <translation>文件已测试</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
+        <source>Unindexed files</source>
         <translation>未索引的文件</translation>
     </message>
     <message>
@@ -3682,7 +3691,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>拼写扩展错误。</translation>
     </message>
 </context>
@@ -4191,7 +4201,8 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>不能创建批量索引所需的文件</translation>
     </message>
 </context>
@@ -4775,7 +4786,8 @@ May be slow for big documents.</source>
 Frequent terms are a major performance issue with phrases. 
 Skipped terms augment the phrase slack, and reduce the autophrase efficiency.
 The default value is 2 (percent). </source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>如果一个搜索词出现的频率超过了某个阈值，我们就不会在自动生成短语功能中使用它。
 频率过高的搜索词会极大影响搜索性能。
 跳过这些搜索词则会提高搜索短语的自由度，但同时也会降低自动升段短语功能的搜索能力。默认情况下，该阈值设定为2%。</translation>
@@ -5022,7 +5034,8 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>显示按钮</translation>
     </message>
     <message>
@@ -5043,7 +5056,8 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>禁用Ctrl+[0-9]和Shift+[a-z]这些选择搜索结果行数的快捷键</translation>
     </message>
     <message>
@@ -5064,7 +5078,8 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>为了在结果列表的详情中显示文档内容而不是文档元数据，请使用：</translation>
     </message>
     <message>
@@ -5085,7 +5100,8 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>鼠标悬停在结果表时不显示元数据</translation>
     </message>
     <message>
@@ -5110,12 +5126,14 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>自动拼写近似</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>最大拼写距离</translation>
     </message>
     <message>
@@ -5124,12 +5142,14 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>当前电脑允许保存的最大历史搜索/文档数量</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>当前电脑内保存的历史搜索/历史文档的数量：</translation>
     </message>
     <message>
@@ -5138,7 +5158,8 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>在弹出窗口中显示点击数</translation>
     </message>
     <message>
@@ -5147,41 +5168,43 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>请在Qt QDateTimeEdit的文档中查看时间格式，比如说yyyy-MM-dd。留空会使用系统默认时间格式</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translatorcomment>待定</translatorcomment>
+        <translatorcomment>
+待定        </translatorcomment>
         <translation>过滤器的日期格式(修改后需要重启程序)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">如果设置了，在相同索引上启动一个新实例将会引发现有的实例。</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">单个应用程序</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置为0以禁用并通过避免树计算加快启动速度。</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">只有在激活时完成才会更改条目。</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">完成：无自动行编辑。</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">界面语言（需要重新启动）</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">注意：大多数翻译是不完整的。留空以使用系统环境。</translation>
     </message>
     <message>
         <source>Preview</source>
@@ -5189,27 +5212,27 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">设置为0以禁用详细/摘要功能。</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">字段显示：在使用摘要之前的最大字段长度:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在预览搜索中找到的搜索词上方要显示的行数。</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索词行偏移量:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">通配符字符*?[]将被处理为标点符号，而不是被展开。</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在“所有词项”和“任意词项”模式下忽略通配符字符。</translation>
     </message>
 </context>
 </TS>
