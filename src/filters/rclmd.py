@@ -29,11 +29,14 @@ import rclexecm  # For communicating with recoll
 from rclbasehandler import RclBaseHandler
 from datetime import datetime
 
+# If we don't find the yaml package, just treat the file as text, this is better than not indexing
+# it
+_have_yaml = False
 try:
     import yaml
+    _have_yaml = True
 except:
-    print("RECFILTERROR HELPERNOTFOUND python3:PyYAML")
-    sys.exit(1)
+    pass
 
 ####
 _htmlprefix = b"""<html><head>
@@ -118,6 +121,10 @@ class MDhandler(RclBaseHandler):
         return stripped_tags
 
     def html_text(self, filename):
+        if not _have_yaml:
+            self.outputmimetype = "text/plain"
+            return open(filename, "rb").read()
+        
         basename = os.path.splitext(os.path.basename(filename))[0].decode("utf-8")
 
         # Regular expression to match a date followed by a space and then the rest of the title
@@ -189,7 +196,8 @@ class MDhandler(RclBaseHandler):
                     + b'">\n'
                 )
 
-        # Fallback case when the creation and modification time could not be determined from the frontmatter
+        # Fallback case when the creation and modification time could not be determined from the
+        # frontmatter
         if created is None or modified is None:
             modified_from_file, changed_from_file, created_from_file = get_file_times(
                 filename
