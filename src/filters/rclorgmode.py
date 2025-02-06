@@ -85,6 +85,7 @@ class OrgModeExtractor:
 
     def getnext(self, params):
         if not self.createsubdocs:
+            self.em.setmimetype(b"text/plain")
             return (True, self.selftext, "", rclexecm.RclExecM.eofnext)
 
         if self.currentindex == -1:
