@@ -1,0 +1,13 @@
+diff --git a/qtgui/qmkmk.sh b/qtgui/qmkmk.sh
+index b76fa749..c51231c5 100755
+--- a/qtgui/qmkmk.sh
++++ b/qtgui/qmkmk.sh
+@@ -23,7 +23,7 @@ fi
+ if test -z "$ncpus" ; then
+     ncpus=1
+ fi
+-
++ncpus=2
+ cd $dir
+ ${QMAKE} $fn $*
+ ${MAKE} -j $ncpus
