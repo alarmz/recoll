@@ -186,7 +186,7 @@ void RclMain::startPreview(int docnum, Rcl::Doc doc, int mod)
     } 
     curPreview->show();
     curPreview->raise();
-    QTimer::singleShot(0, this, [=]() { curPreview->makeDocCurrent(doc, docnum); });
+    QTimer::singleShot(0, this, [=]() mutable { curPreview->makeDocCurrent(doc, docnum); });
 }
 
 /** 

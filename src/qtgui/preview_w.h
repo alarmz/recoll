@@ -138,8 +138,7 @@ public:
      * @para docnum is used to link back to the result list (to highlight 
      *   paragraph when tab exposed etc.
      */
-    virtual bool makeDocCurrent(const Rcl::Doc& idoc, int docnum, 
-                                bool sametab = false);
+    virtual bool makeDocCurrent(Rcl::Doc& idoc, int docnum, bool sametab = false);
     void emitWordSelect(QString);
     friend class PreviewTextEdit;
 
@@ -207,7 +206,7 @@ private:
     virtual PreviewTextEdit *editor(int);
     virtual PreviewTextEdit *currentEditor();
     virtual PreviewTextEdit *addEditorTab();
-    virtual bool loadDocInCurrentTab(const Rcl::Doc& idoc, int dnm);
+    virtual bool loadDocInCurrentTab(Rcl::Doc& idoc, int dnm);
     void displayLoadError(FileInterner::ErrorPossibleCause explain, bool canGetRawText);
     bool runLoadThread(LoadThread& lthr, QTimer& tT, QEventLoop& loop,
                        QProgressDialog& progress, bool canGetRawText);

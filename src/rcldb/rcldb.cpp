@@ -1252,8 +1252,9 @@ bool Db::getDoc(const string &udi, const std::string& dbdir, Doc &doc, bool fetc
 
 bool Db::getDoc(const string& udi, int idxi, Doc& doc, bool fetchtext)
 {
-    // Initialize what we can in any case. If this is history, caller
-    // will make partial display in case of error
+    LOGDEB0("Db::getDoc: udi [" << udi << "] idxi " << idxi << "\n");
+    // Initialize what we can in any case. If this is history, caller will make partial display in
+    // case of error
     if (nullptr == m_ndb)
         return false;
     doc.meta[Rcl::Doc::keyrr] = "100%";
@@ -1265,10 +1266,8 @@ bool Db::getDoc(const string& udi, int idxi, Doc& doc, bool fetchtext)
         doc.meta[Doc::keyudi] = udi;
         return m_ndb->dbDataToRclDoc(docid, xdoc, data, doc, fetchtext);
     } else {
-        // Document found in history no longer in the
-        // database.  We return true (because their might be
-        // other ok docs further) but indicate the error with
-        // pc = -1
+        // Document found in history no longer in the database.  We return true (because their might
+        // be other ok docs further) but indicate the error with pc = -1
         doc.pc = -1;
         LOGINFO("Db:getDoc: no such doc in current index: [" << udi << "]\n");
         return true;

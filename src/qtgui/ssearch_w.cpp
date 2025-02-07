@@ -43,7 +43,6 @@
 #include <QShortcut>
 #include <QRegularExpression>
 
-#define LOGGER_LOCAL_LOGINC 4
 #include "log.h"
 #include "guiutils.h"
 #include "searchdata.h"

@@ -150,7 +150,7 @@ void RclMain::openWith(Rcl::Doc doc, string cmdspec)
     subs["U"] = beginswith(url, cstr_fileu) ? path_pcencode(url) : url;
     subs["u"] = url;
 
-    execViewer(subs, false, execname, lcmd, cmdspec, doc);
+    execViewer(subs, true, execname, lcmd, cmdspec, doc);
 }
 
 static bool pagenumNeeded(const std::string& cmd)
@@ -267,7 +267,8 @@ static std::string jsonData(std::shared_ptr<DocSequence> source, Rcl::Doc& doc)
     return jsondata;
 }
 
-void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int linenum)
+void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int linenum,
+                                bool enterHistory)
 {
     std::string term = qs2utf8s(qterm);
     string apptag;
@@ -416,9 +417,6 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
         }
     }
 
-    // Can't remember what enterHistory was actually for. Set it to
-    // true always for now
-    bool enterHistory = true;
     bool istempfile = false;
     
     LOGDEB("StartNativeViewer: groksipath " << groksipath << " wantsf " <<
@@ -439,7 +437,6 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
                                  tr("Cannot extract document or create temporary file"));
             return;
         }
-        enterHistory = true;
         istempfile = true;
         rememberTempFile(temp);
         fn = temp.filename();
@@ -570,7 +567,7 @@ void RclMain::execViewer(
     }
 
     if (enterHistory)
-        historyEnterDoc(rcldb.get(), g_dynconf, doc);
+        historyEnterDoc(rcldb, g_dynconf, doc);
     
     // Do the zeitgeist thing
     zg_send_event(ZGSEND_OPEN, doc);
@@ -611,7 +608,7 @@ void RclMain::startManual(const string& index)
     }
     doc.mimetype = "text/html";
     doc.meta[Rcl::Doc::keyapptg] = "rclman";
-    startNativeViewer(doc);
+    startNativeViewer(doc, -1, QString(), -1, false);
 }
 
 void RclMain::startOnlineManual()
@@ -619,5 +616,5 @@ void RclMain::startOnlineManual()
     Rcl::Doc doc;
     doc.url = "https://www.recoll.org/usermanual/webhelp/docs/index.html";
     doc.mimetype = "text/html";
-    startNativeViewer(doc);
+    startNativeViewer(doc, -1, QString(), -1, false);
 }

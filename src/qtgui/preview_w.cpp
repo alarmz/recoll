@@ -671,7 +671,7 @@ void Preview::setCurTabProps(const Rcl::Doc &doc, int docnum)
     }
 }
 
-bool Preview::makeDocCurrent(const Rcl::Doc& doc, int docnum, bool sametab)
+bool Preview::makeDocCurrent(Rcl::Doc& doc, int docnum, bool sametab)
 {
     LOGDEB("Preview::makeDocCurrent: " << doc.url << "\n");
 
@@ -838,7 +838,7 @@ public:
     ~LoadGuard() {*m_bp = false; CancelCheck::instance().setCancel(false);}
 };
 
-bool Preview::loadDocInCurrentTab(const Rcl::Doc &idoc, int docnum)
+bool Preview::loadDocInCurrentTab(Rcl::Doc &idoc, int docnum)
 {
     LOGDEB1("Preview::loadDocInCurrentTab()\n");
 
@@ -1108,7 +1108,7 @@ bool Preview::loadDocInCurrentTab(const Rcl::Doc &idoc, int docnum)
     }
 
     // Enter document in document history
-    historyEnterDoc(rcldb.get(), g_dynconf, idoc);
+    historyEnterDoc(rcldb, g_dynconf, idoc);
 
     editor->setFocus();
     emit(previewExposed(this, m_searchId, docnum));

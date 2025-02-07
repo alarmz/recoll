@@ -90,8 +90,7 @@ bool RclDHistoryEntry::decode(const string &value)
         // Old style entry found, make an udi, using the fs udi maker
         fileUdi::make_udi(fn, ipath, udi);
     }
-    LOGDEB1("RclDHistoryEntry::decode: udi ["  << udi << "] dbdir [" <<
-            dbdir << "]\n");
+    LOGDEB1("RclDHistoryEntry::decode: udi ["  << udi << "] dbdir [" << dbdir << "]\n");
     return true;
 }
 
@@ -101,20 +100,22 @@ bool RclDHistoryEntry::equal(const DynConfEntry& other)
     return e.udi == udi && e.dbdir == dbdir;
 }
 
-bool historyEnterDoc(Rcl::Db *db, RclDynConf *dncf, const Rcl::Doc& doc)
+bool historyEnterDoc(std::shared_ptr<Rcl::Db> db, RclDynConf *dncf, Rcl::Doc& doc)
 {
-    string udi;
-    if (db && doc.getmeta(Rcl::Doc::keyudi, &udi)) {
-        std::string dbdir =  db->whatIndexForResultDoc(doc);
-        LOGDEB("historyEnterDoc: [" << udi << ", " << dbdir << "] into " <<
-               dncf->getFilename() << "\n");
-        RclDHistoryEntry ne(time(nullptr), udi, dbdir);
-        RclDHistoryEntry scratch;
-        return dncf->insertNew(docHistSubKey, ne, scratch, 200);
-    } else {
-        LOGDEB("historyEnterDoc: doc has no udi\n");
+    if (!db) {
+        LOGERR("historyEnterDoc: no DB ??\n");
+        return false;
     }
-    return false;
+    string udi = db->fetchUdi(doc);
+    if (udi.empty()) {
+        LOGERR("historyEnterDoc: could not get udi for doc\n");
+        return false;
+    }
+    std::string dbdir =  db->whatIndexForResultDoc(doc);
+    LOGDEB0("histEnterDoc: [" << udi << ", " << dbdir << "] into " << dncf->getFilename() << "\n");
+    RclDHistoryEntry ne(time(nullptr), udi, dbdir);
+    RclDHistoryEntry scratch;
+    return dncf->insertNew(docHistSubKey, ne, scratch, 200);
 }
 
 vector<RclDHistoryEntry> getDocHistory(RclDynConf* dncf)
@@ -154,8 +155,7 @@ bool DocSequenceHistory::getDoc(int num, Rcl::Doc &doc, string *sh)
         doc.ipath = "";
     }
 
-    // Ensure the snippets link won't be shown as it does not make
-    // sense (no query terms...)
+    // Ensure the snippets link won't be shown as it does not make sense (no query terms...)
     doc.haspages = 0;
 
     return ret;

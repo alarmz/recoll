@@ -73,6 +73,6 @@ private:
     std::vector<RclDHistoryEntry> m_history;
 };
 
-extern bool historyEnterDoc(Rcl::Db *db, RclDynConf *dncf, const Rcl::Doc& doc);
+extern bool historyEnterDoc(std::shared_ptr<Rcl::Db> db, RclDynConf *dncf, Rcl::Doc& doc);
 
 #endif /* _DOCSEQ_H_INCLUDED_ */
