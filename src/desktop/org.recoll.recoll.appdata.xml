@@ -23,6 +23,14 @@
   <url type="donation">https://www.lesbonscomptes.com/donations</url>
   <url type="vcs-browser">https://framagit.org/medoc92/recoll</url>
   <releases>
+    <release version="1.42.1" date="2025-02-07">
+      <description>
+        <ul>
+        <li>Repair GUI history features, broken by lazy UDI extraction in 1.42.0.</li>
+        <li>Fix line numbers issue in orgmode handler.</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.42.0" date="2025-01-22">
       <description>
         <ul>
