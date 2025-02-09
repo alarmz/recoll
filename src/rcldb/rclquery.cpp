@@ -446,9 +446,8 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
     }
 
     int first = m_nq->xmset.get_firstitem();
-    int last = first + m_nq->xmset.size() -1;
 
-    if (!(xapi >= first && xapi <= last)) {
+    if (!(xapi >= first && xapi <= first + m_nq->xmset.size() -1)) {
         LOGDEB("Fetching for first " << xapi << ", count " << qquantum << "\n");
 
         XAPTRY(m_nq->xmset = m_nq->xenquire->get_mset(
@@ -463,7 +462,6 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
             return false;
         }
         first = m_nq->xmset.get_firstitem();
-        last = first + m_nq->xmset.size() -1;
     }
 
     Xapian::Document xdoc;
