@@ -26,6 +26,8 @@ recollq \- command line / standard output Recoll query command.
 ]
 [
 .B \-p
+|
+.B \-q
 ]
 [
 .B \-e
@@ -115,7 +117,9 @@ If
 .B \-A
 is set, the document abstracts will be printed. With an additional
 .B \-p
-option, snippets with page numbers (when available) will be shown instead.
+(or
+.B \-q
+) option, snippets with page numbers, (or line numbers), will be shown instead, if available.
 .PP
 .B \-S
 <fieldname>
