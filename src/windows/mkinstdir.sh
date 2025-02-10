@@ -42,9 +42,8 @@ QTBIN=C:/Qt/6.7.3/msvc2019_64/bin
 MINGWBIN=${RCLDEPS}/gcclibs
 
 # We use the mingw-compiled aspell program for building the dict
-ASPELL=${RCLDEPS}/mingw/aspell-0.60.7/aspell-installed
-# We use an msvc-built aspell lib for supporting a python extension
-# used by the suggestion script
+ASPELL=${RCLDEPS}/aspell-0.60.7/aspell-installed
+# We use an msvc-built aspell lib for supporting a python extension used by the suggestion script
 LIBASPELL=${RCLDEPS}/msvc/aspell-0.60.7/
 
 
@@ -59,7 +58,6 @@ PYTHONMINOR=12
 PYTHON=${RCLDEPS}python-3.12.4-embed-amd64
 UNRTF=${RCLDEPS}unrtf
 ANTIWORD=${RCLDEPS}antiword
-PYEXIV2=${RCLDEPS}pyexiv2
 EPUB=${RCLDEPS}epub-0.5.2
 FUTURE=${RCLDEPS}python2-future
 POPPLER=${RCLDEPS}poppler-22.04.0/
@@ -201,13 +199,6 @@ copyfuture()
     chkcp $FUTURE/future/builtins/newsuper.pyc $FILTERS/future/builtins
 }
 
-# Replaced by mutagen
-copypyexiv2()
-{
-    cp -rp $PYEXIV2/pyexiv2 $FILTERS
-    chkcp $PYEXIV2/libexiv2python.pyd $FILTERS/
-}
-
 copypoppler()
 {
     # Note: the recent poppler build which we ship comes from conda builds, and it includes
@@ -304,7 +295,7 @@ copypyrecoll()
     DEST=${DESTDIR}/Share/dist
     test -d $DEST || mkdir $DEST || fatal cant create $DEST
     rm -f ${DEST}/Recoll*.egg ${DEST}/Recoll*.whl
-    for v in 10 11 12;do
+    for v in 10 11 12 13;do
         PYRCLDIST=${PYRECOLL}/dist/Recoll-${VERSION}-cp3${v}-cp3${v}-win_amd64.whl
         if test ! -f ${PYRCLDIST}; then
             pushd ${PYRECOLL}
