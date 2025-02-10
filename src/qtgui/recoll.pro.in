@@ -333,6 +333,7 @@ macx:macxbundlebuild() {
   ../filters/rcluncomp \
   ../filters/rcluncomp.py \
   ../filters/rclwar.py \
+  ../filters/rclwebarch.py \
   ../filters/rclxls.py \
   ../filters/rclxml.py \
   ../filters/rclxmp.py \

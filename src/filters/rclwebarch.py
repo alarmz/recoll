@@ -27,11 +27,11 @@ import os
 import rclexecm
 from rclbasehandler import RclBaseHandler
 
-class PagesHandler(RclBaseHandler):
+class WebarchiveHandler(RclBaseHandler):
     def __init__(self, em):
         self.em = em
         self.tmpdir = rclexecm.SafeTmpDir("rclwebarch")
-        self.cmdbase = [textutil, "-convert", "html", "-noload", "-nostore", "-output"]
+        self.cmdbase = ["textutil", "-convert", "html", "-noload", "-nostore", "-output"]
     def html_text(self, inpath):
         self.tmpdir.vacuumdir()
         htmlfile = os.path.join(self.tmpdir.getpath(), "index.html")
@@ -42,5 +42,5 @@ class PagesHandler(RclBaseHandler):
 
 if __name__ == "__main__":
     proto = rclexecm.RclExecM()
-    extract = PagesHandler(proto)
+    extract = WebarchiveHandler(proto)
     rclexecm.main(proto, extract)
