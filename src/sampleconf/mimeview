@@ -207,6 +207,7 @@ text/x-chm-html = %u
 text/html|gnuinfo = rclshowinfo %F %(title);ignoreipath=1
 
 application/x-webarchive = konqueror %f
+application/x-mac-webarch = safari %f
 text/x-fictionbook = ebook-viewer %f
 
 application/x-javascript = emacsclient --no-wait  %f
