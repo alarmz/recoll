@@ -184,62 +184,57 @@ Jean-Francois Dockes
                     [111]Using an external indexer index in conjunction
                             with a regular one
 
-   5. [112]Installation and configuration
+   5. [112]Configuration
 
-        5.1. [113]Installing a binary copy
-        5.2. [114]Supporting packages
-        5.3. [115]Building from source
+        5.1. [113]Settings, configuration overview
+        5.2. [114]Environment variables
+        5.3. [115]The fields file
 
-              5.3.1. [116]Prerequisites
-              5.3.2. [117]Building
+              5.3.1. [116]Extended attributes in the fields file
 
-                    [118]meson setup options
-                    [119]Normal procedure, for source extracted from a tar
-                            distribution)
+        5.4. [117]The mimemap file
+        5.5. [118]The mimeconf file
+        5.6. [119]The mimeview file
+        5.7. [120]The ptrans file
+        5.8. [121]Examples of configuration adjustments
 
-              5.3.3. [120]Installing
-              5.3.4. [121]Python API package
+              5.8.1. [122]Adding an external viewer for an non-indexed
+                      type
 
-        5.4. [122]Settings, configuration overview
+              5.8.2. [123]Adding indexing support for a new file type
 
-              5.4.1. [123]Environment variables
-              5.4.2. [124]Recoll main configuration file, recoll.conf
+   I. [124]Appendices
 
-                    [125]Parameters affecting what documents we index
-                    [126]Parameters affecting how we generate terms and
-                            organize the index
+        A. [125]Processing of wild card and other special characters
 
-                    [127]Parameters affecting where and how we store
-                            things
+              A.1. [126]Words and spans
+              A.2. [127]Special ASCII characters during indexing
 
-                    [128]Parameters affecting indexing performance and
-                            resource usage
+                    A.2.1. [128]Characters with hard-coded processing
+                    A.2.2. [129]Characters generally treated as white
+                            space
 
-                    [129]Miscellaneous parameters
-                    [130]Query-time parameters (no impact on the index)
-                    [131]Parameters for the PDF input script
-                    [132]Parameters for OCR processing
-                    [133]Parameters for running speech to text conversion
-                    [134]Parameters for miscellaneous specific handlers
-                    [135]Parameters set for specific locations
+                    A.2.3. [130]Backslash
 
-              5.4.3. [136]The fields file
+              A.3. [131]Special ASCII characters at search time
 
-                    [137]Extended attributes in the fields file
+                    A.3.1. [132]Query language special characters
+                    A.3.2. [133]Wild card characters
 
-              5.4.4. [138]The mimemap file
-              5.4.5. [139]The mimeconf file
-              5.4.6. [140]The mimeview file
-              5.4.7. [141]The ptrans file
-              5.4.8. [142]Examples of configuration adjustments
+        B. [134]Building and Installation
 
-                    [143]Adding an external viewer for an non-indexed type
+              B.1. [135]Installing a binary copy
+              B.2. [136]Supporting packages
+              B.3. [137]Building from source
 
-                    [144]Adding indexing support for a new file type
+                    B.3.1. [138]Prerequisites
+                    B.3.2. [139]Building
+                    B.3.3. [140]Installing
+                    B.3.4. [141]Python API package
 
    List of Tables
 
-   3.1. [145]Keyboard shortcuts
+   3.1. [142]Keyboard shortcuts
 
 Chapter 1. Introduction
 
@@ -263,13 +258,13 @@ Chapter 1. Introduction
 1.1. Giving it a try
 
    If you do not like reading manuals (who does?) but wish to give Recoll
-   a try, just [146]install the application and start the recoll graphical
+   a try, just [143]install the application and start the recoll graphical
    user interface (GUI), which will ask permission to index your home
    directory, allowing you to search immediately after indexing completes.
 
    Do not do this if your home directory contains a huge number of
    documents and you do not want to wait or are very short on disk space.
-   In this case, you may first want to customise the [147]configuration to
+   In this case, you may first want to customise the [144]configuration to
    restrict the indexed area. From the recoll GUI go to: Preferences →
    Indexing configuration, then adjust the Start folders section (or Top
    directories in older Recoll versions), which defines the directories
@@ -283,7 +278,7 @@ Chapter 1. Introduction
    with :2:).
 
    On Unix-like systems, you may need to install the appropriate
-   [148]supporting applications for document types that need them (for
+   [145]supporting applications for document types that need them (for
    example antiword for Microsoft Word files). The Windows package is
    self-contained and includes most useful auxiliary programs. After the
    indexing ran, the recoll GUI Tools → Missing helpers menu entry will
@@ -329,9 +324,9 @@ Chapter 1. Introduction
 
 1.3. Recoll overview
 
-   Recoll uses the [149]Xapian information retrieval library as its
+   Recoll uses the [146]Xapian information retrieval library as its
    storage and retrieval engine. Xapian is a very mature package using
-   [150]a sophisticated probabilistic ranking model.
+   [147]a sophisticated probabilistic ranking model.
 
    The Xapian library manages an index database which describes where
    terms appear in your document files. It efficiently processes the
@@ -363,7 +358,7 @@ Chapter 1. Introduction
    By default. Recoll processes east asian texts by generating terms as
    arbitrary sequences of consecutive characters (n-grams). However, it
    has provisions to integrate with language-aware text segmenters for
-   [151]Chinese and [152]Korean which will produce a smaller index and
+   [148]Chinese and [149]Korean which will produce a smaller index and
    improved search.
 
    Stemming is the process by which Recoll reduces words to their radicals
@@ -400,11 +395,11 @@ Chapter 1. Introduction
    case conversion. In this configuration, default searches will behave as
    before, but it is possible to perform searches sensitive to case and
    diacritics. This is described in more detail in the section about
-   [153]index case and diacritics sensitivity.
+   [150]index case and diacritics sensitivity.
 
    Recoll uses many parameters to define exactly what to index, and how to
    classify and decode the source documents. These are kept in
-   [154]configuration files. A default configuration is copied into a
+   [151]configuration files. A default configuration is copied into a
    standard location (usually something like /usr/share/recoll/examples)
    during installation. The default values set by the configuration files
    in this directory may be overridden by values set inside your personal
@@ -413,22 +408,22 @@ Chapter 1. Introduction
    set by using configuration menus in the recoll GUI. Some less common
    parameters can only be set by editing the text files.
 
-   The [155]indexing process is started automatically (after asking
+   The [152]indexing process is started automatically (after asking
    permission), the first time you execute the recoll GUI. Indexing can
    also be performed by executing the recollindex command. Recoll indexing
    is multithreaded by default when appropriate hardware resources are
    available, and can perform multiple tasks in parallel for text
    extraction, segmentation and index updates.
 
-   [156]Searches are usually performed inside the recoll GUI, which has
+   [153]Searches are usually performed inside the recoll GUI, which has
    many options to help you find what you are looking for. However, there
    are other ways to query the index:
-     * A [157]command line interface.
-     * A [158]Recoll WebUI.
-     * A Gnome Shell [159]Search Provider .
-     * A [160]Python programming interface
-     * A [161]KDE KIO slave module.
-     * A Ubuntu Unity [162]Scope module.
+     * A [154]command line interface.
+     * A [155]Recoll WebUI.
+     * A Gnome Shell [156]Search Provider .
+     * A [157]Python programming interface
+     * A [158]KDE KIO slave module.
+     * A Ubuntu Unity [159]Scope module.
 
 Chapter 2. Indexing
 
@@ -448,7 +443,7 @@ Chapter 2. Indexing
 
    When a file has been deleted, recollindex removes the corresponding
    data from the index. The exact moment when this happens depends on the
-   indexing mode. There are provisions to [163]avoid deleting data for an
+   indexing mode. There are provisions to [160]avoid deleting data for an
    umounted removable volume.
 
    The following sections give an overview of different aspects of the
@@ -464,13 +459,13 @@ Chapter 2. Indexing
 2.1.1. Indexing modes
 
    Recoll indexing can be performed along two main modes:
-     * [164]Periodic (or batch) indexing . recollindex is executed at
+     * [161]Periodic (or batch) indexing . recollindex is executed at
        discrete times. On Unix-like systems, the typical usage is to have
-       a nightly run [165]programmed into your cron file. On Windows, the
+       a nightly run [162]programmed into your cron file. On Windows, the
        Task Scheduler can be used to run indexing. In both cases, the
        Recoll GUI includes a simplified interface to configure the system
        scheduler.
-     * [166]Real time indexing . recollindex runs permanently as a daemon
+     * [163]Real time indexing . recollindex runs permanently as a daemon
        and uses a file system alteration monitor (e.g. inotify on
        Unix-like systems) to detect file changes. New or updated files are
        indexed at once. Monitoring a big file system tree can consume
@@ -481,7 +476,7 @@ Choosing an indexing mode
    The choice between the two methods is mostly a matter of preference,
    and they can be combined by setting up multiple indexes (e.g.: use
    periodic indexing on a big documentation directory, and real time
-   indexing on a small home directory), or by [167]configuring the index
+   indexing on a small home directory), or by [164]configuring the index
    so that only a subset of the tree will be monitored.
 
    The choice of method and the parameters used can be configured from the
@@ -491,7 +486,7 @@ Choosing an indexing mode
 
    Recoll supports defining multiple indexes, each defined by its own
    configuration directory. A configuration directory contains
-   [168]several files which describe what should be indexed and how.
+   [165]several files which describe what should be indexed and how.
 
    When recoll or recollindex is first executed, it creates a default
    configuration directory. This configuration is the one used for
@@ -543,13 +538,13 @@ Choosing an indexing mode
    multiple CPU cores and disks, or possibly several machines), and then
    merging them, or querying them in parallel.
 
-   See the section about [169]configuring multiple indexes for more detail
+   See the section about [166]configuring multiple indexes for more detail
 
 2.1.3. Document types
 
    Recoll knows about quite a few different document types. The parameters
    for document types recognition and processing are set in
-   [170]configuration files.
+   [167]configuration files.
 
    Most file types, like HTML or word processing files, only hold one
    document. Some file types, like email folders or zip archives, can hold
@@ -563,7 +558,7 @@ Choosing an indexing mode
 
    Other file types (e.g.: postscript, pdf, ms-word, rtf ...) need
    external applications for preprocessing. The list is in the
-   [171]installation section. After every indexing operation, Recoll
+   [168]installation section. After every indexing operation, Recoll
    updates a list of commands that would be needed for indexing existing
    files types. This list can be displayed by selecting the menu option
    File → Show Missing Helpers in the recoll GUI. It is stored in the
@@ -585,13 +580,13 @@ Choosing an indexing mode
    ignored.
 
    Excluding files by name can be done by adding wildcard name patterns to
-   the [172]skippedNames list, which can be done from the GUI Index
+   the [169]skippedNames list, which can be done from the GUI Index
    configuration menu. Excluding by type can be done by setting the
-   [173]excludedmimetypes list in the configuration file. This can be
+   [170]excludedmimetypes list in the configuration file. This can be
    redefined for subdirectories.
 
    You can also define an exclusive list of MIME types to be indexed (no
-   others will be indexed), by setting the [174]indexedmimetypes
+   others will be indexed), by setting the [171]indexedmimetypes
    configuration variable. Example:
 indexedmimetypes = text/html application/pdf
 
@@ -603,7 +598,7 @@ indexedmimetypes = application/pdf
    until the end of the file or another section indicator).
 
    excludedmimetypes or indexedmimetypes, can be set either by editing the
-   [175]configuration file (recoll.conf) for the index, or by using the
+   [172]configuration file (recoll.conf) for the index, or by using the
    GUI index configuration tool.
 
 Note about MIME types
@@ -635,7 +630,7 @@ Note about MIME types
    In the rare case where the index becomes corrupted (which can signal
    itself by weird search results or crashes), the index files need to be
    erased before restarting a clean indexing pass. Just delete the
-   xapiandb directory (see [176]next section), or, alternatively, start
+   xapiandb directory (see [173]next section), or, alternatively, start
    the next recollindex with the -z option, which will reset the database
    before indexing. The difference between the two methods is that the
    second will not change the current index format, which may be
@@ -649,7 +644,7 @@ Note about MIME types
    can be changed via two different methods (with different purposes):
     1. For a given configuration directory, you can specify a non-default
        storage location for the index by setting the dbdir parameter in
-       the configuration file (see the [177]configuration section). Use
+       the configuration file (see the [174]configuration section). Use
        this method to keep the configuration directory in its default
        location, and use another location for the index, typically because
        of disk occupation or performance reasons.
@@ -662,14 +657,14 @@ recoll -c ~/.indexes-email
        Then Recoll would use configuration files stored in
        ~/.indexes-email/ and, (unless specified otherwise in recoll.conf)
        would look for the index in ~/.indexes-email/xapiandb/.
-       Using multiple configuration directories and [178]configuration
+       Using multiple configuration directories and [175]configuration
        options allows you to tailor multiple configurations and indexes to
        handle whatever subset of the available data you wish to make
        searchable.
 
    There are quite a few more parameters which can be set in the
    configuration file itself for tailoring Recoll data storage. They are
-   described in a [179]section of the configuration chapter.
+   described in a [176]section of the configuration chapter.
 
    The size of the index is determined by the size of the set of
    documents, but the ratio can vary a lot. For a typical mixed set of
@@ -745,7 +740,7 @@ recoll -c ~/.indexes-email
      * Use Xapian 1.4.10 or newer, as this version brought a significant
        improvement in the amount of writes.
 
-   Recoll versions 1.38 and newer have an option to use [180]multiple
+   Recoll versions 1.38 and newer have an option to use [177]multiple
    temporary indexes and a final merge internally. This was designed as a
    CPU performance optimization (increasing parallelism), but it may also
    provide a simple solution for the index size issue, though it may not
@@ -754,10 +749,10 @@ recoll -c ~/.indexes-email
 
 2.3. Index configuration
 
-   Variables stored inside the [181]Recoll configuration files control
+   Variables stored inside the [178]Recoll configuration files control
    which areas of the file system are indexed, and how files are
    processed. The values can be set by editing the text files. Most of the
-   more commonly used ones can also be adjusted by using the [182]dialogs
+   more commonly used ones can also be adjusted by using the [179]dialogs
    in the recoll GUI.
 
    The first time you start recoll, you will be asked whether or not you
@@ -767,22 +762,22 @@ recoll -c ~/.indexes-email
    point, recoll will have created a default configuration directory with
    empty configuration files, which you can then edit.
 
-   The configuration is documented inside the [183]installation chapter of
-   this document, or in the [184]recoll.conf(5) manual page. Both
+   The configuration is documented inside the [180]installation chapter of
+   this document, or in the [181]recoll.conf(5) manual page. Both
    documents are automatically generated from the comments inside the
    configuration file.
 
-   The most immediately useful variable is [185]topdirs, which lists the
+   The most immediately useful variable is [182]topdirs, which lists the
    subtrees and files to be indexed. The variable name is a bit misleading
    for native English speakers, so the corresponding GUI label is Start
    folders.
 
    The applications needed to index file types other than text, HTML or
    email (e.g.: pdf, postscript, ms-word...) are described in the
-   [186]external packages section.
+   [183]external packages section.
 
    There are two incompatible types of Recoll indexes, depending on the
-   treatment of character case and diacritics. A [187]further section
+   treatment of character case and diacritics. A [184]further section
    describes the two types in more detail. The default type is appropriate
    in most cases.
 
@@ -793,7 +788,7 @@ recoll -c ~/.indexes-email
 
    The interface is started from the Preferences → Index Configuration
    menu entry. It is divided in four tabs, Global parameters, Local
-   parameters, Web history ([188]details) and Search parameters.
+   parameters, Web history ([185]details) and Search parameters.
 
    The Global parameters tab allows setting global variables, like the
    lists of top/start directories, skipped paths, or stemming languages.
@@ -810,7 +805,7 @@ recoll -c ~/.indexes-email
 
    The meaning for most entries in the interface is self-evident and
    documented by a ToolTip popup on the text label. For more detail, you
-   may need to refer to the [189]configuration section of this guide.
+   may need to refer to the [186]configuration section of this guide.
 
    The configuration tool normally respects the comments and most of the
    formatting inside the configuration file, so that it is quite possible
@@ -844,20 +839,20 @@ recoll -c ~/.indexes-email
    configuration to index an empty directory.
 
    Index configuration parameters can be set either by using a text editor
-   on the files, or, for most parameters, by using the [190]recoll index
+   on the files, or, for most parameters, by using the [187]recoll index
    configuration GUI. In the latter case, the configuration directory for
    which parameters are modified is the one which was selected by
    RECOLL_CONFDIR or the -c parameter, and there is no way to switch
    configurations within the GUI.
 
-   See the [191]configuration section for a detailed description of the
+   See the [188]configuration section for a detailed description of the
    parameters
 
    Some configuration parameters must be consistent among a set of
    multiple indexes used together for searches. Most importantly, all
    indexes to be queried concurrently must have the same option concerning
    character case and diacritics stripping, but there are other
-   constraints. Most of the relevant parameters affect the [192]term
+   constraints. Most of the relevant parameters affect the [189]term
    generation.
 
    Using multiple configurations implies a small level of command line or
@@ -876,13 +871,13 @@ mkdir /path/to/my/new/config
 
    Configuring the new index can be done from the recoll GUI, launched
    from the command line to pass the -c option (you could create a desktop
-   file to do it for you), and then using the [193]GUI index configuration
+   file to do it for you), and then using the [190]GUI index configuration
    tool to set up the index.
 recoll -c /path/to/my/new/config
 
    Alternatively, you can just start a text editor on the main
    configuration file:
-someEditor /path/to/my/new/config/[194]recoll.conf
+someEditor /path/to/my/new/config/[191]recoll.conf
 
    Creating and updating the index can be done from the command line:
 recollindex -c /path/to/my/new/config
@@ -902,7 +897,7 @@ recoll -c /path/to/my/new/config
    option, and using the External Indexes tab in the preferences dialog,
    which can be reached either trough: Preferences → GUI Configuration →
    External Index Dialog or Query → External index dialog. See the
-   [195]GUI external indexes section for more details.
+   [192]GUI external indexes section for more details.
 
 Creating an alternate index: Windows example
 
@@ -941,7 +936,7 @@ Creating an alternate index: Windows example
 
    A raw index allows using case and diacritics to discriminate between
    terms, e.g., returning different results when searching for US and us
-   or resume and résumé. Read the [196]section about search case and
+   or resume and résumé. Read the [193]section about search case and
    diacritics sensitivity for more details.
 
    The type of index to be created is controlled by the indexStripChars
@@ -985,7 +980,7 @@ Creating an alternate index: Windows example
     3. Text processing (splitting, stemming, etc.).
     4. Xapian index update.
 
-   You can also read a [197]longer document about the transformation of
+   You can also read a [194]longer document about the transformation of
    Recoll indexing to multithreading.
 
    The threads configuration is controlled by two configuration file
@@ -1072,7 +1067,7 @@ Note
    may be worth it to experiment with the value. For example, with a
    partial Wikipedia dump (many HTML small files), indexing times could be
    divided almost by three, by using four temporary indexes on a quad-core
-   machine. More detail in this [198]article on the Recoll WEB site.
+   machine. More detail in this [195]article on the Recoll WEB site.
 
    All the tests were performed on SSDs, it is quite probable that this
    approach would not work well on spinning disks, at least not in its
@@ -1092,7 +1087,7 @@ Note
    process, because of the many places where intensive CPU usage takes
    place, some not under our control (Xapian or external helpers). Happily
    enough, on Linux systems, you can use the cgroup facility to throttle
-   the process CPU usage. This is further documented on the [199]Recoll
+   the process CPU usage. This is further documented on the [196]Recoll
    WEB site
 
 2.5. Index update scheduling
@@ -1138,7 +1133,7 @@ Running the indexer
 
 recollindex command line
 
-   recollindex has many options which are listed in its [200]manual page.
+   recollindex has many options which are listed in its [197]manual page.
    Only a few will be described here.
 
    Option -z will reset the index when starting. This is almost the same
@@ -1222,7 +1217,7 @@ Linux: using cron to automate indexing
    enable it if your system is short on resources. Periodic indexing is
    adequate in most cases.
 
-   As of Recoll 1.24, you can set the [201]monitordirs configuration
+   As of Recoll 1.24, you can set the [198]monitordirs configuration
    variable to specify that only a subset of your indexed files will be
    monitored for instant indexing. In this situation, an incremental pass
    on the full tree can be triggered by either restarting the indexer, or
@@ -1327,7 +1322,7 @@ fs.inotify.max_user_watches=32768
    indexed, but change so often that they impose an excessive load for the
    system. Recoll provides a configuration option to specify the minimum
    time before which a file, specified by a wildcard pattern, cannot be
-   reindexed. See the mondelaypatterns parameter in the [202]configuration
+   reindexed. See the mondelaypatterns parameter in the [199]configuration
    section.
 
 2.6. Fields and metadata
@@ -1345,7 +1340,7 @@ fs.inotify.max_user_watches=32768
 
    Some fields, like e.g. a file modification time, have a strict and
    predefined usage. For most fields though, the processing is entirely
-   configurable and defined in the [203]fields configuration file
+   configurable and defined in the [200]fields configuration file
 
    Fields have two main processing options (at least one of which will be
    set if they are processed at all):
@@ -1375,9 +1370,9 @@ Unix-like systems and MacOS systems: using extended attributes
 
    Recoll processes all extended attributes as document fields. Note that
    most fields are not indexed by default, you need to activate them by
-   defining a prefix in the [204]fields configuration file.
+   defining a prefix in the [201]fields configuration file.
 
-   A [205]freedesktop standard defines a few special attributes, which are
+   A [202]freedesktop standard defines a few special attributes, which are
    handled as such by Recoll:
 
    mime_type
@@ -1394,7 +1389,7 @@ Unix-like systems and MacOS systems: using extended attributes
    On Linux, the user prefix is removed from the name.
 
    The name translation can be configured more precisely, inside the
-   [206]fields configuration file.
+   [203]fields configuration file.
 
 Setting the document modification/creation date
 
@@ -1419,7 +1414,7 @@ Using a command for importing external metadata
    executing commands. This allows, for example, extracting tag data from
    an external application and storing it in a field for indexing.
 
-   See the [207]section about the metadatacmds field in the main
+   See the [204]section about the metadatacmds field in the main
    configuration chapter for a description of the configuration syntax.
 
    For example, if you would want Recoll to use tags managed by tmsu in a
@@ -1437,7 +1432,7 @@ metadatacmds = ; tags = tmsu tags %f
    tags. The field name is arbitrary and could be tmsu or myfield just the
    same, but tags is an alias for the standard Recoll keywords field, and
    the tmsu output will just augment its contents. This will avoid the
-   need to extend the [208]field configuration.
+   need to extend the [205]field configuration.
 
 Note
 
@@ -1496,7 +1491,7 @@ indexedpunctuation = %€
      * It can extract PDF attachments.
      * It can automatically perform OCR if the document text is empty.
        This is done by executing an external program and is now described
-       in a [209]separate section, because the OCR framework can also be
+       in a [206]separate section, because the OCR framework can also be
        used with non-PDF image files.
 
 Extracting PDF outlines and bookmarks
@@ -1510,11 +1505,11 @@ XMP fields extraction
 
    The rclpdf.py script in Recoll version 1.23.2 and later can extract XMP
    metadata fields by executing the pdfinfo command (usually found with
-   poppler-utils). This is controlled by the [210]pdfextrameta
+   poppler-utils). This is controlled by the [207]pdfextrameta
    configuration variable, which specifies which tags to extract and,
    possibly, how to rename them.
 
-   The [211]pdfextrametafix variable can be used to designate a file with
+   The [208]pdfextrametafix variable can be used to designate a file with
    Python code to edit the metadata fields (available for Recoll 1.23.3
    and later. 1.23.2 has equivalent code inside the handler script).
    Example:
@@ -1547,12 +1542,12 @@ pass
    '(nm, val)' pairs, allowing an alternate approach for editing or
    adding/deleting fields.
 
-   See [212]this page for a more detailed discussion about indexing PDF
+   See [209]this page for a more detailed discussion about indexing PDF
    XMP properties.
 
 PDF attachment indexing
 
-   If pdftk is installed, and if the the [213]pdfattach configuration
+   If pdftk is installed, and if the the [210]pdfattach configuration
    variable is set, the PDF input handler will try to extract PDF
    attachments for indexing as sub-documents of the PDF file. This is
    disabled by default, because it slows down PDF indexing a bit even if
@@ -1566,7 +1561,7 @@ PDF attachment indexing
    cache of separate files, avoiding any modification of the originals.
 
    It must be noted that, if modifying the files (or a copy) is
-   acceptable, then running something like [214]OCRmyPDF to add a text
+   acceptable, then running something like [211]OCRmyPDF to add a text
    layer to the PDF itself is a better solution (e.g. allowing Recoll to
    position the PDF viewer on the search target when opening the document,
    and permitting secondary search in the native tool).
@@ -1574,7 +1569,7 @@ PDF attachment indexing
    To enable the Recoll OCR feature, you need to install one of the
    supported OCR applications (tesseract or ABBYY), enable OCR in the PDF
    handler (by setting pdfocr to 1 in the index configuration file), and
-   tell Recoll how to run the OCR by setting [215]configuration variables.
+   tell Recoll how to run the OCR by setting [212]configuration variables.
    All parameters can be localized in subdirectories through the usual
    main configuration mechanism (path sections).
 
@@ -1608,7 +1603,7 @@ pdfocrlang = eng
    If the OpenAI Whisper program is available and the appropriate
    parameters set in the configuration files, the Recoll audio file
    handler will run speech to text recognition on audio files and the
-   resulting text will be indexed. See the [216]the FAQ entry for more
+   resulting text will be indexed. See the [213]the FAQ entry for more
    details.
 
    The results of the speech recognition will be cached in the same manner
@@ -1696,7 +1691,7 @@ recollindex -c "$confdir"
 
    In order to be able to run queries after the dataset has been moved,
    you must ensure the following:
-     * The main configuration file must define the [217]orgidxconfdir
+     * The main configuration file must define the [214]orgidxconfdir
        variable to be the original location of the configuration directory
        (orgidxconfdir=/home/me/mydata/recoll-confdir must be set inside
        /home/me/mydata/recoll-confdir/recoll.conf in the example above).
@@ -1717,7 +1712,7 @@ recollindex -c "$confdir"
 
    If, after the move, the configuration directory needs to be copied out
    of the dataset (for example because the thumb drive is too slow), you
-   can set the [218]curidxconfdir, variable inside the copied
+   can set the [215]curidxconfdir, variable inside the copied
    configuration to define the location of the moved one. For example if
    /home/me/mydata is now mounted onto /media/me/somelabel, but the
    configuration directory and index has been copied to /tmp/tempconfig,
@@ -1743,7 +1738,7 @@ recollindex -c "$confdir"
    pages that you visit. The extension has a long history: it was
    initially designed for the Beagle indexer, then adapted to Recoll and
    the Firefox XUL API. The current version of the extension is located in
-   the [219]Mozilla add-ons repository uses the WebExtensions API, and
+   the [216]Mozilla add-ons repository uses the WebExtensions API, and
    works with current Firefox versions.
 
    The extension works by copying visited Web pages to an indexing queue
@@ -1778,7 +1773,7 @@ The local cache is not an archive
        pairs of metadata and data files created inside destdir
 
    You can find more details on Web indexing, its usage and configuration
-   in a [220]Recoll 'Howto' entry.
+   in a [217]Recoll 'Howto' entry.
 
 Chapter 3. Searching
 
@@ -1796,7 +1791,7 @@ Chapter 3. Searching
      * The Query Language mode behaves like All Terms in the absence of
        special input, but it can also do much more. This is the best mode
        for getting the most of Recoll. It is usable from all possible
-       interfaces (GUI, command line, WEB UI, ...), and is [221]described
+       interfaces (GUI, command line, WEB UI, ...), and is [218]described
        here.
      * In Any Term mode, Recoll looks for documents containing any your
        input terms, preferring those which contain more.
@@ -1841,7 +1836,7 @@ Chapter 3. Searching
 
    Some searches can be quite complex, and you may want to re-use them
    later, perhaps with some tweaking. Recoll can save and restore
-   searches. See [222]Saving and restoring queries.
+   searches. See [219]Saving and restoring queries.
 
 3.2.1. Simple search
 
@@ -1851,7 +1846,7 @@ Chapter 3. Searching
     3. Enter search term(s) in the text field at the top of the window.
     4. Click the Search button or hit the Enter key to start the search.
 
-   The initial default search mode is [223]Query language. Without special
+   The initial default search mode is [220]Query language. Without special
    directives, this will look for documents containing all of the search
    terms (the ones with more terms will get better scores), just like the
    All Terms mode.
@@ -1862,20 +1857,20 @@ Chapter 3. Searching
    File name will exclusively look for file names, not contents
 
    All search modes allow terms to be expanded with wildcards characters
-   (*, ?, []). See the [224]section about wildcards for more details.
+   (*, ?, []). See the [221]section about wildcards for more details.
 
    In all modes except File name, you can search for exact phrases
    (adjacent words in a given order) by enclosing the input inside double
    quotes. Ex: "virtual reality".
 
-   The Query Language features are described in [225]a separate section.
+   The Query Language features are described in [222]a separate section.
 
    When using a stripped index (the default), character case has no
    influence on search, except that you can disable stem expansion for any
    term by capitalizing it. E.g.: a search for floor will also normally
    look for flooring, floored, etc., but a search for Floor will only look
    for floor, in any character case. Stemming can also be disabled
-   globally in the preferences. When using a raw index, [226]the rules are
+   globally in the preferences. When using a raw index, [223]the rules are
    a bit more complicated.
 
    Recoll remembers the last few searches that you performed. You can
@@ -1924,7 +1919,7 @@ Chapter 3. Searching
 
    Each result is displayed as a structured text paragraph. The standard
    format is typically adequate, but the content and presentation are
-   [227]entirely customisable.
+   [224]entirely customisable.
 
    Most results will contain Preview and Open clickable links.
 
@@ -1937,7 +1932,7 @@ Chapter 3. Searching
 
    Clicking the Open link will start an external viewer for the document.
    By default, Recoll lets the desktop choose the appropriate application
-   for most document types. See [228]further for customising the
+   for most document types. See [225]further for customising the
    applications.
 
    The Preview and Open links may not be present for all entries. They are
@@ -1946,11 +1941,11 @@ Chapter 3. Searching
    However, you can modify the configuration to adjust this behavior. In
    more detail:
      * The Preview link will appear for documents with a MIME type present
-       in the [index] section of the [229]mimeconf file, and, only if the
+       in the [index] section of the [226]mimeconf file, and, only if the
        textunknownasplain configuration variable is set, for all types
        identified as a subtype of text (text/*).
      * The Open link will appear for documents with a MIME type present in
-       the [view] section of the [230]mimeview configuration file. If
+       the [view] section of the [227]mimeview configuration file. If
        textunknownasplain is set and no specific viewer is found for a
        subtype of text, the viewer for text/plain will be used.
 
@@ -2001,7 +1996,7 @@ The result list right-click menu
 
    Run Script allows starting an arbitrary command on the result file. It
    will only appear for results which are top-level files. See
-   [231]further for a more detailed description.
+   [228]further for a more detailed description.
 
    The Copy File Name and Copy Url copy the relevant data to the
    clipboard, for later pasting.
@@ -2097,7 +2092,7 @@ The result list right-click menu
    You can independantly select and deselect directories by clicking them.
    Note that selecting a directory will activate the whole subtree for
    searching, there is no need to select the subdirectories, and no way to
-   exclude some of them (use [232]Query language dir: clauses if this is
+   exclude some of them (use [229]Query language dir: clauses if this is
    needed).
 
 3.2.5. Running arbitrary commands on result files
@@ -2127,7 +2122,7 @@ The result list right-click menu
    attribute is not used, but needs to exist.
 
    The commands defined this way can also be used from links inside the
-   [233]result paragraph.
+   [230]result paragraph.
 
    As an example, it might make sense to write a script which would move
    the document to the trash and purge it from the Recoll index.
@@ -2148,7 +2143,7 @@ The result list right-click menu
    (depending on your settings). Restarting the search should then display
    the thumbnails.
 
-   There are also [234]some pointers about thumbnail generation in the
+   There are also [231]some pointers about thumbnail generation in the
    Recoll FAQ.
 
 3.2.7. The preview window
@@ -2339,7 +2334,7 @@ Note
    memorizing the search language constructs. It can be opened through the
    Tools menu or through the main toolbar.
 
-   Recoll keeps a history of searches. See [235]Advanced search history.
+   Recoll keeps a history of searches. See [232]Advanced search history.
 
    The dialog has two tabs:
     1. The first tab lets you specify terms to search for, and permits
@@ -2458,7 +2453,7 @@ Advanced search history
           In this mode of operation, you can enter a search string with
           shell-like wildcards (*, ?, []). e.g.: xapi* would display all
           index terms beginning with xapi. (More about wildcards
-          [236]here).
+          [233]here).
 
    Regular expression
           This mode will accept a regular expression as input. Example:
@@ -2504,7 +2499,7 @@ Advanced search history
 
 3.2.11. Searching across multiple indexes
 
-   See the section describing [237]the use of multiple indexes for
+   See the section describing [234]the use of multiple indexes for
    generalities. Only the aspects concerning the recoll GUI are described
    here.
 
@@ -2535,7 +2530,7 @@ Advanced search history
    If the external index is actually located on a volume mounted from
    another machine, and references remote files, there may be a need to
    adjust the result paths so that they match the locally mounted ones
-   (for opening documents). This can be done by using the [238]path
+   (for opening documents). This can be done by using the [235]path
    translation facility.
 
    As building the set of all indexes can be a little tedious when done
@@ -2669,7 +2664,7 @@ Terms and search expansion
    simple search entry field.
 
    Wildcards. Wildcards can be used inside search terms in all forms of
-   searches. [239]More about wildcards.
+   searches. [236]More about wildcards.
 
    Automatic suffixes. Words like odt or ods can be automatically turned
    into query language ext:xxx clauses. This can be enabled in the Search
@@ -2708,7 +2703,7 @@ Working with phrases and proximity
    that it does not impose an order on the terms. Proximity searches can
    be entered by specifying the "Proximity" type in the advanced search,
    or by postfixing a phrase search with a 'p'. Example: "user manual"p
-   would also match "manual user". Also see [240]the modifier section from
+   would also match "manual user". Also see [237]the modifier section from
    the query language documentation.
 
    AutoPhrases. This option can be set in the preferences dialog. If it is
@@ -2733,7 +2728,7 @@ Working with phrases and proximity
 
 Others
 
-   Using fields. You can use the [241]query language and field
+   Using fields. You can use the [238]query language and field
    specifications to only search certain parts of documents. This can be
    especially helpful with email, for example only searching emails from a
    specific originator: search tips from:helpfulgui
@@ -2801,7 +2796,7 @@ Choosing the viewer applications
 
    The details of this behaviour can be customised with the Preferences →
    GUI configuration → User interface → Choose editor applications dialog
-   or by editing the [242]mimeview configuration file.
+   or by editing the [239]mimeview configuration file.
 
    When Use desktop preferences, at the top of the dialog, is checked, the
    desktop default is generally used, but there is a small default list of
@@ -2825,7 +2820,7 @@ Choosing the viewer applications
    command line.
 
    You may also change the choice of applications by editing the
-   [243]mimeview configuration file if you find this more convenient.
+   [240]mimeview configuration file if you find this more convenient.
 
    Under Unix-like systems, each result list entry also has a right-click
    menu with an Open With entry. This lets you choose an application from
@@ -2900,11 +2895,11 @@ Result list:
        size. The rest of the fonts used by Recoll are determined by your
        generic Qt configuration (try the qtconfig command).
      * Edit result list paragraph format string: allows you to change the
-       presentation of each result list entry. See the [244]result list
+       presentation of each result list entry. See the [241]result list
        customisation section.
      * Edit result page HTML header insert: allows you to define text
        inserted at the end of the result page HTML header. More detail in
-       the [245]result list customisation section.
+       the [242]result list customisation section.
      * Date format: allows specifying the format used for displaying dates
        inside the result list. This should be specified as an strftime()
        string (man strftime).
@@ -2951,7 +2946,7 @@ Search parameters:
      * Stemming language: stemming obviously depends on the document's
        language. This listbox will let you chose among the stemming
        databases which were built during indexing (this is set in the
-       [246]main configuration file), or later added with recollindex -s
+       [243]main configuration file), or later added with recollindex -s
        (See the recollindex manual). Stemming languages which are
        dynamically added will be deleted at the next indexing pass unless
        they are also added in the configuration file.
@@ -2998,7 +2993,7 @@ External indexes:
 The result list format
 
    Recoll normally uses a full function HTML processor to display the
-   result list and the [247]snippets window. Depending on the version,
+   result list and the [244]snippets window. Depending on the version,
    this may be based on either Qt WebKit or Qt WebEngine. It is then
    possible to completely customise the result list with full support for
    CSS and Javascript.
@@ -3014,7 +3009,7 @@ The result list format
    elements:
      * The paragraph format
      * HTML code inside the header section. This is also used for the
-       [248]snippets window.
+       [245]snippets window.
 
    The paragraph format and the header fragment can be edited from the
    Result list tab of the GUI configuration.
@@ -3024,7 +3019,7 @@ The result list format
    attribute. Each paragraph in the result list is a table, with class
    respar, but this can be changed by editing the paragraph format.
 
-   There are a few examples on the [249]page about customising the result
+   There are a few examples on the [246]page about customising the result
    list on the Recoll Web site.
 
 The paragraph format
@@ -3051,7 +3046,7 @@ Note
 
    %I
           Icon image name. This is normally determined from the MIME type.
-          The associations are defined inside the [250]mimeconf
+          The associations are defined inside the [247]mimeconf
           configuration file. If a thumbnail for the file is found at the
           standard Freedesktop location, this will be displayed instead.
 
@@ -3097,7 +3092,7 @@ Note
    %(fieldname) will be replaced by the value of the field named fieldname
    for this document. Only stored fields can be accessed in this way, the
    value of indexed but not stored fields is not known at this point in
-   the search process (see [251]field configuration). There are currently
+   the search process (see [248]field configuration). There are currently
    very few fields stored by default, apart from the values above (only
    author and filename), so this feature will need some custom local
    configuration to be useful. An example candidate would be the recipient
@@ -3114,7 +3109,7 @@ Note
 
    A link target defined as R%N|scriptname will run the corresponding
    script on the result file (if the document is embedded, the script will
-   be started on the top-level parent). See the [252]section about
+   be started on the top-level parent). See the [249]section about
    defining scripts. Note that scriptname value should be the value of the
    Name field of the desktop file, and not the desktop file name.
 
@@ -3141,10 +3136,10 @@ Note
 <tr><td><div>%A</div></td></tr>
 </table>%K
 
-   These samples, and some others are [253]on the web site, with pictures
+   These samples, and some others are [250]on the web site, with pictures
    to show how they look.
 
-   It is also possible to [254]define the value of the snippet separator
+   It is also possible to [251]define the value of the snippet separator
    inside the abstract section.
 
 3.2.18. The recoll GUI command line options
@@ -3190,7 +3185,7 @@ recoll -L en
      * By passing option -t to the recoll program, or by calling it as
        recollq (through a link).
      * By using the actual recollq program.
-     * By writing a custom Python program, using the [255]Recoll Python
+     * By writing a custom Python program, using the [252]Recoll Python
        API.
 
    The first two methods work in the same way and accept/need the same
@@ -3204,7 +3199,7 @@ recoll -L en
    only really useful on systems where the Qt libraries are not available,
    else it is redundant with recoll -t.
 
-   recollq has a [256]man page. The Usage string follows:
+   recollq has a [253]man page. The Usage string follows:
 recollq: usage:
  -P: Show the date span for all the documents present in the index.
  [-o|-a|-f] [-q] <query string>
@@ -3268,7 +3263,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
 
 3.5. The query language
 
-   The Recoll query language was based on the now defunct [257]Xesam user
+   The Recoll query language was based on the now defunct [254]Xesam user
    search language specification. It allows defining general boolean
    searches within the main body text or specific fields, and has many
    additional features, broadly equivalent to those provided by complex
@@ -3322,13 +3317,13 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
    By default, words inside double-quotes define a phrase search (the
    order of words is significant), so that title:"prejudice pride" is not
    the same as title:prejudice title:pride, and is unlikely to find a
-   result. This can be changed by using [258]modifiers.
+   result. This can be changed by using [255]modifiers.
 
    Words inside phrases and capitalized words are not stem-expanded.
    Wildcards may be used anywhere inside a term. Specifying a wildcard on
    the left of a term can produce a very slow search (or even an incorrect
    one if the expansion is truncated because of excessive size). Also see
-   [259]More about wildcards.
+   [256]More about wildcards.
 
    To save you some typing, Recoll versions 1.20 and later interpret a
    field value given as a comma-separated list of terms as an AND list and
@@ -3347,7 +3342,7 @@ author:john/ringo
    bonaparte in the main text body.
 
    Modifiers can be set on a double-quote value, for example to specify a
-   proximity search (unordered). See [260]the modifier section. No space
+   proximity search (unordered). See [257]the modifier section. No space
    must separate the final double-quote and the modifiers value, e.g. "two
    one"po10
 
@@ -3381,7 +3376,7 @@ author:john/ringo
 
    You can define aliases for field names, in order to use your preferred
    denomination or to save typing (e.g. the predefined fn and cfn aliases
-   defined for filename and containerfilename). See the [261]section about
+   defined for filename and containerfilename). See the [258]section about
    the fields file.
 
    The document input handlers have the possibility to create other fields
@@ -3400,7 +3395,7 @@ author:john/ringo
        anywhere under the /home/me/somedir directory (including
        subdirectories).
        Tilde expansion will be performed as usual. Wildcards will be
-       expanded, but please [262]have a look at an important limitation of
+       expanded, but please [259]have a look at an important limitation of
        wildcards in path filters.
        You can also use relative paths. For example, dir:share/doc would
        match either /usr/share/doc or /usr/local/share/doc.
@@ -3490,7 +3485,7 @@ myfield:..big
    effect is to filter the results for which the myfield value is in the
    possibly open-ended interval.
 
-   See the section about the [263]fields configuration file for the
+   See the section about the [260]fields configuration file for the
    details of configuring a field for range searches (list them in the
    [values] section).
 
@@ -3510,12 +3505,12 @@ myfield:..big
        0 for phrase searches and 10 for proximity searches.
      * p can be used to turn an ordered phrase search into an unordered
        proximity one. Example: "order any in"p. You can find a little more
-       detail about phrase and proximity searches [264]here.
+       detail about phrase and proximity searches [261]here.
      * s (1.22) can be used to turn off synonym expansion, if a synonyms
        file is in place.
      * x (1.33.2) will enable the expansion of terms inside a phrase
        search (the default is for phrases to be searched verbatim). Also
-       see the [265]stemexpandphrases in the configuration section, for
+       see the [262]stemexpandphrases in the configuration section, for
        changing the default behaviour.
      * A weight can be specified for a query element by specifying a
        decimal value at the start of the modifiers. Example:
@@ -3555,7 +3550,7 @@ myfield:..big
        field searches, and queries like author:*@domain.com can sometimes
        be very useful.
      * Using a * at the end of a word can produce more matches than you
-       would think, and strange search results. You can use the [266]term
+       would think, and strange search results. You can use the [263]term
        explorer tool to check what completions exist for a given term. You
        can also see exactly what search was performed by clicking on the
        link at the top of the result list. In general, for natural
@@ -3625,7 +3620,7 @@ Wildcards and path filtering
    query term which part of a synonym group will be optionally expanded
    into an OR query for all terms in the group.
 
-   The one exception is that if the [267]idxsynonyms parameter is set
+   The one exception is that if the [264]idxsynonyms parameter is set
    during indexing, and if the file contains multi-word synonyms, a
    multi-word single term will be emitted for every occurrence found in
    the text. If the same file is in use at query time, this will allow
@@ -3691,7 +3686,7 @@ bye goodbye "see you" \
        possible to configure an index to live with the documents on the
        removable disk, but it may happen that the disk is not mounted at
        the same place so that the documents paths from the index are
-       invalid. In some case, the path adjustments [268]can be automated.
+       invalid. In some case, the path adjustments [265]can be automated.
      * As a last example, one could imagine that a big directory has been
        moved, but that it is currently inconvenient to run the indexer.
 
@@ -3703,7 +3698,7 @@ bye goodbye "see you" \
    file:///home/me URL from the index to file:///net/server/home/me,
    allowing accesses from the client.
 
-   The translations are defined in the [269]ptrans configuration file,
+   The translations are defined in the [266]ptrans configuration file,
    which can be edited with a plain text editor or by using the GUI
    external indexes configuration dialog: Preferences → External index
    dialog, then click the Paths translations button on the right below the
@@ -3777,19 +3772,19 @@ C: = Z:
    Being independent of the desktop type has its drawbacks: Recoll desktop
    integration is minimal. However there are a few tools available:
      * Users of recent Ubuntu-derived distributions, or any other Gnome
-       desktop systems (e.g. Fedora) can install the [270]Recoll GSSP
+       desktop systems (e.g. Fedora) can install the [267]Recoll GSSP
        (Gnome Shell Search Provider).
-     * The KDE KIO Slave was described in a [271]previous section. It can
+     * The KDE KIO Slave was described in a [268]previous section. It can
        provide search results inside Dolphin.
      * If you use an oldish version of Ubuntu Linux, you may find the
-       [272]Ubuntu Unity Lens module useful.
-     * There is also an independently developed [273]Krunner plugin. It is
+       [269]Ubuntu Unity Lens module useful.
+     * There is also an independently developed [270]Krunner plugin. It is
        now integrated in the Recoll source.
      * Hotkeying recoll: it is surprisingly convenient to be able to show
        or hide the Recoll GUI with a single keystroke. Recoll comes with a
        small Python script, based on the libwnck window manager interface
        library, which will allow you to do just this. The detailed
-       instructions are on [274]this wiki page.
+       instructions are on [271]this wiki page.
 
 Chapter 4. Programming interface
 
@@ -3861,7 +3856,7 @@ Terminology
 
    Handlers that produce text/html format can return an arbitrary amount
    of metadata inside HTML meta tags. These will be processed according to
-   the directives found in the [275]fields configuration file.
+   the directives found in the [272]fields configuration file.
 
    The handlers that can handle multiple documents per file return a
    single piece of data to identify each document inside the file. This
@@ -3895,7 +3890,7 @@ Terminology
    metadata or vary the output character encoding (this will be defined in
    a configuration file). Additionally, some formatting may be easier to
    preserve when previewing HTML. Actually the deciding factor is
-   metadata: Recoll has a way to [276]extract metadata from the HTML
+   metadata: Recoll has a way to [273]extract metadata from the HTML
    header and use it for field searches..
 
    The RECOLL_FILTER_FORPREVIEW environment variable (values yes, no)
@@ -3941,7 +3936,7 @@ Terminology
    There is a sample trivial handler based on rclexecm.py, with many
    comments, not actually used by Recoll. It would index a text file as
    one document per line. Look for rcltxtlines.py in the src/filters
-   directory in the online Recoll [277]Git repository (the sample not in
+   directory in the online Recoll [274]Git repository (the sample not in
    the distributed release at the moment).
 
    You can also have a look at the slightly more complex rclzip.py which
@@ -3975,7 +3970,7 @@ Terminology
    a MIME type with a handler.
 
    The association of files to MIME types is mostly based on name
-   suffixes. The types are defined inside the [278]mimemap file. Example:
+   suffixes. The types are defined inside the [275]mimemap file. Example:
 .doc = application/msword
 
    If no suffix association is found for the file name, recent Recoll will
@@ -3983,7 +3978,7 @@ Terminology
    a system command (typically file -i or xdg-mime).
 
    The second element is the association of MIME types to handlers in the
-   [279]mimeconf file. A sample will probably be better than a long
+   [276]mimeconf file. A sample will probably be better than a long
    explanation:
 [index]
 application/msword = exec antiword -t -i 1 -m UTF-8;\
@@ -4050,7 +4045,7 @@ application/x-chm = execm rclchm.py
    Recoll will process meta tags inside the header as possible document
    fields candidates. Documents fields can be processed by the indexer in
    different ways, for searching or displaying inside query results. This
-   is described in a [280]following section.
+   is described in a [277]following section.
 
    By default, the indexer will process the standard header fields if they
    are present: title, meta/description, and meta/keywords are both
@@ -4080,7 +4075,7 @@ application/x-chm = execm rclchm.py
 <meta name="somefield" markup="html" content="Some <i>textual</i> data" />
 
    As written above, the processing of fields is described in a
-   [281]further section.
+   [278]further section.
 
    Persistent filters can use another, probably simpler, method to produce
    metadata, by calling the setfield() helper method. This avoids the
@@ -4127,7 +4122,7 @@ application/x-chm = execm rclchm.py
 
    Some fields may also designated as supporting range queries, meaning
    that the results may be selected for an interval of its values. See the
-   [282]configuration section for more details.
+   [279]configuration section for more details.
 
    The sequence of events for field processing is as follows:
      * During indexing, recollindex scans all meta fields in HTML
@@ -4146,15 +4141,15 @@ application/x-chm = execm rclchm.py
        prefixed terms in the index.
      * At query time, the field can be displayed inside the result list by
        using the appropriate directive in the definition of the
-       [283]result list paragraph format. All fields are displayed on the
+       [280]result list paragraph format. All fields are displayed on the
        fields screen of the preview window (which you can reach through
        the right-click menu). This is independent of the fact that the
        search which produced the results used the field or not.
 
-   You can find more information in the [284]section about the fields
+   You can find more information in the [281]section about the fields
    file, or in comments inside the file.
 
-   You can also have a look at the [285]example in the FAQs area,
+   You can also have a look at the [282]example in the FAQs area,
    detailing how one could add a page count field to pdf documents for
    displaying inside result lists.
 
@@ -4168,8 +4163,8 @@ application/x-chm = execm rclchm.py
    Windows, MacOS).
 
    The search interface is used in a number of active projects: the
-   [286]Recoll Gnome Shell Search Provider, the [287]Recoll Web UI, and
-   the [288]upmpdcli UPnP Media Server, in addition to many small scripts.
+   [283]Recoll Gnome Shell Search Provider, the [284]Recoll Web UI, and
+   the [285]upmpdcli UPnP Media Server, in addition to many small scripts.
 
    The index updating part of the API can be used to create and update
    Recoll indexes. Up to Recoll 1.37 these needed to use separate
@@ -4191,7 +4186,7 @@ application/x-chm = execm rclchm.py
    There is a good chance that your system repository has packages for the
    Recoll Python API, sometimes in a package separate from the main one
    (maybe named something like python3-recoll). Else refer to the
-   [289]Building from source chapter.
+   [286]Building from source chapter.
 
    As an introduction sample, the following small program will run a query
    and list the title and url for each of the results. The python/samples
@@ -4210,8 +4205,8 @@ for doc in results:
     print("%s %s" % (doc.url, doc.title))
 
    You can also take a look at the source for (in order of complexity) the
-   Recoll [290]Gnome Shell Search Provider or [291]WebUI, and the
-   [292]upmpdcli local media server.
+   Recoll [287]Gnome Shell Search Provider or [288]WebUI, and the
+   [289]upmpdcli local media server.
 
 4.3.2. Interface elements
 
@@ -4279,7 +4274,7 @@ for doc in results:
           from the index.
 
    Stored and indexed fields
-          The [293]fields file inside the Recoll configuration defines
+          The [290]fields file inside the Recoll configuration defines
           which document fields are either indexed (searchable), stored
           (retrievable with search results), or both. Apart from a few
           standard/internal fields, only the stored fields are retrievable
@@ -4658,7 +4653,7 @@ Recoll external indexers
    for indexing them, and the one for purging the data for deleted
    documents.
 
-   A description of the API method follows, but you can also [294]jump
+   A description of the API method follows, but you can also [291]jump
    ahead for a look at some sample pseudo-code and a pair of actual
    implementations, one of which does something useful.
 
@@ -4673,7 +4668,7 @@ The Python indexing API
        or editing.
 
    Two sample scripts are included with the Recoll source and described in
-   more detail a [295]bit further.
+   more detail a [292]bit further.
 
 Python indexing interface methods
 
@@ -4688,13 +4683,13 @@ Python indexing interface methods
    addOrUpdate(udi, doc, parent_udi=None, metaonly=False)
           Add or update index data for a given document.
 
-          The [296]udi string must define a unique id for the document. It
+          The [293]udi string must define a unique id for the document. It
           is an opaque interface element and not interpreted inside the
           lower level Recoll code.
 
-          doc is a [297]Doc object, containing the data to be indexed.
+          doc is a [294]Doc object, containing the data to be indexed.
 
-          If [298]parent_udi is set, this is a unique identifier for the
+          If [295]parent_udi is set, this is a unique identifier for the
           top-level container, the document for which needUpdate() would
           be called (e.g. for the filesystem indexer, this would be the
           one which is an actual file).
@@ -4874,12 +4869,12 @@ s.
 db.purge()
 
    The Recoll source tree has two samples of external indexers.
-     * [299]rclmbox.py indexes a directory containing mbox folder files.
+     * [296]rclmbox.py indexes a directory containing mbox folder files.
        Of course it is not really useful because Recoll can do this by
        itself, but it exercises most features in the update interface, and
        it has both top-level and embedded documents so it demonstrates the
        uses of the ipath values.
-     * [300]rcljoplin.py indexes a Joplin application main notes SQL
+     * [297]rcljoplin.py indexes a Joplin application main notes SQL
        table. Joplin sets an an update date attribute for each record in
        the table, so each note record can be processed as a standalone
        document (no ipath necessary). The sample has full preview and open
@@ -4901,264 +4896,9 @@ Using an external indexer index in conjunction with a regular one
    the mimeconf and mimeview files. See the rcljoplin.py sample for an
    example.
 
-Chapter 5. Installation and configuration
+Chapter 5. Configuration
 
-5.1. Installing a binary copy
-
-   Recoll binary copies are always distributed as regular packages for
-   your system. They can be obtained either through the system's normal
-   software distribution framework (e.g. Debian/Ubuntu apt, FreeBSD ports,
-   etc.), or from some type of "backports" repository providing versions
-   newer than the standard ones, or found on the Recoll Web site in some
-   cases. The most up-to-date information about Recoll packages can
-   usually be found on the [301]Recoll Web site downloads page
-
-   The Windows version of Recoll comes in a self-contained setup file,
-   there is nothing else to install.
-
-   On Unix-like systems, the package management tools will automatically
-   install hard dependencies for packages obtained from a proper package
-   repository. You will have to deal with them by hand for downloaded
-   packages (for example, when dpkg complains about missing dependencies).
-
-   In all cases, you will have to check or install [302]supporting
-   applications for the file types that you want to index beyond those
-   that are natively processed by Recoll (text, HTML, email files, and a
-   few others).
-
-   You should also maybe have a look at the [303]configuration section
-   (but this may not be necessary for a quick test with default
-   parameters). Most parameters can be more conveniently set from the GUI
-   interface.
-
-5.2. Supporting packages
-
-Note
-
-   The Windows installation of Recoll is self-contained. Windows users can
-   skip this section.
-
-   Recoll uses external applications to index some file types. You need to
-   install them for the file types that you wish to have indexed (these
-   are run-time optional dependencies. None is needed for building or
-   running Recoll except for indexing their specific file type).
-
-   After an indexing pass, the commands that were found missing can be
-   displayed from the recoll File menu. The list is stored in the missing
-   text file inside the configuration directory.
-
-   The past has proven that I was unable to maintain an up to date
-   application list in this manual. Please check
-   [304]https://www.recoll.org/pages/features.html for a complete list
-   along with links to the home pages or best source/patches pages, and
-   misc tips. What follows is only a very short extract of the stable
-   essentials.
-     * PDF files need pdftotext which is part of Poppler (usually comes
-       with the poppler-utils package). Avoid the original one from Xpdf.
-     * MS Word documents need antiword. It is also useful to have wvWare
-       installed as it may be be used as a fallback for some files which
-       antiword does not handle.
-     * RTF files need unrtf, which, in its older versions, has much
-       trouble with non-western character sets. Many Linux distributions
-       carry outdated unrtf versions. Check
-       [305]https://www.recoll.org/pages/features.html for details.
-     * Pictures: Recoll uses the Exiftool Perl package to extract tag
-       information. Most image file formats are supported.
-     * Up to Recoll 1.24, many XML-based formats need the xsltproc
-       command, which usually comes with libxslt. These are: abiword, fb2
-       ebooks, kword, openoffice, opendocument svg. Recoll 1.25 and later
-       process them internally (using libxslt).
-
-5.3. Building from source
-
-5.3.1. Prerequisites
-
-   The following prerequisites are described in broad terms and Debian
-   package names. The dependencies should be available as packages on most
-   common Unix-like systems, and it should be quite uncommon that you
-   would have to build one of them. Finding the right package name for
-   non-Debian systems is left to the sagacity of the reader.
-
-   Up to version 1.37, the Recoll build process used the GNU autotools.
-   Versions 1.38 and later use meson/ninja instead.
-
-   If you do not need the GUI, you can avoid all GUI dependencies by
-   disabling its build: see the configure section further down:
-   -Dqtgui=false.
-
-   Check the [306]Recoll download page for up to date Recoll version
-   information and links to source release files in tar format.
-
-   The shopping list follows:
-     * If you start from git repository source code, you will need the
-       git, obviously (package: git).
-     * On Unix-like systems systems, you will need the meson and ninja
-       commands. (package: meson, this will bring ninja as a dependency).
-       Not needed on MacOS systems at the moment.
-     * The pkg-config command is needed for configuring the build
-       (package: pkg-config).
-     * The make command is needed for building the GUI, unneeded if you
-       disable this. (package: make).
-     * A C++ compiler with at least C++17 compatibility (g++ or clang).
-       Recoll Versions 1.33.4 and older only required c++11.
-     * The bison command is not generally needed, but might be if you
-       modify the query language yacc source or if some file modification
-       times are not right (package: bison).
-     * For building the documentation: the xsltproc command, and the
-       Docbook XML and style sheet files. You can avoid this dependency by
-       disabling documentation building with the -Duserdoc=false setup
-       option.
-     * Development files for [307]Xapian core (libxapian-dev).
-     * Development files for libxml2 and libxslt (packages: libxslt1-dev,
-       which will pull libxml2-dev).
-     * Development files for zlib (zlib1g-dev).
-     * Development files for libmagic (libmagic-dev).
-     * Development files for libaspell (package: libaspell-dev). Can be
-       avoided with the -Daspell=false setup option.
-     * If you want to process CHM files, you will need libchm
-       (libchm-dev), else you can set the -Dpython-chm=false option to the
-       setup command.
-     * If you want the daemon indexer process to monitor the session for
-       quitting, you need the X11 development library (package:
-       libx11-dev). Else use the -Dx11mon=false setup option.
-     * If you want to build the GUI: qmake and development files for
-       [308]Qt 5. Else give the -Dqtgui=false setup option. Packages:
-       qtbase5-dev, qttools5-dev-tools, libqt5webkit5-dev. Replace
-       libqt5webkit5-dev with libqt5webengine5 if you use
-       -Dwebengine=true.
-     * Development files for Python3 (packages: python3-all-dev,
-       python3-setuptools). You can use the -Dpython-module=false setup
-       option for disabling the build of the Python extension.
-     * You may also need [309]libiconv. On Linux systems, the iconv
-       interface is part of libc and you should not need to do anything
-       special.
-
-5.3.2. Building
-
-   Recoll has been built on Linux, FreeBSD, MacOS, and Solaris, most
-   versions after 2005 should be ok, maybe some older ones too (Solaris 8
-   used to be ok). Current Recoll versions (1.34 and later) need a c++17
-   compiler and Qt5, so they will not build on old systems, but if really
-   needed, you can probably find an older version which will work for you.
-   If you build on another system, and need to modify things, [310]I would
-   very much welcome patches.
-
-meson setup options
-
-   Of course the usual meson setup options, like -Dprefix=/usr apply.
-
-   -Daspell=false will disable the code for phonetic matching of search
-   terms.
-
-   -Dfam=true or -Dinotify=true will enable the code for real time
-   indexing. Inotify support is enabled by default on Linux systems. MacOS
-   systems and Windows platforms now have real time indexing enabled by
-   default and need no setup options.
-
-   -Dqzeitgeist=true will enable sending Zeitgeist events about the
-   visited search results, and needs the qzeitgeist package.
-
-   -Dqtgui=false will disable the Qt graphical interface, which allows
-   building the indexer and the command line search program in absence of
-   a Qt environment.
-
-   -Dwebkit=false will implement the result list with a Qt QTextBrowser
-   instead of a WebKit widget if you do not or can't depend on the latter.
-
-   -Dwebengine=true will enable the use of Qt Webengine (only meaningful
-   if the Qt GUI is enabled), in place or Qt Webkit.
-
-   -Dwebpreview=false: do not implement the GUI preview windows with
-   webkit or webengine instead of qtextbrowser. Using webxx will usually
-   produce a better display, but will sometimes fail to display anything
-   because of javascript issues.
-
-   -Dguidebug=true will build the recoll GUI program with debug symbols.
-   This makes it very big (~50MB), which is why it is stripped by default.
-
-   -Didxthreads=false will suppress multithreading inside the indexing
-   process. You can also use the run-time configuration to restrict
-   recollindex to using a single thread, but the compile-time option may
-   disable a few more unused locks. This only applies to the use of
-   multithreading for the core index processing (data input). The Recoll
-   monitor mode always uses at least two threads of execution.
-
-   -Dpython-module=false will avoid building the Python extension.
-
-   -Dpython-chm=false will avoid building the Python libchm interface used
-   to index CHM files.
-
-   -Dpython-aspell=false will avoid building the Python libaspell
-   interface. This is used to supplement queries with spelling guesses.
-
-   -Dindexer=false will prevent building the indexer. Possibly useful if
-   you just need the lib (e.g. for the Python extension).
-
-   -Dsimdutf=false will prevent the use of the simdutf code normally used
-   to speed up character code conversions.
-
-   -Dcamelcase=true will enable splitting camelCase words. This is not
-   enabled by default as it has the unfortunate side-effect of making some
-   phrase searches quite confusing: ie, "MySQL manual" would be matched by
-   "MySQL manual" and "my sql manual" but not "mysql manual" (only inside
-   phrase searches).
-
-   -Dlibmagic=false: disable the use of libmagic (use a file-like command
-   instead).
-
-   -Dfile-command=somecommand Specify the version of the 'file' command to
-   use (e.g.: -Dfile-command=/usr/local/bin/file). Can be useful to enable
-   the gnu version on systems where the native one is bad.
-
-   -Dx11mon=false Disable X11 connection monitoring inside recollindex.
-   Together with -Dqtgui=false, this allows building recoll without Qt and
-   X11.
-
-   -Duserdoc=false will avoid building the user manual. This avoids having
-   to install the Docbook XML/XSL files and the TeX toolchain used for
-   translating the manual to PDF.
-
-   -Drecollq=true Enable building the recollq command line query tool
-   (recoll -t without need for Qt). This is done by default if
-   -Dqtgui=false is used but this option enables forcing it.
-
-   -Dsystemd=false Disable the automatic installation of systemd unit
-   files. Normally unit files are installed if the install path can be
-   detected.
-
-   -Dsystem-unit-dir=DIR Provide an install path for the systemd system
-   unit template file.
-
-   -Duser-unit-dir=DIR Provide an install path for the systemd user unit
-   file.
-
-Normal procedure, for source extracted from a tar distribution)
-
-   For versions 1.38 and later (else check the manual inside the older
-   source):
-cd recoll-xxx
-meson setup [options] build
-ninja -C build
-
-5.3.3. Installing
-
-   Use sudo ninja install in your build tree. This will copy the commands
-   to prefix/bin and the sample configuration files, scripts and other
-   shared data to prefix/share/recoll.
-
-5.3.4. Python API package
-
-   The Python interface can be found in the source tree, under the
-   python/recoll directory.
-
-   The normal Recoll build procedure (see above) installs the API package
-   for Python3.
-
-   For meson-based versions: the python/recoll/ directory still contains a
-   setup.py. This is obsoleted by meson.build but might be useful in some
-   cases.
-
-5.4. Settings, configuration overview
+5.1. Settings, configuration overview
 
    Most of the parameters specific to the recoll GUI are set through the
    Preferences menu and stored in the standard Qt place
@@ -5175,27 +4915,29 @@ ninja -C build
    configuration.
 
    For each index, there are at least two sets of configuration files.
-   System-wide configuration files are kept in a directory named like
-   /usr/share/recoll/examples, and define default values, shared by all
-   indexes (the values in these files are often commented out, and just
-   present to indicate the default coded in the program). For each index,
-   a parallel set of files defines the customised parameters.
+   System-wide configuration files come with the installation and are kept
+   in a directory named like /usr/share/recoll/examples on Unix-like
+   systems (or an equivalent on other systems), and define default values,
+   shared by all indexes (the values in these files are often commented
+   out, and just present to indicate the default coded in the program).
+   For each index, a parallel set of files defines the customised
+   parameters.
 
-   On Unix-like systems, the default location of the customised
+   On Unix-like systems, the location of the default index customised
    configuration is the .recoll directory in your home. On Windows it is
    C:/Users/[you]/AppData/Local/Recoll. Most people will only use this
    directory.
 
-   The default location for the configuration directory can be changed, or
-   others can be added for separate indexes with the RECOLL_CONFDIR
-   environment variable or the -c option parameter to recoll and
-   recollindex.
+   The location for the default index configuration directory can be
+   changed, or others can be added for separate indexes with the
+   RECOLL_CONFDIR environment variable or the -c option parameter to
+   recoll and recollindex.
 
-   In addition, it is possible to specify two additional configuration
-   directories which will be stacked before and after the user
-   configuration directory. These are defined by the RECOLL_CONFTOP and
-   RECOLL_CONFMID environment variables. Values from configuration files
-   inside the top directory will override user ones, values from
+   In addition, for each index, it is possible to specify two additional
+   configuration directories which will be stacked before and after the
+   user configuration directory. These are defined by the RECOLL_CONFTOP
+   and RECOLL_CONFMID environment variables. Values from configuration
+   files inside the top directory will override user ones, values from
    configuration files inside the middle directory will override system
    ones and be overridden by user ones. These two variables may be of use
    to applications which augment Recoll functionality, and need to add
@@ -5221,7 +4963,7 @@ topdirs =  ~/docs /usr/share/doc
 defaultcharset = utf-8
 
    There are three kinds of lines:
-     * Comment lines start with a hash mark #.
+     * Comments start with a hash mark #.
      * Parameter assignment: name = value.
      * Section definitions: [somedirname].
 
@@ -5286,7 +5028,7 @@ Important
        two separate text files with appropriate encodings, and concatenate
        them to create the complete configuration.
 
-5.4.1. Environment variables
+5.2. Environment variables
 
    RECOLL_CONFDIR
           Defines the main configuration directory.
@@ -5303,7 +5045,7 @@ Important
           section for details).
 
    RECOLL_EXTRA_DBS, RECOLL_ACTIVE_EXTRA_DBS
-          Help for setting up external indexes. See [311]this paragraph
+          Help for setting up external indexes. See [298]this paragraph
           for explanations.
 
    RECOLL_DATADIR
@@ -5319,7 +5061,7 @@ Important
           result has to be compatible with the libaspell which Recoll is
           using.
 
-5.4.2. Recoll main configuration file, recoll.conf
+5.1. Recoll main configuration file, recoll.conf
 
 Parameters affecting what documents we index
 
@@ -6293,7 +6035,7 @@ Parameters set for specific locations
           Enable thunderbird/mozilla-seamonkey mbox format quirks Set this
           for the directory where the email mbox files are stored.
 
-5.4.3. The fields file
+5.3. The fields file
 
    This file contains information about dynamic fields handling in Recoll.
    Some very basic fields have hard-wired behaviour, and, mostly, you
@@ -6369,7 +6111,7 @@ containerfilename = cfn
 # mailmytag field name
 x-my-tag = mailmytag
 
-Extended attributes in the fields file
+5.3.1. Extended attributes in the fields file
 
    Recoll processes user extended file attributes as documents fields by
    default.
@@ -6394,7 +6136,7 @@ Extended attributes in the fields file
    dmtime field (document date) only if it is not set by an internal
    document field (e.g. email Date:).
 
-5.4.4. The mimemap file
+5.4. The mimemap file
 
    mimemap specifies the file name extension to MIME type mappings.
 
@@ -6420,7 +6162,7 @@ Extended attributes in the fields file
    Recoll version 1.21. For older Recoll versions, see the documentation
    for noContentSuffixes but use recoll_noindex in mimemap.
 
-5.4.5. The mimeconf file
+5.5. The mimeconf file
 
    The main purpose of the mimeconf file is to specify how the different
    MIME types are handled for indexing. This is done in the [index]
@@ -6437,7 +6179,7 @@ Extended attributes in the fields file
    in recoll.conf).
 
    The [categories] section defines the groupings of MIME types into
-   categories as used when adding an rclcat clause to a [312]query
+   categories as used when adding an rclcat clause to a [299]query
    language query. rclcat clauses are also used by the default guifilters
    buttons in the GUI (see next).
 
@@ -6485,7 +6227,7 @@ media = rclcat:media
 message = rclcat:message
 other = rclcat:other
 
-5.4.6. The mimeview file
+5.6. The mimeview file
 
    mimeview specifies which programs are started when you click on an Open
    link in a result list. E.g.: HTML is normally displayed using firefox,
@@ -6556,10 +6298,10 @@ other = rclcat:other
    for the document. This could be used in combination with field
    customisation to help with opening the document.
 
-5.4.7. The ptrans file
+5.7. The ptrans file
 
    ptrans specifies query-time path translations. These can be useful in
-   [313]multiple cases.
+   [300]multiple cases.
 
    The file has a section for any index which needs translations, either
    the main one or additional query indexes. The sections are named with
@@ -6573,9 +6315,9 @@ other = rclcat:other
 /server/volume1/docdir = /net/server/volume1/docdir
 /server/volume2/docdir = /net/server/volume2/docdir
 
-5.4.8. Examples of configuration adjustments
+5.8. Examples of configuration adjustments
 
-Adding an external viewer for an non-indexed type
+5.8.1. Adding an external viewer for an non-indexed type
 
    Imagine that you have some kind of file which does not have indexable
    content, but for which you would like to have a functional Open link in
@@ -6599,7 +6341,7 @@ application/x-blobapp = blobviewer %f
    the central configuration, which you do not need to alter. mimeview can
    also be modified from the Gui.
 
-Adding indexing support for a new file type
+5.8.2. Adding indexing support for a new file type
 
    Let us now imagine that the above .blob files actually contain
    indexable text and that you know how to extract it with a command line
@@ -6624,8 +6366,359 @@ application/x-blobapp = internal text/plain
    as argument and should output the text or html contents on the standard
    output.
 
-   The [314]filter programming section describes in more detail how to
+   The [301]filter programming section describes in more detail how to
    write an input handler.
+
+Part I. Appendices
+
+Appendix A. Processing of wild card and other special characters
+
+   Recoll is primarily designed to search for natural language words, and
+   the general rule is that non-alphanumeric characters are treated as
+   white space (word separators).
+
+   However, a number of ASCII characters receive special treatment. The
+   details are described in the following.
+
+A.1. Words and spans
+
+   Some important searchable text elements contain non-alphanumeric
+   characters, for example, email addresses (jfd@recoll.org), proper names
+   (O'Brien) or internet addresses (192.168.4.1).
+
+   If we treat the special characters as white space in this situation,
+   the only way to search for these terms with a reasonable degree of
+   precision would to use phrase searches ("jf dockes org").
+
+   However, phrase searches need a lot of computation and are generally
+   slower. This was especially true with older Xapian versions.
+
+   Recoll has special processing for these elements, designated as spans.
+   The corresponding linkage characters will be designated as span glue in
+   the following.
+
+   When indexing a span like jfd@recoll.org, Recoll generates both regular
+   individual terms (jfd, recoll, org) and multiword terms linked by span
+   glue: jfd@recoll.org, jfd@recoll, recoll.org.
+
+   When searching, only the larger term (complete span: jfd@recoll.org) is
+   used, so that Xapian executes a regular single-term search instead of a
+   phrase one.
+
+A.2. Special ASCII characters during indexing
+
+A.2.1. Characters with hard-coded processing
+
+   - and + have special treatment in numbers or terms like C++, else they
+   are processed as span glue.
+
+   . and ' are always processed as span glue.
+
+   # is processed as a letter at the beginning (hashtag) or end (c#) of a
+   word, else as white space.
+
+   The underscore (_) is processed as span glue except if the
+   underscoreasletter index configuration parameter is set, in which case
+   it is treated as a regular letter.
+
+A.2.2. Characters generally treated as white space
+
+   !"$%&(),/:;<=>^\`{|}~ and wild card expression characters *[]? are
+   generally treated as white space while indexing, except if they are
+   included in the indexedpunctuation index configuration variable.
+
+   Elements of indexedpunctuation are treated as single terms which allows
+   to match, e.g., 93% with precisely 93% (or just 93 if preferrable).
+
+A.2.3. Backslash
+
+   \ is treated as a letter if backslashasletter is set, else treated as
+   other punctuation according to indexedpunctuation. backslashasletter
+   was broken until Recoll version 1.42.2
+
+A.3. Special ASCII characters at search time
+
+   Slightly different rules apply when querying, for example because of
+   the special characters used by the Query language, or because of wild
+   card expansion.
+
+A.3.1. Query language special characters
+
+   "():=<> and .. have special meaning for the query language. There is no
+   way to escape them. This is generally not a problem because they are
+   all treated as white space during indexing, except if included in
+   indexedpunctuation. In the latter case, it is still possible to search
+   for them through the All terms or Any term search modes or by using the
+   Advanced search GUI dialog.
+
+A.3.2. Wild card characters
+
+   When querying, wild card characters generally cause an expansion of the
+   term they are found in. Until Recoll version 1.42.2, there was no way
+   to escape them.
+
+   As of Recoll 1.42.2 it is possible to escape wild card characters with
+   a backslash when in File name search mode and it becomes possible to
+   exactly search for file names containing these characters. Previously,
+   you would have had to use a less precise search by replacing them with
+   a ? wild card or using another mode.
+
+Appendix B. Building and Installation
+
+B.1. Installing a binary copy
+
+   Recoll binary copies are always distributed as regular packages for
+   your system. They can be obtained either through the system's normal
+   software distribution framework (e.g. Debian/Ubuntu apt, FreeBSD ports,
+   etc.), or from some type of "backports" repository providing versions
+   newer than the standard ones, or found on the Recoll Web site in some
+   cases. The most up-to-date information about Recoll packages can
+   usually be found on the [302]Recoll Web site downloads page
+
+   The Windows version of Recoll comes in a self-contained setup file,
+   there is nothing else to install.
+
+   On Unix-like systems, the package management tools will automatically
+   install hard dependencies for packages obtained from a proper package
+   repository. You will have to deal with them by hand for downloaded
+   packages (for example, when dpkg complains about missing dependencies).
+
+   In all cases, you will have to check or install [303]supporting
+   applications for the file types that you want to index beyond those
+   that are natively processed by Recoll (text, HTML, email files, and a
+   few others).
+
+   You should also maybe have a look at the [304]configuration section
+   (but this may not be necessary for a quick test with default
+   parameters). Most parameters can be more conveniently set from the GUI
+   interface.
+
+B.2. Supporting packages
+
+Note
+
+   The Windows installation of Recoll is self-contained. Windows users can
+   skip this section.
+
+   Recoll uses external applications to index some file types. You need to
+   install them for the file types that you wish to have indexed (these
+   are run-time optional dependencies. None is needed for building or
+   running Recoll except for indexing their specific file type).
+
+   After an indexing pass, the commands that were found missing can be
+   displayed from the recoll File menu. The list is stored in the missing
+   text file inside the configuration directory.
+
+   The past has proven that I was unable to maintain an up to date
+   application list in this manual. Please check
+   [305]https://www.recoll.org/pages/features.html for a complete list
+   along with links to the home pages or best source/patches pages, and
+   misc tips. What follows is only a very short extract of the stable
+   essentials.
+     * PDF files need pdftotext which is part of Poppler (usually comes
+       with the poppler-utils package). Avoid the original one from Xpdf.
+     * MS Word documents need antiword. It is also useful to have wvWare
+       installed as it may be be used as a fallback for some files which
+       antiword does not handle.
+     * RTF files need unrtf, which, in its older versions, has much
+       trouble with non-western character sets. Many Linux distributions
+       carry outdated unrtf versions. Check
+       [306]https://www.recoll.org/pages/features.html for details.
+     * Pictures: Recoll uses the Exiftool Perl package to extract tag
+       information. Most image file formats are supported.
+     * Up to Recoll 1.24, many XML-based formats need the xsltproc
+       command, which usually comes with libxslt. These are: abiword, fb2
+       ebooks, kword, openoffice, opendocument svg. Recoll 1.25 and later
+       process them internally (using libxslt).
+
+B.3. Building from source
+
+B.3.1. Prerequisites
+
+   The following prerequisites are described in broad terms and Debian
+   package names. The dependencies should be available as packages on most
+   common Unix-like systems, and it should be quite uncommon that you
+   would have to build one of them. Finding the right package name for
+   non-Debian systems is left to the sagacity of the reader.
+
+   Up to version 1.37, the Recoll build process used the GNU autotools.
+   Versions 1.38 and later use meson/ninja instead.
+
+   If you do not need the GUI, you can avoid all GUI dependencies by
+   disabling its build: see the configure section further down:
+   -Dqtgui=false.
+
+   Check the [307]Recoll download page for up to date Recoll version
+   information and links to source release files in tar format.
+
+   The shopping list follows:
+     * If you start from git repository source code, you will need the
+       git, obviously (package: git).
+     * On Unix-like systems systems, you will need the meson and ninja
+       commands. (package: meson, this will bring ninja as a dependency).
+       Not needed on MacOS systems at the moment.
+     * The pkg-config command is needed for configuring the build
+       (package: pkg-config).
+     * The make command is needed for building the GUI, unneeded if you
+       disable this. (package: make).
+     * A C++ compiler with at least C++17 compatibility (g++ or clang).
+       Recoll Versions 1.33.4 and older only required c++11.
+     * The bison command is not generally needed, but might be if you
+       modify the query language yacc source or if some file modification
+       times are not right (package: bison).
+     * For building the documentation: the xsltproc command, and the
+       Docbook XML and style sheet files. You can avoid this dependency by
+       disabling documentation building with the -Duserdoc=false setup
+       option.
+     * Development files for [308]Xapian core (libxapian-dev).
+     * Development files for libxml2 and libxslt (packages: libxslt1-dev,
+       which will pull libxml2-dev).
+     * Development files for zlib (zlib1g-dev).
+     * Development files for libmagic (libmagic-dev).
+     * Development files for libaspell (package: libaspell-dev). Can be
+       avoided with the -Daspell=false setup option.
+     * If you want to process CHM files, you will need libchm
+       (libchm-dev), else you can set the -Dpython-chm=false option to the
+       setup command.
+     * If you want the daemon indexer process to monitor the session for
+       quitting, you need the X11 development library (package:
+       libx11-dev). Else use the -Dx11mon=false setup option.
+     * If you want to build the GUI: qmake and development files for
+       [309]Qt 5. Else give the -Dqtgui=false setup option. Packages:
+       qtbase5-dev, qttools5-dev-tools, libqt5webkit5-dev. Replace
+       libqt5webkit5-dev with libqt5webengine5 if you use
+       -Dwebengine=true.
+     * Development files for Python3 (packages: python3-all-dev,
+       python3-setuptools). You can use the -Dpython-module=false setup
+       option for disabling the build of the Python extension.
+     * You may also need [310]libiconv. On Linux systems, the iconv
+       interface is part of libc and you should not need to do anything
+       special.
+
+B.3.2. Building
+
+   Recoll has been built on Linux, FreeBSD, MacOS, and Solaris, most
+   versions after 2005 should be ok, maybe some older ones too (Solaris 8
+   used to be ok). Current Recoll versions (1.34 and later) need a c++17
+   compiler and Qt5, so they will not build on old systems, but if really
+   needed, you can probably find an older version which will work for you.
+   If you build on another system, and need to modify things, [311]I would
+   very much welcome patches.
+
+meson setup options
+
+   Of course the usual meson setup options, like -Dprefix=/usr apply.
+
+   -Daspell=false will disable the code for phonetic matching of search
+   terms.
+
+   -Dfam=true or -Dinotify=true will enable the code for real time
+   indexing. Inotify support is enabled by default on Linux systems. MacOS
+   systems and Windows platforms now have real time indexing enabled by
+   default and need no setup options.
+
+   -Dqzeitgeist=true will enable sending Zeitgeist events about the
+   visited search results, and needs the qzeitgeist package.
+
+   -Dqtgui=false will disable the Qt graphical interface, which allows
+   building the indexer and the command line search program in absence of
+   a Qt environment.
+
+   -Dwebkit=false will implement the result list with a Qt QTextBrowser
+   instead of a WebKit widget if you do not or can't depend on the latter.
+
+   -Dwebengine=true will enable the use of Qt Webengine (only meaningful
+   if the Qt GUI is enabled), in place or Qt Webkit.
+
+   -Dwebpreview=false: do not implement the GUI preview windows with
+   webkit or webengine instead of qtextbrowser. Using webxx will usually
+   produce a better display, but will sometimes fail to display anything
+   because of javascript issues.
+
+   -Dguidebug=true will build the recoll GUI program with debug symbols.
+   This makes it very big (~50MB), which is why it is stripped by default.
+
+   -Didxthreads=false will suppress multithreading inside the indexing
+   process. You can also use the run-time configuration to restrict
+   recollindex to using a single thread, but the compile-time option may
+   disable a few more unused locks. This only applies to the use of
+   multithreading for the core index processing (data input). The Recoll
+   monitor mode always uses at least two threads of execution.
+
+   -Dpython-module=false will avoid building the Python extension.
+
+   -Dpython-chm=false will avoid building the Python libchm interface used
+   to index CHM files.
+
+   -Dpython-aspell=false will avoid building the Python libaspell
+   interface. This is used to supplement queries with spelling guesses.
+
+   -Dindexer=false will prevent building the indexer. Possibly useful if
+   you just need the lib (e.g. for the Python extension).
+
+   -Dsimdutf=false will prevent the use of the simdutf code normally used
+   to speed up character code conversions.
+
+   -Dcamelcase=true will enable splitting camelCase words. This is not
+   enabled by default as it has the unfortunate side-effect of making some
+   phrase searches quite confusing: ie, "MySQL manual" would be matched by
+   "MySQL manual" and "my sql manual" but not "mysql manual" (only inside
+   phrase searches).
+
+   -Dlibmagic=false: disable the use of libmagic (use a file-like command
+   instead).
+
+   -Dfile-command=somecommand Specify the version of the 'file' command to
+   use (e.g.: -Dfile-command=/usr/local/bin/file). Can be useful to enable
+   the gnu version on systems where the native one is bad.
+
+   -Dx11mon=false Disable X11 connection monitoring inside recollindex.
+   Together with -Dqtgui=false, this allows building recoll without Qt and
+   X11.
+
+   -Duserdoc=false will avoid building the user manual. This avoids having
+   to install the Docbook XML/XSL files and the TeX toolchain used for
+   translating the manual to PDF.
+
+   -Drecollq=true Enable building the recollq command line query tool
+   (recoll -t without need for Qt). This is done by default if
+   -Dqtgui=false is used but this option enables forcing it.
+
+   -Dsystemd=false Disable the automatic installation of systemd unit
+   files. Normally unit files are installed if the install path can be
+   detected.
+
+   -Dsystem-unit-dir=DIR Provide an install path for the systemd system
+   unit template file.
+
+   -Duser-unit-dir=DIR Provide an install path for the systemd user unit
+   file.
+
+Normal procedure, for source extracted from a tar distribution)
+
+   For versions 1.38 and later (else check the manual inside the older
+   source):
+cd recoll-xxx
+meson setup [options] build
+ninja -C build
+
+B.3.3. Installing
+
+   Use sudo ninja install in your build tree. This will copy the commands
+   to prefix/bin and the sample configuration files, scripts and other
+   shared data to prefix/share/recoll.
+
+B.3.4. Python API package
+
+   The Python interface can be found in the source tree, under the
+   python/recoll directory.
+
+   The normal Recoll build procedure (see above) installs the API package
+   for Python3.
+
+   For meson-based versions: the python/recoll/ directory still contains a
+   setup.py. This is obsoleted by meson.build but might be useful in some
+   cases.
 
 References
 
@@ -6740,206 +6833,203 @@ References
  109. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.UPDATE.CONFIGURATION
  110. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.UPDATE.SAMPLES
  111. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.UPDATE.ASEXTINDEX
- 112. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL
- 113. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BINARY
- 114. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
- 115. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING
- 116. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.PREREQS
- 117. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.BUILDING
- 118. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.BUILDING.CONFIGURE
- 119. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.BUILDING.TAR
- 120. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.INSTALL
- 121. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.PYTHON
- 122. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG
- 123. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.ENVIR
- 124. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF
- 125. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.WHATDOCS
- 126. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.TERMS
- 127. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.STORE
- 128. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.PERFS
- 129. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.MISC
- 130. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.QUERY
- 131. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.PDF
- 132. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.OCR
- 133. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS
- 134. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS
- 135. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.SPECLOCATIONS
- 136. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS
- 137. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS.XATTR
- 138. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMEMAP
- 139. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMECONF
- 140. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMEVIEW
- 141. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.PTRANS
- 142. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.EXAMPLES
- 143. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.EXAMPLES.ADDVIEW
- 144. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.EXAMPLES.ADDINDEX
- 145. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1345
- 146. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BINARY
- 147. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG
- 148. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
- 149. https://www.xapian.org/
- 150. https://www.xapian.org/docs/intro_ir.html
- 151. https://www.recoll.org/pages/recoll-chinese.html
- 152. https://www.recoll.org/pages/recoll-korean.html
- 153. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.SENS
- 154. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG
- 155. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.PERIODIC.EXEC
- 156. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH
- 157. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.COMMANDLINE
- 158. https://framagit.org/medoc92/recollwebui
+ 112. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG
+ 113. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.OVERVIEW
+ 114. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.ENVIR
+ 115. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS
+ 116. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS.XATTR
+ 117. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMEMAP
+ 118. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMECONF
+ 119. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMEVIEW
+ 120. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.PTRANS
+ 121. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.EXAMPLES
+ 122. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.EXAMPLES.ADDVIEW
+ 123. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.EXAMPLES.ADDINDEX
+ 124. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1353
+ 125. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.APPDX.SPECCHARS
+ 126. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1345
+ 127. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1349
+ 128. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1346
+ 129. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1347
+ 130. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1348
+ 131. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1352
+ 132. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1350
+ 133. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1351
+ 134. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.BUILDINSTALL
+ 135. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BINARY
+ 136. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
+ 137. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING
+ 138. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.PREREQS
+ 139. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.BUILDING
+ 140. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.INSTALL
+ 141. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING.PYTHON
+ 142. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#id1354
+ 143. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BINARY
+ 144. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG
+ 145. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
+ 146. https://www.xapian.org/
+ 147. https://www.xapian.org/docs/intro_ir.html
+ 148. https://www.recoll.org/pages/recoll-chinese.html
+ 149. https://www.recoll.org/pages/recoll-korean.html
+ 150. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.SENS
+ 151. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG
+ 152. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.PERIODIC.EXEC
+ 153. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH
+ 154. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.COMMANDLINE
+ 155. https://framagit.org/medoc92/recollwebui
+ 156. https://www.recoll.org/pages/download.html
+ 157. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI
+ 158. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.KIO
  159. https://www.recoll.org/pages/download.html
- 160. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI
- 161. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.KIO
- 162. https://www.recoll.org/pages/download.html
- 163. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.REMOVABLE
- 164. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.PERIODIC
- 165. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.PERIODIC.AUTOMAT
- 166. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.MONITOR
- 167. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.MONITOR
- 168. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG
- 169. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.MULTIPLE
- 170. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG
- 171. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
- 172. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDNAMES
- 173. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.EXCLUDEDMIMETYPES
- 174. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.INDEXEDMIMETYPES
- 175. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF
- 176. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.STORAGE
- 177. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF
- 178. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF
- 179. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.STORE
- 180. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.PERF.MULTIDX
- 181. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG
- 182. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.GUI
- 183. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG
- 184. https://www.recoll.org/manpages/recoll.conf.5.html
- 185. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS
- 186. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
- 187. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.SENS
- 188. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.WEBQUEUE
- 189. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG
+ 160. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.REMOVABLE
+ 161. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.PERIODIC
+ 162. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.PERIODIC.AUTOMAT
+ 163. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.MONITOR
+ 164. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.MONITOR
+ 165. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG
+ 166. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.MULTIPLE
+ 167. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG
+ 168. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
+ 169. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.SKIPPEDNAMES
+ 170. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.EXCLUDEDMIMETYPES
+ 171. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.INDEXEDMIMETYPES
+ 172. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF
+ 173. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.STORAGE
+ 174. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF
+ 175. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF
+ 176. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.STORE
+ 177. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.PERF.MULTIDX
+ 178. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG
+ 179. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.GUI
+ 180. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG
+ 181. https://www.recoll.org/manpages/recoll.conf.5.html
+ 182. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.TOPDIRS
+ 183. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
+ 184. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.SENS
+ 185. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.WEBQUEUE
+ 186. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG
+ 187. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.GUI
+ 188. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF
+ 189. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.TERMS
  190. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.GUI
- 191. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF
- 192. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.TERMS
- 193. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.GUI
- 194. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF
- 195. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.MULTIDB
- 196. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.CASEDIAC
- 197. https://www.recoll.org/pages/idxthreads/threadingRecoll.html
- 198. https://www.recoll.org/pages/idxthreads/threadingRecoll.html#_the_xapian_bottleneck_and_how_it_was_resolved_thanks_to_xapian
- 199. https://www.recoll.org/faqsandhowtos/cgroups_instructions.html
- 200. https://www.recoll.org/manpages/recollindex.1.html
- 201. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.MONITORDIRS
- 202. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.MISC
- 203. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS
- 204. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS
- 205. https://www.freedesktop.org/wiki/CommonExtendedAttributes
- 206. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS.XATTR
- 207. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.METADATACMDS
- 208. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
- 209. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.OCR
- 210. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.PDFEXTRAMETA
- 211. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.PDFEXTRAMETAFIX
- 212. https://www.recoll.org/pages/recoll_XMP/index.html
- 213. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.PDFATTACH
- 214. https://ocrmypdf.readthedocs.io/en/latest/index.html
- 215. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.OCR
- 216. https://www.recoll.org/faqsandhowtos/IndexAudioWhisper.html
- 217. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.ORGIDXCONFDIR
- 218. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.CURIDXCONFDIR
- 219. https://addons.mozilla.org/en-US/firefox/addon/recoll-we/
- 220. https://www.recoll.org/faqsandhowtos/IndexWebHistory
- 221. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
- 222. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.SAVING
- 223. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
- 224. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
- 225. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
- 226. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.CASEDIAC
- 227. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
- 228. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.APPLICATIONS
- 229. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMECONF
- 230. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMEVIEW
- 231. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RUNSCRIPT
- 232. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
- 233. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST.PARA
- 234. https://www.recoll.org/faqsandhowtos/ResultsThumbnails.html
- 235. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.HISTORY
+ 191. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF
+ 192. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.MULTIDB
+ 193. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.CASEDIAC
+ 194. https://www.recoll.org/pages/idxthreads/threadingRecoll.html
+ 195. https://www.recoll.org/pages/idxthreads/threadingRecoll.html#_the_xapian_bottleneck_and_how_it_was_resolved_thanks_to_xapian
+ 196. https://www.recoll.org/faqsandhowtos/cgroups_instructions.html
+ 197. https://www.recoll.org/manpages/recollindex.1.html
+ 198. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.MONITORDIRS
+ 199. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.MISC
+ 200. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS
+ 201. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS
+ 202. https://www.freedesktop.org/wiki/CommonExtendedAttributes
+ 203. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS.XATTR
+ 204. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.METADATACMDS
+ 205. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
+ 206. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.OCR
+ 207. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.PDFEXTRAMETA
+ 208. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.PDFEXTRAMETAFIX
+ 209. https://www.recoll.org/pages/recoll_XMP/index.html
+ 210. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.PDFATTACH
+ 211. https://ocrmypdf.readthedocs.io/en/latest/index.html
+ 212. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.OCR
+ 213. https://www.recoll.org/faqsandhowtos/IndexAudioWhisper.html
+ 214. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.ORGIDXCONFDIR
+ 215. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.CURIDXCONFDIR
+ 216. https://addons.mozilla.org/en-US/firefox/addon/recoll-we/
+ 217. https://www.recoll.org/faqsandhowtos/IndexWebHistory
+ 218. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
+ 219. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.SAVING
+ 220. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
+ 221. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
+ 222. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
+ 223. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.CASEDIAC
+ 224. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
+ 225. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.APPLICATIONS
+ 226. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMECONF
+ 227. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMEVIEW
+ 228. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RUNSCRIPT
+ 229. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
+ 230. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST.PARA
+ 231. https://www.recoll.org/faqsandhowtos/ResultsThumbnails.html
+ 232. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.HISTORY
+ 233. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
+ 234. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.MULTIPLE
+ 235. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.PTRANS
  236. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
- 237. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.MULTIPLE
- 238. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.PTRANS
- 239. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
- 240. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG.MODIFIERS
- 241. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
- 242. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMEVIEW
- 243. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMEVIEW
- 244. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
- 245. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
- 246. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF
- 247. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS
- 248. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS
- 249. https://www.recoll.org/pages/custom.html
- 250. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMECONF
- 251. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
- 252. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RUNSCRIPT
- 253. https://www.recoll.org/pages/custom.html
- 254. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.ABSSEP
- 255. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI
- 256. https://www.recoll.org/manpages/recollq.1.html
- 257. https://www.xesam.org/main/XesamUserSearchLanguage95
- 258. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG.MODIFIERS
- 259. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
- 260. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG.MODIFIERS
- 261. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS
- 262. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS.PATH
- 263. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS
- 264. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.PHRASEANDPROX
- 265. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.STEMEXPANDPHRASES
- 266. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TERMEXPLORER
- 267. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.RECOLLCONF.IDXSYNONYMS
- 268. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.REMOVABLE.SELF
- 269. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.PTRANS
- 270. https://www.recoll.org/pages/download.html#gssp
- 271. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.KIO
- 272. https://www.recoll.org/faqsandhowtos/UnityLens
- 273. https://kde-apps.org/content/show.php/recollrunner?content=128203
- 274. https://www.recoll.org/faqsandhowtos/HotRecoll
- 275. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
- 276. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FILTERS.HTML
- 277. https://framagit.org/medoc92/recoll
- 278. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMEMAP
- 279. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.MIMECONF
- 280. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
- 281. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
- 282. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS
- 283. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
- 284. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS
- 285. https://www.recoll.org/faqsandhowtos/HandleCustomField
- 286. https://www.recoll.org/pages/download.html#gssp
- 287. https://framagit.org/medoc92/recollwebui
- 288. https://www.lesbonscomptes.com/upmpdcli/upmpdcli-manual.html#UPRCL
- 289. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING
- 290. https://framagit.org/medoc92/recoll-gssp/-/blob/master/gssp-recoll.py
- 291. https://framagit.org/medoc92/recollwebui/-/blob/master/webui.py
- 292. https://framagit.org/medoc92/upmpdcli/-/blob/master/src/mediaserver/cdplugins/uprcl/uprclfolders.py
- 293. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG.FIELDS
- 294. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.UPDATE.SAMPLES
- 295. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.UPDATE.SAMPLES
- 296. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.ELEMENTS.UDI
- 297. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.RECOLL.CLASSES.DOC
- 298. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.ELEMENTS.PARENTUDI
- 299. https://framagit.org/medoc92/recoll/-/blob/master/src/python/samples/rclmbox.py
- 300. https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rcljoplin.py
- 301. https://www.recoll.org/pages/download.html
- 302. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
- 303. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.CONFIG
- 304. https://www.recoll.org/pages/features.html#doctypes
+ 237. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG.MODIFIERS
+ 238. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
+ 239. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMEVIEW
+ 240. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMEVIEW
+ 241. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
+ 242. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
+ 243. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF
+ 244. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS
+ 245. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RESLIST.MENU.SNIPPETS
+ 246. https://www.recoll.org/pages/custom.html
+ 247. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMECONF
+ 248. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
+ 249. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RUNSCRIPT
+ 250. https://www.recoll.org/pages/custom.html
+ 251. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.ABSSEP
+ 252. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI
+ 253. https://www.recoll.org/manpages/recollq.1.html
+ 254. https://www.xesam.org/main/XesamUserSearchLanguage95
+ 255. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG.MODIFIERS
+ 256. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
+ 257. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG.MODIFIERS
+ 258. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS
+ 259. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS.PATH
+ 260. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS
+ 261. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.PHRASEANDPROX
+ 262. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.STEMEXPANDPHRASES
+ 263. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TERMEXPLORER
+ 264. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.IDXSYNONYMS
+ 265. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.REMOVABLE.SELF
+ 266. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.PTRANS
+ 267. https://www.recoll.org/pages/download.html#gssp
+ 268. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.KIO
+ 269. https://www.recoll.org/faqsandhowtos/UnityLens
+ 270. https://kde-apps.org/content/show.php/recollrunner?content=128203
+ 271. https://www.recoll.org/faqsandhowtos/HotRecoll
+ 272. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
+ 273. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FILTERS.HTML
+ 274. https://framagit.org/medoc92/recoll
+ 275. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMEMAP
+ 276. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMECONF
+ 277. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
+ 278. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FIELDS
+ 279. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS
+ 280. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
+ 281. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS
+ 282. https://www.recoll.org/faqsandhowtos/HandleCustomField
+ 283. https://www.recoll.org/pages/download.html#gssp
+ 284. https://framagit.org/medoc92/recollwebui
+ 285. https://www.lesbonscomptes.com/upmpdcli/upmpdcli-manual.html#UPRCL
+ 286. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.BUILDING
+ 287. https://framagit.org/medoc92/recoll-gssp/-/blob/master/gssp-recoll.py
+ 288. https://framagit.org/medoc92/recollwebui/-/blob/master/webui.py
+ 289. https://framagit.org/medoc92/upmpdcli/-/blob/master/src/mediaserver/cdplugins/uprcl/uprclfolders.py
+ 290. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.FIELDS
+ 291. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.UPDATE.SAMPLES
+ 292. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.UPDATE.SAMPLES
+ 293. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.ELEMENTS.UDI
+ 294. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.RECOLL.CLASSES.DOC
+ 295. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.PYTHONAPI.ELEMENTS.PARENTUDI
+ 296. https://framagit.org/medoc92/recoll/-/blob/master/src/python/samples/rclmbox.py
+ 297. https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rcljoplin.py
+ 298. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.MULTIDB
+ 299. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
+ 300. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.PTRANS
+ 301. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FILTERS
+ 302. https://www.recoll.org/pages/download.html
+ 303. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INSTALL.EXTERNAL
+ 304. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG
  305. https://www.recoll.org/pages/features.html#doctypes
- 306. https://www.recoll.org/pages/download.html
- 307. https://www.xapian.org/
- 308. https://qt-project.org/downloads
- 309. https://www.gnu.org/software/libiconv/
- 310. mailto:jfd@recoll.org
- 311. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.MULTIDB
- 312. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
- 313. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.PTRANS
- 314. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.PROGRAM.FILTERS
+ 306. https://www.recoll.org/pages/features.html#doctypes
+ 307. https://www.recoll.org/pages/download.html
+ 308. https://www.xapian.org/
+ 309. https://qt-project.org/downloads
+ 310. https://www.gnu.org/software/libiconv/
+ 311. mailto:jfd@recoll.org

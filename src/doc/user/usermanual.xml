@@ -23,8 +23,8 @@
     <title>Recoll user manual</title>
 
     <author>
-      <firstname>Jean-Francois</firstname>
-      <surname>Dockes</surname>
+        <firstname>Jean-Francois</firstname>
+        <surname>Dockes</surname>
       <affiliation>
         <address><email>jfd@recoll.org</email></address>
       </affiliation>
@@ -478,17 +478,17 @@
 
         <para>Excluding files by name can be done by adding wildcard name
           patterns to the
-          <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.SKIPPEDNAMES">
+          <link linkend="RCL.CONFIG.RECOLLCONF.SKIPPEDNAMES">
             skippedNames</link> 
           list, which can be done from the GUI Index configuration
           menu. Excluding by type can be done by setting the 
-          <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.EXCLUDEDMIMETYPES">
+          <link linkend="RCL.CONFIG.RECOLLCONF.EXCLUDEDMIMETYPES">
             excludedmimetypes</link> 
           list in the configuration file. This can be redefined for subdirectories.</para>
 
         <para>You can also define an exclusive list of MIME types to be
           indexed (no others will be indexed), by setting 
-          the <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.INDEXEDMIMETYPES">
+          the <link linkend="RCL.CONFIG.RECOLLCONF.INDEXEDMIMETYPES">
             indexedmimetypes</link>
           configuration variable. Example:</para>
         <programlisting>indexedmimetypes = text/html application/pdf</programlisting>
@@ -502,7 +502,7 @@ indexedmimetypes = application/pdf</programlisting>
 
         <para><literal>excludedmimetypes</literal> or
           <literal>indexedmimetypes</literal>, can be set either by editing
-          the <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF">configuration file (<filename>recoll.conf</filename>)</link>
+          the <link linkend="RCL.CONFIG.RECOLLCONF">configuration file (<filename>recoll.conf</filename>)</link>
           for the index, or by using the GUI index configuration tool.</para>
 
         <note><title>Note about MIME types</title>
@@ -564,7 +564,7 @@ indexedmimetypes = application/pdf</programlisting>
           <listitem><para>For a given configuration directory, you can specify a non-default storage
               location for the index by setting the <varname>dbdir</varname> parameter in the
               configuration file (see
-              the <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF">configuration section</link>). Use
+              the <link linkend="RCL.CONFIG.RECOLLCONF">configuration section</link>). Use
               this method to keep the configuration directory in its default location, and use
               another location for the index, typically because of disk occupation or performance
               reasons.</para></listitem>
@@ -583,7 +583,7 @@ indexedmimetypes = application/pdf</programlisting>
               <filename>~/.indexes-email/xapiandb/</filename>.</para>
 
             <para>Using multiple configuration directories and
-              <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF">configuration options</link>
+              <link linkend="RCL.CONFIG.RECOLLCONF">configuration options</link>
               allows you to tailor multiple configurations and
               indexes to handle whatever subset of the available data you wish
               to make searchable.</para>
@@ -593,7 +593,7 @@ indexedmimetypes = application/pdf</programlisting>
 
       <para>There are quite a few more parameters which can be set in the configuration file itself
         for tailoring &RCL; data storage. They are described in a
-        <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.STORE">section of the configuration
+        <link linkend="RCL.CONFIG.RECOLLCONF.STORE">section of the configuration
           chapter</link>.</para> 
         
       <para>The size of the index is determined by the size of the set of documents, but the ratio
@@ -696,7 +696,7 @@ indexedmimetypes = application/pdf</programlisting>
       <title>Index configuration</title>
 
       <para>Variables stored inside the 
-        <link linkend="RCL.INSTALL.CONFIG">&RCL; configuration files</link>
+        <link linkend="RCL.CONFIG">&RCL; configuration files</link>
         control which areas of the file system are indexed, and how files
         are processed. The values can be set by editing the text
         files. Most of the more commonly used ones can also be adjusted by
@@ -713,14 +713,14 @@ indexedmimetypes = application/pdf</programlisting>
         edit.</para>
 
       <para>The configuration is documented inside the 
-        <link linkend="RCL.INSTALL.CONFIG">installation chapter</link> 
+        <link linkend="RCL.CONFIG">installation chapter</link> 
         of this document, or in the
         <ulink url="https://www.recoll.org/manpages/recoll.conf.5.html"><citerefentry><refentrytitle>recoll.conf</refentrytitle><manvolnum>5</manvolnum></citerefentry></ulink>
         manual page. Both documents are automatically generated from
         the comments inside the configuration file.</para>
 
       <para>The most immediately useful variable is <link
-      linkend="RCL.INSTALL.CONFIG.RECOLLCONF.TOPDIRS"><varname>topdirs</varname></link>, which lists
+      linkend="RCL.CONFIG.RECOLLCONF.TOPDIRS"><varname>topdirs</varname></link>, which lists
       the subtrees and files to be indexed. The variable name is a bit misleading for native English
       speakers, so the corresponding GUI label is <guilabel>Start folders</guilabel>.</para>
 
@@ -771,7 +771,7 @@ indexedmimetypes = application/pdf</programlisting>
           self-evident and documented by a <literal>ToolTip</literal>
           popup on the text label. For more detail, you may need to
           refer to the
-          <link linkend="RCL.INSTALL.CONFIG">configuration section</link>
+          <link linkend="RCL.CONFIG">configuration section</link>
           of this guide.</para>
 
         <para>The configuration tool normally respects the comments
@@ -815,7 +815,7 @@ indexedmimetypes = application/pdf</programlisting>
           <envar>RECOLL_CONFDIR</envar> or the <option>-c</option> parameter, and there is no way to
           switch configurations within the GUI.</para>
 
-        <para>See the <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF">configuration section</link>
+        <para>See the <link linkend="RCL.CONFIG.RECOLLCONF">configuration section</link>
           for a detailed description of the parameters</para>
 
         <para>Some configuration parameters must be consistent among a set
@@ -823,7 +823,7 @@ indexedmimetypes = application/pdf</programlisting>
           all indexes to be queried concurrently must have the same option
           concerning character case and diacritics stripping, but there are
           other constraints. Most of the relevant parameters affect the
-          <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.TERMS">term generation</link>.</para>
+          <link linkend="RCL.CONFIG.RECOLLCONF.TERMS">term generation</link>.</para>
 
         <para>Using multiple configurations implies a small level of command line or file manager
           usage. The user must explicitly create additional configuration directories, the GUI will
@@ -850,7 +850,7 @@ indexedmimetypes = application/pdf</programlisting>
 
           <para>Alternatively, you can just start a text editor on the main
             configuration file:
-            <programlisting><replaceable>someEditor</replaceable> <replaceable>/path/to/my/new/config</replaceable>/<link linkend="RCL.INSTALL.CONFIG.RECOLLCONF"><filename>recoll.conf</filename></link></programlisting>
+            <programlisting><replaceable>someEditor</replaceable> <replaceable>/path/to/my/new/config</replaceable>/<link linkend="RCL.CONFIG.RECOLLCONF"><filename>recoll.conf</filename></link></programlisting>
           </para>
 
           <para>Creating and updating the index can be done from the command line:
@@ -1306,7 +1306,7 @@ indexedmimetypes = application/pdf</programlisting>
           resources. Periodic indexing is adequate in most cases.</para>
 
         <para>As of &RCL; 1.24, you can set the
-          <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.MONITORDIRS">monitordirs</link>
+          <link linkend="RCL.CONFIG.RECOLLCONF.MONITORDIRS">monitordirs</link>
           configuration variable to specify that only a subset of your indexed
           files will be monitored for instant indexing.  In this situation, an
           incremental pass on the full tree can be triggered by either
@@ -1437,7 +1437,7 @@ fs.inotify.max_user_watches=32768</programlisting>
               the system.  &RCL; provides a configuration option to specify the minimum time before
               which a file, specified by a wildcard pattern, cannot be reindexed. See the
               <varname>mondelaypatterns</varname> parameter in the <link
-              linkend="RCL.INSTALL.CONFIG.RECOLLCONF.MISC">configuration
+              linkend="RCL.CONFIG.RECOLLCONF.MISC">configuration
             section</link>.</para> 
           </formalpara>
           
@@ -1458,7 +1458,7 @@ fs.inotify.max_user_watches=32768</programlisting>
       used by &RCL; for searching or displaying results.</para>
       <para>Some fields, like e.g. a file modification time, have a strict and predefined
       usage. For most fields though, the processing is entirely configurable and defined in the 
-      <link linkend="RCL.INSTALL.CONFIG.FIELDS"><filename>fields</filename>
+      <link linkend="RCL.CONFIG.FIELDS"><filename>fields</filename>
       configuration file</link></para>
 
       <para>Fields have two main processing options (at least one of which will be set if they are
@@ -1494,7 +1494,7 @@ fs.inotify.max_user_watches=32768</programlisting>
 
           <para>&RCL; processes all extended attributes as document fields. Note that most
           fields are not indexed by default, you need to activate them by defining a prefix in
-          the <link linkend="RCL.INSTALL.CONFIG.FIELDS"><filename>fields</filename>
+          the <link linkend="RCL.CONFIG.FIELDS"><filename>fields</filename>
           configuration file</link>.</para> 
 
           <para>A <ulink url="https://www.freedesktop.org/wiki/CommonExtendedAttributes">freedesktop
@@ -1518,7 +1518,7 @@ fs.inotify.max_user_watches=32768</programlisting>
           <para>On Linux, the <literal>user</literal> prefix is removed from the name.</para>
 
           <para>The name translation can be configured more precisely, inside the
-          <link linkend="RCL.INSTALL.CONFIG.FIELDS.XATTR"><filename>fields</filename> configuration
+          <link linkend="RCL.CONFIG.FIELDS.XATTR"><filename>fields</filename> configuration
           file</link>.</para>
 
           <note><title>Setting the document modification/creation date</title>
@@ -1546,7 +1546,7 @@ fs.inotify.max_user_watches=32768</programlisting>
           storing it in a field for indexing.</para>
 
           <para>See the 
-          <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.METADATACMDS">section about
+          <link linkend="RCL.CONFIG.RECOLLCONF.METADATACMDS">section about
           the <literal>metadatacmds</literal> field</link> in the main configuration chapter for a
           description of the configuration syntax.</para>
 
@@ -1662,12 +1662,12 @@ metadatacmds = ; <replaceable>tags</replaceable> = tmsu tags %f</programlisting>
             <command>pdfinfo</command> command (usually found with
             <application>poppler-utils</application>). This is controlled by
             the
-            <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.PDFEXTRAMETA">pdfextrameta</link>
+            <link linkend="RCL.CONFIG.RECOLLCONF.PDFEXTRAMETA">pdfextrameta</link>
             configuration variable, which specifies which tags to extract and,
             possibly, how to rename them.</para>
 
           <para>The
-            <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.PDFEXTRAMETAFIX">pdfextrametafix</link>
+            <link linkend="RCL.CONFIG.RECOLLCONF.PDFEXTRAMETAFIX">pdfextrametafix</link>
             variable can be used to designate a file with Python code to edit
             the metadata fields (available for &RCL; 1.23.3 and later. 1.23.2
             has equivalent code inside the handler script). Example:</para>
@@ -1711,7 +1711,7 @@ pass</programlisting>
 
           <para>If <application>pdftk</application> is installed, and if the
             the
-            <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.PDFATTACH">pdfattach</link>
+            <link linkend="RCL.CONFIG.RECOLLCONF.PDFATTACH">pdfattach</link>
             configuration variable is set, the PDF input handler will try to
             extract PDF attachments for indexing as sub-documents of the PDF
             file. This is disabled by default, because it slows down PDF
@@ -1738,7 +1738,7 @@ pass</programlisting>
           applications (<application>tesseract</application> or <application>ABBYY</application>),
           enable OCR in the PDF handler (by setting <literal>pdfocr</literal>
           to <literal>1</literal> in the index configuration file), and tell &RCL; how to run the
-          OCR by setting <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.OCR">configuration
+          OCR by setting <link linkend="RCL.CONFIG.RECOLLCONF.OCR">configuration
           variables</link>. All parameters can be localized in subdirectories through the usual main
           configuration mechanism (path sections).</para>
 
@@ -1887,7 +1887,7 @@ recollindex -c "$confdir"</programlisting>
             moved, you must ensure the following:
             <itemizedlist>
               <listitem><para>The main configuration file must define the
-                  <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.ORGIDXCONFDIR">orgidxconfdir</link>
+                  <link linkend="RCL.CONFIG.RECOLLCONF.ORGIDXCONFDIR">orgidxconfdir</link>
                   variable to be the original location of the configuration directory
                   (<filename>orgidxconfdir=/home/me/mydata/recoll-confdir</filename>
                   must be set inside
@@ -1919,7 +1919,7 @@ recollindex -c "$confdir"</programlisting>
           <para>If, after the move, the configuration directory needs to be
             copied out of the dataset (for example because the thumb drive is too
             slow), you can set the
-            <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.CURIDXCONFDIR">curidxconfdir</link>,
+            <link linkend="RCL.CONFIG.RECOLLCONF.CURIDXCONFDIR">curidxconfdir</link>,
             variable inside the copied configuration to
             define the location of the moved one. For example if
             <filename>/home/me/mydata</filename> is now mounted onto
@@ -2241,14 +2241,14 @@ recollindex -c "$confdir"</programlisting>
           <itemizedlist>
             <listitem><para>The <literal>Preview</literal> link will appear for documents with a
                 MIME type present in the <literal>[index]</literal> section of
-                the <link linkend="RCL.INSTALL.CONFIG.MIMECONF"><filename>mimeconf</filename></link>
+                the <link linkend="RCL.CONFIG.MIMECONF"><filename>mimeconf</filename></link>
                 file, and, only if the <literal>textunknownasplain</literal> configuration variable
                 is set, for all types identified as a subtype of
                 <literal>text</literal> (<literal>text/*</literal>).</para>
             </listitem>
             <listitem><para>The <literal>Open</literal> link will appear for documents with a
                 MIME type present in the <literal>[view]</literal> section of the
-                <link linkend="RCL.INSTALL.CONFIG.MIMEVIEW"><filename>mimeview</filename></link>
+                <link linkend="RCL.CONFIG.MIMEVIEW"><filename>mimeview</filename></link>
                 configuration file. If <literal>textunknownasplain</literal> is set and no specific
                 viewer is found for a subtype of <literal>text</literal>, the viewer
                 for <literal>text/plain</literal> will be used.</para>
@@ -3501,7 +3501,7 @@ recollindex -c "$confdir"</programlisting>
               <guimenuitem>User interface</guimenuitem>
               <guimenuitem>Choose editor applications</guimenuitem>
             </menuchoice> dialog or by editing
-            the <link linkend="RCL.INSTALL.CONFIG.MIMEVIEW">
+            the <link linkend="RCL.CONFIG.MIMEVIEW">
               <filename>mimeview</filename> configuration file.</link></para>
 
           <para>When <guilabel>Use desktop preferences</guilabel>, at the top of the dialog, is
@@ -3525,7 +3525,7 @@ recollindex -c "$confdir"</programlisting>
 
           <para>You may also change the choice of applications by editing
             the
-            <link linkend="RCL.INSTALL.CONFIG.MIMEVIEW">
+            <link linkend="RCL.CONFIG.MIMEVIEW">
               <filename>mimeview</filename></link> 
             configuration file if you find this more convenient.</para>
 
@@ -3699,7 +3699,7 @@ recollindex -c "$confdir"</programlisting>
               <listitem><para><guilabel>Stemming language</guilabel>: stemming obviously depends on
               the document's language. This listbox will let you chose among the stemming databases
               which were built during indexing (this is set in the <link
-              linkend="RCL.INSTALL.CONFIG.RECOLLCONF">main configuration file</link>), or later
+              linkend="RCL.CONFIG.RECOLLCONF">main configuration file</link>), or later
               added with <command>recollindex -s</command> (See the recollindex manual). Stemming
               languages which are dynamically added will be deleted at the next indexing pass unless
               they are also added in the configuration file.</para></listitem>
@@ -3817,7 +3817,7 @@ recollindex -c "$confdir"</programlisting>
 
               <varlistentry><term>%I</term><listitem><para>Icon image name. This is normally
               determined from the MIME type. The associations are defined inside the 
-              <link linkend="RCL.INSTALL.CONFIG.MIMECONF"><filename>mimeconf</filename>
+              <link linkend="RCL.CONFIG.MIMECONF"><filename>mimeconf</filename>
               configuration file</link>. If a thumbnail for the file is found at the standard
               Freedesktop location, this will be displayed instead.</para></listitem></varlistentry>
 
@@ -4238,7 +4238,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
       <para>You can define aliases for field names, in order to use your preferred denomination or
         to save typing (e.g. the predefined <literal>fn</literal> and <literal>cfn</literal> aliases
         defined for <literal>filename</literal> and <literal>containerfilename</literal>). See
-        the <link linkend="RCL.INSTALL.CONFIG.FIELDS">section about the <filename>fields</filename>
+        the <link linkend="RCL.CONFIG.FIELDS">section about the <filename>fields</filename>
         file</link>.
       </para> 
 
@@ -4414,7 +4414,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
         possibly open-ended interval.</para>
 
         <para>See the section about the
-        <link linkend="RCL.INSTALL.CONFIG.FIELDS"><filename>fields</filename> configuration file</link>
+        <link linkend="RCL.CONFIG.FIELDS"><filename>fields</filename> configuration file</link>
         for the details of configuring a field for range searches (list
         them in the [values] section).</para> 
 
@@ -4455,7 +4455,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
 
           <listitem><para><literal>x</literal> (1.33.2) will enable the expansion of terms inside a
               phrase search (the default is for phrases to be searched verbatim). Also see
-              the <link linkend="RCL.INSTALL.CONFIG.RECOLLCONF.STEMEXPANDPHRASES">
+              the <link linkend="RCL.CONFIG.RECOLLCONF.STEMEXPANDPHRASES">
                 <literal>stemexpandphrases</literal></link> in the configuration
                 section, for changing the default behaviour.</para></listitem> 
 
@@ -4627,7 +4627,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
       terms in the group.</para>
 
       <para>The one exception is that if the <link
-      linkend="RCL.INSTALL.CONFIG.RECOLLCONF.IDXSYNONYMS"><literal>idxsynonyms</literal></link>
+      linkend="RCL.CONFIG.RECOLLCONF.IDXSYNONYMS"><literal>idxsynonyms</literal></link>
       parameter is set during indexing, and if the file contains multi-word synonyms, a multi-word
       single term will be emitted for every occurrence found in the text. If the same file is in use
       at query time, this will allow phrase and proximity searches to work for the multi-word
@@ -4723,7 +4723,7 @@ bye goodbye "see you" \
       allowing accesses from the client.</para>
 
       <para>The translations are defined in the 
-        <link linkend="RCL.INSTALL.CONFIG.PTRANS"><filename>ptrans</filename></link> configuration
+        <link linkend="RCL.CONFIG.PTRANS"><filename>ptrans</filename></link> configuration
         file, which can be edited with a plain text editor or by using the GUI external indexes
         configuration dialog: <menuchoice><guimenu>Preferences</guimenu><guimenuitem>External index
             dialog</guimenuitem></menuchoice>, then click the <guilabel>Paths
@@ -5099,7 +5099,7 @@ C: = Z:</programlisting></para></note>
 
         <para>The association of files to MIME types is mostly based on
         name suffixes. The types are defined inside the
-        <link linkend="RCL.INSTALL.CONFIG.MIMEMAP"><filename>mimemap</filename> file</link>. 
+        <link linkend="RCL.CONFIG.MIMEMAP"><filename>mimemap</filename> file</link>. 
         Example:
           <programlisting>
 .doc = application/msword</programlisting>
@@ -5110,7 +5110,7 @@ C: = Z:</programlisting></para></note>
           or <command>xdg-mime</command>).</para>
 
         <para>The second element is the association of MIME types to handlers in
-        the <link linkend="RCL.INSTALL.CONFIG.MIMECONF"><filename>mimeconf</filename> file</link>.
+        the <link linkend="RCL.CONFIG.MIMECONF"><filename>mimeconf</filename> file</link>.
         A sample will probably be better than a long explanation:</para>
         <programlisting>
 [index]
@@ -5321,7 +5321,7 @@ or
 
       <para>Some fields may also designated as supporting range queries,
       meaning that the results may be selected for an interval of its
-      values. See the <link linkend="RCL.INSTALL.CONFIG.FIELDS">configuration section</link> for more details.</para>
+      values. See the <link linkend="RCL.CONFIG.FIELDS">configuration section</link> for more details.</para>
       
       <para>The sequence of events for field processing is as follows:
       <itemizedlist>
@@ -5359,7 +5359,7 @@ or
       </itemizedlist>
       </para>
 
-      <para>You can find more information in the <link linkend="RCL.INSTALL.CONFIG.FIELDS">section
+      <para>You can find more information in the <link linkend="RCL.CONFIG.FIELDS">section
       about the <filename>fields</filename> file</link>, or in comments inside the file.</para>
 
       <para>You can also have a look at the 
@@ -5509,7 +5509,7 @@ for doc in results:
           <varlistentry> 
             <term>Stored and indexed fields</term>
 
-            <listitem><para>The <link linkend="RCL.INSTALL.CONFIG.FIELDS"><filename>fields</filename>
+            <listitem><para>The <link linkend="RCL.CONFIG.FIELDS"><filename>fields</filename>
             file</link> inside the &RCL; configuration defines which document fields are
             either <literal>indexed</literal> (searchable), <literal>stored</literal> (retrievable
             with search results), or both. Apart from a few standard/internal fields, only
@@ -6365,8 +6365,841 @@ db.purge()</programlisting>
   </chapter>
 
 
-  <chapter id="RCL.INSTALL">
-    <title>Installation and configuration</title>
+  <chapter id="RCL.CONFIG">
+    <title>Configuration</title>
+
+    <sect1 id="RCL.CONFIG.OVERVIEW">
+      <title>Settings, configuration overview</title>
+
+      <para>Most of the parameters specific to the <command>recoll</command> GUI are set through the
+      <guilabel>Preferences</guilabel> menu and stored in the standard Qt place
+      (<filename>$HOME/.config/Recoll.org/recoll.conf</filename>).</para>
+
+      <para>&RCL; indexing options are set inside text configuration
+      files located in a configuration directory. There can be
+      several such directories, each of which defines the parameters
+      for one index.</para>
+
+      <para>The configuration files can be edited with a plain text editor or through the
+      <guilabel>Index configuration</guilabel> dialog (<guilabel>Preferences</guilabel> menu). The
+      GUI tool will try to respect your formatting and comments as much as possible, so it is quite
+      possible to use both approaches on the same configuration.</para>
+
+      <para>For each index, there are at least two sets of configuration files. System-wide
+      configuration files come with the installation and are kept in a directory named like
+      <filename>/usr/share/recoll/examples</filename> on &LIN; (or an equivalent on other systems),
+      and define default values, shared by all indexes (the values in these files are often
+      commented out, and just present to indicate the default coded in the program). For each index,
+      a parallel set of files defines the customised parameters.</para>
+
+      <para>On &LIN;, the location of the default index customised configuration is
+        the <filename>.recoll</filename> directory in your home. On &WIN; it
+        is <filename>C:/Users/[you]/AppData/Local/Recoll</filename>. Most people will only use this
+        directory.</para> 
+
+      <para>The location for the default index configuration directory can be changed, or others can
+        be added for separate indexes with the <envar>RECOLL_CONFDIR</envar> environment variable or
+        the <option>-c</option> option parameter to <command>recoll</command> and
+        <command>recollindex</command>.</para>
+
+      <para>In addition, for each index, it is possible to specify two additional configuration
+      directories which will be stacked before and after the user configuration directory. These are
+      defined by the <envar>RECOLL_CONFTOP</envar> and <envar>RECOLL_CONFMID</envar> environment
+      variables. Values from configuration files inside the top directory will override user ones,
+      values from configuration files inside the middle directory will override system ones and be
+      overridden by user ones. These two variables may be of use to applications which augment &RCL;
+      functionality, and need to add configuration data without disturbing the user's files. Please
+      note that the two, currently single, values will probably be interpreted as colon-separated
+      lists in the future: do not use colon characters inside the directory paths.</para>
+
+      <para>If the default configuration directory does not exist when either
+      <command>recoll</command> or <command>recollindex</command> is started, it will be created
+      with a set of empty configuration files. <command>recoll</command> will give you a chance to
+      edit the configuration file before starting indexing. <command>recollindex</command> will
+      proceed immediately. To avoid mistakes, the automatic directory creation will only occur for
+      the default location, not if <option>-c</option> or <envar>RECOLL_CONFDIR</envar> were used,
+      in which case, you will have to create the directory.</para>
+
+      <para>All configuration files share the same format. For example, a short extract of the main
+      configuration file might look as follows:</para>
+      <programlisting>
+# Space-separated list of files and directories to index.
+topdirs =  ~/docs /usr/share/doc
+
+[~/somedirectory-with-utf8-txt-files]
+defaultcharset = utf-8</programlisting>
+
+      <para>There are three kinds of lines:</para>
+      <itemizedlist>
+        <listitem><para>Comments start with a hash mark <emphasis>#</emphasis>.</para> 
+        </listitem>
+        <listitem><para>Parameter assignment: <emphasis>name = value</emphasis>.</para> 
+        </listitem>
+        <listitem><para>Section definitions: [<emphasis>somedirname</emphasis>].</para> 
+        </listitem>
+      </itemizedlist>
+
+      <para>Lines which are empty or only containing white space are ignored.</para>
+      <para>Long lines can be broken by ending each incomplete part with a backslash
+      (<literal>\</literal>).</para> 
+      
+      <para>Depending on the type of configuration file, section definitions either separate groups
+      of parameters or allow redefining some parameters for a directory sub-tree. They stay in
+      effect until another section definition, or the end of file, is encountered. Some of the
+      parameters used for indexing are looked up hierarchically from the current directory location
+      upwards. Not all parameters can be meaningfully redefined, this is specified for each in the
+      next section. </para>
+
+      <important>
+        <para>Global parameters <emphasis>must not</emphasis> be defined in
+        a directory subsection, else they will not be found at all by the
+        &RCL; code, which looks for them at the top level
+        (e.g. <literal>skippedPaths</literal>).</para> 
+      </important>
+
+      <para>When found at the beginning of a file path, the tilde character (~) is expanded to the
+      name of the user's home directory, as a shell would do. The same convention is used on
+      &WIN;.</para> 
+      
+      <para>Some parameters are lists of strings. White space is used for separation. List elements
+      with embedded spaces can be quoted using double-quotes. Double quotes inside these elements
+      can be escaped with a backslash.</para>
+
+      <para>No value inside a configuration file can contain a newline
+      character. Long lines can be continued by escaping the
+      physical newline with backslash, even inside quoted strings.</para>
+      <programlisting>
+astringlist =  "some string \
+with spaces"
+thesame = "some string with spaces"</programlisting>
+
+      <para>Parameters which are not part of string lists can't be
+        quoted, and leading and trailing space characters are
+        stripped before the value is used.</para>
+
+      <important>
+        <para>Quotes processing is ONLY applied to parameter values which are lists. Double quoting
+          a single value like, e.g. <literal>dbdir</literal> will result in an incorrect value, with
+          quotes included. This is quite confusing, and may have been a design mistake but it is
+          much too late to fix.</para></important>
+
+      <formalpara>
+        <title>Encoding issues</title>
+        <para>Most of the configuration parameters are plain ASCII. Two
+          particular sets of values may cause encoding issues:</para>
+      </formalpara>
+
+
+      <para>
+        <itemizedlist>
+          <listitem><para>File path parameters may contain non-ASCII characters and should use the
+              exact same byte values as found in the file system directory. Usually, this means that
+              the configuration file should use the system default locale encoding.</para>
+          </listitem>
+          <listitem><para>The <envar>unac_except_trans</envar> parameter (meaning unaccenting
+              exception translations) should be encoded in UTF-8. If your system locale is not UTF-8
+              (which is now very rare), and you need to also specify non-ASCII file paths, this
+              poses a difficulty because common text editors cannot handle multiple encodings in a
+              single file. In this relatively unlikely case, you can edit the configuration file as
+              two separate text files with appropriate encodings, and concatenate them to create the
+              complete configuration.</para>
+          </listitem>
+        </itemizedlist>
+      </para>
+    </sect1>
+      <sect1 id="RCL.CONFIG.ENVIR">
+        <title>Environment variables</title>
+
+        <variablelist>
+          <varlistentry>
+            <term><varname>RECOLL_CONFDIR</varname></term>
+            <listitem><para>Defines the main configuration
+            directory.</para></listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><varname>RECOLL_TMPDIR, TMPDIR</varname></term>
+            <listitem><para>Locations for temporary files, in this order
+            of priority. The default if none of these is set is to use
+            <filename>/tmp</filename>. Big temporary files may be created
+            during indexing, mostly for decompressing, and also for
+            processing, e.g. email attachments.</para></listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><varname>RECOLL_CONFTOP, RECOLL_CONFMID</varname></term>
+            <listitem><para>Allow adding configuration directories with
+            priorities below and above the user directory (see above the
+            Configuration overview section for details).</para></listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><varname>RECOLL_EXTRA_DBS, RECOLL_ACTIVE_EXTRA_DBS</varname></term>
+            <listitem><para>
+              Help for setting up external indexes. See
+              <link linkend="RCL.SEARCH.GUI.MULTIDB">this paragraph</link> for
+              explanations.
+            </para></listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><varname>RECOLL_DATADIR</varname></term>
+            <listitem><para>Defines replacement for the default location
+            of Recoll data files, normally found in, e.g.,
+            <filename>/usr/share/recoll</filename>).</para></listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><varname>RECOLL_FILTERSDIR</varname></term>
+            <listitem><para>Defines replacement for the default location
+            of Recoll filters, normally found in, e.g.,
+            <filename>/usr/share/recoll/filters</filename>).</para></listitem>
+          </varlistentry>
+
+          <varlistentry>
+            <term><varname>ASPELL_PROG</varname></term>
+            <listitem><para><command>aspell</command> program to use for
+            creating the spelling dictionary. The result has to be
+            compatible with the <filename>libaspell</filename> which &RCL;
+            is using.</para></listitem>
+          </varlistentry>
+
+        </variablelist>
+
+      </sect1>
+
+      <!-- <sect2 id="RCL.CONFIG.RECOLLCONF"> -->
+&RCLCONF;
+
+
+      <sect1 id="RCL.CONFIG.FIELDS">
+        <title>The fields file</title>
+
+        <para>This file contains information about dynamic fields handling
+        in &RCL;. Some very basic fields have hard-wired behaviour,
+        and, mostly, you should not change the original data inside the
+        <filename>fields</filename> file. But you can create custom fields
+        fitting your data and handle them just like they were native
+        ones.</para>
+
+        <para>The <filename>fields</filename> file has several sections,
+        which each define an aspect of fields processing. Quite often,
+        you'll have to modify several sections to obtain the desired
+        behaviour.</para>
+
+        <para>We will only give a short description here, you should refer
+        to the comments inside the default file for more detailed
+        information.</para>
+
+        <para>Field names should be lowercase alphabetic ASCII.</para>
+
+        <variablelist>
+
+          <varlistentry>
+            <term>[prefixes]</term>
+            <listitem><para>A field becomes indexed (searchable) by having
+            a prefix defined in this section. There is a more complete
+            explanation of what prefixes are in used by a standard recoll
+            installation. In a nutshell: extension prefixes should be all
+            caps, begin with XY, and short. E.g. XYMFLD.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>[values]</term>
+            <listitem><para>Fields listed in this section will be stored as
+            &XAP; <literal>values</literal> inside the index. This makes
+            them available for range queries, allowing to filter results
+            according to the field value. This feature currently supports
+            string and integer data. See the comments in the file for more
+            detail</para> 
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>[stored]</term>
+            <listitem><para>A field becomes stored (displayable inside
+            results) by having its name listed in this section (typically
+            with an empty value).</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>[aliases]</term>
+            <listitem><para>This section defines lists of synonyms for the
+            canonical names used inside the <literal>[prefixes]</literal>
+            and <literal>[stored]</literal> sections</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>[queryaliases]</term>
+            <listitem><para>This section also defines aliases for the
+            canonic field names, with the difference that the substitution
+            will only be used at query time, avoiding any possibility that
+            the value would pick-up random metadata from documents.</para>
+            </listitem>
+          </varlistentry>
+          <varlistentry>
+            <term>handler-specific sections</term>
+            <listitem><para>Some input handlers may need specific
+            configuration for handling fields. Only the email message handler
+            currently has such a section (named
+            <literal>[mail]</literal>). It allows indexing arbitrary email
+            headers in addition to the ones indexed by default. Other such
+            sections may appear in the future.</para>
+            </listitem>
+          </varlistentry>
+
+        </variablelist>
+
+        <para>Here follows a small example of a personal <filename>fields</filename> file. This
+        would extract a specific email header and use it as a searchable field, with data
+        displayable inside result lists. (Side note: as the email handler does no decoding on the
+        values, only plain ASCII headers can be indexed, and only the first occurrence will be used
+        for headers that occur several times).
+
+        <programlisting>[prefixes]
+# Index mailmytag contents (with the given prefix)
+mailmytag = XMTAG
+
+[stored]
+# Store mailmytag inside the document data record (so that it can be
+# displayed - as %(mailmytag) - in result lists).
+mailmytag = 
+
+[queryaliases]
+filename = fn
+containerfilename = cfn
+
+[mail]
+# Extract the X-My-Tag mail header, and use it internally with the
+# mailmytag field name
+x-my-tag = mailmytag</programlisting>
+        </para>
+
+
+        <sect2 id="RCL.CONFIG.FIELDS.XATTR">
+          <title>Extended attributes in the fields file</title>
+
+          <para>&RCL; processes user extended file attributes as documents fields by default.</para>
+          <para>Attributes are processed as fields of the same name, after removing
+            the <literal>user</literal> prefix on Linux.</para>
+          <para>The <literal>[xattrtofields]</literal> section of the <filename>fields</filename>
+            file allows specifying translations from extended attributes names to &RCL; field
+            names.</para>
+          <para>Name translations are set as <code>xattrname = fieldname</code>. They are
+            case-sensitive.  E.g. the following would map a quite an extended attribute named "tags"
+            into the "keywords" field: <code>tags = keywords</code>.</para>
+          <para>Entering an empty translation will disable any use of the
+            attribute.</para> 
+          <para>The values from the extended attributes will not replace the
+            data found from equivalent fields inside the document, instead they are
+            concatenated.</para>
+          <para>Special case: an extended attribute named <literal>modificationdate</literal> will
+            set the <varname>dmtime</varname> field (document date) only if it is not set by an
+            internal document field (e.g. email <literal>Date:</literal>).</para>
+
+        </sect2>
+
+      </sect1>
+
+      <sect1 id="RCL.CONFIG.MIMEMAP">
+        <title>The mimemap file</title>
+
+        <para><filename>mimemap</filename> specifies the
+        file name extension to MIME type mappings.</para> 
+        
+        <para>For file names without an extension, or with an unknown one,
+          recent &RCL; versions will use libmagic. Older versions would execute a system command
+          (<command>file</command> <option>-i</option>, or <command>xdg-mime</command>) will be
+          executed to determine the MIME type (this can be switched off, or the command changed
+          inside the main configuration file).</para>
+
+        <para>All extension values in <filename>mimemap</filename> must be
+        entered in lower case. File names extensions are lower-cased for
+        comparison during indexing, meaning that an upper case
+        <filename>mimemap</filename> entry will never be matched.</para>
+
+        <para>The mappings can be specified on a per-subtree basis,
+        which may be useful in some cases. Example:
+        <application>okular</application> notes have a
+        <filename>.xml</filename> extension but 
+        should be handled specially, which is possible because they
+        are usually all located in one place. Example:
+        <programlisting>[~/.kde/share/apps/okular/docdata]
+.xml = application/x-okular-notes</programlisting></para>
+
+        <para>The <varname>recoll_noindex</varname>
+        <filename>mimemap</filename> variable has been moved to
+        <filename>recoll.conf</filename> and renamed to
+        <varname>noContentSuffixes</varname>, while keeping the same
+        function, as of &RCL; version 1.21. For older &RCL; versions,
+        see the documentation for <varname>noContentSuffixes</varname>
+        but use <varname>recoll_noindex</varname> in
+        <filename>mimemap</filename>.</para>
+
+      </sect1>
+
+      <sect1 id="RCL.CONFIG.MIMECONF">
+        <title>The mimeconf file</title>
+
+        <para>The main purpose of the <filename>mimeconf</filename> file is
+        to specify how the different MIME types are handled for
+        indexing. This is done in the <literal>[index]</literal>
+        section, which should not be modified casually. See the comments in
+        the file.</para>
+
+        <para>The file also contains other definitions which affect the
+        query language and the GUI, and which, in retrospect, should have
+        been stored elsewhere.</para>
+
+        <para>The <literal>[icons]</literal> section allows you to change
+        the icons which are displayed by the <command>recoll</command> GUI
+        in the result lists (the values are the basenames of the
+        <literal>png</literal> images inside the
+        <filename>iconsdir</filename> directory (which is itself defined
+        in <filename>recoll.conf</filename>).</para>
+
+        <para>The <literal>[categories]</literal> section defines the
+        groupings of MIME types into <literal>categories</literal> as used
+        when adding an <literal>rclcat</literal> clause to a
+        <link linkend="RCL.SEARCH.LANG">query language</link>
+        query. <literal>rclcat</literal> clauses are also used by the
+        default <literal>guifilters</literal> buttons in the GUI (see
+        next).</para>
+
+        <para>The filter controls appear at the top of the
+        <command>recoll</command> GUI, either as checkboxes just above the
+        result list, or as a dropbox in the tool area.</para>
+
+        <para>By default, they are labeled: <literal>media</literal>,
+        <literal>message</literal>, <literal>other</literal>,
+        <literal>presentation</literal>, <literal>spreadsheet</literal> and
+        <literal>text</literal>, and each maps to a document category. This
+        is determined in the <literal>[guifilters]</literal> section, where
+        each control is defined by a variable naming a query language
+        fragment.</para>
+
+        <para>A simple example will hopefully make things clearer.</para>
+
+        <programlisting>[guifilters]
+
+Big Books = dir:"~/My Books" size&gt;10K
+My Docs = dir:"~/My Documents"
+Small Books = dir:"~/My Books" size&lt;10K
+System Docs = dir:/usr/share/doc</programlisting>
+
+
+        <para>The above definition would create four filter checkboxes,
+        labelled <literal>Big Books</literal>, <literal>My Docs</literal>,
+        etc.</para>
+
+        <para>The text after the equal sign must be a valid query language
+        fragment, and, when the button is checked, it will be combined with
+        the rest of the query with an AND conjunction.</para>
+
+        <para>Any name text before a colon character will be erased in the
+        display, but used for sorting. You can use this to display the
+        checkboxes in any order you like. For example, the following would
+        do exactly the same as above, but ordering the checkboxes in the
+        reverse order.</para>
+
+        <programlisting>[guifilters]
+
+d:Big Books = dir:"~/My Books" size&gt;10K
+c:My Docs = dir:"~/My Documents"
+b:Small Books = dir:"~/My Books" size&lt;10K
+a:System Docs = dir:/usr/share/doc</programlisting>
+
+        <para>As you may have guessed, The default
+        <literal>[guifilters]</literal> section looks like:</para>
+        <programlisting>[guifilters]
+text = rclcat:text
+spreadsheet = rclcat:spreadsheet
+presentation = rclcat:presentation
+media = rclcat:media
+message = rclcat:message
+other = rclcat:other</programlisting>
+        
+      </sect1>
+
+
+      <sect1 id="RCL.CONFIG.MIMEVIEW">
+        <title>The mimeview file</title>
+
+        <para><filename>mimeview</filename> specifies which programs
+        are started when you click on an <guilabel>Open</guilabel> link
+        in a result list. E.g.: HTML is normally displayed using
+        <application>firefox</application>, but you may prefer
+        <application>Konqueror</application>, your
+        <application>openoffice.org</application> 
+        program might be named <command>oofice</command> instead of
+        <command>openoffice</command> etc.</para>
+
+        <para>Changes to this file can be done by direct editing, or
+        through the <command>recoll</command> GUI preferences dialog.</para>
+
+        <para>If <guilabel>Use desktop preferences to choose document
+        editor</guilabel> is checked in the &RCL; GUI preferences, all
+        <filename>mimeview</filename> entries will be ignored except the
+        one labelled <literal>application/x-all</literal> (which is set to
+        use <command>xdg-open</command> by default).</para>
+
+        <para>In this case, the <literal>xallexcepts</literal> top level
+        variable defines a list of MIME type exceptions which
+        will be processed according to the local entries instead of being
+        passed to the desktop. This is so that specific &RCL; options
+        such as a page number or a search string can be passed to
+        applications that support them, such as the
+        <application>evince</application> viewer.</para>
+
+        <para>As for the other configuration files, the normal usage
+        is to have a <filename>mimeview</filename> inside your own
+        configuration directory, with just the non-default entries,
+        which will override those from the central configuration
+        file.</para>
+
+        <para>All viewer definition entries must be placed under a
+        <literal>[view]</literal> section.</para>
+
+        <para>The keys in the file are normally MIME types. You can add an
+        application tag to specialize the choice for an area of the
+        filesystem (using a <varname>localfields</varname> specification
+        in <filename>mimeconf</filename>). The syntax for the key is 
+        <replaceable>mimetype</replaceable><literal>|</literal><replaceable>tag</replaceable></para>
+
+        <para>The <varname>nouncompforviewmts</varname> entry, (placed at
+        the top level, outside of the <literal>[view]</literal> section),
+        holds a list of MIME types that should not be uncompressed before
+        starting the viewer (if they are found compressed, e.g.:
+        <replaceable>mydoc.doc.gz</replaceable>).</para>
+
+        <para>The right side of each assignment holds a command to be
+        executed for opening the file. The following substitutions are
+        performed:</para> 
+        
+        <itemizedlist>
+          <listitem>
+            <formalpara><title>%D</title>
+            <para>Document date</para></formalpara>
+          </listitem> 
+
+          <listitem><formalpara><title>%f</title>
+          <para>File name. This may be the name of a temporary file if
+          it was  necessary to create one (e.g.: to extract a subdocument
+          from a  container).</para></formalpara>
+          </listitem>
+
+          <listitem><formalpara><title>%i</title>
+          <para>Internal path, for subdocuments of containers. The
+          format depends on the container type. If this appears in the
+          command line, &RCL; will not create a temporary file to
+          extract the subdocument, expecting the called application
+          (possibly a script) to be able to handle it.</para></formalpara>
+          </listitem>
+
+          <listitem>
+            <formalpara><title>%M</title><para>MIME type</para></formalpara> 
+          </listitem>
+
+          <listitem>
+            <formalpara><title>%p</title><para>Page index. Only significant for a subset of
+                document types, currently only PDF, Postscript and DVI files. If it is set, a
+                significant term will be chosen in the query, and %p will be substituted with the
+                first page where the term appears. Can be used to start the editor at the right page
+                for a match or snippet.</para></formalpara>
+          </listitem>
+
+          <listitem>
+            <formalpara><title>%l</title><para>Line number. Only significant for document
+                types with relevant line breaks, mostly text/plain and analogs. If it is set, a
+                significant term will be chosen in the query, and %p will be substituted with the
+                first line where the term appears.</para></formalpara>
+          </listitem>
+
+          <listitem>
+            <formalpara><title>%s</title><para>Search term. The value will only be set for
+                documents with indexed page or line numbers and if %p or %l is also used. The value
+                will be one of the matched search terms. It would allow pre-setting the value in the
+                "Find" entry inside Evince for example, for easy highlighting of the
+                term.</para></formalpara>
+          </listitem>
+
+          <listitem>
+            <formalpara><title>%u</title><para>Url.</para></formalpara> 
+          </listitem>
+
+        </itemizedlist>
+
+        <para>In addition to the predefined values above, all strings like
+        <literal>%(fieldname)</literal> will be replaced by the value of
+        the field named <literal>fieldname</literal> for the
+        document. This could be used in combination with field
+        customisation to help with opening the document.</para> 
+
+      </sect1>
+
+      <sect1 id="RCL.CONFIG.PTRANS">
+        <title>The <filename>ptrans</filename> file</title>
+
+        <para><filename>ptrans</filename> specifies query-time path
+        translations. These can be useful
+        in <link linkend="RCL.SEARCH.PTRANS">multiple cases</link>.
+        </para>
+
+        <para>The file has a section for any index which needs
+        translations, either the main one or additional query
+        indexes. The sections are named with the &XAP; index
+        directory names. No slash character should exist at the end
+        of the paths (all comparisons are textual). An example
+        should make things sufficiently clear</para>
+
+        <programlisting>
+[/home/me/.recoll/xapiandb]
+/this/directory/moved = /to/this/place
+
+[/path/to/additional/xapiandb]
+/server/volume1/docdir = /net/server/volume1/docdir
+/server/volume2/docdir = /net/server/volume2/docdir</programlisting>
+
+      </sect1>
+
+
+      <sect1 id="RCL.CONFIG.EXAMPLES">
+        <title>Examples of configuration adjustments</title>
+
+        <sect2 id="RCL.CONFIG.EXAMPLES.ADDVIEW">
+          <title>Adding an external viewer for an non-indexed type</title>
+
+          <para>Imagine that you have some kind of file which does not
+          have indexable content, but for which you would like to have a
+          functional <guilabel>Open</guilabel> link in the result list
+          (when found by file name). The file names end in
+          <replaceable>.blob</replaceable> and can be displayed by
+          application <replaceable>blobviewer</replaceable>.</para>
+
+          <para>You need two entries in the configuration files for this
+          to work:</para>
+
+          <itemizedlist>
+            <listitem><para>In <filename>$RECOLL_CONFDIR/mimemap</filename>
+            (typically <filename>~/.recoll/mimemap</filename>), add the
+            following line:<programlisting>
+.blob = application/x-blobapp</programlisting>
+          Note that the MIME type is made up here, and you could
+          call it <replaceable>diesel/oil</replaceable> just the
+          same.</para>
+            </listitem>
+            <listitem><para>In <filename>$RECOLL_CONFDIR/mimeview</filename>
+            under the <literal>[view]</literal> section, add:</para>
+            <programlisting>
+application/x-blobapp = blobviewer %f</programlisting>
+            <para>We are supposing
+            that <replaceable>blobviewer</replaceable> wants a file
+            name parameter here, you would use <literal>%u</literal> if
+            it liked URLs better.</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>If you just wanted to change the application used by
+          &RCL; to display a MIME type which it already knows, you
+          would just need to edit <filename>mimeview</filename>. The
+          entries you add in your personal file override those in the
+          central configuration, which you do not need to
+          alter. <filename>mimeview</filename> can also be modified
+          from the Gui.</para>
+
+        </sect2>
+
+        <sect2 id="RCL.CONFIG.EXAMPLES.ADDINDEX">
+          <title>Adding indexing support for a new file type</title>
+
+          <para>Let us now imagine that the above
+          <replaceable>.blob</replaceable> files actually contain
+          indexable text and that you know how to extract it with a
+          command line program. Getting &RCL; to index the files is
+          easy. You need to perform the above alteration, and also to
+          add data to the <filename>mimeconf</filename> file
+          (typically in <filename>~/.recoll/mimeconf</filename>):</para>
+          <itemizedlist>
+            <listitem><para>Under the <literal>[index]</literal>
+            section, add the following line (more about the
+            <replaceable>rclblob</replaceable> indexing script
+            later):<programlisting>
+application/x-blobapp = exec rclblob</programlisting>
+          Or if the files are mostly text and you don't need to process them
+          for indexing:<programlisting>
+application/x-blobapp = internal text/plain</programlisting>
+          </para>
+            </listitem>
+            <listitem><para>Under the <literal>[icons]</literal>
+            section, you should choose an icon to be displayed for the
+            files inside the result lists. Icons are normally 64x64
+            pixels PNG files which live in
+            <filename>/usr/share/recoll/images</filename>.</para>
+            </listitem>
+            <listitem><para>Under the <literal>[categories]</literal>
+            section, you should add the MIME type where it makes sense
+            (you can also create a category). Categories may be used
+            for filtering in advanced search.</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>The <replaceable>rclblob</replaceable> handler should
+          be an executable program or script which exists inside
+          <filename>/usr/share/recoll/filters</filename>. It
+          will be given a file name as argument and should output the
+          text or html contents on the standard output.</para>
+
+          <para>The <link linkend="RCL.PROGRAM.FILTERS">filter programming</link>
+          section describes in more detail how to write an input handler.</para> 
+
+          
+        </sect2>
+      </sect1>
+  </chapter>
+
+  <part>
+    <title>Appendices</title> 
+    <appendix id="RCL.APPDX.SPECCHARS">
+      <title>Processing of wild card and other special characters</title>
+
+      <para>Recoll is primarily designed to search for natural language words, and the general rule
+      is that non-alphanumeric characters are treated as white space (word separators).</para>
+
+      <para>However, a number of ASCII characters receive special treatment. The details are
+      described in the following.</para>
+
+      <sect1>
+        <title>Words and spans</title>
+
+        <para>Some important searchable text elements contain non-alphanumeric characters, for
+        example, email addresses (<replaceable>jfd@recoll.org</replaceable>), proper names
+        (<replaceable>O'Brien</replaceable>) or internet addresses
+        (<replaceable>192.168.4.1</replaceable>).</para>
+
+        <para>If we treat the special characters as white space in this situation, the only way to
+        search for these terms with a reasonable degree of precision would to use phrase searches
+        (<replaceable>"jf dockes org"</replaceable>).</para> 
+
+        <para>However, phrase searches need a lot of computation and are generally slower. This was
+        especially true with older &XAP; versions.</para>
+
+        <para>&RCL; has special processing for these elements, designated as
+        <literal>spans</literal>. The corresponding linkage characters will be designated as
+        <literal>span glue</literal> in the following.</para>
+
+        <para>When indexing a span like <replaceable>jfd@recoll.org</replaceable>, &RCL; generates
+        both regular individual terms (<replaceable>jfd</replaceable>,
+        <replaceable>recoll</replaceable>, <replaceable>org</replaceable>) and multiword terms
+        linked by span glue: <replaceable>jfd@recoll.org</replaceable>,
+        <replaceable>jfd@recoll</replaceable>, <replaceable>recoll.org</replaceable>.</para>
+
+        <para>When searching, only the larger term (complete span:
+        <replaceable>jfd@recoll.org</replaceable>) is used, so that &XAP; executes a regular
+        single-term search instead of a phrase one.</para>
+
+      </sect1>
+      
+      <sect1>
+        <title>Special ASCII characters during indexing</title>
+
+        <sect2>
+          <title>Characters with hard-coded processing</title>
+
+          <para><literal>-</literal> and <literal>+</literal> have special treatment in numbers or
+          terms like C++, else they are processed as span glue.</para>
+
+          <para><literal>.</literal> and <literal>'</literal> are always processed as span
+          glue.</para> 
+
+          <para><literal>#</literal> is processed as a letter at the beginning (hashtag) or end (c#)
+          of a word, else as white space.</para>
+
+          <para>The underscore (_) is processed as span glue except if the
+          <literal>underscoreasletter</literal> index configuration parameter is set, in which case
+          it is treated as a regular letter.</para>
+
+          <!-- Note: 1234-5678 does not generate a span but abc-def does, because of how we manage
+               '-' This does not make a lot of sense, but fixing is complicated and introduces an
+               index change, so let it be. -->
+        </sect2>
+
+        <sect2>
+          <title>Characters generally treated as white space</title>
+
+          <para><literal>!"$%&amp;(),/:;&lt;=>^\`{|}~</literal> and wild card expression characters
+          <literal>*[]?</literal> are generally treated as white space while indexing, except if
+          they are included in the <literal>indexedpunctuation</literal> index configuration
+          variable.</para>
+
+          <para>Elements of <literal>indexedpunctuation</literal> are treated as single terms which
+          allows to match, e.g., <replaceable>93%</replaceable> with precisely
+          <replaceable>93%</replaceable> (or just <replaceable>93</replaceable> if
+          preferrable).</para>
+        </sect2>
+
+        <sect2>
+          <title>Backslash</title>
+
+          <para><literal>\</literal> is treated as a letter if <literal>backslashasletter</literal>
+          is set, else treated as other punctuation according to
+          indexedpunctuation. <literal>backslashasletter</literal> was broken until &RCL;
+          version 1.42.2</para>
+        </sect2>
+
+      </sect1>
+
+      <sect1>
+        <title>Special ASCII characters at search time</title>
+
+        <para>Slightly different rules apply when querying, for example because of the special
+        characters used by the Query language, or because of wild card expansion.</para>
+
+        <sect2>
+          <title>Query language special characters</title>
+
+          <para><literal>"():=&lt;></literal> and <literal>..</literal> have special meaning for the
+          query language. There is no way to escape them. This is generally not a problem because
+          they are all treated as white space during indexing, except if included in
+          <literal>indexedpunctuation</literal>. In the latter case, it is still possible to search
+          for them through the <guilabel>All terms</guilabel> or <guilabel>Any term</guilabel>
+          search modes or by using the <guilabel>Advanced search</guilabel> GUI dialog.</para>
+
+          <!-- Escaping special characters in query language mode might be possible. Because there
+               is no overlap with the wild cards, it would be possible to preserve the wild-card
+               escaping if present. TBD? -->
+        </sect2>
+
+        <sect2>
+          <title>Wild card characters</title>
+
+          <para>When querying, wild card characters generally cause an expansion of the term they
+          are found in. Until &RCL; version 1.42.2, there was no way to escape them.</para>
+
+          <!-- That's because the terms are split before getting to expansion processing, and the
+               backslash is lost. -->
+
+          <para>As of &RCL; 1.42.2 it is possible to escape wild card characters with a backslash
+          when in <guilabel>File name</guilabel> search mode and it becomes possible to exactly
+          search for file names containing these characters. Previously, you would have had to use a
+          less precise search by replacing them with a <literal>?</literal> wild card or using
+          another mode.</para>
+
+          <!-- No splitting for utf8fn, so the backslash is preserved. -->
+          <!-- ** The mystery of the [0-9]-[0-9] query:
+               When indexing, e.g. 6-9 would be indexed as two terms 6 and 9. However when
+               querying the above, the hyphen-minus is treated differently because it's not inside
+               a number so it stays there and generates a span. The result is that on my index the
+               search returns a single 3-9 where the - is an Unicode hyphen, kept as glue but
+               converted to ascii '-' in the index, by an entry in the default unac_except_trans
+               value, *after* splitting. Note that a search for ascii 6-9 still succeeds because
+               it's changed as a phrase "6 9", but of course this is can generate other non-wanted
+               matches, unlike using an hyphen which searches for the span. -->
+        </sect2>
+      </sect1>
+    </appendix>
+
+
+  <appendix id="RCL.BUILDINSTALL">
+    <title>Building and Installation</title>
 
     <sect1 id="RCL.INSTALL.BINARY">
       <title>Installing a binary copy</title>
@@ -6401,7 +7234,7 @@ db.purge()</programlisting>
       others).</para>
 
       <para>You should also maybe have a look at the 
-      <link linkend="RCL.INSTALL.CONFIG">configuration section</link>
+      <link linkend="RCL.CONFIG">configuration section</link>
       (but this may not be necessary for a quick test with default
       parameters). Most parameters can be more conveniently set from the
       GUI interface.</para>
@@ -6723,693 +7556,8 @@ db.purge()</programlisting>
       </sect2>
 
     </sect1>
+  </appendix>
+  
+  </part>
 
-    <sect1 id="RCL.INSTALL.CONFIG">
-      <title>Settings, configuration overview</title>
-
-      <para>Most of the parameters specific to the <command>recoll</command> GUI are set through the
-      <guilabel>Preferences</guilabel> menu and stored in the standard Qt place
-      (<filename>$HOME/.config/Recoll.org/recoll.conf</filename>).</para>
-
-      <para>&RCL; indexing options are set inside text configuration
-      files located in a configuration directory. There can be
-      several such directories, each of which defines the parameters
-      for one index.</para>
-
-      <para>The configuration files can be edited with a plain text editor or through the
-      <guilabel>Index configuration</guilabel> dialog (<guilabel>Preferences</guilabel> menu). The
-      GUI tool will try to respect your formatting and comments as much as possible, so it is quite
-      possible to use both approaches on the same configuration.</para>
-
-      <para>For each index, there are at least two sets of configuration files. System-wide
-      configuration files are kept in a directory named
-      like <filename>/usr/share/recoll/examples</filename>, and define default values, shared by all
-      indexes (the values in these files are often commented out, and just present to indicate the
-      default coded in the program). For each index, a parallel set of files defines the customised
-      parameters.</para>
-
-      <para>On &LIN;, the default location of the customised configuration is
-        the <filename>.recoll</filename> directory in your home. On &WIN; it
-        is <filename>C:/Users/[you]/AppData/Local/Recoll</filename>. Most people will only use this
-        directory.</para> 
-
-      <para>The default location for the configuration directory can be changed, or others can be
-        added for separate indexes with the <envar>RECOLL_CONFDIR</envar> environment variable or
-        the <option>-c</option> option parameter to <command>recoll</command>
-        and <command>recollindex</command>.</para>
-
-      <para>In addition, it is possible to specify two additional configuration directories which
-      will be stacked before and after the user configuration directory. These are defined by the
-      <envar>RECOLL_CONFTOP</envar> and <envar>RECOLL_CONFMID</envar> environment variables. Values
-      from configuration files inside the top directory will override user ones, values from
-      configuration files inside the middle directory will override system ones and be overridden by
-      user ones. These two variables may be of use to applications which augment &RCL;
-      functionality, and need to add configuration data without disturbing the user's files. Please
-      note that the two, currently single, values will probably be interpreted as colon-separated
-      lists in the future: do not use colon characters inside the directory paths.</para>
-
-      <para>If the default configuration directory does not exist when either
-      <command>recoll</command> or <command>recollindex</command> is started, it will be created
-      with a set of empty configuration files. <command>recoll</command> will give you a chance to
-      edit the configuration file before starting indexing. <command>recollindex</command> will
-      proceed immediately. To avoid mistakes, the automatic directory creation will only occur for
-      the default location, not if <option>-c</option> or <envar>RECOLL_CONFDIR</envar> were used,
-      in which case, you will have to create the directory.</para>
-
-      <para>All configuration files share the same format. For example, a short extract of the main
-      configuration file might look as follows:</para>
-      <programlisting>
-# Space-separated list of files and directories to index.
-topdirs =  ~/docs /usr/share/doc
-
-[~/somedirectory-with-utf8-txt-files]
-defaultcharset = utf-8</programlisting>
-
-      <para>There are three kinds of lines:</para>
-      <itemizedlist>
-        <listitem><para>Comment lines start with a hash mark <emphasis>#</emphasis>.</para> 
-        </listitem>
-        <listitem><para>Parameter assignment: <emphasis>name = value</emphasis>.</para> 
-        </listitem>
-        <listitem><para>Section definitions: [<emphasis>somedirname</emphasis>].</para> 
-        </listitem>
-      </itemizedlist>
-
-      <para>Lines which are empty or only containing white space are ignored.</para>
-      <para>Long lines can be broken by ending each incomplete part with a backslash
-      (<literal>\</literal>).</para> 
-      
-      <para>Depending on the type of configuration file, section definitions either separate groups
-      of parameters or allow redefining some parameters for a directory sub-tree. They stay in
-      effect until another section definition, or the end of file, is encountered. Some of the
-      parameters used for indexing are looked up hierarchically from the current directory location
-      upwards. Not all parameters can be meaningfully redefined, this is specified for each in the
-      next section. </para>
-
-      <important>
-        <para>Global parameters <emphasis>must not</emphasis> be defined in
-        a directory subsection, else they will not be found at all by the
-        &RCL; code, which looks for them at the top level
-        (e.g. <literal>skippedPaths</literal>).</para> 
-      </important>
-
-      <para>When found at the beginning of a file path, the tilde character (~) is expanded to the
-      name of the user's home directory, as a shell would do. The same convention is used on
-      &WIN;.</para> 
-      
-      <para>Some parameters are lists of strings. White space is used for separation. List elements
-      with embedded spaces can be quoted using double-quotes. Double quotes inside these elements
-      can be escaped with a backslash.</para>
-
-      <para>No value inside a configuration file can contain a newline
-      character. Long lines can be continued by escaping the
-      physical newline with backslash, even inside quoted strings.</para>
-      <programlisting>
-astringlist =  "some string \
-with spaces"
-thesame = "some string with spaces"</programlisting>
-
-      <para>Parameters which are not part of string lists can't be
-        quoted, and leading and trailing space characters are
-        stripped before the value is used.</para>
-
-      <important>
-        <para>Quotes processing is ONLY applied to parameter values which are lists. Double quoting
-          a single value like, e.g. <literal>dbdir</literal> will result in an incorrect value, with
-          quotes included. This is quite confusing, and may have been a design mistake but it is
-          much too late to fix.</para></important>
-
-      <formalpara>
-        <title>Encoding issues</title>
-        <para>Most of the configuration parameters are plain ASCII. Two
-          particular sets of values may cause encoding issues:</para>
-      </formalpara>
-
-
-      <para>
-        <itemizedlist>
-          <listitem><para>File path parameters may contain non-ASCII characters and should use the
-              exact same byte values as found in the file system directory. Usually, this means that
-              the configuration file should use the system default locale encoding.</para>
-          </listitem>
-          <listitem><para>The <envar>unac_except_trans</envar> parameter (meaning unaccenting
-              exception translations) should be encoded in UTF-8. If your system locale is not UTF-8
-              (which is now very rare), and you need to also specify non-ASCII file paths, this
-              poses a difficulty because common text editors cannot handle multiple encodings in a
-              single file. In this relatively unlikely case, you can edit the configuration file as
-              two separate text files with appropriate encodings, and concatenate them to create the
-              complete configuration.</para>
-          </listitem>
-        </itemizedlist>
-      </para>
-      
-      <sect2 id="RCL.INSTALL.CONFIG.ENVIR">
-        <title>Environment variables</title>
-
-        <variablelist>
-          <varlistentry>
-            <term><varname>RECOLL_CONFDIR</varname></term>
-            <listitem><para>Defines the main configuration
-            directory.</para></listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><varname>RECOLL_TMPDIR, TMPDIR</varname></term>
-            <listitem><para>Locations for temporary files, in this order
-            of priority. The default if none of these is set is to use
-            <filename>/tmp</filename>. Big temporary files may be created
-            during indexing, mostly for decompressing, and also for
-            processing, e.g. email attachments.</para></listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><varname>RECOLL_CONFTOP, RECOLL_CONFMID</varname></term>
-            <listitem><para>Allow adding configuration directories with
-            priorities below and above the user directory (see above the
-            Configuration overview section for details).</para></listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><varname>RECOLL_EXTRA_DBS, RECOLL_ACTIVE_EXTRA_DBS</varname></term>
-            <listitem><para>
-              Help for setting up external indexes. See
-              <link linkend="RCL.SEARCH.GUI.MULTIDB">this paragraph</link> for
-              explanations.
-            </para></listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><varname>RECOLL_DATADIR</varname></term>
-            <listitem><para>Defines replacement for the default location
-            of Recoll data files, normally found in, e.g.,
-            <filename>/usr/share/recoll</filename>).</para></listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><varname>RECOLL_FILTERSDIR</varname></term>
-            <listitem><para>Defines replacement for the default location
-            of Recoll filters, normally found in, e.g.,
-            <filename>/usr/share/recoll/filters</filename>).</para></listitem>
-          </varlistentry>
-
-          <varlistentry>
-            <term><varname>ASPELL_PROG</varname></term>
-            <listitem><para><command>aspell</command> program to use for
-            creating the spelling dictionary. The result has to be
-            compatible with the <filename>libaspell</filename> which &RCL;
-            is using.</para></listitem>
-          </varlistentry>
-
-        </variablelist>
-
-      </sect2>
-
-      <!-- <sect2 id="RCL.INSTALL.CONFIG.RECOLLCONF"> -->
-&RCLCONF;
-
-
-      <sect2 id="RCL.INSTALL.CONFIG.FIELDS">
-        <title>The fields file</title>
-
-        <para>This file contains information about dynamic fields handling
-        in &RCL;. Some very basic fields have hard-wired behaviour,
-        and, mostly, you should not change the original data inside the
-        <filename>fields</filename> file. But you can create custom fields
-        fitting your data and handle them just like they were native
-        ones.</para>
-
-        <para>The <filename>fields</filename> file has several sections,
-        which each define an aspect of fields processing. Quite often,
-        you'll have to modify several sections to obtain the desired
-        behaviour.</para>
-
-        <para>We will only give a short description here, you should refer
-        to the comments inside the default file for more detailed
-        information.</para>
-
-        <para>Field names should be lowercase alphabetic ASCII.</para>
-
-        <variablelist>
-
-          <varlistentry>
-            <term>[prefixes]</term>
-            <listitem><para>A field becomes indexed (searchable) by having
-            a prefix defined in this section. There is a more complete
-            explanation of what prefixes are in used by a standard recoll
-            installation. In a nutshell: extension prefixes should be all
-            caps, begin with XY, and short. E.g. XYMFLD.</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>[values]</term>
-            <listitem><para>Fields listed in this section will be stored as
-            &XAP; <literal>values</literal> inside the index. This makes
-            them available for range queries, allowing to filter results
-            according to the field value. This feature currently supports
-            string and integer data. See the comments in the file for more
-            detail</para> 
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>[stored]</term>
-            <listitem><para>A field becomes stored (displayable inside
-            results) by having its name listed in this section (typically
-            with an empty value).</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>[aliases]</term>
-            <listitem><para>This section defines lists of synonyms for the
-            canonical names used inside the <literal>[prefixes]</literal>
-            and <literal>[stored]</literal> sections</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>[queryaliases]</term>
-            <listitem><para>This section also defines aliases for the
-            canonic field names, with the difference that the substitution
-            will only be used at query time, avoiding any possibility that
-            the value would pick-up random metadata from documents.</para>
-            </listitem>
-          </varlistentry>
-          <varlistentry>
-            <term>handler-specific sections</term>
-            <listitem><para>Some input handlers may need specific
-            configuration for handling fields. Only the email message handler
-            currently has such a section (named
-            <literal>[mail]</literal>). It allows indexing arbitrary email
-            headers in addition to the ones indexed by default. Other such
-            sections may appear in the future.</para>
-            </listitem>
-          </varlistentry>
-
-        </variablelist>
-
-        <para>Here follows a small example of a personal <filename>fields</filename> file. This
-        would extract a specific email header and use it as a searchable field, with data
-        displayable inside result lists. (Side note: as the email handler does no decoding on the
-        values, only plain ASCII headers can be indexed, and only the first occurrence will be used
-        for headers that occur several times).
-
-        <programlisting>[prefixes]
-# Index mailmytag contents (with the given prefix)
-mailmytag = XMTAG
-
-[stored]
-# Store mailmytag inside the document data record (so that it can be
-# displayed - as %(mailmytag) - in result lists).
-mailmytag = 
-
-[queryaliases]
-filename = fn
-containerfilename = cfn
-
-[mail]
-# Extract the X-My-Tag mail header, and use it internally with the
-# mailmytag field name
-x-my-tag = mailmytag</programlisting>
-        </para>
-
-
-        <sect3 id="RCL.INSTALL.CONFIG.FIELDS.XATTR">
-          <title>Extended attributes in the fields file</title>
-
-          <para>&RCL; processes user extended file attributes as documents fields by default.</para>
-          <para>Attributes are processed as fields of the same name, after removing
-            the <literal>user</literal> prefix on Linux.</para>
-          <para>The <literal>[xattrtofields]</literal> section of the <filename>fields</filename>
-            file allows specifying translations from extended attributes names to &RCL; field
-            names.</para>
-          <para>Name translations are set as <code>xattrname = fieldname</code>. They are
-            case-sensitive.  E.g. the following would map a quite an extended attribute named "tags"
-            into the "keywords" field: <code>tags = keywords</code>.</para>
-          <para>Entering an empty translation will disable any use of the
-            attribute.</para> 
-          <para>The values from the extended attributes will not replace the
-            data found from equivalent fields inside the document, instead they are
-            concatenated.</para>
-          <para>Special case: an extended attribute named <literal>modificationdate</literal> will
-            set the <varname>dmtime</varname> field (document date) only if it is not set by an
-            internal document field (e.g. email <literal>Date:</literal>).</para>
-
-        </sect3>
-
-      </sect2>
-
-      <sect2 id="RCL.INSTALL.CONFIG.MIMEMAP">
-        <title>The mimemap file</title>
-
-        <para><filename>mimemap</filename> specifies the
-        file name extension to MIME type mappings.</para> 
-        
-        <para>For file names without an extension, or with an unknown one,
-          recent &RCL; versions will use libmagic. Older versions would execute a system command
-          (<command>file</command> <option>-i</option>, or <command>xdg-mime</command>) will be
-          executed to determine the MIME type (this can be switched off, or the command changed
-          inside the main configuration file).</para>
-
-        <para>All extension values in <filename>mimemap</filename> must be
-        entered in lower case. File names extensions are lower-cased for
-        comparison during indexing, meaning that an upper case
-        <filename>mimemap</filename> entry will never be matched.</para>
-
-        <para>The mappings can be specified on a per-subtree basis,
-        which may be useful in some cases. Example:
-        <application>okular</application> notes have a
-        <filename>.xml</filename> extension but 
-        should be handled specially, which is possible because they
-        are usually all located in one place. Example:
-        <programlisting>[~/.kde/share/apps/okular/docdata]
-.xml = application/x-okular-notes</programlisting></para>
-
-        <para>The <varname>recoll_noindex</varname>
-        <filename>mimemap</filename> variable has been moved to
-        <filename>recoll.conf</filename> and renamed to
-        <varname>noContentSuffixes</varname>, while keeping the same
-        function, as of &RCL; version 1.21. For older &RCL; versions,
-        see the documentation for <varname>noContentSuffixes</varname>
-        but use <varname>recoll_noindex</varname> in
-        <filename>mimemap</filename>.</para>
-
-      </sect2>
-
-      <sect2 id="RCL.INSTALL.CONFIG.MIMECONF">
-        <title>The mimeconf file</title>
-
-        <para>The main purpose of the <filename>mimeconf</filename> file is
-        to specify how the different MIME types are handled for
-        indexing. This is done in the <literal>[index]</literal>
-        section, which should not be modified casually. See the comments in
-        the file.</para>
-
-        <para>The file also contains other definitions which affect the
-        query language and the GUI, and which, in retrospect, should have
-        been stored elsewhere.</para>
-
-        <para>The <literal>[icons]</literal> section allows you to change
-        the icons which are displayed by the <command>recoll</command> GUI
-        in the result lists (the values are the basenames of the
-        <literal>png</literal> images inside the
-        <filename>iconsdir</filename> directory (which is itself defined
-        in <filename>recoll.conf</filename>).</para>
-
-        <para>The <literal>[categories]</literal> section defines the
-        groupings of MIME types into <literal>categories</literal> as used
-        when adding an <literal>rclcat</literal> clause to a
-        <link linkend="RCL.SEARCH.LANG">query language</link>
-        query. <literal>rclcat</literal> clauses are also used by the
-        default <literal>guifilters</literal> buttons in the GUI (see
-        next).</para>
-
-        <para>The filter controls appear at the top of the
-        <command>recoll</command> GUI, either as checkboxes just above the
-        result list, or as a dropbox in the tool area.</para>
-
-        <para>By default, they are labeled: <literal>media</literal>,
-        <literal>message</literal>, <literal>other</literal>,
-        <literal>presentation</literal>, <literal>spreadsheet</literal> and
-        <literal>text</literal>, and each maps to a document category. This
-        is determined in the <literal>[guifilters]</literal> section, where
-        each control is defined by a variable naming a query language
-        fragment.</para>
-
-        <para>A simple example will hopefully make things clearer.</para>
-
-        <programlisting>[guifilters]
-
-Big Books = dir:"~/My Books" size&gt;10K
-My Docs = dir:"~/My Documents"
-Small Books = dir:"~/My Books" size&lt;10K
-System Docs = dir:/usr/share/doc</programlisting>
-
-
-        <para>The above definition would create four filter checkboxes,
-        labelled <literal>Big Books</literal>, <literal>My Docs</literal>,
-        etc.</para>
-
-        <para>The text after the equal sign must be a valid query language
-        fragment, and, when the button is checked, it will be combined with
-        the rest of the query with an AND conjunction.</para>
-
-        <para>Any name text before a colon character will be erased in the
-        display, but used for sorting. You can use this to display the
-        checkboxes in any order you like. For example, the following would
-        do exactly the same as above, but ordering the checkboxes in the
-        reverse order.</para>
-
-        <programlisting>[guifilters]
-
-d:Big Books = dir:"~/My Books" size&gt;10K
-c:My Docs = dir:"~/My Documents"
-b:Small Books = dir:"~/My Books" size&lt;10K
-a:System Docs = dir:/usr/share/doc</programlisting>
-
-        <para>As you may have guessed, The default
-        <literal>[guifilters]</literal> section looks like:</para>
-        <programlisting>[guifilters]
-text = rclcat:text
-spreadsheet = rclcat:spreadsheet
-presentation = rclcat:presentation
-media = rclcat:media
-message = rclcat:message
-other = rclcat:other</programlisting>
-        
-      </sect2>
-
-
-      <sect2 id="RCL.INSTALL.CONFIG.MIMEVIEW">
-        <title>The mimeview file</title>
-
-        <para><filename>mimeview</filename> specifies which programs
-        are started when you click on an <guilabel>Open</guilabel> link
-        in a result list. E.g.: HTML is normally displayed using
-        <application>firefox</application>, but you may prefer
-        <application>Konqueror</application>, your
-        <application>openoffice.org</application> 
-        program might be named <command>oofice</command> instead of
-        <command>openoffice</command> etc.</para>
-
-        <para>Changes to this file can be done by direct editing, or
-        through the <command>recoll</command> GUI preferences dialog.</para>
-
-        <para>If <guilabel>Use desktop preferences to choose document
-        editor</guilabel> is checked in the &RCL; GUI preferences, all
-        <filename>mimeview</filename> entries will be ignored except the
-        one labelled <literal>application/x-all</literal> (which is set to
-        use <command>xdg-open</command> by default).</para>
-
-        <para>In this case, the <literal>xallexcepts</literal> top level
-        variable defines a list of MIME type exceptions which
-        will be processed according to the local entries instead of being
-        passed to the desktop. This is so that specific &RCL; options
-        such as a page number or a search string can be passed to
-        applications that support them, such as the
-        <application>evince</application> viewer.</para>
-
-        <para>As for the other configuration files, the normal usage
-        is to have a <filename>mimeview</filename> inside your own
-        configuration directory, with just the non-default entries,
-        which will override those from the central configuration
-        file.</para>
-
-        <para>All viewer definition entries must be placed under a
-        <literal>[view]</literal> section.</para>
-
-        <para>The keys in the file are normally MIME types. You can add an
-        application tag to specialize the choice for an area of the
-        filesystem (using a <varname>localfields</varname> specification
-        in <filename>mimeconf</filename>). The syntax for the key is 
-        <replaceable>mimetype</replaceable><literal>|</literal><replaceable>tag</replaceable></para>
-
-        <para>The <varname>nouncompforviewmts</varname> entry, (placed at
-        the top level, outside of the <literal>[view]</literal> section),
-        holds a list of MIME types that should not be uncompressed before
-        starting the viewer (if they are found compressed, e.g.:
-        <replaceable>mydoc.doc.gz</replaceable>).</para>
-
-        <para>The right side of each assignment holds a command to be
-        executed for opening the file. The following substitutions are
-        performed:</para> 
-        
-        <itemizedlist>
-          <listitem>
-            <formalpara><title>%D</title>
-            <para>Document date</para></formalpara>
-          </listitem> 
-
-          <listitem><formalpara><title>%f</title>
-          <para>File name. This may be the name of a temporary file if
-          it was  necessary to create one (e.g.: to extract a subdocument
-          from a  container).</para></formalpara>
-          </listitem>
-
-          <listitem><formalpara><title>%i</title>
-          <para>Internal path, for subdocuments of containers. The
-          format depends on the container type. If this appears in the
-          command line, &RCL; will not create a temporary file to
-          extract the subdocument, expecting the called application
-          (possibly a script) to be able to handle it.</para></formalpara>
-          </listitem>
-
-          <listitem>
-            <formalpara><title>%M</title><para>MIME type</para></formalpara> 
-          </listitem>
-
-          <listitem>
-            <formalpara><title>%p</title><para>Page index. Only significant for a subset of
-                document types, currently only PDF, Postscript and DVI files. If it is set, a
-                significant term will be chosen in the query, and %p will be substituted with the
-                first page where the term appears. Can be used to start the editor at the right page
-                for a match or snippet.</para></formalpara>
-          </listitem>
-
-          <listitem>
-            <formalpara><title>%l</title><para>Line number. Only significant for document
-                types with relevant line breaks, mostly text/plain and analogs. If it is set, a
-                significant term will be chosen in the query, and %p will be substituted with the
-                first line where the term appears.</para></formalpara>
-          </listitem>
-
-          <listitem>
-            <formalpara><title>%s</title><para>Search term. The value will only be set for
-                documents with indexed page or line numbers and if %p or %l is also used. The value
-                will be one of the matched search terms. It would allow pre-setting the value in the
-                "Find" entry inside Evince for example, for easy highlighting of the
-                term.</para></formalpara>
-          </listitem>
-
-          <listitem>
-            <formalpara><title>%u</title><para>Url.</para></formalpara> 
-          </listitem>
-
-        </itemizedlist>
-
-        <para>In addition to the predefined values above, all strings like
-        <literal>%(fieldname)</literal> will be replaced by the value of
-        the field named <literal>fieldname</literal> for the
-        document. This could be used in combination with field
-        customisation to help with opening the document.</para> 
-
-      </sect2>
-
-      <sect2 id="RCL.INSTALL.CONFIG.PTRANS">
-        <title>The <filename>ptrans</filename> file</title>
-
-        <para><filename>ptrans</filename> specifies query-time path
-        translations. These can be useful
-        in <link linkend="RCL.SEARCH.PTRANS">multiple cases</link>.
-        </para>
-
-        <para>The file has a section for any index which needs
-        translations, either the main one or additional query
-        indexes. The sections are named with the &XAP; index
-        directory names. No slash character should exist at the end
-        of the paths (all comparisons are textual). An example
-        should make things sufficiently clear</para>
-
-        <programlisting>
-[/home/me/.recoll/xapiandb]
-/this/directory/moved = /to/this/place
-
-[/path/to/additional/xapiandb]
-/server/volume1/docdir = /net/server/volume1/docdir
-/server/volume2/docdir = /net/server/volume2/docdir</programlisting>
-
-      </sect2>
-
-
-      <sect2 id="RCL.INSTALL.CONFIG.EXAMPLES">
-        <title>Examples of configuration adjustments</title>
-
-        <sect3 id="RCL.INSTALL.CONFIG.EXAMPLES.ADDVIEW">
-          <title>Adding an external viewer for an non-indexed type</title>
-
-          <para>Imagine that you have some kind of file which does not
-          have indexable content, but for which you would like to have a
-          functional <guilabel>Open</guilabel> link in the result list
-          (when found by file name). The file names end in
-          <replaceable>.blob</replaceable> and can be displayed by
-          application <replaceable>blobviewer</replaceable>.</para>
-
-          <para>You need two entries in the configuration files for this
-          to work:</para>
-
-          <itemizedlist>
-            <listitem><para>In <filename>$RECOLL_CONFDIR/mimemap</filename>
-            (typically <filename>~/.recoll/mimemap</filename>), add the
-            following line:<programlisting>
-.blob = application/x-blobapp</programlisting>
-          Note that the MIME type is made up here, and you could
-          call it <replaceable>diesel/oil</replaceable> just the
-          same.</para>
-            </listitem>
-            <listitem><para>In <filename>$RECOLL_CONFDIR/mimeview</filename>
-            under the <literal>[view]</literal> section, add:</para>
-            <programlisting>
-application/x-blobapp = blobviewer %f</programlisting>
-            <para>We are supposing
-            that <replaceable>blobviewer</replaceable> wants a file
-            name parameter here, you would use <literal>%u</literal> if
-            it liked URLs better.</para>
-            </listitem>
-          </itemizedlist>
-
-          <para>If you just wanted to change the application used by
-          &RCL; to display a MIME type which it already knows, you
-          would just need to edit <filename>mimeview</filename>. The
-          entries you add in your personal file override those in the
-          central configuration, which you do not need to
-          alter. <filename>mimeview</filename> can also be modified
-          from the Gui.</para>
-
-        </sect3>
-
-        <sect3 id="RCL.INSTALL.CONFIG.EXAMPLES.ADDINDEX">
-          <title>Adding indexing support for a new file type</title>
-
-          <para>Let us now imagine that the above
-          <replaceable>.blob</replaceable> files actually contain
-          indexable text and that you know how to extract it with a
-          command line program. Getting &RCL; to index the files is
-          easy. You need to perform the above alteration, and also to
-          add data to the <filename>mimeconf</filename> file
-          (typically in <filename>~/.recoll/mimeconf</filename>):</para>
-          <itemizedlist>
-            <listitem><para>Under the <literal>[index]</literal>
-            section, add the following line (more about the
-            <replaceable>rclblob</replaceable> indexing script
-            later):<programlisting>
-application/x-blobapp = exec rclblob</programlisting>
-          Or if the files are mostly text and you don't need to process them
-          for indexing:<programlisting>
-application/x-blobapp = internal text/plain</programlisting>
-          </para>
-            </listitem>
-            <listitem><para>Under the <literal>[icons]</literal>
-            section, you should choose an icon to be displayed for the
-            files inside the result lists. Icons are normally 64x64
-            pixels PNG files which live in
-            <filename>/usr/share/recoll/images</filename>.</para>
-            </listitem>
-            <listitem><para>Under the <literal>[categories]</literal>
-            section, you should add the MIME type where it makes sense
-            (you can also create a category). Categories may be used
-            for filtering in advanced search.</para>
-            </listitem>
-          </itemizedlist>
-
-          <para>The <replaceable>rclblob</replaceable> handler should
-          be an executable program or script which exists inside
-          <filename>/usr/share/recoll/filters</filename>. It
-          will be given a file name as argument and should output the
-          text or html contents on the standard output.</para>
-
-          <para>The <link linkend="RCL.PROGRAM.FILTERS">filter programming</link>
-          section describes in more detail how to write an input handler.</para> 
-
-          
-        </sect3>
-      </sect2>
-    </sect1>
-  </chapter>
 </book>
