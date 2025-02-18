@@ -56,7 +56,7 @@ usermanual.pdf: usermanual.xml recoll.conf.xml
 
 recoll.conf.xml: ../../sampleconf/recoll.conf
 	test -x $(UTILBUILDS)/confxml && $(UTILBUILDS)/confxml --docbook \
-        --idprefix=RCL.INSTALL.CONFIG.RECOLLCONF  \
+        --idprefix=RCL.CONFIG.RECOLLCONF  \
         ../../sampleconf/recoll.conf  > recoll.conf.xml || touch recoll.conf.xml
 
 # Generating a restructured text version, for uploading to readthedocs.

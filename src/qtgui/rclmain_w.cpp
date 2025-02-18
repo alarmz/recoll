@@ -330,6 +330,14 @@ void RclMain::init()
 void RclMain::onSSearchTypeChanged(int typ)
 {
     enableSideFilters(typ == SSearch::SST_LANG);
+    // Reset sort when changing modes.
+    m_sortspec.desc = false;
+    m_sortspec.field.clear();
+    if (typ == SSearch::SST_FNM) {
+        // If this is a file name search sort by mtype so that directories
+        // come first (see the rclquery sort key generator)
+        m_sortspec.field = "mtype";
+    } 
 }
 
 void RclMain::zoomIn()
@@ -798,13 +806,6 @@ void RclMain::startSearch(std::shared_ptr<Rcl::SearchData> sdata, bool issimple)
     src->setAbstractParams(prefs.queryBuildAbstract, prefs.queryReplaceAbstract);
     m_source = std::shared_ptr<DocSequence>(src);
 
-    // If this is a file name search sort by mtype so that directories
-    // come first (see the rclquery sort key generator)
-    if (sSearch->searchTypCMB->currentIndex() == SSearch::SST_FNM &&
-        m_sortspec.field.empty()) {
-        m_sortspec.field = "mtype";
-        m_sortspec.desc = false;
-    }
     m_source->setSortSpec(m_sortspec);
     setFiltSpec();
     emit docSourceChanged(m_source);

@@ -185,7 +185,8 @@ void RclCompleterModel::onPartialWord(int tp, const QString& _qtext, const QStri
     // this after the partial has at least 2 characters, else the syn/diac/case expansion is too
     // expensive
     int mintermsizeforexpand = o_index_stripchars ? 1 : 2;
-    if (qpartial.trimmed().size() >= mintermsizeforexpand) {
+    if (qpartial.trimmed().size() >= mintermsizeforexpand &&
+        partial.find_first_of("[?*") == string::npos) {
         Rcl::TermMatchResult rclmatches;
         if (!rcldb->termMatch(Rcl::Db::ET_WILD, string(),
                               partial + "*", rclmatches, maxdbtermmatch)) {
@@ -293,7 +294,6 @@ void SSearch::clearAll()
 
 void SSearch::onCompleterShown()
 {
-    LOGDEB("SSearch::onCompleterShown\n");
     QCompleter *completer = queryText->completer();
     if (!completer) {
         LOGDEB0("SSearch::onCompleterShown: no completer\n");

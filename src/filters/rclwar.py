@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# WAR web archive filter for recoll. War file are gzipped tar files
+# WAR Konqueror web archive handler for recoll. War file are gzipped tar files
+# Not to be confused with the Mac OS webarchive format, see rclwebarch.py for this.
 
 import rclexecm
 import tarfile

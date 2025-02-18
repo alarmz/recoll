@@ -60,9 +60,6 @@ DEF_CSTR(texthtml, "text/html");
 DEF_CSTR(url, "url");
 // Marker for HTML format fields
 DEF_CSTR(fldhtm, "\007");
-// Characters that can -begin- a wildcard or regexp expression. 
-DEF_CSTR(wildSpecStChars, "*?[");
-DEF_CSTR(regSpecStChars, "(.[{");
 
 // Values used as keys inside Dijon::Filter::metaData[].
 

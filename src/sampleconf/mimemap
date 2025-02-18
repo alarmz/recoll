@@ -245,7 +245,12 @@
 
 .fb2 = text/x-fictionbook
 
+# This been used by Recoll for the Konqueror tar+gz web page archive forever. Unfortunately it
+# appears that this is supposed to be the MIME for the different Mac OS webarchive format. 
 .war = application/x-webarchive
+# Because of back compat, use local MIME for the macos format
+.webarchive = application/x-mac-webarch
+
 .zip.html = application/x-sfz
 .mht = application/x-mimehtml
 .mhtml = application/x-mimehtml

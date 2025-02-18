@@ -189,6 +189,7 @@ application/x-scribus = exec rclscribus
 application/x-shellscript = internal text/plain
 application/x-tex = exec rcltex
 application/x-webarchive = execm rclwar.py
+application/x-mac-webarch = execm rclwebarch.py
 application/x-zerosize = internal
 application/zip = execm rclzip.py;charset=default
 audio/aac = execm rclaudio.py
@@ -341,6 +342,7 @@ application/x-shellscript = source
 application/x-tar = archive
 application/x-tex = wordprocessing
 application/x-webarchive = archive
+application/x-mac-webarch = archive
 application/xml = document
 application/zip = archive
 audio/aac = sownd
@@ -541,6 +543,7 @@ other = \
         application/x-rar \
         application/x-tar \
         application/x-webarchive \
+        application/x-mac-webarch \
         application/x-zerosize \
         application/zip \
         inode/directory \
