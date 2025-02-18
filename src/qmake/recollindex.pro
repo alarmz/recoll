@@ -36,7 +36,8 @@ windows {
 
   contains(QMAKE_CC, cl){
     # MSVC
-    QCBUILDLOC = Desktop_Qt_6_7_3_MSVC2019_64bit
+    #QCBUILDLOC = Desktop_Qt_6_7_3_MSVC2019_64bit
+    QCBUILDLOC = Desktop_Qt_6_8_2_MSVC2022_64bit
     RECOLLDEPS = $$PWD/../../../recolldeps/msvc
     DEFINES += USING_STATIC_LIBICONV
     PRE_TARGETDEPS = \

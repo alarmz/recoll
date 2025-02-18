@@ -35,9 +35,9 @@ LIBXSLT=${RCLDEPS}/msvc/libxslt/libxslt-1.1.29/win32/bin.msvc/libxslt.dll
 ZLIB=${RCLDEPS}/msvc/zlib-1.2.11
 LIBMAGIC=${RCLDEPS}/msvc/libmagic
 # Qt
-QTA=Desktop_Qt_6_7_3_MSVC2019_64bit-Release
+QTA=Desktop_Qt_6_8_2_MSVC2022_64bit-Release
 qtsdir=release
-QTBIN=C:/Qt/6.7.3/msvc2019_64/bin
+QTBIN=C:/Qt/6.8.2/msvc2022_64/bin
 # mingwbin has dlls for aux programs built with mingw (wpd, pff, aspell)
 MINGWBIN=${RCLDEPS}/gcclibs
 

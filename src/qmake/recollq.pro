@@ -21,7 +21,8 @@ windows {
 
   contains(QMAKE_CC, cl){
     # Visual Studio
-    QCBUILDLOC = Desktop_Qt_6_7_3_MSVC2019_64bit
+    #QCBUILDLOC = Desktop_Qt_6_7_3_MSVC2019_64bit
+    QCBUILDLOC = Desktop_Qt_6_8_2_MSVC2022_64bit
     RECOLLDEPS = $$PWD/../../../recolldeps/msvc
     SOURCES += ../windows/getopt.cc
     PRE_TARGETDEPS = \
