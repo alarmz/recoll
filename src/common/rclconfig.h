@@ -24,6 +24,7 @@
 #include <map>
 #include <unordered_set>
 #include <memory>
+#include <cstdint>
 
 class ParamStale;
 class ConfSimple;
