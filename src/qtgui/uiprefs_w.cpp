@@ -441,7 +441,6 @@ void UIPrefsDialog::accept()
     prefs.reslistfontfamily = reslistFontFamily;
     prefs.reslistfontsize = reslistFontSize;
     prefs.darkMode = darkMode;
-    prefs.setupDarkCSS();
     prefs.qssFile = qssFile;
     prefs.snipCssFile = snipCssFile;
     prefs.reslistformat =  paraFormat;

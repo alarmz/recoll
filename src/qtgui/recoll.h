@@ -51,7 +51,7 @@ extern std::shared_ptr<Rcl::Db> rcldb;
 extern int recollNeedsExit;
 extern void startManual(const std::string& helpindex);
 
-extern void applyStyleSheet(const QString&);
+extern void applyStyle();
 
 inline std::string qs2utf8s(const QString& qs)
 {
