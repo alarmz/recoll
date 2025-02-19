@@ -49,21 +49,28 @@ public:
     // Result list format string
     QString reslistformat;
     std::string  creslistformat;
-    QString reslistheadertext;
-    // This is either empty or the contents of the recoll-dark.css
-    // file if we are in dark mode. It is set in the header before the
-    // possible user string above. Not saved/restored to prefs as it
-    // is controled by darkMode
+
+    enum ColorScheme {CS_LIGHT, CS_DARK, CS_SYSTEM};
+    int colorscheme{0};
+
+    // Dark mode set: both qss and css will use the base + dark style and then the possible user
+    // style
+    bool darkMode;
+
+    // This is either empty or the contents of the recoll-dark.css file if we are in dark mode.
+    // Not saved/restored to prefs as it comes with recoll.
     QString darkreslistheadertext;
+    // User result list header text. 
+    QString reslistheadertext;
+
+    //  User Qt style sheet.
+    QString qssFile;
+    
+    QString snipCssFile;
+
     // Date strftime format
     std::string reslistdateformat;
 
-    //  General Qt style sheet.
-    QString qssFile;
-    // Dark mode set-> style sheet is the default dark one. + special reslist header
-    bool darkMode;
-    
-    QString snipCssFile;
     QString queryStemLang;
     enum ShowMode {SHOW_NORMAL, SHOW_MAX, SHOW_FULL};
     int showmode{SHOW_NORMAL};
@@ -176,10 +183,9 @@ public:
 
     std::string stemlang();
 
-    void setupDarkCSS();
-
     // HTML Header contents for both the result list, the snippets window and others
     std::string htmlHeaderContents(bool nouser=false);
+    std::string snipCSS();
     
     // MIME types for which we prefer to use stored text from preview
     // rather than extracting the possibly nicer HTML because the

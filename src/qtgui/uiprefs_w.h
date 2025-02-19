@@ -50,7 +50,6 @@ public slots:
     virtual void resetReslistFont();
     virtual void showStylesheetDialog();
     virtual void resetStylesheet();
-    virtual void setDarkMode();
     virtual void showSynFileDialog();
     virtual void showSnipCssDialog();
     virtual void resetSnipCss();

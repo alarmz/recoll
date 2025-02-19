@@ -129,11 +129,11 @@ void TextSplit::staticConfInit(RclConfig *config)
         o_deHyphenate = bvalue;
     }
 
+    // Note: charclasses is already initialized (by a static initializer). \ is set as "special"
     bvalue = false;
     if (config->getConfParam("backslashasletter", &bvalue)) {
         if (bvalue) {
-        } else {
-            charclasses[int('\\')] = SPACE;
+            charclasses[int('\\')] = A_LLETTER;
         }
     }
 
@@ -174,7 +174,8 @@ public:
     CharClassInit() {
         unsigned int i;
 
-        // Set default value for all: SPACE
+        // Set default value for all: SPACE. Only the low 127 slots are used of course, but it seems
+        // that having the full 256 makes some tests simpler (not checked recently).
         for (i = 0 ; i < 256 ; i ++)
             charclasses[i] = TextSplit::SPACE;
 
@@ -208,6 +209,8 @@ public:
         for (i = 0; i  < strlen(special); i++)
             charclasses[int(special[i])] = special[i];
 
+
+        // Non-ASCII Unicode punctuation and white space 
         for (i = 0; i < sizeof(unipunc) / sizeof(int); i++) {
             spunc.insert(unipunc[i]);
         }
@@ -928,8 +931,7 @@ bool TextSplit::text_to_words(const string &in)
         case '_': // If underscoreasletter is set, we'll never get this
         case '\'':
         {
-            // If in word, potential span: o'brien, jf@dockes.org,
-            // else just ignore
+            // If in word, potential span: o'brien, jf@dockes.org, else treat as SPACE
             int nextc = it[it.getCpos()+1];
             if (nextc == -1 || isvisiblewhite(nextc)) {
                 goto SPACE;

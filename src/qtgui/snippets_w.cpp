@@ -220,10 +220,7 @@ void SnippetsW::onSetDoc(Rcl::Doc doc, std::shared_ptr<DocSequence> source)
     vector<Rcl::Snippet> vpabs;
     source->getAbstract(m_doc, &g_hiliter, vpabs, prefs.snipwMaxLength, m_sortingByPage);
 
-    std::string snipcss;
-    if (!prefs.snipCssFile.isEmpty()) {
-        file_to_string(qs2path(prefs.snipCssFile), snipcss);
-    }
+    std::string snipcss = prefs.snipCSS();
     ostringstream oss;
     oss << "<html><head>\n"
         "<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n";

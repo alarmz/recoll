@@ -178,22 +178,6 @@ static void recollCleanup()
     LOGDEB2("recollCleanup: done\n" );
 }
 
-void applyStyleSheet(const QString& qssfn)
-{
-    auto comfn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-common.qss");
-    std::string qss;
-    file_to_string(comfn, qss);
-    if (!qssfn.isEmpty()) {
-        LOGDEB0("Using custom style sheet: [" << qs2path(qssfn) << "]\n");
-        string customqss;
-        file_to_string(qs2path(qssfn), customqss);
-        qss += customqss;
-    }
-    qss = prefs.scaleFonts(qss, prefs.wholeuiscale);
-    qApp->setStyleSheet(u8s2qs(qss));
-    prefs.checkAppFont();
-}
-
 #ifdef QAPPLICATION_CLASS
 #ifdef Q_OS_WINDOWS
 #define WIN32_LEAN_AND_MEAN
@@ -471,7 +455,7 @@ int main(int argc, char **argv)
     rwSettings(false);
     //    fprintf(stderr, "Settings done\n");
 
-    applyStyleSheet(prefs.qssFile);
+    applyStyle();
     
     QIcon icon;
     icon.addFile(QString::fromUtf8(":/images/recoll.png"));

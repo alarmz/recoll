@@ -447,7 +447,7 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
 
     int first = m_nq->xmset.get_firstitem();
 
-    if (!(xapi >= first && xapi <= first + m_nq->xmset.size() -1)) {
+    if (!(xapi >= first && xapi <= first + int(m_nq->xmset.size()) -1)) {
         LOGDEB("Fetching for first " << xapi << ", count " << qquantum << "\n");
 
         XAPTRY(m_nq->xmset = m_nq->xenquire->get_mset(

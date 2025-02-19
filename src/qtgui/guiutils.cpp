@@ -33,9 +33,12 @@
 
 #include <QSettings>
 #include <QStringList>
+
 #ifdef BUILDING_RECOLLGUI
+#include <QApplication>
 #include <QWidget>
 #include <QFont>
+#include <QStyleHints>
 #endif
 
 using std::vector;
@@ -307,6 +310,7 @@ void rwSettings(bool writing)
     SETTING_RW(prefs.singleapp, "/Recoll/ui/singleapp", Bool, false)
     SETTING_RW(prefs.previewLinesOverAnchor, "/Recoll/preview/previewLinesOverAnchor", Int, 4)
     SETTING_RW(prefs.uilanguage, "/Recoll/ui/uilanguage", String, "")
+    SETTING_RW(prefs.colorscheme, "/Recoll/ui/colorscheme", Int, 0)
     /*INSERTHERE*/
     
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -419,7 +423,6 @@ void rwSettings(bool writing)
         for (const auto& dbd: tl) {
             prefs.asearchSubdirHist.push_back(u8s2qs(dbd));
         }
-        prefs.setupDarkCSS();
     }
 }
 
@@ -499,14 +502,98 @@ std::tuple<char, int, std::string, std::string> internal_link(std::string url)
     return {c, i, origorscript, replacement};
 }
 
+struct FileData {
+    FileData() {}
+    int64_t timestamp{0};
+    std::string data;
+};
+static std::map<std::string, FileData> filecache;
+static std::string cacheget(const std::string& path)
+{
+    struct PathStat st;
+    path_fileprops(path, &st);
+    auto it = filecache.find(path);
+    if (it != filecache.end()) {
+        if (it->second.timestamp == st.pst_mtime) {
+            return it->second.data;
+        }
+    }
+    FileData fdt;
+    fdt.timestamp = st.pst_mtime;
+    file_to_string(path, fdt.data);
+    filecache.insert({path, fdt});
+    return fdt.data;
+}
+
+#ifdef BUILDING_RECOLLGUI
+// Don't want this in the kde plugins
+void applyStyle()
+{
+    auto fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-common.qss");
+    std::string qss = cacheget(fn);
+
+#if defined(__APPLE__) && (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
+    prefs.colorscheme = PrefsPack::CS_SYSTEM;
+#endif
+    
+    if (prefs.colorscheme == PrefsPack::CS_LIGHT) {
+        prefs.darkMode = false;
+    } else if (prefs.colorscheme == PrefsPack::CS_DARK) {
+        prefs.darkMode = true;
+    } else {
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
+    if (prefs.colorscheme == PrefsPack::CS_SYSTEM &&
+        qApp->styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
+        LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is DARK\n");
+        prefs.darkMode = true;
+    } else {
+        // Note: doing things this way means that there is no way to set dark on light system,
+        // except by copying recoll-dark.qss somewhere else, and also importing the dark css
+        // into the result list header...
+        LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is LIGHT\n");
+        prefs.darkMode = false;
+    }
+#else
+    prefs.darkMode = false;
+#endif
+    }
+
+    if (prefs.darkMode) {
+        fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-dark.qss");
+        qss += cacheget(fn);
+    }
+    LOGDEB1("applyStyle: qssfile [" << qs2utf8s(prefs.qssFile) << "]\n");
+
+    if (!prefs.qssFile.isEmpty()) {
+        LOGDEB0("Using custom style sheet: [" << qs2path(prefs.qssFile) << "]\n");
+        qss += cacheget(qs2path(prefs.qssFile));
+    }
+
+    qss = prefs.scaleFonts(qss, prefs.wholeuiscale);
+    qApp->setStyleSheet(u8s2qs(qss));
+
+    prefs.checkAppFont();
+}
+#endif
+
+std::string PrefsPack::snipCSS()
+{
+    if (!prefs.snipCssFile.isEmpty()) {
+        return cacheget(qs2path(prefs.snipCssFile));
+    }
+    return std::string();
+}
 
 std::string PrefsPack::htmlHeaderContents(bool nouser)
 {
+    // recoll-common.css just has a default font size setting at the moment.
     auto comfn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-common.css");
-    std::string comcss;
-    file_to_string(comfn, comcss);
+    std::string comcss = cacheget(comfn);
+    
     std::ostringstream oss;
     oss << comcss << "\n";
+
+    // Set font, either from prefs or from the app font
     oss << "<style type=\"text/css\">\nhtml,body,form, fieldset,table,tr,td,img,select,input {\n";
     bool noscale{false};
     int fontsize = 12;
@@ -525,43 +612,29 @@ std::string PrefsPack::htmlHeaderContents(bool nouser)
         noscale = true;
 #endif
     }
-
     if (fontsize + prefs.zoomincr > 3)
         fontsize += prefs.zoomincr;
     else
         fontsize = 3;
     oss << "font-size: " << fontsize << "pt;\n";
     oss << "}\n</style>\n";
-    oss << qs2utf8s(prefs.darkreslistheadertext);
+
+    // Dark mode CSS
+    if (darkMode) {
+        string fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-dark.css");
+        oss << cacheget(fn);
+    }
+
+    // User CSS
     if (!nouser)
         oss << qs2utf8s(prefs.reslistheadertext);
 
     std::string css = oss.str();
     if  (!noscale) {
-        // Note that if there was a font size setting in the reslistheadertext, it won't be scaled
-        // in this case. Workaround: set a reslist font.
         css = PrefsPack::scaleFonts(css, prefs.wholeuiscale);
     }
     LOGDEB1("PrefsPack::htmlHeaderContents: [" << css << "]\n");
     return css;
-}
-
-void PrefsPack::setupDarkCSS()
-{
-    if (!darkMode) {
-        darkreslistheadertext.clear();
-        return;
-    }
-    if (nullptr == theconfig) {
-        return;
-    }
-    string fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-dark.css");
-    string data;
-    string reason;
-    if (!file_to_string(fn, data, &reason)) {
-        std::cerr << "Recoll: Could not read: " << fn << "\n";
-    }
-    darkreslistheadertext = u8s2qs(data);
 }
 
 string PrefsPack::stemlang()

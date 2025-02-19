@@ -330,6 +330,14 @@ void RclMain::init()
 void RclMain::onSSearchTypeChanged(int typ)
 {
     enableSideFilters(typ == SSearch::SST_LANG);
+    // Reset sort when changing modes.
+    m_sortspec.desc = false;
+    m_sortspec.field.clear();
+    if (typ == SSearch::SST_FNM) {
+        // If this is a file name search sort by mtype so that directories
+        // come first (see the rclquery sort key generator)
+        m_sortspec.field = "mtype";
+    } 
 }
 
 void RclMain::zoomIn()
@@ -798,13 +806,6 @@ void RclMain::startSearch(std::shared_ptr<Rcl::SearchData> sdata, bool issimple)
     src->setAbstractParams(prefs.queryBuildAbstract, prefs.queryReplaceAbstract);
     m_source = std::shared_ptr<DocSequence>(src);
 
-    // If this is a file name search sort by mtype so that directories
-    // come first (see the rclquery sort key generator)
-    if (sSearch->searchTypCMB->currentIndex() == SSearch::SST_FNM &&
-        m_sortspec.field.empty()) {
-        m_sortspec.field = "mtype";
-        m_sortspec.desc = false;
-    }
     m_source->setSortSpec(m_sortspec);
     setFiltSpec();
     emit docSourceChanged(m_source);
@@ -1183,29 +1184,7 @@ void RclMain::setUIPrefs()
 {
     LOGDEB("Recollmain::setUIPrefs\n");
     populateSideFilters(SFUR_USERCONFIG);
-    
-#if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
-    auto normaldarkfn =
-        u8s2qs(path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-dark.qss"));
-    LOGDEB1("RclMain::setUIPrefs: qssfile [" << qs2utf8s(prefs.qssFile) << "]\n");
-    // Only do something if no custom qss file is set.
-    if (prefs.qssFile.isEmpty()) {
-        if (qApp->styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
-            LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is DARK\n");
-            prefs.qssFile = normaldarkfn;
-            prefs.darkMode = true;
-        } else {
-            // Note: doing things this way means that there is no way to set dark on light system,
-            // except by coipying recoll-dark.qss somewhere else, and also importing the dark css
-            // into the result list header...
-            LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is LIGHT\n");
-            prefs.qssFile.clear();
-            prefs.darkMode = false;
-        }
-        prefs.setupDarkCSS();
-    }
-#endif
-    ::applyStyleSheet(prefs.qssFile);
+    ::applyStyle();
     emit uiPrefsChanged();
     enbSynAction->setDisabled(prefs.synFile.isEmpty());
     enbSynAction->setChecked(prefs.synFileEnable);
