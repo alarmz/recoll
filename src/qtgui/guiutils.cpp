@@ -38,6 +38,7 @@
 #include <QApplication>
 #include <QWidget>
 #include <QFont>
+#include <QStyleHints>
 #endif
 
 using std::vector;
