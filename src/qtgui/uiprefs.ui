@@ -624,6 +624,36 @@
            <item>
             <layout class="QHBoxLayout">
              <item>
+              <widget class="QLabel" name="colorschemeLBL">
+               <property name="text">
+                <string>Color scheme</string>
+               </property>
+               <property name="wordWrap">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="colorschemeCMB">
+               <property name="minimumSize">
+                <size>
+                 <width>10</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="editable">
+                <bool>no</bool>
+               </property>
+               <property name="insertPolicy">
+                <enum>QComboBox::NoInsert</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout">
+             <item>
               <widget class="QLabel" name="tLSTL">
                <property name="text">
                 <string>Application Qt style sheet</string>
@@ -640,16 +670,6 @@
                </property>
                <property name="text">
                 <string>None (default)</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="darkSSPB">
-               <property name="toolTip">
-                <string>Uses the default dark mode style sheet</string>
-               </property>
-               <property name="text">
-                <string>Dark mode</string>
                </property>
               </widget>
              </item>

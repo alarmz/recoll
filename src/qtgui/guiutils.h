@@ -50,6 +50,9 @@ public:
     QString reslistformat;
     std::string  creslistformat;
 
+    enum ColorScheme {CS_LIGHT, CS_DARK, CS_SYSTEM};
+    int colorscheme{0};
+
     // Dark mode set: both qss and css will use the base + dark style and then the possible user
     // style
     bool darkMode;

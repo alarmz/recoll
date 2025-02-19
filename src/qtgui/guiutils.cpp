@@ -309,6 +309,7 @@ void rwSettings(bool writing)
     SETTING_RW(prefs.singleapp, "/Recoll/ui/singleapp", Bool, false)
     SETTING_RW(prefs.previewLinesOverAnchor, "/Recoll/preview/previewLinesOverAnchor", Int, 4)
     SETTING_RW(prefs.uilanguage, "/Recoll/ui/uilanguage", String, "")
+    SETTING_RW(prefs.colorscheme, "/Recoll/ui/colorscheme", Int, 0)
     /*INSERTHERE*/
     
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -530,8 +531,18 @@ void applyStyle()
     auto fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-common.qss");
     std::string qss = cacheget(fn);
 
+#if defined(__APPLE__) && (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
+    prefs.colorscheme = PrefsPack::CS_SYSTEM;
+#endif
+    
+    if (prefs.colorscheme == PrefsPack::CS_LIGHT) {
+        prefs.darkMode = false;
+    } else if (prefs.colorscheme == PrefsPack::CS_DARK) {
+        prefs.darkMode = true;
+    } else {
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
-    if (qApp->styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
+    if (prefs.colorscheme == PrefsPack::CS_SYSTEM &&
+        qApp->styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
         LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is DARK\n");
         prefs.darkMode = true;
     } else {
@@ -541,7 +552,10 @@ void applyStyle()
         LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is LIGHT\n");
         prefs.darkMode = false;
     }
+#else
+    prefs.darkMode = false;
 #endif
+    }
 
     if (prefs.darkMode) {
         fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-dark.qss");

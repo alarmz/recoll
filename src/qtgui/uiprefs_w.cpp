@@ -93,13 +93,23 @@ void UIPrefsDialog::init()
     ssearchTypCMB->addItem(tr("Query language"));
     ssearchTypCMB->addItem(tr("Value from previous program exit"));
 
+    colorschemeCMB->addItem(tr("Light"));
+    colorschemeCMB->addItem(tr("Dark"));
+#if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
+        // Qt 6.5 brings a way to detect the desktop dark/light mode.
+    colorschemeCMB->addItem(tr("System"));
+#if defined(__APPLE__)
+        // __APPLE__ with qt6.5+: always use the system mode. We have problems with the others.
+    colorschemeCMB->hide();
+#endif
+#endif
+    
     connect(viewActionPB, SIGNAL(clicked()), this, SLOT(showViewAction()));
     connect(reslistFontPB, SIGNAL(clicked()), this, SLOT(showFontDialog()));
     connect(resetFontPB, SIGNAL(clicked()), this, SLOT(resetReslistFont()));
 
     connect(stylesheetPB, SIGNAL(clicked()),this, SLOT(showStylesheetDialog()));
     connect(resetSSPB, SIGNAL(clicked()), this, SLOT(resetStylesheet()));
-    connect(darkSSPB, SIGNAL(clicked()), this, SLOT(setDarkMode()));
     connect(snipCssPB, SIGNAL(clicked()),this, SLOT(showSnipCssDialog()));
     connect(synFilePB, SIGNAL(clicked()),this, SLOT(showSynFileDialog()));
     connect(resetSnipCssPB, SIGNAL(clicked()), this, SLOT(resetSnipCss()));
@@ -214,6 +224,8 @@ void UIPrefsDialog::setFromPrefs()
     auto idx = uilanguageCMB->findData(prefs.uilanguage);
     if (idx >= 0)
         uilanguageCMB->setCurrentIndex(idx);
+    if (prefs.colorscheme < colorschemeCMB->count())
+        colorschemeCMB->setCurrentIndex(prefs.colorscheme);
     /*INSERTHERE_LOAD*/
 
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -501,6 +513,7 @@ void UIPrefsDialog::accept()
     prefs.ssearchCompletePassive = ssearchCompletePassiveCB->isChecked();
     prefs.previewLinesOverAnchor = previewLinesOverAnchorSB->value();
     prefs.uilanguage = uilanguageCMB->currentData().toString();
+    prefs.colorscheme = colorschemeCMB->currentIndex();
     /*INSERTHERE_ACCEPT*/
 
     // -1 is the qxtconf... predefined value to show the dialog
@@ -617,9 +630,8 @@ void UIPrefsDialog::showFontDialog()
 
 void UIPrefsDialog::setSSButState()
 {
-    darkSSPB->setEnabled(!darkMode);
-    resetSSPB->setEnabled(darkMode || !qssFile.isEmpty());
-    if (darkMode || qssFile.isEmpty()) {
+    resetSSPB->setEnabled(!qssFile.isEmpty());
+    if (qssFile.isEmpty()) {
         stylesheetPB->setText(tr("Choose QSS File"));
     } else {
         stylesheetPB->setText(path2qs(path_getsimple(qs2path(qssFile))));
@@ -633,13 +645,6 @@ void UIPrefsDialog::showStylesheetDialog()
         qssFile = newfn;
         darkMode = false;
     }
-    setSSButState();
-}
-void UIPrefsDialog::setDarkMode()
-{
-    auto fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-dark.qss");
-    qssFile = u8s2qs(fn);
-    darkMode = true;
     setSSButState();
 }
 void UIPrefsDialog::resetStylesheet()
