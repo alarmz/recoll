@@ -185,7 +185,8 @@ private:
     // Max term size in unicode characters.
     static int o_maxWordLength; // set to 40 in texsplit.cpp
     static int o_maxWordsInSpan; // 6
-
+    static bool o_numberDashSpans;
+    
     int         m_flags;
 
     // Current span. Might be jf.dockes@wanadoo.f

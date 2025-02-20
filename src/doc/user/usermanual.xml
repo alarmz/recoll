@@ -7117,9 +7117,6 @@ application/x-blobapp = internal text/plain</programlisting>
           <literal>underscoreasletter</literal> index configuration parameter is set, in which case
           it is treated as a regular letter.</para>
 
-          <!-- Note: 1234-5678 does not generate a span but abc-def does, because of how we manage
-               '-' This does not make a lot of sense, but fixing is complicated and introduces an
-               index change, so let it be. -->
         </sect2>
 
         <sect2>
@@ -7163,9 +7160,6 @@ application/x-blobapp = internal text/plain</programlisting>
           for them through the <guilabel>All terms</guilabel> or <guilabel>Any term</guilabel>
           search modes or by using the <guilabel>Advanced search</guilabel> GUI dialog.</para>
 
-          <!-- Escaping special characters in query language mode might be possible. Because there
-               is no overlap with the wild cards, it would be possible to preserve the wild-card
-               escaping if present. TBD? -->
         </sect2>
 
         <sect2>
@@ -7174,25 +7168,12 @@ application/x-blobapp = internal text/plain</programlisting>
           <para>When querying, wild card characters generally cause an expansion of the term they
           are found in. Until &RCL; version 1.42.2, there was no way to escape them.</para>
 
-          <!-- That's because the terms are split before getting to expansion processing, and the
-               backslash is lost. -->
-
           <para>As of &RCL; 1.42.2 it is possible to escape wild card characters with a backslash
           when in <guilabel>File name</guilabel> search mode and it becomes possible to exactly
           search for file names containing these characters. Previously, you would have had to use a
           less precise search by replacing them with a <literal>?</literal> wild card or using
           another mode.</para>
 
-          <!-- No splitting for utf8fn, so the backslash is preserved. -->
-          <!-- ** The mystery of the [0-9]-[0-9] query:
-               When indexing, e.g. 6-9 would be indexed as two terms 6 and 9. However when
-               querying the above, the hyphen-minus is treated differently because it's not inside
-               a number so it stays there and generates a span. The result is that on my index the
-               search returns a single 3-9 where the - is an Unicode hyphen, kept as glue but
-               converted to ascii '-' in the index, by an entry in the default unac_except_trans
-               value, *after* splitting. Note that a search for ascii 6-9 still succeeds because
-               it's changed as a phrase "6 9", but of course this is can generate other non-wanted
-               matches, unlike using an hyphen which searches for the span. -->
         </sect2>
       </sect1>
     </appendix>

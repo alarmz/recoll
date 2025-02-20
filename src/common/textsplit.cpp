@@ -82,6 +82,8 @@ bool TextSplit::o_deHyphenate{false};
 // Max word size in Unicode characters
 int  TextSplit::o_maxWordLength{40};
 int  TextSplit::o_maxWordsInSpan{6};
+// Do we produce spans like 12-34-56?
+bool TextSplit::o_numberDashSpans{false};
 
 static std::unordered_set<unsigned int> o_idxpunct;
 static bool o_haveidxpunct;
@@ -96,6 +98,7 @@ void TextSplit::staticConfInit(RclConfig *config)
 {
     config->getConfParam("maxtermlength", &o_maxWordLength);
     config->getConfParam("maxwordsinspan", &o_maxWordsInSpan);
+    config->getConfParam("numberdashspans", &o_numberDashSpans);
 
     std::string sidxpunct;
     config->getConfParam("indexedpunctuation", sidxpunct);
@@ -671,6 +674,7 @@ bool TextSplit::text_to_words(const string &in)
 #if defined(KATAKANA_AS_WORDS) || defined(HANGUL_AS_WORDS) || defined(CHINESE_AS_WORDS)
     int prev_csc = -1;
 #endif
+    int prevc = -1;
     for (; !it.eof() && !it.error(); it++) {
         unsigned int c = *it;
 
@@ -832,10 +836,9 @@ bool TextSplit::text_to_words(const string &in)
                     m_wordLen += it.appendchartostring(m_span);
                     STATS_INC_WORDCHARS;
                     break;
-                } 
-            } else if (m_inNumber) {
-                if ((m_span[m_span.length() - 1] == 'e' ||
-                     m_span[m_span.length() - 1] == 'E')) {
+                }
+            } else if (!o_numberDashSpans && m_inNumber) {
+                if ((m_span[m_span.length() - 1] == 'e' || m_span[m_span.length() - 1] == 'E')) {
                     if (isdigit(whatcc(it[it.getCpos()+1]), m_flags)) {
                         m_wordLen += it.appendchartostring(m_span);
                         STATS_INC_WORDCHARS;
@@ -845,8 +848,9 @@ bool TextSplit::text_to_words(const string &in)
             } else {
                 int nextc = it[it.getCpos()+1];
                 if (cc == '+') {
-                    if (nextc == '+' || nextc == -1 || isvisiblewhite(nextc)) {
-                        // someword++[+...] !
+                    if ((nextc == '+' && prevc != '+') ||
+                        (prevc == '+' && (nextc == -1 || isvisiblewhite(nextc)))) {
+                        // someword++ but not someword+ or someword+++
                         m_wordLen += it.appendchartostring(m_span);
                         STATS_INC_WORDCHARS;
                         break;
@@ -1042,6 +1046,7 @@ bool TextSplit::text_to_words(const string &in)
             break;
         }
         softhyphenpending = false;
+        prevc = cc;
     }
     if (m_wordLen || m_span.length()) {
         if (!doemit(true, it.getBpos()))

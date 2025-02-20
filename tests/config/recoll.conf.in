@@ -25,6 +25,7 @@ topdirs = @RECOLL_TESTDATA@
 #thrQSizes = -1 -1 -1
 idxflushmbs=200
 #thrTmpDbCnt = 4
+#numberdashspans=1
 
 # Adding to skippedNames
 skippedNames+ = notinskippednames
