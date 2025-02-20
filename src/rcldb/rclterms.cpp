@@ -39,6 +39,8 @@
 
 using namespace std;
 
+#define LOGTERM LOGDEB1
+
 namespace Rcl {
 
 // File name wild card expansion. This is a specialisation ot termMatch
@@ -428,7 +430,7 @@ bool Db::Native::idxTermMatch_p(int typ, const string& expr, const std::string& 
                                 std::function<bool(const string& term, Xapian::termcount colfreq,
                                                    Xapian::doccount termfreq)> client)
 {
-    LOGDEB1("idxTermMatch_p: input expr: [" << expr << "] prefix [" << prefix << "]\n");
+    LOGTERM("idxTermMatch_p: input expr: [" << expr << "] prefix [" << prefix << "]\n");
 
     Xapian::Database xdb = xrdb;
 
@@ -453,7 +455,7 @@ bool Db::Native::idxTermMatch_p(int typ, const string& expr, const std::string& 
     } else {
         is = prefix + expr;
     }
-    LOGDEB1("idxTermMatch_p: initial section: [" << is << "]\n");
+    LOGTERM("idxTermMatch_p: initial section: [" << is << "]\n");
 
     XAPTRY(
         Xapian::TermIterator it = xdb.allterms_begin(is);
@@ -462,7 +464,7 @@ bool Db::Native::idxTermMatch_p(int typ, const string& expr, const std::string& 
             LOGDEB1("idxTermMatch_p: term at skip [" << ixterm << "]\n");
             // If we're beyond the terms matching the initial section, end.
             if (!is.empty() && ixterm.find(is) != 0) {
-                LOGDEB1("idxTermMatch_p: initial section mismatch: stop\n");
+                LOGTERM("idxTermMatch_p: initial section mismatch: stop\n");
                 break;
             }
             // Else try to match the term. The matcher content is prefix-less.
@@ -473,6 +475,7 @@ bool Db::Native::idxTermMatch_p(int typ, const string& expr, const std::string& 
                 if (has_prefix(ixterm)) {
                     // This is possible with a left-side wildcard which would have an empty
                     // initial section so that we're scanning the whole term list.
+                    LOGTERM("Skipping prefixed term [" << ixterm << "]\n");
                     continue;
                 }
                 term = ixterm;
@@ -482,12 +485,14 @@ bool Db::Native::idxTermMatch_p(int typ, const string& expr, const std::string& 
             // equality
             if (matcher) {
                 if (!matcher->match(term)) {
+                    LOGTERM("No match for <" << term << "> exp <" << matcher->exp() << ">\n");
                     continue;
                 }
             } else if (term != expr) {
                 break;
             }
 
+            LOGTERM("match for [" << ixterm << "]\n");
             if (!client(ixterm, xdb.get_collection_freq(ixterm), it.get_termfreq()) || !matcher) {
                 // If the client tells us or this is an exact search, stop.
                 break;
