@@ -1,4 +1,4 @@
-/* Copyright (C) 2008 J.F.Dockes
+/* Copyright (C) 2008-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -75,8 +75,7 @@ public:
         : m_fld(docfToDatf(f) + "=") {
         if (m_fld == "dmtime=") {
             m_ismtime = true;
-        } else if (m_fld == "fbytes=" || m_fld == "dbytes=" || 
-                   m_fld == "pcbytes=") {
+        } else if (m_fld == "fbytes=" || m_fld == "dbytes=" || m_fld == "pcbytes=") {
             m_issize = true;
         } else if (m_fld == "mtype=") {
             m_ismtype = true;
@@ -244,10 +243,8 @@ bool Query::setQuery(std::shared_ptr<SearchData> sdata)
                     m_sorter = nullptr;
                 }
                 m_sorter = new QSorter(m_sortField);
-                // It really seems there is a xapian bug about sort order, we 
-                // invert here.
-                m_nq->xenquire->set_sort_by_key((QSorter*)m_sorter, 
-                                                !m_sortAscending);
+                // It really seems there is a xapian bug about sort order, we invert here.
+                m_nq->xenquire->set_sort_by_key((QSorter*)m_sorter, !m_sortAscending);
             }
             m_nq->xenquire->set_query(m_nq->xquery);
             m_nq->xmset = Xapian::MSet();
@@ -286,8 +283,7 @@ bool Query::getQueryTerms(vector<string>& terms)
     Xapian::TermIterator it;
     string ermsg;
     try {
-        for (it = m_nq->xquery.get_terms_begin(); 
-             it != m_nq->xquery.get_terms_end(); it++) {
+        for (it = m_nq->xquery.get_terms_begin(); it != m_nq->xquery.get_terms_end(); it++) {
             terms.push_back(*it);
         }
     } XCATCHERROR(ermsg);
@@ -347,8 +343,8 @@ int Query::makeDocAbstract(const Doc &doc, PlainToRich *plaintorich, vector<Snip
     for (auto& snip : abs1) {
         list<string> ls;
         if (plaintorich->plaintorich(snip.snippet, ls, hldata)) {
-          snip.snippet = ls.front();
-          abstract.push_back(snip);
+            snip.snippet = ls.front();
+            abstract.push_back(snip);
         }
     }
     return ret;
@@ -450,8 +446,7 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
     if (!(xapi >= first && xapi <= first + int(m_nq->xmset.size()) -1)) {
         LOGDEB("Fetching for first " << xapi << ", count " << qquantum << "\n");
 
-        XAPTRY(m_nq->xmset = m_nq->xenquire->get_mset(
-                   xapi, qquantum, nullptr, m_nq->subdecider),
+        XAPTRY(m_nq->xmset = m_nq->xenquire->get_mset(xapi, qquantum, nullptr, m_nq->subdecider),
                m_db->m_ndb->xrdb, m_reason);
         if (!m_reason.empty()) {
             LOGERR("enquire->get_mset: exception: " << m_reason << "\n");
@@ -470,7 +465,7 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
     int collapsecount = 0;
     string data;
     m_reason.erase();
-    for (int xaptries=0; xaptries < 2; xaptries++) {
+    for (int xaptries = 0; xaptries < 2; xaptries++) {
         try {
             xdoc = m_nq->xmset[xapi-first].get_document();
             collapsecount = m_nq->xmset[xapi-first].get_collapse_count();
@@ -478,7 +473,6 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
             pc = m_nq->xmset.convert_to_percent(m_nq->xmset[xapi-first]);
             data = xdoc.get_data();
             m_reason.erase();
-            Chrono chron;
             break;
         } catch (Xapian::DatabaseModifiedError &error) {
             // retry or end of loop
@@ -555,4 +549,3 @@ vector<string> Query::expand(const Doc &doc)
 }
 
 }
-
