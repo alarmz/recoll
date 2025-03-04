@@ -447,28 +447,25 @@ void RecollModel::saveAsCSV(std::fstream& fp)
         return;
 
     int cols = columnCount();
-    int rows = rowCount();
     vector<string> tokens;
 
     for (int col = 0; col < cols; col++) {
-        QString qs = headerData(col, Qt::Horizontal,Qt::DisplayRole).toString();
-        tokens.push_back((const char *)qs.toUtf8());
+        QString qs = headerData(col, Qt::Horizontal, Qt::DisplayRole).toString();
+        tokens.push_back(qs2utf8s(qs));
     }
     auto csv = stringsToCSV(tokens);
     fp << csv << "\n";
-    tokens.clear();
 
-    for (int row = 0; row < rows; row++) {
+    for (int row = 0;; row++) {
         Rcl::Doc doc;
         if (!m_source->getDoc(row, doc)) {
-            continue;
+            break;
         }
         for (int col = 0; col < cols; col++) {
-            tokens.push_back(m_getters[col](m_fields[col], doc));
+            tokens[col] = m_getters[col](m_fields[col], doc);
         }
         csv = stringsToCSV(tokens);
         fp << csv << "\n";
-        tokens.clear();
     }
 }
 
@@ -483,10 +480,8 @@ void RecollModel::sort(int column, Qt::SortOrder order)
     DocSeqSortSpec spec;
     if (column >= 0 && column < int(m_fields.size())) {
         spec.field = m_fields[column];
-        if (!stringlowercmp("relevancyrating", spec.field) &&
-            order != Qt::AscendingOrder) {
-            QMessageBox::warning(0, "Recoll",
-                                 tr("Can't sort by inverse relevance"));
+        if (!stringlowercmp("relevancyrating", spec.field) && order != Qt::AscendingOrder) {
+            QMessageBox::warning(0, "Recoll", tr("Can't sort by inverse relevance"));
             QTimer::singleShot(0, m_table, SLOT(resetSort()));
             return;
         }
