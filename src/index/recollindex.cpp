@@ -144,8 +144,7 @@ static void sigcleanup(int sig)
         vector<bool> emptiness;
         topdirs_state(emptiness);
         if (emptiness != o_topdirs_emptiness) {
-            string msg = "Recollindex: resume: topdirs state changed while "
-                "we were sleeping\n";
+            string msg = "Recollindex: resume: topdirs state changed while we were sleeping\n";
             cerr << msg;
             LOGDEB(msg);
             CancelCheck::instance().setCancel();
@@ -364,10 +363,10 @@ static bool checktopdirs(RclConfig *config, vector<string>& nonexist)
         dir = path_tildexpand(dir);
         if (!dir.size() || !path_isabsolute(dir)) {
             if (dir[0] == '~') {
-                cerr << "Tilde expansion failed: " << dir << endl;
+                cerr << "Tilde expansion failed: " << dir << '\n';
                 LOGERR("recollindex: tilde expansion failed: " << dir << "\n");
             } else {
-                cerr << "Not an absolute path: " << dir << endl;
+                cerr << "Not an absolute path: " << dir << '\n';
                 LOGERR("recollindex: not an absolute path: " << dir << "\n");
             }
             return false;
@@ -473,29 +472,26 @@ static void lockorexit(Pidfile *pidfile, RclConfig *config)
     if ((pid = pidfile->open()) != 0) {
         if (pid > 0) {
             cerr << "Can't become exclusive indexer: " << pidfile->getreason()
-                 << ". Return (other pid?): " << pid << endl;
-            // Have a look at the status file. If the other process is
-            // a monitor we can tell it to start an incremental pass
-            // by touching the configuration file
+                 << ". Return (other pid?): " << pid << '\n';
+            // Have a look at the status file. If the other process is a monitor we can tell it to
+            // start an incremental pass by touching the configuration file
             DbIxStatus status;
             readIdxStatus(config, status);
             if (status.hasmonitor) {
                 string path = path_cat(config->getConfDir(), "recoll.conf");
                 if (!path_utimes(path, nullptr)) {
-                    cerr << "Could not notify indexer" << endl;
+                    cerr << "Could not notify indexer" << '\n';
                 } else {
-                    cerr << "Monitoring indexer process was notified of indexing request" << endl;
+                    cerr << "Monitoring indexer process was notified of indexing request" << '\n';
                 }
             }
         } else {
-            cerr << "Can't become exclusive indexer: " << pidfile->getreason()
-                 << endl;
+            cerr << "Can't become exclusive indexer: " << pidfile->getreason() << '\n';
         }            
         exit(1);
     }
     if (pidfile->write_pid() != 0) {
-        cerr << "Can't become exclusive indexer: " << pidfile->getreason() <<
-            endl;
+        cerr << "Can't become exclusive indexer: " << pidfile->getreason() << '\n';
         exit(1);
     }
 }
@@ -516,7 +512,7 @@ static void flushIdxReasons()
             out.open(reasonsfile, ofstream::out|ofstream::trunc);
             idxreasons.write(out);
         } catch (...) {
-            std::cerr << "Could not write reasons file " << reasonsfile << endl;
+            std::cerr << "Could not write reasons file " << reasonsfile << '\n';
             idxreasons.write(std::cerr);
         }
     }
@@ -713,7 +709,7 @@ int main(int argc, char *argv[])
             std::cerr << "Warning: invalid paths in topdirs, skippedPaths or daemSkippedPaths:\n";
         }
         for (const auto& entry : nonexist) {
-            out << entry << endl;
+            out << entry << '\n';
         }
     }
     if ((op_flags & OPT_E)) {
@@ -822,7 +818,7 @@ int main(int argc, char *argv[])
         bool status = recursive_index(config, top, selpatterns);
         if (confindexer && !confindexer->getReason().empty()) {
             addIdxReason("indexer", confindexer->getReason());
-            cerr << confindexer->getReason() << endl;
+            cerr << confindexer->getReason() << '\n';
         }
         flushIdxReasons();
         exit(status ? 0 : 1);
@@ -854,7 +850,7 @@ int main(int argc, char *argv[])
         }
         if (confindexer && !confindexer->getReason().empty()) {
             addIdxReason("indexer", confindexer->getReason());
-            cerr << confindexer->getReason() << endl;
+            cerr << confindexer->getReason() << '\n';
         }
         flushIdxReasons();
         exit(status ? 0 : 1);
@@ -880,7 +876,7 @@ int main(int argc, char *argv[])
             LOGDEB("recollindex: daemonizing\n");
             if (daemon(0,0) != 0) {
                 addIdxReason("monitor", "daemon() failed");
-                cerr << "daemon() failed, errno " << errno << endl;
+                cerr << "daemon() failed, errno " << errno << '\n';
                 LOGERR("daemon() failed, errno " << errno << "\n");
                 flushIdxReasons();
                 exit(1);
@@ -957,10 +953,10 @@ int main(int argc, char *argv[])
         checkRetryFailed(config, true);
     }
     if (!status) 
-        cerr << "Indexing failed" << endl;
+        cerr << "Indexing failed" << '\n';
     if (!confindexer->getReason().empty()) {
         addIdxReason("indexer", confindexer->getReason());
-        cerr << confindexer->getReason() << endl;
+        cerr << confindexer->getReason() << '\n';
     }
     statusUpdater()->update(DbIxStatus::DBIXS_DONE, "");
     flushIdxReasons();
