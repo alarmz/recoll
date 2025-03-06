@@ -162,6 +162,7 @@ filters/rcltxtlines.py
 filters/rcluncomp
 filters/rcluncomp.py
 filters/rclwar.py
+filters/rclwebarch.py
 filters/rclxls.py
 filters/rclxml.py
 filters/rclxmp.py
@@ -697,6 +698,8 @@ utils/netcon.h
 utils/pathut.cpp
 utils/pathut.h
 utils/picoxml.h
+utils/powerstatus.cpp
+utils/powerstatus.h
 utils/pxattr.cpp
 utils/pxattr.h
 utils/rclionice.cpp

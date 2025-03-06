@@ -355,6 +355,7 @@ librecoll_sources = [
     'utils/miniz.cpp',
     'utils/netcon.cpp',
     'utils/pathut.cpp',
+    'utils/powerstatus.cpp',
     'utils/pxattr.cpp',
     'utils/rclionice.cpp',
     'utils/readfile.cpp',

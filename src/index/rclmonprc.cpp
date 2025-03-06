@@ -51,6 +51,7 @@
 #endif
 #include "subtreelist.h"
 #include "idxstatus.h"
+#include "powerstatus.h"
 
 using std::list;
 using std::vector;
@@ -67,6 +68,10 @@ static int auxinterval = dfltauxinterval;
 // fast changing files and saving some of the indexing overhead.
 static const int dfltixinterval = 30;
 static int ixinterval = dfltixinterval;
+
+// If this is set (from the config), we stop indexing when power comes from the battery and resume
+// when on AC.
+static bool checkpowersource{false};
 
 static RclMonEventQueue rclEQ;
 
@@ -448,12 +453,16 @@ static bool expeditedIndexingRequested(RclConfig *conf)
     return found;
 }
 
+static void waitforacpower();
+
 bool startMonitor(RclConfig *conf, int opts)
 {
     if (!conf->getConfParam("monauxinterval", &auxinterval))
         auxinterval = dfltauxinterval;
     if (!conf->getConfParam("monixinterval", &ixinterval))
         ixinterval = dfltixinterval;
+    conf->getConfParam("suspendonbattery", &checkpowersource);
+    
     bool doweb{false};
     conf->getConfParam("processwebqueue", &doweb);
 
@@ -579,6 +588,17 @@ bool startMonitor(RclConfig *conf, int opts)
             }
         }
 
+        // Check power source
+        if (checkpowersource) {
+            PowerStatus *pw = PowerStatus::instance();
+            if (pw && pw->get() == PowerStatus::ONBATTERY) {
+                rclEQ.setTerminate();
+                // waitforacpower normally never returns, if it does we do too.
+                waitforacpower();
+                return true;
+            }
+        }
+
         // Check for a config change
         if (!(opts & RCLMON_NOCONFCHECK) && o_reexec && conf->sourceChanged()) {
             LOGDEB("Rclmonprc: config changed, reexecuting myself\n");
@@ -603,6 +623,22 @@ bool startMonitor(RclConfig *conf, int opts)
     // (can't foresee any reason why we'd want to do this).
     LOGDEB("Monitor: returning\n");
     return true;
+}
+
+static void waitforacpower()
+{
+    LOGDEB("waitforacpower()\n");
+    PowerStatus *pw = PowerStatus::instance();
+    if (o_reexec && pw) {
+        while (!stopindexing) {
+            if (pw->get() == PowerStatus::ONAC) {
+                LOGDEB("waitforacpower: resuming\n");
+                o_reexec->removeArg("-n");
+                o_reexec->reexec();
+            }
+            sleep(30);
+        }
+    }
 }
 
 #endif // RCL_MONITOR

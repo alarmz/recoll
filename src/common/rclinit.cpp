@@ -105,33 +105,32 @@ void recoll_exitready()
 
 #else // _WIN32 ->
 
+#include "powerstatus.h"
+
 #define WIN32_LEAN_AND_MEAN
 #define NOGDI
 #include <windows.h>
 
 // Windows signals etc.
 //
-// ^C can be caught by the signal() emulation, but not ^Break
-// apparently, which is why we use the native approach too
+// ^C can be caught by the signal() emulation, but not ^Break apparently, which is why we use the
+// native approach too.
 //
-// When a keyboard interrupt occurs, windows creates a thread inside
-// the process and calls the handler. The process exits when the
-// handler returns or after at most 10S
+// When a keyboard interrupt occurs, windows creates a thread inside the process and calls the
+// handler. The process exits when the handler returns or after at most 10S
 //
-// This should also work, with different signals (CTRL_LOGOFF_EVENT,
-// CTRL_SHUTDOWN_EVENT) when the user exits or the system shuts down).
+// This should also work, with different signals (CTRL_LOGOFF_EVENT, CTRL_SHUTDOWN_EVENT) when the
+// user exits or the system shuts down).
 //
-// Unfortunately, this is not the end of the story. It seems that in
-// recent Windows version "some kinds" of apps will not reliably
-// receive the signals. "Some kind" is variably defined, for example a
-// simple test program works when built with vs 2015, but not
-// mingw. See the following discussion thread for tentative
-// explanations, it seems that importing or not from user32.dll is the
-// determining factor.
+// Unfortunately, this is not the end of the story. It seems that in recent Windows version "some
+// kinds" of apps will not reliably receive the signals. "Some kind" is variably defined, for
+// example a simple test program works when built with vs 2015, but not mingw. See the following
+// discussion thread for tentative explanations, it seems that importing or not from user32.dll is
+// the determining factor.
 // https://social.msdn.microsoft.com/Forums/windowsdesktop/en-US/abf09824-4e4c-4f2c-ae1e-5981f06c9c6e/windows-7-console-application-has-no-way-of-trapping-logoffshutdown-event?forum=windowscompatibility
-// In any case, it appears that the only reliable way to be advised of
-// system shutdown or user exit is to create an "invisible window" and
-// process window messages, which we now do.
+//
+// In any case, it appears that the only reliable way to be advised of system shutdown or user exit
+// is to create an "invisible window" and process window messages, which we now do.
 
 static void (*l_sigcleanup)(int);
 static HANDLE eWorkFinished = INVALID_HANDLE_VALUE;
@@ -163,19 +162,29 @@ static BOOL WINAPI CtrlHandler(DWORD fdwCtrlType)
     } 
 } 
 
-LRESULT CALLBACK MainWndProc(HWND hwnd , UINT msg , WPARAM wParam,
-                             LPARAM lParam)
+LRESULT CALLBACK MainWndProc(HWND hwnd , UINT msg , WPARAM wParam, LPARAM lParam)
 {
     switch (msg) {
     case WM_POWERBROADCAST:
     {
         LOGDEB("MainWndProc: got powerbroadcast message\n");
-        // This gets specific processing because we want to check the
-        // state of topdirs on resuming indexing (in case a mounted
-        // volume went away).
-        if (l_sigcleanup) {
-            if (wParam == PBT_APMRESUMEAUTOMATIC ||
-                wParam == PBT_APMRESUMESUSPEND) {
+        // This gets specific processing because we want to check the state of topdirs on resuming
+        // indexing (in case a mounted volume went away). And also, ac/battery now.
+        if (wParam == PBT_APMPOWERSTATUSCHANGE) {
+            auto pw = PowerStatus::instance();
+            if (pw) {
+                SYSTEM_POWER_STATUS pwst;
+                GetSystemPowerStatus(&pwst);
+                if (pwst.ACLineStatus) {
+                    LOGERR("SYSTEM ON AC\n");
+                    pw->set(PowerStatus::ONAC);
+                } else {
+                    LOGERR("SYSTEM ON BATTERY\n");
+                    pw->set(PowerStatus::ONBATTERY);
+                }
+            }
+        } else if (l_sigcleanup) {
+            if (wParam == PBT_APMRESUMEAUTOMATIC || wParam == PBT_APMRESUMESUSPEND) {
                 l_sigcleanup(RCLSIG_RESUME);
             }
         }
@@ -257,6 +266,7 @@ void initAsyncSigs(void (*sigcleanup)(int))
         LOGERR("initAsyncSigs: error creating exitready event\n" );
     }
 }
+
 void recoll_exitready()
 {
     LOGDEB("recoll_exitready()\n" );
@@ -265,11 +275,10 @@ void recoll_exitready()
     }
 }
 
-#endif
+#endif // _WIN32
 
-RclConfig *recollinit(int flags, 
-                      void (*cleanup)(void), void (*sigcleanup)(int), 
-                      string &reason, const string *argcnf)
+RclConfig *recollinit(
+    int flags, void (*cleanup)(void), void (*sigcleanup)(int), string &reason, const string *argcnf)
 {
     if (cleanup)
         atexit(cleanup);

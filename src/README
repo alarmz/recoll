@@ -5670,6 +5670,11 @@ Parameters affecting indexing performance and resource usage
           updates become a bottleneck. How useful this is depends on the
           type of input and CPU. See the manual for more details.
 
+   suspendonbattery
+          Suspend the real time indexing when the system runs on battery.
+          The indexer will wait for a return on AC and reexec itself when
+          it happens.
+
 Miscellaneous parameters
 
    loglevel

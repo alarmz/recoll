@@ -597,6 +597,10 @@ Using multiple indexes and a final merge can significantly improve indexing perf
 the single-threaded Xapian index updates become a bottleneck. How useful this is depends
 on the type of input and CPU. See the manual for more details.
 </para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.SUSPENDONBATTERY">
+<term><varname>suspendonbattery</varname></term>
+<listitem><para>Suspend the real time indexing when the system runs on battery. The indexer will wait for a return on AC and reexec itself when it happens.
+</para></listitem></varlistentry>
 </variablelist></sect3>
 <sect3 id="RCL.CONFIG.RECOLLCONF.MISC">
 <title>Miscellaneous parameters </title><variablelist>
