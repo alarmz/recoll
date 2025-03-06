@@ -1183,5 +1183,6 @@ void ReExec::reexec()
         argv[i++] = arg.c_str();
     }
     argv[i] = nullptr;
+    LOGDEB("ReExec: " << m_argv[0] << " " << stringsToString(m_argv) << '\n');
     execvp(m_argv[0].c_str(), (char *const*)argv);
 }
