@@ -90,6 +90,6 @@ mac {
      $$PWD/build/libxapian/$$QCBUILDLOC-Release/liblibxapian.a \
      $$RECOLLDEPS/libmagic/src/.libs/libmagic.a \
      -F/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks \
-        -framework CoreServices \
+        -framework CoreServices -framework IOKit \
      -lxslt -lxml2 -liconv -lz
 }
