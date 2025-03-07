@@ -109,6 +109,7 @@ SOURCES += \
 ../utils/mimeparse.cpp \
 ../utils/miniz.cpp \
 ../utils/pathut.cpp \
+../utils/powerstatus.cpp \
 ../utils/pxattr.cpp \
 ../utils/readfile.cpp \
 ../utils/smallut.cpp \

@@ -176,10 +176,10 @@ LRESULT CALLBACK MainWndProc(HWND hwnd , UINT msg , WPARAM wParam, LPARAM lParam
                 SYSTEM_POWER_STATUS pwst;
                 GetSystemPowerStatus(&pwst);
                 if (pwst.ACLineStatus) {
-                    LOGERR("SYSTEM ON AC\n");
+                    LOGDEB("SYSTEM ON AC\n");
                     pw->set(PowerStatus::ONAC);
                 } else {
-                    LOGERR("SYSTEM ON BATTERY\n");
+                    LOGDEB("SYSTEM ON BATTERY\n");
                     pw->set(PowerStatus::ONBATTERY);
                 }
             }

@@ -4,7 +4,7 @@ import os
 import sys
 
 # For shadow builds: references to the source tree
-pytop = "c:/users/bill/documents/recoll/src/python/recoll"
+pytop = "./"
 # Windows
 recolldeps = "c:/users/bill/documents/recolldeps/msvc"
 
@@ -38,15 +38,15 @@ include_dirs = [
 ]
 
 library_dirs = [
-        os.path.join(top, "qmake/build/librecoll/Desktop_Qt_6_7_3_MSVC2019_64bit-Release/release/"),
+        os.path.join(top, "qmake/build/librecoll/Desktop_Qt_6_8_2_MSVC2022_64bit-Release/release/"),
         os.path.join(recolldeps, "libxml2/libxml2-2.9.4+dfsg1/win32/bin.msvc"),
         os.path.join(recolldeps, "libxslt/libxslt-1.1.29/win32/bin.msvc"),
-        os.path.join(top, "qmake/build/libxapian/Desktop_Qt_6_7_3_MSVC2019_64bit-Release/release"),
+        os.path.join(top, "qmake/build/libxapian/Desktop_Qt_6_8_2_MSVC2022_64bit-Release/release"),
         os.path.join(recolldeps, "zlib-1.2.11"),
         os.path.join(recolldeps, "libmagic/src/lib"),
         os.path.join(recolldeps, "regex"),
         os.path.join(recolldeps, "wlibiconv",
-                     "build/Desktop_Qt_6_7_3_MSVC2019_64bit-Release/release")
+                     "build/Desktop_Qt_6_8_2_MSVC2022_64bit-Release/release")
         ]
 
 libraries =  ["recoll", "libmagic", "libregex", "libxml2_a", "libxslt_a",

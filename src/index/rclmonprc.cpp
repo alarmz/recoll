@@ -636,7 +636,7 @@ static void waitforacpower()
                 o_reexec->removeArg("-n");
                 o_reexec->reexec();
             }
-            sleep(30);
+            millisleep(30 * 1000);
         }
     }
 }
