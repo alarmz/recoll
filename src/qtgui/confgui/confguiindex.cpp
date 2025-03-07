@@ -294,6 +294,9 @@ bool ConfIndexW::setupTopPanel(int idx)
                      "indexing will fail and stop.<br>"
                      "The default value of 0 removes any limit."), 0, 100);
 
+    m_w->addParam(idx, ConfTabsW::CFPT_BOOL, "suspendonbattery",
+                  tr("Suspend the real time indexer when running on battery"),
+                  tr("The indexer will wait for a return on AC and reexec itself when it happens"));
     ConfParamW *bparam = m_w->addParam(
         idx, ConfTabsW::CFPT_BOOL, "noaspell", tr("No aspell usage") +
         tr(" (by default, aspell suggests mispellings when a query has no results)."),
