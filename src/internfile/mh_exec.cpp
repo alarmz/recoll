@@ -42,17 +42,22 @@ MEAdv::MEAdv(int maxsecs)
 void MEAdv::reset()
 {
     m_start = time(0L);
-
+    m_size = 0;
 }
 
 void MEAdv::newData(int n) 
 {
     PRETEND_USE(n);
-    LOGDEB2("MHExec:newData(" << n << ")\n");
+    LOGDEB2("MHExec:newData(" << n << " total " << m_size << ")\n");
     if (m_filtermaxseconds > 0 && time(0L) - m_start > m_filtermaxseconds) {
         LOGERR("MimeHandlerExec: filter timeout (" << m_filtermaxseconds << " S)\n");
         throw HandlerTimeout();
     }
+    if (m_maxkbs > 0 && (m_size + n)/1024 > m_maxkbs) {
+        LOGERR("MimeHandlerExec: max size reached (" << m_maxkbs << " KB)\n");
+        throw HandlerMaxSize();
+    }
+    m_size += n;
     // If a cancel request was set by the signal handler (or by us
     // just above), this will raise an exception. Another approach
     // would be to call ExeCmd::setCancel().
@@ -65,6 +70,7 @@ MimeHandlerExec::MimeHandlerExec(RclConfig *cnf, const std::string& id)
 {
     m_config->getConfParam("filtermaxseconds", &m_filtermaxseconds);
     m_config->getConfParam("filtermaxmbytes", &m_filtermaxmbytes);
+    m_config->getConfParam("membermaxkbs", &m_maxkbs);
 }
 
 bool MimeHandlerExec::set_document_file_impl(const std::string& mt, const std::string &file_path)
@@ -157,6 +163,7 @@ bool MimeHandlerExec::next_document()
     output.erase();
     ExecCmd mexec;
     MEAdv adv(m_filtermaxseconds);
+    adv.setmaxkbs(m_maxkbs);
     mexec.setAdvise(&adv);
     mexec.putenv("RECOLL_CONFDIR", m_config->getConfDir());
     mexec.putenv(m_forPreview ? "RECOLL_FILTER_FORPREVIEW=yes" : "RECOLL_FILTER_FORPREVIEW=no");
@@ -171,6 +178,9 @@ bool MimeHandlerExec::next_document()
         status = mexec.doexec(cmd, myparams, 0, &output);
     } catch (HandlerTimeout) {
         LOGERR("MimeHandlerExec: handler timeout\n" );
+        status = 0x110f;
+    } catch (HandlerMaxSize) {
+        LOGERR("MimeHandlerExec: membermaxkbs " << m_maxkbs << " KB exceeded\n" );
         status = 0x110f;
     } catch (CancelExcept) {
         LOGERR("MimeHandlerExec: cancelled\n" );

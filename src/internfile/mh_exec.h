@@ -19,12 +19,14 @@
 
 #include <string>
 #include <vector>
+#include <cstdint>
 
 #include "mimehandler.h"
 #include "execmd.h"
 
 class HandlerTimeout {};
-    
+class HandlerMaxSize {};
+
 /** 
  * Turn external document into internal one by executing an external command.
  *
@@ -66,12 +68,12 @@ public:
     std::string whatHelper;
     // Resource management values
 
-    // The filtermaxseconds default is set in the constructor by
-    // querying the recoll.conf configuration variable. It can be
-    // changed by the filter creation code in mimehandler.cpp if a
-    // maxseconds parameter is set on the mimeconf line.
+    // These are set in the constructor by querying the recoll.conf configuration variable. They can
+    // be changed by the filter creation code in mimehandler.cpp (for the time: if a maxseconds
+    // parameter is set on the mimeconf line).
     int m_filtermaxseconds{900};
     int m_filtermaxmbytes{0};
+    int m_maxkbs{50000};
     ////////////////
 
     MimeHandlerExec(RclConfig *cnf, const std::string& id);
@@ -121,16 +123,21 @@ private:
 // command.
 class MEAdv : public ExecCmdAdvise {
 public:
-    MEAdv(int maxsecs = 900);
+    MEAdv(int maxsecs = 1200);
     // Reset start time to now
     void reset();
     void setmaxsecs(int maxsecs) {
         m_filtermaxseconds = maxsecs;
     }
+    void setmaxkbs(int maxkbs = 50000) {
+        m_maxkbs = maxkbs;
+    }
     void newData(int n);
 private:
     time_t m_start;
-    int m_filtermaxseconds;
+    int m_filtermaxseconds{1200};
+    int64_t m_size{0};
+    int m_maxkbs{50000};
 };
 
 #endif /* _MH_EXEC_H_INCLUDED_ */
