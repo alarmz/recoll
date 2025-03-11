@@ -323,7 +323,6 @@ python/pychm/recollchm/swig_chm.i
 python/recoll/
 python/recoll/COPYING
 python/recoll/meson.build
-python/recoll/pyproject.toml
 python/recoll/pyrclextract.cpp
 python/recoll/pyrecoll.cpp
 python/recoll/pyrecoll.h

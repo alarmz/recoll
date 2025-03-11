@@ -1,3 +1,19 @@
+recoll (1.43.0-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Add suspendonbattery parameter to suspend the real time indexer when
+    the system is running on battery power.
+  * Use maxmemberkbs to limit the size of documents returned by exec
+    handlers (it was already used for execm).
+  * Add option to produce num-dash spans like 123-456-789.
+  * GUI: clean up qss and css style processing. Now always
+    base + optional dark + optional user.
+  * Allow escaping wildcard characters in some cases.
+  * MacOS webarchive format support.
+  * Fix result table csv export: it exported too few documents.
+  * Fix backslashasletter.
+  
+ -- Jean-Francois Dockes <jf@dockes.org>  Tue, 11 Mar 2025 09:43:00 +0100
+
 recoll (1.42.1-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Repair GUI history features, broken by lazy UDI extraction in 1.42.0
