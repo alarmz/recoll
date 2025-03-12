@@ -792,15 +792,25 @@ bool Db::Native::addOrUpdateWrite(
         } else {
             LOGINFO("Db::add: docid " << did << " added [" << udi << "]\n");
         }
+        if (textlen > 10)
+            throw "BOGUS ERROR";
     } XCATCHERROR(ermsg);
     if (!ermsg.empty()) {
-        LOGERR("Db::add: replace_document failed: " << ermsg << "\n");
+        LOGERR("Db::addOrUpdate: replace_document failed: " << ermsg << "\n");
+        auto data = newdocument_ptr->get_data();
+        LOGERR("Db::addOrUpdate:     : udi [" << udi << "] txtlen " << textlen << 
+               " rawztext size " << rawztext.size() << " data size " << 
+               data.size() << " data " << data.substr(0, 2000) << "\n");
         return false;
     }
 
     XAPTRY(xwdb.set_metadata(rawtextMetaKey(uniterm), rawztext), xwdb, m_rcldb->m_reason);
     if (!m_rcldb->m_reason.empty()) {
         LOGERR("Db::addOrUpdate: set_metadata error: " << m_rcldb->m_reason << "\n");
+        auto data = newdocument_ptr->get_data();
+        LOGERR("Db::addOrUpdate:     : udi [" << udi << "] txtlen " << textlen << 
+               " rawztext size " << rawztext.size() << " data size " << 
+               data.size() << " data " << data.substr(0, 2000) << "\n");
         // This only affects snippets, so let's say not fatal
     }
     
