@@ -29,7 +29,6 @@ using namespace std;
 
 #include "rclconfig.h"
 #include "rclinit.h"
-#include "cstr.h"
 #include "mh_mbox.h"
 #include "pathut.h"
 
@@ -96,7 +95,7 @@ int main(int argc, char **argv)
             cerr << "next_document failed after skipping to " << msgnum << endl;
             exit(1);
         }
-        const auto it = mh.get_meta_data().find(cstr_dj_keycontent);
+        const auto it = mh.get_meta_data().find("content");
         if (it == mh.get_meta_data().end()) {
             cerr << "No content!!" << endl;
             exit(1);
@@ -113,7 +112,7 @@ int main(int argc, char **argv)
             exit(1);
         }
         docnt++;
-        const auto it = mh.get_meta_data().find(cstr_dj_keycontent);
+        const auto it = mh.get_meta_data().find("content");
         int size;
         if (it == mh.get_meta_data().end()) {
             size = -1;

@@ -114,6 +114,8 @@ Db::Db(const RclConfig *cfp)
     m_config->getConfParam("idxtexttruncatelen", &m_idxTextTruncateLen);
     m_config->getConfParam("autoSpellRarityThreshold", &m_autoSpellRarityThreshold);
     m_config->getConfParam("autoSpellSelectionThreshold", &m_autoSpellSelectionThreshold);
+    m_config->getConfParam("maxdbdatarecordkbs", &m_maxdbdatarecordkbs);
+    m_config->getConfParam("maxdbstoredtextmbs", &m_maxdbdstoredtextmbs);
     if (start_of_field_term.empty()) {
         if (o_index_stripchars) {
             start_of_field_term = "XXST";

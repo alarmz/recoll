@@ -545,6 +545,12 @@ private:
     int          m_flushMb{-1};
     // Maximum file system occupation percentage
     int          m_maxFsOccupPc{0};
+    // Limit Xapian stored object sizes. Note that these are last ditch efforts to prevent a hard
+    // Xapian error, and are partly redundant with other limits in the doc preparation pipeline.
+    // The hard Xapian limit for this is roughly of the order of 100 MB, maybe depending on version,
+    // largely over what we may actually want to store. The values can be changed in the config.
+    int          m_maxdbdatarecordkbs{1000}; // 1MB
+    int          m_maxdbdstoredtextmbs{50};  // 50MB
     // Using spelling approximation?
     bool m_usingSpellFuzz{true};
     // Maximum dam-lev distance when considering terms for spelling fuzz

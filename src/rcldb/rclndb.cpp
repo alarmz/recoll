@@ -792,8 +792,6 @@ bool Db::Native::addOrUpdateWrite(
         } else {
             LOGINFO("Db::add: docid " << did << " added [" << udi << "]\n");
         }
-        if (textlen > 10)
-            throw "BOGUS ERROR";
     } XCATCHERROR(ermsg);
     if (!ermsg.empty()) {
         LOGERR("Db::addOrUpdate: replace_document failed: " << ermsg << "\n");
@@ -1019,9 +1017,14 @@ bool Db::Native::docToXdoc(
         LOGDEB("Db::addOrUpdate: split failed for main text\n");
     } else {
         if (m_storetext) {
-            ZLibUtBuf buf;
-            deflateToBuf(doc.text.c_str(), doc.text.size(), buf);
-            rawztext.assign(buf.getBuf(), buf.getCnt());
+            if (doc.text.size() / (1024*1024) > (size_t)m_rcldb->m_maxdbdstoredtextmbs) {
+                LOGERR("Db::addOrUpdate: text too big for storing (" <<
+                       doc.text.size() / (1024*1024) << " MBs). Url " << doc.url << '\n');
+            } else {
+                ZLibUtBuf buf;
+                deflateToBuf(doc.text.c_str(), doc.text.size(), buf);
+                rawztext.assign(buf.getBuf(), buf.getCnt());
+            }
         }
     }
 
@@ -1090,7 +1093,6 @@ bool Db::Native::docToXdoc(
                      xapbriday_prefix, xapbrimonth_prefix, xapbriyear_prefix);
     }
 #endif
-
 
     string record = rcldocToDbData(doc, newdocument, pageincrvec);
     newdocument.set_data(record);
@@ -1239,6 +1241,12 @@ std::string Db::Native::rcldocToDbData(
         newdocument.add_boolean_term(wrap_prefix("XM") + *md5);
     }
 
+    if (record.size() / 1024 > (size_t)m_rcldb->m_maxdbdatarecordkbs) {
+        LOGERR("Db::add: truncating data record at max size " << m_rcldb->m_maxdbdatarecordkbs <<
+               " KBs. start of data: [" << record.substr(0, 10000) << "]\n");
+        record.erase(m_rcldb->m_maxdbdatarecordkbs*1024);
+    }
+
     LOGDEB0("Rcl::Db::add: new doc record:\n" << record << "\n");
     return record;
 }
@@ -1309,6 +1317,13 @@ bool Db::Native::docToXdocMetaOnly(TextSplitDb *splitter, const string &udi,
         RECORD_APPEND(data, nm, value);
     }
     RECORD_APPEND(data, Doc::keysig, doc.sig);
+
+    if (data.size() / 1024 > (size_t)m_rcldb->m_maxdbdatarecordkbs) {
+        LOGERR("Db::add (metaonly): truncating data record at max size " <<
+               m_rcldb->m_maxdbdatarecordkbs << " KBs. start of data: [" <<
+               data.substr(0, 10000) << "]\n");
+        data.erase(m_rcldb->m_maxdbdatarecordkbs*1024);
+    }
     xdoc.set_data(data);
     return true;
 }
