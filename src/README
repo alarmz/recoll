@@ -5239,7 +5239,8 @@ Parameters affecting what documents we index
 
    textfilemaxmbs
           Size limit for text files. Mostly for skipping monster logs.
-          Default 20 MB. Use a value of -1 to disable.
+          Also used for max mail msg body size. Default 20 MB. Use a value
+          of -1 to disable.
 
    textfilepagekbs
           Page size for text files. If this is set, text/plain files will
@@ -5381,6 +5382,17 @@ Parameters affecting how we generate terms and organize the index
           this will be discarded. The default is 40 and used to be
           hard-coded, but it can now be adjusted. You may need an index
           reset if you change the value.
+
+   maxdbdatarecordkbs
+          Maximum binary size of a Xapian document data record. The data
+          record holds "stored" document metadata fields. A very big size
+          usually indicates a document parse error. Xapian has a hard
+          limit of around 100MB for this.
+
+   maxdbstoredtextmbs
+          Maximum binary size of a document stored text. Xapian has a hard
+          limit of around 100MB for the compressed value, but our limit is
+          before compression, so there may be some wiggle room.
 
    nocjk
           Decides if specific East Asian (Chinese Korean Japanese)

@@ -164,8 +164,8 @@ any compressed file. Default 100 MB.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.TEXTFILEMAXMBS">
 <term><varname>textfilemaxmbs</varname></term>
-<listitem><para>Size limit for text files. Mostly for skipping monster logs. Default 20 MB. Use a value of -1 to
-disable.
+<listitem><para>Size limit for text files. Mostly for skipping monster logs. Also used for max mail msg body size. Default 20 MB. Use
+a value of -1 to disable.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.TEXTFILEPAGEKBS">
 <term><varname>textfilepagekbs</varname></term>
@@ -295,6 +295,17 @@ not be the default.
 <listitem><para>Maximum term length in Unicode characters. Words longer than this will be discarded.
 The default is 40 and used to be hard-coded, but it can now be
 adjusted. You may need an index reset if you change the value.
+</para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.MAXDBDATARECORDKBS">
+<term><varname>maxdbdatarecordkbs</varname></term>
+<listitem><para>Maximum binary size of a Xapian document data record. The data record holds "stored" document metadata fields. A very big size
+usually indicates a document parse error. Xapian has a hard limit of around 100MB
+for this.
+</para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.MAXDBSTOREDTEXTMBS">
+<term><varname>maxdbstoredtextmbs</varname></term>
+<listitem><para>Maximum binary size of a document stored text. Xapian has a hard limit of around 100MB for the compressed value, but our
+limit is before compression, so there may be some wiggle room.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.NOCJK">
 <term><varname>nocjk</varname></term>

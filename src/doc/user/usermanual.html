@@ -10019,8 +10019,8 @@ thesame = "some string with spaces"</pre>
               id="RCL.CONFIG.RECOLLCONF.TEXTFILEMAXMBS"></a><span class="term"><code class="varname">textfilemaxmbs</code></span></dt>
               <dd>
                 <p>Size limit for text files. Mostly for skipping
-                monster logs. Default 20 MB. Use a value of -1 to
-                disable.</p>
+                monster logs. Also used for max mail msg body size.
+                Default 20 MB. Use a value of -1 to disable.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.TEXTFILEPAGEKBS"
               id=
@@ -10249,6 +10249,25 @@ thesame = "some string with spaces"</pre>
                 40 and used to be hard-coded, but it can now be
                 adjusted. You may need an index reset if you change
                 the value.</p>
+              </dd>
+              <dt><a name=
+              "RCL.CONFIG.RECOLLCONF.MAXDBDATARECORDKBS" id=
+              "RCL.CONFIG.RECOLLCONF.MAXDBDATARECORDKBS"></a><span class="term"><code class="varname">maxdbdatarecordkbs</code></span></dt>
+              <dd>
+                <p>Maximum binary size of a Xapian document data
+                record. The data record holds "stored" document
+                metadata fields. A very big size usually indicates
+                a document parse error. Xapian has a hard limit of
+                around 100MB for this.</p>
+              </dd>
+              <dt><a name=
+              "RCL.CONFIG.RECOLLCONF.MAXDBSTOREDTEXTMBS" id=
+              "RCL.CONFIG.RECOLLCONF.MAXDBSTOREDTEXTMBS"></a><span class="term"><code class="varname">maxdbstoredtextmbs</code></span></dt>
+              <dd>
+                <p>Maximum binary size of a document stored text.
+                Xapian has a hard limit of around 100MB for the
+                compressed value, but our limit is before
+                compression, so there may be some wiggle room.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.NOCJK" id=
               "RCL.CONFIG.RECOLLCONF.NOCJK"></a><span class=

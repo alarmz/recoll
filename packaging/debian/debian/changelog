@@ -4,6 +4,10 @@ recoll (1.43.0-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
     the system is running on battery power.
   * Use maxmemberkbs to limit the size of documents returned by exec
     handlers (it was already used for execm).
+  * Use textfilemaxmbs to limit the size of an email body text (for
+    avoiding issues with pathological email archives).
+  * Added two safeguard parameters for the max sizes of stored text and
+    metadata: maxdbdatarecordkbs and maxdbstoredtextmbs.
   * Add option to produce num-dash spans like 123-456-789.
   * GUI: clean up qss and css style processing. Now always
     base + optional dark + optional user.
@@ -12,7 +16,7 @@ recoll (1.43.0-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
   * Fix result table csv export: it exported too few documents.
   * Fix backslashasletter.
   
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 11 Mar 2025 09:43:00 +0100
+ -- Jean-Francois Dockes <jf@dockes.org>  Thu, 13 Mar 2025 18:20:00 +0100
 
 recoll (1.42.1-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
