@@ -57,6 +57,7 @@ MimeHandlerMail::MimeHandlerMail(RclConfig *cnf, const string &id)
     for (const auto& nm : hdrnames) {
         (void)m_config->getFieldConfParam(nm, "mail", m_addProcdHdrs[nm]);
     }
+    cnf->getConfParam("textfilemaxmbs", &m_maxtxtmbs);
 }
 
 MimeHandlerMail::~MimeHandlerMail() 
@@ -124,8 +125,7 @@ bool MimeHandlerMail::set_document_file_impl(const string&, const string &fn)
     return true;
 }
 
-bool MimeHandlerMail::set_document_string_impl(const string&,
-                                               const string& msgtxt)
+bool MimeHandlerMail::set_document_string_impl(const string&, const string& msgtxt)
 {
     LOGDEB1("MimeHandlerMail::set_document_string\n");
     LOGDEB2("Message text: [" << msgtxt << "]\n");
@@ -185,13 +185,18 @@ bool MimeHandlerMail::next_document()
     if (m_idx == -1) {
         m_metaData[cstr_dj_keymt] = cstr_textplain;
         res = processMsg(m_bincdoc, 0);
-        LOGDEB1("MimeHandlerMail::next_document: mt " <<
-                m_metaData[cstr_dj_keymt] << ", att cnt " <<
+        LOGDEB1("MimeHandlerMail::next_document: mt " << m_metaData[cstr_dj_keymt] << ", att cnt " <<
                 m_attachments.size() << "\n");
         const string& txt = m_metaData[cstr_dj_keycontent];
+        if ((int)(txt.size()/(1024*1024)) > m_maxtxtmbs) {
+            // Guard against absurd messages. E.g. files which would be mis-identified as rfc/822
+            // and actually be some non-mbox kind of concatenation e.g. happened with enormous
+            // procmail backup.
+            LOGERR("MimeHandlerMail:: body text size > textfilemaxmbs, not processing message.\n");
+            return false;
+        }
         if (m_startoftext < txt.size())
-            m_metaData[cstr_dj_keyabstract] = 
-                truncate_to_word(txt.substr(m_startoftext), 250);
+            m_metaData[cstr_dj_keyabstract] = truncate_to_word(txt.substr(m_startoftext), 250);
         if (m_attachments.size() > 0) {
             m_metaData[cstr_dj_keyanc] = "t";
         }
@@ -400,8 +405,7 @@ bool MimeHandlerMail::processMsg(Binc::MimePart *doc, int depth)
             doc->isMultipart() << " mime subtype '"<<doc->getSubType()<< "'\n");
     walkmime(doc, depth);
 
-    LOGDEB2("MimeHandlerMail::processMsg:text:[" <<
-            m_metaData[cstr_dj_keycontent] << "]\n");
+    LOGDEB2("MimeHandlerMail::processMsg:text:[" << m_metaData[cstr_dj_keycontent] << "]\n");
     return true;
 }
 

@@ -56,6 +56,7 @@ private:
     bool processMsg(Binc::MimePart *doc, int depth);
     void walkmime(Binc::MimePart* doc, int depth);
     bool processAttach();
+    int m_maxtxtmbs{20}; // Set when constructed, not reset. Limit body text size
     Binc::MimeDocument     *m_bincdoc;
     int                     m_fd;
     std::stringstream      *m_stream;
