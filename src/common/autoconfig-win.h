@@ -44,7 +44,7 @@
 #define IDX_THREADS 1
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.43.0pre2"
+#define PACKAGE_VERSION "1.43.0pre3"
 
 /* Use QTextBrowser to implement the preview windows */
 #undef PREVIEW_FORCETEXTBROWSER
