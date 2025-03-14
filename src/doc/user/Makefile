@@ -55,7 +55,7 @@ usermanual.pdf: usermanual.xml recoll.conf.xml
 	dblatex --xslt-opts="--xinclude" -tpdf $<
 
 recoll.conf.xml: ../../sampleconf/recoll.conf
-	test -x $(UTILBUILDS)/confxml && $(UTILBUILDS)/confxml --docbook \
+	test -x $(UTILBUILDS)/confxml && $(UTILBUILDS)/confxml --docbook --sectlevel=1 \
         --idprefix=RCL.CONFIG.RECOLLCONF  \
         ../../sampleconf/recoll.conf  > recoll.conf.xml || touch recoll.conf.xml
 

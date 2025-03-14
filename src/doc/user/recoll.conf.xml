@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect2 id="RCL.CONFIG.RECOLLCONF">
+<sect1  id="RCL.CONFIG.RECOLLCONF">
 <title>Recoll main configuration file, recoll.conf </title>
-<sect3 id="RCL.CONFIG.RECOLLCONF.WHATDOCS">
+<sect2  id="RCL.CONFIG.RECOLLCONF.WHATDOCS">
 <title>Parameters affecting what documents we index </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.TOPDIRS">
 <term><varname>topdirs</varname></term>
@@ -211,8 +211,8 @@ browser plugins create the copies of visited pages.
 <listitem><para>Size limit for archive members. This is passed to the MIME handlers in the environment as
 RECOLL_FILTER_MAXMEMBERKB.
 </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.TERMS">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.TERMS">
 <title>Parameters affecting how we generate terms and organize the index  </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.INDEXSTRIPCHARS">
 <term><varname>indexStripChars</varname></term>
@@ -432,8 +432,8 @@ configuration file ("fieldname = fieldvalue" lines). The rclmultixx name
 will be ignored, and field names and values will be parsed from the data.
 Example: metadatacmds = ; tags = tmsu tags %f; rclmulti1 = cmdOutputsConf %f
 </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.STORE">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.STORE">
 <title>Parameters affecting where and how we store things </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.CACHEDIR">
 <term><varname>cachedir</varname></term>
@@ -544,8 +544,8 @@ subdirectories.
 change this would be if you want to change the icons displayed in the
 result list. Defaults to $prefix/share/recoll/images
 </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.PERFS">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.PERFS">
 <title>Parameters affecting indexing performance and resource usage </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.IDXFLUSHMB">
 <term><varname>idxflushmb</varname></term>
@@ -612,8 +612,8 @@ on the type of input and CPU. See the manual for more details.
 <term><varname>suspendonbattery</varname></term>
 <listitem><para>Suspend the real time indexing when the system runs on battery. The indexer will wait for a return on AC and reexec itself when it happens.
 </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.MISC">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.MISC">
 <title>Miscellaneous parameters </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.LOGLEVEL">
 <term><varname>loglevel</varname></term>
@@ -803,8 +803,8 @@ lowest "Idle" priority).
 <listitem><para>ionice class level parameter if the class supports it. The default is empty, as the default "Idle" class has no
 levels.
 </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.QUERY">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.QUERY">
 <title>Query-time parameters (no impact on the index) </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.IDXLOCALGUISETTINGS">
 <term><varname>idxlocalguisettings</varname></term>
@@ -884,8 +884,8 @@ spelling neighbours which are more common by this ratio.
 krunner environment. Setting this variable will restrict the results to standalone
 documents.
 </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.PDF">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.PDF">
 <title>Parameters for the PDF input script </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.PDFOCR">
 <term><varname>pdfocr</varname></term>
@@ -923,8 +923,8 @@ selected field, for editing or erasing. A new instance is created for
 each document, so that the object can keep state for, e.g. eliminating
 duplicate values.
 </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.OCR">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.OCR">
 <title>Parameters for OCR processing </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.OCRPROGS">
 <term><varname>ocrprogs</varname></term>
@@ -965,8 +965,8 @@ script. Typical values: English, French... See the ABBYY documentation.
 <term><varname>abbyyocrcmd</varname></term>
 <listitem><para>Path for the abbyy command The ABBY directory is usually not in the path, so you should set this.
 </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS">
 <title>Parameters for running speech to text conversion </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.SPEECHTOTEXT">
 <term><varname>speechtotext</varname></term>
@@ -978,20 +978,20 @@ script. Typical values: English, French... See the ABBYY documentation.
 <varlistentry id="RCL.CONFIG.RECOLLCONF.STTDEVICE">
 <term><varname>sttdevice</varname></term>
 <listitem><para>Name of the device to be used by for whisper </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS">
 <title>Parameters for miscellaneous specific handlers </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.ORGMODESUBDOCS">
 <term><varname>orgmodesubdocs</varname></term>
 <listitem><para>Index org-mode level 1 sections as separate sub-documents This is the default. If set to false, org-mode files will be indexed as plain text
 </para></listitem></varlistentry>
-</variablelist></sect3>
-<sect3 id="RCL.CONFIG.RECOLLCONF.SPECLOCATIONS">
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.SPECLOCATIONS">
 <title>Parameters set for specific locations </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.MHMBOXQUIRKS">
 <term><varname>mhmboxquirks</varname></term>
 <listitem><para>Enable thunderbird/mozilla-seamonkey mbox format quirks Set this for the directory where the email mbox files are
 stored.
 </para></listitem></varlistentry>
-</variablelist></sect3>
-</sect2>
+</variablelist></sect2>
+</sect1>

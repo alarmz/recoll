@@ -11,7 +11,7 @@
   <meta name="generator" content=
   "DocBook XSL Stylesheets Vsnapshot">
   <meta name="description" content=
-  "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license can be found at the following location: GNU web site. This document introduces full text search notions and describes the installation and use of the Recoll application. This version describes Recoll 1.42.">
+  "Permission is granted to copy, distribute and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license can be found at the following location: GNU web site. This document introduces full text search notions and describes the installation and use of the Recoll application. This version describes Recoll 1.43.">
 </head>
 <body bgcolor="white" text="black" link="#0000FF" vlink="#840084"
 alink="#0000FF">
@@ -54,7 +54,7 @@ alink="#0000FF">
             and describes the installation and use of the
             <span class="application">Recoll</span> application.
             This version describes <span class=
-            "application">Recoll</span> 1.42.</p>
+            "application">Recoll</span> 1.43.</p>
           </div>
         </div>
       </div>
@@ -488,34 +488,77 @@ alink="#0000FF">
             "#RCL.CONFIG.ENVIR">Environment
             variables</a></span></dt>
             <dt><span class="sect1">5.3. <a href=
-            "#RCL.CONFIG.FIELDS">The fields file</a></span></dt>
+            "#RCL.CONFIG.RECOLLCONF">Recoll main configuration
+            file, recoll.conf</a></span></dt>
             <dd>
               <dl>
                 <dt><span class="sect2">5.3.1. <a href=
+                "#RCL.CONFIG.RECOLLCONF.WHATDOCS">Parameters
+                affecting what documents we index</a></span></dt>
+                <dt><span class="sect2">5.3.2. <a href=
+                "#RCL.CONFIG.RECOLLCONF.TERMS">Parameters affecting
+                how we generate terms and organize the
+                index</a></span></dt>
+                <dt><span class="sect2">5.3.3. <a href=
+                "#RCL.CONFIG.RECOLLCONF.STORE">Parameters affecting
+                where and how we store things</a></span></dt>
+                <dt><span class="sect2">5.3.4. <a href=
+                "#RCL.CONFIG.RECOLLCONF.PERFS">Parameters affecting
+                indexing performance and resource
+                usage</a></span></dt>
+                <dt><span class="sect2">5.3.5. <a href=
+                "#RCL.CONFIG.RECOLLCONF.MISC">Miscellaneous
+                parameters</a></span></dt>
+                <dt><span class="sect2">5.3.6. <a href=
+                "#RCL.CONFIG.RECOLLCONF.QUERY">Query-time
+                parameters (no impact on the index)</a></span></dt>
+                <dt><span class="sect2">5.3.7. <a href=
+                "#RCL.CONFIG.RECOLLCONF.PDF">Parameters for the PDF
+                input script</a></span></dt>
+                <dt><span class="sect2">5.3.8. <a href=
+                "#RCL.CONFIG.RECOLLCONF.OCR">Parameters for OCR
+                processing</a></span></dt>
+                <dt><span class="sect2">5.3.9. <a href=
+                "#RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS">Parameters
+                for running speech to text
+                conversion</a></span></dt>
+                <dt><span class="sect2">5.3.10. <a href=
+                "#RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS">Parameters
+                for miscellaneous specific handlers</a></span></dt>
+                <dt><span class="sect2">5.3.11. <a href=
+                "#RCL.CONFIG.RECOLLCONF.SPECLOCATIONS">Parameters
+                set for specific locations</a></span></dt>
+              </dl>
+            </dd>
+            <dt><span class="sect1">5.4. <a href=
+            "#RCL.CONFIG.FIELDS">The fields file</a></span></dt>
+            <dd>
+              <dl>
+                <dt><span class="sect2">5.4.1. <a href=
                 "#RCL.CONFIG.FIELDS.XATTR">Extended attributes in
                 the fields file</a></span></dt>
               </dl>
             </dd>
-            <dt><span class="sect1">5.4. <a href=
-            "#RCL.CONFIG.MIMEMAP">The mimemap file</a></span></dt>
             <dt><span class="sect1">5.5. <a href=
+            "#RCL.CONFIG.MIMEMAP">The mimemap file</a></span></dt>
+            <dt><span class="sect1">5.6. <a href=
             "#RCL.CONFIG.MIMECONF">The mimeconf
             file</a></span></dt>
-            <dt><span class="sect1">5.6. <a href=
+            <dt><span class="sect1">5.7. <a href=
             "#RCL.CONFIG.MIMEVIEW">The mimeview
             file</a></span></dt>
-            <dt><span class="sect1">5.7. <a href=
+            <dt><span class="sect1">5.8. <a href=
             "#RCL.CONFIG.PTRANS">The <code class=
             "filename">ptrans</code> file</a></span></dt>
-            <dt><span class="sect1">5.8. <a href=
+            <dt><span class="sect1">5.9. <a href=
             "#RCL.CONFIG.EXAMPLES">Examples of configuration
             adjustments</a></span></dt>
             <dd>
               <dl>
-                <dt><span class="sect2">5.8.1. <a href=
+                <dt><span class="sect2">5.9.1. <a href=
                 "#RCL.CONFIG.EXAMPLES.ADDVIEW">Adding an external
                 viewer for an non-indexed type</a></span></dt>
-                <dt><span class="sect2">5.8.2. <a href=
+                <dt><span class="sect2">5.9.2. <a href=
                 "#RCL.CONFIG.EXAMPLES.ADDINDEX">Adding indexing
                 support for a new file type</a></span></dt>
               </dl>
@@ -613,7 +656,7 @@ alink="#0000FF">
       <p>This document introduces full text search notions and
       describes the installation and use of the <span class=
       "application">Recoll</span> application. It is updated for
-      <span class="application">Recoll</span> 1.42.</p>
+      <span class="application">Recoll</span> 1.43.</p>
       <p><span class="application">Recoll</span> was for a long
       time dedicated to Unix-like systems. It was only lately
       (2015) ported to <span class="application">MS-Windows</span>.
@@ -1242,7 +1285,7 @@ indexedmimetypes = application/pdf</pre>
           <code class="literal">indexedmimetypes</code>, can be set
           either by editing the <a class="link" href=
           "#RCL.CONFIG.RECOLLCONF" title=
-          "5.1.&nbsp;Recoll main configuration file, recoll.conf">configuration
+          "5.3.&nbsp;Recoll main configuration file, recoll.conf">configuration
           file (<code class="filename">recoll.conf</code>)</a> for
           the index, or by using the GUI index configuration
           tool.</p>
@@ -1348,7 +1391,7 @@ indexedmimetypes = application/pdf</pre>
               by setting the <code class="varname">dbdir</code>
               parameter in the configuration file (see the
               <a class="link" href="#RCL.CONFIG.RECOLLCONF" title=
-              "5.1.&nbsp;Recoll main configuration file, recoll.conf">
+              "5.3.&nbsp;Recoll main configuration file, recoll.conf">
               configuration section</a>). Use this method to keep
               the configuration directory in its default location,
               and use another location for the index, typically
@@ -1376,7 +1419,7 @@ indexedmimetypes = application/pdf</pre>
               "filename">~/.indexes-email/xapiandb/</code>.</p>
               <p>Using multiple configuration directories and
               <a class="link" href="#RCL.CONFIG.RECOLLCONF" title=
-              "5.1.&nbsp;Recoll main configuration file, recoll.conf">
+              "5.3.&nbsp;Recoll main configuration file, recoll.conf">
               configuration options</a> allows you to tailor
               multiple configurations and indexes to handle
               whatever subset of the available data you wish to
@@ -1389,8 +1432,8 @@ indexedmimetypes = application/pdf</pre>
         "application">Recoll</span> data storage. They are
         described in a <a class="link" href=
         "#RCL.CONFIG.RECOLLCONF.STORE" title=
-        "Parameters affecting where and how we store things">section
-        of the configuration chapter</a>.</p>
+        "5.3.3.&nbsp;Parameters affecting where and how we store things">
+        section of the configuration chapter</a>.</p>
         <p>The size of the index is determined by the size of the
         set of documents, but the ratio can vary a lot. For a
         typical mixed set of documents, the index size will often
@@ -1699,7 +1742,7 @@ indexedmimetypes = application/pdf</pre>
           switch configurations within the GUI.</p>
           <p>See the <a class="link" href="#RCL.CONFIG.RECOLLCONF"
           title=
-          "5.1.&nbsp;Recoll main configuration file, recoll.conf">configuration
+          "5.3.&nbsp;Recoll main configuration file, recoll.conf">configuration
           section</a> for a detailed description of the
           parameters</p>
           <p>Some configuration parameters must be consistent among
@@ -1709,7 +1752,7 @@ indexedmimetypes = application/pdf</pre>
           diacritics stripping, but there are other constraints.
           Most of the relevant parameters affect the <a class=
           "link" href="#RCL.CONFIG.RECOLLCONF.TERMS" title=
-          "Parameters affecting how we generate terms and organize the index">
+          "5.3.2.&nbsp;Parameters affecting how we generate terms and organize the index">
           term generation</a>.</p>
           <p>Using multiple configurations implies a small level of
           command line or file manager usage. The user must
@@ -1750,7 +1793,7 @@ indexedmimetypes = application/pdf</pre>
             "replaceable"><code>someEditor</code></em> <em class=
             "replaceable"><code>/path/to/my/new/config</code></em>/<a class=
             "link" href="#RCL.CONFIG.RECOLLCONF" title=
-            "5.1.&nbsp;Recoll main configuration file, recoll.conf"><code class="filename">recoll.conf</code></a></pre>
+            "5.3.&nbsp;Recoll main configuration file, recoll.conf"><code class="filename">recoll.conf</code></a></pre>
             <p>Creating and updating the index can be done from the
             command line:</p>
             <pre class="programlisting">recollindex -c <em class=
@@ -2545,7 +2588,7 @@ fs.inotify.max_user_watches=32768</pre>
             See the <code class="varname">mondelaypatterns</code>
             parameter in the <a class="link" href=
             "#RCL.CONFIG.RECOLLCONF.MISC" title=
-            "Miscellaneous parameters">configuration
+            "5.3.5.&nbsp;Miscellaneous parameters">configuration
             section</a>.</p>
           </div>
         </div>
@@ -2577,7 +2620,7 @@ fs.inotify.max_user_watches=32768</pre>
         strict and predefined usage. For most fields though, the
         processing is entirely configurable and defined in the
         <a class="link" href="#RCL.CONFIG.FIELDS" title=
-        "5.3.&nbsp;The fields file"><code class=
+        "5.4.&nbsp;The fields file"><code class=
         "filename">fields</code> configuration file</a></p>
         <p>Fields have two main processing options (at least one of
         which will be set if they are processed at all):</p>
@@ -2642,7 +2685,7 @@ fs.inotify.max_user_watches=32768</pre>
             most fields are not indexed by default, you need to
             activate them by defining a prefix in the <a class=
             "link" href="#RCL.CONFIG.FIELDS" title=
-            "5.3.&nbsp;The fields file"><code class=
+            "5.4.&nbsp;The fields file"><code class=
             "filename">fields</code> configuration file</a>.</p>
             <p>A <a class="ulink" href=
             "https://www.freedesktop.org/wiki/CommonExtendedAttributes"
@@ -2671,7 +2714,7 @@ fs.inotify.max_user_watches=32768</pre>
             <p>The name translation can be configured more
             precisely, inside the <a class="link" href=
             "#RCL.CONFIG.FIELDS.XATTR" title=
-            "5.3.1.&nbsp;Extended attributes in the fields file"><code class="filename">
+            "5.4.1.&nbsp;Extended attributes in the fields file"><code class="filename">
             fields</code> configuration file</a>.</p>
             <div class="note" style=
             "margin-left: 0.5in; margin-right: 0.5in;">
@@ -3011,7 +3054,7 @@ pass</pre>
           in the index configuration file), and tell <span class=
           "application">Recoll</span> how to run the OCR by setting
           <a class="link" href="#RCL.CONFIG.RECOLLCONF.OCR" title=
-          "Parameters for OCR processing">configuration
+          "5.3.8.&nbsp;Parameters for OCR processing">configuration
           variables</a>. All parameters can be localized in
           subdirectories through the usual main configuration
           mechanism (path sections).</p>
@@ -3732,7 +3775,7 @@ recollindex -c "$confdir"</pre>
                 will appear for documents with a MIME type present
                 in the <code class="literal">[index]</code> section
                 of the <a class="link" href="#RCL.CONFIG.MIMECONF"
-                title="5.5.&nbsp;The mimeconf file"><code class=
+                title="5.6.&nbsp;The mimeconf file"><code class=
                 "filename">mimeconf</code></a> file, and, only if
                 the <code class="literal">textunknownasplain</code>
                 configuration variable is set, for all types
@@ -3745,7 +3788,7 @@ recollindex -c "$confdir"</pre>
                 appear for documents with a MIME type present in
                 the <code class="literal">[view]</code> section of
                 the <a class="link" href="#RCL.CONFIG.MIMEVIEW"
-                title="5.6.&nbsp;The mimeview file"><code class=
+                title="5.7.&nbsp;The mimeview file"><code class=
                 "filename">mimeview</code></a> configuration file.
                 If <code class="literal">textunknownasplain</code>
                 is set and no specific viewer is found for a
@@ -5324,7 +5367,7 @@ recollindex -c "$confdir"</pre>
             <span class="guimenuitem">Choose editor
             applications</span> dialog or by editing the <a class=
             "link" href="#RCL.CONFIG.MIMEVIEW" title=
-            "5.6.&nbsp;The mimeview file"><code class=
+            "5.7.&nbsp;The mimeview file"><code class=
             "filename">mimeview</code> configuration file.</a></p>
             <p>When <span class="guilabel">Use desktop
             preferences</span>, at the top of the dialog, is
@@ -5356,7 +5399,7 @@ recollindex -c "$confdir"</pre>
             line.</p>
             <p>You may also change the choice of applications by
             editing the <a class="link" href="#RCL.CONFIG.MIMEVIEW"
-            title="5.6.&nbsp;The mimeview file"><code class=
+            title="5.7.&nbsp;The mimeview file"><code class=
             "filename">mimeview</code></a> configuration file if
             you find this more convenient.</p>
             <p>Under <span class="application">Unix</span>-like
@@ -5689,7 +5732,7 @@ recollindex -c "$confdir"</pre>
                     were built during indexing (this is set in the
                     <a class="link" href="#RCL.CONFIG.RECOLLCONF"
                     title=
-                    "5.1.&nbsp;Recoll main configuration file, recoll.conf">
+                    "5.3.&nbsp;Recoll main configuration file, recoll.conf">
                     main configuration file</a>), or later added
                     with <span class="command"><strong>recollindex
                     -s</strong></span> (See the recollindex
@@ -5896,7 +5939,7 @@ recollindex -c "$confdir"</pre>
                     from the MIME type. The associations are
                     defined inside the <a class="link" href=
                     "#RCL.CONFIG.MIMECONF" title=
-                    "5.5.&nbsp;The mimeconf file"><code class=
+                    "5.6.&nbsp;The mimeconf file"><code class=
                     "filename">mimeconf</code> configuration
                     file</a>. If a thumbnail for the file is found
                     at the standard Freedesktop location, this will
@@ -6460,7 +6503,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
           <code class="literal">filename</code> and <code class=
           "literal">containerfilename</code>). See the <a class=
           "link" href="#RCL.CONFIG.FIELDS" title=
-          "5.3.&nbsp;The fields file">section about the
+          "5.4.&nbsp;The fields file">section about the
           <code class="filename">fields</code> file</a>.</p>
           <p>The document input handlers have the possibility to
           create other fields with arbitrary names, and aliases may
@@ -6712,7 +6755,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
           possibly open-ended interval.</p>
           <p>See the section about the <a class="link" href=
           "#RCL.CONFIG.FIELDS" title=
-          "5.3.&nbsp;The fields file"><code class=
+          "5.4.&nbsp;The fields file"><code class=
           "filename">fields</code> configuration file</a> for the
           details of configuring a field for range searches (list
           them in the [values] section).</p>
@@ -7135,7 +7178,7 @@ bye goodbye "see you" \
         accesses from the client.</p>
         <p>The translations are defined in the <a class="link"
         href="#RCL.CONFIG.PTRANS" title=
-        "5.7.&nbsp;The ptrans file"><code class=
+        "5.8.&nbsp;The ptrans file"><code class=
         "filename">ptrans</code></a> configuration file, which can
         be edited with a plain text editor or by using the GUI
         external indexes configuration dialog: <span class=
@@ -7663,7 +7706,7 @@ C: = Z:</pre>
           <p>The association of files to MIME types is mostly based
           on name suffixes. The types are defined inside the
           <a class="link" href="#RCL.CONFIG.MIMEMAP" title=
-          "5.4.&nbsp;The mimemap file"><code class=
+          "5.5.&nbsp;The mimemap file"><code class=
           "filename">mimemap</code> file</a>. Example:</p>
           <pre class="programlisting">
 .doc = application/msword</pre>
@@ -7677,7 +7720,7 @@ C: = Z:</pre>
           <p>The second element is the association of MIME types to
           handlers in the <a class="link" href=
           "#RCL.CONFIG.MIMECONF" title=
-          "5.5.&nbsp;The mimeconf file"><code class=
+          "5.6.&nbsp;The mimeconf file"><code class=
           "filename">mimeconf</code> file</a>. A sample will
           probably be better than a long explanation:</p>
           <pre class="programlisting">
@@ -7918,7 +7961,7 @@ application/x-chm = execm rclchm.py</pre>
         queries, meaning that the results may be selected for an
         interval of its values. See the <a class="link" href=
         "#RCL.CONFIG.FIELDS" title=
-        "5.3.&nbsp;The fields file">configuration section</a> for
+        "5.4.&nbsp;The fields file">configuration section</a> for
         more details.</p>
         <p>The sequence of events for field processing is as
         follows:</p>
@@ -7971,7 +8014,7 @@ application/x-chm = execm rclchm.py</pre>
         </div>
         <p>You can find more information in the <a class="link"
         href="#RCL.CONFIG.FIELDS" title=
-        "5.3.&nbsp;The fields file">section about the <code class=
+        "5.4.&nbsp;The fields file">section about the <code class=
         "filename">fields</code> file</a>, or in comments inside
         the file.</p>
         <p>You can also have a look at the <a class="ulink" href=
@@ -8208,7 +8251,7 @@ for doc in results:
               fields</span></dt>
               <dd>
                 <p>The <a class="link" href="#RCL.CONFIG.FIELDS"
-                title="5.3.&nbsp;The fields file"><code class=
+                title="5.4.&nbsp;The fields file"><code class=
                 "filename">fields</code> file</a> inside the
                 <span class="application">Recoll</span>
                 configuration defines which document fields are
@@ -9479,184 +9522,234 @@ db.purge()</pre>
             </div>
           </div>
         </div>
-        <p>Most of the parameters specific to the <span class=
-        "command"><strong>recoll</strong></span> GUI are set
-        through the <span class="guilabel">Preferences</span> menu
-        and stored in the standard Qt place (<code class=
-        "filename">$HOME/.config/Recoll.org/recoll.conf</code>).</p>
-        <p><span class="application">Recoll</span> indexing options
-        are set inside text configuration files located in a
-        configuration directory. There can be several such
-        directories, each of which defines the parameters for one
-        index.</p>
-        <p>The configuration files can be edited with a plain text
-        editor or through the <span class="guilabel">Index
-        configuration</span> dialog (<span class=
-        "guilabel">Preferences</span> menu). The GUI tool will try
-        to respect your formatting and comments as much as
-        possible, so it is quite possible to use both approaches on
-        the same configuration.</p>
-        <p>For each index, there are at least two sets of
-        configuration files. System-wide configuration files come
-        with the installation and are kept in a directory named
-        like <code class=
-        "filename">/usr/share/recoll/examples</code> on
-        <span class="application">Unix</span>-like systems (or an
-        equivalent on other systems), and define default values,
-        shared by all indexes (the values in these files are often
-        commented out, and just present to indicate the default
-        coded in the program). For each index, a parallel set of
-        files defines the customised parameters.</p>
-        <p>On <span class="application">Unix</span>-like systems,
-        the location of the default index customised configuration
-        is the <code class="filename">.recoll</code> directory in
-        your home. On <span class="application">Windows</span> it
-        is <code class=
-        "filename">C:/Users/[you]/AppData/Local/Recoll</code>. Most
-        people will only use this directory.</p>
-        <p>The location for the default index configuration
-        directory can be changed, or others can be added for
-        separate indexes with the <code class=
-        "envar">RECOLL_CONFDIR</code> environment variable or the
-        <code class="option">-c</code> option parameter to
-        <span class="command"><strong>recoll</strong></span> and
-        <span class=
-        "command"><strong>recollindex</strong></span>.</p>
-        <p>In addition, for each index, it is possible to specify
-        two additional configuration directories which will be
-        stacked before and after the user configuration directory.
-        These are defined by the <code class=
-        "envar">RECOLL_CONFTOP</code> and <code class=
-        "envar">RECOLL_CONFMID</code> environment variables. Values
-        from configuration files inside the top directory will
-        override user ones, values from configuration files inside
-        the middle directory will override system ones and be
-        overridden by user ones. These two variables may be of use
-        to applications which augment <span class=
-        "application">Recoll</span> functionality, and need to add
-        configuration data without disturbing the user's files.
-        Please note that the two, currently single, values will
-        probably be interpreted as colon-separated lists in the
-        future: do not use colon characters inside the directory
-        paths.</p>
-        <p>If the default configuration directory does not exist
-        when either <span class=
-        "command"><strong>recoll</strong></span> or <span class=
-        "command"><strong>recollindex</strong></span> is started,
-        it will be created with a set of empty configuration files.
-        <span class="command"><strong>recoll</strong></span> will
-        give you a chance to edit the configuration file before
-        starting indexing. <span class=
-        "command"><strong>recollindex</strong></span> will proceed
-        immediately. To avoid mistakes, the automatic directory
-        creation will only occur for the default location, not if
-        <code class="option">-c</code> or <code class=
-        "envar">RECOLL_CONFDIR</code> were used, in which case, you
-        will have to create the directory.</p>
-        <p>All configuration files share the same format. For
-        example, a short extract of the main configuration file
-        might look as follows:</p>
-        <pre class="programlisting">
-# Space-separated list of files and directories to index.
+        <p><span class="application">Recoll</span> has two kinds of
+        configuration parameters:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc;">
+            <li class="listitem">
+              <p>GUI settings are global and always set through the
+              <span class="guilabel">GUI configuration</span>
+              <span class="guilabel">Preferences</span> menu
+              entry.</p>
+            </li>
+            <li class="listitem">
+              <p>Index configuration parameters are set per index,
+              and stored in each index configuration directory.
+              Many can be set either through the GUI or by editing
+              a text configuration file, but some less common
+              values can only be set by editing.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="simplesect">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name="id5091" id=
+                "id5091"></a>GUI settings</h3>
+              </div>
+            </div>
+          </div>
+          <p>For reference, the GUI settings are stored in
+          <code class=
+          "filename">$HOME/.config/Recoll.org/recoll.conf</code> on
+          <span class="application">Unix</span>-like systems and
+          <code class=
+          "filename">C:/Users/[you]/AppData/Roaming/Recoll/recoll.ini</code>
+          on <span class="application">Windows</span>.</p>
+        </div>
+        <div class="simplesect">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name="id5098" id=
+                "id5098"></a>Index configuration parameters</h3>
+              </div>
+            </div>
+          </div>
+          <p>The parameters for each <span class=
+          "application">Recoll</span> index are set inside text
+          configuration files located in a configuration directory.
+          There can be several such directories, each of which
+          defines the parameters for one index.</p>
+          <p>There is a default index configuration directory, used
+          when not specified otherwise. On <span class=
+          "application">Unix</span>-like systems it is located in
+          <code class="filename">$HOME/.recoll</code>. Under
+          <span class="application">Windows</span>, it is located
+          in <code class=
+          "filename">C:\Users\[you]\AppData\Local\Recoll</code>.</p>
+          <p>The configuration files can be edited with a plain
+          text editor or through the <span class="guilabel">Index
+          configuration</span> dialog (<span class=
+          "guilabel">Preferences</span> menu). The GUI tool will
+          try to preserve your formatting and comments as much as
+          possible, so it is quite possible to use both approaches
+          on the same configuration.</p>
+          <p>For each index, there are actually at least two sets
+          of configuration files. The parameters set in the
+          locations listed above override or complement system-wide
+          configuration files which come with the installation and
+          are kept in a directory named like <code class=
+          "filename">/usr/share/recoll/examples</code> on
+          <span class="application">Unix</span>-like systems (or an
+          equivalent on other systems), and define default values,
+          shared by all indexes (the values in these files are
+          often commented out, and just present to indicate the
+          default coded in the program).</p>
+          <p>The local configuration directory only stores
+          additional or overriding parameters. The defaults are
+          stored in the central location. You should never edit the
+          central files as they will be overwritten by a software
+          update.</p>
+          <p>The location for the index configuration directory can
+          be changed, or others can be added for separate indexes
+          with the <code class="envar">RECOLL_CONFDIR</code>
+          environment variable or the <code class=
+          "option">-c</code> option parameter to <span class=
+          "command"><strong>recoll</strong></span> and <span class=
+          "command"><strong>recollindex</strong></span>.</p>
+          <p>Special use: in addition, for each index, it is
+          possible to specify two additional configuration
+          directories which will be stacked before and after the
+          user configuration directory. These are defined by the
+          <code class="envar">RECOLL_CONFTOP</code> and
+          <code class="envar">RECOLL_CONFMID</code> environment
+          variables. Values from configuration files inside the top
+          directory will override user ones, values from
+          configuration files inside the middle directory will
+          override system ones and be overridden by user ones.
+          These two variables may be of use to applications which
+          augment <span class="application">Recoll</span>
+          functionality, and need to add configuration data without
+          disturbing the user's files. Please note that the two,
+          currently single, values will probably be interpreted as
+          colon-separated lists in the future: do not use colon
+          characters inside the directory paths.</p>
+          <p>If the default configuration directory does not exist
+          when either <span class=
+          "command"><strong>recoll</strong></span> or <span class=
+          "command"><strong>recollindex</strong></span> is started,
+          it will be created with a set of empty configuration
+          files. <span class=
+          "command"><strong>recoll</strong></span> will give you a
+          chance to edit the configuration file before starting
+          indexing. <span class=
+          "command"><strong>recollindex</strong></span> will
+          proceed immediately. To avoid mistakes, the automatic
+          directory creation will only occur for the default
+          location, not if <code class="option">-c</code> or
+          <code class="envar">RECOLL_CONFDIR</code> were used, in
+          which case, you will have to create the directory.</p>
+          <p>All configuration files share the same format. For
+          example, a short extract of the main configuration file
+          might look as follows:</p>
+          <pre class=
+          "programlisting"># Space-separated list of files and directories to index.
 topdirs =  ~/docs /usr/share/doc
 
 [~/somedirectory-with-utf8-txt-files]
 defaultcharset = utf-8</pre>
-        <p>There are three kinds of lines:</p>
-        <div class="itemizedlist">
-          <ul class="itemizedlist" style="list-style-type: disc;">
-            <li class="listitem">
-              <p>Comments start with a hash mark <span class=
-              "emphasis"><em>#</em></span>.</p>
-            </li>
-            <li class="listitem">
-              <p>Parameter assignment: <span class=
-              "emphasis"><em>name = value</em></span>.</p>
-            </li>
-            <li class="listitem">
-              <p>Section definitions: [<span class=
-              "emphasis"><em>somedirname</em></span>].</p>
-            </li>
-          </ul>
-        </div>
-        <p>Lines which are empty or only containing white space are
-        ignored.</p>
-        <p>Long lines can be broken by ending each incomplete part
-        with a backslash (<code class="literal">\</code>).</p>
-        <p>Depending on the type of configuration file, section
-        definitions either separate groups of parameters or allow
-        redefining some parameters for a directory sub-tree. They
-        stay in effect until another section definition, or the end
-        of file, is encountered. Some of the parameters used for
-        indexing are looked up hierarchically from the current
-        directory location upwards. Not all parameters can be
-        meaningfully redefined, this is specified for each in the
-        next section.</p>
-        <div class="important" style=
-        "margin-left: 0.5in; margin-right: 0.5in;">
-          <h3 class="title">Important</h3>
-          <p>Global parameters <span class="emphasis"><em>must
-          not</em></span> be defined in a directory subsection,
-          else they will not be found at all by the <span class=
-          "application">Recoll</span> code, which looks for them at
-          the top level (e.g. <code class=
-          "literal">skippedPaths</code>).</p>
-        </div>
-        <p>When found at the beginning of a file path, the tilde
-        character (~) is expanded to the name of the user's home
-        directory, as a shell would do. The same convention is used
-        on <span class="application">Windows</span>.</p>
-        <p>Some parameters are lists of strings. White space is
-        used for separation. List elements with embedded spaces can
-        be quoted using double-quotes. Double quotes inside these
-        elements can be escaped with a backslash.</p>
-        <p>No value inside a configuration file can contain a
-        newline character. Long lines can be continued by escaping
-        the physical newline with backslash, even inside quoted
-        strings.</p>
-        <pre class="programlisting">
-astringlist =  "some string \
-with spaces"
-thesame = "some string with spaces"</pre>
-        <p>Parameters which are not part of string lists can't be
-        quoted, and leading and trailing space characters are
-        stripped before the value is used.</p>
-        <div class="important" style=
-        "margin-left: 0.5in; margin-right: 0.5in;">
-          <h3 class="title">Important</h3>
-          <p>Quotes processing is ONLY applied to parameter values
-          which are lists. Double quoting a single value like, e.g.
-          <code class="literal">dbdir</code> will result in an
-          incorrect value, with quotes included. This is quite
-          confusing, and may have been a design mistake but it is
-          much too late to fix.</p>
-        </div>
-        <p><b>Encoding issues.&nbsp;</b>Most of the configuration
-        parameters are plain ASCII. Two particular sets of values
-        may cause encoding issues:</p>
-        <div class="itemizedlist">
-          <ul class="itemizedlist" style="list-style-type: disc;">
-            <li class="listitem">
-              <p>File path parameters may contain non-ASCII
-              characters and should use the exact same byte values
-              as found in the file system directory. Usually, this
-              means that the configuration file should use the
-              system default locale encoding.</p>
-            </li>
-            <li class="listitem">
-              <p>The <code class="envar">unac_except_trans</code>
-              parameter (meaning unaccenting exception
-              translations) should be encoded in UTF-8. If your
-              system locale is not UTF-8 (which is now very rare),
-              and you need to also specify non-ASCII file paths,
-              this poses a difficulty because common text editors
-              cannot handle multiple encodings in a single file. In
-              this relatively unlikely case, you can edit the
-              configuration file as two separate text files with
-              appropriate encodings, and concatenate them to create
-              the complete configuration.</p>
-            </li>
-          </ul>
+          <p>There are three kinds of lines:</p>
+          <div class="itemizedlist">
+            <ul class="itemizedlist" style=
+            "list-style-type: disc;">
+              <li class="listitem">
+                <p>Comments: start with a hash mark <span class=
+                "emphasis"><em>#</em></span>.</p>
+              </li>
+              <li class="listitem">
+                <p>Parameter assignments: <span class=
+                "emphasis"><em>name = value</em></span>.</p>
+              </li>
+              <li class="listitem">
+                <p>Section definitions: [<span class=
+                "emphasis"><em>somedirname</em></span>].</p>
+              </li>
+            </ul>
+          </div>
+          <p>Lines which are empty or only containing white space
+          are ignored.</p>
+          <p>Long lines can be broken by ending each incomplete
+          part with a backslash (<code class=
+          "literal">\</code>).</p>
+          <p>Depending on the type of configuration file, section
+          definitions either separate groups of parameters or allow
+          redefining some parameters for a directory sub-tree. They
+          stay in effect until another section definition, or the
+          end of file, is encountered. Some of the parameters used
+          for indexing are looked up hierarchically from the
+          current directory location upwards. Not all parameters
+          can be meaningfully redefined, this is specified for each
+          in the next section.</p>
+          <div class="important" style=
+          "margin-left: 0.5in; margin-right: 0.5in;">
+            <h3 class="title">Important</h3>
+            <p>Global parameters <span class="emphasis"><em>must
+            not</em></span> be defined in a directory subsection,
+            else they will not be found at all by the <span class=
+            "application">Recoll</span> code, which looks for them
+            at the top level (e.g. <code class=
+            "literal">skippedPaths</code>).</p>
+          </div>
+          <p>When found at the beginning of a file path, the tilde
+          character (~) is expanded to the name of the user's home
+          directory, as a shell would do. The same convention is
+          used on <span class="application">Windows</span>.</p>
+          <p>Some parameters are lists of strings. White space is
+          used for separation. List elements with embedded spaces
+          can be quoted using double-quotes. Double quotes inside
+          these elements can be escaped with a backslash.</p>
+          <p>No value inside a configuration file can contain a
+          newline character. Long lines can be continued by
+          escaping the physical newline with backslash, even inside
+          quoted strings.</p>
+          <pre class="programlisting">
+          astringlist =  "some string \
+          with spaces"
+          thesame = "some string with spaces"</pre>
+          <p>Parameters which are not part of string lists can't be
+          quoted, and leading and trailing space characters are
+          stripped before the value is used.</p>
+          <div class="important" style=
+          "margin-left: 0.5in; margin-right: 0.5in;">
+            <h3 class="title">Important</h3>
+            <p>Quotes processing is ONLY applied to parameter
+            values which are lists. Double quoting a single value
+            like, e.g. <code class="literal">dbdir</code> will
+            result in an incorrect value, with quotes included.
+            This is quite confusing, and was a design mistake but
+            it is much too late to fix.</p>
+          </div>
+          <p><b>Encoding issues.&nbsp;</b>Most of the configuration
+          parameters are plain ASCII. Two particular sets of values
+          may cause encoding issues:</p>
+          <div class="itemizedlist">
+            <ul class="itemizedlist" style=
+            "list-style-type: disc;">
+              <li class="listitem">
+                <p>File path parameters may contain non-ASCII
+                characters and should use the exact same byte
+                values as found in the file system directory.
+                Usually, this means that the configuration file
+                should use the system default locale encoding.</p>
+              </li>
+              <li class="listitem">
+                <p>The <code class="envar">unac_except_trans</code>
+                parameter (meaning unaccenting exception
+                translations) should be encoded in UTF-8. If your
+                system locale is not UTF-8 (which is now very
+                rare), and you need to also specify non-ASCII file
+                paths, this poses a difficulty because common text
+                editors cannot handle multiple encodings in a
+                single file. In this relatively unlikely case, you
+                can edit the configuration file as two separate
+                text files with appropriate encodings, and
+                concatenate them to create the complete
+                configuration.</p>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div class="sect1">
@@ -9732,24 +9825,25 @@ thesame = "some string with spaces"</pre>
           </dl>
         </div>
       </div>
-      <div class="sect2">
+      <div class="sect1">
         <div class="titlepage">
           <div>
             <div>
-              <h3 class="title"><a name="RCL.CONFIG.RECOLLCONF" id=
-              "RCL.CONFIG.RECOLLCONF"></a>5.1.&nbsp;Recoll main
-              configuration file, recoll.conf</h3>
+              <h2 class="title" style="clear: both"><a name=
+              "RCL.CONFIG.RECOLLCONF" id=
+              "RCL.CONFIG.RECOLLCONF"></a>5.3.&nbsp;Recoll main
+              configuration file, recoll.conf</h2>
             </div>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.WHATDOCS" id=
-                "RCL.CONFIG.RECOLLCONF.WHATDOCS"></a>Parameters
-                affecting what documents we index</h4>
+                "RCL.CONFIG.RECOLLCONF.WHATDOCS"></a>5.3.1.&nbsp;Parameters
+                affecting what documents we index</h3>
               </div>
             </div>
           </div>
@@ -10105,15 +10199,15 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.TERMS" id=
-                "RCL.CONFIG.RECOLLCONF.TERMS"></a>Parameters
+                "RCL.CONFIG.RECOLLCONF.TERMS"></a>5.3.2.&nbsp;Parameters
                 affecting how we generate terms and organize the
-                index</h4>
+                index</h3>
               </div>
             </div>
           </div>
@@ -10447,14 +10541,14 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.STORE" id=
-                "RCL.CONFIG.RECOLLCONF.STORE"></a>Parameters
-                affecting where and how we store things</h4>
+                "RCL.CONFIG.RECOLLCONF.STORE"></a>5.3.3.&nbsp;Parameters
+                affecting where and how we store things</h3>
               </div>
             </div>
           </div>
@@ -10633,15 +10727,15 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.PERFS" id=
-                "RCL.CONFIG.RECOLLCONF.PERFS"></a>Parameters
+                "RCL.CONFIG.RECOLLCONF.PERFS"></a>5.3.4.&nbsp;Parameters
                 affecting indexing performance and resource
-                usage</h4>
+                usage</h3>
               </div>
             </div>
           </div>
@@ -10763,14 +10857,14 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.MISC" id=
-                "RCL.CONFIG.RECOLLCONF.MISC"></a>Miscellaneous
-                parameters</h4>
+                "RCL.CONFIG.RECOLLCONF.MISC"></a>5.3.5.&nbsp;Miscellaneous
+                parameters</h3>
               </div>
             </div>
           </div>
@@ -11085,14 +11179,14 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.QUERY" id=
-                "RCL.CONFIG.RECOLLCONF.QUERY"></a>Query-time
-                parameters (no impact on the index)</h4>
+                "RCL.CONFIG.RECOLLCONF.QUERY"></a>5.3.6.&nbsp;Query-time
+                parameters (no impact on the index)</h3>
               </div>
             </div>
           </div>
@@ -11226,14 +11320,14 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.PDF" id=
-                "RCL.CONFIG.RECOLLCONF.PDF"></a>Parameters for the
-                PDF input script</h4>
+                "RCL.CONFIG.RECOLLCONF.PDF"></a>5.3.7.&nbsp;Parameters
+                for the PDF input script</h3>
               </div>
             </div>
           </div>
@@ -11300,14 +11394,14 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.OCR" id=
-                "RCL.CONFIG.RECOLLCONF.OCR"></a>Parameters for OCR
-                processing</h4>
+                "RCL.CONFIG.RECOLLCONF.OCR"></a>5.3.8.&nbsp;Parameters
+                for OCR processing</h3>
               </div>
             </div>
           </div>
@@ -11384,14 +11478,14 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS" id=
-                "RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS"></a>Parameters
-                for running speech to text conversion</h4>
+                "RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS"></a>5.3.9.&nbsp;Parameters
+                for running speech to text conversion</h3>
               </div>
             </div>
           </div>
@@ -11423,14 +11517,14 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS" id=
-                "RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS"></a>Parameters
-                for miscellaneous specific handlers</h4>
+                "RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS"></a>5.3.10.&nbsp;Parameters
+                for miscellaneous specific handlers</h3>
               </div>
             </div>
           </div>
@@ -11446,14 +11540,14 @@ thesame = "some string with spaces"</pre>
             </dl>
           </div>
         </div>
-        <div class="sect3">
+        <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h4 class="title"><a name=
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.SPECLOCATIONS" id=
-                "RCL.CONFIG.RECOLLCONF.SPECLOCATIONS"></a>Parameters
-                set for specific locations</h4>
+                "RCL.CONFIG.RECOLLCONF.SPECLOCATIONS"></a>5.3.11.&nbsp;Parameters
+                set for specific locations</h3>
               </div>
             </div>
           </div>
@@ -11478,7 +11572,7 @@ thesame = "some string with spaces"</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.CONFIG.FIELDS" id=
-              "RCL.CONFIG.FIELDS"></a>5.3.&nbsp;The fields
+              "RCL.CONFIG.FIELDS"></a>5.4.&nbsp;The fields
               file</h2>
             </div>
           </div>
@@ -11584,7 +11678,7 @@ x-my-tag = mailmytag</pre>
               <div>
                 <h3 class="title"><a name="RCL.CONFIG.FIELDS.XATTR"
                 id=
-                "RCL.CONFIG.FIELDS.XATTR"></a>5.3.1.&nbsp;Extended
+                "RCL.CONFIG.FIELDS.XATTR"></a>5.4.1.&nbsp;Extended
                 attributes in the fields file</h3>
               </div>
             </div>
@@ -11623,7 +11717,7 @@ x-my-tag = mailmytag</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.CONFIG.MIMEMAP" id=
-              "RCL.CONFIG.MIMEMAP"></a>5.4.&nbsp;The mimemap
+              "RCL.CONFIG.MIMEMAP"></a>5.5.&nbsp;The mimemap
               file</h2>
             </div>
           </div>
@@ -11672,7 +11766,7 @@ x-my-tag = mailmytag</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.CONFIG.MIMECONF" id=
-              "RCL.CONFIG.MIMECONF"></a>5.5.&nbsp;The mimeconf
+              "RCL.CONFIG.MIMECONF"></a>5.6.&nbsp;The mimeconf
               file</h2>
             </div>
           </div>
@@ -11760,7 +11854,7 @@ other = rclcat:other</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.CONFIG.MIMEVIEW" id=
-              "RCL.CONFIG.MIMEVIEW"></a>5.6.&nbsp;The mimeview
+              "RCL.CONFIG.MIMEVIEW"></a>5.7.&nbsp;The mimeview
               file</h2>
             </div>
           </div>
@@ -11890,7 +11984,7 @@ other = rclcat:other</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.CONFIG.PTRANS" id=
-              "RCL.CONFIG.PTRANS"></a>5.7.&nbsp;The <code class=
+              "RCL.CONFIG.PTRANS"></a>5.8.&nbsp;The <code class=
               "filename">ptrans</code> file</h2>
             </div>
           </div>
@@ -11920,7 +12014,7 @@ other = rclcat:other</pre>
             <div>
               <h2 class="title" style="clear: both"><a name=
               "RCL.CONFIG.EXAMPLES" id=
-              "RCL.CONFIG.EXAMPLES"></a>5.8.&nbsp;Examples of
+              "RCL.CONFIG.EXAMPLES"></a>5.9.&nbsp;Examples of
               configuration adjustments</h2>
             </div>
           </div>
@@ -11931,7 +12025,7 @@ other = rclcat:other</pre>
               <div>
                 <h3 class="title"><a name=
                 "RCL.CONFIG.EXAMPLES.ADDVIEW" id=
-                "RCL.CONFIG.EXAMPLES.ADDVIEW"></a>5.8.1.&nbsp;Adding
+                "RCL.CONFIG.EXAMPLES.ADDVIEW"></a>5.9.1.&nbsp;Adding
                 an external viewer for an non-indexed type</h3>
               </div>
             </div>
@@ -11992,7 +12086,7 @@ application/x-blobapp = blobviewer %f</pre>
               <div>
                 <h3 class="title"><a name=
                 "RCL.CONFIG.EXAMPLES.ADDINDEX" id=
-                "RCL.CONFIG.EXAMPLES.ADDINDEX"></a>5.8.2.&nbsp;Adding
+                "RCL.CONFIG.EXAMPLES.ADDINDEX"></a>5.9.2.&nbsp;Adding
                 indexing support for a new file type</h3>
               </div>
             </div>

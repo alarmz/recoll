@@ -7,7 +7,7 @@
 <!ENTITY RCLWEB "<ulink url='https://www.recoll.org/'>https://www.recoll.org/</ulink>">
 <!ENTITY FAQS "https://www.recoll.org/faqsandhowtos/">
 <!ENTITY RCLAPPS "<ulink url='https://www.recoll.org/pages/features.html#doctypes'>https://www.recoll.org/pages/features.html</ulink>">
-<!ENTITY RCLVERSION "1.42">
+<!ENTITY RCLVERSION "1.43">
 <!ENTITY XAP "<application>Xapian</application>">
 <!ENTITY WIN "<application>Windows</application>">
 <!ENTITY LIN "<application>Unix</application>-like systems">
@@ -6371,144 +6371,165 @@ db.purge()</programlisting>
     <sect1 id="RCL.CONFIG.OVERVIEW">
       <title>Settings, configuration overview</title>
 
-      <para>Most of the parameters specific to the <command>recoll</command> GUI are set through the
-      <guilabel>Preferences</guilabel> menu and stored in the standard Qt place
-      (<filename>$HOME/.config/Recoll.org/recoll.conf</filename>).</para>
+      <para>&RCL; has two kinds of configuration parameters:
+      <itemizedlist>
+        <listitem><para>GUI settings are global and always set through the <guilabel>GUI
+        configuration</guilabel> <guilabel>Preferences</guilabel> menu entry.</para></listitem>
 
-      <para>&RCL; indexing options are set inside text configuration
-      files located in a configuration directory. There can be
-      several such directories, each of which defines the parameters
-      for one index.</para>
+        <listitem><para>Index configuration parameters are set per index, and stored in each
+        index configuration directory. Many can be set either through the GUI or by editing a text
+        configuration file, but some less common values can only be set by editing.</para></listitem>
+      </itemizedlist>
+      </para>
 
-      <para>The configuration files can be edited with a plain text editor or through the
-      <guilabel>Index configuration</guilabel> dialog (<guilabel>Preferences</guilabel> menu). The
-      GUI tool will try to respect your formatting and comments as much as possible, so it is quite
-      possible to use both approaches on the same configuration.</para>
+      <simplesect>
+        <title>GUI settings</title>
+        <para>For reference, the GUI settings are stored in
+        <filename>$HOME/.config/Recoll.org/recoll.conf</filename> on &LIN; and
+        <filename>C:/Users/[you]/AppData/Roaming/Recoll/recoll.ini</filename> on &WIN;.</para>
+      </simplesect>
 
-      <para>For each index, there are at least two sets of configuration files. System-wide
-      configuration files come with the installation and are kept in a directory named like
-      <filename>/usr/share/recoll/examples</filename> on &LIN; (or an equivalent on other systems),
-      and define default values, shared by all indexes (the values in these files are often
-      commented out, and just present to indicate the default coded in the program). For each index,
-      a parallel set of files defines the customised parameters.</para>
+      <simplesect>
+        <title>Index configuration parameters</title>
 
-      <para>On &LIN;, the location of the default index customised configuration is
-        the <filename>.recoll</filename> directory in your home. On &WIN; it
-        is <filename>C:/Users/[you]/AppData/Local/Recoll</filename>. Most people will only use this
-        directory.</para> 
+        <para>The parameters for each &RCL; index are set inside text configuration files located in
+        a configuration directory. There can be several such directories, each of which defines the
+        parameters for one index.</para>
 
-      <para>The location for the default index configuration directory can be changed, or others can
-        be added for separate indexes with the <envar>RECOLL_CONFDIR</envar> environment variable or
+        <para>There is a default index configuration directory, used when not specified
+        otherwise. On &LIN; it is located in <filename>$HOME/.recoll</filename>. Under &WIN;, it is
+        located in <filename>C:\Users\[you]\AppData\Local\Recoll</filename>.</para>
+        
+        <para>The configuration files can be edited with a plain text editor or through the
+        <guilabel>Index configuration</guilabel> dialog (<guilabel>Preferences</guilabel> menu). The
+        GUI tool will try to preserve your formatting and comments as much as possible, so it is
+        quite possible to use both approaches on the same configuration.</para>
+
+        <para>For each index, there are actually at least two sets of configuration files. The
+        parameters set in the locations listed above override or complement system-wide
+        configuration files which come with the installation and are kept in a directory named like
+        <filename>/usr/share/recoll/examples</filename> on &LIN; (or an equivalent on other
+        systems), and define default values, shared by all indexes (the values in these files are
+        often commented out, and just present to indicate the default coded in the program).</para>
+
+        <para>The local configuration directory only stores additional or overriding parameters. The
+        defaults are stored in the central location. You should never edit the central files as they
+        will be overwritten by a software update.</para>
+
+        <para>The location for the index configuration directory can be changed, or others can be
+        added for separate indexes with the <envar>RECOLL_CONFDIR</envar> environment variable or
         the <option>-c</option> option parameter to <command>recoll</command> and
         <command>recollindex</command>.</para>
 
-      <para>In addition, for each index, it is possible to specify two additional configuration
-      directories which will be stacked before and after the user configuration directory. These are
-      defined by the <envar>RECOLL_CONFTOP</envar> and <envar>RECOLL_CONFMID</envar> environment
-      variables. Values from configuration files inside the top directory will override user ones,
-      values from configuration files inside the middle directory will override system ones and be
-      overridden by user ones. These two variables may be of use to applications which augment &RCL;
-      functionality, and need to add configuration data without disturbing the user's files. Please
-      note that the two, currently single, values will probably be interpreted as colon-separated
-      lists in the future: do not use colon characters inside the directory paths.</para>
+        <para>Special use: in addition, for each index, it is possible to specify two additional
+        configuration directories which will be stacked before and after the user configuration
+        directory. These are defined by the <envar>RECOLL_CONFTOP</envar> and
+        <envar>RECOLL_CONFMID</envar> environment variables. Values from configuration files inside
+        the top directory will override user ones, values from configuration files inside the middle
+        directory will override system ones and be overridden by user ones. These two variables may
+        be of use to applications which augment &RCL; functionality, and need to add configuration
+        data without disturbing the user's files. Please note that the two, currently single, values
+        will probably be interpreted as colon-separated lists in the future: do not use colon
+        characters inside the directory paths.</para>
 
-      <para>If the default configuration directory does not exist when either
-      <command>recoll</command> or <command>recollindex</command> is started, it will be created
-      with a set of empty configuration files. <command>recoll</command> will give you a chance to
-      edit the configuration file before starting indexing. <command>recollindex</command> will
-      proceed immediately. To avoid mistakes, the automatic directory creation will only occur for
-      the default location, not if <option>-c</option> or <envar>RECOLL_CONFDIR</envar> were used,
-      in which case, you will have to create the directory.</para>
+        <para>If the default configuration directory does not exist when either
+        <command>recoll</command> or <command>recollindex</command> is started, it will be created
+        with a set of empty configuration files. <command>recoll</command> will give you a chance to
+        edit the configuration file before starting indexing. <command>recollindex</command> will
+        proceed immediately. To avoid mistakes, the automatic directory creation will only occur for
+        the default location, not if <option>-c</option> or <envar>RECOLL_CONFDIR</envar> were used,
+        in which case, you will have to create the directory.</para>
 
-      <para>All configuration files share the same format. For example, a short extract of the main
-      configuration file might look as follows:</para>
-      <programlisting>
-# Space-separated list of files and directories to index.
+        <para>All configuration files share the same format. For example, a short extract of the main
+        configuration file might look as follows:</para>
+        <programlisting># Space-separated list of files and directories to index.
 topdirs =  ~/docs /usr/share/doc
 
 [~/somedirectory-with-utf8-txt-files]
 defaultcharset = utf-8</programlisting>
 
-      <para>There are three kinds of lines:</para>
-      <itemizedlist>
-        <listitem><para>Comments start with a hash mark <emphasis>#</emphasis>.</para> 
-        </listitem>
-        <listitem><para>Parameter assignment: <emphasis>name = value</emphasis>.</para> 
-        </listitem>
-        <listitem><para>Section definitions: [<emphasis>somedirname</emphasis>].</para> 
-        </listitem>
-      </itemizedlist>
-
-      <para>Lines which are empty or only containing white space are ignored.</para>
-      <para>Long lines can be broken by ending each incomplete part with a backslash
-      (<literal>\</literal>).</para> 
-      
-      <para>Depending on the type of configuration file, section definitions either separate groups
-      of parameters or allow redefining some parameters for a directory sub-tree. They stay in
-      effect until another section definition, or the end of file, is encountered. Some of the
-      parameters used for indexing are looked up hierarchically from the current directory location
-      upwards. Not all parameters can be meaningfully redefined, this is specified for each in the
-      next section. </para>
-
-      <important>
-        <para>Global parameters <emphasis>must not</emphasis> be defined in
-        a directory subsection, else they will not be found at all by the
-        &RCL; code, which looks for them at the top level
-        (e.g. <literal>skippedPaths</literal>).</para> 
-      </important>
-
-      <para>When found at the beginning of a file path, the tilde character (~) is expanded to the
-      name of the user's home directory, as a shell would do. The same convention is used on
-      &WIN;.</para> 
-      
-      <para>Some parameters are lists of strings. White space is used for separation. List elements
-      with embedded spaces can be quoted using double-quotes. Double quotes inside these elements
-      can be escaped with a backslash.</para>
-
-      <para>No value inside a configuration file can contain a newline
-      character. Long lines can be continued by escaping the
-      physical newline with backslash, even inside quoted strings.</para>
-      <programlisting>
-astringlist =  "some string \
-with spaces"
-thesame = "some string with spaces"</programlisting>
-
-      <para>Parameters which are not part of string lists can't be
-        quoted, and leading and trailing space characters are
-        stripped before the value is used.</para>
-
-      <important>
-        <para>Quotes processing is ONLY applied to parameter values which are lists. Double quoting
-          a single value like, e.g. <literal>dbdir</literal> will result in an incorrect value, with
-          quotes included. This is quite confusing, and may have been a design mistake but it is
-          much too late to fix.</para></important>
-
-      <formalpara>
-        <title>Encoding issues</title>
-        <para>Most of the configuration parameters are plain ASCII. Two
-          particular sets of values may cause encoding issues:</para>
-      </formalpara>
-
-
-      <para>
+        <para>There are three kinds of lines:</para>
         <itemizedlist>
-          <listitem><para>File path parameters may contain non-ASCII characters and should use the
-              exact same byte values as found in the file system directory. Usually, this means that
-              the configuration file should use the system default locale encoding.</para>
+          <listitem><para>Comments: start with a hash mark <emphasis>#</emphasis>.</para> 
           </listitem>
-          <listitem><para>The <envar>unac_except_trans</envar> parameter (meaning unaccenting
-              exception translations) should be encoded in UTF-8. If your system locale is not UTF-8
-              (which is now very rare), and you need to also specify non-ASCII file paths, this
-              poses a difficulty because common text editors cannot handle multiple encodings in a
-              single file. In this relatively unlikely case, you can edit the configuration file as
-              two separate text files with appropriate encodings, and concatenate them to create the
-              complete configuration.</para>
+          <listitem><para>Parameter assignments: <emphasis>name = value</emphasis>.</para> 
+          </listitem>
+          <listitem><para>Section definitions: [<emphasis>somedirname</emphasis>].</para> 
           </listitem>
         </itemizedlist>
-      </para>
+
+        <para>Lines which are empty or only containing white space are ignored.</para>
+        <para>Long lines can be broken by ending each incomplete part with a backslash
+        (<literal>\</literal>).</para> 
+        
+        <para>Depending on the type of configuration file, section definitions either separate groups
+        of parameters or allow redefining some parameters for a directory sub-tree. They stay in
+        effect until another section definition, or the end of file, is encountered. Some of the
+        parameters used for indexing are looked up hierarchically from the current directory location
+        upwards. Not all parameters can be meaningfully redefined, this is specified for each in the
+        next section. </para>
+
+        <important>
+          <para>Global parameters <emphasis>must not</emphasis> be defined in
+          a directory subsection, else they will not be found at all by the
+          &RCL; code, which looks for them at the top level
+          (e.g. <literal>skippedPaths</literal>).</para> 
+        </important>
+
+        <para>When found at the beginning of a file path, the tilde character (~) is expanded to the
+        name of the user's home directory, as a shell would do. The same convention is used on
+        &WIN;.</para> 
+        
+        <para>Some parameters are lists of strings. White space is used for separation. List elements
+        with embedded spaces can be quoted using double-quotes. Double quotes inside these elements
+        can be escaped with a backslash.</para>
+
+        <para>No value inside a configuration file can contain a newline
+        character. Long lines can be continued by escaping the
+        physical newline with backslash, even inside quoted strings.</para>
+        <programlisting>
+          astringlist =  "some string \
+          with spaces"
+          thesame = "some string with spaces"</programlisting>
+
+          <para>Parameters which are not part of string lists can't be
+          quoted, and leading and trailing space characters are
+          stripped before the value is used.</para>
+
+          <important>
+            <para>Quotes processing is ONLY applied to parameter values which are lists. Double
+            quoting a single value like, e.g. <literal>dbdir</literal> will result in an incorrect
+            value, with quotes included. This is quite confusing, and was a design mistake but it is
+            much too late to fix.</para>
+          </important>
+
+          <formalpara>
+            <title>Encoding issues</title>
+            <para>Most of the configuration parameters are plain ASCII. Two
+            particular sets of values may cause encoding issues:</para>
+          </formalpara>
+            <para>
+              <itemizedlist>
+                <listitem><para>File path parameters may contain non-ASCII characters and should use
+                the exact same byte values as found in the file system directory. Usually, this
+                means that the configuration file should use the system default locale
+                encoding.</para>
+                </listitem>
+                <listitem><para>The <envar>unac_except_trans</envar> parameter (meaning unaccenting
+                exception translations) should be encoded in UTF-8. If your system locale is not
+                UTF-8 (which is now very rare), and you need to also specify non-ASCII file paths,
+                this poses a difficulty because common text editors cannot handle multiple encodings
+                in a single file. In this relatively unlikely case, you can edit the configuration
+                file as two separate text files with appropriate encodings, and concatenate them to
+                create the complete configuration.</para>
+                </listitem>
+              </itemizedlist>
+            </para>
+      </simplesect>
     </sect1>
-      <sect1 id="RCL.CONFIG.ENVIR">
-        <title>Environment variables</title>
+    
+    <sect1 id="RCL.CONFIG.ENVIR">
+      <title>Environment variables</title>
 
         <variablelist>
           <varlistentry>

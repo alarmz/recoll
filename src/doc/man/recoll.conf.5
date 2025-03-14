@@ -200,8 +200,8 @@ wasteful in some cases. Limit the waste. Negative means no limit. 0 results in n
 any compressed file. Default 100 MB.
 .TP
 .BI "textfilemaxmbs = "int
-Size limit for text files. Mostly for skipping monster logs. Default 20 MB. Use a value of -1 to
-disable.
+Size limit for text files. Mostly for skipping monster logs. Also used for max mail msg body size. Default 20 MB. Use
+a value of -1 to disable.
 .TP
 .BI "textfilepagekbs = "int
 Page size for text files. If this is set, text/plain files will be divided into documents of approximately this
@@ -313,6 +313,15 @@ not be the default.
 Maximum term length in Unicode characters. Words longer than this will be discarded.
 The default is 40 and used to be hard-coded, but it can now be
 adjusted. You may need an index reset if you change the value.
+.TP
+.BI "maxdbdatarecordkbs = "int
+Maximum binary size of a Xapian document data record. The data record holds "stored" document metadata fields. A very big size
+usually indicates a document parse error. Xapian has a hard limit of around 100MB
+for this.
+.TP
+.BI "maxdbstoredtextmbs = "int
+Maximum binary size of a document stored text. Xapian has a hard limit of around 100MB for the compressed value, but our
+limit is before compression, so there may be some wiggle room.
 .TP
 .BI "nocjk = "bool
 Decides if specific East Asian
@@ -580,6 +589,9 @@ These temporary indexes are merged into the main one at the end of the operation
 Using multiple indexes and a final merge can significantly improve indexing performance when
 the single-threaded Xapian index updates become a bottleneck. How useful this is depends
 on the type of input and CPU. See the manual for more details.
+.TP
+.BI "suspendonbattery = "bool
+Suspend the real time indexing when the system runs on battery. The indexer will wait for a return on AC and reexec itself when it happens.
 .TP
 .BI "loglevel = "int
 Log file verbosity 1-6. A value of 2 will print
