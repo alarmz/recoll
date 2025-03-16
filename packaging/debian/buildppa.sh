@@ -9,7 +9,8 @@
 # 22.04LTS jammy    2027-06
 # 24.04LTS noble    2029-06
 # 24.10    oracular 2025-07
-SERIES="focal jammy noble oracular"
+SERIES="focal jammy noble oracular plucky"
+#SERIES=plucky
 
 PPA_KEYID=7808CE96D38B9201
 
