@@ -119,6 +119,7 @@ public:
     virtual ~ConfPanelWIF() {}
     virtual void storeValues() = 0;
     virtual void loadValues() = 0;
+    virtual bool modified() {return false;}
 };
 
 class ConfPanelW;
@@ -168,6 +169,7 @@ public:
     ConfParamW *findParamW(const QString& varname);
 
     void hideButtons();
+    bool modified();
                       
 public slots:
     void acceptChanges();
@@ -205,6 +207,7 @@ public:
     void addParam(ConfParamW *w);
     void addWidget(QWidget *w);
     void storeValues();
+    bool modified();
     void loadValues();
     void endOfList();
     /** Find param widget associated with given variable name */
@@ -239,6 +242,8 @@ public:
         m_strdefault = value;
     }
         
+    virtual bool modified() = 0;
+
 public slots:
     virtual void setEnabled(bool) = 0;
     virtual void storeValue() = 0;
@@ -270,6 +275,7 @@ public:
                    const QString& lbltxt,
                    const QString& tltptxt, bool deflt = false);
     virtual void loadValue();
+    virtual bool modified();
     virtual void storeValue();
     virtual void setImmediate();
 public slots:
@@ -297,6 +303,7 @@ public:
                   int maxvalue = INT_MAX,
                   int defaultvalue = 0);
     virtual void loadValue();
+    virtual bool modified();
     virtual void storeValue();
     virtual void setImmediate();
 public slots:
@@ -319,6 +326,7 @@ public:
                   const QString& lbltxt,
                   const QString& tltptxt);
     virtual void loadValue();
+    virtual bool modified();
     virtual void storeValue();
     virtual void setImmediate();
 public slots:
@@ -340,6 +348,7 @@ public:
                    const QString& lbltxt,
                    const QString& tltptxt, const QStringList& sl);
     virtual void loadValue();
+    virtual bool modified();
     virtual void storeValue();
     virtual void setList(const QStringList& sl);
     virtual void setImmediate();
@@ -362,6 +371,7 @@ public:
                  const QString& lbltxt,
                  const QString& tltptxt, bool isdir = false);
     virtual void loadValue();
+    virtual bool modified();
     virtual void storeValue();
     virtual void setImmediate();
 protected slots:
@@ -390,6 +400,7 @@ public:
                  const QString& lbltxt,
                  const QString& tltptxt);
     virtual void loadValue();
+    virtual bool modified();
     virtual void storeValue();
     QListWidget *getListBox() {
         return m_lb;
@@ -485,23 +496,21 @@ extern void setSzPol(QWidget *w, QSizePolicy::Policy hpol,
  * (min/max, default, str list). Check the code about this. 
  * type values: "bool" "int" "string" "cstr" "cstrl" "fn" "dfn" "strl" "dnl"
  *
- * The XML would typically exist as comments inside a reference configuration
- * file (ConfSimple can extract such comments).
+ * The XML would typically be the result of a ConfSimple::commentsAsXML() call on a properly
+ * formatted reference configuration.
  *
- * This means that the reference configuration file can generate both
- * the documentation and the GUI interface.
+ * This allows the reference configuration file to generate both the documentation and the GUI.
  * 
  * @param xml the input xml
- * @param[output] toptxt the top level XML text (text not inside <var>, 
- *   normally commented variable assignments). This will be evaluated
- *   as a config for default values.
- * @lnkf factory to create the objects which link the GUI to the
- *   storage mechanism.
+ * @param[output] toptxt the extracted top level XML text (text not inside <var>),
+ *   usually mostly commented variable assignments, but also includes uncommented conftree lines
+ *   like section definitions and actual assignments (which would usually be used to override the
+ *   compiled in defaults documented by the comment). This should be evaluated as a config for
+ *   default values.
+ * @lnkf factory to create the objects which link the GUI to the storage mechanism.
  */
-extern ConfTabsW *xmlToConfGUI(const std::string& xml,
-                               std::string& toptxt,
-                               ConfLinkFact* lnkf,
-                               QWidget *parent);
+extern ConfTabsW *xmlToConfGUI(
+    const std::string& xml, std::string& toptxt, ConfLinkFact* lnkf, QWidget *parent);
 #endif
 
 }

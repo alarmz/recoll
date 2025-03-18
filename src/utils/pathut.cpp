@@ -39,11 +39,7 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-#ifdef BUILDING_RECOLL
-#include "autoconfig.h"
-#else
-#include "config.h"
-#endif
+#define _FILE_OFFSET_BITS 64
 
 #include "pathut.h"
 

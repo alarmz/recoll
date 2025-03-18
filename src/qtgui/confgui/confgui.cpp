@@ -47,6 +47,7 @@
 #include <qpushbutton.h>
 #include <qstringlist.h>
 #include <qcombobox.h>
+#include <QDebug>
 
 #include "smallut.h"
 
@@ -95,6 +96,19 @@ void ConfTabsW::hideButtons()
 {
     if (buttonBox)
         buttonBox->hide();
+}
+
+bool ConfTabsW::modified()
+{
+    for (auto& entry : m_panels) {
+        if (entry->modified())
+            return true;
+    }
+    for (auto& entry : m_widgets) {
+        if (entry->modified())
+            return true;
+    }
+    return false;
 }
 
 void ConfTabsW::acceptChanges()
@@ -294,6 +308,14 @@ void ConfPanelW::endOfList()
     m_vboxlayout->addStretch(2);
 }
 
+bool ConfPanelW::modified()
+{
+    for (auto& widgetp : m_params) {
+        if (widgetp->modified())
+            return true;
+    }
+    return false;
+}
 void ConfPanelW::storeValues()
 {
     for (auto& widgetp : m_params) {
@@ -399,6 +421,8 @@ ConfParamIntW::ConfParamIntW(
     int minvalue, int maxvalue, int defaultvalue)
     : ConfParamW(varnm, parent, cflink), m_defaultvalue(defaultvalue)
 {
+    //qDebug() << "ConfParamIntW: nm [" << varnm << "] min " << minvalue << " max " <<
+    //    maxvalue << " def " << defaultvalue;;
     if (!createCommon(lbltxt, tltptxt)) {
         return;
     }
@@ -420,7 +444,13 @@ void ConfParamIntW::storeValue()
 {
     if (m_origvalue != m_sb->value()) {
         setValue(m_sb->value());
+        m_origvalue = m_sb->value();
     }
+}
+
+bool ConfParamIntW::modified()
+{
+    return m_origvalue != m_sb->value();
 }
 
 void ConfParamIntW::loadValue()
@@ -457,9 +487,14 @@ ConfParamStrW::ConfParamStrW(
 
 void ConfParamStrW::storeValue()
 {
-    if (m_origvalue.compare(m_le->text())) {
+    if (m_origvalue != m_le->text()) {
         setValue(m_le->text());
+        m_origvalue = m_le->text();
     }
+}
+bool ConfParamStrW::modified()
+{
+    return m_origvalue != m_le->text();
 }
 
 void ConfParamStrW::loadValue()
@@ -512,9 +547,14 @@ void ConfParamCStrW::setList(const QStringList& sl)
 
 void ConfParamCStrW::storeValue()
 {
-    if (m_origvalue.compare(m_cmb->currentText())) {
+    if (m_origvalue != m_cmb->currentText()) {
         setValue(m_cmb->currentText());
+        m_origvalue = m_cmb->currentText();
     }
+}
+bool ConfParamCStrW::modified()
+{
+    return m_origvalue != m_cmb->currentText();
 }
 
 void ConfParamCStrW::loadValue()
@@ -574,7 +614,12 @@ void ConfParamBoolW::storeValue()
 {
     if (m_origvalue != m_cb->isChecked()) {
         setValue(m_cb->isChecked());
+        m_origvalue = m_cb->isChecked();
     }
+}
+bool ConfParamBoolW::modified()
+{
+    return m_origvalue != m_cb->isChecked();
 }
 
 void ConfParamBoolW::loadValue()
@@ -622,9 +667,14 @@ ConfParamFNW::ConfParamFNW(
 
 void ConfParamFNW::storeValue()
 {
-    if (m_origvalue.compare(m_le->text())) {
+    if (m_origvalue != m_le->text()) {
         setValue(m_le->text());
+        m_origvalue = m_le->text();
     }
+}
+bool ConfParamFNW::modified()
+{
+    return m_origvalue != m_le->text();
 }
 
 void ConfParamFNW::loadValue()
@@ -768,9 +818,14 @@ std::string ConfParamSLW::listToString()
 void ConfParamSLW::storeValue()
 {
     std::string s = listToString();
-    if (s.compare(m_origvalue)) {
+    if (m_origvalue != s) {
         m_cflink->set(s);
+        m_origvalue = s;
     }
+}
+bool ConfParamSLW::modified()
+{
+    return listToString() != m_origvalue;
 }
 
 void ConfParamSLW::loadValue()
@@ -927,7 +982,7 @@ static std::string looksLikeAssign(const std::string& data)
     //LOGDEB("looksLikeAssign. data: [" << data << "]");
     std::vector<std::string> toks;
     stringToTokens(data, toks, "\n\r\t ");
-    if (toks.size() >= 2 && !toks[1].compare("=")) {
+    if (toks.size() >= 2 && toks[1] == "=") {
         return toks[0];
     }
     return std::string();
@@ -948,7 +1003,7 @@ ConfTabsW *xmlToConfGUI(const std::string& xml, std::string& toptext,
 
         virtual void startElement(const std::string& tagname,
                                   const std::map<std::string, std::string>& attrs) {
-            if (!tagname.compare("var")) {
+            if (tagname == "var") {
                 m_curvar = mapfind("name", attrs);
                 m_curvartp = mapfind("type", attrs);
                 m_curvarvals = mapfind("values", attrs);
@@ -961,14 +1016,13 @@ ConfTabsW *xmlToConfGUI(const std::string& xml, std::string& toptext,
                     m_brief.clear();
                     m_descr.clear();
                 }
-            } else if (!tagname.compare("filetitle") ||
-                       !tagname.compare("grouptitle")) {
+            } else if (tagname == "filetitle" || tagname == "grouptitle") {
                 m_other.clear();
             }
         }
 
         virtual void endElement(const std::string& tagname) {
-            if (!tagname.compare("var")) {
+            if (tagname == "var") {
                 if (!m_hadTitle) {
                     m_w = new ConfTabsW(m_parent, "Teh title", m_lnkfact);
                     m_hadTitle = true;
@@ -978,27 +1032,26 @@ ConfTabsW *xmlToConfGUI(const std::string& xml, std::string& toptext,
                     m_hadGroup = true;
                 }
                 ConfTabsW::ParamType paramtype;
-                if (!m_curvartp.compare("bool")) {
+                if (m_curvartp == "bool") {
                     paramtype = ConfTabsW::CFPT_BOOL;
-                } else if (!m_curvartp.compare("int")) {
+                } else if (m_curvartp == "int") {
                     paramtype = ConfTabsW::CFPT_INT;
-                } else if (!m_curvartp.compare("string")) {
+                } else if (m_curvartp == "string") {
                     paramtype = ConfTabsW::CFPT_STR;
-                } else if (!m_curvartp.compare("cstr")) {
+                } else if (m_curvartp == "cstr") {
                     paramtype = ConfTabsW::CFPT_CSTR;
-                } else if (!m_curvartp.compare("cstrl")) {
+                } else if (m_curvartp == "cstrl") {
                     paramtype = ConfTabsW::CFPT_CSTRL;
-                } else if (!m_curvartp.compare("fn")) {
+                } else if (m_curvartp == "fn") {
                     paramtype = ConfTabsW::CFPT_FN;
-                } else if (!m_curvartp.compare("dfn")) {
+                } else if (m_curvartp == "dfn") {
                     paramtype = ConfTabsW::CFPT_FN;
-                } else if (!m_curvartp.compare("strl")) {
+                } else if (m_curvartp == "strl") {
                     paramtype = ConfTabsW::CFPT_STRL;
-                } else if (!m_curvartp.compare("dnl")) {
+                } else if (m_curvartp == "dnl") {
                     paramtype = ConfTabsW::CFPT_DNL;
                 } else {
-                    throw std::runtime_error("Bad type " + m_curvartp +
-                                             " for " + m_curvar);
+                    throw std::runtime_error("Bad type " + m_curvartp + " for " + m_curvar);
                 }
                 rtrimstring(m_brief, " .");
                 switch (paramtype) {
@@ -1016,12 +1069,13 @@ ConfTabsW *xmlToConfGUI(const std::string& xml, std::string& toptext,
                         min = atoi(vals[0].c_str());
                         max = atoi(vals[1].c_str());
                         def = atoi(vals[2].c_str());
+                    } else {
+                        std::cerr << "NO MIN/MAX/DEF values for " << m_curvar << '\n';
+                        exit(1);
                     }
-                    QStringList *sldef = 0;
-                    sldef = (QStringList*)(((char*)sldef) + def);
                     m_w->addParam(m_idx, paramtype, u8s2qs(m_curvar),
                                   u8s2qs(m_brief), u8s2qs(m_descr),
-                                  min, max, sldef);
+                                  min, max, (QStringList*)((char*)0+def));
                     break;
                 }
                 case  ConfTabsW::CFPT_CSTR:
@@ -1041,11 +1095,11 @@ ConfTabsW *xmlToConfGUI(const std::string& xml, std::string& toptext,
                     m_w->addParam(m_idx, paramtype, u8s2qs(m_curvar),
                                   u8s2qs(m_brief), u8s2qs(m_descr));
                 }
-            } else if (!tagname.compare("filetitle")) {
+            } else if (tagname == "filetitle") {
                 m_w = new ConfTabsW(m_parent, u8s2qs(m_other), m_lnkfact);
                 m_hadTitle = true;
                 m_other.clear();
-            } else if (!tagname.compare("grouptitle")) {
+            } else if (tagname == "grouptitle") {
                 if (!m_hadTitle) {
                     m_w = new ConfTabsW(m_parent, "Teh title", m_lnkfact);
                     m_hadTitle = true;
@@ -1060,25 +1114,28 @@ ConfTabsW *xmlToConfGUI(const std::string& xml, std::string& toptext,
                 m_idx = m_w->addPanel(u8s2qs(m_other));
                 m_hadGroup = true;
                 m_other.clear();
-            } else if (!tagname.compare("descr")) {
-            } else if (!tagname.compare("brief")) {
+            } else if (tagname == "descr") {
+            } else if (tagname == "brief") {
                 m_brief = neutchars(m_brief, "\n\r");
             }
         }
 
         virtual void characterData(const std::string& data) {
-            if (!tagStack().back().compare("brief")) {
+            const std::string& curtag = tagStack().back();
+            if (curtag == "brief") {
                 m_brief += data;
-            } else if (!tagStack().back().compare("descr")) {
+            } else if (curtag == "descr") {
                 m_descr += data;
-            } else if (!tagStack().back().compare("filetitle") ||
-                       !tagStack().back().compare("grouptitle")) {
+            } else if (curtag == "filetitle" || curtag == "grouptitle") {
                 // We don't want \n in there
                 m_other += neutchars(data, "\n\r");
                 m_other += " ";
-            } else if (!tagStack().back().compare("confcomments")) {
+            } else if (curtag == "subkey" || curtag == "varsetting") {
+                // Actual config statements go to the extracted text.
+                m_toptext += data;
+            } else if (curtag ==  "confcomments") {
                 std::string nvarname = looksLikeAssign(data);
-                if (!nvarname.empty() && nvarname.compare(m_curvar)) {
+                if (!nvarname.empty() && nvarname != m_curvar) {
                     std::cerr << "Var assigned [" << nvarname << "] mismatch "
                         "with current variable [" << m_curvar << "]\n";
                 }
