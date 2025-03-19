@@ -159,6 +159,11 @@ copyrecoll()
     chkcp $RCL/desktop/recoll.ico $DESTDIR/Share
 }
 
+copyredist()
+{
+    chkcp ${RCLDEPS}/vc_redist/VC_redist.x64.exe ${DESTDIR}/Share/dist
+}
+
 copyantiword()
 {
     bindir=$ANTIWORD/
@@ -343,5 +348,6 @@ copyaspell
 copychm
 copypyrecoll
 copymagic
+copyredist
 
 echo "MKINSTDIR OK"

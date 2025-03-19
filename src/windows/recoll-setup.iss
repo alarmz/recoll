@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Recoll"
-#define MyAppVersion "1.41.1-20241224-qt_6_7_3-q0ef06b23-1"
+#define MyAppVersion "1.42.1-20250218-qt_6_8_2-ad6661e0"
 #define MyAppPublisher "Recoll.org"
 #define MyAppURL "http://www.recoll.org"
 #define MyAppExeName "recoll.exe"
@@ -43,14 +43,47 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
+; VC++ redistributable runtime. Extracted by VC2017RedistNeedsInstall(), if needed.
+Source: "C:\install\recoll\Share\dist\VC_redist.x64.exe"; DestDir: {tmp}; Flags: dontcopy
+; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: "C:\install\recoll\recoll.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\install\recoll\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{group}\{#IdxAppName}"; Filename: "{app}\{#IdxAppExeName}"; IconFilename: "{app}\{#MyAppExeName}"; Parameters: "-m -w 0"; Flags: runminimized preventpinning
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
+[CustomMessages]
+InstallingVCredist=Installing Microsoft VC++ redistributable
+
 [Run]
+Filename: "{tmp}\VC_redist.x64.exe"; \
+  StatusMsg: "{cm:InstallingVCredist}"; \
+  Parameters: "/quiet"; Check: VCRedistNeedsInstall; Flags: waituntilterminated
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
+[Code]
+function VCRedistNeedsInstall: Boolean;
+var 
+  Version: String;
+begin
+  if RegQueryStringValue(HKEY_LOCAL_MACHINE,
+       'SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64', 'Version',
+       Version) then
+  begin
+    // Is the installed version at least ours ? 
+    Log('VC Redist Version check : found ' + Version);
+    Result := (CompareStr(Version, 'v14.42.34438.00')<0);
+  end
+  else 
+  begin
+    // Not even an old version installed
+    Result := True;
+  end;
+  if (Result) then
+  begin
+    ExtractTemporaryFile('VC_redist.x64.exe');
+  end;
+end;
