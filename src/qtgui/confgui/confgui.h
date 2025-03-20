@@ -466,53 +466,6 @@ extern void setSzPol(QWidget *w, QSizePolicy::Policy hpol,
                      QSizePolicy::Policy vpol,
                      int hstretch, int vstretch);
 
-#ifdef ENABLE_XMLCONF
-/**
- * Interpret an XML string and create a configuration interface. XML sample:
- *
- * <confcomments>
- *   <filetitle>Configuration file parameters for upmpdcli</filetitle>
- *   <grouptitle>MPD parameters</grouptitle>
- *   <var name="mpdhost" type="string">
- *     <brief>Host MPD runs on.</brief>
- *     <descr>Defaults to localhost. This can also be specified as -h</descr>
- *   </var>
- *   mpdhost = default-host
- *   <var name="mpdport" type="int" values="0 65635 6600">
- *     <brief>IP port used by MPD</brief>. 
- *     <descr>Can also be specified as -p port. Defaults to the...</descr>
- *   </var>
- *   mpdport = defport
- *   <var name="ownqueue" type="bool" values="1">
- *     <brief>Set if we own the MPD queue.</brief>
- *     <descr>If this is set (on by default), we own the MPD...</descr>
- *   </var>
- *   ownqueue = 
- * </confcomments>
- *
- * <grouptitle> creates a panel in which the following <var> are set.
- * The <var> attributes should be self-explanatory. "values"
- * is used for different things depending on the var type
- * (min/max, default, str list). Check the code about this. 
- * type values: "bool" "int" "string" "cstr" "cstrl" "fn" "dfn" "strl" "dnl"
- *
- * The XML would typically be the result of a ConfSimple::commentsAsXML() call on a properly
- * formatted reference configuration.
- *
- * This allows the reference configuration file to generate both the documentation and the GUI.
- * 
- * @param xml the input xml
- * @param[output] toptxt the extracted top level XML text (text not inside <var>),
- *   usually mostly commented variable assignments, but also includes uncommented conftree lines
- *   like section definitions and actual assignments (which would usually be used to override the
- *   compiled in defaults documented by the comment). This should be evaluated as a config for
- *   default values.
- * @lnkf factory to create the objects which link the GUI to the storage mechanism.
- */
-extern ConfTabsW *xmlToConfGUI(
-    const std::string& xml, std::string& toptxt, ConfLinkFact* lnkf, QWidget *parent);
-#endif
-
-}
+} // namespace confgui
 
 #endif /* _confgui_h_included_ */
