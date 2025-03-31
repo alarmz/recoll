@@ -32,7 +32,7 @@ class PagesHandler(RclBaseHandler):
         self.em = em
         self.ntry = 0
         self.tmpdir = rclexecm.SafeTmpDir("rclpages")
-        self.cmdbase = [_sofficecmd, "--convert-to", "html", "--outdir"]
+        self.cmdbase = [_sofficecmd, "--norestore", "--safe-mode", "--headless", "--convert-to", "html", "--outdir"]
     def html_text(self, inpath):
         self.tmpdir.vacuumdir()
         cmd = self.cmdbase + [self.tmpdir.getpath(), inpath]
