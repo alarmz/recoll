@@ -325,10 +325,10 @@ will extract all entries from the Web cache to files created inside
 <destdir>. Each cache entry is extracted as two files, for the data and metadata.
 .PP
 .B recollindex \--notindexed [path [path ...]]
-will check each path and print out those which are absent from the index
-(with an "ABSENT" prefix), or caused an indexing error (with an "ERROR"
-prefix). If no paths are given on the command line, the command will read
-them, one per line, from stdin.
+will check each path and print out those which are absent from the index (with an "ABSENT" prefix),
+or caused an indexing error (with an "ERROR" prefix). If no paths are given on the command line, the
+command will read them, one per line, from stdin. The paths must be absolute and consistent with
+those in the index, there is no attempt to be clever about them.
 .PP
 Interrupting the command: as indexing can sometimes take a long time, the command can be interrupted
 by sending an interrupt (Ctrl-C, SIGINT) or terminate (SIGTERM) signal. Some time may elapse before

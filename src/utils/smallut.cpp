@@ -675,6 +675,7 @@ std::string escapeHtml(const std::string& in)
         case '>': out += "&gt;"; break;
         case '&': out += "&amp;"; break;
         case '"': out += "&quot;"; break;
+        case '\'':out += "&#39;"; break;
         default: out += pos; break;
         }
     }
