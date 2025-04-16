@@ -3,7 +3,7 @@
 
 Summary:        Desktop full text search tool with Qt GUI
 Name:           recoll
-Version:        1.42.0
+Version:        1.43.0
 Release:        2%{?dist}
 Group:          Applications/Databases
 License:        GPLv2+
@@ -18,15 +18,9 @@ BuildRequires:  chmlib-devel
 BuildRequires:  desktop-file-utils
 BuildRequires:  extra-cmake-modules
 BuildRequires:  file-devel
-# For leap 15: the default gcc-7 won't cut it
-#BuildRequires:  gcc13-c++
-BuildRequires:  libQt5Gui-devel
-BuildRequires:  libQt5Xml-devel
-BuildRequires:  libqt5-qtwebengine-devel
-BuildRequires:  libqt5-linguist
-#BuildRequires:  qt6-gui-devel
-#BuildRequires:  qt6-tools
-#BuildRequires:  qt6-webenginewidgets-devel
+BuildRequires:  qt6-gui-devel
+BuildRequires:  qt6-tools
+BuildRequires:  qt6-webenginewidgets-devel
 BuildRequires:  libxapian-devel
 BuildRequires:  libxslt-devel
 BuildRequires:  meson
@@ -47,9 +41,6 @@ interface.
 %setup -q -n %{name}-%{version}
 
 %build
-# For leap 15: the default gcc-7 won't cut it
-#export CC=gcc-13
-#export CXX=g++-13
 CFLAGS="%{optflags}"; export CFLAGS
 CXXFLAGS="%{optflags}"; export CXXFLAGS
 LDFLAGS="%{?__global_ldflags}"; export LDFLAGS

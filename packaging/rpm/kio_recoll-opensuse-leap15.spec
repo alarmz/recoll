@@ -1,5 +1,5 @@
 #
-# spec file for package recollrunner
+# spec file for package kio_recoll
 #
 # Copyright (c) 2013 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -17,46 +17,57 @@
 
 %define rname recoll
 
-Name:           recollrunner
-Version:        1.35.0
+Name:           kio_recoll
+Version:        1.43.0
 Release:        0
-Summary:        KRunner for the Recoll full text search tool
+Summary:        Extended Search
 License:        GPL-2.0+
+Summary:        KIO slave for the Recoll full text search tool
 Group:          Productivity/Text/Utilities
 Url:            http://www.lesbonscomptes.com/recoll/
 Source:         http://www.lesbonscomptes.com/recoll/%{rname}-%{version}.tar.gz
+BuildRequires:  kio-devel
 BuildRequires:  ki18n-devel
-BuildRequires:  plasma-framework-devel
-BuildRequires:  kconfig-devel
-BuildRequires:  kpackage-devel
-BuildRequires:  krunner-devel
 BuildRequires:  knotifications-devel
-BuildRequires:  libxapian-devel
 Requires:       recoll = %{version}
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
 Recoll is a personal full text search tool for Unix/Linux.
 
-This package provides the krunner
+This package provides the kio-slave
 
 
 %prep
 %setup -q -n %{rname}-%{version}
 
 %build
-pushd kde/krunner
+pushd kde/kioslave/kio_recoll
 %cmake_kf5 -d build
 %make_jobs
 popd
 
 %install
-pushd kde/krunner
+pushd kde/kioslave/kio_recoll
 %kf5_makeinstall -C build
 popd
 
+
 %files
 %defattr(-,root,root)
-%{_libdir}/qt5/plugins/kf5/krunner/runner_recoll.so
+%{_libdir}/qt5/plugins/kf5/kio/kio_recoll.so
+%{_datadir}/kio_recoll/
 
 %changelog
+* Tue Apr 05 2016 Jean-Francois Dockes <jfd@recoll.org> 1.21.6-0
+- Also build kde5 versions: works with Dolphin. Keep kde4 version for
+  Konqueror
+* Sun Mar 18 2012 Jean-Francois Dockes <jfd@recoll.org> 1.17.0-0
+- 1.17.0
+* Mon May 02 2011 Jean-Francois Dockes <jfd@recoll.org> 1.16.2-0
+- 1.16.2
+* Mon May 02 2011 Jean-Francois Dockes <jfd@recoll.org> 1.15.8-0
+- 1.15.8
+* Sun Mar 06 2011 Jean-Francois Dockes <jfd@recoll.org> 1.15.5-0
+- Initial spec file for kio
+

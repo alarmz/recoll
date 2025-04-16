@@ -71,7 +71,7 @@ target_link_libraries(kio_recoll
 )
 
 install(FILES data/welcome.html	data/help.html
-      DESTINATION  ${DATA_INSTALL_DIR}/kio_recoll)
+      DESTINATION  ${KDE_INSTALL_DATADIR}/kio_recoll)
 
 set_target_properties(kio_recoll PROPERTIES OUTPUT_NAME "kio_recoll")
 # This is not set on ubuntu focal
