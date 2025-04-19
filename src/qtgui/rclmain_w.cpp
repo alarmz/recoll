@@ -330,14 +330,22 @@ void RclMain::init()
 void RclMain::onSSearchTypeChanged(int typ)
 {
     enableSideFilters(typ == SSearch::SST_LANG);
-    // Reset sort when changing modes.
-    m_sortspec.desc = false;
-    m_sortspec.field.clear();
-    if (typ == SSearch::SST_FNM) {
-        // If this is a file name search sort by mtype so that directories
-        // come first (see the rclquery sort key generator)
-        m_sortspec.field = "mtype";
-    } 
+    if (m_sortspecsearchtype == -1) {
+        // init. Keep the possible sortspec from specs
+        m_sortspecsearchtype = typ;
+        return;
+    }
+    if (m_sortspecsearchtype != typ) {
+        m_sortspecsearchtype = typ;
+        // Reset sort when changing modes.
+        m_sortspec.desc = false;
+        m_sortspec.field.clear();
+        if (typ == SSearch::SST_FNM) {
+            // If this is a file name search sort by mtype so that directories
+            // come first (see the rclquery sort key generator)
+            m_sortspec.field = "mtype";
+        }
+    }
 }
 
 void RclMain::zoomIn()
@@ -747,9 +755,7 @@ void RclMain::fileExit()
     restable->saveColState();
     settings.setValue(settingskey_sidefilterssize, sideFiltersSPLT->saveState());
 
-    if (prefs.ssearchTypSav) {
-        prefs.ssearchTyp = sSearch->searchTypCMB->currentIndex();
-    }
+    prefs.ssearchTyp = sSearch->searchTypCMB->currentIndex();
 
     rwSettings(true);
 

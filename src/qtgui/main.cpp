@@ -339,12 +339,10 @@ int main(int argc, char **argv)
     string question;
     string urltoview;
 
-    // Avoid disturbing argc and argv. Especially, setting argc to 0
-    // prevents WM_CLASS to be set from argv[0] (it appears that qt
-    // keeps a ref to argc, and that it is used at exec() time to set
-    // WM_CLASS from argv[0]). Curiously, it seems that the argv
-    // pointer can be modified without consequences, but we use a copy
-    // to play it safe
+    // Avoid disturbing argc and argv. Especially, setting argc to 0 prevents WM_CLASS to be set
+    // from argv[0] (it appears that qt keeps a ref to argc, and that it is used at exec() time to
+    // set WM_CLASS from argv[0]). Curiously, it seems that the argv pointer can be modified without
+    // consequences, but we use a copy to play it safe
     int myargc = argc;
     char **myargv = argv;
     thisprog = myargv[0];
@@ -501,8 +499,6 @@ int main(int argc, char **argv)
     }
     QTimer::singleShot(0, mainWindow, SLOT(initDbOpen()));
 
-    mainWindow->sSearch->searchTypCMB->setCurrentIndex(prefs.ssearchTyp);
-    mainWindow->sSearch->onSearchTypeChanged(prefs.ssearchTyp);
     if (op_flags & OPT_q) {
         SSearch::SSearchType stype;
         if (op_flags & OPT_o) {

@@ -253,6 +253,7 @@ private:
     DocSeqFiltSpec    m_filtspec;
     bool              m_sortspecnochange{false};
     DocSeqSortSpec    m_sortspec;
+    int               m_sortspecsearchtype{-1};
     std::shared_ptr<DocSequence> m_source;
     IndexerState      m_indexerState{IXST_UNKNOWN};
     bool              m_queryActive{false};

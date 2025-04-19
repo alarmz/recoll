@@ -205,6 +205,10 @@ void RclCompleterModel::onPartialWord(int tp, const QString& _qtext, const QStri
 
 void SSearch::init()
 {
+    int searchtype = prefs.ssearchTypSav ? prefs.ssearchTyp : SSearch::SST_LANG;
+    searchTypCMB->setCurrentIndex(searchtype);
+    onSearchTypeChanged(searchtype);
+    
     // See enum in .h and keep in order !
     searchTypCMB->addItem(tr("Any term"));
     searchTypCMB->addItem(tr("All terms"));
@@ -443,7 +447,7 @@ void SSearch::searchTextChanged(const QString& text)
 
 void SSearch::onSearchTypeChanged(int typ)
 {
-    LOGDEB1("Search type now " << typ << "\n");
+    LOGDEB1("SSearch::onSearchTypeChanged: type now " << typ << "\n");
 
     // This may come from the menus or the combobox. Ensure that
     // things are in sync. No loop because we are connected to
