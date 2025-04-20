@@ -205,10 +205,6 @@ void RclCompleterModel::onPartialWord(int tp, const QString& _qtext, const QStri
 
 void SSearch::init()
 {
-    int searchtype = prefs.ssearchTypSav ? prefs.ssearchTyp : SSearch::SST_LANG;
-    searchTypCMB->setCurrentIndex(searchtype);
-    onSearchTypeChanged(searchtype);
-    
     // See enum in .h and keep in order !
     searchTypCMB->addItem(tr("Any term"));
     searchTypCMB->addItem(tr("All terms"));
@@ -248,9 +244,18 @@ void SSearch::init()
             SLOT(onCompletionActivated(const QString&)));
 
     connect(historyPB, SIGNAL(clicked()), this, SLOT(onHistoryClicked()));
+
+    int searchtype = prefs.ssearchTypSav ? prefs.ssearchTyp : SSearch::SST_LANG;
+    onSearchTypeChanged(searchtype);
+    
     setupButtons();
     onNewShortcuts();
     connect(&SCBase::scBase(), SIGNAL(shortcutsChanged()),this, SLOT(onNewShortcuts()));
+}
+
+SSearch::SSearchType SSearch::getSearchType()
+{
+    return (SSearchType)searchTypCMB->currentIndex();
 }
 
 void SSearch::onNewShortcuts()
@@ -418,7 +423,7 @@ void SSearch::searchTextEdited(const QString& text)
     LOGDEB1("SSearch::searchTextEdited: text [" << qs2u8s(text) << "]\n");
     QString pword;
     int cs = getPartialWord(currentText(), pword);
-    int tp = searchTypCMB->currentIndex();
+    int tp = getSearchType();
 
     m_savedEditText = text.left(cs);
     LOGDEB1("SSearch::searchTextEdited: cs " <<cs<<" pword ["<< qs2u8s(pword) <<
@@ -449,9 +454,8 @@ void SSearch::onSearchTypeChanged(int typ)
 {
     LOGDEB1("SSearch::onSearchTypeChanged: type now " << typ << "\n");
 
-    // This may come from the menus or the combobox. Ensure that
-    // things are in sync. No loop because we are connected to
-    // combobox or menu activated(), not currentIndexChanged()
+    // This may come from the menus or the combobox. Ensure that things are in sync. No loop because
+    // we are connected to combobox or menu activated(), not currentIndexChanged()
     searchTypCMB->setCurrentIndex(typ);
     
     // Adjust context help
@@ -564,7 +568,7 @@ bool SSearch::startSimpleSearch(const string& u8, int maxexp)
     xml << "  <SL>" << stemlang << "</SL>\n";
     xml << "  <T>" << base64_encode(u8) << "</T>\n";
 
-    SSearchType tp = (SSearchType)searchTypCMB->currentIndex();
+    auto tp = getSearchType();
     std::shared_ptr<Rcl::SearchData> sdata;
 
     if (tp == SST_LANG) {

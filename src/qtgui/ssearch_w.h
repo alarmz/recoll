@@ -86,7 +86,8 @@ public:
     virtual QString currentText();
     virtual bool eventFilter(QObject *target, QEvent *event);
     virtual void setupButtons();
-                           
+    SSearchType getSearchType();
+
 public slots:
     virtual void onSearchTypeChanged(int);
     virtual void setSearchString(const QString& text);

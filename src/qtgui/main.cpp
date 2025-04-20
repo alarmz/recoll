@@ -510,7 +510,7 @@ int main(int argc, char **argv)
         } else {
             stype = SSearch::SST_LANG;
         }
-        mainWindow->sSearch->searchTypCMB->setCurrentIndex(int(stype));
+        mainWindow->sSearch->onSearchTypeChanged(stype);
         mainWindow->sSearch->setSearchString(QString::fromLocal8Bit(question.c_str()));
     } else if (!urltoview.empty()) {
         LOGDEB("MAIN: got urltoview [" << urltoview << "]\n");

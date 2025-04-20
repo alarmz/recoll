@@ -755,7 +755,7 @@ void RclMain::fileExit()
     restable->saveColState();
     settings.setValue(settingskey_sidefilterssize, sideFiltersSPLT->saveState());
 
-    prefs.ssearchTyp = sSearch->searchTypCMB->currentIndex();
+    prefs.ssearchTyp = sSearch->getSearchType();
 
     rwSettings(true);
 
@@ -920,7 +920,7 @@ void RclMain::onSortCtlChanged()
         prefs.sortField = "";
         // If this is a file name search sort by mtype so that directories
         // come first (see the rclquery sort key generator)
-        if (sSearch->searchTypCMB->currentIndex() == SSearch::SST_FNM) {
+        if (sSearch->getSearchType() == SSearch::SST_FNM) {
             m_sortspec.field = "mtype";
             m_sortspec.desc = false;
         }
