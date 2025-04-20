@@ -1,4 +1,4 @@
-/* Copyright (C) 2006-2022 J.F.Dockes
+/* Copyright (C) 2006-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -56,8 +56,6 @@
 #include "recoll.h"
 #include "scbase.h"
 #include "base64.h"
-
-using namespace std;
 
 // If text does not end with space, return last (partial) word and its start offset (>=0) else
 // return -1
@@ -151,7 +149,7 @@ QVariant RclCompleterModel::data(const QModelIndex &index, int role) const
 // list. Otherwise, list a partial word against history and index and fill the model
 void RclCompleterModel::onPartialWord(int tp, const QString& _qtext, const QString& qpartial)
 {
-    string partial = qs2u8s(qpartial);
+    std::string partial = qs2u8s(qpartial);
     QString qtext = _qtext.trimmed();
     bool onlyspace = qtext.isEmpty();
     LOGDEB1("RclCompleterModel::onPartialWord: [" << partial << "] onlyspace "<< onlyspace << "\n");
@@ -186,10 +184,9 @@ void RclCompleterModel::onPartialWord(int tp, const QString& _qtext, const QStri
     // expensive
     int mintermsizeforexpand = o_index_stripchars ? 1 : 2;
     if (qpartial.trimmed().size() >= mintermsizeforexpand &&
-        partial.find_first_of("[?*") == string::npos) {
+        partial.find_first_of("[?*") == std::string::npos) {
         Rcl::TermMatchResult rclmatches;
-        if (!rcldb->termMatch(Rcl::Db::ET_WILD, string(),
-                              partial + "*", rclmatches, maxdbtermmatch)) {
+        if (!rcldb->termMatch(Rcl::Db::ET_WILD, "", partial + "*", rclmatches, maxdbtermmatch)) {
             LOGDEB1("RclCompleterModel: termMatch failed: [" << partial + "*" << "]\n");
         } else {
             LOGDEB1("RclCompleterModel: termMatch cnt: " << rclmatches.entries.size() << '\n');
@@ -400,6 +397,7 @@ void SSearch::restoreText(bool startsearch)
         QTimer::singleShot(0, this, SLOT(startSimpleSearch()));
     }
 }
+
 void SSearch::onCompletionActivated(const QString& text)
 {
     LOGDEB("SSearch::onCompletionActivated: queryText [" <<
@@ -460,9 +458,9 @@ void SSearch::onSearchTypeChanged(int typ)
     
     // Adjust context help
     if (typ == SST_LANG) {
-        HelpClient::installMap((const char *)this->objectName().toUtf8(), "RCL.SEARCH.LANG");
+        HelpClient::installMap(qs2u8s(objectName()), "RCL.SEARCH.LANG");
     } else {
-        HelpClient::installMap((const char *)this->objectName().toUtf8(), "RCL.SEARCH.GUI.SIMPLE");
+        HelpClient::installMap(qs2u8s(objectName()), "RCL.SEARCH.GUI.SIMPLE");
     }
     // Also fix tooltips
     switch (typ) {
@@ -524,7 +522,7 @@ void SSearch::startSimpleSearch()
         && !queryText->completer()->currentCompletion().isEmpty()) {
         return;
     }
-    string u8 = qs2u8s(queryText->text());
+    auto u8 = qs2u8s(queryText->text());
     trimstring(u8);
     if (u8.length() == 0)
         return;
@@ -542,8 +540,7 @@ void SSearch::startSimpleSearch()
         prefs.ssearchHistory.removeDuplicates();
     }
     if (prefs.historysize >= 0) {
-        for (int i = (int)prefs.ssearchHistory.count();
-             i > prefs.historysize; i--) {
+        for (int i = (int)prefs.ssearchHistory.count(); i > prefs.historysize; i--) {
             prefs.ssearchHistory.removeLast();
         }
     }
@@ -553,17 +550,17 @@ void SSearch::setPrefs()
 {
 }
 
-string SSearch::asXML()
+std::string SSearch::asXML()
 {
     return m_xml;
 }
 
-bool SSearch::startSimpleSearch(const string& u8, int maxexp)
+bool SSearch::startSimpleSearch(const std::string& u8, int maxexp)
 {
     LOGDEB("SSearch::startSimpleSearch(" << u8 << ")\n");
-    string stemlang = prefs.stemlang();
+    auto stemlang = prefs.stemlang();
 
-    ostringstream xml;
+    std::ostringstream xml;
     xml << "<SD type='ssearch'>\n";
     xml << "  <SL>" << stemlang << "</SL>\n";
     xml << "  <T>" << base64_encode(u8) << "</T>\n";
@@ -573,10 +570,9 @@ bool SSearch::startSimpleSearch(const string& u8, int maxexp)
 
     if (tp == SST_LANG) {
         xml << "  <SM>QL</SM>\n";
-        string reason;
+        std::string reason;
         if (prefs.autoSuffsEnable) {
-            sdata = wasaStringToRcl(theconfig, stemlang, u8, reason, 
-                                    (const char *)prefs.autoSuffs.toUtf8());
+            sdata = wasaStringToRcl(theconfig, stemlang, u8, reason, qs2u8s(prefs.autoSuffs));
             if (!prefs.autoSuffs.isEmpty()) {
                 xml <<  "  <AS>" << qs2u8s(prefs.autoSuffs) << "</AS>\n";
             }
@@ -584,8 +580,7 @@ bool SSearch::startSimpleSearch(const string& u8, int maxexp)
             sdata = wasaStringToRcl(theconfig, stemlang, u8, reason);
         }
         if (!sdata) {
-            QMessageBox::warning(0, "Recoll", tr("Bad query string") + ": " +
-                                 QString::fromUtf8(reason.c_str()));
+            QMessageBox::warning(0, "Recoll", tr("Bad query string") + ": " + u8s2qs(reason));
             return false;
         }
     } else {
@@ -641,8 +636,7 @@ bool SSearch::checkExtIndexes(const std::vector<std::string>& dbs)
 {
     std::string reason;
     if (!maybeOpenDb(reason, false)) {
-        QMessageBox::critical(0, "Recoll", tr("Can't open index") +
-                              u8s2qs(reason));
+        QMessageBox::critical(0, "Recoll", tr("Can't open index") + u8s2qs(reason));
         return false;
     }
     if (!rcldb->setExtraQueryDbs(dbs)) {
@@ -653,15 +647,15 @@ bool SSearch::checkExtIndexes(const std::vector<std::string>& dbs)
 
 bool SSearch::fromXML(const SSearchDef& fxml)
 {
-    string asString;
-    set<string> cur;
-    set<string> stored;
+    std::string asString;
+    std::set<std::string> cur;
+    std::set<std::string> stored;
 
     // Retrieve current list of stemlangs. prefs returns a
     // space-separated list Warn if stored differs from current,
     // but don't change the latter.
     stringToStrings(prefs.stemlang(), cur);
-    stored = set<string>(fxml.stemlangs.begin(), fxml.stemlangs.end());
+    stored = std::set<std::string>(fxml.stemlangs.begin(), fxml.stemlangs.end());
     stringsToString(fxml.stemlangs, asString);
     if (cur != stored) {
         QMessageBox::warning(
@@ -672,7 +666,7 @@ bool SSearch::fromXML(const SSearchDef& fxml)
 
     // Same for autosuffs
     stringToStrings(qs2u8s(prefs.autoSuffs), cur);
-    stored = set<string>(fxml.autosuffs.begin(), fxml.autosuffs.end());
+    stored = std::set<std::string>(fxml.autosuffs.begin(), fxml.autosuffs.end());
     stringsToString(fxml.stemlangs, asString);
     if (cur != stored) {
         QMessageBox::warning(
@@ -681,7 +675,6 @@ bool SSearch::fromXML(const SSearchDef& fxml)
             tr(" differ from current preferences (kept)"));
     }
 
-
     if (!checkExtIndexes(fxml.extindexes)) {
         stringsToString(fxml.extindexes, asString);
         QMessageBox::warning(
@@ -689,7 +682,7 @@ bool SSearch::fromXML(const SSearchDef& fxml)
             tr("Could not restore external indexes for stored query:<br> ") +
             (rcldb ? u8s2qs(rcldb->getReason()) : tr("???")) + QString("<br>") +
             tr("Using current preferences."));
-        string s;
+        std::string s;
         maybeOpenDb(s, true);
     } else {
         prefs.useTmpActiveExtraDbs = true;
@@ -723,38 +716,34 @@ bool SSearch::hasSearchString()
     return !currentText().isEmpty();
 }
 
-// Add term to simple search. Term comes out of double-click in
-// reslist or preview. 
-// It would probably be better to cleanup in preview.ui.h and
-// reslist.cpp and do the proper html stuff in the latter case
-// (which is different because it format is explicit richtext
-// instead of auto as for preview, needed because it's built by
-// fragments?).
+// Add term to simple search. Term comes out of double-click in reslist or preview.
+// It would probably be better to cleanup in preview.ui.h and reslist.cpp and do the proper html
+// stuff in the latter case (which is different because it format is explicit richtext instead of
+// auto as for preview, needed because it's built by fragments?).
 static const char* punct = " \t()<>\"'[]{}!^*.,:;\n\r";
 void SSearch::addTerm(QString term)
 {
-    LOGDEB("SSearch::AddTerm: [" << qs2u8s(term) << "]\n");
-    string t = (const char *)term.toUtf8();
-    string::size_type pos = t.find_last_not_of(punct);
-    if (pos == string::npos)
+    auto t = qs2u8s(term);
+    LOGDEB("SSearch::AddTerm: [" << t << "]\n");
+    std::string::size_type pos = t.find_last_not_of(punct);
+    if (pos == std::string::npos)
         return;
     t = t.substr(0, pos+1);
     pos = t.find_first_not_of(punct);
-    if (pos != string::npos)
+    if (pos != std::string::npos)
         t = t.substr(pos);
     if (t.empty())
         return;
-    term = QString::fromUtf8(t.c_str());
+    term = u8s2qs(t);
 
     QString text = currentText();
-    text += QString::fromLatin1(" ") + term;
+    text += " " + term;
     queryText->setText(text);
 }
 
 void SSearch::onWordReplace(const QString& o, const QString& n)
 {
-    LOGDEB("SSearch::onWordReplace: o [" << qs2u8s(o) << "] n [" <<
-           qs2u8s(n) << "]\n");
+    LOGDEB("SSearch::onWordReplace: o [" << qs2u8s(o) << "] n [" << qs2u8s(n) << "]\n");
     QString txt = currentText();
     QRegularExpression exp(QString("\\b") + o + QString("\\b"),
                            QRegularExpression::CaseInsensitiveOption);
