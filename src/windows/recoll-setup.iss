@@ -17,17 +17,14 @@ AppId={{E9BC39EC-0E3D-4DDA-8DA0-FDB8ED16DC8D}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
-ArchitecturesInstallIn64BitMode=x64compatible
-ArchitecturesAllowed=x64compatible
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
+ArchitecturesInstallIn64BitMode=x64compatible
+ArchitecturesAllowed=x64compatible
 DefaultGroupName={#MyAppName}
-LicenseFile=C:\install\recoll\COPYING.txt
 OutputDir=C:\Temp
-OutputBaseFilename=recoll-setup-{#MyAppVersion}
-SetupIconFile=C:\install\recoll\Share\recoll.ico
 Compression=lzma
 SolidCompression=yes
 ;; Use either prv=adm and defaultdir={pf} or prv=lowest and defaultdir=userpf
@@ -35,6 +32,9 @@ SolidCompression=yes
 ;DefaultDirName={userpf}\{#MyAppName}
 PrivilegesRequired=admin
 DefaultDirName={commonpf}\{#MyAppName}
+LicenseFile=C:\install\recoll\COPYING.txt
+OutputBaseFilename=recoll-setup-{#MyAppVersion}
+SetupIconFile=C:\install\recoll\Share\recoll.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -48,7 +48,6 @@ Source: "C:\install\recoll\Share\dist\VC_redist.x64.exe"; DestDir: {tmp}; Flags:
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 Source: "C:\install\recoll\recoll.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\install\recoll\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
