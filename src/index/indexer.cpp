@@ -16,9 +16,6 @@
  */
 #include "autoconfig.h"
 
-#include <stdio.h>
-#include <errno.h>
-
 #include <algorithm>
 
 #include "cstr.h"

@@ -1,4 +1,4 @@
-/* Copyright (C) 2004-2023 J.F.Dockes 
+/* Copyright (C) 2004-2023 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -27,7 +27,6 @@
 #include <direct.h>
 #endif
 #include <fcntl.h>
-#include "safeunistd.h"
 #include <getopt.h>
 
 #include <iostream>
@@ -41,7 +40,6 @@ using namespace std;
 #include "rclinit.h"
 #include "indexer.h"
 #include "smallut.h"
-#include "chrono.h"
 #include "pathut.h"
 #include "rclutil.h"
 #include "rclmon.h"
@@ -49,12 +47,10 @@ using namespace std;
 #include "cancelcheck.h"
 #include "checkindexed.h"
 #include "rcldb.h"
-#include "readfile.h"
 #ifndef DISABLE_WEB_INDEXER
 #include "webqueue.h"
 #endif
 #include "recollindex.h"
-#include "fsindexer.h"
 #ifndef _WIN32
 #include "rclionice.h"
 #endif
@@ -66,25 +62,25 @@ using namespace std;
 
 // Command line options
 static int     op_flags;
-#define OPT_C 0x1     
+#define OPT_C 0x1
 #define OPT_c 0x2
-#define OPT_d 0x4     
-#define OPT_D 0x8     
-#define OPT_E 0x10    
-#define OPT_e 0x20    
-#define OPT_f 0x40    
-#define OPT_h 0x80    
-#define OPT_i 0x200   
-#define OPT_K 0x400   
-#define OPT_k 0x800   
-#define OPT_l 0x1000  
-#define OPT_m 0x2000  
-#define OPT_n 0x4000  
-#define OPT_P 0x8000  
-#define OPT_p 0x10000 
-#define OPT_R 0x20000 
-#define OPT_r 0x40000 
-#define OPT_S 0x80000 
+#define OPT_d 0x4
+#define OPT_D 0x8
+#define OPT_E 0x10
+#define OPT_e 0x20
+#define OPT_f 0x40
+#define OPT_h 0x80
+#define OPT_i 0x200
+#define OPT_K 0x400
+#define OPT_k 0x800
+#define OPT_l 0x1000
+#define OPT_m 0x2000
+#define OPT_n 0x4000
+#define OPT_P 0x8000
+#define OPT_p 0x10000
+#define OPT_R 0x20000
+#define OPT_r 0x40000
+#define OPT_S 0x80000
 #define OPT_s 0x100000
 #define OPT_w 0x200000
 #define OPT_x 0x400000
@@ -112,7 +108,7 @@ ReExec *o_reexec;
 // Globals for atexit cleanup
 static ConfIndexer *confindexer;
 
-// This is set as an atexit routine, 
+// This is set as an atexit routine,
 static void cleanup()
 {
     deleteZ(confindexer);
@@ -137,7 +133,7 @@ bool topdirs_state(vector<bool> tdlstate)
     }
     return true;
 }
-    
+
 static void sigcleanup(int sig)
 {
     if (sig == RCLSIG_RESUME) {
@@ -191,7 +187,7 @@ void rclIxIonice(const RclConfig *config)
         cmd.doexec(choompath, {"-n", oomadj, "-p", spid}, nullptr, &msg);
         LOGDEB("rclIxIonice: oomadj output: " << msg);
     }
-    
+
 #endif
 }
 
@@ -279,9 +275,9 @@ bool indexfiles(RclConfig *config, list<string> &filenames, int flags)
         return true;
     makeIndexerOrExit(config);
     // The default is to retry failed files
-    int indexerFlags = ConfIndexer::IxFNone; 
-    if (op_flags & OPT_K) 
-        indexerFlags |= ConfIndexer::IxFNoRetryFailed; 
+    int indexerFlags = ConfIndexer::IxFNone;
+    if (op_flags & OPT_K)
+        indexerFlags |= ConfIndexer::IxFNoRetryFailed;
     if (op_flags & OPT_f)
         indexerFlags |= ConfIndexer::IxFIgnoreSkip;
     if (op_flags & OPT_P) {
@@ -317,7 +313,7 @@ bool createAuxDbs(RclConfig *config)
     return true;
 }
 
-// Create additional stem database 
+// Create additional stem database
 static bool createstemdb(RclConfig *config, const string &lang)
 {
     makeIndexerOrExit(config);
@@ -420,8 +416,8 @@ static const char usage [] =
 "    Index individual files. No database purge or stem database updates\n"
 "    Will read paths on stdin if none is given as argument\n"
 "    -f : ignore skippedPaths and skippedNames while doing this\n"
-"    -Z : force reindex of each file\n"    
-"    -P : force running a purge pass (very special use, don't do this if not sure)\n"    
+"    -Z : force reindex of each file\n"
+"    -P : force running a purge pass (very special use, don't do this if not sure)\n"
 "recollindex -r [-K] [-f] [-Z] [-p pattern] <top> \n"
 "   Recursive partial reindex. \n"
 "     -p : filter file names, multiple instances are allowed, e.g.: \n"
@@ -487,7 +483,7 @@ static void lockorexit(Pidfile *pidfile, RclConfig *config)
             }
         } else {
             cerr << "Can't become exclusive indexer: " << pidfile->getreason() << '\n';
-        }            
+        }
         exit(1);
     }
     if (pidfile->write_pid() != 0) {
@@ -580,7 +576,7 @@ int main(int argc, char *argv[])
     bool webcache_burst{false};
     bool diags_notindexed{false};
     bool opt_nopurge{false};
-    
+
     std::string burstdir;
     std::string diagsfile;
     while ((ret = getopt_long(argc, (char *const*)&args[0], "c:CDOdEefhikKlmnPp:rR:sSw:xZz",
@@ -614,8 +610,8 @@ int main(int argc, char *argv[])
         case 'S': op_flags |= OPT_S; break;
 #endif
         case 'w':   op_flags |= OPT_w;
-            if ((sscanf(optarg, "%d", &sleepsecs)) != 1) 
-                Usage(); 
+            if ((sscanf(optarg, "%d", &sleepsecs)) != 1)
+                Usage();
             break;
         case 'x': op_flags |= OPT_x; break;
         case 'Z': op_flags |= OPT_Z; break;
@@ -690,7 +686,7 @@ int main(int argc, char *argv[])
                 exit(1);
             }
         }
-            
+
         exit(0);
     }
 
@@ -717,7 +713,7 @@ int main(int argc, char *argv[])
     }
 
     if (op_flags & OPT_l) {
-        if (aremain != 0) 
+        if (aremain != 0)
             Usage();
         vector<string> stemmers = ConfIndexer::getStemmerNames();
         for (const auto& stemmer : stemmers) {
@@ -725,7 +721,7 @@ int main(int argc, char *argv[])
         }
         exit(0);
     }
-    
+
     orig_cwd = path_cwd();
     string rundir;
     config->getConfParam("idxrundir", rundir);
@@ -752,13 +748,13 @@ int main(int argc, char *argv[])
     // If the checker script says so, we do too, except if -K is set.
     int indexerFlags = ConfIndexer::IxFNoRetryFailed | ConfIndexer::IxFDoPurge;
     if (op_flags & OPT_k) {
-        indexerFlags &= ~ConfIndexer::IxFNoRetryFailed; 
+        indexerFlags &= ~ConfIndexer::IxFNoRetryFailed;
     } else {
         if (op_flags & OPT_K) {
             indexerFlags |= ConfIndexer::IxFNoRetryFailed;
         } else {
             if (checkRetryFailed(config, false)) {
-                indexerFlags &= ~ConfIndexer::IxFNoRetryFailed; 
+                indexerFlags &= ~ConfIndexer::IxFNoRetryFailed;
             } else {
                 indexerFlags |= ConfIndexer::IxFNoRetryFailed;
             }
@@ -783,13 +779,13 @@ int main(int argc, char *argv[])
 
     LOGDEB("recollindex: the purge flag is " <<
            ((indexerFlags & ConfIndexer::IxFDoPurge)?"SET":"NOT SET") << "\n");
-        
+
 #if defined(HAVE_POSIX_FADVISE)
     if (op_flags & OPT_d) {
         indexerFlags |= ConfIndexer::IxFCleanCache;
     }
 #endif
-    
+
     Pidfile pidfile(config->getPidfile());
     lockorexit(&pidfile, config);
 
@@ -809,9 +805,9 @@ int main(int argc, char *argv[])
         exit(1);
     }
     statusUpdater()->update(DbIxStatus::DBIXS_NONE, "");
-    
+
     if (op_flags & OPT_r) {
-        if (aremain != 1) 
+        if (aremain != 1)
             Usage();
         string top = args[optind++]; aremain--;
         top = path_canon(top, &orig_cwd);
@@ -839,7 +835,7 @@ int main(int argc, char *argv[])
         }
 
         // Note that -e and -i may be both set. In this case we first erase,
-        // then index. This is a slightly different from -Z -i because we 
+        // then index. This is a slightly different from -Z -i because we
         // warranty that all subdocs are purged.
         bool status = true;
         if (op_flags & OPT_e) {
@@ -855,7 +851,7 @@ int main(int argc, char *argv[])
         flushIdxReasons();
         exit(status ? 0 : 1);
     } else if (op_flags & OPT_s) {
-        if (aremain != 1) 
+        if (aremain != 1)
             Usage();
         string lang = args[optind++]; aremain--;
         exit(!createstemdb(config, lang));
@@ -868,7 +864,7 @@ int main(int argc, char *argv[])
 
 #ifdef RCL_MONITOR
     } else if (op_flags & OPT_m) {
-        if (aremain != 0) 
+        if (aremain != 0)
             Usage();
         statusUpdater()->setMonitor(true);
         if (!(op_flags&OPT_D)) {
@@ -952,7 +948,7 @@ int main(int argc, char *argv[])
     if (status && !(indexerFlags & ConfIndexer::IxFNoRetryFailed)) {
         checkRetryFailed(config, true);
     }
-    if (!status) 
+    if (!status)
         cerr << "Indexing failed" << '\n';
     if (!confindexer->getReason().empty()) {
         addIdxReason("indexer", confindexer->getReason());
