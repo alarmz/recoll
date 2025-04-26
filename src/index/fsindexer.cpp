@@ -25,7 +25,6 @@
 #include <iostream>
 #include <list>
 #include <map>
-#include <algorithm>
 
 #include "cstr.h"
 #include "pathut.h"
@@ -34,14 +33,11 @@
 #include "rclconfig.h"
 #include "fstreewalk.h"
 #include "rcldb.h"
-#include "readfile.h"
 #include "indexer.h"
-#include "transcode.h"
 #include "log.h"
 #include "internfile.h"
 #include "smallut.h"
 #include "chrono.h"
-#include "wipedir.h"
 #include "fileudi.h"
 #include "cancelcheck.h"
 #include "rclinit.h"
@@ -60,10 +56,9 @@ class DbUpdTask {
 public:
     // Take some care to avoid sharing string data (if string impl is cow)
     DbUpdTask(const string& u, const string& p, const Rcl::Doc& d)
-        : udi(u.begin(), u.end()), parent_udi(p.begin(), p.end())
-        {
-            d.copyto(&doc);
-        }
+        : udi(u.begin(), u.end()), parent_udi(p.begin(), p.end()) {
+        d.copyto(&doc);
+    }
     string udi;
     string parent_udi;
     Rcl::Doc doc;
@@ -73,12 +68,10 @@ extern void *FsIndexerDbUpdWorker(void*);
 class InternfileTask {
 public:
     // Take some care to avoid sharing string data (if string impl is cow)
-    InternfileTask(const std::string &f, const struct PathStat& i_stp,
-                   map<string,string> lfields)
-        : fn(f.begin(), f.end()), statbuf(i_stp)
-        {
-            map_ss_cp_noshr(lfields, &localfields);
-        }
+    InternfileTask(const std::string &f, const struct PathStat& i_stp, map<string,string> lfields)
+        : fn(f.begin(), f.end()), statbuf(i_stp) {
+        map_ss_cp_noshr(lfields, &localfields);
+    }
     string fn;
     struct PathStat statbuf;
     map<string,string> localfields;
@@ -94,18 +87,16 @@ class FSIFIMissingStore : public FIMissingStore {
     std::mutex m_mutex;
 #endif
 public:
-    virtual void addMissing(const string& prog, const string& mt)
-        {
+    virtual void addMissing(const string& prog, const string& mt) {
 #ifdef IDX_THREADS
-            std::unique_lock<std::mutex> locker(m_mutex);
+        std::unique_lock<std::mutex> locker(m_mutex);
 #endif
-            FIMissingStore::addMissing(prog, mt);
-        }
+        FIMissingStore::addMissing(prog, mt);
+    }
 };
 
 FsIndexer::FsIndexer(RclConfig *cnf, Rcl::Db *db) 
-    : m_config(cnf), m_db(db),
-      m_missing(new FSIFIMissingStore), m_detectxattronly(false),
+    : m_config(cnf), m_db(db), m_missing(new FSIFIMissingStore), m_detectxattronly(false),
       m_noretryfailed(false)
 #ifdef IDX_THREADS
     , m_iwqueue("Internfile", cnf->getThrConf(RclConfig::ThrIntern).first), 
@@ -568,17 +559,13 @@ void *FsIndexerInternfileWorker(void * fsp)
 }
 #endif // IDX_THREADS
 
-/// This method gets called for every file and directory found by the
-/// tree walker. 
+/// This method gets called for every file and directory found by the tree walker.
 ///
-/// It checks with the db if the file has changed and needs to be
-/// reindexed. If so, it calls internfile() which will identify the
-/// file type and call an appropriate handler to convert the document into
-/// internal format, which we then add to the database.
+/// Depending on the threading options, it queues a task or directly calls processonefile() to do
+/// the actual work.
 ///
-/// Accent and majuscule handling are performed by the db module when doing
-/// the actual indexing work. The Rcl::Doc created by internfile()
-/// mostly contains pretty raw utf8 data.
+/// Accent and majuscule handling are performed by the db module when doing the actual indexing
+/// work. The Rcl::Doc created by internfile() mostly contains pretty raw utf8 data.
 FsTreeWalker::Status FsIndexer::processone(
     const std::string &fn, FsTreeWalker::CbFlag flg, const struct PathStat& stp)
 {
@@ -586,8 +573,8 @@ FsTreeWalker::Status FsIndexer::processone(
         return FsTreeWalker::FtwStop;
     }
 
-    // If we're changing directories, possibly adjust parameters (set
-    // the current directory in configuration object)
+    // If we're changing directories, possibly adjust parameters (set the current directory in the
+    // configuration object)
     if (flg == FsTreeWalker::FtwDirEnter || flg == FsTreeWalker::FtwDirReturn) {
         m_config->setKeyDir(fn);
         // Set up filter/skipped patterns for this subtree. 
@@ -636,25 +623,26 @@ bool FsIndexer::launchAddOrUpdate(const string& udi, const string& parent_udi, R
     return m_db->addOrUpdate(udi, parent_udi, doc);
 }
 
+/// Actual file-level processing. Called for every file selected by fstreewalk.
+/// Check with the db if the file has changed and needs to be reindexed. If so, call internfile()
+/// which will identify the file type and call an appropriate handler to convert the document into
+/// internal format, which we then add to the index.
 FsTreeWalker::Status FsIndexer::processonefile(
     RclConfig *config, const std::string &fn, const struct PathStat& stp,
     const map<string, string>& localfields)
 {
     ////////////////////
-    // Check db up to date ? Doing this before file type
-    // identification means that, if usesystemfilecommand is switched
-    // from on to off it may happen that some files which are now
-    // without mime type will not be purged from the db, resulting
-    // in possible 'cannot intern file' messages at query time...
+    // Check db up to date ? Doing this before file type identification means that, if
+    // usesystemfilecommand is switched from on to off it may happen that some files which are now
+    // without mime type will not be purged from the db, resulting in possible 'cannot intern file'
+    // messages at query time...
 
-    // This is needed if we are in a separate thread than processone()
-    // (mostly always when multithreading). Needed esp. for
-    // excludedmimetypes, etc.
+    // This is needed if we are in a separate thread than processone() (mostly always when
+    // multithreading). Needed esp. for excludedmimetypes, etc.
     config->setKeyDir(path_getfather(fn));
     
-    // File signature and up to date check. The sig is based on
-    // m/ctime and size and the possibly new value is checked against
-    // the stored one.
+    // File signature and up to date check. The sig is based on m/ctime and size and the possibly
+    // new value is checked against the stored one.
     string sig;
     fsmakesig(stp, sig);
     string udi;
@@ -681,8 +669,8 @@ FsTreeWalker::Status FsIndexer::processonefile(
            m_noretryfailed << " existing " << existingDoc << " oldsig [" <<
            oldsig << "]\n");
 
-    // If noretryfailed is set, check for a file which previously
-    // failed to index, and avoid re-processing it
+    // If noretryfailed is set, check for a file which previously failed to index, and avoid
+    // re-processing it.
     if (needupdate && m_noretryfailed && existingDoc && 
         !oldsig.empty() && oldsig.back() == '+') {
         // Check that the sigs are the same except for the '+'. If the file
@@ -752,24 +740,20 @@ FsTreeWalker::Status FsIndexer::processonefile(
                 return FsTreeWalker::FtwStop;
             }
 
-            // We index at least the file name even if there was an error.
-            // We'll change the signature to ensure that the indexing will
-            // be retried every time.
+            // We index at least the file name even if there was an error.  We'll change the
+            // signature to ensure that the indexing will be retried every time.
             
-            // If there is an error and the base doc was already seen,
-            // we're done
+            // If there is an error and the base doc was already seen, we're done
             if (fis == FileInterner::FIError && hadNullIpath) {
                 return FsTreeWalker::FtwOk;
             }
             
-            // Internal access path for multi-document files. If empty, this is
-            // for the main file.
+            // Internal access path for multi-document files. If empty, this is for the main file.
             if (doc.ipath.empty()) {
                 hadNullIpath = true;
                 if (hadNonNullIpath) {
-                    // Note that only the filters can reliably compute
-                    // this. What we do is dependant of the doc order (if
-                    // we see the top doc first, we won't set the flag)
+                    // Note that only the filters can reliably compute this. What we do is dependant
+                    // of the doc order (if we see the top doc first, we won't set the flag)
                     doc.haschildren = true;
                 }
             } else {
@@ -777,11 +761,9 @@ FsTreeWalker::Status FsIndexer::processonefile(
             }
             fileUdi::make_udi(fn, doc.ipath, udi);
 
-            // Set file name, mod time and url if not done by
-            // filter. We used to set the top-level container file
-            // name for all subdocs without a proper file name, but
-            // this did not make sense (resulted in multiple not
-            // useful hits on the subdocs when searching for the
+            // Set file name, mod time and url if not done by filter. We used to set the top-level
+            // container file name for all subdocs without a proper file name, but this did not make
+            // sense (resulted in multiple not useful hits on the subdocs when searching for the
             // file name).
             if (doc.fmtime.empty())
                 doc.fmtime = ascdate;
@@ -790,7 +772,7 @@ FsTreeWalker::Status FsIndexer::processonefile(
             if (!brdate.empty() && !doc.hasmetavalue(Rcl::Doc::keybrt) ) {
                 doc.meta[Rcl::Doc::keybrt] = brdate;
             }
- #endif   
+#endif   
             if (doc.url.empty())
                 doc.url = path_pathtofileurl(fn);
 
@@ -805,11 +787,9 @@ FsTreeWalker::Status FsIndexer::processonefile(
             // file's.
             doc.sig = sig;
 
-            // If there was an error, ensure indexing will be
-            // retried. This is for the once missing, later installed
-            // filter case. It can make indexing much slower (if there are
-            // myriads of such files, the ext script is executed for them
-            // and fails every time)
+            // If there was an error, ensure indexing will be retried. This is for the once missing,
+            // later installed filter case. It can make indexing much slower (if there are myriads
+            // of such files, the ext script is executed for them and fails every time)
             if (fis == FileInterner::FIError) {
                 IdxDiags::theDiags().record(IdxDiags::Error, fn, doc.ipath);
                 doc.sig += cstr_plus;
@@ -819,8 +799,8 @@ FsTreeWalker::Status FsIndexer::processonefile(
             if (m_havelocalfields) 
                 setlocalfields(localfields, doc);
 
-            // Add document to database. If there is an ipath, add it
-            // as a child of the file document.
+            // Add document to database. If there is an ipath, add it as a child of the file
+            // document.
             if (!launchAddOrUpdate(udi, doc.ipath.empty() ? cstr_null : parent_udi, doc)) {
                 return FsTreeWalker::FtwError;
             } 
@@ -843,17 +823,15 @@ FsTreeWalker::Status FsIndexer::processonefile(
         }
 
         if (fis == FileInterner::FIError) {
-            // In case of error, avoid purging any existing
-            // subdoc. For example on windows, this will avoid erasing
-            // all the emails from a .ost because it is currently
-            // locked by Outlook.
-            LOGDEB("processonefile: internfile error, marking "
-                   "subdocs as existing\n");
+            // In case of error, avoid purging any existing subdoc. For example on windows, this
+            // will avoid erasing all the emails from a .ost because it is currently locked by
+            // Outlook.
+            LOGDEB("processonefile: internfile error, marking subdocs as existing\n");
             m_db->udiTreeMarkExisting(parent_udi);
         } else {
-            // If this doc existed and it's a container, recording for
-            // possible subdoc purge (this will be used only if we don't do a
-            // db-wide purge, e.g. if we're called from indexfiles()).
+            // If this doc existed and it's a container, recording for possible subdoc purge (this
+            // will be used only if we don't do a db-wide purge, e.g. if we're called from
+            // indexfiles()).
             LOGDEB2("processOnefile: existingDoc " << existingDoc <<
                     " hadNonNullIpath " << hadNonNullIpath << "\n");
             if (existingDoc && hadNonNullIpath) {
@@ -874,12 +852,11 @@ FsTreeWalker::Status FsIndexer::processonefile(
 #endif
     }
 
-    // If we had no instance with a null ipath, we create an empty
-    // document to stand for the file itself, to be used mainly for up
-    // to date checks. Typically this happens for an mbox file.
+    // If we had no instance with a null ipath, we create an empty document to stand for the file
+    // itself, to be used mainly for up to date checks. Typically this happens for an mbox file.
     //
-    // If xattronly is set, ONLY the extattr metadata is valid and will be used
-    // by the following step.
+    // If xattronly is set, ONLY the extattr metadata is valid and will be used by the following
+    // step.
     if (xattronly || hadNullIpath == false) {
         LOGDEB("Creating empty doc for file or pure xattr update\n");
         Rcl::Doc fileDoc;
@@ -912,4 +889,3 @@ FsTreeWalker::Status FsIndexer::processonefile(
 
     return FsTreeWalker::FtwOk;
 }
-
