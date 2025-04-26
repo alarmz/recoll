@@ -190,6 +190,7 @@ text/x-bibtex = emacsclient --no-wait %f
 text/css = emacsclient --no-wait %f
 text/x-csharp = emacsclient --no-wait %f
 text/x-java = emacsclient --no-wait %f
+text/x-lisp = emacsclient --no-wait %f
 text/x-perl = emacsclient --no-wait %f
 text/x-ruby = emacsclient --no-wait %f 
 text/x-shellscript = emacsclient --no-wait %f

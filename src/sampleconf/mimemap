@@ -60,6 +60,7 @@
 .sh = application/x-shellscript
 .sql = application/sql
 .tcl = text/x-tcl
+.el = text/x-lisp
 
 .ipynb = application/x-ipynb+json
 

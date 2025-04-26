@@ -152,6 +152,9 @@ application/vnd.sun.xml.writer.template = \
 #application/x-mobipocket-ebook = execm rclmobi
 #application/x-tar = execm rcltar.py
 
+# libmagic mis-identifies .emacs as application/x-elc for some reason
+application/x-elc = internal text/plain
+text/x-lisp = internal text/plain
 application/x-sfz = execm rclsfz.py
 application/epub+zip = execm rclepub.py
 application/x-ipynb+json = exec jupyter nbconvert --to html --stdout ; mimetype = text/html
@@ -278,6 +281,8 @@ application/ogg = sownd
 application/pdf = pdf
 application/postscript = postscript
 application/sql = source
+application/x-elc = source
+text/x-lisp = source
 application/x-joplin-note = document
 application/x-ipynb+json = document
 application/vnd.ms-excel = spreadsheet
@@ -427,6 +432,7 @@ text = \
       application/msword \
       application/pdf \
       application/postscript \
+      application/x-elc \
       application/sql \
       application/vnd.oasis.opendocument.text \
       application/vnd.oasis.opendocument.text-flat-xml \
@@ -482,6 +488,7 @@ text = \
       text/x-html-sidux-man \
       text/x-ini \
       text/x-java \
+      text/x-lisp \
       text/x-man \
       text/x-orgmode \
       text/x-orgmode-sub \
