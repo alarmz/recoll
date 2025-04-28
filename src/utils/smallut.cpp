@@ -1227,7 +1227,7 @@ std::string pc_decode(const std::string &in)
         return in;
     std::string out;
     out.reserve(in.size());
-    const char *cp = in.c_str();
+    const char *cp = (const char *)in.c_str();
     std::string::size_type i = 0;
     for (; i < in.size() - 2; ++i) {
         if (cp[i] == '%') {
