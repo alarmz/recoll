@@ -33,7 +33,7 @@ PowerStatus::PowerStatus()
 
 PowerStatus *PowerStatus::instance()
 {
-    std::unique_lock<std::mutex> lock;
+    std::lock_guard<std::mutex> lock(theMutex);
     if (nullptr == theInstance) {
         theInstance = new PowerStatus;
     }
@@ -42,7 +42,7 @@ PowerStatus *PowerStatus::instance()
 
 PowerStatus::powerstatus PowerStatus::set(PowerStatus::powerstatus n)
 {
-    std::unique_lock<std::mutex> lock;
+    std::lock_guard<std::mutex> lock(theMutex);
     auto o = theStatus;
     theStatus = n;
     return o;
