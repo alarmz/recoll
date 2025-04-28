@@ -75,6 +75,7 @@
 class QCheckBox;
 class QComboBox;
 class QDialogButtonBox;
+class QAbstractButton;
 class QHBoxLayout;
 class QLineEdit;
 class QListWidget;
@@ -174,6 +175,7 @@ public:
 public slots:
     void acceptChanges();
     void rejectChanges();
+    void buttonClicked(QAbstractButton*);
     void reloadPanels();
     void setCurrentIndex(int);
     

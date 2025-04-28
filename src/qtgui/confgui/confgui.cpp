@@ -48,6 +48,7 @@
 #include <qstringlist.h>
 #include <qcombobox.h>
 #include <QDebug>
+#include <QAbstractButton>
 
 #include "smallut.h"
 
@@ -73,7 +74,9 @@ ConfTabsW::ConfTabsW(QWidget *parent, const QString& title, ConfLinkFact *fact)
     setWindowTitle(title);
     tabWidget = new QTabWidget;
 
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok |QDialogButtonBox::Apply |
+                                     QDialogButtonBox::Cancel);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setSpacing(spacing);
@@ -86,6 +89,8 @@ ConfTabsW::ConfTabsW(QWidget *parent, const QString& title, ConfLinkFact *fact)
 
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(acceptChanges()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(rejectChanges()));
+    connect(buttonBox, SIGNAL(clicked(QAbstractButton *)),
+            this, SLOT(buttonClicked(QAbstractButton *)));
 }
 
 void ConfTabsW::hideButtons()
@@ -118,6 +123,21 @@ void ConfTabsW::acceptChanges()
     emit sig_prefsChanged();
     if (!buttonBox->isHidden())
         close();
+}
+
+void ConfTabsW::buttonClicked(QAbstractButton* button)
+{
+    // Testing the button text does not seem very reliable. We should create and store the buttons
+    // and add them to the box, then test which it is.
+    if (button->text() != tr("Apply"))
+        return;
+    for (auto& entry : m_panels) {
+        entry->storeValues();
+    }
+    for (auto& entry : m_widgets) {
+        entry->storeValues();
+    }
+    emit sig_prefsChanged();
 }
 
 void ConfTabsW::rejectChanges()

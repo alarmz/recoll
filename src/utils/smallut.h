@@ -263,6 +263,11 @@ private:
 };
 #endif // SMALLUT_NO_REGEX
 
+inline void copybits(unsigned int& to, unsigned int from, unsigned int mask)
+{
+    to = (to & ~mask) | (from & mask);
+}
+
 /// Utilities for printing names for defined values (Ex: O_RDONLY->"O_RDONLY")
 
 /// Entries for the descriptive table
