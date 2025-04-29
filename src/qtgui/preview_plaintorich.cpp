@@ -140,7 +140,13 @@ string  PlainToRichQtPreview::termAnchorName(int i) const
 
 string  PlainToRichQtPreview::startChunk()
 {
+    // QTextBrowser needs <pre> to be repeated for each chunk for some reason. This confuses the
+    // others
+#ifdef PREVIEW_FORCETEXTBROWSER
     return "<pre>";
+#else
+    return "";
+#endif
 }
 
 int  PlainToRichQtPreview::nextAnchorNum(int grpidx)
