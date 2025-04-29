@@ -642,7 +642,7 @@
                 </size>
                </property>
                <property name="editable">
-                <bool>no</bool>
+                <bool>false</bool>
                </property>
                <property name="insertPolicy">
                 <enum>QComboBox::NoInsert</enum>
