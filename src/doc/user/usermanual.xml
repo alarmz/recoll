@@ -658,26 +658,30 @@ indexedmimetypes = application/pdf</programlisting>
         <title>Special considerations for big indexes</title>
 
         <para>This only needs concern you if your index is going to be bigger than around 5
-          GBytes. Beyond 10 GBytes, it becomes a serious issue. Most people have much smaller
-          indexes. For reference, 5 GBytes would be around 2000 bibles, a lot of text. If you have
-          a huge text dataset (remember: images don't count, the text content of PDFs is typically
-          less than 5% of the file size), read on.</para>
+          GBytes. Beyond 10 GBytes, it becomes a serious consideration. Most people have much
+          smaller indexes. For reference, 5 GBytes would be around 2000 bibles, a lot of text. If
+          you have a huge text dataset (remember: images don't count, the text content of PDFs is
+          typically less than 5% of the file size), read on.</para>
 
-        <para>The amount of writing performed by Xapian during index creation is not linear with the
+          <para>&RCL; (thanks to &XAP;) can manage huge indexes: in 2025, we heard of a 550 GB, 11+
+          million documents index. Big indexes just need a bit of thinking ahead and organisation
+          (and appropriate hardware).</para>
+
+        <para>The amount of writing performed by &XAP; during index creation is not linear with the
           index size (it is somewhere between linear and quadratic). For big indexes this becomes a
           performance issue, and may even be an SSD disk wear issue.</para>
 
         <para>The problem can be mitigated by using the following approaches:</para>
         <itemizedlist>
-          <listitem><para>Partition the data set and create several indexes of reasonable size
-              rather than a huge one. These indexes can then be queried in parallel (using the &RCL;
-              external indexes facility), or merged using
-              <command>xapian-compact</command>.</para></listitem> 
+          <listitem><para>Partition the data set and create several indexes of smaller size
+          rather than a huge one. These indexes can then be queried in parallel (using the &RCL;
+          external indexes facility), or merged using
+          <command>xapian-compact</command>.</para></listitem> 
           <listitem><para>Have a lot of RAM available and set the <literal>idxflushmb</literal>
-              &RCL; configuration parameter as high as you can without swapping (experimentation
-              will be needed). 200 would be a minimum in this context.</para></listitem>
+          &RCL; configuration parameter as high as you can without swapping (experimentation
+          will be needed). 200 would be a bare minimum in this context.</para></listitem>
           <listitem><para>Use Xapian 1.4.10 or newer, as this version brought a significant
-              improvement in the amount of writes.</para> 
+          improvement in the amount of writes.</para> 
           </listitem>
         </itemizedlist>
 
