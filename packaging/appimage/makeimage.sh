@@ -36,8 +36,14 @@ hash=`git log -n 1 | head -1 | awk '{print $2}' | cut -b 1-8`
 vers=`cat RECOLL-VERSION.txt`
 meson setup --prefix=/usr build
 ninja -C build
+
+echo;echo INSTALLING TO $APPDIR
 DESTDIR=$APPDIR ninja -C build install || exit 1
+
+echo;echo ALSO INSTALLING TO /usr FOR PYTHON BUILDS
 sudo ninja -C build install || exit 1
+
+echo;echo Building Python modules
 for pyversion in 3.8 3.9 3.10 3.11 3.12;do
     for nm in recoll chm aspell; do
         case $nm in
