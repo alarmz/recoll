@@ -293,60 +293,25 @@ string path_defaultrecollconfsubdir()
 
 // Location for sample config, filters, etc. E.g. /usr/share/recoll/ on linux
 // or c:/program files (x86)/recoll/share on Windows
-const string& path_pkgdatadir()
+const string path_rclpkgdatadir()
 {
-    static string datadir;
-    if (!datadir.empty()) {
-        return datadir;
-    }
-
-    // All platforms: use environment variable if set
-    const char *cdatadir = getenv("RECOLL_DATADIR");
-    if (nullptr != cdatadir) {
-        datadir = cdatadir;
-        return datadir;
-    }
-    
-#if defined(_WIN32)
-    // Try a path relative with the exec. This works if we are
-    // recoll/recollindex etc.
-    // But maybe we are the python module, and execpath is the python
-    // exe which could be anywhere. Try the default installation
-    // directory, else tell the user to set the environment
-    // variable.
-    vector<string> paths{path_thisexecdir(), "c:/program files (x86)/recoll",
-        "c:/program files/recoll"};
-    for (const auto& path : paths) {
-        datadir = path_cat(path, "Share");
-        if (path_exists(path_cat(datadir, {"examples", "recoll.conf"}))) {
-            return datadir;
-        }
-    }
-    // Not found
-    std::cerr << "Could not find the recoll installation data. It is usually "
-        "a subfolder of the installation directory. \n"
-        "Please set the RECOLL_DATADIR environment variable to point to it\n"
-        "(e.g. setx RECOLL_DATADIR \"C:/Program Files (X86)/Recoll/Share)\"\n";
-#elif defined(__APPLE__) && defined(RECOLL_AS_MAC_BUNDLE)
-    // The package manager builds (Macports, Homebrew, Nixpkgs ...) all arrange to set a proper
-    // compiled value for RECOLL_DATADIR. We can't do this when building a native bundle with
-    // QCreator, in which case we use the executable location.
-    datadir = path_cat(path_getfather(path_thisexecdir()), "Resources");
+    return path_pkgdatadir("recoll", "RECOLL_DATADIR",
+#ifdef RECOLL_AS_MAC_BUNDLE
+                           // Always use relative to exe
+                           ""
 #else
-    // If not in environment, try to use the compiled-in constant.
-    datadir = RECOLL_DATADIR;
-    if (!path_isdir(datadir)) {
-        auto top = path_getfather(path_thisexecdir());
-        vector<string> paths{"share/recoll", "usr/share/recoll"};
-        for (const auto& path : paths) {
-            datadir = path_cat(top, path);
-            if (path_exists(datadir)) {
-                return datadir;
-            }
-        }
-    }
+#ifdef RECOLL_DATADIR
+                           RECOLL_DATADIR
+#else
+                           ""
 #endif
-    return datadir;
+#endif
+#ifdef _WIN32
+                           // For the python extension (python.exe so path_execdir() is wrong)
+                           ,{"c:/program files (x86)/recoll/Share", "c:/program files/recoll/Share"},
+                           "examples/recoll.conf"
+#endif
+        );
 }
 
 /* 
@@ -1346,7 +1311,7 @@ std::vector<std::string> guess_recoll_confdirs(const std::string& where)
 
 void rclutil_init_mt()
 {
-    path_pkgdatadir();
+    path_rclpkgdatadir();
     tmplocation();
     thumbnailsdir();
     // Init langtocode() static table

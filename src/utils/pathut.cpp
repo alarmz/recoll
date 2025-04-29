@@ -820,6 +820,80 @@ std::string path_cachedir()
 #endif
 }
 
+// Location for the program constant data. E.g. /usr/share/$prog/ but this varies a lot.
+std::string path_pkgdatadir(
+    const std::string& progname, const std::string& envname, const std::string& compiled,
+    const std::vector<std::string> alts, const std::string& tstpath)
+{
+    PRETEND_USE(alts);
+    PRETEND_USE(tstpath);
+    PRETEND_USE(compiled);
+
+    static std::string datadir;
+    if (!datadir.empty()) {
+        return datadir;
+    }
+
+    // All platforms: first use the environment variable if set. This ensures that the user can
+    // always get things to work.
+    if (!envname.empty()) {
+        const char *cdatadir = getenv(envname.c_str());
+        if (nullptr != cdatadir) {
+            datadir = cdatadir;
+            return datadir;
+        }
+    }
+    
+#if defined(_WIN32)
+    // On windows we install the data in a subdir of the installation path (where the exe resides).
+    // So try relative with the exe. This works if we are recoll/recollindex/upplay etc.
+    //
+    // But maybe we are the recoll python extension, and execpath is the python exe which could be
+    // anywhere. We try the fixed fallback paths. If this fails, the user will have to set the
+    // environment variable.
+    std::vector<std::string> paths{path_cat(path_thisexecdir(), "share")};
+    paths.insert(paths.end(), alts.begin(), alts.end());
+    for (const auto& path : paths) {
+        if (path_exists(path_cat(path, tstpath))) {
+            datadir = path;
+            break;
+        }
+    }
+#elif defined(__APPLE__)
+    // The package manager builds (Macports, Homebrew, Nixpkgs ...) all arrange to set a proper
+    // compiled value. We can't do this when building a native bundle with QCreator, in which case
+    // we use the executable location.
+    if (!compiled.empty() && path_isdir(compiled)) {
+        datadir = compiled;
+    } else {
+        datadir = path_cat(path_getfather(path_thisexecdir()), "Resources");
+    }
+#else
+    datadir = compiled;
+    if (datadir.empty() || !path_isdir(datadir)) {
+        auto top = path_getfather(path_thisexecdir());
+        //  Typically /usr or /usr/local but could be / which so test with usr/xxx because there is
+        //  no /share
+        std::vector<std::string> paths{"share", "usr/share"};
+        for (const auto& path : paths) {
+            auto tstdatadir = path_cat(top, {path, progname});
+            if (path_exists(tstdatadir)) {
+                datadir = tstdatadir;
+                break;
+            }
+        }
+    }
+#endif
+    if (datadir.empty()) {
+        // Not found
+        std::cerr << "Could not find the " << progname << " installation data. It is usually "
+            "a subfolder of the installation directory. \n"
+            "Please set the " << envname << " environment variable to point to it\n"
+            "(e.g. setx " << envname << " \"C:/Program Files (X86)/" << progname << "/Share)\"\n";
+    }
+    return datadir;
+}
+
 std::string path_tildexpand(const std::string& s)
 {
     if (s.empty() || s[0] != '~') {

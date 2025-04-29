@@ -487,8 +487,8 @@ RclConfig::RclConfig(const string *argcnf)
         }
     }
 
-    // Compute our data dir name, typically /usr/local/share/recoll
-    m->m_datadir = path_pkgdatadir();
+    // Compute our data dir name, e.g. /usr/share/recoll
+    m->m_datadir = path_rclpkgdatadir();
     // We only do the automatic configuration creation thing for the default
     // config dir, not if it was specified through -c or RECOLL_CONFDIR
     bool autoconfdir = false;

@@ -324,18 +324,15 @@ RclConfig *recollinit(
 #elif defined(HOMEBREW)
     PATH = string("/opt/homebrew/bin:/usr/local/bin/") + ":" + PATH;
 #else
-    // Native qt build. Add our own directory to the path so that
-    // recoll finds recollindex pkgdatadir:
-    // /Applications/recoll.app/Contents/Resources
+    // Native qt build. Add our own exec directory to the path so that recoll finds recollindex
     //
-    // NOTE: This does not work when running from a mounted dmg
-    // because the location contains colons:/Volumes/:Users:dockes:Recoll:...
-    // which messes with the PATH colon separators of course.
+    // NOTE: This does not work when running from a mounted dmg because the location contains
+    // colons:/Volumes/:Users:dockes:Recoll:...  which messes with the PATH colon separators of
+    // course.
     // 
-    // Also, as far as I can see launchd actually includes the
-    // directory in the PATH, so this is redundant. Otoh, launchd
-    // changes a lot...
-    std::string exedir = path_cat(path_getfather(path_pkgdatadir()), "MacOS");
+    // Also, as far as I can see launchd actually includes the directory in the PATH, so this is
+    // redundant. Otoh, launchd changes a lot...
+    std::string exedir = path_thisexecdir();
     PATH = exedir + ":" + PATH;
 #endif
 

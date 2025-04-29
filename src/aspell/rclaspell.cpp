@@ -1,3 +1,4 @@
+
 /* Copyright (C) 2006-2021 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -89,7 +90,7 @@ bool Aspell::init(string &reason)
     m_config->getConfParam("aspellAddCreateParam", m_data->m_addCreateParam);
 #ifdef _WIN32
     m_data->m_datadir = path_cat(
-        path_pkgdatadir(), "filters/aspell-installed/mingw32/lib/aspell-0.60");
+        path_rclpkgdatadir(), "filters/aspell-installed/mingw32/lib/aspell-0.60");
     if (m_data->m_addCreateParam.empty()) {
         m_data->m_addCreateParam =
             string("--local-data-dir=") + path_cat(m_config->getConfDir(), "aspell");

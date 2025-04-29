@@ -165,6 +165,18 @@ extern const std::string& path_PATHsep();
 /// pathut_setargv0()
 extern void pathut_setargv0(const char *argv0);
 extern std::string path_thisexecdir();
+/// Determine the location for the program constant data (e.g. /usr/share/recoll)
+/// @param progname the program name (e.g. "recoll")
+/// @param envname  an environment variable name (e.g. RECOLL_DATADIR). This overrides all.
+/// @param compiled compiled in value. May be empty.
+/// @param alts list of alternate paths. tstpath will be looked for in each. Break when found.
+/// @param tstpath subpath to test in the alternate paths (e.g. examples/recoll.conf).
+/// @return empty if we fail, else the data location.
+extern std::string path_pkgdatadir(
+    const std::string& progname, const std::string& envname, const std::string& compiled = "",
+    const std::vector<std::string> alts = std::vector<std::string>(),
+    const std::string& tstpath = "");
+
 // Note: this is only implemented on Linux, for path_thisexecdir() and only exported for
 // testing. Not needed for this on either MacOS or Windows (use ExeCmd::which() where needed
 // instead).

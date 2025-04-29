@@ -98,9 +98,8 @@ void CronToolW::changeCron(bool enable)
 #elif defined(HOMEBREW)
     cmd = string("PATH=/opt/homebrew/bin:/usr/local/bin/:$PATH ") + cmd;
 #else
-    // Built as a bundle. We add the binary location to the PATH. This is a bit ridiculous because
-    // path_pkgdatadir() actually computes the location from the recoll exe but whatever...
-    auto bindir = path_cat(path_getfather(path_pkgdatadir()), "MacOS");
+    // Built as a bundle. We add the binary location to the PATH.
+    auto bindir = path_thisexecdir();
     cmd = string("PATH=") + bindir + string(":$PATH ") + cmd;
 #endif
 #endif

@@ -36,7 +36,7 @@ extern bool path_empty(const std::string& path);
 extern std::string path_homedata();
 
 /// e.g. /usr/share/recoll. Depends on OS and config
-extern const std::string& path_pkgdatadir();
+extern const std::string path_rclpkgdatadir();
 
 /// Encode the path in a manner compatible to freedesktop thumbnail path computation. In addition to
 /// some printable punctuation (SPC"#%;<>?[\]^`{|}), this will also encode unprintable characters

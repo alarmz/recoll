@@ -81,7 +81,7 @@ static string mimetypefromdata(RclConfig *cfg, const string &fn, bool usfc)
     auto mgtoken = magic_open(MAGIC_MIME_TYPE);
     if (mgtoken) {
 #ifdef _WIN32
-        string magicfile = path_cat(path_pkgdatadir(), "magic.mgc");
+        string magicfile = path_cat(path_rclpkgdatadir(), "magic.mgc");
         int ret = magic_load(mgtoken, magicfile.c_str());
 #else
         int ret = magic_load(mgtoken, nullptr);
