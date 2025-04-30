@@ -191,47 +191,44 @@ bool PlainToRich::plaintorich(
     LOGDEB1("plaintorich: hdata: [" << hdata.toString() << "] in: [" << in << "]\n");
 
     m_hdata = &hdata;
-    // Compute the positions for the query terms.  We use the text splitter to break the text into
-    // words, and compare the words to the search terms,
-    TextSplitPTR splitter(hdata);
+
+    // Compute the positions for the query terms and groups. We use the text splitter to break the
+    // text into words, and compare the words to the search terms.
     // Note: the splitter returns the term locations in byte, not character, offsets.
+    TextSplitPTR splitter(hdata);
     splitter.text_to_words(in);
     LOGDEB2("plaintorich: split done " << chron.millis() << " mS\n");
     // Compute the positions for NEAR and PHRASE groups.
     splitter.matchGroups();
     LOGDEB2("plaintorich: group match done " << chron.millis() << " mS\n");
 
+    // Create the first chunk.
     out.clear();
     out.push_back("");
     auto olit = out.begin();
 
-    // No term matches. Happens, for example on a snippet selected for
-    // a term match when we are actually looking for a group match
-    // (the snippet generator does this...).
+    // No term matches. Happens, for example on a snippet selected for a term match when we are
+    // actually looking for a group match (the snippet generator does this...).
     if (splitter.m_tboffs.empty()) {
         LOGDEB1("plaintorich: no term matches\n");
         ret = false;
     }
 
-    // Iterator for the list of input term positions. We use it to
-    // output highlight tags and to compute term positions in the
-    // output text
+    // Iterator for the list of input term positions. We use it to output highlight tags and to
+    // compute term positions in the output text
     vector<GroupMatchEntry>::iterator tPosIt = splitter.m_tboffs.begin();
     vector<GroupMatchEntry>::iterator tPosEnd = splitter.m_tboffs.end();
 
 #if 0
-    for (const auto& region : splitter.m_tboffs) {
-        auto st = region.offs.first;
-        auto nd = region.offs.second;
-        LOGDEB0("plaintorich: region: " << st << " " << nd << "\n");
-    }
+    for (const auto& region : splitter.m_tboffs)
+        LOGDEB0("plaintorich: region: " << region.offs.first << " " << region.offs.second << "\n");
 #endif
 
     // Input character iterator
     Utf8Iter chariter(in);
 
-    // State variables used to limit the number of consecutive empty lines,
-    // convert all eol to '\n', and preserve some indentation
+    // State variables used to limit the number of consecutive empty lines, convert all eol to '\n',
+    // and preserve some indentation
     int eol = 0;
     int hadcr = 0;
     int inindent = 1;
@@ -241,9 +238,8 @@ bool PlainToRich::plaintorich(
     // My tag state
     int inrcltag = 0;
 
-    // If the input is plain text we trust our user to have set up a proper beginning for the
-    // document. Else, we expect a header appropriate for inserting at the end of the <head>
-    // section, and will insert it there.
+    // Header: for text/plain, insert the header() data. For HTML, compute the position
+    // of the end of the <head> section for later insertion.
     string::size_type headend = 0;
     if (m_inputhtml) {
         headend = in.find("</head>");
@@ -252,7 +248,6 @@ bool PlainToRich::plaintorich(
         if (headend != string::npos)
             headend += 7;
     } else {
-        // Rich text output
         *olit = header();
     }
 
@@ -267,8 +262,8 @@ bool PlainToRich::plaintorich(
             *olit += header();
         }
 
-        // If we still have terms positions, check (byte) position. If
-        // we are at or after a term match, mark.
+        // If we still have terms positions, check (byte) position. If we are at or after a term
+        // match, mark.
         if (tPosIt != tPosEnd) {
             auto ibyteidx = chariter.getBpos();
             if (ibyteidx == tPosIt->offs.first) {
@@ -288,43 +283,46 @@ bool PlainToRich::plaintorich(
                 inrcltag = 0;
             }
         }
-        
+
         unsigned int car = *chariter;
 
-        if (car == '\n') {
-            if (!hadcr)
+        // Process line breaks. Only for plain text
+        if (!m_inputhtml) {
+            if (car == '\n') {
+                if (!hadcr)
+                    eol++;
+                hadcr = 0;
+                continue;
+            } else if (car == '\r') {
+                hadcr++;
                 eol++;
-            hadcr = 0;
-            continue;
-        } else if (car == '\r') {
-            hadcr++;
-            eol++;
-            continue;
-        } else if (eol) {
-            // Got non eol char in line break state. Do line break;
-            inindent = 1;
-            hadcr = 0;
-            if (eol > 2)
-                eol = 2;
-            while (eol) {
-                if (!m_inputhtml && m_eolbr)
-                    *olit += "<br>";
-                *olit += "\n";
-                eol--;
-            }
-            // Maybe end this chunk, begin next. Don't do it on html
-            // there is just no way to do it right (qtextedit cant grok
-            // chunks cut in the middle of <a></a> for example).
-            if (!m_inputhtml && !inrcltag && 
-                olit->size() > (unsigned int)chunksize) {
-                if (m_activatelinks) {
-                    *olit = activate_urls(*olit);
+                continue;
+            } else if (eol) {
+                // Got non eol char in line break state. Do line break;
+                inindent = 1;
+                hadcr = 0;
+                if (eol > 2)
+                    eol = 2;
+                while (eol) {
+                    if (m_eolbr)
+                        *olit += "<br>";
+                    *olit += "\n";
+                    eol--;
                 }
-                out.push_back(string(startChunk()));
-                olit++;
+                // Maybe end this chunk, begin next. We don't do it on HTML, there is just no way to
+                // do it right (qtextedit cant grok chunks cut in the middle of <a></a> for
+                // example).
+                if (!inrcltag && olit->size() > (unsigned int)chunksize) {
+                    if (m_activatelinks) {
+                        *olit = activate_urls(*olit);
+                    }
+                    out.push_back(string(startChunk()));
+                    olit++;
+                }
             }
         }
 
+        // Process special characters.
         switch (car) {
         case '<':
             inindent = 0;
@@ -359,7 +357,6 @@ bool PlainToRich::plaintorich(
             }
             chariter.appendchartostring(*olit);
             break;
-
         case ' ': 
             if (m_eolbr && inindent) {
                 *olit += "&nbsp;";
@@ -386,10 +383,9 @@ bool PlainToRich::plaintorich(
     {
         FILE *fp = fopen("/tmp/debugplaintorich", "a");
         fprintf(fp, "BEGINOFPLAINTORICHOUTPUT\n");
-        for (list<string>::iterator it = out.begin();
-             it != out.end(); it++) {
+        for (const auto& chunk : out) {
             fprintf(fp, "BEGINOFPLAINTORICHCHUNK\n");
-            fprintf(fp, "%s", it->c_str());
+            fprintf(fp, "%s", chunk.c_str());
             fprintf(fp, "ENDOFPLAINTORICHCHUNK\n");
         }
         fprintf(fp, "ENDOFPLAINTORICHOUTPUT\n");
