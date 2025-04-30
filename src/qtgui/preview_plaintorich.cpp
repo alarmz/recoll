@@ -57,7 +57,7 @@ bool PlainToRichQtPreview::haveAnchors()
     return m_lastanchor != 0;
 }
 
-string  PlainToRichQtPreview::PlainToRichQtPreview::header()
+string PlainToRichQtPreview::header()
 {
     std::string fontstyle, hstyle;
 

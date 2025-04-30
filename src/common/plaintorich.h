@@ -1,4 +1,4 @@
-/* Copyright (C) 2004-2021 J.F.Dockes
+/* Copyright (C) 2004-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -23,10 +23,12 @@
 struct HighlightData;
 
 /** 
- * A class for highlighting search results. Overridable methods allow
- * for different styles. We can handle plain text or html input. In the latter
- * case, we may fail to highligt term groups if they are mixed with HTML 
- * tags (ex: firstterm <b>2ndterm</b>).
+ * Highlight match regions in search results or preview text.
+ * This takes a plain text or HTML input and inserts highlighting tags around the match sections.
+ * The output is always HTML.
+ * Overridable methods allow for different styles. 
+ * If the input is HTML, we may fail to highlight term groups if they are mixed with HTML tags
+ * (e.g.: firstterm <b>2ndterm</b>).
  */
 class PlainToRich {
 public:
@@ -35,40 +37,41 @@ public:
     PlainToRich(const PlainToRich&) = delete;
     PlainToRich& operator=(const PlainToRich&) = delete;
 
+    /** Choose the input type. The default is text/plain.
+     *  This can be changed between calls to plaintorich() */
     void set_inputhtml(bool v) {
         m_inputhtml = v;
     }
+
+    /** Turn strings which look like HTTP(s) URLs found in the input into clickable HTML hrefs.
+     *  The default is off.*/
     void set_activatelinks(bool v) {
         m_activatelinks = v;
     }
 
     /**
-     * Transform plain text for highlighting search terms, ie in the
-     * preview window or result list entries.
+     * Highlight match regions in input.
      *
-     * The actual tags used for highlighting and anchoring are
-     * determined by deriving from this class which handles the searching for
-     * terms and groups, but there is an assumption that the output will be
-     * html-like: we escape characters like < or &
+     * The actual tags used for highlighting and anchoring can be changed by
+     * overriding the startMatch() and endMatch() methods.
      * 
-     * Finding the search terms is relatively complicated because of
-     * phrase/near searches, which need group highlights. As a matter
-     * of simplification, we handle "phrase" as "near", not filtering
-     * on word order.
+     * Finding the search terms is relatively complicated because of phrase/near searches, which
+     * need group highlights. As a matter of simplification, we handle "phrase" as "near", not
+     * filtering on word order.
      *
-     * @param in    raw text out of internfile.
-     * @param out   rich text output, divided in chunks (to help our caller
+     * @param in raw text out of internfile.
+     * @param[output] out rich text output, divided in chunks (to help our caller to
      *   avoid inserting half tags into textedit which doesnt like it)
      * @param in hdata terms and groups to be highlighted. See utils/hldata.h
      * @param chunksize max size of chunks in output list
      */
     virtual bool plaintorich(const std::string &in, std::list<std::string> &out,
-                             const HighlightData& hdata,
-                             int chunksize = 50000
-        );
+                             const HighlightData& hdata, int chunksize = 50000);
 
-    /* Overridable output methods for headers, highlighting and marking tags */
 
+    /** The following are overridable output methods for headers, highlighting and marking tags */
+
+    /** Data for the <head> section */
     virtual std::string header() {
         return std::string();
     }
@@ -84,6 +87,7 @@ public:
         return std::string();
     }
 
+    /** Data to prepend to each chunk. QTextEdit possibly wants a repeat of <pre>. */
     virtual std::string startChunk() {
         return std::string();
     }
