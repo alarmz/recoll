@@ -15,13 +15,9 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
 
-#include "autoconfig.h"
-
 #define _FILE_OFFSET_BITS 64
 
-#include <errno.h>
 #include <sys/types.h>
-#include <time.h>
 
 #include <cstring>
 #include <map>
