@@ -15,7 +15,7 @@ Jean-Francois Dockes
 
    This document introduces full text search notions and describes the
    installation and use of the Recoll application. This version describes
-   Recoll 1.43.
+   Recoll 1.43.1.
      __________________________________________________________________
 
    Table of Contents
@@ -261,7 +261,7 @@ Chapter 1. Introduction
 
    This document introduces full text search notions and describes the
    installation and use of the Recoll application. It is updated for
-   Recoll 1.43.
+   Recoll 1.43.1.
 
    Recoll was for a long time dedicated to Unix-like systems. It was only
    lately (2015) ported to MS-Windows. Many references in this manual,
@@ -1572,12 +1572,12 @@ pass
 
 PDF attachment indexing
 
-   If pdftk is installed, and if the the [222]pdfattach configuration
-   variable is set, the PDF input handler will try to extract PDF
-   attachments for indexing as sub-documents of the PDF file. This is
-   disabled by default, because it slows down PDF indexing a bit even if
-   not one attachment is ever found (PDF attachments are uncommon in my
-   experience).
+   Indexing PDF attachments used to be done with the pdftk toolkit and was
+   disabled by default. As of Recoll 1.43.1, it uses the Poppler pdfdetach
+   command, and it is enabled in the default configuration. Set the
+   [222]pdfattach configure variable to 0 to disable the feature.
+
+   The PDF attachments are indexed as sub-documents of the PDF file.
 
 2.7.3. Running OCR on image documents
 
@@ -6006,9 +6006,10 @@ Important
           needed, and the extra command takes a little time.
 
    pdfattach
-          Enable PDF attachment extraction by executing pdftk (if
-          available). This is normally disabled, because it does slow down
-          PDF indexing a bit even if not one attachment is ever found.
+          Enable PDF attachment extraction by executing pdfdetach (if
+          available). This used to be disabled by default because it used
+          pdftk. We now use pdfdetach, which is part of poppler-utils and
+          fast.
 
    pdfextrameta
           Extract text from selected XMP metadata tags. This is a

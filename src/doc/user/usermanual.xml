@@ -7,7 +7,7 @@
 <!ENTITY RCLWEB "<ulink url='https://www.recoll.org/'>https://www.recoll.org/</ulink>">
 <!ENTITY FAQS "https://www.recoll.org/faqsandhowtos/">
 <!ENTITY RCLAPPS "<ulink url='https://www.recoll.org/pages/features.html#doctypes'>https://www.recoll.org/pages/features.html</ulink>">
-<!ENTITY RCLVERSION "1.43">
+<!ENTITY RCLVERSION "1.43.1">
 <!ENTITY XAP "<application>Xapian</application>">
 <!ENTITY WIN "<application>Windows</application>">
 <!ENTITY LIN "<application>Unix</application>-like systems">
@@ -1713,14 +1713,13 @@ pass</programlisting>
         <sect3 id="RCL.INDEXING.PDF.ATTACH">
           <title>PDF attachment indexing</title>
 
-          <para>If <application>pdftk</application> is installed, and if the
-            the
-            <link linkend="RCL.CONFIG.RECOLLCONF.PDFATTACH">pdfattach</link>
-            configuration variable is set, the PDF input handler will try to
-            extract PDF attachments for indexing as sub-documents of the PDF
-            file. This is disabled by default, because it slows down PDF
-            indexing a bit even if not one attachment is ever found (PDF
-            attachments are uncommon in my experience).</para>
+          <para>Indexing PDF attachments used to be done with the <application>pdftk</application>
+          toolkit and was disabled by default. As of &RCL; 1.43.1, it uses the
+          <application>Poppler</application> <command>pdfdetach</command> command, and it is enabled
+          in the default configuration. Set the <link
+          linkend="RCL.CONFIG.RECOLLCONF.PDFATTACH">pdfattach</link> configure variable to 0 to
+          disable the feature.</para>
+          <para>The PDF attachments are indexed as sub-documents of the PDF file.</para>
         </sect3>
       </sect2>
 

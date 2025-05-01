@@ -899,10 +899,8 @@ little time.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.PDFATTACH">
 <term><varname>pdfattach</varname></term>
-<listitem><para>Enable PDF attachment extraction by executing pdftk (if
-available). This is
-normally disabled, because it does slow down PDF indexing a bit even if
-not one attachment is ever found.
+<listitem><para>Enable PDF attachment extraction by executing pdfdetach (if available). This used to be disabled by default because it used pdftk. We now use pdfdetach, which
+is part of poppler-utils and fast.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.PDFEXTRAMETA">
 <term><varname>pdfextrameta</varname></term>

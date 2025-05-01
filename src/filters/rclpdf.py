@@ -119,7 +119,7 @@ class PDFExtractor:
         self.pdftotextversion = 0
         self.pdfinfo = None
         self.pdfinfoversion = 0
-        self.pdftk = None
+        self.pdfdetach = None
         self.em = em
         self.tesseract = None
         self.extrameta = None
@@ -171,15 +171,14 @@ class PDFExtractor:
             if not self.pdftohtml:
                 self.dooutline = False
 
-        # Pdftk is optionally used to extract attachments. This takes a hit on performance even in
-        # the absence of any attachments, so it can be disabled in the configuration.
+        # Pdfdetach is optionally used to extract attachments. This takes a hit on performance
+        # even in the absence of any attachments, so it can be disabled in the configuration.
         self.attextractdone = False
         self.attachlist = []
         cf_attach = self.config.getConfParam("pdfattach")
-        cf_attach = rclexecm.configparamtrue(cf_attach)
-        if cf_attach:
-            self.pdftk = rclexecm.which("pdftk")
-        if self.pdftk:
+        if cf_attach is None or rclexecm.configparamtrue(cf_attach):
+            self.pdfdetach = rclexecm.which("pdfdetach")
+        if self.pdfdetach:
             self.maybemaketmpdir()
 
     def _popplerutilversion(self, tool):
@@ -251,7 +250,7 @@ class PDFExtractor:
         self.attextractdone = True
 
         global tmpdir
-        if not tmpdir or not self.pdftk:
+        if not tmpdir or not self.pdfdetach:
             # no big deal
             return True
         try:
@@ -265,7 +264,7 @@ class PDFExtractor:
             # output, until we fix the error or preferably find a way
             # to do it with poppler...
             subprocess.check_call(
-                [self.pdftk, self.filename, "unpack_files", "output", tmpdir.getpath()],
+                [self.pdfdetach, "-saveall", "-o", tmpdir.getpath(), self.filename],
                 stdout=sys.stderr,
             )
             self.attachlist = sorted(os.listdir(tmpdir.getpath()))
@@ -503,20 +502,19 @@ class PDFExtractor:
         else:
             tmpdir = rclexecm.SafeTmpDir("rclpdf", self.em)
             # self.em.rclog("Using temporary directory %s" % tmpdir.getpath())
-            if self.pdftk and re.match(r"/snap/", self.pdftk):
-                # We know this is Unix (Ubuntu actually). Check that tmpdir
-                # belongs to the user as snap commands can't use /tmp to share
-                # files. Don't generate an error as this only affects
-                # attachment extraction
+            if self.pdfdetach and re.match(r"/snap/", self.pdfdetach):
+                # We used to perform this test because pdftk was a snap package on
+                # ubuntu. Don't know if this can be the case for pdfdetach (poppler-utils), but
+                # the test won't hurt anyway. Check that tmpdir belongs to the user as snap
+                # commands can't use /tmp to share files. Don't generate an error as this only
+                # affects attachment extraction
                 ok = False
                 if "TMPDIR" in os.environ:
                     st = os.stat(os.environ["TMPDIR"])
                     if st.st_uid == os.getuid():
                         ok = True
                 if not ok:
-                    self.em.rclog(
-                        "pdftk is a snap command and needs TMPDIR to be owned by you"
-                    )
+                    self.em.rclog("pdfdetach is a snap command and needs TMPDIR to be owned by you")
 
     def _process_annotations(self, html):
         doc = Poppler.Document.new_from_file(
@@ -727,7 +725,7 @@ class PDFExtractor:
         self.currentindex = -1
         self.attextractdone = False
 
-        if self.pdftk:
+        if self.pdfdetach:
             preview = os.environ.get("RECOLL_FILTER_FORPREVIEW", "no")
             if preview != "yes":
                 # When indexing, extract attachments at once. This
