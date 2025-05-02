@@ -213,7 +213,7 @@ copypoppler()
     # have to keep the structure of the directories.
     test -d $FILTERS/poppler/Library/bin || mkdir -p $FILTERS/poppler/Library/bin || \
         fatal cant create poppler directory
-    for f in pdftotext.exe pdfinfo.exe pdftoppm.exe $POPPLER/Library/bin/*.dll ; do
+    for f in pdfdetach.exe pdftotext.exe pdfinfo.exe pdftoppm.exe $POPPLER/Library/bin/*.dll ; do
         chkcp $POPPLER/Library/bin/`basename $f` $FILTERS/poppler/Library/bin/
     done
     cp -rp $POPPLER/share $FILTERS/poppler
