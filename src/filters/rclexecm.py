@@ -364,7 +364,10 @@ def main(proto, extract):
         if not actAsSingle:
             proto.breakwrite(out, makebytes(s + "\n"))
 
-    params = {"filename": makebytes(path)}
+    # makebytes does not work for the path arg because of possible surrogates in a non-decodable
+    # binary path: https://peps.python.org/pep-0383/
+    bpath = path.encode(sys.getfilesystemencoding(), "surrogateescape")
+    params = {"filename": bpath}
 
     # Some filters (e.g. rclaudio.py) need/get a MIME type from the indexer.
     # We make a half-assed attempt to emulate:
