@@ -517,10 +517,26 @@ class PDFExtractor:
                     self.em.rclog("pdfdetach is a snap command and needs TMPDIR to be owned by you")
 
     def _process_annotations(self, html):
-        doc = Poppler.Document.new_from_file(
-            "file://%s" % urllib.request.pathname2url(os.path.abspath(self.filename)),
-            None,
-        )
+        try:
+            # Note: can't directly use the path as it's binary and poppler's
+            # new_from_file() wants an str. Going directly through pathname2url used to
+            # work though, even with non-decodable binary paths, but was broken by Python
+            # 3.13 (quote() complaining about a bad/missing encoding). Not sure if it's a
+            # bug or a feature. Refer to https://peps.python.org/pep-0383/.
+            # The new method does not work with older Python... Aaargh
+            if sys.version_info >= (3, 13):
+                apath = os.path.abspath(self.filename)
+                apath = apath.decode(sys.getfilesystemencoding(), "surrogateescape")
+                url = f"file://{urllib.request.pathname2url(apath)}"
+                doc = Poppler.Document.new_from_file(url, None)
+            else:
+                doc = Poppler.Document.new_from_file(
+                    "file://%s" % urllib.request.pathname2url(os.path.abspath(self.filename)), None)
+                
+        except Exception as ex:
+            self.em.rclog(f"Annotations: file open failed: {ex} {traceback.format_exc()}")
+            return html
+
         n_pages = doc.get_n_pages()
         all_annots = 0
 
