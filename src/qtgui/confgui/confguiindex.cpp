@@ -164,7 +164,7 @@ public:
     string *m_sk{nullptr};
 };
 
-string sknull;
+static string sknull;
 static MyConfLinkFactRCL conflinkfactory;
 
 void ConfIndexW::showPrefs(bool modal)

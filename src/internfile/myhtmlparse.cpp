@@ -161,7 +161,7 @@ static const char *epairs[] = {
     "rsaquo", "\xe2\x80\xba", "euro", "\xe2\x82\xac",
     NULL, NULL
 };
-map<string, string> my_named_ents;
+static map<string, string> my_named_ents;
 class NamedEntsInitializer {
 public:
     NamedEntsInitializer()

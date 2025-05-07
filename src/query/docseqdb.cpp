@@ -30,6 +30,8 @@ using std::list;
 using std::string;
 using std::vector;
 
+static const string cstr_mre("[...]");
+
 DocSequenceDb::DocSequenceDb(std::shared_ptr<Rcl::Db> db,
                              std::shared_ptr<Rcl::Query> q, const string &t, 
                              std::shared_ptr<Rcl::SearchData> sdata) 
@@ -71,8 +73,6 @@ int DocSequenceDb::getResCnt()
     }
     return m_rescnt;
 }
-
-static const string cstr_mre("[...]");
 
 // This one only gets called to fill-up the snippets window
 // We ignore most abstract/snippets preferences.

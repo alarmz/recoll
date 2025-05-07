@@ -1,4 +1,4 @@
-/* Copyright (C) 2004-2019 J.F.Dockes 
+/* Copyright (C) 2004-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -581,12 +581,15 @@ bool FileInterner::dijontorcl(Rcl::Doc& doc)
     return true;
 }
 
-const set<string> nocopyfields{cstr_dj_keycontent, cstr_dj_keymd,
-        cstr_dj_keyanc, cstr_dj_keyorigcharset, cstr_dj_keyfn,
-        cstr_dj_keymt, cstr_dj_keycharset, cstr_dj_keyds};
-
 static void copymeta(const RclConfig *cfg, Rcl::Doc& doc, const RecollFilter* hp)
 {
+    // Can't use static init, because it would depend on static initialisation order...
+    static set<string> nocopyfields;
+    if (nocopyfields.empty()) {
+        nocopyfields = set<string>{cstr_dj_keycontent, cstr_dj_keymd,
+        cstr_dj_keyanc, cstr_dj_keyorigcharset, cstr_dj_keyfn,
+        cstr_dj_keymt, cstr_dj_keycharset, cstr_dj_keyds};
+    }
     for (const auto& entry : hp->get_meta_data()) {
         if (nocopyfields.find(entry.first) == nocopyfields.end()) {
             doc.addmeta(cfg->fieldCanon(entry.first), entry.second);
