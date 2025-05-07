@@ -1,3 +1,22 @@
+recoll (1.43.2-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Fix static initialisation order bug causing an immediate crash with
+    some gcc 15 builds.
+  
+ -- Jean-Francois Dockes <jf@dockes.org>  Wed, 07 May 2025 14:20:00 +0200
+
+recoll (1.43.1-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Change PDF attachment indexing to using pdfdetach from poppler-utils.
+    No more need for the java-based pdftk. PDF attachment indexing is now
+    enabled by default. 
+  * Apple pages handler: tweak options to allow running headless.
+  * Fix broken "remember sort state" feature.
+  * Add default configuration for processing LISP files (as text).
+  * Fix preview text mode bad formatting after the first chunk.
+  
+ -- Jean-Francois Dockes <jf@dockes.org>  Fri, 02 May 2025 10:20:00 +0200
+
 recoll (1.43.0-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Add suspendonbattery parameter to suspend the real time indexer when

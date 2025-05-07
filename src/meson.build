@@ -25,7 +25,7 @@ project(
     license: 'GPL 2+',
     # We'd like to use version: files('RECOLL-VERSION.txt') but this is a 0.57 feature. 
     # Ubuntu focal has 0.53 and is supported until 2025-04.
-    version: '1.43.1', # VERSIONCOMMENT keep this here, used by setversion.sh
+    version: '1.43.2', # VERSIONCOMMENT keep this here, used by setversion.sh
     # Note: follow_symlinks will be needed in the future but not supported by all the versions we
     # need at the moment
     default_options: ['cpp_std=c++17', 'buildtype=debugoptimized',

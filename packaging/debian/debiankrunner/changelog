@@ -1,3 +1,10 @@
+krunner-recoll (1.43.2-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Fix static initialisation order bug causing an immediate crash with
+    some gcc 15 builds.
+  
+ -- Jean-Francois Dockes <jf@dockes.org>  Wed, 07 May 2025 14:20:00 +0200
+
 krunner-recoll (1.42.0-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Follow main release
