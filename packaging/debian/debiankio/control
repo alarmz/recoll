@@ -25,13 +25,3 @@ Description: Recoll KDE KIO slave
  Recoll KDE KIO slave, allows performing a Recoll search by
  entering an appropriate URL in a KDE open dialog, or with an HTML-based
  interface displayed in Konqueror.  
- The HTML-based interface is similar to the Recoll GUI QT-based interface,
- slightly less powerful. It allows performing a search while staying fully
- within the KDE framework: drag and drop from the result list works
- normally and you have your normal choice of applications for opening files. 
- An alternative interface uses a directory view of search results. Due to
- limitations in the current KIO slave interface, it is currently not
- obviously useful.
- The interface is described in more detail inside a help file which you can
- access by entering recoll:/ inside the konqueror URL line (this works only
- if the recoll KIO slave has been previously installed). 

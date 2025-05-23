@@ -114,13 +114,14 @@ Package: librecoll39
 Architecture: any
 Section: libs
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Breaks: recollcmd (<< 1.36.1-1)
+Breaks: librecoll (<< 1.43.2-1)
+Replaces: librecoll (<< 1.43.2-1)
 Multi-Arch: same
 Description: Base library for recoll and related extensions
  This package contains the base code interfacing with Xapian and is used by the
  recoll commands, the Python extensions, the KDE plugins.
 
-Package: librecoll39-dev
+Package: librecoll-dev
 Architecture: any
 Section: libdevel
 Depends: librecoll39 (= ${binary:Version}), ${misc:Depends}

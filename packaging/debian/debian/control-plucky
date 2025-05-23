@@ -2,7 +2,7 @@ Source: recoll
 Section: x11
 Priority: optional
 Maintainer: Jean-Francois Dockes <jfd@recoll.org>
-Build-Depends: debhelper-compat (>= 10),
+Build-Depends: debhelper,
                dh-python,
                bison,
 # Note: for buster, uninstall meson pkg, pip-install up to date meson and remove the deps for
