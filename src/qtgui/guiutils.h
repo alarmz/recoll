@@ -1,4 +1,4 @@
-/* Copyright (C) 2005 Jean-Francois Dockes 
+/* Copyright (C) 2005-2025 Jean-Francois Dockes 
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -23,8 +23,8 @@
 #include <set>
 #include <tuple>
 
-#include <qstring.h>
-#include <qstringlist.h>
+#include <QString>
+#include <QStringList>
 
 /** Holder for preferences (gets saved to user Qt prefs) */
 class PrefsPack {
@@ -51,7 +51,11 @@ public:
     std::string  creslistformat;
 
     enum ColorScheme {CS_LIGHT, CS_DARK, CS_SYSTEM};
-    int colorscheme{0};
+#if (defined(_WIN32) || defined(__APPLE__)) && (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
+    int colorscheme{CS_SYSTEM};
+#else
+    int colorscheme{CS_LIGHT};
+#endif
 
     // Dark mode set: both qss and css will use the base + dark style and then the possible user
     // style

@@ -310,7 +310,11 @@ void rwSettings(bool writing)
     SETTING_RW(prefs.singleapp, "/Recoll/ui/singleapp", Bool, false)
     SETTING_RW(prefs.previewLinesOverAnchor, "/Recoll/preview/previewLinesOverAnchor", Int, 4)
     SETTING_RW(prefs.uilanguage, "/Recoll/ui/uilanguage", String, "")
-    SETTING_RW(prefs.colorscheme, "/Recoll/ui/colorscheme", Int, 0)
+#if (defined(_WIN32) || defined(__APPLE__)) && (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
+    SETTING_RW(prefs.colorscheme, "/Recoll/ui/colorscheme", Int, PrefsPack::CS_SYSTEM)
+#else
+    SETTING_RW(prefs.colorscheme, "/Recoll/ui/colorscheme", Int ,PrefsPack::CS_LIGHT)
+#endif
     /*INSERTHERE*/
     
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -526,40 +530,50 @@ static std::string cacheget(const std::string& path)
 }
 
 #ifdef BUILDING_RECOLLGUI
-// Don't want this in the kde plugins
+// Don't want this in the KDE plugins
 void applyStyle()
 {
-    auto fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-common.qss");
+    auto fn = path_cat(theconfig->getDatadir(), {"examples", "recoll-common.qss"});
     std::string qss = cacheget(fn);
 
 #if defined(__APPLE__) && (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
     prefs.colorscheme = PrefsPack::CS_SYSTEM;
 #endif
-    
-    if (prefs.colorscheme == PrefsPack::CS_LIGHT) {
-        prefs.darkMode = false;
-    } else if (prefs.colorscheme == PrefsPack::CS_DARK) {
-        prefs.darkMode = true;
-    } else {
+    bool nodarkqss = false;
+    switch (prefs.colorscheme) {
+    case PrefsPack::CS_LIGHT:
+        prefs.darkMode = false; break;
+    case PrefsPack::CS_DARK:
+        prefs.darkMode = true; break;
+    case PrefsPack::CS_SYSTEM:
+    default:
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
-    if (prefs.colorscheme == PrefsPack::CS_SYSTEM &&
-        qApp->styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
-        LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is DARK\n");
-        prefs.darkMode = true;
-    } else {
-        // Note: doing things this way means that there is no way to set dark on light system,
-        // except by copying recoll-dark.qss somewhere else, and also importing the dark css
-        // into the result list header...
-        LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is LIGHT\n");
-        prefs.darkMode = false;
-    }
-#else
-    prefs.darkMode = false;
+#ifdef _WIN32
+        // Under windows, if the scheme is "system", we apply the fusion style and let it
+        // manage.  Note that doing this means that getting back to fixed dark or light needs a
+        // restart because I don't know how to undo the setStyle("fusion")
+        qApp->setStyle("fusion");
+        // Can't just set darkMode to false as it's needed for HTML too
+        nodarkqss = true;
 #endif
+        if (qApp->styleHints()->colorScheme() == Qt::ColorScheme::Dark) {
+            LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is DARK\n");
+            prefs.darkMode = true;
+        } else {
+            // Mac? note: doing things this way means that there is no way to set dark on light
+            // system, except by copying recoll-dark.qss somewhere else, and also importing the
+            // dark css into the result list header...
+            LOGDEB1("RclMain::setUIPrefs: qApp colorScheme is LIGHT\n");
+            prefs.darkMode = false;
+        }
+#else
+        prefs.darkMode = false;
+#endif
+        break;
     }
 
-    if (prefs.darkMode) {
-        fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-dark.qss");
+    if (prefs.darkMode && !nodarkqss) {
+        fn = path_cat(theconfig->getDatadir(), {"examples", "recoll-dark.qss"});
         qss += cacheget(fn);
     }
     LOGDEB1("applyStyle: qssfile [" << qs2utf8s(prefs.qssFile) << "]\n");
@@ -587,7 +601,7 @@ std::string PrefsPack::snipCSS()
 std::string PrefsPack::htmlHeaderContents(bool nouser)
 {
     // recoll-common.css just has a default font size setting at the moment.
-    auto comfn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-common.css");
+    auto comfn = path_cat(theconfig->getDatadir(), {"examples", "recoll-common.css"});
     std::string comcss = cacheget(comfn);
     
     std::ostringstream oss;
@@ -621,7 +635,7 @@ std::string PrefsPack::htmlHeaderContents(bool nouser)
 
     // Dark mode CSS
     if (darkMode) {
-        string fn = path_cat(path_cat(theconfig->getDatadir(), "examples"), "recoll-dark.css");
+        string fn = path_cat(theconfig->getDatadir(), {"examples", "recoll-dark.css"});
         oss << cacheget(fn);
     }
 
