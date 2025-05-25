@@ -32,7 +32,7 @@ Rules-Requires-Root: no
 
 Package: recoll
 Architecture: all
-Depends: recollcmd, recollgui, ${misc:Depends}
+Depends: recollcmd (= ${binary:Version}), recollgui (= ${binary:Version}), ${misc:Depends}
 Description: Personal full text search package
  This package is a personal full text search package is based on a very strong
  backend (Xapian), for which it provides an easy to use and feature-rich
