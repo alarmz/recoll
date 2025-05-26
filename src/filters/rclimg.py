@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 
-# Python-based Image Tag extractor for Recoll. This is less thorough
-# than the Perl-based rclimg script, but useful if you don't want to
-# have to install Perl (e.g. on Windows).
+# Python-based Image Tag extractor for Recoll. This is less thorough than the Perl-based rclimg
+# script, but may still be useful as a base if you don't want to use Perl.
 #
 # Uses pyexiv2. Also tried Pillow, found it useless for tags.
 #
 
 import sys
 import os
-import rclexecm
 import re
+import subprocess
+
+import rclexecm
 from rclbasehandler import RclBaseHandler
 
 try:
@@ -48,7 +49,8 @@ exiv2_dates = [
 class ImgTagExtractor(RclBaseHandler):
     def __init__(self, em):
         super(ImgTagExtractor, self).__init__(em)
-
+        self.config = self.em.config()
+        
     def html_text(self, filename):
         ok = False
 
@@ -93,16 +95,42 @@ class ImgTagExtractor(RclBaseHandler):
                 )
 
         docdata += b"</head><body>\n"
-        for k, v in mdic.items():
-            docdata += rclexecm.makebytes(
-                k + " : " + rclexecm.htmlescape(mdic[k]) + "<br />\n"
-            )
+
+        self.config.setKeyDir(os.path.dirname(filename))
+        s = self.config.getConfParam("imgocr")
+        
+        if not rclexecm.configparamtrue(s):
+            # Not doing OCR. Use extracted fields as main text. Not that useful but ensure that
+            # everything is indexed and allows previewing them
+            for k, v in mdic.items():
+                docdata += rclexecm.makebytes(k + " : " + rclexecm.htmlescape(mdic[k]) + "<br />\n")
+        else:
+            # Run image OCR
+            htmlprefix = b"<H3>OCR TEXT</H3>\n<PRE>"
+            htmlsuffix = b"</PRE>"
+            cmd = [
+                sys.executable,
+                os.path.join(_execdir, "rclocr.py"),
+                filename,
+            ]
+            try:
+                global ocrproc
+                ocrproc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+                data, stderr = ocrproc.communicate()
+                ocrproc = None
+                docdata += htmlprefix + rclexecm.htmlescape(data) + htmlsuffix
+            except Exception as e:
+                self.em.rclog(f"{cmd} failed: {e}")
+                pass
+
+
         docdata += b"</body></html>"
 
         return docdata
 
 
 if __name__ == "__main__":
+    _execdir = os.path.dirname(sys.argv[0])
     proto = rclexecm.RclExecM()
     extract = ImgTagExtractor(proto)
     rclexecm.main(proto, extract)
