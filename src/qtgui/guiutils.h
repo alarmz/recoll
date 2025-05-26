@@ -58,7 +58,7 @@ public:
 #endif
 
     // Dark mode set: both qss and css will use the base + dark style and then the possible user
-    // style
+    // style. Computed on startup/style change. Not saved.
     bool darkMode;
 
     // This is either empty or the contents of the recoll-dark.css file if we are in dark mode.
