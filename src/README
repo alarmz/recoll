@@ -1601,7 +1601,7 @@ PDF attachment indexing
    Example configuration fragment in recoll.conf:
 pdfocr = 1
 ocrprogs = tesseract
-pdfocrlang = eng
+tesseractlang = eng
 
    This facility got a major update in Recoll 1.26.5. Older versions had a
    more limited, non-caching capability to execute an external OCR program

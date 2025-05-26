@@ -1748,7 +1748,7 @@ pass</programlisting>
         <para>Example configuration fragment in <filename>recoll.conf</filename>:</para>
         <programlisting>pdfocr = 1
 ocrprogs = tesseract
-pdfocrlang = eng</programlisting>
+tesseractlang = eng</programlisting>
     
         <para>This facility got a major update in &RCL; 1.26.5. Older versions had a more limited,
           non-caching capability to execute an external OCR program in the PDF handler. The new

@@ -833,10 +833,8 @@ Extract outlines and bookmarks from PDF documents (needs pdftohtml). This is not
 little time.
 .TP
 .BI "pdfattach = "bool
-Enable PDF attachment extraction by executing pdftk (if
-available). This is
-normally disabled, because it does slow down PDF indexing a bit even if
-not one attachment is ever found.
+Enable PDF attachment extraction by executing pdfdetach (if available). This used to be disabled by default because it used pdftk. We now use pdfdetach, which
+is part of poppler-utils and fast.
 .TP
 .BI "pdfextrameta = "string
 Extract text from selected XMP metadata tags. This
