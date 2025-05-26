@@ -136,7 +136,7 @@ class PDFExtractor:
             b"Producer": b"PDFProducer",
             b"Subject": b"Description",
         }
-        self.config = rclconfig.RclConfig()
+        self.config = self.em.config()
         self.confdir = self.config.getConfDir()
 
         # Avoid picking up a default version on Windows, we want ours

@@ -10,7 +10,6 @@ from urllib.parse import urlparse as urlparse_urlparse
 from html.parser import HTMLParser
 import subprocess
 
-import rclconfig
 import rclexecm
 
 # pychm has no official port to Python3, hence no package in the
@@ -202,7 +201,7 @@ class rclCHM:
         self.contents = []
         self.chm = chm.CHMFile()
         self.em = em
-        cf = rclconfig.RclConfig()
+        cf = em.config()
         self.catenate = cf.getConfParam("chmcatenate")
         self.catenate = int(self.catenate) if self.catenate else False
         self.em.setmimetype("text/html")

@@ -229,6 +229,9 @@ class RclExecM(cmdtalk.CmdTalk):
         if self.debugfile or sys.platform != "win32":
             super().log(s, doexit, exitvalue)
 
+    def config(self):
+        return _g_config
+    
     # Our worker sometimes knows the mime types of the data it sends
     def setmimetype(self, mt):
         self.mimetype = makebytes(mt)

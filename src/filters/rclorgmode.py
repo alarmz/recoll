@@ -21,9 +21,6 @@ import sys
 import re
 
 import rclexecm
-import rclconfig
-import conftree
-
 
 class OrgModeExtractor:
     def __init__(self, em):
@@ -31,8 +28,9 @@ class OrgModeExtractor:
         self.em = em
         self.selftext = ""
         self.docs = []
-        config = rclconfig.RclConfig()
-        self.createsubdocs = conftree.valToBool(config.getConfParam("orgmodesubdocs"))
+        config = self.em.config()
+        self.createsubdocs = config.getConfParam("orgmodesubdocs")
+        self.createsubdocs = rclexecm.configparamtrue(self.createsubdocs)
 
     def extractone(self, index):
         if index >= len(self.docs):

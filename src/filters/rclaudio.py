@@ -11,7 +11,6 @@ import re
 
 import rclexecm
 from rclbasehandler import RclBaseHandler
-import rclconfig
 
 try:
     import mutagen
@@ -203,7 +202,7 @@ class AudioTagExtractor(RclBaseHandler):
     def __init__(self, em):
         """Set tag fixing up."""
         super(AudioTagExtractor, self).__init__(em)
-        self.config = rclconfig.RclConfig()
+        self.config = self.em.config()
         self.recoll_confdir = self.config.confdir
         self.process_stt = False
         self.preview_mode = os.environ.get("RECOLL_FILTER_FORPREVIEW", "no")

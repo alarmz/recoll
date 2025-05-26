@@ -21,7 +21,6 @@
 import os
 import fnmatch
 
-import rclconfig
 import conftree
 
 
@@ -32,8 +31,8 @@ class NameFilter(object):
 
     def __init__(self, em):
         """Initialize by reading the configuration. em is the RclExecM object and used for logging"""
-        self.config = rclconfig.RclConfig()
         self.em = em
+        self.config = em.config()
 
     def setforlocation(self, filename):
         """filename is the archive file name and is used to query location-dependant

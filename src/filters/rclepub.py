@@ -9,7 +9,6 @@ import re
 import subprocess
 
 import rclexecm
-import rclconfig
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "recollepub.zip"))
 try:
@@ -28,7 +27,7 @@ class rclEPUB:
         self.currentindex = 0
         self.em = em
         self.em.setmimetype(rclepub_html_mtype)
-        cf = rclconfig.RclConfig()
+        cf = self.em.config()
         self.catenate = cf.getConfParam("epubcatenate")
         self.catenate = int(self.catenate) if self.catenate else False
 
