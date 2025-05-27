@@ -468,6 +468,7 @@ void RecollModel::saveAsCSV(std::fstream& fp)
         csv = stringsToCSV(tokens);
         fp << csv << "\n";
     }
+    m_source->setqquantum(100);
 }
 
 // This gets called when the column headers are clicked
