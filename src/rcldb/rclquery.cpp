@@ -381,13 +381,6 @@ int Query::getFirstMatchPage(const Doc &doc, string& term)
     return m_reason.empty() ? pagenum : -1;
 }
 
-// Mset size
-// Note: times for retrieving (multiple times)all docs from a sample
-// 25k docs db (q: mime:*)
-// qqantum: 10 50  100 150 200 1000
-// Seconds: 21 8.5 6.7 6.4 5.8 6.0
-static const int qquantum = 100;
-
 // Get estimated result count for query. Xapian actually does most of
 // the search job in there, this can be long
 int Query::getResCnt(int checkatleast, bool useestimate)
@@ -407,7 +400,7 @@ int Query::getResCnt(int checkatleast, bool useestimate)
         XAPTRY(if (checkatleast == -1)
                    checkatleast = m_db->docCnt();
                m_nq->xmset = m_nq->xenquire->get_mset(
-                   0, qquantum, checkatleast, nullptr, m_nq->subdecider),
+                   0, m_qquantum, checkatleast, nullptr, m_nq->subdecider),
                m_db->m_ndb->xrdb, m_reason);
         if (!m_reason.empty()) {
             LOGERR("xenquire->get_mset: exception: " << m_reason << "\n");
@@ -428,7 +421,7 @@ int Query::getResCnt(int checkatleast, bool useestimate)
 
 // Get document at rank xapi in query results.  We check if the
 // current mset has the doc, else ask for an other one. We use msets
-// of qquantum documents.
+// of m_qquantum documents.
 //
 // Note that as stated by a Xapian developer, Enquire searches from
 // scratch each time get_mset() is called. So the better performance
@@ -444,9 +437,9 @@ bool Query::getDoc(int xapi, Doc &doc, bool fetchtext)
     int first = m_nq->xmset.get_firstitem();
 
     if (!(xapi >= first && xapi <= first + int(m_nq->xmset.size()) -1)) {
-        LOGDEB("Fetching for first " << xapi << ", count " << qquantum << "\n");
+        LOGDEB("Fetching for first " << xapi << ", count " << m_qquantum << "\n");
 
-        XAPTRY(m_nq->xmset = m_nq->xenquire->get_mset(xapi, qquantum, nullptr, m_nq->subdecider),
+        XAPTRY(m_nq->xmset = m_nq->xenquire->get_mset(xapi, m_qquantum, nullptr, m_nq->subdecider),
                m_db->m_ndb->xrdb, m_reason);
         if (!m_reason.empty()) {
             LOGERR("enquire->get_mset: exception: " << m_reason << "\n");

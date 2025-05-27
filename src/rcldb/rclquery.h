@@ -95,6 +95,11 @@ public:
     bool setQuery(std::shared_ptr<SearchData> q);
 
 
+    /** Set the query fetch slice size. Set to high for bulk fetches */
+    void setqquantum(int q) {
+        m_qquantum = q;
+    }
+
     /**  Get results count for current query.
      *
      * @param useestimate Use get_matches_estimated() if true, else 
@@ -161,6 +166,15 @@ private:
     int    m_resCnt{-1};
     std::shared_ptr<SearchData> m_sd;
     int    m_snipMaxPosWalk{1000000};
+
+    // Mset size. When a document is requested, we actually fetch a slice. Bigger slice: slower for
+    // a single doc and more memory use, but faster for bulk retrievals. The default of 100 is a
+    // reasonable compromise.
+    // Note: times for retrieving (multiple times)all docs from a sample
+    // 25k docs db (q: mime:*)
+    // qquantum: 10 50  100 150 200 1000
+    // Seconds:  21 8.5 6.7 6.4 5.8 6.0
+    int    m_qquantum{100};
 };
 
 }

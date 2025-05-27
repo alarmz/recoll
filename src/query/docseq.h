@@ -160,10 +160,11 @@ public:
     virtual bool setFiltSpec(const DocSeqFiltSpec &) {return false;}
     virtual bool setSortSpec(const DocSeqSortSpec &) {return false;}
     virtual std::shared_ptr<DocSequence> getSourceSeq() {
-        return std::shared_ptr<DocSequence>();}
-
-    static void set_translations(const std::string& sort,
-                                 const std::string& filt) {
+        return std::shared_ptr<DocSequence>();
+    }
+    virtual void setqquantum(int) {}
+        
+    static void set_translations(const std::string& sort, const std::string& filt) {
         o_sort_trans = sort;
         o_filt_trans = filt;
     }

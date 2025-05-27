@@ -445,7 +445,8 @@ void RecollModel::saveAsCSV(std::fstream& fp)
 {
     if (!m_source)
         return;
-
+    m_source->setqquantum(30000);
+    
     int cols = columnCount();
     vector<string> tokens;
 
@@ -485,8 +486,7 @@ void RecollModel::sort(int column, Qt::SortOrder order)
             QTimer::singleShot(0, m_table, SLOT(resetSort()));
             return;
         }
-        if (!stringlowercmp("date", spec.field) ||
-            !stringlowercmp("datetime", spec.field))
+        if (!stringlowercmp("date", spec.field) || !stringlowercmp("datetime", spec.field))
             spec.field = "mtime";
         spec.desc = (order != Qt::AscendingOrder);
     }
@@ -1042,20 +1042,24 @@ void ResTable::resetSource()
     readDocSource();
 }
 
+
 void ResTable::saveAsCSV()
 {
+    static const QString csvprevdirkey("/Recoll/prefs/restableAsCSVPDir");;
     LOGDEB("ResTable::saveAsCSV\n");
     if (!m_model)
         return;
-    QString s = QFileDialog::getSaveFileName(
-        this, tr("Save table to CSV file"), path2qs(path_home()));
+    QSettings settings;
+    QString s = QFileDialog::getSaveFileName(this, tr("Save table to CSV file"),
+                                             settings.value(csvprevdirkey).toString());
     if (s.isEmpty())
         return;
+    QDir cdir;
+    settings.setValue(csvprevdirkey, cdir.absoluteFilePath(s));
     std::string tofile = qs2path(s);
     std::fstream fp;
-    if (!path_streamopen(tofile, std::ios::out|std::ios::trunc,fp)) {
-        QMessageBox::warning(0, "Recoll",
-                             tr("Can't open/create file: ") + s);
+    if (!path_streamopen(tofile, std::ios::out|std::ios::trunc, fp)) {
+        QMessageBox::warning(0, "Recoll", tr("Can't open/create file: ") + s);
         return;
     }
     m_model->saveAsCSV(fp);
@@ -1065,8 +1069,7 @@ void ResTable::saveAsCSV()
 // This is called when the sort order is changed from another widget
 void ResTable::onSortDataChanged(DocSeqSortSpec spec)
 {
-    LOGDEB("ResTable::onSortDataChanged: [" << spec.field << "] desc " <<
-           spec.desc << "\n");
+    LOGDEB("ResTable::onSortDataChanged: [" << spec.field << "] desc " << spec.desc << "\n");
     QHeaderView *header = tableView->horizontalHeader();
     if (!header || !m_model)
         return;
