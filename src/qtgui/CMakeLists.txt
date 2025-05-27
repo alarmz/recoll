@@ -140,6 +140,7 @@ set_target_properties(recoll PROPERTIES
         "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
     MACOSX_BUNDLE_ICON_FILE recoll.icns
 )
+target_compile_definitions(recoll PRIVATE BUILDING_RECOLLGUI)
 
 set(QtComponents Core Gui Widgets PrintSupport)
 
