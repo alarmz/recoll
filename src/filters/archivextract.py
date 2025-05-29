@@ -29,11 +29,14 @@ class ArchiveExtractor:
         self.namefilter = rclnamefilter.NameFilter(em)
 
     def getipath(self, params):
+        # We first try extracting using the binary ipath, then the str obtained by decoding
+        # from utf-8. This used to be necessary with python2 zip (see the comments in
+        # rclzipfile.py old versions), but it's probably not needed any more and we could use
+        # the str directly. Kept anyway because it may be needed for other (non-zip) formats.
         ipath = params["ipath"]
         ok, data, ipath, eof = self.extractone(ipath)
         if ok:
             return (ok, data, ipath, eof)
-        # Not found. Maybe we need to decode the path?
         try:
             ipath = ipath.decode("utf-8")
             return self.extractone(ipath)

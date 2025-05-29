@@ -26,9 +26,6 @@
 import sys
 import cmdtalk
 
-# We can either use konlpy, which supports different analysers, or use
-# the python-mecab-ko, a direct interface to mecab, with the same
-# interface as konlpy https://pypi.org/project/python-mecab-ko/
 import jieba
 
 
