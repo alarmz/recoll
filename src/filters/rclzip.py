@@ -27,51 +27,36 @@ from zipfile import ZipFile
 import rclexecm
 from archivextract import ArchiveExtractor
 
-
-# Note about file names (python 2.6. 2.7, don't know about 3.)
+# Note about file names (updated for python 3)
 #
-# There is a bit in zip entries to indicate if the filename is encoded
-# as utf-8 or not. If the bit is set, zipfile decodes the file name
-# and stores it in the catalog as an unicode object. Else it uses the
-# binary string, which it decodes as CP437 (zip standard).
+# zipfile always returns the archive contents names as str (unicode).  There is a bit in zip
+# entries to indicate if the filename is encoded as utf-8 or not.  If the bit is not set
+# zipfile decodes from the binary value using CP437 because this is the default for zip
+# non-ASCII paths, and no other encoding was really expected.
 #
-# When reading the file, the input file name is used by rclzip.py
-# directly as an index into the catalog.
+# When reading the file, the input file name is used by rclzip.py directly as an index into the
+# catalog.
 #
-# When we send the file name data to the indexer, we have to serialize
-# it as byte string, we can't pass unicode objects to and from. This
-# means that we have to test if the name is unicode. If it is, we send
-# the string encoded as utf-8. When reading, if the input is utf-8, we
-# turn it to unicode and use this to access the zip member, else we
-# use the binary string.
+# When we send the file name data to the indexer, we have to serialize it as byte string, we
+# can't pass unicode objects to and from. So, the value is encoded to UTF-8.
+# For extracting, the ipath is decoded from UTF-8 into an str.
 #
-# In the case where an archive member name is a valid non-ascii utf-8
-# string, but the flag is not set (which could probably happen if the
-# archiver did not try to detect utf-8 file names), this will fail,
-# because we'll convert back the utf-8 string to unicode and pass this
-# to zipfile, but an utf-8 string, not a unicode object is actually in
-# the catalog in this case, so the access will fail (will be seen at
-# preview or open time). This does not affect ascii file names because
-# the representation is the same anyway.
+# This is simplified from Python2 where the old comments seem to imply that the catalog entry
+# was sometimes binary and that there could be an ambiguity in some cases (so that both the
+# binary and the decode value were tried in archivextract.py).
 #
-# To avoid this problem, we'd need to pass a separate bit of
-# information indicating that encoding was performed, not just rely on
-# the utf-8 validity test (ie have a 1st char switch), but this would be
-# incompatible with existing indexes. Instead we try both ways...
-#
-# Also, some zip files contain file names which are not encoded as
-# CP437 (Ex: EUC-KR which was the test case). Python produces garbage
-# paths in this case (this does not affect the ipath validity, just
-# the display), which is expected, but unzip succeeds in guessing the
-# correct encoding, I have no idea how, but apparently the magic
-# occurs in process.c:GetUnicodeData(), which succeeds in finding an
-# utf-8 string which zipfile does not see (to be checked: was a quick look).
-# Anyway: this is a python zipfile issue.
+# Some zip files contain file names which are not encoded as CP437 (Ex: EUC-KR or BIG5) Python
+# produces garbage paths in this case (this does not affect the ipath validity, just the
+# display). Python3 zipfile has a parameter to force a non-CP437 encoding for the metadata
+# (this does not affect a zip file with the UTF-8 flag).
+# A configuration parameter was added in Recoll 1.43.3 to allow setting this value. 
+# 
 class ZipExtractor(ArchiveExtractor):
     def __init__(self, em):
         self.filename = None
         self.f = None
         self.zip = None
+        self.config = em.config()
         super().__init__(em)
 
     def closefile(self):
@@ -84,25 +69,21 @@ class ZipExtractor(ArchiveExtractor):
         self.zip = None
 
     def extractone(self, ipath):
-        # self.em.rclog("extractone: [%s]" % ipath)
+        # self.em.rclog(f"extractone: ipath [{ipath}]")
         docdata = ""
         try:
             info = self.zip.getinfo(ipath)
             # There could be a 4GB Iso in the zip. We have to set a limit
             if info.file_size > self.em.maxmembersize:
-                self.em.rclog(
-                    "extractone: entry %s size %d too big" % (ipath, info.file_size)
-                )
+                self.em.rclog("extractone: entry %s size %d too big" % (ipath, info.file_size))
                 docdata = ""
                 # raise BadZipfile()
             else:
                 docdata = self.zip.read(ipath)
             try:
-                # We are assuming here that the zip uses forward slash
-                # separators, which is not necessarily the case. At
-                # worse, we'll get a wrong or no file name, which is
-                # no big deal (the ipath is the important data
-                # element).
+                # We are assuming here that the zip uses forward slash separators, which is not
+                # necessarily the case. At worse, we'll get a wrong or no file name, which is
+                # no big deal (the ipath is the important data element).
                 filename = posixpath.basename(ipath)
                 self.em.setfield("filename", filename)
                 dt = datetime.datetime(*info.date_time)
@@ -111,6 +92,7 @@ class ZipExtractor(ArchiveExtractor):
                 pass
             ok = True
         except Exception as err:
+            #self.em.rclog(f"{err}")
             ok = False
         iseof = rclexecm.RclExecM.noteof
         if self.currentindex >= len(self.zip.namelist()) - 1:
@@ -121,16 +103,19 @@ class ZipExtractor(ArchiveExtractor):
     ###### File type handler api, used by rclexecm ---------->
     def openfile(self, params):
         self.closefile()
-        filename = params["filename"]
-        self.filename = filename
+        self.filename = params["filename"]
         self.currentindex = -1
-        self.namefilter.setforlocation(filename)
+        self.namefilter.setforlocation(self.filename)
+        # setforlocation calls config.setkeydir()
+        metadataencoding = self.config.getConfParam("zipMetaEncoding")
+        #self.em.rclog(f"metadataencoding: {metadataencoding}")
         try:
-            # Note: py3 ZipFile wants an str file name, which
-            # is wrong: file names are binary. But it accepts an
-            # open file, and open() has no such restriction
-            self.f = open(filename, "rb")
-            self.zip = ZipFile(self.f)
+            # Note: py3 ZipFile wants an str file name, which is wrong: file names are
+            # binary. But it accepts an open file, and open() has no such restriction. We might
+            # be able to use the filesystemencoding and surrogateescape thingy, but let's leave
+            # well enough alone...
+            self.f = open(self.filename, "rb")
+            self.zip = ZipFile(self.f, metadata_encoding = metadataencoding)
             return True
         except Exception as err:
             self.em.rclog("openfile: failed: [%s]" % err)

@@ -124,6 +124,12 @@ is set, the two lists are concatenated and used. Can be redefined for
 subdirectories.
 See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
 </para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING">
+<term><varname>zipMetaEncoding</varname></term>
+<listitem><para>Name of an encoding to pass to the python3 ZipFile constructor This is useful for non-standard zip files where the metadata is neither UTF-8
+(indicated by a file flag), nor CP437 (default). The parameter can be set for specific
+subtrees.
+</para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.FOLLOWLINKS">
 <term><varname>followLinks</varname></term>
 <listitem><para>Follow symbolic links during

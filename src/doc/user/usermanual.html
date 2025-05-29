@@ -10053,6 +10053,16 @@ defaultcharset = utf-8</pre>
                 subdirectories. See
                 https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html</p>
               </dd>
+              <dt><a name="RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING"
+              id=
+              "RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING"></a><span class="term"><code class="varname">zipMetaEncoding</code></span></dt>
+              <dd>
+                <p>Name of an encoding to pass to the python3
+                ZipFile constructor This is useful for non-standard
+                zip files where the metadata is neither UTF-8
+                (indicated by a file flag), nor CP437 (default).
+                The parameter can be set for specific subtrees.</p>
+              </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.FOLLOWLINKS" id=
               "RCL.CONFIG.RECOLLCONF.FOLLOWLINKS"></a><span class=
               "term"><code class=
