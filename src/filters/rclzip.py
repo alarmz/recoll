@@ -23,6 +23,7 @@ import posixpath
 import datetime
 
 from zipfile import ZipFile
+import chardet
 
 import rclexecm
 from archivextract import ArchiveExtractor
@@ -50,7 +51,36 @@ from archivextract import ArchiveExtractor
 # display). Python3 zipfile has a parameter to force a non-CP437 encoding for the metadata
 # (this does not affect a zip file with the UTF-8 flag).
 # A configuration parameter was added in Recoll 1.43.3 to allow setting this value. 
-# 
+#
+
+def detect_zip_name_encoding(zip_path):
+    """
+    Detect the encoding of file names in a ZIP archive.
+    This function reads non-ASCII names from the ZIP archive, decodes them using
+    CP437, and then uses chardet to detect the actual encoding.
+    It returns the most common encoding found among the sampled file names.
+    """
+    enc_counts = {}
+    # Note: Use open() then ZipFile(file), not ZipFile(path) because paths are binary but zipfile
+    # wants an str for some reason.
+    with open(zip_path, "rb") as f:
+        with ZipFile(f, 'r') as z:
+            for name in z.namelist():
+                raw_bytes = name.encode('cp437', errors='replace')
+                # Filtering items with non-ascii characters
+                # Otherwise the statistics will always be in favor of ascii
+                if any(b >= 0x80 for b in raw_bytes):
+                    result = chardet.detect(raw_bytes)
+                    enc = result.get('encoding')
+                    conf = result.get('confidence', 0)
+                    if enc and conf > 0.5:
+                        enc_counts[enc] = enc_counts.get(enc, 0) + 1
+
+    if not enc_counts:
+        return None
+    return max(enc_counts, key=enc_counts.get)
+
+
 class ZipExtractor(ArchiveExtractor):
     def __init__(self, em):
         self.filename = None
@@ -106,20 +136,38 @@ class ZipExtractor(ArchiveExtractor):
         self.filename = params["filename"]
         self.currentindex = -1
         self.namefilter.setforlocation(self.filename)
-        # setforlocation calls config.setkeydir()
+
+        # setforlocation called config.setkeydir(), so we can get a local zipMetaEncoding parameter
         metadataencoding = self.config.getConfParam("zipMetaEncoding")
-        #self.em.rclog(f"metadataencoding: {metadataencoding}")
+        detectindic = ""
+        if metadataencoding == "detect":
+            detectindic = " (detected)"
+            try:
+                metadataencoding = detect_zip_name_encoding(self.filename)
+            except Exception as err:
+                metadataencoding = None
+        if metadataencoding is not None:
+            self.em.rclog(f"metadataencoding{detectindic}: {metadataencoding}")
+
         try:
-            # Note: py3 ZipFile wants an str file name, which is wrong: file names are
-            # binary. But it accepts an open file, and open() has no such restriction. We might
-            # be able to use the filesystemencoding and surrogateescape thingy, but let's leave
-            # well enough alone...
+            # Note: py3 ZipFile wants an str file name, but it accepts an open file, and open()
+            # has no such restriction. We might be able to use the filesystemencoding and
+            # surrogateescape thingy, but let's leave well enough alone...
             self.f = open(self.filename, "rb")
             self.zip = ZipFile(self.f, metadata_encoding = metadataencoding)
             return True
-        except Exception as err:
-            self.em.rclog("openfile: failed: [%s]" % err)
-            return False
+        except Exception as err_1:
+            # Sometimes, the detected encoding may be wrong and cause exceptions
+            # So we want a fallback
+            try:
+                self.em.rclog("openfile: failed: [%s]" % err_1)
+                self.em.rclog("openfile: try again with default encoding")
+                self.f = open(self.filename, "rb")
+                self.zip = ZipFile(self.f)
+                return True
+            except Exception as err_2:
+                self.em.rclog("openfile: failed again: [%s]" % err_2)
+                return False
 
     def namelist(self):
         return self.zip.namelist()
