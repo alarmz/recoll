@@ -107,29 +107,6 @@ real time indexing. This enables having parts of the tree
 which are initially indexed but not monitored. If daemSkippedPaths is
 not set, the daemon uses skippedPaths.
 </para></listitem></varlistentry>
-<varlistentry id="RCL.CONFIG.RECOLLCONF.ZIPUSESKIPPEDNAMES">
-<term><varname>zipUseSkippedNames</varname></term>
-<listitem><para>Use skippedNames inside Zip archives. Fetched
-directly by the rclzip.py handler. Skip the patterns defined by skippedNames
-inside Zip archives. Can be redefined for subdirectories.
-See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
-</para></listitem></varlistentry>
-<varlistentry id="RCL.CONFIG.RECOLLCONF.ZIPSKIPPEDNAMES">
-<term><varname>zipSkippedNames</varname></term>
-<listitem><para>Space-separated list of wildcard expressions for names that should
-be ignored inside zip archives. This is used directly by
-the zip handler. If zipUseSkippedNames is not set, zipSkippedNames
-defines the patterns to be skipped inside archives. If zipUseSkippedNames
-is set, the two lists are concatenated and used. Can be redefined for
-subdirectories.
-See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
-</para></listitem></varlistentry>
-<varlistentry id="RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING">
-<term><varname>zipMetaEncoding</varname></term>
-<listitem><para>Name of an encoding to pass to the python3 ZipFile constructor This is useful for non-standard zip files where the metadata is neither UTF-8
-(indicated by a file flag), nor CP437 (default). The parameter can be set for specific
-subtrees.
-</para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.FOLLOWLINKS">
 <term><varname>followLinks</varname></term>
 <listitem><para>Follow symbolic links during
@@ -892,7 +869,7 @@ documents.
 </para></listitem></varlistentry>
 </variablelist></sect2>
 <sect2  id="RCL.CONFIG.RECOLLCONF.PDF">
-<title>Parameters for the PDF input script </title><variablelist>
+<title>Parameters for the PDF handler </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.PDFOCR">
 <term><varname>pdfocr</varname></term>
 <listitem><para>Attempt OCR of PDF files with no text content. This can be defined in subdirectories. The default is off because
@@ -926,6 +903,46 @@ method which will be called with the qualified tag name and value of each
 selected field, for editing or erasing. A new instance is created for
 each document, so that the object can keep state for, e.g. eliminating
 duplicate values.
+</para></listitem></varlistentry>
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.ZIP">
+<title>Parameters for the ZIP file handler </title><variablelist>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.ZIPUSESKIPPEDNAMES">
+<term><varname>zipUseSkippedNames</varname></term>
+<listitem><para>Use skippedNames inside Zip archives. Fetched
+directly by the rclzip.py handler. Skip the patterns defined by skippedNames
+inside Zip archives. Can be redefined for subdirectories.
+See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
+</para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.ZIPSKIPPEDNAMES">
+<term><varname>zipSkippedNames</varname></term>
+<listitem><para>Space-separated list of wildcard expressions for names that should
+be ignored inside zip archives. This is used directly by
+the zip handler. If zipUseSkippedNames is not set, zipSkippedNames
+defines the patterns to be skipped inside archives. If zipUseSkippedNames
+is set, the two lists are concatenated and used. Can be redefined for
+subdirectories.
+See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
+</para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING">
+<term><varname>zipMetaEncoding</varname></term>
+<listitem><para>Set the encoding to use for file paths. Set to "detect" for using chardet. This is useful for non-standard zip files where the metadata is neither UTF-8
+(indicated by a file flag), nor CP437 (default). The parameter can be set for specific
+subtrees.
+</para></listitem></varlistentry>
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.ORGHANDLERPARAMS">
+<title>Parameters for the Org mode handler </title><variablelist>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.ORGMODESUBDOCS">
+<term><varname>orgmodesubdocs</varname></term>
+<listitem><para>Index org-mode level 1 sections as separate sub-documents This is the default. If set to false, org-mode files will be indexed as plain text
+</para></listitem></varlistentry>
+</variablelist></sect2>
+<sect2  id="RCL.CONFIG.RECOLLCONF.MOZMAILHANDLERPARAMS">
+<title>Parameters for the Thunderbird mbox handler </title><variablelist>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.MHMBOXQUIRKS">
+<term><varname>mhmboxquirks</varname></term>
+<listitem><para>Enable thunderbird/mozilla-seamonkey mbox format quirks Set this for the directory(ies) where the email mbox files are stored.
 </para></listitem></varlistentry>
 </variablelist></sect2>
 <sect2  id="RCL.CONFIG.RECOLLCONF.OCR">
@@ -982,20 +999,5 @@ script. Typical values: English, French... See the ABBYY documentation.
 <varlistentry id="RCL.CONFIG.RECOLLCONF.STTDEVICE">
 <term><varname>sttdevice</varname></term>
 <listitem><para>Name of the device to be used by for whisper </para></listitem></varlistentry>
-</variablelist></sect2>
-<sect2  id="RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS">
-<title>Parameters for miscellaneous specific handlers </title><variablelist>
-<varlistentry id="RCL.CONFIG.RECOLLCONF.ORGMODESUBDOCS">
-<term><varname>orgmodesubdocs</varname></term>
-<listitem><para>Index org-mode level 1 sections as separate sub-documents This is the default. If set to false, org-mode files will be indexed as plain text
-</para></listitem></varlistentry>
-</variablelist></sect2>
-<sect2  id="RCL.CONFIG.RECOLLCONF.SPECLOCATIONS">
-<title>Parameters set for specific locations </title><variablelist>
-<varlistentry id="RCL.CONFIG.RECOLLCONF.MHMBOXQUIRKS">
-<term><varname>mhmboxquirks</varname></term>
-<listitem><para>Enable thunderbird/mozilla-seamonkey mbox format quirks Set this for the directory where the email mbox files are
-stored.
-</para></listitem></varlistentry>
 </variablelist></sect2>
 </sect1>

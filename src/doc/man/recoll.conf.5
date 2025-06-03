@@ -149,23 +149,6 @@ real time indexing. This enables having parts of the tree
 which are initially indexed but not monitored. If daemSkippedPaths is
 not set, the daemon uses skippedPaths.
 .TP
-.BI "zipUseSkippedNames = "bool
-Use skippedNames inside Zip archives. Fetched
-directly by the rclzip.py handler. Skip the patterns defined by skippedNames
-inside Zip archives. Can be redefined for subdirectories.
-See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
-
-.TP
-.BI "zipSkippedNames = "string
-Space-separated list of wildcard expressions for names that should
-be ignored inside zip archives. This is used directly by
-the zip handler. If zipUseSkippedNames is not set, zipSkippedNames
-defines the patterns to be skipped inside archives. If zipUseSkippedNames
-is set, the two lists are concatenated and used. Can be redefined for
-subdirectories.
-See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
-
-.TP
 .BI "followLinks = "bool
 Follow symbolic links during
 indexing. The default is to ignore symbolic links to avoid
@@ -853,6 +836,34 @@ selected field, for editing or erasing. A new instance is created for
 each document, so that the object can keep state for, e.g. eliminating
 duplicate values.
 .TP
+.BI "zipUseSkippedNames = "bool
+Use skippedNames inside Zip archives. Fetched
+directly by the rclzip.py handler. Skip the patterns defined by skippedNames
+inside Zip archives. Can be redefined for subdirectories.
+See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
+
+.TP
+.BI "zipSkippedNames = "string
+Space-separated list of wildcard expressions for names that should
+be ignored inside zip archives. This is used directly by
+the zip handler. If zipUseSkippedNames is not set, zipSkippedNames
+defines the patterns to be skipped inside archives. If zipUseSkippedNames
+is set, the two lists are concatenated and used. Can be redefined for
+subdirectories.
+See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
+
+.TP
+.BI "zipMetaEncoding = "string
+Set the encoding to use for file paths. Set to "detect" for using chardet. This is useful for non-standard zip files where the metadata is neither UTF-8
+(indicated by a file flag), nor CP437 (default). The parameter can be set for specific
+subtrees.
+.TP
+.BI "orgmodesubdocs = "bool
+Index org-mode level 1 sections as separate sub-documents This is the default. If set to false, org-mode files will be indexed as plain text
+.TP
+.BI "mhmboxquirks = "string
+Enable thunderbird/mozilla-seamonkey mbox format quirks Set this for the directory(ies) where the email mbox files are stored.
+.TP
 .BI "ocrprogs = "string
 OCR modules to try. The top OCR script will try to load the corresponding modules in
 order and use the first which reports being capable of performing OCR on
@@ -897,13 +908,6 @@ Name of the whisper model
 .TP
 .BI "sttdevice = "string
 Name of the device to be used by for whisper 
-.TP
-.BI "orgmodesubdocs = "bool
-Index org-mode level 1 sections as separate sub-documents This is the default. If set to false, org-mode files will be indexed as plain text
-.TP
-.BI "mhmboxquirks = "string
-Enable thunderbird/mozilla-seamonkey mbox format quirks Set this for the directory where the email mbox files are
-stored.
 
 .SH SEE ALSO
 .PP

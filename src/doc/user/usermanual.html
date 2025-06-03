@@ -514,20 +514,23 @@ alink="#0000FF">
                 parameters (no impact on the index)</a></span></dt>
                 <dt><span class="sect2">5.3.7. <a href=
                 "#RCL.CONFIG.RECOLLCONF.PDF">Parameters for the PDF
-                input script</a></span></dt>
+                handler</a></span></dt>
                 <dt><span class="sect2">5.3.8. <a href=
+                "#RCL.CONFIG.RECOLLCONF.ZIP">Parameters for the ZIP
+                file handler</a></span></dt>
+                <dt><span class="sect2">5.3.9. <a href=
+                "#RCL.CONFIG.RECOLLCONF.ORGHANDLERPARAMS">Parameters
+                for the Org mode handler</a></span></dt>
+                <dt><span class="sect2">5.3.10. <a href=
+                "#RCL.CONFIG.RECOLLCONF.MOZMAILHANDLERPARAMS">Parameters
+                for the Thunderbird mbox handler</a></span></dt>
+                <dt><span class="sect2">5.3.11. <a href=
                 "#RCL.CONFIG.RECOLLCONF.OCR">Parameters for OCR
                 processing</a></span></dt>
-                <dt><span class="sect2">5.3.9. <a href=
+                <dt><span class="sect2">5.3.12. <a href=
                 "#RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS">Parameters
                 for running speech to text
                 conversion</a></span></dt>
-                <dt><span class="sect2">5.3.10. <a href=
-                "#RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS">Parameters
-                for miscellaneous specific handlers</a></span></dt>
-                <dt><span class="sect2">5.3.11. <a href=
-                "#RCL.CONFIG.RECOLLCONF.SPECLOCATIONS">Parameters
-                set for specific locations</a></span></dt>
               </dl>
             </dd>
             <dt><span class="sect1">5.4. <a href=
@@ -3064,7 +3067,7 @@ pass</pre>
           in the index configuration file), and tell <span class=
           "application">Recoll</span> how to run the OCR by setting
           <a class="link" href="#RCL.CONFIG.RECOLLCONF.OCR" title=
-          "5.3.8.&nbsp;Parameters for OCR processing">configuration
+          "5.3.11.&nbsp;Parameters for OCR processing">configuration
           variables</a>. All parameters can be localized in
           subdirectories through the usual main configuration
           mechanism (path sections).</p>
@@ -10029,40 +10032,6 @@ defaultcharset = utf-8</pre>
                 daemSkippedPaths is not set, the daemon uses
                 skippedPaths.</p>
               </dd>
-              <dt><a name=
-              "RCL.CONFIG.RECOLLCONF.ZIPUSESKIPPEDNAMES" id=
-              "RCL.CONFIG.RECOLLCONF.ZIPUSESKIPPEDNAMES"></a><span class="term"><code class="varname">zipUseSkippedNames</code></span></dt>
-              <dd>
-                <p>Use skippedNames inside Zip archives. Fetched
-                directly by the rclzip.py handler. Skip the
-                patterns defined by skippedNames inside Zip
-                archives. Can be redefined for subdirectories. See
-                https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html</p>
-              </dd>
-              <dt><a name="RCL.CONFIG.RECOLLCONF.ZIPSKIPPEDNAMES"
-              id=
-              "RCL.CONFIG.RECOLLCONF.ZIPSKIPPEDNAMES"></a><span class="term"><code class="varname">zipSkippedNames</code></span></dt>
-              <dd>
-                <p>Space-separated list of wildcard expressions for
-                names that should be ignored inside zip archives.
-                This is used directly by the zip handler. If
-                zipUseSkippedNames is not set, zipSkippedNames
-                defines the patterns to be skipped inside archives.
-                If zipUseSkippedNames is set, the two lists are
-                concatenated and used. Can be redefined for
-                subdirectories. See
-                https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html</p>
-              </dd>
-              <dt><a name="RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING"
-              id=
-              "RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING"></a><span class="term"><code class="varname">zipMetaEncoding</code></span></dt>
-              <dd>
-                <p>Name of an encoding to pass to the python3
-                ZipFile constructor This is useful for non-standard
-                zip files where the metadata is neither UTF-8
-                (indicated by a file flag), nor CP437 (default).
-                The parameter can be set for specific subtrees.</p>
-              </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.FOLLOWLINKS" id=
               "RCL.CONFIG.RECOLLCONF.FOLLOWLINKS"></a><span class=
               "term"><code class=
@@ -11347,7 +11316,7 @@ defaultcharset = utf-8</pre>
                 <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.PDF" id=
                 "RCL.CONFIG.RECOLLCONF.PDF"></a>5.3.7.&nbsp;Parameters
-                for the PDF input script</h3>
+                for the PDF handler</h3>
               </div>
             </div>
           </div>
@@ -11420,8 +11389,107 @@ defaultcharset = utf-8</pre>
             <div>
               <div>
                 <h3 class="title"><a name=
+                "RCL.CONFIG.RECOLLCONF.ZIP" id=
+                "RCL.CONFIG.RECOLLCONF.ZIP"></a>5.3.8.&nbsp;Parameters
+                for the ZIP file handler</h3>
+              </div>
+            </div>
+          </div>
+          <div class="variablelist">
+            <dl class="variablelist">
+              <dt><a name=
+              "RCL.CONFIG.RECOLLCONF.ZIPUSESKIPPEDNAMES" id=
+              "RCL.CONFIG.RECOLLCONF.ZIPUSESKIPPEDNAMES"></a><span class="term"><code class="varname">zipUseSkippedNames</code></span></dt>
+              <dd>
+                <p>Use skippedNames inside Zip archives. Fetched
+                directly by the rclzip.py handler. Skip the
+                patterns defined by skippedNames inside Zip
+                archives. Can be redefined for subdirectories. See
+                https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html</p>
+              </dd>
+              <dt><a name="RCL.CONFIG.RECOLLCONF.ZIPSKIPPEDNAMES"
+              id=
+              "RCL.CONFIG.RECOLLCONF.ZIPSKIPPEDNAMES"></a><span class="term"><code class="varname">zipSkippedNames</code></span></dt>
+              <dd>
+                <p>Space-separated list of wildcard expressions for
+                names that should be ignored inside zip archives.
+                This is used directly by the zip handler. If
+                zipUseSkippedNames is not set, zipSkippedNames
+                defines the patterns to be skipped inside archives.
+                If zipUseSkippedNames is set, the two lists are
+                concatenated and used. Can be redefined for
+                subdirectories. See
+                https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html</p>
+              </dd>
+              <dt><a name="RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING"
+              id=
+              "RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING"></a><span class="term"><code class="varname">zipMetaEncoding</code></span></dt>
+              <dd>
+                <p>Set the encoding to use for file paths. Set to
+                "detect" for using chardet. This is useful for
+                non-standard zip files where the metadata is
+                neither UTF-8 (indicated by a file flag), nor CP437
+                (default). The parameter can be set for specific
+                subtrees.</p>
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name=
+                "RCL.CONFIG.RECOLLCONF.ORGHANDLERPARAMS" id=
+                "RCL.CONFIG.RECOLLCONF.ORGHANDLERPARAMS"></a>5.3.9.&nbsp;Parameters
+                for the Org mode handler</h3>
+              </div>
+            </div>
+          </div>
+          <div class="variablelist">
+            <dl class="variablelist">
+              <dt><a name="RCL.CONFIG.RECOLLCONF.ORGMODESUBDOCS"
+              id="RCL.CONFIG.RECOLLCONF.ORGMODESUBDOCS"></a><span class="term"><code class="varname">orgmodesubdocs</code></span></dt>
+              <dd>
+                <p>Index org-mode level 1 sections as separate
+                sub-documents This is the default. If set to false,
+                org-mode files will be indexed as plain text</p>
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name=
+                "RCL.CONFIG.RECOLLCONF.MOZMAILHANDLERPARAMS" id=
+                "RCL.CONFIG.RECOLLCONF.MOZMAILHANDLERPARAMS"></a>5.3.10.&nbsp;Parameters
+                for the Thunderbird mbox handler</h3>
+              </div>
+            </div>
+          </div>
+          <div class="variablelist">
+            <dl class="variablelist">
+              <dt><a name="RCL.CONFIG.RECOLLCONF.MHMBOXQUIRKS" id=
+              "RCL.CONFIG.RECOLLCONF.MHMBOXQUIRKS"></a><span class=
+              "term"><code class=
+              "varname">mhmboxquirks</code></span></dt>
+              <dd>
+                <p>Enable thunderbird/mozilla-seamonkey mbox format
+                quirks Set this for the directory(ies) where the
+                email mbox files are stored.</p>
+              </dd>
+            </dl>
+          </div>
+        </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.OCR" id=
-                "RCL.CONFIG.RECOLLCONF.OCR"></a>5.3.8.&nbsp;Parameters
+                "RCL.CONFIG.RECOLLCONF.OCR"></a>5.3.11.&nbsp;Parameters
                 for OCR processing</h3>
               </div>
             </div>
@@ -11505,7 +11573,7 @@ defaultcharset = utf-8</pre>
               <div>
                 <h3 class="title"><a name=
                 "RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS" id=
-                "RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS"></a>5.3.9.&nbsp;Parameters
+                "RCL.CONFIG.RECOLLCONF.SPEECHTOTEXTPARAMS"></a>5.3.12.&nbsp;Parameters
                 for running speech to text conversion</h3>
               </div>
             </div>
@@ -11534,54 +11602,6 @@ defaultcharset = utf-8</pre>
               "varname">sttdevice</code></span></dt>
               <dd>
                 <p>Name of the device to be used by for whisper</p>
-              </dd>
-            </dl>
-          </div>
-        </div>
-        <div class="sect2">
-          <div class="titlepage">
-            <div>
-              <div>
-                <h3 class="title"><a name=
-                "RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS" id=
-                "RCL.CONFIG.RECOLLCONF.MISCHANDLERPARAMS"></a>5.3.10.&nbsp;Parameters
-                for miscellaneous specific handlers</h3>
-              </div>
-            </div>
-          </div>
-          <div class="variablelist">
-            <dl class="variablelist">
-              <dt><a name="RCL.CONFIG.RECOLLCONF.ORGMODESUBDOCS"
-              id="RCL.CONFIG.RECOLLCONF.ORGMODESUBDOCS"></a><span class="term"><code class="varname">orgmodesubdocs</code></span></dt>
-              <dd>
-                <p>Index org-mode level 1 sections as separate
-                sub-documents This is the default. If set to false,
-                org-mode files will be indexed as plain text</p>
-              </dd>
-            </dl>
-          </div>
-        </div>
-        <div class="sect2">
-          <div class="titlepage">
-            <div>
-              <div>
-                <h3 class="title"><a name=
-                "RCL.CONFIG.RECOLLCONF.SPECLOCATIONS" id=
-                "RCL.CONFIG.RECOLLCONF.SPECLOCATIONS"></a>5.3.11.&nbsp;Parameters
-                set for specific locations</h3>
-              </div>
-            </div>
-          </div>
-          <div class="variablelist">
-            <dl class="variablelist">
-              <dt><a name="RCL.CONFIG.RECOLLCONF.MHMBOXQUIRKS" id=
-              "RCL.CONFIG.RECOLLCONF.MHMBOXQUIRKS"></a><span class=
-              "term"><code class=
-              "varname">mhmboxquirks</code></span></dt>
-              <dd>
-                <p>Enable thunderbird/mozilla-seamonkey mbox format
-                quirks Set this for the directory where the email
-                mbox files are stored.</p>
               </dd>
             </dl>
           </div>
