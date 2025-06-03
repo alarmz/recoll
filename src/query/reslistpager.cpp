@@ -253,7 +253,7 @@ void ResListPager::displayDoc(RclConfig *config, int i, Rcl::Doc& doc,
             // Then we already did the snippets thing, and we'll display it. Make this the doc
             // abstract if it's set. All this nonsense is to preserve compat with old paragraph
             // formats. Note that in this case we never display the beginning of doc bogus abstract.
-            abstract = doc.syntabs ? std::string() : doc.meta[Rcl::Doc::keyabs];
+            abstract = doc.syntabs ? std::string() : escapeHtml(doc.meta[Rcl::Doc::keyabs]);
         } else {
             vector<string> snippets;
             m_hiliter->set_inputhtml(false);
