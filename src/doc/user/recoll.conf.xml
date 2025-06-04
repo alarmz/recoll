@@ -947,6 +947,11 @@ subtrees.
 </variablelist></sect2>
 <sect2  id="RCL.CONFIG.RECOLLCONF.OCR">
 <title>Parameters for OCR processing </title><variablelist>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.IMGOCR">
+<term><varname>imgocr</varname></term>
+<listitem><para>Tell the non-default Python image handler to run OCR. See the PDF section for PDF OCR. The image OCR also needs mimeconf changes. See the
+manual. imgocr can be defined for subdirectories.
+</para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.OCRPROGS">
 <term><varname>ocrprogs</varname></term>
 <listitem><para>OCR modules to try. The top OCR script will try to load the corresponding modules in

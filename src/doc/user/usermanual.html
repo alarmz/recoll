@@ -223,6 +223,14 @@ alink="#0000FF">
                 <dt><span class="sect2">2.7.3. <a href=
                 "#RCL.INDEXING.OCR">Running OCR on image
                 documents</a></span></dt>
+                <dd>
+                  <dl>
+                    <dt><span class="sect3"><a href="#id1344">OCR
+                    for PDF documents</a></span></dt>
+                    <dt><span class="sect3"><a href="#id1345">OCR
+                    for image documents</a></span></dt>
+                  </dl>
+                </dd>
                 <dt><span class="sect2">2.7.4. <a href=
                 "#RCL.INDEXING.STT">Running a speech to text
                 program on audio files</a></span></dt>
@@ -459,7 +467,7 @@ alink="#0000FF">
                     <dt><span class="sect3"><a href=
                     "#RCL.PROGRAM.PYTHONAPI.UPDATE.EXTINDEXER">Recoll
                     external indexers</a></span></dt>
-                    <dt><span class="sect3"><a href="#id1344">The
+                    <dt><span class="sect3"><a href="#id1346">The
                     Python indexing API</a></span></dt>
                     <dt><span class="sect3"><a href=
                     "#RCL.PROGRAM.PYTHONAPI.UPDATE.CONFIGURATION">External
@@ -569,7 +577,7 @@ alink="#0000FF">
           </dl>
         </dd>
         <dt><span class="part">I. <a href=
-        "#id1353">Appendices</a></span></dt>
+        "#id1355">Appendices</a></span></dt>
         <dd>
           <dl>
             <dt><span class="appendix">A. <a href=
@@ -578,32 +586,32 @@ alink="#0000FF">
             <dd>
               <dl>
                 <dt><span class="sect1">A.1. <a href=
-                "#id1345">Words and spans</a></span></dt>
+                "#id1347">Words and spans</a></span></dt>
                 <dt><span class="sect1">A.2. <a href=
-                "#id1349">Special ASCII characters during
+                "#id1351">Special ASCII characters during
                 indexing</a></span></dt>
                 <dd>
                   <dl>
                     <dt><span class="sect2">A.2.1. <a href=
-                    "#id1346">Characters with hard-coded
+                    "#id1348">Characters with hard-coded
                     processing</a></span></dt>
                     <dt><span class="sect2">A.2.2. <a href=
-                    "#id1347">Characters generally treated as white
+                    "#id1349">Characters generally treated as white
                     space</a></span></dt>
                     <dt><span class="sect2">A.2.3. <a href=
-                    "#id1348">Backslash</a></span></dt>
+                    "#id1350">Backslash</a></span></dt>
                   </dl>
                 </dd>
                 <dt><span class="sect1">A.3. <a href=
-                "#id1352">Special ASCII characters at search
+                "#id1354">Special ASCII characters at search
                 time</a></span></dt>
                 <dd>
                   <dl>
                     <dt><span class="sect2">A.3.1. <a href=
-                    "#id1350">Query language special
+                    "#id1352">Query language special
                     characters</a></span></dt>
                     <dt><span class="sect2">A.3.2. <a href=
-                    "#id1351">Wild card characters</a></span></dt>
+                    "#id1353">Wild card characters</a></span></dt>
                   </dl>
                 </dd>
               </dl>
@@ -644,7 +652,7 @@ alink="#0000FF">
     <div class="list-of-tables">
       <p><b>List of Tables</b></p>
       <dl>
-        <dt>3.1. <a href="#id1354">Keyboard shortcuts</a></dt>
+        <dt>3.1. <a href="#id1356">Keyboard shortcuts</a></dt>
       </dl>
     </div>
     <div class="chapter">
@@ -1086,8 +1094,8 @@ alink="#0000FF">
             <div class="titlepage">
               <div>
                 <div>
-                  <h4 class="title"><a name="id1559" id=
-                  "id1559"></a>Choosing an indexing mode</h4>
+                  <h4 class="title"><a name="id1561" id=
+                  "id1561"></a>Choosing an indexing mode</h4>
                 </div>
               </div>
             </div>
@@ -3045,37 +3053,27 @@ pass</pre>
             </div>
           </div>
           <p>The <span class="application">Recoll</span> PDF
-          handler has the ability to call an external OCR program
-          if the processed file has no text content. The OCR data
-          is stored in a cache of separate files, avoiding any
-          modification of the originals.</p>
-          <p>It must be noted that, if modifying the files (or a
-          copy) is acceptable, then running something like
-          <a class="ulink" href=
-          "https://ocrmypdf.readthedocs.io/en/latest/index.html"
-          target="_top">OCRmyPDF</a> to add a text layer to the PDF
-          itself is a better solution (e.g. allowing <span class=
-          "application">Recoll</span> to position the PDF viewer on
-          the search target when opening the document, and
-          permitting secondary search in the native tool).</p>
+          handler (<span class=
+          "command"><strong>rclpdf.py</strong></span>), and the
+          alternate image handler (<span class=
+          "command"><strong>rclimg.py</strong></span>) as of
+          <span class="application">Recoll</span> 1.43.3 have the
+          ability to call an external OCR program.</p>
+          <p>The operation details are slightly different for PDF
+          and other image documents.</p>
           <p>To enable the <span class="application">Recoll</span>
           OCR feature, you need to install one of the supported OCR
           applications (<span class="application">tesseract</span>
           or <span class="application">ABBYY</span>), enable OCR in
-          the PDF handler (by setting <code class=
-          "literal">pdfocr</code> to <code class="literal">1</code>
-          in the index configuration file), and tell <span class=
+          the PDF or image handler by setting the appropriate
+          configuration parameter, tell <span class=
           "application">Recoll</span> how to run the OCR by setting
-          <a class="link" href="#RCL.CONFIG.RECOLLCONF.OCR" title=
+          the specific OCR <a class="link" href=
+          "#RCL.CONFIG.RECOLLCONF.OCR" title=
           "5.3.11.&nbsp;Parameters for OCR processing">configuration
           variables</a>. All parameters can be localized in
           subdirectories through the usual main configuration
           mechanism (path sections).</p>
-          <p>Example configuration fragment in <code class=
-          "filename">recoll.conf</code>:</p>
-          <pre class="programlisting">pdfocr = 1
-ocrprogs = tesseract
-tesseractlang = eng</pre>
           <p>This facility got a major update in <span class=
           "application">Recoll</span> 1.26.5. Older versions had a
           more limited, non-caching capability to execute an
@@ -3097,7 +3095,7 @@ tesseractlang = eng</pre>
                 changed.</p>
               </li>
               <li class="listitem">
-                <p>The support for a specific program is
+                <p>The support for a specific OCR program is
                 implemented in a simple Python module. It should be
                 straightforward to add support for any OCR engine
                 with a capability to run from the command line.</p>
@@ -3111,12 +3109,92 @@ tesseractlang = eng</pre>
                 program, but it sometimes perform better than
                 tesseract.</p>
               </li>
-              <li class="listitem">
-                <p>The OCR is currently only called from the PDF
-                handler, but there should be no problem using it
-                for other image types.</p>
-              </li>
             </ul>
+          </div>
+          <div class="sect3">
+            <div class="titlepage">
+              <div>
+                <div>
+                  <h4 class="title"><a name="id1344" id=
+                  "id1344"></a>OCR for PDF documents</h4>
+                </div>
+              </div>
+            </div>
+            <p>It must be noted that, if modifying the files (or a
+            copy) is acceptable, then using <a class="ulink" href=
+            "https://ocrmypdf.readthedocs.io/en/latest/index.html"
+            target="_top">OCRmyPDF</a> to add a text layer to the
+            PDF itself is a better solution than using the
+            <span class="application">Recoll</span> OCR feature:
+            e.g. allowing <span class="application">Recoll</span>
+            to position the PDF viewer on the search target when
+            opening the document, and permitting secondary search
+            in the native tool.</p>
+            <p>The <span class="application">Recoll</span> OCR is
+            enabled by the <code class="literal">pdfocr</code>
+            configuration variable, and will only be executed if
+            the processed file has no text content.</p>
+            <p>Example configuration fragment in <code class=
+            "filename">recoll.conf</code>:</p>
+            <pre class="programlisting">pdfocr = 1
+ocrprogs = tesseract
+tesseractlang = eng</pre>
+            <p>The <code class="literal">pdfocr</code> variable can
+            be set globally or for specific subtrees.</p>
+          </div>
+          <div class="sect3">
+            <div class="titlepage">
+              <div>
+                <div>
+                  <h4 class="title"><a name="id1345" id=
+                  "id1345"></a>OCR for image documents</h4>
+                </div>
+              </div>
+            </div>
+            <p>As of <span class="application">Recoll</span>
+            1.43.3, the alternate Python <span class=
+            "command"><strong>rclimg.py</strong></span> handler can
+            execute OCR on image files. The default image handler
+            is the Perl-based <span class=
+            "command"><strong>rclimg</strong></span> script and has
+            not been OCR-enabled. So, for performing image OCR, you
+            need to tell <span class="application">Recoll</span> to
+            use the alternate handler and also to enable OCR by
+            setting the <code class="literal">imgocr</code>
+            variable.</p>
+            <p>If you are running an older <span class=
+            "application">Recoll</span> release, you can grab an up
+            to date copy of <code class="filename">rclimg.py</code>
+            from the <a class="ulink" href=
+            "https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rclimg.py?ref_type=heads"
+            target="_top">git repository</a>. You will have to copy
+            it to the <span class="application">Recoll</span>
+            <code class="filename">filters/</code> directory and
+            make it executable. The script needs to run from the
+            installation directory because of how it runs the OCR
+            script.</p>
+            <p>Example configuration:</p>
+            <p>In <code class=
+            "filename">$RECOLL_CONFDIR/mimeconf</code> (e.g.
+            <em class=
+            "replaceable"><code>~/.recoll/mimeconf</code></em>):</p>
+            <pre class="programlisting">[index]
+image/gif = execm rclimg.py
+image/jp2 = execm rclimg.py
+image/jpeg = execm rclimg.py
+image/png = execm rclimg.py
+image/tiff = execm rclimg.py
+image/x-nikon-nef = execm rclimg.py
+image/x-xcf = execm rclimg.py
+</pre>
+            <p>Of course you can also only use a subset of the
+            image types.</p>
+            <p>In <code class=
+            "filename">$RECOLL_CONFDIR/recoll.conf</code>:</p>
+            <pre class="programlisting">ocrprogs = tesseract
+tesseractlang = eng
+[/path/to/my/images/directory]          
+imgocr = 1</pre>
           </div>
         </div>
         <div class="sect2">
@@ -4920,7 +4998,7 @@ recollindex -c "$confdir"</pre>
           <span class="guilabel">Shortcut</span> column, and type
           the desired sequence.</p>
           <div class="table">
-            <a name="id1354" id="id1354"></a>
+            <a name="id1356" id="id1356"></a>
             <p class="title"><b>Table&nbsp;3.1.&nbsp;Keyboard
             shortcuts</b></p>
             <div class="table-contents">
@@ -9078,8 +9156,8 @@ for i in range(nres):
             <div class="titlepage">
               <div>
                 <div>
-                  <h4 class="title"><a name="id1344" id=
-                  "id1344"></a>The Python indexing API</h4>
+                  <h4 class="title"><a name="id1346" id=
+                  "id1346"></a>The Python indexing API</h4>
                 </div>
               </div>
             </div>
@@ -9558,8 +9636,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5099" id=
-                "id5099"></a>GUI settings</h3>
+                <h3 class="title"><a name="id5129" id=
+                "id5129"></a>GUI settings</h3>
               </div>
             </div>
           </div>
@@ -9575,8 +9653,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5106" id=
-                "id5106"></a>Index configuration parameters</h3>
+                <h3 class="title"><a name="id5136" id=
+                "id5136"></a>Index configuration parameters</h3>
               </div>
             </div>
           </div>
@@ -11496,6 +11574,16 @@ defaultcharset = utf-8</pre>
           </div>
           <div class="variablelist">
             <dl class="variablelist">
+              <dt><a name="RCL.CONFIG.RECOLLCONF.IMGOCR" id=
+              "RCL.CONFIG.RECOLLCONF.IMGOCR"></a><span class=
+              "term"><code class=
+              "varname">imgocr</code></span></dt>
+              <dd>
+                <p>Tell the non-default Python image handler to run
+                OCR. See the PDF section for PDF OCR. The image OCR
+                also needs mimeconf changes. See the manual. imgocr
+                can be defined for subdirectories.</p>
+              </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.OCRPROGS" id=
               "RCL.CONFIG.RECOLLCONF.OCRPROGS"></a><span class=
               "term"><code class=
@@ -12190,8 +12278,8 @@ application/x-blobapp = internal text/plain</pre>
       <div class="titlepage">
         <div>
           <div>
-            <h1 class="title"><a name="id1353" id=
-            "id1353"></a>Part&nbsp;I.&nbsp;Appendices</h1>
+            <h1 class="title"><a name="id1355" id=
+            "id1355"></a>Part&nbsp;I.&nbsp;Appendices</h1>
           </div>
         </div>
       </div>
@@ -12216,7 +12304,7 @@ application/x-blobapp = internal text/plain</pre>
             <div>
               <div>
                 <h2 class="title" style="clear: both"><a name=
-                "id1345" id="id1345"></a>A.1.&nbsp;Words and
+                "id1347" id="id1347"></a>A.1.&nbsp;Words and
                 spans</h2>
               </div>
             </div>
@@ -12263,7 +12351,7 @@ application/x-blobapp = internal text/plain</pre>
             <div>
               <div>
                 <h2 class="title" style="clear: both"><a name=
-                "id1349" id="id1349"></a>A.2.&nbsp;Special ASCII
+                "id1351" id="id1351"></a>A.2.&nbsp;Special ASCII
                 characters during indexing</h2>
               </div>
             </div>
@@ -12272,8 +12360,8 @@ application/x-blobapp = internal text/plain</pre>
             <div class="titlepage">
               <div>
                 <div>
-                  <h3 class="title"><a name="id1346" id=
-                  "id1346"></a>A.2.1.&nbsp;Characters with
+                  <h3 class="title"><a name="id1348" id=
+                  "id1348"></a>A.2.1.&nbsp;Characters with
                   hard-coded processing</h3>
                 </div>
               </div>
@@ -12297,8 +12385,8 @@ application/x-blobapp = internal text/plain</pre>
             <div class="titlepage">
               <div>
                 <div>
-                  <h3 class="title"><a name="id1347" id=
-                  "id1347"></a>A.2.2.&nbsp;Characters generally
+                  <h3 class="title"><a name="id1349" id=
+                  "id1349"></a>A.2.2.&nbsp;Characters generally
                   treated as white space</h3>
                 </div>
               </div>
@@ -12322,8 +12410,8 @@ application/x-blobapp = internal text/plain</pre>
             <div class="titlepage">
               <div>
                 <div>
-                  <h3 class="title"><a name="id1348" id=
-                  "id1348"></a>A.2.3.&nbsp;Backslash</h3>
+                  <h3 class="title"><a name="id1350" id=
+                  "id1350"></a>A.2.3.&nbsp;Backslash</h3>
                 </div>
               </div>
             </div>
@@ -12341,7 +12429,7 @@ application/x-blobapp = internal text/plain</pre>
             <div>
               <div>
                 <h2 class="title" style="clear: both"><a name=
-                "id1352" id="id1352"></a>A.3.&nbsp;Special ASCII
+                "id1354" id="id1354"></a>A.3.&nbsp;Special ASCII
                 characters at search time</h2>
               </div>
             </div>
@@ -12353,8 +12441,8 @@ application/x-blobapp = internal text/plain</pre>
             <div class="titlepage">
               <div>
                 <div>
-                  <h3 class="title"><a name="id1350" id=
-                  "id1350"></a>A.3.1.&nbsp;Query language special
+                  <h3 class="title"><a name="id1352" id=
+                  "id1352"></a>A.3.1.&nbsp;Query language special
                   characters</h3>
                 </div>
               </div>
@@ -12376,8 +12464,8 @@ application/x-blobapp = internal text/plain</pre>
             <div class="titlepage">
               <div>
                 <div>
-                  <h3 class="title"><a name="id1351" id=
-                  "id1351"></a>A.3.2.&nbsp;Wild card
+                  <h3 class="title"><a name="id1353" id=
+                  "id1353"></a>A.3.2.&nbsp;Wild card
                   characters</h3>
                 </div>
               </div>

@@ -1726,54 +1726,100 @@ pass</programlisting>
       <sect2 id="RCL.INDEXING.OCR">
         <title>Running OCR on image documents</title>
 
-        <para>The &RCL; PDF handler has the ability to call an external OCR program if the processed
-          file has no text content. The OCR data is stored in a cache of separate files, avoiding
-          any modification of the originals.</para>
+        <para>The &RCL; PDF handler (<command>rclpdf.py</command>), and the alternate image handler
+        (<command>rclimg.py</command>) as of &RCL; 1.43.3 have the ability to call an external OCR
+        program.</para>
 
-        <para>It must be noted that, if modifying the files (or a copy) is acceptable, then running
-          something like
-          <ulink url="https://ocrmypdf.readthedocs.io/en/latest/index.html">OCRmyPDF</ulink> to add
-          a text layer to the PDF itself is a better solution (e.g. allowing &RCL; to position the
-          PDF viewer on the search target when opening the document, and permitting secondary search
-          in the native tool).</para>
+        <para>The operation details are slightly different for PDF and other image documents.</para>
 
         <para>To enable the &RCL; OCR feature, you need to install one of the supported OCR
-          applications (<application>tesseract</application> or <application>ABBYY</application>),
-          enable OCR in the PDF handler (by setting <literal>pdfocr</literal>
-          to <literal>1</literal> in the index configuration file), and tell &RCL; how to run the
-          OCR by setting <link linkend="RCL.CONFIG.RECOLLCONF.OCR">configuration
-          variables</link>. All parameters can be localized in subdirectories through the usual main
-          configuration mechanism (path sections).</para>
-
-        <para>Example configuration fragment in <filename>recoll.conf</filename>:</para>
-        <programlisting>pdfocr = 1
-ocrprogs = tesseract
-tesseractlang = eng</programlisting>
-    
+        applications (<application>tesseract</application> or <application>ABBYY</application>),
+        enable OCR in the PDF or image handler by setting the appropriate configuration parameter,
+        tell &RCL; how to run the OCR by setting the specific OCR <link
+        linkend="RCL.CONFIG.RECOLLCONF.OCR">configuration variables</link>. All parameters can be
+        localized in subdirectories through the usual main configuration mechanism (path
+        sections).</para>
+        
         <para>This facility got a major update in &RCL; 1.26.5. Older versions had a more limited,
           non-caching capability to execute an external OCR program in the PDF handler. The new
           function has the following features:
 
           <itemizedlist>
             <listitem><para>The OCR output is cached, stored as separate files. The caching is
-                ultimately based on a hash value of the original file contents, so that it is immune
-                to file renames. A first path-based layer ensures fast operation for unchanged
-                (unmoved files), and the data hash (which is still orders of magnitude faster than
-                OCR) is only re-computed if the file has moved. OCR is only performed if the file
-                was not previously processed or if it changed.</para></listitem>
-            <listitem><para>The support for a specific program is implemented in a simple Python
-                module. It should be straightforward to add support for any OCR engine with a
-                capability to run from the command line.</para></listitem>
-            <listitem><para>Modules initially exist for
-                <application>tesseract</application> (Linux and Windows), and
-                <application>ABBYY FineReader</application> (Linux, tested with version 11). ABBYY
-                FineReader is a commercial closed source program, but it sometimes perform better
-                than tesseract.</para></listitem>
-            <listitem><para>The OCR is currently only called from the PDF handler, but there should
-                be no problem using it for other image types.</para></listitem>
+            ultimately based on a hash value of the original file contents, so that it is immune to
+            file renames. A first path-based layer ensures fast operation for unchanged (unmoved
+            files), and the data hash (which is still orders of magnitude faster than OCR) is only
+            re-computed if the file has moved. OCR is only performed if the file was not previously
+            processed or if it changed.</para></listitem>
+            <listitem><para>The support for a specific OCR program is implemented in a simple Python
+            module. It should be straightforward to add support for any OCR engine with a capability
+            to run from the command line.</para></listitem>
+            <listitem><para>Modules initially exist for <application>tesseract</application> (Linux
+            and Windows), and <application>ABBYY FineReader</application> (Linux, tested with
+            version 11). ABBYY FineReader is a commercial closed source program, but it sometimes
+            perform better than tesseract.</para></listitem>
           </itemizedlist>
         </para>
 
+        <sect3>
+        <title>OCR for PDF documents</title>
+
+        <para>It must be noted that, if modifying the files (or a copy) is acceptable, then using
+        <ulink url="https://ocrmypdf.readthedocs.io/en/latest/index.html">OCRmyPDF</ulink> to add a
+        text layer to the PDF itself is a better solution than using the &RCL; OCR feature:
+        e.g. allowing &RCL; to position the PDF viewer on the search target when opening the
+        document, and permitting secondary search in the native tool.</para>
+        
+        <para>The &RCL; OCR is enabled by the <literal>pdfocr</literal> configuration variable, and
+        will only be executed if the processed file has no text content.</para>
+
+        <para>Example configuration fragment in <filename>recoll.conf</filename>:</para>
+        <programlisting>pdfocr = 1
+ocrprogs = tesseract
+tesseractlang = eng</programlisting>
+
+        <para>The <literal>pdfocr</literal> variable can be set globally or for specific
+        subtrees.</para>
+        </sect3>
+
+        <sect3>
+          <title>OCR for image documents</title>
+          <para>As of &RCL; 1.43.3, the alternate Python <command>rclimg.py</command> handler can
+          execute OCR on image files. The default image handler is the Perl-based
+          <command>rclimg</command> script and has not been OCR-enabled. So, for performing image
+          OCR, you need to tell &RCL; to use the alternate handler and also to enable OCR by setting
+          the <literal>imgocr</literal> variable.</para>
+
+          <para>If you are running an older &RCL; release, you can grab an up to date copy of
+          <filename>rclimg.py</filename> from the <ulink
+          url="https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rclimg.py?ref_type=heads">git
+          repository</ulink>. You will have to copy it to the &RCL; <filename>filters/</filename>
+          directory and make it executable. The script needs to run from the installation directory
+          because of how it runs the OCR script.</para>
+          
+          <para>Example configuration:</para>
+          <para>In <filename>$RECOLL_CONFDIR/mimeconf</filename>
+          (e.g. <replaceable>~/.recoll/mimeconf</replaceable>): 
+<programlisting>[index]
+image/gif = execm rclimg.py
+image/jp2 = execm rclimg.py
+image/jpeg = execm rclimg.py
+image/png = execm rclimg.py
+image/tiff = execm rclimg.py
+image/x-nikon-nef = execm rclimg.py
+image/x-xcf = execm rclimg.py
+</programlisting>
+          Of course you can also only use a subset of the image types.
+          </para>
+          <para>In <filename>$RECOLL_CONFDIR/recoll.conf</filename>:
+          <programlisting>ocrprogs = tesseract
+tesseractlang = eng
+[/path/to/my/images/directory]          
+imgocr = 1</programlisting>
+          </para>
+
+        </sect3>
+        
       </sect2>
 
       <sect2 id="RCL.INDEXING.STT">
