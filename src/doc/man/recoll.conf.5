@@ -864,6 +864,11 @@ Index org-mode level 1 sections as separate sub-documents This is the default. I
 .BI "mhmboxquirks = "string
 Enable thunderbird/mozilla-seamonkey mbox format quirks Set this for the directory(ies) where the email mbox files are stored.
 .TP
+.BI "imgocr = "bool
+Tell the non-default Python image handler to run OCR. See the PDF section for PDF OCR. The image OCR also needs mimeconf changes. See the
+manual. imgocr can be defined for subdirectories.
+
+.TP
 .BI "ocrprogs = "string
 OCR modules to try. The top OCR script will try to load the corresponding modules in
 order and use the first which reports being capable of performing OCR on

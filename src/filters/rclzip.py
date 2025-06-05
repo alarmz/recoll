@@ -23,7 +23,6 @@ import posixpath
 import datetime
 
 from zipfile import ZipFile
-import chardet
 
 import rclexecm
 from archivextract import ArchiveExtractor
@@ -83,11 +82,11 @@ def detect_zip_name_encoding(zip_path):
 
 class ZipExtractor(ArchiveExtractor):
     def __init__(self, em):
+        super().__init__(em)
         self.filename = None
         self.f = None
         self.zip = None
         self.config = em.config()
-        super().__init__(em)
 
     def closefile(self):
         # self.em.rclog("Closing %s" % self.filename)
@@ -139,12 +138,20 @@ class ZipExtractor(ArchiveExtractor):
 
         # setforlocation called config.setkeydir(), so we can get a local zipMetaEncoding parameter
         metadataencoding = self.config.getConfParam("zipMetaEncoding")
+        if metadataencoding == "detect":
+            global chardet
+            try:
+                import chardet
+            except Exception as err:
+                self.em.rclog("metaDataEncoding detect: failed importing chardet: {err}")
+                metadataencoding = None
         detectindic = ""
         if metadataencoding == "detect":
             detectindic = " (detected)"
             try:
                 metadataencoding = detect_zip_name_encoding(self.filename)
             except Exception as err:
+                self.em.rclog(f"Metadata encoding detection failed: {err}")
                 metadataencoding = None
         if metadataencoding is not None:
             self.em.rclog(f"metadataencoding{detectindic}: {metadataencoding}")
