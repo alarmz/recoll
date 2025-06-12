@@ -36,7 +36,7 @@ alink="#0000FF">
           </div>
         </div>
         <div>
-          <p class="copyright">Copyright © 2005-2024 Jean-Francois
+          <p class="copyright">Copyright © 2005-2025 Jean-Francois
           Dockes</p>
         </div>
         <div>
@@ -131,9 +131,12 @@ alink="#0000FF">
                   <dl>
                     <dt><span class="sect3"><a href=
                     "#id1342">Creating and using an additional
-                    index: Linux example</a></span></dt>
+                    index: <span class=
+                    "application">Unix</span>-like systems
+                    example</a></span></dt>
                     <dt><span class="sect3"><a href=
-                    "#id1343">Creating an alternate index: Windows
+                    "#id1343">Creating an alternate index:
+                    <span class="application">Windows</span>
                     example</a></span></dt>
                   </dl>
                 </dd>
@@ -269,8 +272,9 @@ alink="#0000FF">
                 "#RCL.SEARCH.GUI.SIDEFILTERS">The filters
                 panel</a></span></dt>
                 <dt><span class="sect2">3.2.5. <a href=
-                "#RCL.SEARCH.GUI.RUNSCRIPT">Running arbitrary
-                commands on result files</a></span></dt>
+                "#RCL.SEARCH.GUI.RUNSCRIPT"><span class=
+                "application">Unix</span>-like systems: running
+                arbitrary commands on result files</a></span></dt>
                 <dt><span class="sect2">3.2.6. <a href=
                 "#RCL.SEARCH.GUI.THUMBNAILS"><span class=
                 "application">Unix</span>-like systems: displaying
@@ -668,23 +672,32 @@ alink="#0000FF">
       describes the installation and use of the <span class=
       "application">Recoll</span> application. It is updated for
       <span class="application">Recoll</span> 1.43.1.</p>
-      <p><span class="application">Recoll</span> was for a long
-      time dedicated to Unix-like systems. It was only lately
-      (2015) ported to <span class="application">MS-Windows</span>.
-      Many references in this manual, especially file locations,
-      are specific to Unix, and not valid on Windows, where some
-      described features are also not available. The manual will be
-      progressively updated. Until this happens, on Windows, most
-      references to shared files can be translated by looking under
-      the Recoll installation directory (Typically <code class=
-      "filename">C:/Program Files (x86)/Recoll</code>). Especially,
-      anything referenced inside <code class=
-      "filename">/usr/share</code> in this document will be found
-      in the <code class="filename">Share</code> subdirectory of
-      the installation). The user configuration is stored by
-      default under <code class=
-      "filename">AppData/Local/Recoll</code> inside the user
-      directory, along with the index itself.</p>
+      <div class="note" style=
+      "margin-left: 0.5in; margin-right: 0.5in;">
+        <h3 class="title"><span class="application">Recoll</span>
+        on <span class="application">Windows</span></h3>
+        <p><span class="application">Recoll</span> was for a long
+        time dedicated to Unix-like systems. It was only later
+        ported to <span class="orgname">Microsoft</span>
+        <span class="application">Windows</span>. Many references
+        in this manual, especially file locations, are specific to
+        Unix, and not valid on <span class=
+        "application">Windows</span>, where some described features
+        are also not available. The manual will be updated in time.
+        Until this is completed: on <span class=
+        "application">Windows</span>, most references to shared
+        files can be translated by looking under the <span class=
+        "application">Windows</span> <span class=
+        "application">Recoll</span> installation directory
+        (Typically <code class="filename">C:/Program
+        Files/Recoll</code>). Especially, anything referenced
+        inside <code class="filename">/usr/share</code> in this
+        document will be found in the <code class=
+        "filename">Share</code> subdirectory of the installation).
+        The user configuration is stored by default under
+        <code class="filename">AppData/Local/Recoll</code> inside
+        the user directory, along with the index itself.</p>
+      </div>
       <div class="sect1">
         <div class="titlepage">
           <div>
@@ -714,10 +727,10 @@ alink="#0000FF">
         "command"><strong>recoll</strong></span> GUI go to:
         <span class="guimenu">Preferences</span> → <span class=
         "guimenuitem">Indexing configuration</span>, then adjust
-        the <span class="guilabel">Start folders</span> section (or
-        <span class="guilabel">Top directories</span> in older
-        <span class="application">Recoll</span> versions), which
-        defines the directories from which the filesystem
+        the <span class="guilabel">Start folders</span> section
+        (named <span class="guilabel">Top directories</span> in
+        older <span class="application">Recoll</span> versions),
+        which defines the directories from which the filesystem
         exploration starts.</p>
         <p>By default, the indexer process writes all errors to its
         <code class="literal">stderr</code> output, which may be
@@ -854,11 +867,12 @@ alink="#0000FF">
         inside other documents (for example a PDF document stored
         inside a Zip archive sent as an email attachment...), down
         to an arbitrary depth.</p>
-        <p>By default. <span class="application">Recoll</span>
-        processes east asian texts by generating terms as arbitrary
-        sequences of consecutive characters (n-grams). However, it
-        has provisions to integrate with language-aware text
-        segmenters for <a class="ulink" href=
+        <p>East asian texts are difficult to segment into words. By
+        default, <span class="application">Recoll</span> processes
+        them by generating terms as arbitrary sequences of
+        consecutive characters (n-grams). However, it has
+        provisions to integrate with language-aware text segmenters
+        for <a class="ulink" href=
         "https://www.recoll.org/pages/recoll-chinese.html" target=
         "_top">Chinese</a> and <a class="ulink" href=
         "https://www.recoll.org/pages/recoll-korean.html" target=
@@ -932,11 +946,14 @@ alink="#0000FF">
         title="Running the indexer">indexing process</a> is started
         automatically (after asking permission), the first time you
         execute the <span class=
-        "command"><strong>recoll</strong></span> GUI. Indexing can
-        also be performed by executing the <span class=
-        "command"><strong>recollindex</strong></span> command.
-        <span class="application">Recoll</span> indexing is
-        multithreaded by default when appropriate hardware
+        "command"><strong>recoll</strong></span> GUI. Index
+        updating or rebuild can later be performed by executing the
+        <span class="command"><strong>recollindex</strong></span>
+        command, in a command window, or from the GUI <span class=
+        "guilabel">File</span> menu. <span class=
+        "application">Recoll</span> indexing is multithreaded by
+        default (except on <span class=
+        "application">Windows</span>) when appropriate hardware
         resources are available, and can perform multiple tasks in
         parallel for text extraction, segmentation and index
         updates.</p>
@@ -955,14 +972,14 @@ alink="#0000FF">
               line interface</a>.</p>
             </li>
             <li class="listitem">
-              <p>A <a class="ulink" href=
+              <p>The <a class="ulink" href=
               "https://framagit.org/medoc92/recollwebui" target=
               "_top">Recoll WebUI</a>.</p>
             </li>
             <li class="listitem">
               <p>A Gnome Shell <a class="ulink" href=
               "https://www.recoll.org/pages/download.html" target=
-              "_top">Search Provider</a> .</p>
+              "_top">Search Provider</a>.</p>
             </li>
             <li class="listitem">
               <p>A <a class="link" href="#RCL.PROGRAM.PYTHONAPI"
@@ -971,14 +988,9 @@ alink="#0000FF">
               interface</a></p>
             </li>
             <li class="listitem">
-              <p>A <a class="link" href="#RCL.SEARCH.KIO" title=
+              <p><a class="link" href="#RCL.SEARCH.KIO" title=
               "3.3.&nbsp;Searching with the KDE KIO slave"><span class="application">
-              KDE</span> KIO slave module</a>.</p>
-            </li>
-            <li class="listitem">
-              <p>A Ubuntu Unity <a class="ulink" href=
-              "https://www.recoll.org/pages/download.html" target=
-              "_top">Scope</a> module.</p>
+              KDE</span> KIO worker and krunner modules</a>.</p>
             </li>
           </ul>
         </div>
@@ -1059,14 +1071,14 @@ alink="#0000FF">
               <li class="listitem">
                 <p><b><a class="link" href="#RCL.INDEXING.PERIODIC"
                 title="2.5.1.&nbsp;Periodic indexing">Periodic (or
-                batch) indexing</a> .&nbsp;</b><span class=
+                batch) indexing</a> .&nbsp;</b> <span class=
                 "command"><strong>recollindex</strong></span> is
                 executed at discrete times. On <span class=
                 "application">Unix</span>-like systems, the typical
                 usage is to have a nightly run <a class="link"
                 href="#RCL.INDEXING.PERIODIC.AUTOMAT" title=
-                "Linux: using cron to automate indexing">programmed</a>
-                into your <span class=
+                "Unix-like systems: using cron to automate indexing">
+                programmed</a> into your <span class=
                 "command"><strong>cron</strong></span> file. On
                 <span class="application">Windows</span>, the
                 <span class="application">Task Scheduler</span> can
@@ -1078,7 +1090,7 @@ alink="#0000FF">
               <li class="listitem">
                 <p><b><a class="link" href="#RCL.INDEXING.MONITOR"
                 title="2.5.2.&nbsp;Real time indexing">Real time
-                indexing</a> .&nbsp;</b><span class=
+                indexing</a> .&nbsp;</b> <span class=
                 "command"><strong>recollindex</strong></span> runs
                 permanently as a daemon and uses a file system
                 alteration monitor (e.g. <span class=
@@ -1094,8 +1106,8 @@ alink="#0000FF">
             <div class="titlepage">
               <div>
                 <div>
-                  <h4 class="title"><a name="id1561" id=
-                  "id1561"></a>Choosing an indexing mode</h4>
+                  <h4 class="title"><a name="id1569" id=
+                  "id1569"></a>Choosing an indexing mode</h4>
                 </div>
               </div>
             </div>
@@ -1268,52 +1280,55 @@ alink="#0000FF">
           read. This is sometimes not desirable, and there are ways
           to either exclude some types, or on the contrary define a
           positive list of types to be indexed. In the latter case,
-          any type not in the list will be ignored.</p>
-          <p>Excluding files by name can be done by adding wildcard
-          name patterns to the <a class="link" href=
-          "#RCL.CONFIG.RECOLLCONF.SKIPPEDNAMES">skippedNames</a>
-          list, which can be done from the GUI Index configuration
-          menu. Excluding by type can be done by setting the
-          <a class="link" href=
-          "#RCL.CONFIG.RECOLLCONF.EXCLUDEDMIMETYPES">excludedmimetypes</a>
-          list in the configuration file. This can be redefined for
-          subdirectories.</p>
-          <p>You can also define an exclusive list of MIME types to
-          be indexed (no others will be indexed), by setting the
-          <a class="link" href=
+          any type not in the list will be ignored. A detailed
+          description of the parameters involved can be found in
+          the <a class="link" href=
+          "#RCL.CONFIG.RECOLLCONF.WHATDOCS" title=
+          "5.3.1.&nbsp;Parameters affecting what documents we index">
+          document selection</a> section of this manual.</p>
+          <p>For example, to define an exclusive list of MIME types
+          to be indexed, you would set the <a class="link" href=
           "#RCL.CONFIG.RECOLLCONF.INDEXEDMIMETYPES">indexedmimetypes</a>
-          configuration variable. Example:</p>
+          configuration variable:</p>
           <pre class=
           "programlisting">indexedmimetypes = text/html application/pdf</pre>
-          <p>It is possible to redefine this parameter for
+          <p>It is possible to redefine a parameter for
           subdirectories. Example:</p>
           <pre class="programlisting">[/path/to/my/dir]
 indexedmimetypes = application/pdf</pre>
-          <p>(When using sections like this, don't forget that they
+          <p>When using sections like this, don't forget that they
           remain in effect until the end of the file or another
-          section indicator).</p>
-          <p><code class="literal">excludedmimetypes</code> or
-          <code class="literal">indexedmimetypes</code>, can be set
-          either by editing the <a class="link" href=
-          "#RCL.CONFIG.RECOLLCONF" title=
+          section indicator.</p>
+          <p>As another example, excluding files by name can be
+          done by adding wildcard name patterns to the <a class=
+          "link" href=
+          "#RCL.CONFIG.RECOLLCONF.SKIPPEDNAMES">skippedNames</a>
+          list, Excluding by type can be done by setting the
+          <a class="link" href=
+          "#RCL.CONFIG.RECOLLCONF.EXCLUDEDMIMETYPES">excludedmimetypes</a>
+          value.</p>
+          <p>Most parameters can be set either by editing the
+          <a class="link" href="#RCL.CONFIG.RECOLLCONF" title=
           "5.3.&nbsp;Recoll main configuration file, recoll.conf">configuration
           file (<code class="filename">recoll.conf</code>)</a> for
-          the index, or by using the GUI index configuration
-          tool.</p>
+          the index, or by using the GUI <span class=
+          "guilabel">Index configuration</span> menu.</p>
           <div class="note" style=
           "margin-left: 0.5in; margin-right: 0.5in;">
             <h3 class="title">Note about MIME types</h3>
             <p>When editing the <code class=
             "literal">indexedmimetypes</code> or <code class=
             "literal">excludedmimetypes</code> lists, you should
-            use the MIME values listed in the <code class=
-            "filename">mimemap</code> file or in Recoll result
-            lists in preference to <code class="literal">file
-            -i</code> output: there are a number of differences.
-            The <code class="literal">file -i</code> output should
-            only be used for files without extensions, or for which
-            the extension is not listed in <code class=
-            "filename">mimemap</code></p>
+            use the MIME values listed in the <a class="link" href=
+            "#RCL.CONFIG.MIMEMAP" title=
+            "5.5.&nbsp;The mimemap file"><code class=
+            "filename">mimemap</code></a> file or in Recoll result
+            lists rather than <span class="command"><strong>file
+            -i</strong></span> output: there are a number of
+            differences. The system command output should only be
+            used for files without extensions, or for which the
+            extension is not listed in <code class=
+            "filename">mimemap</code>.</p>
           </div>
         </div>
         <div class="sect2">
@@ -1329,15 +1344,14 @@ indexedmimetypes = application/pdf</pre>
           reasons: a helper program may be missing, the document
           may be corrupt, we may fail to uncompress a file because
           no file system space is available, etc.</p>
-          <p>The <span class="application">Recoll</span> indexer in
-          versions 1.21 and later does not retry failed files by
-          default, because some indexing failures can be quite
-          costly (for example failing to uncompress a big file
-          because of insufficient disk space). Retrying will only
-          occur if an explicit option (<code class=
-          "option">-k</code>) is set on the <span class=
-          "command"><strong>recollindex</strong></span> command
-          line, or if a script executed when <span class=
+          <p>The <span class="application">Recoll</span> indexer
+          does not retry failed files by default, because some
+          indexing failures can be quite costly (for example
+          failing to uncompress a big file because of insufficient
+          disk space). Retrying will only occur if an explicit
+          option (<code class="option">-k</code>) is set on the
+          <span class="command"><strong>recollindex</strong></span>
+          command line, or if a script executed when <span class=
           "command"><strong>recollindex</strong></span> starts up
           says so. The script is defined by a configuration
           variable (<code class=
@@ -1394,20 +1408,18 @@ indexedmimetypes = application/pdf</pre>
         on <span class="application">Windows</span>. This can be
         changed via two different methods (with different
         purposes):</p>
-        <div class="orderedlist">
-          <ol class="orderedlist" type="1">
+        <div class="itemizedlist">
+          <ul class="itemizedlist" style="list-style-type: disc;">
             <li class="listitem">
               <p>For a given configuration directory, you can
               specify a non-default storage location for the index
-              by setting the <code class="varname">dbdir</code>
-              parameter in the configuration file (see the
-              <a class="link" href="#RCL.CONFIG.RECOLLCONF" title=
-              "5.3.&nbsp;Recoll main configuration file, recoll.conf">
-              configuration section</a>). Use this method to keep
-              the configuration directory in its default location,
-              and use another location for the index, typically
-              because of disk occupation or performance
-              reasons.</p>
+              by setting the <a class="link" href=
+              "#RCL.CONFIG.RECOLLCONF.DBDIR"><code class=
+              "varname">dbdir</code></a> parameter in the
+              configuration file. Use this method to keep the
+              configuration directory in its default location, and
+              use another location for the index, typically because
+              of disk occupation or performance reasons.</p>
             </li>
             <li class="listitem">
               <p>You can specify a different configuration
@@ -1436,7 +1448,7 @@ indexedmimetypes = application/pdf</pre>
               whatever subset of the available data you wish to
               make searchable.</p>
             </li>
-          </ol>
+          </ul>
         </div>
         <p>There are quite a few more parameters which can be set
         in the configuration file itself for tailoring <span class=
@@ -1503,17 +1515,16 @@ indexedmimetypes = application/pdf</pre>
               </div>
             </div>
           </div>
-          <p>The <span class="application">Recoll</span> index does
-          not hold complete copies of the indexed documents (it
-          almost does after version 1.24). But it does hold enough
-          data to allow for an almost complete reconstruction. If
+          <p>The <span class="application">Recoll</span> index
+          holds almost complete copies of the indexed documents. If
           confidential data is indexed, access to the database
-          directory should be restricted.</p>
+          directory must be restricted.</p>
           <p><span class="application">Recoll</span> will create
-          the configuration directory with a mode of 0700 (access
-          by owner only). As the index data directory is by default
-          a sub-directory of the configuration directory, this
-          should result in appropriate protection.</p>
+          the configuration directory with a mode of 0700 on
+          <span class="application">Unix</span>-like systems
+          (access by owner only). As the index data directory is by
+          default a sub-directory of the configuration directory,
+          this should result in appropriate protection.</p>
           <p>If you use another setup, you should think of the kind
           of protection you need for your index, set the directory
           and files access modes appropriately, and also maybe
@@ -1532,10 +1543,9 @@ indexedmimetypes = application/pdf</pre>
             </div>
           </div>
           <p>This only needs concern you if your index is going to
-          be bigger than around 5 GBytes. Beyond 10 GBytes, it
-          becomes a serious consideration. Most people have much
-          smaller indexes. For reference, 5 GBytes would be around
-          2000 bibles, a lot of text. If you have a huge text
+          be bigger than around 10 GBytes. Most people have much
+          smaller indexes. For reference, 10 GBytes would be around
+          4000 bibles, a lot of text. If you have a huge text
           dataset (remember: images don't count, the text content
           of PDFs is typically less than 5% of the file size), read
           on.</p>
@@ -1625,7 +1635,7 @@ indexedmimetypes = application/pdf</pre>
         empty configuration files, which you can then edit.</p>
         <p>The configuration is documented inside the <a class=
         "link" href="#RCL.CONFIG" title=
-        "Chapter&nbsp;5.&nbsp;Configuration">installation
+        "Chapter&nbsp;5.&nbsp;Configuration">configuration
         chapter</a> of this document, or in the <a class="ulink"
         href="https://www.recoll.org/manpages/recoll.conf.5.html"
         target="_top"><span class="citerefentry"><span class=
@@ -1733,14 +1743,15 @@ indexedmimetypes = application/pdf</pre>
           configurations when indexing).</p>
           <p>All the search interfaces (<span class=
           "command"><strong>recoll</strong></span>, <span class=
-          "command"><strong>recollq</strong></span>, the Python
-          API, etc.) operate with a main configuration, from which
-          both configuration and index data are used, and can also
-          query data from multiple additional indexes. Only the
-          index data from additional indexes is used, their
-          configuration parameters are ignored. This implies that
-          some parameters should be consistent among index
-          configurations which are to be used together.</p>
+          "command"><strong>recollq</strong></span>, the
+          <span class="command"><strong>Python</strong></span> API,
+          etc.) operate with a main configuration, from which both
+          configuration and index data are used, and can also query
+          data from multiple additional indexes. Only the index
+          data from additional indexes is used, their configuration
+          parameters are ignored. This implies that some parameters
+          should be consistent among index configurations which are
+          to be used together.</p>
           <p>When searching, the current main index (defined by
           <code class="envar">RECOLL_CONFDIR</code> or <code class=
           "option">-c</code>) is always active. If this is
@@ -1786,7 +1797,8 @@ indexedmimetypes = application/pdf</pre>
                 <div>
                   <h4 class="title"><a name="id1342" id=
                   "id1342"></a>Creating and using an additional
-                  index: Linux example</h4>
+                  index: <span class="application">Unix</span>-like
+                  systems example</h4>
                 </div>
               </div>
             </div>
@@ -1849,7 +1861,8 @@ indexedmimetypes = application/pdf</pre>
               <div>
                 <div>
                   <h4 class="title"><a name="id1343" id=
-                  "id1343"></a>Creating an alternate index: Windows
+                  "id1343"></a>Creating an alternate index:
+                  <span class="application">Windows</span>
                   example</h4>
                 </div>
               </div>
@@ -1917,8 +1930,7 @@ indexedmimetypes = application/pdf</pre>
               </div>
             </div>
           </div>
-          <p>As of <span class="application">Recoll</span> version
-          1.18 you have a choice of building an index with terms
+          <p>You have a choice of building an index with terms
           stripped of character case and diacritics, or one with
           raw terms. For a source term of <code class=
           "literal">Résumé</code>, the former will store
@@ -1992,9 +2004,7 @@ indexedmimetypes = application/pdf</pre>
           Only the part about disabling multithreading may be more
           commonly useful, so I'll prepend it here. In <code class=
           "filename">recoll.conf</code>:</p>
-          <pre class="programlisting">
-            thrQSizes = -1 -1 -1
-          </pre>
+          <pre class="programlisting">thrQSizes = -1 -1 -1</pre>
           <p>The <span class="application">Recoll</span> indexing
           process <span class=
           "command"><strong>recollindex</strong></span> can use
@@ -2076,10 +2086,8 @@ indexedmimetypes = application/pdf</pre>
           processing their text, and one to update the index. This
           was tested to be the best configuration on the test
           system (quadri-processor with multiple disks).</p>
-          <pre class="programlisting">
-            thrQSizes = 2 2 2
-            thrTCounts =  4 2 1
-          </pre>
+          <pre class="programlisting">thrQSizes = 2 2 2
+thrTCounts = 4 2 1</pre>
           <p>The following example would use a single queue, and
           the complete processing for each document would be
           performed by a single thread (several documents will
@@ -2090,10 +2098,8 @@ indexedmimetypes = application/pdf</pre>
           cases (e.g. a Zip archive would be performed purely
           sequentially), so the previous approach is preferred.
           YMMV... The 2 last values for thrTCounts are ignored.</p>
-          <pre class="programlisting">
-            thrQSizes = 2 -1 -1
-            thrTCounts =  6 1 1
-          </pre>
+          <pre class="programlisting">thrQSizes = 2 -1 -1
+thrTCounts = 6 1 1</pre>
           <p>The following example would disable multithreading.
           Indexing will be performed by a single thread.</p>
           <pre class="programlisting">thrQSizes = -1 -1 -1</pre>
@@ -2180,13 +2186,13 @@ indexedmimetypes = application/pdf</pre>
           the indexing process, because of the many places where
           intensive CPU usage takes place, some not under our
           control (<span class="application">Xapian</span> or
-          external helpers). Happily enough, on Linux systems, you
-          can use the <span class="application">cgroup</span>
-          facility to throttle the process CPU usage. This is
-          further documented on the <a class="ulink" href=
+          external helpers). On Linux systems, you can use the
+          <span class="application">cgroup</span> facility to
+          throttle the process CPU usage. This is further
+          documented on the <a class="ulink" href=
           "https://www.recoll.org/faqsandhowtos/cgroups_instructions.html"
           target="_top"><span class="application">Recoll</span> WEB
-          site</a></p>
+          site</a>.</p>
         </div>
       </div>
       <div class="sect1">
@@ -2248,13 +2254,13 @@ indexedmimetypes = application/pdf</pre>
             Index</span>. The first choice only processes changed
             files, the second one erases the index before starting
             so that all files are processed.</p>
-            <p>On Linux and Windows, the GUI can be used to manage
-            the indexing operation. Stopping the indexer can be
-            done from the <span class=
-            "command"><strong>recoll</strong></span> GUI
-            <span class="guimenu">File</span> → <span class=
+            <p>The GUI can also be used to manage the indexing
+            operation. Stopping the indexer can be done from the
+            <span class="command"><strong>recoll</strong></span>
+            GUI <span class="guimenu">File</span> → <span class=
             "guimenuitem">Stop Indexing</span> menu entry.</p>
-            <p>On Linux, the <span class=
+            <p>On <span class="application">Unix</span>-like
+            systems, the <span class=
             "command"><strong>recollindex</strong></span> indexing
             process can be interrupted by sending an interrupt
             (<span class="keysym">Ctrl-C</span>, SIGINT) or
@@ -2262,8 +2268,8 @@ indexedmimetypes = application/pdf</pre>
             <p>When stopped, some time may elapse before
             <span class=
             "command"><strong>recollindex</strong></span> exits,
-            because it needs to properly flush and close the
-            index.</p>
+            because it needs to properly write data to disk
+            (flush), and close the index.</p>
             <p>After an interruption, the index will be somewhat
             inconsistent because some operations which are normally
             performed at the end of the indexing pass will have
@@ -2274,7 +2280,7 @@ indexedmimetypes = application/pdf</pre>
             interruption point (the full file tree will be
             traversed, but files that were indexed up to the
             interruption and for which the index is still up to
-            date will not need to be reindexed).</p>
+            date will not be reindexed).</p>
           </div>
           <div class="simplesect">
             <div class="titlepage">
@@ -2327,7 +2333,7 @@ indexedmimetypes = application/pdf</pre>
             "command"><strong>recollindex</strong></span>
             <code class="option">-if</code>. Trivial example:</p>
             <pre class=
-            "programlisting">    find . -name indexable.txt -print | recollindex -if</pre>
+            "programlisting">find . -name indexable.txt -print | recollindex -if</pre>
             <p><span class=
             "command"><strong>recollindex</strong></span>
             <code class="option">-i</code> will not descend into
@@ -2341,7 +2347,8 @@ indexedmimetypes = application/pdf</pre>
                 <div>
                   <h4 class="title"><a name=
                   "RCL.INDEXING.PERIODIC.AUTOMAT" id=
-                  "RCL.INDEXING.PERIODIC.AUTOMAT"></a>Linux: using
+                  "RCL.INDEXING.PERIODIC.AUTOMAT"></a><span class=
+                  "application">Unix</span>-like systems: using
                   <span class=
                   "command"><strong>cron</strong></span> to
                   automate indexing</h4>
@@ -2561,7 +2568,7 @@ fvwm</pre>
                 </div>
               </div>
             </div>
-            <p><b>Logging.&nbsp;</b>By default, the messages from
+            <p><b>Logging.&nbsp;</b> By default, the messages from
             the indexing daemon will be sent to the same file as
             those from the interactive commands (<code class=
             "literal">logfilename</code>). You may want to change
@@ -2573,7 +2580,7 @@ fvwm</pre>
             file may grow quite big, depending on the log
             level.</p>
             <p><b><span class="application">Unix</span>-like
-            systems: increasing resources for inotify.&nbsp;</b>On
+            systems: increasing resources for inotify.&nbsp;</b> On
             Linux systems, monitoring a big tree may need
             increasing the resources available to inotify, which
             are normally defined in <code class=
@@ -2596,7 +2603,7 @@ fs.inotify.max_user_watches=32768</pre>
             "literal">ENOSPC</code> (28) from <code class=
             "function">inotify_add_watch</code>.</p>
             <p><b>Slowing down the reindexing rate for fast
-            changing files.&nbsp;</b>When using the real time
+            changing files.&nbsp;</b> When using the real time
             monitor, it may happen that some files need to be
             indexed, but change so often that they impose an
             excessive load for the system. <span class=
@@ -2726,9 +2733,8 @@ fs.inotify.max_user_watches=32768</pre>
             </div>
             <p>By default, other attributes are handled as
             <span class="application">Recoll</span> fields of the
-            same name.</p>
-            <p>On Linux, the <code class="literal">user</code>
-            prefix is removed from the name.</p>
+            same name, after removing the "<code class=
+            "literal">user</code>" prefix on Linux.</p>
             <p>The name translation can be configured more
             precisely, inside the <a class="link" href=
             "#RCL.CONFIG.FIELDS.XATTR" title=
@@ -2743,7 +2749,7 @@ fs.inotify.max_user_watches=32768</pre>
               modification time. It is possible to set a document
               date different from the file's by setting a specific
               extended attribute. For obscure and uninteresting
-              reasons, the harcoded name of the attribute is
+              reasons, the name of the attribute is harcoded as
               <code class="literal">modificationdate</code>. Its
               contents should be the ASCII representation of a
               decimal integer representing the Unix time (seconds
@@ -2752,8 +2758,8 @@ fs.inotify.max_user_watches=32768</pre>
               <span class="command"><strong>date</strong></span>
               prints the example date parameter in Unix time format
               (seconds since the epoch).</p>
-              <pre class="programlisting">
-          setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/file</pre>
+              <pre class=
+              "programlisting">setfattr -n user.modificationdate -v `date -d '2022-09-30 08:30:00' +%s` /some/file</pre>
               <p>The date substitution will then be automatic, you
               do not need to customise the <code class=
               "filename">fields</code> file.</p>
@@ -2948,11 +2954,11 @@ metadatacmds = ; <em class=
               </div>
             </div>
             <p>These data elements will be extracted if
-            <code class="literal">pdfoutline</code> is set in the
+            <code class="literal">pdfoutline=1</code> is set in the
             configuration file and the <span class=
             "command"><strong>pdftohtml</strong></span> command
-            (from <span class="application">poppler-tools</span> is
-            available). Executing the command takes extra time,
+            (from <span class="application">poppler-tools</span>)
+            is available. Executing the command takes extra time,
             which is why the feature is not enabled by default.</p>
           </div>
           <div class="sect3">
@@ -2987,22 +2993,21 @@ metadatacmds = ; <em class=
 import re
 
 class MetaFixer(object):
-def __init__(self):
-pass
+    def __init__(self):
+        pass
 
-def metafix(self, nm, txt):
-if nm == 'bibtex:pages':
-txt = re.sub(r'--', '-', txt)
-elif nm == 'someothername':
-# do something else
-pass
-elif nm == 'stillanother':
-# etc.
-pass
-
-return txt
-def wrapup(self, metaheaders):
-pass</pre>
+    def metafix(self, nm, txt):
+        if nm == 'bibtex:pages':
+            txt = re.sub(r'--', '-', txt)
+        elif nm == 'someothername':
+            # do something else
+           pass
+        elif nm == 'stillanother':
+           # etc.
+          pass
+        return txt
+    def wrapup(self, metaheaders):
+        pass</pre>
             <p>If the 'metafix()' method is defined, it is called
             for each metadata field. A new MetaFixer object is
             created for each PDF document (so the object can keep
@@ -3056,9 +3061,10 @@ pass</pre>
           handler (<span class=
           "command"><strong>rclpdf.py</strong></span>), and the
           alternate image handler (<span class=
-          "command"><strong>rclimg.py</strong></span>) as of
-          <span class="application">Recoll</span> 1.43.3 have the
-          ability to call an external OCR program.</p>
+          "command"><strong>rclimg.py</strong></span>) have the
+          ability to call an external OCR program (only as of
+          <span class="application">Recoll</span> 1.43.3 for the
+          latter).</p>
           <p>The operation details are slightly different for PDF
           and other image documents.</p>
           <p>To enable the <span class="application">Recoll</span>
@@ -3102,12 +3108,12 @@ pass</pre>
               </li>
               <li class="listitem">
                 <p>Modules initially exist for <span class=
-                "application">tesseract</span> (Linux and Windows),
-                and <span class="application">ABBYY
-                FineReader</span> (Linux, tested with version 11).
-                ABBYY FineReader is a commercial closed source
-                program, but it sometimes perform better than
-                tesseract.</p>
+                "application">tesseract</span> (Linux and
+                <span class="application">Windows</span>), and
+                <span class="application">ABBYY FineReader</span>
+                (Linux, tested with version 11). ABBYY FineReader
+                is a commercial closed source program, but it
+                sometimes perform better than tesseract.</p>
               </li>
             </ul>
           </div>
@@ -3334,11 +3340,11 @@ imgocr = 1</pre>
 
 fatal()
 {
-echo $*;exit 1
+    echo $*;exit 1
 }
 usage()
 {
-fatal "Usage: init-recoll-volume.sh &lt;top-directory&gt;"
+    fatal "Usage: init-recoll-volume.sh &lt;top-directory&gt;"
 }
 
 test $# = 1 || usage
@@ -3355,7 +3361,7 @@ cd "$confdir"
 confdir=`pwd`
 
 (echo topdirs = '"'$topdir'"'; \
-echo orgidxconfdir = $topdir/recoll-config) &gt; "$confdir/recoll.conf"
+    echo orgidxconfdir = $topdir/recoll-config) &gt; "$confdir/recoll.conf"
 
 recollindex -c "$confdir"</pre>
             <p>The examples below will assume that you have a
@@ -3994,7 +4000,7 @@ recollindex -c "$confdir"</pre>
             will only appear for results which are top-level files.
             See <a class="link" href="#RCL.SEARCH.GUI.RUNSCRIPT"
             title=
-            "3.2.5.&nbsp;Running arbitrary commands on result files">
+            "3.2.5.&nbsp;Unix-like systems: running arbitrary commands on result files">
             further</a> for a more detailed description.</p>
             <p>The <span class="guilabel">Copy File Name</span> and
             <span class="guilabel">Copy Url</span> copy the
@@ -4113,10 +4119,13 @@ recollindex -c "$confdir"</pre>
           defined by the <code class="literal">topdirs</code> list
           and the name exclusion parameters. Some directories may
           not be shown at all, depending on their (lack of)
-          indexable content and other indexing parameters. The
-          depth of the displayed tree is limited at 2 levels under
-          the start directories by default. You can change this in
-          the GUI Preferences, User interface panel.</p>
+          indexable content and other indexing parameters.</p>
+          <p>By default, the depth of the displayed tree is limited
+          at 2 levels under the start directories. You can change
+          this in the GUI Preferences, User interface panel. Please
+          note that increasing the depth can strongly delay the GUI
+          startup, you should experiment by single increments if
+          you want to change the value.</p>
           <p>You can independantly select and deselect directories
           by clicking them. Note that selecting a directory will
           activate the whole subtree for searching, there is no
@@ -4132,8 +4141,9 @@ recollindex -c "$confdir"</pre>
               <div>
                 <h3 class="title"><a name=
                 "RCL.SEARCH.GUI.RUNSCRIPT" id=
-                "RCL.SEARCH.GUI.RUNSCRIPT"></a>3.2.5.&nbsp;Running
-                arbitrary commands on result files</h3>
+                "RCL.SEARCH.GUI.RUNSCRIPT"></a>3.2.5.&nbsp;<span class="application">Unix</span>-like
+                systems: running arbitrary commands on result
+                files</h3>
               </div>
             </div>
           </div>
@@ -4154,13 +4164,11 @@ recollindex -c "$confdir"</pre>
           example, <code class=
           "filename">~/.recoll/scripts/myscript.desktop</code> (the
           exact file name inside the directory is irrelevant):</p>
-          <pre class="programlisting">
-          [Desktop Entry]
-          Type=Application
-          Name=MyFirstScript
-          Exec=/home/me/bin/tryscript %F
-          MimeType=*/*
-        </pre>
+          <pre class="programlisting">[Desktop Entry]
+Type=Application
+Name=MyFirstScript
+Exec=/home/me/bin/tryscript %F
+MimeType=*/*</pre>
           <p>The <code class="literal">Name</code> attribute
           defines the label which will appear inside the
           <span class="guilabel">Run Script</span> menu. The
@@ -4256,8 +4264,8 @@ recollindex -c "$confdir"</pre>
           fields. In the case of images, you can switch between
           three displays: the image itself, the image metadata as
           extracted by <span class=
-          "command"><strong>exiftool</strong></span> and the
-          fields, which is the metadata stored in the index.</p>
+          "command"><strong>exiftool</strong></span> (used as main
+          body text) and the fields.</p>
           <p>You can print the current preview window contents by
           typing <span class=
           "keycap"><strong>Ctrl-P</strong></span> (<span class=
@@ -4363,8 +4371,9 @@ recollindex -c "$confdir"</pre>
           "filename">~/.recoll/fragment-buttons.xml</code> under
           Linux and MacOS, <code class=
           "filename">$HOME/AppData/Local/Recoll/fragment-buttons.xml</code>
-          for Windows). Editing the copy will allow you to
-          configure the tool for your needs .</p>
+          for <span class="application">Windows</span>). Editing
+          the copy will allow you to configure the tool for your
+          needs .</p>
           <div class="note" style=
           "margin-left: 0.5in; margin-right: 0.5in;">
             <h3 class="title">Note</h3>
@@ -4433,8 +4442,7 @@ recollindex -c "$confdir"</pre>
       &lt;frag&gt;dir:/my/great/directory&lt;/frag&gt;
     &lt;/fragbutton&gt;
   &lt;/buttons&gt;
-&lt;/fragbuttons&gt;
-        </pre>
+&lt;/fragbuttons&gt;</pre>
           <p>There are two types of groupings <code class=
           "literal">radiobuttons</code> and <code class=
           "literal">buttons</code>, each defining a line of
@@ -4453,8 +4461,7 @@ recollindex -c "$confdir"</pre>
     &lt;fragbutton&gt;
       &lt;label&gt;Example: My Great Directory&lt;/label&gt;
       &lt;frag&gt;dir:/my/great/directory&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-  </pre>
+    &lt;/fragbutton&gt;</pre>
           <p>It is also possible to add <code class=
           "literal">message</code> elements inside the groups, for
           documenting the behaviour. <code class=
@@ -4466,8 +4473,7 @@ recollindex -c "$confdir"</pre>
     &lt;message&gt;
       &lt;label&gt;This is a message&lt;/label&gt; 
     &lt;/message&gt;
-  &lt;/buttons&gt;
-  </pre>
+  &lt;/buttons&gt;</pre>
           <p>The <code class="literal">label</code> contents are
           interpreted as HTML. Take care to replace opening
           <code class="literal">&lt;</code> characters with the
@@ -4893,8 +4899,9 @@ recollindex -c "$confdir"</pre>
           directories, e.g.:</p>
           <pre class=
           "screen">export RECOLL_EXTRA_DBS=/some/place/xapiandb:/some/other/db</pre>
-          <p>On Windows, use semi-colons (<code class=
-          "literal">;</code>) as separators instead of colons.</p>
+          <p>On <span class="application">Windows</span>, use
+          semi-colons (<code class="literal">;</code>) as
+          separators instead of colons.</p>
           <p>Another environment variable, <code class=
           "envar">RECOLL_ACTIVE_EXTRA_DBS</code> allows adding to
           the active list of indexes. This variable was suggested
@@ -5218,28 +5225,28 @@ recollindex -c "$confdir"</pre>
                 </div>
               </div>
             </div>
-            <p><b>Term completion.&nbsp;</b>While typing into the
+            <p><b>Term completion.&nbsp;</b> While typing into the
             simple search entry, a popup menu will appear and show
             completions for the current string. Values preceded by
             a clock icon come from the history, those preceded by a
             magnifier icon come from the index terms. This can be
             disabled in the preferences.</p>
             <p><b>Picking up new terms from result or preview
-            text.&nbsp;</b>Double-clicking on a word in the result
+            text.&nbsp;</b> Double-clicking on a word in the result
             list or in a preview window will copy it to the simple
             search entry field.</p>
-            <p><b>Wildcards.&nbsp;</b>Wildcards can be used inside
+            <p><b>Wildcards.&nbsp;</b> Wildcards can be used inside
             search terms in all forms of searches. <a class="link"
             href="#RCL.SEARCH.WILDCARDS" title=
             "3.6.1.&nbsp;Wildcards">More about wildcards</a>.</p>
-            <p><b>Automatic suffixes.&nbsp;</b>Words like
+            <p><b>Automatic suffixes.&nbsp;</b> Words like
             <code class="literal">odt</code> or <code class=
             "literal">ods</code> can be automatically turned into
             query language <code class="literal">ext:xxx</code>
             clauses. This can be enabled in the <span class=
             "guilabel">Search preferences</span> panel in the
             GUI.</p>
-            <p><b>Disabling stem expansion.&nbsp;</b>Entering a
+            <p><b>Disabling stem expansion.&nbsp;</b> Entering a
             capitalized word in any search field will prevent stem
             expansion (no search for <code class=
             "literal">gardening</code> if you enter <code class=
@@ -5249,15 +5256,15 @@ recollindex -c "$confdir"</pre>
             <span class="application">Recoll</span> search. You can
             also disable stem expansion or change the stemming
             language in the preferences.</p>
-            <p><b>Finding related documents.&nbsp;</b>Selecting the
-            <span class="guilabel">Find similar documents</span>
-            entry in the result list paragraph right-click menu
-            will select a set of "interesting" terms from the
-            current result, and insert them into the simple search
-            entry field. You can then possibly edit the list and
-            start a search to find documents which may be
-            apparented to the current result.</p>
-            <p><b>File names.&nbsp;</b>File names are added as
+            <p><b>Finding related documents.&nbsp;</b> Selecting
+            the <span class="guilabel">Find similar
+            documents</span> entry in the result list paragraph
+            right-click menu will select a set of "interesting"
+            terms from the current result, and insert them into the
+            simple search entry field. You can then possibly edit
+            the list and start a search to find documents which may
+            be apparented to the current result.</p>
+            <p><b>File names.&nbsp;</b> File names are added as
             terms during indexing, and you can specify them as
             ordinary terms in normal search fields (<span class=
             "application">Recoll</span> used to index all
@@ -5280,18 +5287,18 @@ recollindex -c "$confdir"</pre>
                 </div>
               </div>
             </div>
-            <p><b>Phrases searches.&nbsp;</b>A phrase can be looked
-            for by enclosing a number of terms in double quotes.
-            Example: <code class="literal">"user manual"</code>
-            will look only for occurrences of <code class=
-            "literal">user</code> immediately followed by
-            <code class="literal">manual</code>. You can use the
+            <p><b>Phrases searches.&nbsp;</b> A phrase can be
+            looked for by enclosing a number of terms in double
+            quotes. Example: <code class="literal">"user
+            manual"</code> will look only for occurrences of
+            <code class="literal">user</code> immediately followed
+            by <code class="literal">manual</code>. You can use the
             <span class="guilabel">"Phrase"</span> field of the
             advanced search dialog to the same effect. Phrases can
             be entered along simple terms in all simple or advanced
             search entry fields, except <span class=
             "guilabel">"Phrase"</span>.</p>
-            <p><b>Proximity searches.&nbsp;</b>A proximity search
+            <p><b>Proximity searches.&nbsp;</b> A proximity search
             differs from a phrase search in that it does not impose
             an order on the terms. Proximity searches can be
             entered by specifying the <span class=
@@ -5302,32 +5309,37 @@ recollindex -c "$confdir"</pre>
             "#RCL.SEARCH.LANG.MODIFIERS" title=
             "3.5.4.&nbsp;Modifiers">the modifier section</a> from
             the query language documentation.</p>
-            <p><b>AutoPhrases.&nbsp;</b>This option can be set in
+            <p><b>AutoPhrases.&nbsp;</b> This option can be set in
             the preferences dialog. If it is set, a phrase will be
-            automatically built and added to simple searches when
-            looking for <code class="literal">Any terms</code>.
-            This will not change radically the results, but will
-            give a relevance boost to the results where the search
-            terms appear as a phrase. E.g.: searching for
-            <code class="literal">virtual reality</code> will still
-            find all documents where either <code class=
-            "literal">virtual</code> or <code class=
-            "literal">reality</code> or both appear, but those
-            which contain <code class="literal">virtual
-            reality</code> should appear sooner in the list.</p>
+            automatically built and added to simple searches in
+            <code class="literal">All terms</code> and <code class=
+            "literal">Query language</code> modes. This will not
+            change radically the results, but will give a relevance
+            boost to the results where the search terms appear as a
+            phrase. E.g.: searching for <code class=
+            "literal">virtual reality</code> will still find all
+            documents where either <code class=
+            "literal">virtual</code> and <code class=
+            "literal">reality</code> appear, but those which
+            contain <code class="literal">virtual reality</code>
+            should appear sooner in the list.</p>
             <p>Phrase searches can slow down a query if most of the
             terms in the phrase are common. If the <code class=
             "varname">autophrase</code> option is on, very common
             terms will be removed from the automatically
             constructed phrase. The removal threshold can be
-            adjusted from the search preferences.</p>
-            <p><b>Phrases and abbreviations.&nbsp;</b>Dotted
+            adjusted from the search preferences. This has become
+            much less of a concern with recent <span class=
+            "application">Xapian</span> versions and the
+            <code class="varname">autophrase</code> option is set
+            by default.</p>
+            <p><b>Phrases and abbreviations.&nbsp;</b> Dotted
             abbreviations like <code class="literal">I.B.M.</code>
             are also automatically indexed as a word without the
             dots: <code class="literal">IBM</code>. Searching for
             the word inside a phrase (e.g.: <code class=
             "literal">"the IBM company"</code>) will only match the
-            dotted abrreviation if you increase the phrase slack
+            dotted abbreviation if you increase the phrase slack
             (using the advanced search panel control, or the
             <code class="literal">o</code> query language
             modifier). Literal occurrences of the word will be
@@ -5343,23 +5355,23 @@ recollindex -c "$confdir"</pre>
                 </div>
               </div>
             </div>
-            <p><b>Using fields.&nbsp;</b>You can use the <a class=
+            <p><b>Using fields.&nbsp;</b> You can use the <a class=
             "link" href="#RCL.SEARCH.LANG" title=
             "3.5.&nbsp;The query language">query language</a> and
             field specifications to only search certain parts of
             documents. This can be especially helpful with email,
             for example only searching emails from a specific
-            originator: <code class="literal">search tips
-            from:helpfulgui</code></p>
-            <p><b>Adjusting the result table columns.&nbsp;</b>When
-            displaying results in table mode, you can use a right
-            click on the table headers to activate a pop-up menu
-            which will let you adjust what columns are displayed.
-            You can drag the column headers to adjust their order.
-            You can click them to sort by the field displayed in
-            the column. You can also save the result list in CSV
-            format.</p>
-            <p><b>Changing the GUI geometry.&nbsp;</b>It is
+            originator:</p>
+            <pre class=
+            "programlisting">search tips from:helpfulgui</pre>
+            <p><b>Result table tips.&nbsp;</b> When displaying
+            results in table mode, you can use a right click on the
+            table headers to activate a pop-up menu which will let
+            you adjust what columns are displayed. You can drag the
+            column headers to adjust their order. You can click
+            them to sort by the field displayed in the column. You
+            can also save the result list in CSV format.</p>
+            <p><b>Changing the GUI geometry.&nbsp;</b> It is
             possible to configure the GUI in wide form factor by
             dragging the toolbars to one of the sides (their
             location is remembered between sessions), and moving
@@ -5367,15 +5379,15 @@ recollindex -c "$confdir"</pre>
             <span class="guimenu">Preferences</span> → <span class=
             "guimenuitem">GUI configuration</span> → <span class=
             "guimenuitem">User interface</span> panel).</p>
-            <p><b>Query explanation.&nbsp;</b>You can get an exact
+            <p><b>Query explanation.&nbsp;</b> You can get an exact
             description of what the query looked for, including
             stem expansion, and Boolean operators used, by clicking
             on the result list header.</p>
-            <p><b>Advanced search history.&nbsp;</b>You can display
-            any of the last 100 complex searches performed by using
-            the up and down arrow keys while the advanced search
-            panel is active.</p>
-            <p><b>Forced opening of a preview window.&nbsp;</b>You
+            <p><b>Advanced search history.&nbsp;</b> You can
+            display any of the last 100 complex searches performed
+            by using the up and down arrow keys while the advanced
+            search panel is active.</p>
+            <p><b>Forced opening of a preview window.&nbsp;</b> You
             can use <span class=
             "keycap"><strong>Shift</strong></span>+Click on a
             result list <code class="literal">Preview</code> link
@@ -5595,6 +5607,18 @@ recollindex -c "$confdir"</pre>
                     list or a set of buttons, or a menu.</p>
                   </li>
                   <li class="listitem">
+                    <p><span class="guilabel">Show system tray
+                    icon</span>: a <span class=
+                    "command"><strong>gui instance</strong></span>
+                    will appear as an icon in the system tray. You
+                    can then also check <span class=
+                    "guilabel">Close to tray instead of
+                    exiting</span> and <span class=
+                    "guilabel">Generate desktop
+                    notifications</span>, to have e.g. a popup
+                    signal the completion of indexing.</p>
+                  </li>
+                  <li class="listitem">
                     <p><span class="guilabel">Disable Qt
                     autocompletion in search entry</span>: this
                     will disable the completion popup. Il will only
@@ -5619,6 +5643,19 @@ recollindex -c "$confdir"</pre>
                     inside the GUI and can be used on High
                     resolution displays if the default characters
                     are too small.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Color scheme</span>:
+                    choose how the GUI is displayed: mostly dark on
+                    white (<code class="literal">Light</code>) or
+                    white on dark (<code class=
+                    "literal">Dark</code>). On <span class=
+                    "application">Windows</span> you can also
+                    select <code class="literal">System</code> to
+                    conform to the system setting. On <span class=
+                    "application">MacOS</span> systems the option
+                    is not available, we always use the system
+                    mode.</p>
                   </li>
                   <li class="listitem">
                     <p><span class="guilabel">Style sheet</span>:
@@ -5648,6 +5685,17 @@ recollindex -c "$confdir"</pre>
                     is light too, then text will appear
                     light-on-light inside the <span class=
                     "application">Recoll</span> GUI.</p>
+                  </li>
+                  <li class="listitem">
+                    <p><span class="guilabel">Interface
+                    language</span>: the <span class=
+                    "command"><strong>recoll</strong></span> GUI
+                    messages are normally shown in the language
+                    determined by the system locale (if the
+                    translation is available). This choice allows
+                    forcing the interface language, e.g. to English
+                    if the default translation is incomplete or of
+                    bad quality.</p>
                   </li>
                 </ul>
               </div>
@@ -6130,7 +6178,7 @@ recollindex -c "$confdir"</pre>
               (if the document is embedded, the script will be
               started on the top-level parent). See the <a class=
               "link" href="#RCL.SEARCH.GUI.RUNSCRIPT" title=
-              "3.2.5.&nbsp;Running arbitrary commands on result files">
+              "3.2.5.&nbsp;Unix-like systems: running arbitrary commands on result files">
               section about defining scripts</a>. Note that
               <em class="replaceable"><code>scriptname</code></em>
               value should be the value of the <code class=
@@ -7126,7 +7174,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
             </div>
           </div>
         </div>
-        <p><b>Term synonyms and text search:&nbsp;</b>in general,
+        <p><b>Term synonyms and text search:&nbsp;</b> in general,
         there are two main ways to use term synonyms for searching
         text:</p>
         <div class="itemizedlist">
@@ -7292,9 +7340,11 @@ bye goodbye "see you" \
         presenting a result.</p>
         <div class="note" style=
         "margin-left: 0.5in; margin-right: 0.5in;">
-          <h3 class="title">Windows note</h3>
+          <h3 class="title"><span class=
+          "application">Windows</span> note</h3>
           <p>At the moment, the path comparisons done for path
-          translation under MS Windows are case sensitive (this
+          translation under MS <span class=
+          "application">Windows</span> are case sensitive (this
           will be fixed at some point). Use the natural character
           case as displayed in the file explorer. Example:</p>
           <pre class="programlisting">[Z:/some/mounted/xapiandb]
@@ -8140,7 +8190,7 @@ application/x-chm = execm rclchm.py</pre>
           for creating/updating an index with a program run by the
           Python3 interpreter. It is available on all platforms
           (<span class="application">Unix</span>-like systems, MS
-          Windows, MacOS).</p>
+          <span class="application">Windows</span>, MacOS).</p>
           <p>The search interface is used in a number of active
           projects: the <a class="ulink" href=
           "https://www.recoll.org/pages/download.html#gssp" target=
@@ -9636,8 +9686,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5129" id=
-                "id5129"></a>GUI settings</h3>
+                <h3 class="title"><a name="id5170" id=
+                "id5170"></a>GUI settings</h3>
               </div>
             </div>
           </div>
@@ -9653,8 +9703,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5136" id=
-                "id5136"></a>Index configuration parameters</h3>
+                <h3 class="title"><a name="id5177" id=
+                "id5177"></a>Index configuration parameters</h3>
               </div>
             </div>
           </div>
@@ -9812,9 +9862,9 @@ defaultcharset = utf-8</pre>
             This is quite confusing, and was a design mistake but
             it is much too late to fix.</p>
           </div>
-          <p><b>Encoding issues.&nbsp;</b>Most of the configuration
-          parameters are plain ASCII. Two particular sets of values
-          may cause encoding issues:</p>
+          <p><b>Encoding issues.&nbsp;</b> Most of the
+          configuration parameters are plain ASCII. Two particular
+          sets of values may cause encoding issues:</p>
           <div class="itemizedlist">
             <ul class="itemizedlist" style=
             "list-style-type: disc;">
@@ -11503,12 +11553,13 @@ defaultcharset = utf-8</pre>
               id=
               "RCL.CONFIG.RECOLLCONF.ZIPMETAENCODING"></a><span class="term"><code class="varname">zipMetaEncoding</code></span></dt>
               <dd>
-                <p>Set the encoding to use for file paths. Set to
+                <p>File path encoding. Needs Python 3.11+. Set to
                 "detect" for using chardet. This is useful for
                 non-standard zip files where the metadata is
                 neither UTF-8 (indicated by a file flag), nor CP437
                 (default). The parameter can be set for specific
-                subtrees.</p>
+                subtrees. You need to install the Python3 "chardet"
+                package if the value is set to "detect".</p>
               </dd>
             </dl>
           </div>
@@ -12049,22 +12100,22 @@ other = rclcat:other</pre>
         <div class="itemizedlist">
           <ul class="itemizedlist" style="list-style-type: disc;">
             <li class="listitem">
-              <p><b>%D.&nbsp;</b>Document date</p>
+              <p><b>%D.&nbsp;</b> Document date</p>
             </li>
             <li class="listitem">
-              <p><b>%f.&nbsp;</b>File name. This may be the name of
-              a temporary file if it was necessary to create one
+              <p><b>%f.&nbsp;</b> File name. This may be the name
+              of a temporary file if it was necessary to create one
               (e.g.: to extract a subdocument from a
               container).</p>
             </li>
             <li class="listitem">
-              <p><b>%i.&nbsp;</b>Internal path, for subdocuments of
-              containers. The format depends on the container type.
-              If this appears in the command line, <span class=
-              "application">Recoll</span> will not create a
-              temporary file to extract the subdocument, expecting
-              the called application (possibly a script) to be able
-              to handle it.</p>
+              <p><b>%i.&nbsp;</b> Internal path, for subdocuments
+              of containers. The format depends on the container
+              type. If this appears in the command line,
+              <span class="application">Recoll</span> will not
+              create a temporary file to extract the subdocument,
+              expecting the called application (possibly a script)
+              to be able to handle it.</p>
             </li>
             <li class="listitem">
               <p><b>%M.&nbsp;</b>MIME type</p>

@@ -854,9 +854,9 @@ See https://www.recoll.org/faqsandhowtos/FilteringOutZipArchiveMembers.html
 
 .TP
 .BI "zipMetaEncoding = "string
-Set the encoding to use for file paths. Set to "detect" for using chardet. This is useful for non-standard zip files where the metadata is neither UTF-8
-(indicated by a file flag), nor CP437 (default). The parameter can be set for specific
-subtrees.
+File path encoding. Needs Python 3.11+. Set to "detect" for using chardet. This is useful for non-standard zip files where the metadata is neither UTF-8 (indicated by
+a file flag), nor CP437 (default). The parameter can be set for specific subtrees. You need to
+install the Python3 "chardet" package if the value is set to "detect".
 .TP
 .BI "orgmodesubdocs = "bool
 Index org-mode level 1 sections as separate sub-documents This is the default. If set to false, org-mode files will be indexed as plain text
