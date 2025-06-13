@@ -1,4 +1,4 @@
-/* Copyright (C) 2006-2022 J.F.Dockes
+/* Copyright (C) 2006-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -14,12 +14,12 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-// Takes a query and run it, no gui, results to stdout
-#include "autoconfig.h"
+
+// Take a query and run it, no gui, results to stdout. This can be called either from the command
+// line program recollqmain or from the GUI when started with option -t (no GUI then).
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <errno.h>
 #include <string.h>
 #include <limits.h>
 #include <getopt.h>
@@ -34,10 +34,8 @@
 #include "rclconfig.h"
 #include "pathut.h"
 #include "rclinit.h"
-#include "log.h"
 #include "wasatorcl.h"
 #include "internfile.h"
-#include "wipedir.h"
 #include "transcode.h"
 #include "textsplit.h"
 #include "smallut.h"
@@ -53,17 +51,15 @@
 static PlainToRich g_hiliter;
 static const std::string cstr_ellipsis("...");
 
-using namespace std;
-
 bool dump_contents(RclConfig *rclconfig, Rcl::Doc& idoc)
 {
     FileInterner interner(idoc, rclconfig, FileInterner::FIF_forPreview);
     Rcl::Doc fdoc;
     std::string ipath = idoc.ipath;
     if (interner.internfile(fdoc, ipath)) {
-        cout << fdoc.text << "\n";
+        std::cout << fdoc.text << "\n";
     } else {
-        cout << "Cant turn to text:" << idoc.url << " | " << idoc.ipath << "\n";
+        std::cout << "Cant turn to text:" << idoc.url << " | " << idoc.ipath << "\n";
     }
     return true;
 }
@@ -114,12 +110,12 @@ void output_fields(std::vector<std::string> fields, Rcl::Doc& doc,
         // have to keep the old behaviour when printnames is not set.
         if (!(out.empty() && printnames)) {
             if (printnames) {
-                cout << fld << " ";
+                std::cout << fld << " ";
             }
-            cout << out << " ";
+            std::cout << out << " ";
         }
     }
-    cout << "\n";
+    std::cout << "\n";
 }
 
 static char *thisprog;
@@ -223,7 +219,7 @@ int recollq(RclConfig **cfp, int argc, char **argv)
     std::string a_config;
     std::string sortfield;
     std::string stemlang("english");
-    list<std::string> extra_dbs;
+    std::list<std::string> extra_dbs;
     std::string sf;
     std::string syngroupsfn;
     int firstres = 0;
@@ -331,14 +327,14 @@ int recollq(RclConfig **cfp, int argc, char **argv)
     if (!extra_dbs.empty()) {
         for (const auto& db : extra_dbs) {
             if (!rcldb.addQueryDb(db)) {
-                cerr << "Can't add index: " << db << "\n";
+                std::cerr << "Can't add index: " << db << "\n";
                 exit(1);
             }
         }
     }
     if (!syngroupsfn.empty()) {
         if (!rcldb.setSynGroupsFile(syngroupsfn)) {
-            cerr << "Can't use synonyms file: " << syngroupsfn << "\n";
+            std::cerr << "Can't use synonyms file: " << syngroupsfn << "\n";
             exit(1);
         }
     }
@@ -346,7 +342,7 @@ int recollq(RclConfig **cfp, int argc, char **argv)
     rcldb.setMaxSpellDist(autospellmaxdist);
     
     if (!rcldb.open(Rcl::Db::DbRO)) {
-        cerr << "Cant open database in " << rclconfig->getDbDir() << 
+        std::cerr << "Cant open database in " << rclconfig->getDbDir() << 
             " reason: " << rcldb.getReason() << "\n";
         exit(1);
     }
@@ -354,10 +350,10 @@ int recollq(RclConfig **cfp, int argc, char **argv)
     if (op_flags & OPT_P) {
         int minyear, maxyear;
         if (!rcldb.maxYearSpan(&minyear, &maxyear)) {
-            cerr << "maxYearSpan failed: " << rcldb.getReason() << "\n";
+            std::cerr << "maxYearSpan failed: " << rcldb.getReason() << "\n";
             return 1;
         } else {
-            cout << "Min year " << minyear << " Max year " << maxyear << "\n";
+            std::cout << "Min year " << minyear << " Max year " << maxyear << "\n";
             return 0;
         }
     }
@@ -471,7 +467,7 @@ int recollq(RclConfig **cfp, int argc, char **argv)
             doc.url = path_pcencode(doc.url);
 
         if (op_flags & OPT_b) {
-            cout << (paths_only ? doc.url.substr(7) : doc.url) << "\n";
+            std::cout << (paths_only ? doc.url.substr(7) : doc.url) << "\n";
         } else {
             std::string titleorfn = doc.meta[Rcl::Doc::keytt];
             if (titleorfn.empty())
@@ -482,7 +478,7 @@ int recollq(RclConfig **cfp, int argc, char **argv)
                 titleorfn = path_getsimple(url);
             }
 
-            cout
+            std::cout
                 << doc.mimetype << "\t"
                 << "[" << doc.url << "]" << "\t" 
                 << "[" << titleorfn << "]" << "\t"
@@ -490,7 +486,7 @@ int recollq(RclConfig **cfp, int argc, char **argv)
                 <<  "\n";
             if (op_flags & OPT_m) {
                 for (const auto& ent : doc.meta) {
-                    cout << ent.first << " = " << ent.second << "\n";
+                    std::cout << ent.first << " = " << ent.second << "\n";
                 }
             }
             if (op_flags & OPT_A) {
@@ -500,7 +496,7 @@ int recollq(RclConfig **cfp, int argc, char **argv)
                     make_abstract(doc, query, asSnippets, snipcnt, showlines, hldata);
                 std::string marker = asSnippets ? "SNIPPETS" : "ABSTRACT";
                 if (!abstract.empty()) {
-                    cout << marker << "\n" << abstract << "/" << marker << "\n";
+                    std::cout << marker << "\n" << abstract << "/" << marker << "\n";
                 }
             }
         }

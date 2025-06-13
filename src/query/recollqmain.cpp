@@ -1,4 +1,4 @@
-/* Copyright (C) 2006 J.F.Dockes
+/* Copyright (C) 2006-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -14,16 +14,15 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-// Takes a query and run it, no gui, results to stdout
-#include "autoconfig.h"
+
+// Driver for the actual recollq query runner code
 
 #include <stdlib.h>
 
-#include "rclconfig.h"
 #include "recollq.h"
-#include "rclutil.h"
 #include "pathut.h"
 
+class RclConfig;
 static RclConfig *rclconfig;
 
 int main(int argc, char **argv)
