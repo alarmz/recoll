@@ -2156,7 +2156,7 @@ thrTCounts = 6 1 1</pre>
           indexes on a quad-core machine. More detail in this
           <a class="ulink" href=
           "https://www.recoll.org/pages/idxthreads/threadingRecoll.html#_the_xapian_bottleneck_and_how_it_was_resolved_thanks_to_xapian"
-          target="_top">article on the Recoll WEB site</a>.</p>
+          target="_top">article on the Recoll Web site</a>.</p>
           <p>All the tests were performed on SSDs, it is quite
           probable that this approach would not work well on
           spinning disks, at least not in its current form.</p>
@@ -2191,7 +2191,7 @@ thrTCounts = 6 1 1</pre>
           throttle the process CPU usage. This is further
           documented on the <a class="ulink" href=
           "https://www.recoll.org/faqsandhowtos/cgroups_instructions.html"
-          target="_top"><span class="application">Recoll</span> WEB
+          target="_top"><span class="application">Recoll</span> Web
           site</a>.</p>
         </div>
       </div>
@@ -2480,7 +2480,7 @@ thrTCounts = 6 1 1</pre>
             the indexer at boot time, running as a specific user.
             It can be useful when running the text search as a
             shared service (e.g. when users access it through the
-            WEB UI).</p>
+            Web UI).</p>
             <p>If configured to do so, the unit files should have
             been installed in your system's default systemd paths
             (usually <code class=
@@ -3581,7 +3581,7 @@ recollindex -c "$confdir"</pre>
               can also do much more. This is the best mode for
               getting the most of <span class=
               "application">Recoll</span>. It is usable from all
-              possible interfaces (GUI, command line, WEB UI, ...),
+              possible interfaces (GUI, command line, Web UI, ...),
               and is <a class="link" href="#RCL.SEARCH.LANG" title=
               "3.5.&nbsp;The query language">described
               here</a>.</p>
@@ -4354,7 +4354,7 @@ MimeType=*/*</pre>
           query, simply by clicking a button. This can be useful to
           save typing, or avoid memorizing, simple clauses of
           common usage (e.g. selecting only standalone documents or
-          attachments, or filtering out WEB results, selecting a
+          attachments, or filtering out Web results, selecting a
           file system subtree, a file type, etc.).</p>
           <p>Selecting the <span class="guimenu">Tools</span> →
           <span class="guimenuitem">Query Fragments</span> menu
@@ -4397,7 +4397,7 @@ MimeType=*/*</pre>
 &lt;fragbuttons version="1.0"&gt;
 
   &lt;radiobuttons&gt;
-    &lt;!-- Toggle WEB queue results inclusion --&gt;
+    &lt;!-- Toggle Web queue results inclusion --&gt;
     &lt;fragbutton&gt;
       &lt;label&gt;Include Web Results&lt;/label&gt;
       &lt;frag&gt;&lt;/frag&gt;
@@ -4489,7 +4489,7 @@ MimeType=*/*</pre>
           "command"><strong>vi</strong></span> or <span class=
           "command"><strong>notepad</strong></span>.
           Double-clicking the file in a file manager may not work,
-          because this usually opens it in a WEB browser, which
+          because this usually opens it in a Web browser, which
           will not let you modify the contents.</p>
         </div>
         <div class="sect2">
@@ -6333,66 +6333,70 @@ MimeType=*/*</pre>
         <code class="option">-t</code> to <span class=
         "command"><strong>recoll</strong></span>). The query to be
         executed is specified as command line arguments.</p>
-        <p><span class="command"><strong>recollq</strong></span> is
-        not always built by default. You can use the <code class=
-        "filename">Makefile</code> in the <code class=
-        "filename">query</code> directory to build it. This is a
-        very simple program, and if you can program a little c++,
-        you may find it useful to taylor its output format to your
-        needs. Apart from being easily customised, <span class=
+        <p>Depending on the platform, <span class=
+        "command"><strong>recollq</strong></span> is not always
+        built or installed by default (as <span class=
+        "command"><strong>recoll</strong></span> <code class=
+        "option">-t</code> works the same). This is a very simple
+        program, and if you can program a little c++, you may find
+        it useful to taylor its output format to your needs. Apart
+        from being easily customised, <span class=
         "command"><strong>recollq</strong></span> is only really
-        useful on systems where the Qt libraries are not available,
-        else it is redundant with <code class="literal">recoll
-        -t</code>.</p>
+        useful on systems where the Qt libraries are not
+        available.</p>
         <p><span class="command"><strong>recollq</strong></span>
         has a <a class="ulink" href=
         "https://www.recoll.org/manpages/recollq.1.html" target=
         "_top">man page</a>. The Usage string follows:</p>
         <pre class="programlisting">
-recollq: usage:
- -P: Show the date span for all the documents present in the index.
- [-o|-a|-f] [-q] &lt;query string&gt;
+Usage: recollq [options] [query elements]
  Runs a recoll query and displays result lines. 
-  Default: will interpret the argument(s) as a xesam query string.
-  Query elements: 
+   By default, the argument(s) will be interpreted as a Recoll query language
+   string. The -q option was kept for compatibility with the GUI and is just
+   ignored: the query *must* be specified in the non-option arguments.
+  Query language elements:
    * Implicit AND, exclusion, field spec:  t1 -t2 title:t3
    * OR has priority: t1 OR t2 t3 OR t4 means (t1 OR t2) AND (t3 OR t4)
    * Phrase: "t1 t2" (needs additional quoting on cmd line)
- -o Emulate the GUI simple search in ANY TERM mode.
- -a Emulate the GUI simple search in ALL TERMS mode.
- -f Emulate the GUI simple search in filename mode.
- -q is just ignored (compatibility with the recoll GUI command line).
-Common options:
- -c &lt;configdir&gt; : specify config directory, overriding $RECOLL_CONFDIR.
- -C : collapse duplicates
- -d also dump file contents.
- -n [first-]&lt;cnt&gt; define the result slice. The default value for [first]
-    is 0. Without the option, the default max count is 2000.
-    Use n=0 for no limit.
- -b : basic. Just output urls, no mime types or titles.
- -Q : no result lines, just the processed query and result count.
- -m : dump the whole document meta[] array for each result.
- -A : output the document abstracts.
-    -p &lt;cnt&gt; : show &lt;cnt&gt; snippets, with page numbers instead of the concatenated abstract.
-    -g &lt;cnt&gt; : show &lt;cnt&gt; snippets, with line numbers instead of the concatenated abstract.
- -S fld : sort by field &lt;fld&gt;.
-   -D : sort descending.
- -s stemlang : set stemming language to use (must exist in index...).
-    Use -s "" to turn off stem expansion.
- -T &lt;synonyms file&gt;: use the parameter (Thesaurus) for word expansion.
- -i &lt;dbdir&gt; : additional index, several can be given.
- -e use url encoding (%xx) for urls.
- -E use exact result count instead of lower bound estimate.
- -F &lt;field name list&gt; : output exactly these fields for each result.
-    The field values are encoded in base64, output in one line and 
-    separated by one space character. This is the recommended format 
-    for use by other programs. Use a normal query with option -m to 
-    see the field names. Use -F '' to output all fields, but you probably
-    also want option -N in this case.
-   -N : with -F, print the (plain text) field names before the field values.
- --extract_to &lt;filepath&gt; : extract the first result to filepath, which must not exist.
-      Use a -n option with an offset to select the appropriate result.
-      </pre>
+ Other query modes :
+  -o Emulate the GUI simple search in ANY TERM mode.
+  -a Emulate the GUI simple search in ALL TERMS mode.
+  -f Emulate the GUI simple search in filename mode.
+ Query and results options:
+  -c &lt;configdir&gt; : specify configuration directory, overriding $RECOLL_CONFDIR.
+  -C : collapse duplicates.
+  -d also dump file contents.
+  -n [first-]&lt;cnt&gt; define the result slice. The default value for [first] is 0.
+     Without the option, the default max count is 2000. Use n=0 for no limit.
+  -b : basic. Just output urls, no mime types or titles.
+  -Q : no result lines, just the processed query and result count.
+  -m : dump the whole document meta[] array for each result.
+  -A : output the document abstracts.
+     -p &lt;cnt&gt; : show &lt;cnt&gt; snippets, with page numbers instead of the
+         concatenated abstract.
+     -g &lt;cnt&gt; : show &lt;cnt&gt; snippets, with line numbers instead of the
+         concatenated abstract.
+  -S fld : sort by field &lt;fld&gt;.
+    -D : sort descending.
+  -s stemlang : set stemming language to use (must exist in index...).
+     Use -s "" to turn off stem expansion.
+  -T &lt;synonyms file&gt;: use the parameter (Thesaurus) for word expansion.
+  -i &lt;dbdir&gt; : additional index, several can be given.
+  -e use url encoding (%xx) for urls.
+  -E use exact result count instead of lower bound estimate.
+  -F &lt;field name list&gt; : output exactly these fields for each result.
+     The field values are encoded in base64, output in one line and 
+     separated by one space character. This is the recommended format 
+     for use by other programs. Use a normal query with option -m to 
+     see the field names. Use -F '' to output all fields, but you probably
+     also want option -N in this case.
+    -N : with -F, print the (plain text) field names before the field values.
+  --extract_to &lt;filepath&gt; : extract the first result to filepath, which must not
+     exist. Use a -n option with an offset to select the appropriate result.
+  --paths-only: only print results which would have a file:// scheme, and
+     exclude the scheme.
+ Other non-query usages:
+  -P: Show the date span for all the documents present in the index.</pre>
         <p>Sample execution:</p>
         <pre class="programlisting">
 recollq 'ilur -nautique mime:text/html'
@@ -6428,7 +6432,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
         simple search entry when the search mode selector is set to
         <code class="literal">Query Language</code>. It can also be
         used from the command line search, the KIO slave, or the
-        WEB UI.</p>
+        Web UI.</p>
         <p>If the results of a query language search puzzle you and
         you doubt what has been actually searched for, you can use
         the GUI <code class="literal">Show Query</code> link at the
@@ -6509,10 +6513,10 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
           "replaceable"><code>word2</code></em>) <code class=
           "literal">OR</code> <em class=
           "replaceable"><code>word3</code></em>.</p>
-          <p>You can use parentheses to group elements (from
-          version 1.21), which will sometimes make things clearer,
-          and may allow expressing combinations which would have
-          been difficult otherwise.</p>
+          <p>You can use parentheses to group elements, which will
+          sometimes make things clearer, and may allow expressing
+          combinations which would have been difficult
+          otherwise.</p>
           <p>An element preceded by a <code class=
           "literal">-</code> specifies a term that should
           <span class="emphasis"><em>not</em></span> appear.</p>
@@ -6534,18 +6538,17 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
           Also see <a class="link" href="#RCL.SEARCH.WILDCARDS"
           title="3.6.1.&nbsp;Wildcards">More about
           wildcards</a>.</p>
-          <p>To save you some typing, <span class=
-          "application">Recoll</span> versions 1.20 and later
-          interpret a field value given as a comma-separated list
-          of terms as an AND list and a slash-separated list as an
-          OR list. No white space is allowed. So</p>
+          <p>To save you some typing, a field value given as a
+          comma-separated list of terms will be interpreted as an
+          AND list and a slash-separated list as an OR list. No
+          white space is allowed. So:</p>
           <pre class="programlisting">author:john,lennon</pre>
           <p>will search for documents with <code class=
-          "literal">john</code> and <code class=
+          "literal">john</code> AND <code class=
           "literal">lennon</code> inside the <code class=
           "literal">author</code> field (in any order), and</p>
           <pre class="programlisting">author:john/ringo</pre>
-          <p>would search for <code class="literal">john</code> or
+          <p>would search for <code class="literal">john</code> OR
           <code class="literal">ringo</code>. This behaviour is
           only triggered by a field prefix: without it, comma- or
           slash- separated input will produce a phrase search.
@@ -6555,7 +6558,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
           "literal">OR</code>, e.g. <code class=
           "literal">text:napoleon/bonaparte</code> would generate a
           search for <em class=
-          "replaceable"><code>napoleon</code></em> or <em class=
+          "replaceable"><code>napoleon</code></em> OR <em class=
           "replaceable"><code>bonaparte</code></em> in the main
           text body.</p>
           <p>Modifiers can be set on a double-quote value, for
@@ -6951,9 +6954,9 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
                 "Phrase and Proximity searches">here</a>.</p>
               </li>
               <li class="listitem">
-                <p><code class="literal">s</code> (1.22) can be
-                used to turn off synonym expansion, if a synonyms
-                file is in place.</p>
+                <p><code class="literal">s</code> can be used to
+                turn off synonym expansion, if a synonyms file is
+                in place.</p>
               </li>
               <li class="listitem">
                 <p><code class="literal">x</code> (1.33.2) will
@@ -7362,10 +7365,9 @@ C: = Z:</pre>
             </div>
           </div>
         </div>
-        <p>For <span class="application">Recoll</span> versions
-        1.18 and later, and <span class="emphasis"><em>when working
-        with a raw index</em></span> (not the default), searches
-        can be sensitive to character case and diacritics. How this
+        <p><span class="emphasis"><em>When working with a raw
+        index</em></span> (not the default), searches can be made
+        sensitive to character case and diacritics. How this
         happens is controlled by configuration variables and what
         search data is entered.</p>
         <p>The general default is that searches entered without
@@ -7377,8 +7379,7 @@ C: = Z:</pre>
         "literal">résumé</code>, <code class=
         "literal">Résumé</code> etc.</p>
         <p>Two configuration variables can automate switching on
-        sensitivity (they were documented but actually did nothing
-        until <span class="application">Recoll</span> 1.22):</p>
+        sensitivity:</p>
         <div class="variablelist">
           <dl class="variablelist">
             <dt><span class="term">autodiacsens</span></dt>
@@ -7409,22 +7410,21 @@ C: = Z:</pre>
             </dd>
           </dl>
         </div>
-        <p>As in the past, capitalizing the first letter of a word
-        will turn off its stem expansion and have no effect on
+        <p>As usual, capitalizing the first letter of a word will
+        turn off its stem expansion and have no effect on
         case-sensitivity.</p>
         <p>You can also explicitly activate case and diacritics
         sensitivity by using modifiers with the query language.
         <code class="literal">C</code> will make the term
         case-sensitive, and <code class="literal">D</code> will
         make it diacritics-sensitive. Examples:</p>
-        <pre class="programlisting">"us"C</pre>
-        <p>will search for the term <code class="literal">us</code>
-        exactly (<code class="literal">Us</code> will not be a
+        <p><code class="literal">"us"C</code> will search for the
+        term <code class="literal">us</code> exactly (<code class=
+        "literal">Us</code> will not be a match).</p>
+        <p><code class="literal">"resume"D</code> will search for
+        the term <code class="literal">resume</code> exactly
+        (<code class="literal">résumé</code> will not be a
         match).</p>
-        <pre class="programlisting">"resume"D</pre>
-        <p>will search for the term <code class=
-        "literal">resume</code> exactly (<code class=
-        "literal">résumé</code> will not be a match).</p>
         <p>When either case or diacritics sensitivity is activated,
         stem expansion is turned off. Having both does not make
         much sense.</p>
@@ -7454,28 +7454,15 @@ C: = Z:</pre>
               Provider).</p>
             </li>
             <li class="listitem">
-              <p>The <span class="application">KDE</span> KIO Slave
-              was described in a <a class="link" href=
-              "#RCL.SEARCH.KIO" title=
+              <p>For <span class="application">KDE</span> users,
+              there is a <code class="literal">KIO worker</code>
+              module, which was described in a <a class="link"
+              href="#RCL.SEARCH.KIO" title=
               "3.3.&nbsp;Searching with the KDE KIO slave">previous
-              section</a>. It can provide search results inside
-              <span class=
-              "command"><strong>Dolphin</strong></span>.</p>
-            </li>
-            <li class="listitem">
-              <p>If you use an oldish version of Ubuntu Linux, you
-              may find the <a class="ulink" href=
-              "https://www.recoll.org/faqsandhowtos/UnityLens"
-              target="_top">Ubuntu Unity Lens</a> module
-              useful.</p>
-            </li>
-            <li class="listitem">
-              <p>There is also an independently developed <a class=
-              "ulink" href=
-              "https://kde-apps.org/content/show.php/recollrunner?content=128203"
-              target="_top">Krunner plugin</a>. It is now
-              integrated in the <span class=
-              "application">Recoll</span> source.</p>
+              section</a>, and a <code class="literal">Krunner
+              plugin</code>. Both are usually installed with the
+              main <span class="application">Recoll</span>
+              package.</p>
             </li>
             <li class="listitem">
               <p><a name="RCL.SEARCH.SHORTCUT" id=
@@ -7584,9 +7571,10 @@ C: = Z:</pre>
                     fixed.</p>
                   </li>
                   <li class="listitem">
-                    <p>The character encoding, if relevant, must be
-                    known and fixed (or possibly just depending on
-                    location).</p>
+                    <p>For handlers producing <code class=
+                    "literal">text/plain</code>, the character
+                    encoding must be known and fixed (or possibly
+                    just depending on location).</p>
                   </li>
                 </ul>
               </div>
@@ -7618,8 +7606,8 @@ C: = Z:</pre>
         files, and can process either a single document, or a
         linear list of documents in each file. <span class=
         "application">Recoll</span> is responsible for performing
-        up to date checks, deal with more complex embedding and
-        other upper level issues.</p>
+        up to date checks, deal with more complex embedding,
+        temporary files, and other upper level issues.</p>
         <p>A simple handler returning a document in <code class=
         "literal">text/plain</code> format, can transfer no
         metadata to the indexer. Generic metadata, like document
@@ -7715,6 +7703,9 @@ C: = Z:</pre>
           "literal">execm</code> handler, it should not be too
           difficult to make sense of one of the existing
           handlers.</p>
+          <p>The best documentation of the communication "protocol"
+          is found in the comments at the top of the <code class=
+          "filename">internfile/mh_execm.h</code> header file.</p>
           <p>The existing handlers differ in the amount of helper
           code which they are using:</p>
           <div class="itemizedlist">
@@ -9686,8 +9677,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5170" id=
-                "id5170"></a>GUI settings</h3>
+                <h3 class="title"><a name="id5164" id=
+                "id5164"></a>GUI settings</h3>
               </div>
             </div>
           </div>
@@ -9703,8 +9694,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5177" id=
-                "id5177"></a>Index configuration parameters</h3>
+                <h3 class="title"><a name="id5171" id=
+                "id5171"></a>Index configuration parameters</h3>
               </div>
             </div>
           </div>

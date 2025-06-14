@@ -1040,7 +1040,7 @@ thrTCounts = 6 1 1</programlisting>
         times could be divided almost by three, by using four temporary indexes on a quad-core
         machine. More detail in
         this <link xl:href="https://www.recoll.org/pages/idxthreads/threadingRecoll.html#_the_xapian_bottleneck_and_how_it_was_resolved_thanks_to_xapian">article
-            on the Recoll WEB site</link>.</para>
+            on the Recoll Web site</link>.</para>
 
         <para>All the tests were performed on SSDs, it is quite probable that this approach would
           not work well on spinning disks, at least not in its current form.</para>
@@ -1060,7 +1060,7 @@ thrTCounts = 6 1 1</programlisting>
         the many places where intensive CPU usage takes place, some not under our control (&XAP; or
         external helpers). On Linux systems, you can use the <application>cgroup</application>
         facility to throttle the process CPU usage. This is further documented on the <link
-        xl:href="https://www.recoll.org/faqsandhowtos/cgroups_instructions.html">&RCL; WEB
+        xl:href="https://www.recoll.org/faqsandhowtos/cgroups_instructions.html">&RCL; Web
         site</link>.</para>
       </sect2>
       
@@ -1244,7 +1244,7 @@ thrTCounts = 6 1 1</programlisting>
 
           <para><filename>recollindex@.service</filename> is a template service which would be used
             for starting the indexer at boot time, running as a specific user. It can be useful when
-            running the text search as a shared service (e.g. when users access it through the WEB
+            running the text search as a shared service (e.g. when users access it through the Web
             UI).</para>
 
           <para>If configured to do so, the unit files should have been installed in your system's
@@ -1985,7 +1985,7 @@ recollindex -c "$confdir"</programlisting>
         <listitem><para>The <literal>Query Language</literal> mode behaves like <literal>All
         Terms</literal> in the absence of special input, but it can also do much more. This is the
         best mode for getting the most of &RCL;. It is usable from all possible interfaces (GUI,
-        command line, WEB UI, ...), and is <link linkend="RCL.SEARCH.LANG">described
+        command line, Web UI, ...), and is <link linkend="RCL.SEARCH.LANG">described
         here</link>.</para></listitem>
         
         <listitem><para>In <literal>Any Term</literal> mode, &RCL; looks
@@ -2530,7 +2530,7 @@ MimeType=*/*</programlisting>
         <para>The Query Fragments window can be used to control filtering query language elements
         modifying the current query, simply by clicking a button. This can be useful to save typing,
         or avoid memorizing, simple clauses of common usage (e.g. selecting only standalone
-        documents or attachments, or filtering out WEB results, selecting a file system subtree, a
+        documents or attachments, or filtering out Web results, selecting a file system subtree, a
         file type, etc.).</para>
         
         <para>Selecting the <menuchoice><guimenu>Tools</guimenu> <guimenuitem>Query
@@ -2563,7 +2563,7 @@ MimeType=*/*</programlisting>
 <fragbuttons version="1.0">
 
   <radiobuttons>
-    <!-- Toggle WEB queue results inclusion -->
+    <!-- Toggle Web queue results inclusion -->
     <fragbutton>
       <label>Include Web Results</label>
       <frag></frag>
@@ -2645,7 +2645,7 @@ MimeType=*/*</programlisting>
 
         <para>You will normally edit the file with a regular text editor, like,
           e.g. <command>vi</command> or <command>notepad</command>. Double-clicking the file in a
-          file manager may not work, because this usually opens it in a WEB browser, which will not
+          file manager may not work, because this usually opens it in a Web browser, which will not
           let you modify the contents.</para>
 
       </sect2>
@@ -3901,67 +3901,68 @@ MimeType=*/*</programlisting>
       </itemizedlist>
 
       <para>The first two methods work in the same way and accept/need the same arguments (except
-        for the additional <option>-t</option> to <command>recoll</command>). The query to be
-        executed is specified as command line arguments.</para>
+      for the additional <option>-t</option> to <command>recoll</command>). The query to be executed
+      is specified as command line arguments.</para>
 
-      <para><command>recollq</command> is not always built by default. You
-      can use the <filename>Makefile</filename> in the
-      <filename>query</filename> directory to build it. This is a very
-      simple program, and if you can program a little c++, you may find it
-      useful to taylor its output format to your needs. Apart from being
-      easily customised, <command>recollq</command> is only really useful
-      on systems where the Qt libraries are not available, else it is
-      redundant with <literal>recoll -t</literal>.</para>
+      <para>Depending on the platform, <command>recollq</command> is not always built or installed
+      by default (as <command>recoll</command> <option>-t</option> works the same). This is a very
+      simple program, and if you can program a little c++, you may find it useful to taylor its
+      output format to your needs. Apart from being easily customised, <command>recollq</command> is
+      only really useful on systems where the Qt libraries are not available.</para>
 
       <para><command>recollq</command> has a
       <link xl:href="https://www.recoll.org/manpages/recollq.1.html">man page</link>. 
 
       The Usage string follows:</para>
       <programlisting><![CDATA[
-recollq: usage:
- -P: Show the date span for all the documents present in the index.
- [-o|-a|-f] [-q] <query string>
+Usage: recollq [options] [query elements]
  Runs a recoll query and displays result lines. 
-  Default: will interpret the argument(s) as a xesam query string.
-  Query elements: 
+   By default, the argument(s) will be interpreted as a Recoll query language
+   string. The -q option was kept for compatibility with the GUI and is just
+   ignored: the query *must* be specified in the non-option arguments.
+  Query language elements:
    * Implicit AND, exclusion, field spec:  t1 -t2 title:t3
    * OR has priority: t1 OR t2 t3 OR t4 means (t1 OR t2) AND (t3 OR t4)
    * Phrase: "t1 t2" (needs additional quoting on cmd line)
- -o Emulate the GUI simple search in ANY TERM mode.
- -a Emulate the GUI simple search in ALL TERMS mode.
- -f Emulate the GUI simple search in filename mode.
- -q is just ignored (compatibility with the recoll GUI command line).
-Common options:
- -c <configdir> : specify config directory, overriding $RECOLL_CONFDIR.
- -C : collapse duplicates
- -d also dump file contents.
- -n [first-]<cnt> define the result slice. The default value for [first]
-    is 0. Without the option, the default max count is 2000.
-    Use n=0 for no limit.
- -b : basic. Just output urls, no mime types or titles.
- -Q : no result lines, just the processed query and result count.
- -m : dump the whole document meta[] array for each result.
- -A : output the document abstracts.
-    -p <cnt> : show <cnt> snippets, with page numbers instead of the concatenated abstract.
-    -g <cnt> : show <cnt> snippets, with line numbers instead of the concatenated abstract.
- -S fld : sort by field <fld>.
-   -D : sort descending.
- -s stemlang : set stemming language to use (must exist in index...).
-    Use -s "" to turn off stem expansion.
- -T <synonyms file>: use the parameter (Thesaurus) for word expansion.
- -i <dbdir> : additional index, several can be given.
- -e use url encoding (%xx) for urls.
- -E use exact result count instead of lower bound estimate.
- -F <field name list> : output exactly these fields for each result.
-    The field values are encoded in base64, output in one line and 
-    separated by one space character. This is the recommended format 
-    for use by other programs. Use a normal query with option -m to 
-    see the field names. Use -F '' to output all fields, but you probably
-    also want option -N in this case.
-   -N : with -F, print the (plain text) field names before the field values.
- --extract_to <filepath> : extract the first result to filepath, which must not exist.
-      Use a -n option with an offset to select the appropriate result.
-      ]]></programlisting>
+ Other query modes :
+  -o Emulate the GUI simple search in ANY TERM mode.
+  -a Emulate the GUI simple search in ALL TERMS mode.
+  -f Emulate the GUI simple search in filename mode.
+ Query and results options:
+  -c <configdir> : specify configuration directory, overriding $RECOLL_CONFDIR.
+  -C : collapse duplicates.
+  -d also dump file contents.
+  -n [first-]<cnt> define the result slice. The default value for [first] is 0.
+     Without the option, the default max count is 2000. Use n=0 for no limit.
+  -b : basic. Just output urls, no mime types or titles.
+  -Q : no result lines, just the processed query and result count.
+  -m : dump the whole document meta[] array for each result.
+  -A : output the document abstracts.
+     -p <cnt> : show <cnt> snippets, with page numbers instead of the
+         concatenated abstract.
+     -g <cnt> : show <cnt> snippets, with line numbers instead of the
+         concatenated abstract.
+  -S fld : sort by field <fld>.
+    -D : sort descending.
+  -s stemlang : set stemming language to use (must exist in index...).
+     Use -s "" to turn off stem expansion.
+  -T <synonyms file>: use the parameter (Thesaurus) for word expansion.
+  -i <dbdir> : additional index, several can be given.
+  -e use url encoding (%xx) for urls.
+  -E use exact result count instead of lower bound estimate.
+  -F <field name list> : output exactly these fields for each result.
+     The field values are encoded in base64, output in one line and 
+     separated by one space character. This is the recommended format 
+     for use by other programs. Use a normal query with option -m to 
+     see the field names. Use -F '' to output all fields, but you probably
+     also want option -N in this case.
+    -N : with -F, print the (plain text) field names before the field values.
+  --extract_to <filepath> : extract the first result to filepath, which must not
+     exist. Use a -n option with an offset to select the appropriate result.
+  --paths-only: only print results which would have a file:// scheme, and
+     exclude the scheme.
+ Other non-query usages:
+  -P: Show the date span for all the documents present in the index.]]></programlisting>
 
       <para>Sample execution:</para>
       <programlisting>
@@ -3988,7 +3989,7 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
 
       <para>The query language processor is activated in the GUI simple search entry when the search
         mode selector is set to <literal>Query Language</literal>. It can also be used from the
-        command line search, the KIO slave, or the WEB UI.</para>
+        command line search, the KIO slave, or the Web UI.</para>
 
       <para>If the results of a query language search puzzle you and you
         doubt what has been actually searched for, you can use the GUI <literal>Show Query</literal>
@@ -4048,19 +4049,18 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
       <replaceable>word2</replaceable>) <literal>OR</literal>
       <replaceable>word3</replaceable>. </para>
 
-      <para>You can use parentheses to group elements (from version 1.21), which will sometimes make
+      <para>You can use parentheses to group elements, which will sometimes make
       things clearer, and may allow expressing combinations which would have been difficult
       otherwise.</para>
 
-      <para>An element preceded by a <literal>-</literal> specifies a
-        term that should <emphasis>not</emphasis> appear.</para>
+      <para>An element preceded by a <literal>-</literal> specifies a term that should
+      <emphasis>not</emphasis> appear.</para>
 
       <para>By default, words inside double-quotes define a <literal>phrase</literal> search (the
-        order of words is significant), so
-        that <replaceable>title:"prejudice pride"</replaceable> is not the same
-        as <replaceable>title:prejudice title:pride</replaceable>, and is unlikely to find a
-        result. This can be changed by
-        using <link linkend="RCL.SEARCH.LANG.MODIFIERS">modifiers</link>. </para>
+      order of words is significant), so that <replaceable>title:"prejudice pride"</replaceable> is
+      not the same as <replaceable>title:prejudice title:pride</replaceable>, and is unlikely to
+      find a result. This can be changed by using <link
+      linkend="RCL.SEARCH.LANG.MODIFIERS">modifiers</link>. </para>
 
       <para>Words inside phrases and capitalized words are not stem-expanded. Wildcards may be used
       anywhere inside a term.  Specifying a wildcard on the left of a term can produce a very slow
@@ -4068,20 +4068,18 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
       size). Also see <link linkend="RCL.SEARCH.WILDCARDS">More about wildcards</link>.
       </para>
 
-      <para>To save you some typing, &RCL; versions 1.20 and later
-        interpret a field value given as a comma-separated list of terms as an AND list and a
-        slash-separated list as an OR list. No white space is
-        allowed. So <programlisting>author:john,lennon</programlisting> will search for documents
-        with <literal>john</literal> and <literal>lennon</literal> inside
-        the <literal>author</literal> field (in any order),
-        and <programlisting>author:john/ringo</programlisting> would search
-        for <literal>john</literal> or <literal>ringo</literal>. This behaviour is only triggered by
-        a field prefix: without it, comma- or slash- separated input will produce a phrase
-        search. However, you can use a <literal>text</literal> field name to search the main text
-        this way, as an alternate to using an explicit <literal>OR</literal>,
-        e.g. <literal>text:napoleon/bonaparte</literal> would generate a search
-        for <replaceable>napoleon</replaceable> or <replaceable>bonaparte</replaceable> in the main
-        text body.</para>
+      <para>To save you some typing, a field value given as a comma-separated list of terms will be
+      interpreted as an AND list and a slash-separated list as an OR list. No white space is
+      allowed. So: <programlisting>author:john,lennon</programlisting> will search for documents with
+      <literal>john</literal> AND <literal>lennon</literal> inside the <literal>author</literal>
+      field (in any order), and <programlisting>author:john/ringo</programlisting> would search for
+      <literal>john</literal> OR <literal>ringo</literal>. This behaviour is only triggered by a
+      field prefix: without it, comma- or slash- separated input will produce a phrase
+      search. However, you can use a <literal>text</literal> field name to search the main text this
+      way, as an alternate to using an explicit <literal>OR</literal>,
+      e.g. <literal>text:napoleon/bonaparte</literal> would generate a search for
+      <replaceable>napoleon</replaceable> OR <replaceable>bonaparte</replaceable> in the main text
+      body.</para>
 
       <para>Modifiers can be set on a double-quote value, for example to specify
       a proximity search (unordered). See 
@@ -4360,18 +4358,18 @@ text/html       [file:///Users/dockes/projets/bateaux/ilur/factEtCie/recu-chasse
                 <link linkend="RCL.SEARCH.GUI.COMPLEX.PHRASEANDPROX">here</link>.</para>
           </listitem>
 
-          <listitem><para><literal>s</literal> (1.22) can be used to turn off synonym expansion, if
+          <listitem><para><literal>s</literal> can be used to turn off synonym expansion, if
           a synonyms file is in place.</para></listitem>
 
           <listitem><para><literal>x</literal> (1.33.2) will enable the expansion of terms inside a
-              phrase search (the default is for phrases to be searched verbatim). Also see
-              the <link linkend="RCL.CONFIG.RECOLLCONF.STEMEXPANDPHRASES">
-                <literal>stemexpandphrases</literal></link> in the configuration
-                section, for changing the default behaviour.</para></listitem> 
+          phrase search (the default is for phrases to be searched verbatim). Also see the <link
+          linkend="RCL.CONFIG.RECOLLCONF.STEMEXPANDPHRASES">
+          <literal>stemexpandphrases</literal></link> in the configuration section, for changing the
+          default behaviour.</para></listitem>
 
           <listitem><para>A weight can be specified for a query element by specifying a decimal
-              value at the start of the
-              modifiers. Example: <literal>"Important"2.5</literal>.</para></listitem>
+          value at the start of the modifiers. Example:
+          <literal>"Important"2.5</literal>.</para></listitem>
 
         </itemizedlist>
         </para>
@@ -4657,72 +4655,54 @@ bye goodbye "see you" \
 C: = Z:</programlisting></para></note>
     </sect1>
 
+
     <sect1 xml:id="RCL.SEARCH.CASEDIAC">
       <title>Search case and diacritics sensitivity</title>
 
-      <para>For &RCL; versions 1.18 and later, and <emphasis>when working
-      with a raw index</emphasis> (not the default), searches can be
-      sensitive to character case and diacritics. How this happens
-      is controlled by configuration variables and what search data is
-      entered.</para>
+      <para><emphasis>When working with a raw index</emphasis> (not the default), searches can be
+      made sensitive to character case and diacritics. How this happens is controlled by
+      configuration variables and what search data is entered.</para>
 
-      <para>The general default is that searches entered without upper-case
-      or accented characters are insensitive to case and diacritics. An
-      entry of <literal>resume</literal> will match any of
-      <literal>Resume</literal>, <literal>RESUME</literal>,
-      <literal>résumé</literal>, <literal>Résumé</literal> etc.</para>
+      <para>The general default is that searches entered without upper-case or accented characters
+      are insensitive to case and diacritics. An entry of <literal>resume</literal> will match any
+      of <literal>Resume</literal>, <literal>RESUME</literal>, <literal>résumé</literal>,
+      <literal>Résumé</literal> etc.</para>
 
-      <para>Two configuration variables can automate switching on
-      sensitivity (they were documented but actually did nothing until
-      &RCL; 1.22):</para>
-
+      <para>Two configuration variables can automate switching on sensitivity:
       <variablelist>
-
         <varlistentry>
-          <term>autodiacsens</term><listitem><para>If this is set, search
-          sensitivity to diacritics will be turned on as soon as an
-          accented character exists in a search term. When the variable
-          is set to true, <literal>resume</literal> will start a
-          diacritics-unsensitive search, but <literal>résumé</literal>
-          will be matched exactly. The default value is
+          <term>autodiacsens</term><listitem><para>If this is set, search sensitivity to diacritics
+          will be turned on as soon as an accented character exists in a search term. When the
+          variable is set to true, <literal>resume</literal> will start a diacritics-unsensitive
+          search, but <literal>résumé</literal> will be matched exactly. The default value is
           <emphasis>false</emphasis>.</para></listitem>
         </varlistentry>
-
         <varlistentry>
-          <term>autocasesens</term><listitem><para>If this is set, search
-          sensitivity to character case will be turned on as soon as an
-          upper-case character exists in a search term <emphasis>except
-          for the first one</emphasis>. When the variable is set to
-          true, <literal>us</literal> or <literal>Us</literal> will
-          start a diacritics-unsensitive search, but
-          <literal>US</literal> will be matched exactly. The default
-          value is <emphasis>true</emphasis> (contrary to
-          <literal>autodiacsens</literal>).</para></listitem>
+          <term>autocasesens</term><listitem><para>If this is set, search sensitivity to character
+          case will be turned on as soon as an upper-case character exists in a search term
+          <emphasis>except for the first one</emphasis>. When the variable is set to true,
+          <literal>us</literal> or <literal>Us</literal> will start a diacritics-unsensitive search,
+          but <literal>US</literal> will be matched exactly. The default value is
+          <emphasis>true</emphasis> (contrary to <literal>autodiacsens</literal>).</para></listitem>
         </varlistentry>
-
       </variablelist>
+      </para>
       
-      <para>As in the past, capitalizing the first letter of a word will
-      turn off its stem expansion and have no effect on
-      case-sensitivity.</para>
+      <para>As usual, capitalizing the first letter of a word will turn off its stem expansion
+      and have no effect on case-sensitivity.</para>
 
-      <para>You can also explicitly activate case and diacritics
-      sensitivity by using modifiers with the query
-      language. <literal>C</literal> will make the term case-sensitive, and
-      <literal>D</literal> will make it
-      diacritics-sensitive. Examples:</para>
-      <programlisting>"us"C</programlisting>
-
-      <para>will search for the term <literal>us</literal> exactly
+      <para>You can also explicitly activate case and diacritics sensitivity by using modifiers with
+      the query language. <literal>C</literal> will make the term case-sensitive, and
+      <literal>D</literal> will make it diacritics-sensitive. Examples:</para>
+      
+      <para><literal>"us"C</literal> will search for the term <literal>us</literal> exactly
       (<literal>Us</literal> will not be a match).</para>
 
-      <programlisting>"resume"D</programlisting>
-      <para>will search for the term <literal>resume</literal> exactly
+      <para><literal>"resume"D</literal> will search for the term <literal>resume</literal> exactly
       (<literal>résumé</literal> will not be a match).</para>
 
-
-      <para>When either case or diacritics sensitivity is activated, stem
-      expansion is turned off. Having both does not make much sense.</para>
+      <para>When either case or diacritics sensitivity is activated, stem expansion is turned
+      off. Having both does not make much sense.</para>
 
     </sect1>
 
@@ -4735,24 +4715,20 @@ C: = Z:</programlisting></para></note>
       available:
       <itemizedlist>
         <listitem><para>Users of recent Ubuntu-derived distributions, or
-            any other Gnome desktop systems (e.g. Fedora) can install the
-            <link xl:href="https://www.recoll.org/pages/download.html#gssp">
-              Recoll GSSP</link> (Gnome Shell Search Provider).</para></listitem>
-        <listitem><para>The <application>KDE</application> KIO Slave was described
-            in a <link linkend="RCL.SEARCH.KIO">previous section</link>. It can provide search
-            results inside <command>Dolphin</command>.</para></listitem>
-        <listitem><para>If you use an oldish version of Ubuntu Linux, you may
-          find the <link xl:href="&FAQS;UnityLens">Ubuntu Unity Lens</link> module useful.</para>
-        </listitem>
-        <listitem><para>There is also an independently developed
-          <link
-              xl:href="https://kde-apps.org/content/show.php/recollrunner?content=128203">
-          Krunner plugin</link>. It is now integrated in the &RCL; source.</para></listitem>
-        <listitem xml:id="RCL.SEARCH.SHORTCUT"><para>Hotkeying recoll: it is surprisingly convenient to
-            be able to show or hide the &RCL; GUI with a single keystroke. Recoll comes with a small
-            Python script, based on the <application>libwnck</application> window manager interface
-            library, which will allow you to do just this. The detailed instructions are
-            on <link xl:href="&FAQS;HotRecoll">this wiki page</link>.</para></listitem>
+        any other Gnome desktop systems (e.g. Fedora) can install the
+        <link xl:href="https://www.recoll.org/pages/download.html#gssp">
+        Recoll GSSP</link> (Gnome Shell Search Provider).</para></listitem>
+
+        <listitem><para>For <application>KDE</application> users, there is a <literal>KIO
+        worker</literal> module, which was described in a <link linkend="RCL.SEARCH.KIO">previous
+        section</link>, and a <literal>Krunner plugin</literal>. Both are usually installed with the
+        main &RCL; package.</para></listitem>
+
+        <listitem xml:id="RCL.SEARCH.SHORTCUT"><para>Hotkeying recoll: it is surprisingly convenient
+        to be able to show or hide the &RCL; GUI with a single keystroke. Recoll comes with a small
+        Python script, based on the <application>libwnck</application> window manager interface
+        library, which will allow you to do just this. The detailed instructions are on <link
+        xl:href="&FAQS;HotRecoll">this wiki page</link>.</para></listitem>
       </itemizedlist>
       </para>
 
@@ -4813,114 +4789,96 @@ C: = Z:</programlisting></para></note>
           per file.</para></listitem>
           <listitem><para>The output MIME type must be known and
           fixed.</para></listitem>
-          <listitem><para>The character encoding, if relevant, must be
-          known and fixed (or possibly just depending on
+          <listitem><para>For handlers producing <literal>text/plain</literal>, the character
+          encoding must be known and fixed (or possibly just depending on
           location).</para></listitem>
         </itemizedlist>
         </para>
         </listitem>
-        <listitem><para>Multiple <literal>execm</literal> handlers can
-        process multiple files (sparing the process startup time which can
-        be very significant), or multiple documents per file (e.g.: for
-        archives or multi-chapter publications). They communicate with the
-        indexer through a simple protocol, but are nevertheless a bit more
-        complicated than the older kind. Most of the new handlers are
-        written in <application>Python</application> (exception:
-        <command>rclimg</command> which is written in Perl because
-        <literal>exiftool</literal> has no real Python equivalent). The
-        Python handlers use common modules to factor out the boilerplate,
-        which can make them very simple in favorable cases. The
-        subdocuments output by these handlers can be directly indexable
-        (text or HTML), or they can be other simple or compound documents
-        that will need to be processed by another handler.</para>
+        <listitem><para>Multiple <literal>execm</literal> handlers can process multiple files
+        (sparing the process startup time which can be very significant), or multiple documents per
+        file (e.g.: for archives or multi-chapter publications). They communicate with the indexer
+        through a simple protocol, but are nevertheless a bit more complicated than the older
+        kind. Most of the new handlers are written in <application>Python</application> (exception:
+        <command>rclimg</command> which is written in Perl because <literal>exiftool</literal> has
+        no real Python equivalent). The Python handlers use common modules to factor out the
+        boilerplate, which can make them very simple in favorable cases. The subdocuments output by
+        these handlers can be directly indexable (text or HTML), or they can be other simple or
+        compound documents that will need to be processed by another handler.</para>
         </listitem>
       </itemizedlist>
       </para>
 
-      <para>In both cases, handlers deal with regular file system
-      files, and can process either a single document, or a
-      linear list of documents in each file. &RCL; is responsible
-      for performing up to date checks, deal with more complex
-      embedding and other upper level issues.</para>
+      <para>In both cases, handlers deal with regular file system files, and can process either a
+      single document, or a linear list of documents in each file. &RCL; is responsible for
+      performing up to date checks, deal with more complex embedding, temporary files, and other
+      upper level issues.</para>
 
-      <para>A simple handler returning a
-      document in <literal>text/plain</literal> format, can transfer
-      no metadata to the indexer. Generic metadata, like document
-      size or modification date, will be gathered and stored by
-      the indexer.</para>
+      <para>A simple handler returning a document in <literal>text/plain</literal> format, can
+      transfer no metadata to the indexer. Generic metadata, like document size or modification
+      date, will be gathered and stored by the indexer.</para>
 
-      <para>Handlers that produce  <literal>text/html</literal>
-      format can return an arbitrary amount of metadata inside HTML
-      <literal>meta</literal> tags. These will be processed
-      according to the directives found in 
-      the <link linkend="RCL.PROGRAM.FIELDS"><filename>fields</filename> configuration file</link>.
-      </para>
+      <para>Handlers that produce <literal>text/html</literal> format can return an arbitrary amount
+      of metadata inside HTML <literal>meta</literal> tags. These will be processed according to the
+      directives found in the <link linkend="RCL.PROGRAM.FIELDS"><filename>fields</filename>
+      configuration file</link>.</para>
 
-      <para>The handlers that can handle multiple documents per file
-      return a single piece of data to identify each document inside
-      the file. This piece of data, called
-      an <literal>ipath</literal> will be sent back by
-      &RCL; to extract the document at query time, for previewing,
-      or for creating a temporary file to be opened by a
-      viewer. These handlers can also return metadata either as HTML
-      <literal>meta</literal> tags, or as named data through the
+      <para>The handlers that can handle multiple documents per file return a single piece of data
+      to identify each document inside the file. This piece of data, called an
+      <literal>ipath</literal> will be sent back by &RCL; to extract the document at query time, for
+      previewing, or for creating a temporary file to be opened by a viewer. These handlers can also
+      return metadata either as HTML <literal>meta</literal> tags, or as named data through the
       communication protocol.</para>
 
-      <para>The following section describes the simple
-      handlers, and the next one gives a few explanations about
-      the <literal>execm</literal> ones. You could conceivably
-      write a simple handler with only the elements in the
-      manual. This will not be the case for the other ones, for
-      which you will have to look at the code.</para>
+      <para>The following section describes the simple handlers, and the next one gives a few
+      explanations about the <literal>execm</literal> ones. You could conceivably write a simple
+      handler with only the elements in the manual. This will not be the case for the other ones,
+      for which you will have to look at the code.</para>
 
       <sect2 xml:id="RCL.PROGRAM.FILTERS.SIMPLE">
         <title>Simple input handlers</title>
 
-        <para>&RCL; simple handlers are usually shell-scripts, but this is in
-        no way necessary. Extracting the text from the native format is the
-        difficult part. Outputting the format expected by &RCL; is
-        trivial. Happily enough, most document formats have translators or
-        text extractors which can be called from the handler. In some cases
-        the output of the translating program is completely appropriate,
-        and no intermediate shell-script is needed.</para>
+        <para>&RCL; simple handlers are usually shell-scripts, but this is in no way
+        necessary. Extracting the text from the native format is the difficult part. Outputting the
+        format expected by &RCL; is trivial. Happily enough, most document formats have translators
+        or text extractors which can be called from the handler. In some cases the output of the
+        translating program is completely appropriate, and no intermediate shell-script is
+        needed.</para>
 
-        <para>Input handlers are called with a single argument which is the
-        source file name. They should output the result to stdout.</para>
+        <para>Input handlers are called with a single argument which is the source file name. They
+        should output the result to stdout.</para>
 
-        <para>When writing a handler, you should decide if it will output
-        plain text or HTML. Plain text is simpler, but you will not be able
-        to add metadata or vary the output character encoding (this will be
-        defined in a configuration file). Additionally, some formatting may
-        be easier to preserve when previewing HTML. Actually the deciding factor
-        is metadata: &RCL; has a way to
-        <link linkend="RCL.PROGRAM.FILTERS.HTML">extract metadata from the HTML header and use it for field searches.</link>.
+        <para>When writing a handler, you should decide if it will output plain text or HTML. Plain
+        text is simpler, but you will not be able to add metadata or vary the output character
+        encoding (this will be defined in a configuration file). Additionally, some formatting may
+        be easier to preserve when previewing HTML. Actually the deciding factor is metadata: &RCL;
+        has a way to <link linkend="RCL.PROGRAM.FILTERS.HTML">extract metadata from the HTML header
+        and use it for field searches.</link>.
         </para>
 
-        <para>The <envar>RECOLL_FILTER_FORPREVIEW</envar> environment
-        variable (values <literal>yes</literal>, <literal>no</literal>)
-        tells the handler if the operation is for indexing or
-        previewing. Some handlers use this to output a slightly different
-        format, for example stripping uninteresting repeated keywords (e.g.:
-        <literal>Subject:</literal> for email) when indexing. This is not
-        essential.</para>
+        <para>The <envar>RECOLL_FILTER_FORPREVIEW</envar> environment variable (values
+        <literal>yes</literal>, <literal>no</literal>) tells the handler if the operation is for
+        indexing or previewing. Some handlers use this to output a slightly different format, for
+        example stripping uninteresting repeated keywords (e.g.: <literal>Subject:</literal> for
+        email) when indexing. This is not essential.</para>
 
-        <para>You should look at one of the simple handlers, for example
-        <command>rclps</command> for a starting point.</para>
+        <para>You should look at one of the simple handlers, for example <command>rclps</command>
+        for a starting point.</para>
 
-        <para>Don't forget to make your handler executable before 
-        testing !</para>
+        <para>Don't forget to make your handler executable before testing !</para>
 
       </sect2>
 
       <sect2 xml:id="RCL.PROGRAM.FILTERS.MULTIPLE">
         <title>"Multiple" handlers</title>
 
-        <para>If you can program and want to write
-        an <literal>execm</literal> handler, it should not be too
-        difficult to make sense of one of the existing handlers.</para>
+        <para>If you can program and want to write an <literal>execm</literal> handler, it should
+        not be too difficult to make sense of one of the existing handlers.</para>
 
-        <para>The existing handlers differ in the amount of helper code
-        which they are using:
+        <para>The best documentation of the communication "protocol" is found in the
+        comments at the top of the <filename>internfile/mh_execm.h</filename> header file.</para>
+        
+        <para>The existing handlers differ in the amount of helper code which they are using:
         <itemizedlist>
           <listitem><para><literal>rclimg</literal> is written in Perl and
           handles the execm protocol all by itself (showing how trivial it
