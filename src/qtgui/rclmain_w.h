@@ -242,6 +242,7 @@ private:
     QShortcut      *m_toggletablesc{0};
     QShortcut      *m_actionssearchsc{0};
     QShortcut      *m_cleardirfiltersc{0};
+    QShortcut      *m_showadvsearchsc{0};
     QFileSystemWatcher m_watcher;
     std::vector<ExecCmd*>  m_viewers;
     ExecCmd          *m_idxproc{0}; // Indexing process

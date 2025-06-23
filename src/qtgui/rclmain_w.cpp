@@ -386,6 +386,8 @@ void RclMain::onNewShortcuts()
             disconnect(m_focustotablesc, SIGNAL(activated()), restable, SLOT(takeFocus()));
         }
     }
+    SETSHORTCUT(this, "main:389", tr("Main Window"), tr("Show advanced search dialog"),
+                "Alt+s", m_showadvsearchsc, showAdvSearchDialog);
 }
 
 void RclMain::setupToolbars()

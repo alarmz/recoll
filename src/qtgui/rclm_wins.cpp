@@ -54,8 +54,10 @@ void RclMain::showAdvSearchDialog()
         if (asearchform == 0) {
             return;
         }
-        connect(new QShortcut(quitKeySeq, asearchform), SIGNAL (activated()), 
+        connect(new QShortcut(quitKeySeq, asearchform), SIGNAL (activated()),
                 this, SLOT (fileExit()));
+        connect(new QShortcut(closeKeySeq, asearchform), SIGNAL (activated()),
+                asearchform, SLOT(close()));
 
         connect(asearchform, SIGNAL(startSearch(std::shared_ptr<Rcl::SearchData>, bool)), 
                 this, SLOT(startSearch(std::shared_ptr<Rcl::SearchData>, bool)));
