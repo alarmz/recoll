@@ -255,14 +255,6 @@ class PDFExtractor:
             return True
         try:
             tmpdir.vacuumdir()
-            # Note: the java version of pdftk sometimes/often fails
-            # here with writing to stdout:
-            #    Error occurred during initialization of VM
-            #    Could not allocate metaspace: 1073741824 bytes
-            # Maybe insufficient resources when started from Python ?
-            # In any case, the important thing is to discard the
-            # output, until we fix the error or preferably find a way
-            # to do it with poppler...
             subprocess.check_call(
                 [self.pdfdetach, "-saveall", "-o", tmpdir.getpath(), self.filename],
                 stdout=sys.stderr,
