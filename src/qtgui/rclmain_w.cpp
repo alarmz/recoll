@@ -325,6 +325,19 @@ void RclMain::init()
     periodictimer->start(1000);
     setUIPrefs();
     reslist->resetList();
+
+#ifdef RCL_SHOW_FOCUS_CHANGES
+    // Help with understanding where the focus goes... The focus order should probably be
+    // explicitely set with QWidget::setTabOrder().
+    connect(qApp, &QApplication::focusChanged,
+            [this](QWidget *oldWidget, QWidget *newWidget) {
+              QString msg("Focus changed from: ");
+              msg += oldWidget ? oldWidget->objectName() : QString("(none)");
+              msg += " to ";
+              msg += newWidget ? newWidget->objectName() : QString("(none)");
+              this->statusBar()->showMessage(msg, 2000);
+            });
+#endif
 }
 
 void RclMain::onSSearchTypeChanged(int typ)
