@@ -218,6 +218,7 @@ void UIPrefsDialog::setFromPrefs()
     singleappCB->setChecked(prefs.singleapp);
     ssearchCompletePassiveCB->setChecked(prefs.ssearchCompletePassive);
     previewLinesOverAnchorSB->setValue(prefs.previewLinesOverAnchor);
+    uilanguageCMB->clear();
     for (const auto& [lang,abbrev]: uilanguages) {
         uilanguageCMB->addItem(lang, abbrev);
     }
