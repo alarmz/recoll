@@ -31,7 +31,7 @@ Jean-Francois Dockes
         2.1. [8]Introduction
 
               2.1.1. [9]Indexing modes
-              2.1.2. [10]Configurations, multiple indexes
+              2.1.2. [10]The index configuration directory
               2.1.3. [11]Document types
               2.1.4. [12]Indexing failures
               2.1.5. [13]Recovery
@@ -102,35 +102,34 @@ Jean-Francois Dockes
         3.2. [49]Searching with the Qt graphical user interface (GUI)
 
               3.2.1. [50]Simple search
-              3.2.2. [51]The result list
-              3.2.3. [52]The result table
-              3.2.4. [53]The filters panel
-              3.2.5. [54]Unix-like systems: running arbitrary commands on
-                      result files
-
-              3.2.6. [55]Unix-like systems: displaying thumbnails
-              3.2.7. [56]The preview window
-              3.2.8. [57]The Query Fragments window
-              3.2.9. [58]Assisted Complex Search (A.K.A. "Advanced
+              3.2.2. [51]The filters panel (1.32)
+              3.2.3. [52]The result list
+              3.2.4. [53]The result table
+              3.2.5. [54]The preview window
+              3.2.6. [55]Assisted Complex Search (A.K.A. "Advanced
                       Search")
 
-                    [59]Advanced search: the "find" tab
-                    [60]Advanced search: the "filter" tab
-                    [61]Advanced search history
+                    [56]Advanced search: the "find" tab
+                    [57]Advanced search: the "filter" tab
+                    [58]Advanced search history
 
+              3.2.7. [59]Document history
+              3.2.8. [60]Saving and restoring queries
+              3.2.9. [61]Sorting search results and collapsing duplicates
               3.2.10. [62]The term explorer tool
-              3.2.11. [63]Searching across multiple indexes
-              3.2.12. [64]Document history
-              3.2.13. [65]Sorting search results and collapsing duplicates
+              3.2.11. [63]The Query Fragments window
+              3.2.12. [64]Searching across multiple indexes
+              3.2.13. [65]Unix-like systems: displaying thumbnails
+              3.2.14. [66]Unix-like systems: running arbitrary commands on
+                      result files
 
-              3.2.14. [66]Keyboard shortcuts
-              3.2.15. [67]Search tips
+              3.2.15. [67]Keyboard shortcuts
+              3.2.16. [68]Search tips
 
-                    [68]Terms and search expansion
-                    [69]Working with phrases and proximity
-                    [70]Others
+                    [69]Terms and search expansion
+                    [70]Working with phrases and proximity
+                    [71]Others
 
-              3.2.16. [71]Saving and restoring queries
               3.2.17. [72]Customising the search interface
 
                     [73]Choosing the viewer applications
@@ -479,12 +478,16 @@ Chapter 2. Indexing
    The following sections give an overview of different aspects of the
    indexing processes and configuration, with links to detailed sections.
 
-   Depending on your data, temporary files may be needed during indexing,
-   some of them possibly quite big. You can use the RECOLL_TMPDIR or
-   TMPDIR environment variables to determine where they are created (the
-   default is to use /tmp). Using TMPDIR has the nice property that it may
-   also be taken into account by auxiliary commands executed by
-   recollindex.
+   Depending on your data, temporary files may be created during indexing,
+   some of them possibly quite big. You can set the RECOLL_TMPDIR
+   environment variable to determine where they are created. If
+   RECOLL_TMPDIR is not set, Recoll will fall back to other locations
+   depending on the system. On Unix-like systems and MacOS systems TMPDIR,
+   TMP and TEMP will be tried before falling back to /tmp/. On Windows,
+   Recoll will call the GetTempPath() function. Using the system normal
+   mechanism instead of RECOLL_TMPDIR has the nice property that the
+   auxiliary commands executed by recollindex should then create their own
+   temporary files in the same location.
 
 2.1.1. Indexing modes
 
@@ -512,63 +515,38 @@ Choosing an indexing mode
    The choice of method and the parameters used can be configured from the
    recoll GUI: Preferences → Indexing schedule dialog.
 
-2.1.2. Configurations, multiple indexes
+2.1.2. The index configuration directory
 
-   Recoll supports defining multiple indexes, each defined by its own
-   configuration directory. A configuration directory contains
-   [179]several files which describe what should be indexed and how.
+   A Recoll index is defined by its configuration directory. A
+   configuration directory contains [179]several files which describe what
+   should be indexed and how.
 
    When recoll or recollindex is first executed, it creates a default
-   configuration directory. This configuration is the one used for
-   indexing and querying when no specific configuration is specified. It
-   is located in $HOME/.recoll/ for Unix-like systems and
-   %LOCALAPPDATA%/Recoll on Windows (typically
+   configuration directory, located in $HOME/.recoll/ on Unix-like systems
+   and MacOS systems and %LOCALAPPDATA%/Recoll on Windows (typically
    C:/Users/[me]/Appdata/Local/Recoll).
 
    All configuration parameters have defaults, defined in system-wide
    files. Without further customisation, the default configuration will
    process your complete home directory, with a reasonable set of
-   defaults. It can be adjusted to process a different area of the file
-   system, select files in different ways, and many other things.
+   defaults. It can be adjusted to process different areas of the file
+   storage, select files in different ways, and many other things.
+
+   The index configuration can be edited either by using the recoll GUI
+   Preferences->Index configuration dialog, or by directly editing the
+   configuration files.
+
+   A single index can process data from any subset of the computer
+   accessible storage, as defined by the configuration variables. The most
+   important one is topdirs (Start directories in the GUI), which defines
+   the directories to be recursively indexed. Its default value is ~,
+   which translates to your home directory.
 
    In some cases, it may be useful to create additional configuration
    directories, for example, to separate personal and shared indexes, or
    to take advantage of the organization of your data to improve search
-   precision.
-
-   In order to do this, you would create an empty directory in a location
-   of your choice, and then instruct recoll or recollindex to use it by
-   setting either a command line option (-c /some/directory), or an
-   environment variable (RECOLL_CONFDIR=/some/directory). Any modification
-   performed by the commands (e.g. configuration customisation or searches
-   by recoll or index creation by recollindex) would then apply to the new
-   directory and not to the default one.
-
-   Once multiple indexes are created, you can use each of them separately
-   by setting the -c option or the RECOLL_CONFDIR environment variable
-   when starting a command, to select the desired index.
-
-   It is also possible to instruct one configuration to query one or
-   several other indexes in addition to its own, by using the External
-   index function in the recoll GUI, or some equivalent in the command
-   line and programming tools.
-
-   A plausible usage scenario for the multiple index feature would be for
-   a system administrator to set up a central index for shared data, that
-   you choose to search or not in addition to your personal data. Of
-   course, there are other possibilities. for example, there are many
-   cases where you know the subset of files that should be searched, and
-   where narrowing the search can improve the results. You can achieve
-   approximately the same effect by using a directory filter clause in a
-   search, but multiple indexes may have better performance and may be
-   worth the trouble in some cases.
-
-   A more advanced use case would be to use multiple indexes to improve
-   indexing performance, by updating several indexes in parallel (using
-   multiple CPU cores and disks, or possibly several machines), and then
-   merging them, or querying them in parallel.
-
-   See the section about [180]configuring multiple indexes for more detail
+   precision. See the section about [180]configuring multiple indexes for
+   more detail.
 
 2.1.3. Document types
 
@@ -679,17 +657,11 @@ Note about MIME types
        performance reasons.
      * You can specify a different configuration directory by setting the
        RECOLL_CONFDIR environment variable, or using the -c option to the
-       Recoll commands. This method would typically be used to index
-       different areas of the file system to different indexes. For
-       example, if you were to issue the following command:
-recoll -c ~/.indexes-email
-       Then Recoll would use configuration files stored in
-       ~/.indexes-email/ and, (unless specified otherwise in recoll.conf)
-       would look for the index in ~/.indexes-email/xapiandb/.
-       Using multiple configuration directories and [191]configuration
-       options allows you to tailor multiple configurations and indexes to
-       handle whatever subset of the available data you wish to make
-       searchable.
+       Recoll commands. In turn, the related index would be stored either
+       under the configuration directory, or elsewhere if dbdir is locally
+       set. This method would typically be used in special cases to index
+       different areas of the file system to different indexes. See the
+       section about [191]configuring multiple indexes for more detail.
 
    There are quite a few more parameters which can be set in the
    configuration file itself for tailoring Recoll data storage. They are
@@ -849,6 +821,21 @@ recoll -c ~/.indexes-email
    directories which would typically be set to index different areas of
    the file system.
 
+   A plausible usage scenario for the multiple index feature would be for
+   a system administrator to set up a central index for shared data, that
+   you choose to search or not in addition to your personal data. Of
+   course, there are other possibilities. for example, there are many
+   cases where you know the subset of files that should be searched, and
+   where narrowing the search can improve the results. You can achieve
+   approximately the same effect by using a directory filter clause in a
+   search, but multiple indexes may have better performance and may be
+   worth the trouble with huge data sets.
+
+   A more advanced use case would be to use multiple indexes to improve
+   indexing performance, by updating several indexes in parallel (using
+   multiple CPU cores and disks, or possibly several machines), and then
+   either merging them, or querying them in parallel.
+
    A specific configuration can be selected by setting the RECOLL_CONFDIR
    environment variable or giving the -c option to recoll and recollindex.
 
@@ -892,6 +879,14 @@ recoll -c ~/.indexes-email
    mistakenly creating additional directories when an argument is
    mistyped. Also, the GUI or the indexer must be launched with a specific
    option or environment to work on the right configuration.
+
+   To start a new configuration, you need to create an empty directory in
+   a location of your choice, and then instruct recoll or recollindex to
+   use it by setting either a command line option (-c /some/directory), or
+   an environment variable (RECOLL_CONFDIR=/some/directory). Any
+   modification performed by the commands (e.g. configuration
+   customisation or searches by recoll or index creation by recollindex)
+   would then apply to the new directory and not to the default one.
 
 Creating and using an additional index: Unix-like systems example
 
@@ -939,12 +934,12 @@ Creating an alternate index: Windows example
        and index.
     2. Select the Recoll icon on the desktop and Copy/Paste it. If no
        desktop icon was created during installation, you can right-drag
-       the recoll.exe program from C:\Program Files (X86)\Recoll to the
-       desktop and select Create shortcuts here to create one.
+       the recoll.exe program from C:\Program Files\Recoll to the desktop
+       and select Create shortcuts here to create one.
     3. Right-click the new shortcut and go to the Properties->shortcut tab
-    4. Modify the Target value from the original C:\Program Files
-       (x86)\Recoll\recoll.exe to something like:
-"C:\Program Files (x86)\Recoll\recoll.exe" -c C:\Path\To\My\New\Directory
+    4. Modify the Target value from the original C:\Program
+       Files\Recoll\recoll.exe to something like:
+"C:\Program Files\Recoll\recoll.exe" -c C:\Path\To\My\New\Directory
        Use double quotes around the directory path is it contains spaces.
     5. Then save the new Icon by clicking ok, and double click it to start
        a Recoll GUI for the new configuration. You should be presented
@@ -1979,7 +1974,40 @@ Chapter 3. Searching
      * If you have a big index (many files), excessively generic fragments
        may result in inefficient searches.
 
-3.2.2. The result list
+3.2.2. The filters panel (1.32)
+
+   By default, the GUI displays the filters panel on the left of the
+   results area. You can adjust the width of the panel, and hide it by
+   squeezing it completely. The width will be memorized for the next
+   session.
+
+   The panel is only active in Query Language search mode, and it allows
+   filtering by date or filesystem location, by adding date: and dir:
+   clauses to the effective query text.
+
+   The dates filter can be activated by clicking the checkbox. It has two
+   assisted date entry widgets, for the minimum and maximum dates of the
+   search period.
+
+   The directory filter displays a subset of the filesystem directories,
+   reduced to the indexed area, as defined by the topdirs list and the
+   name exclusion parameters. Some directories may not be shown at all,
+   depending on their (lack of) indexable content and other indexing
+   parameters.
+
+   By default, the depth of the displayed tree is limited at 2 levels
+   under the start directories. You can change this in the GUI
+   Preferences, User interface panel. Please note that increasing the
+   depth can strongly delay the GUI startup, you should experiment by
+   single increments if you want to change the value.
+
+   You can independantly select and deselect directories by clicking them.
+   Note that selecting a directory will activate the whole subtree for
+   searching, there is no need to select the subdirectories, and no way to
+   exclude some of them (use [241]Query language dir: clauses if this is
+   needed).
+
+3.2.3. The result list
 
    After starting a search, a list of results will instantly be displayed
    in the main window.
@@ -1991,7 +2019,7 @@ Chapter 3. Searching
 
    Each result is displayed as a structured text paragraph. The standard
    format is typically adequate, but the content and presentation are
-   [241]entirely customisable.
+   [242]entirely customisable.
 
    Most results will contain Preview and Open clickable links.
 
@@ -2004,7 +2032,7 @@ Chapter 3. Searching
 
    Clicking the Open link will start an external viewer for the document.
    By default, Recoll lets the desktop choose the appropriate application
-   for most document types. See [242]further for customising the
+   for most document types. See [243]further for customising the
    applications.
 
    The Preview and Open links may not be present for all entries. They are
@@ -2013,11 +2041,11 @@ Chapter 3. Searching
    However, you can modify the configuration to adjust this behavior. In
    more detail:
      * The Preview link will appear for documents with a MIME type present
-       in the [index] section of the [243]mimeconf file, and, only if the
+       in the [index] section of the [244]mimeconf file, and, only if the
        textunknownasplain configuration variable is set, for all types
        identified as a subtype of text (text/*).
      * The Open link will appear for documents with a MIME type present in
-       the [view] section of the [244]mimeview configuration file. If
+       the [view] section of the [245]mimeview configuration file. If
        textunknownasplain is set and no specific viewer is found for a
        subtype of text, the viewer for text/plain will be used.
 
@@ -2068,7 +2096,7 @@ The result list right-click menu
 
    Run Script allows starting an arbitrary command on the result file. It
    will only appear for results which are top-level files. See
-   [245]further for a more detailed description.
+   [246]further for a more detailed description.
 
    The Copy File Name and Copy Url copy the relevant data to the
    clipboard, for later pasting.
@@ -2103,7 +2131,7 @@ The result list right-click menu
    viewer supports it, its search function will also be primed with one of
    the search terms.
 
-3.2.3. The result table
+3.2.4. The result table
 
    As an alternative to the result list, the results can also be displayed
    in spreadsheet-like fashion. You can switch to this presentation by
@@ -2136,93 +2164,7 @@ The result list right-click menu
    functions of Click and Shift-Click can be reversed in the GUI
    preferences.
 
-3.2.4. The filters panel
-
-   By default, the GUI displays the filters panel on the left of the
-   results area. This is new in version 1.32. You can adjust the width of
-   the panel, and hide it by squeezing it completely. The width will be
-   memorized for the next session.
-
-   The panel currently has two areas, for filtering the results by dates,
-   or by filesystem location.
-
-   The panel is only active in Query Language search mode, and its effect
-   is to add date: and dir: clauses to the actual search.
-
-   The dates filter can be activated by clicking the checkbox. It has two
-   assisted date entry widgets, for the minimum and maximum dates of the
-   search period.
-
-   The directory filter displays a subset of the filesystem directories,
-   reduced to the indexed area, as defined by the topdirs list and the
-   name exclusion parameters. Some directories may not be shown at all,
-   depending on their (lack of) indexable content and other indexing
-   parameters.
-
-   By default, the depth of the displayed tree is limited at 2 levels
-   under the start directories. You can change this in the GUI
-   Preferences, User interface panel. Please note that increasing the
-   depth can strongly delay the GUI startup, you should experiment by
-   single increments if you want to change the value.
-
-   You can independantly select and deselect directories by clicking them.
-   Note that selecting a directory will activate the whole subtree for
-   searching, there is no need to select the subdirectories, and no way to
-   exclude some of them (use [246]Query language dir: clauses if this is
-   needed).
-
-3.2.5. Unix-like systems: running arbitrary commands on result files
-
-   Apart from the Open and Open With operations, which allow starting an
-   application on a result document (or a temporary copy), based on its
-   MIME type, it is also possible to run arbitrary commands on results
-   which are top-level files, using the Run Script entry in the results
-   pop-up menu.
-
-   The commands which will appear in the Run Script submenu must be
-   defined by .desktop files inside the scripts subdirectory of the
-   current configuration directory.
-
-   Here follows an example of a .desktop file, which could be named for
-   example, ~/.recoll/scripts/myscript.desktop (the exact file name inside
-   the directory is irrelevant):
-[Desktop Entry]
-Type=Application
-Name=MyFirstScript
-Exec=/home/me/bin/tryscript %F
-MimeType=*/*
-
-   The Name attribute defines the label which will appear inside the Run
-   Script menu. The Exec attribute defines the program to be run, which
-   does not need to actually be a script, of course. The MimeType
-   attribute is not used, but needs to exist.
-
-   The commands defined this way can also be used from links inside the
-   [247]result paragraph.
-
-   As an example, it might make sense to write a script which would move
-   the document to the trash and purge it from the Recoll index.
-
-3.2.6. Unix-like systems: displaying thumbnails
-
-   The default format for the result list entries and the detail area of
-   the result table display an icon for each result document. The icon is
-   either a generic one determined from the MIME type, or a thumbnail of
-   the document appearance. Thumbnails are only displayed if found in the
-   standard freedesktop location, where they would typically have been
-   created by a file manager.
-
-   Recoll has no capability to create thumbnails. A relatively simple
-   trick is to use the Open parent document/folder entry in the result
-   list popup menu. This should open a file manager window on the
-   containing directory, which should in turn create the thumbnails
-   (depending on your settings). Restarting the search should then display
-   the thumbnails.
-
-   There are also [248]some pointers about thumbnail generation in the
-   Recoll FAQ.
-
-3.2.7. The preview window
+3.2.5. The preview window
 
    The preview window opens when you first click a Preview link inside the
    result list.
@@ -2286,7 +2228,237 @@ Searching inside the preview
           search will revert to the text mode as soon as you edit the
           entry area.
 
-3.2.8. The Query Fragments window
+3.2.6. Assisted Complex Search (A.K.A. "Advanced Search")
+
+   The advanced search dialog helps you build more complex queries without
+   having to memorize the search language constructs.
+
+   The dialog can be opened through the Tools menu or through the main
+   toolbar. There is also an option to have it open when the program
+   starts. The results of the search are processed and displayed in the
+   same way as the results from the "simple search".
+
+   Recoll keeps a history of searches. See [247]Advanced search history.
+
+   The dialog has two tabs:
+    1. The first tab lets you specify terms to search for, and permits
+       specifying multiple clauses which are combined to build the search.
+    2. The second tab allows filtering the results according to file size,
+       date of modification, MIME type, or location.
+
+   Click on the Start Search button in the advanced search dialog, or type
+   Enter in any text field to start the search. The button in the main
+   window always performs a simple search.
+
+   Click on the Show query details link at the top of the result page to
+   see the query expansion.
+
+Advanced search: the "find" tab
+
+   This part of the dialog lets you construct a query by combining
+   multiple clauses of different types. Each entry field is configurable
+   for the following modes:
+     * All terms.
+     * Any term.
+     * None of the terms.
+     * Phrase (exact terms in order within an adjustable window).
+     * Proximity (terms in any order within an adjustable window).
+     * Filename search.
+
+   Additional entry fields can be created by clicking the Add clause
+   button.
+
+   When searching, the non-empty clauses will be combined either with an
+   AND or an OR conjunction, depending on the choice made on the left (All
+   clauses or Any clause).
+
+   Entries of all types except "Phrase" and "Near" accept a mix of single
+   words and phrases enclosed in double quotes. Stemming and wildcard
+   expansion will be performed as for simple search.
+
+Phrase and Proximity searches
+
+   These two clauses look for a group of terms in specified relative
+   positions. They differ in the sense that the order of input terms is
+   significant for phrase searches, but not for proximity searches. The
+   latter do not impose an order on the words. In both cases, an
+   adjustable number (slack) of non-matched words may be accepted between
+   the searched ones. For phrase searches, the default count is zero
+   (exact match). For proximity searches it is ten (meaning that two
+   search terms, would be matched if found within a window of twelve
+   words).
+
+   Examples: a phrase search for quick fox with a slack of 0 will match
+   quick fox but not quick brown fox. With a slack of 1 it will match the
+   latter, but not fox quick. A proximity search for quick fox with the
+   default slack will match the latter, and also a fox is a cunning and
+   quick animal.
+
+   The slack can be adjusted with the counter to the left of the input
+   area
+
+Advanced search: the "filter" tab
+
+   This part of the dialog has several sections which allow filtering the
+   results of a search according to a number of criteria
+     * The first section allows filtering by dates of last modification.
+       You can specify both a minimum and a maximum date. The initial
+       values are set according to the oldest and newest documents found
+       in the index.
+     * The next section allows filtering the results by file size. There
+       are two entries for minimum and maximum size. Enter decimal
+       numbers. You can use suffix multipliers: k/K, m/M, g/G, t/T for
+       10E3, 10E6, 10E9, 10E12 respectively.
+     * The next section allows filtering the results by their MIME types,
+       or MIME categories (e.g.: media/text/message/etc.).
+       You can transfer the types between two boxes, to define which will
+       be included or excluded by the search.
+       The state of the file type selection can be saved as the default
+       (the file type filter will not be activated at program start-up,
+       but the lists will be in the restored state).
+     * The bottom section allows restricting the search results to a
+       sub-tree of the indexed area. You can use the Invert checkbox to
+       search for files not in the sub-tree instead. If you use directory
+       filtering often and on big subsets of the file system, you may
+       think of setting up multiple indexes instead, as the performance
+       may be better.
+       You can use relative/partial paths for filtering. E.g., entering
+       dirA/dirB would match either /dir1/dirA/dirB/myfile1 or
+       /dir2/dirA/dirB/someother/myfile2.
+
+Advanced search history
+
+   The advanced search tool memorizes the last 100 searches performed. You
+   can walk the saved searches by using the up and down arrow keys while
+   the keyboard focus belongs to the advanced search dialog.
+
+   The complex search history can be erased, along with the one for simple
+   search, by selecting the File → Erase Search History menu entry.
+
+3.2.7. Document history
+
+   Documents that you actually view (with the internal preview or an
+   external tool) are entered into the document history, which is
+   remembered.
+
+   You can display the history list by using the Tools/Doc History menu
+   entry.
+
+   You can erase the document history by using the Erase document history
+   entry in the File menu.
+
+3.2.8. Saving and restoring queries
+
+   Both simple and advanced query dialogs save recent history, but the
+   amount is limited: old queries will eventually be forgotten. Also,
+   important queries may be difficult to find among others. This is why
+   both types of queries can also be explicitly saved to files, from the
+   GUI menus: File → Save last query / Load last query
+
+   The default location for saved queries is a subdirectory of the current
+   configuration directory, but saved queries are ordinary files and can
+   be written or moved anywhere.
+
+   Some of the saved query parameters are part of the preferences (e.g.
+   autophrase or the active external indexes), and may differ when the
+   query is loaded from the time it was saved. In this case, Recoll will
+   warn of the differences, but will not change the user preferences.
+
+3.2.9. Sorting search results and collapsing duplicates
+
+   The documents in a result list are normally sorted in order of
+   relevance. It is possible to specify a different sort order, either by
+   using the vertical arrows in the GUI toolbox to sort by date, or
+   switching to the result table display and clicking on any header. The
+   sort order chosen inside the result table remains active if you switch
+   back to the result list, until you click one of the vertical arrows,
+   until both are unchecked (you are back to sort by relevance).
+
+   Sort parameters are remembered between program invocations, but result
+   sorting is normally always inactive when the program starts. It is
+   possible to keep the sorting activation state between program
+   invocations by checking the Remember sort activation state option in
+   the preferences.
+
+   It is also possible to hide duplicate entries inside the result list
+   (documents with the exact same contents as the displayed one). The test
+   of identity is based on an MD5 hash of the document container, not only
+   of the text contents (so that e.g., a text document with an image added
+   will not be a duplicate of the text only). Duplicates hiding is
+   controlled by an entry in the GUI configuration dialog, and is off by
+   default.
+
+   When a result document does have undisplayed duplicates, a Dups link
+   will be shown with the result list entry. Clicking the link will
+   display the paths (URLs + ipaths) for the duplicate entries.
+
+3.2.10. The term explorer tool
+
+   Recoll automatically manages the expansion of search terms to their
+   derivatives (e.g.: plural/singular, verb inflections). But there are
+   other cases where the exact search term is not known. For example, you
+   may not remember the exact spelling, or only know the beginning of the
+   name.
+
+   The search will only propose replacement terms with spelling variations
+   when no matching document were found. In some cases, both proper
+   spellings and mispellings are present in the index, and it may be
+   interesting to look for them explicitly.
+
+   The term explorer tool (started from the toolbar icon or from the Term
+   explorer entry of the Tools menu) can be used to search the full index
+   terms list, or (later addition), display some statistics or other index
+   information. It has several modes of operations:
+
+   Wildcard
+          In this mode of operation, you can enter a search string with
+          shell-like wildcards (*, ?, []). e.g.: xapi* would display all
+          index terms beginning with xapi. (More about wildcards
+          [248]here).
+
+   Regular expression
+          This mode will accept a regular expression as input. Example:
+          word[0-9]+. The expression is implicitly anchored at the
+          beginning. E.g.: press will match pression but not expression.
+          You can use .*press to match the latter, but be aware that this
+          will cause a full index term list scan, which can be quite long.
+
+   Stem expansion
+          This mode will perform the usual stem expansion normally done as
+          part user input processing. As such it is probably mostly useful
+          to demonstrate the process.
+
+   Spelling/Phonetic
+          In this mode, you enter the term as you think it is spelled, and
+          Recoll will do its best to find index terms that sound like your
+          entry. This mode uses the Aspell spelling application, which
+          must be installed on your system for things to work (if your
+          documents contain non-ASCII characters, Recoll needs an aspell
+          version newer than 0.60 for UTF-8 support). The language which
+          is used to build the dictionary out of the index terms (which is
+          done at the end of an indexing pass) is the one defined by your
+          NLS environment. Weird things will probably happen if languages
+          are mixed up.
+
+   Show index statistics
+          This will print a long list of boring numbers about the index
+
+   List files which could not be indexed
+          This will show the files which caused errors, usually because
+          recollindex could not translate their format into text.
+
+   Note that in cases where Recoll does not know the beginning of the
+   string to search for (e.g. a wildcard expression like *coll), the
+   expansion can take quite a long time because the full index term list
+   will have to be processed. The expansion is currently limited at 10000
+   results for wildcards and regular expressions. It is possible to change
+   the limit in the configuration file.
+
+   Double-clicking on a term in the result list will insert it into the
+   simple search entry field. You can also cut/paste between the result
+   list and any entry field (the end of lines will be taken care of).
+
+3.2.11. The Query Fragments window
 
    The Query Fragments window can be used to control filtering query
    language elements modifying the current query, simply by clicking a
@@ -2404,178 +2576,9 @@ Note
    because this usually opens it in a Web browser, which will not let you
    modify the contents.
 
-3.2.9. Assisted Complex Search (A.K.A. "Advanced Search")
+3.2.12. Searching across multiple indexes
 
-   The advanced search dialog helps you build more complex queries without
-   memorizing the search language constructs. It can be opened through the
-   Tools menu or through the main toolbar.
-
-   Recoll keeps a history of searches. See [249]Advanced search history.
-
-   The dialog has two tabs:
-    1. The first tab lets you specify terms to search for, and permits
-       specifying multiple clauses which are combined to build the search.
-    2. The second tab allows filtering the results according to file size,
-       date of modification, MIME type, or location.
-
-   Click on the Start Search button in the advanced search dialog, or type
-   Enter in any text field to start the search. The button in the main
-   window always performs a simple search.
-
-   Click on the Show query details link at the top of the result page to
-   see the query expansion.
-
-Advanced search: the "find" tab
-
-   This part of the dialog lets you construct a query by combining
-   multiple clauses of different types. Each entry field is configurable
-   for the following modes:
-     * All terms.
-     * Any term.
-     * None of the terms.
-     * Phrase (exact terms in order within an adjustable window).
-     * Proximity (terms in any order within an adjustable window).
-     * Filename search.
-
-   Additional entry fields can be created by clicking the Add clause
-   button.
-
-   When searching, the non-empty clauses will be combined either with an
-   AND or an OR conjunction, depending on the choice made on the left (All
-   clauses or Any clause).
-
-   Entries of all types except "Phrase" and "Near" accept a mix of single
-   words and phrases enclosed in double quotes. Stemming and wildcard
-   expansion will be performed as for simple search.
-
-Phrase and Proximity searches
-
-   These two clauses look for a group of terms in specified relative
-   positions. They differ in the sense that the order of input terms is
-   significant for phrase searches, but not for proximity searches. The
-   latter do not impose an order on the words. In both cases, an
-   adjustable number (slack) of non-matched words may be accepted between
-   the searched ones. For phrase searches, the default count is zero
-   (exact match). For proximity searches it is ten (meaning that two
-   search terms, would be matched if found within a window of twelve
-   words).
-
-   Examples: a phrase search for quick fox with a slack of 0 will match
-   quick fox but not quick brown fox. With a slack of 1 it will match the
-   latter, but not fox quick. A proximity search for quick fox with the
-   default slack will match the latter, and also a fox is a cunning and
-   quick animal.
-
-   The slack can be adjusted with the counter to the left of the input
-   area
-
-Advanced search: the "filter" tab
-
-   This part of the dialog has several sections which allow filtering the
-   results of a search according to a number of criteria
-     * The first section allows filtering by dates of last modification.
-       You can specify both a minimum and a maximum date. The initial
-       values are set according to the oldest and newest documents found
-       in the index.
-     * The next section allows filtering the results by file size. There
-       are two entries for minimum and maximum size. Enter decimal
-       numbers. You can use suffix multipliers: k/K, m/M, g/G, t/T for
-       10E3, 10E6, 10E9, 10E12 respectively.
-     * The next section allows filtering the results by their MIME types,
-       or MIME categories (e.g.: media/text/message/etc.).
-       You can transfer the types between two boxes, to define which will
-       be included or excluded by the search.
-       The state of the file type selection can be saved as the default
-       (the file type filter will not be activated at program start-up,
-       but the lists will be in the restored state).
-     * The bottom section allows restricting the search results to a
-       sub-tree of the indexed area. You can use the Invert checkbox to
-       search for files not in the sub-tree instead. If you use directory
-       filtering often and on big subsets of the file system, you may
-       think of setting up multiple indexes instead, as the performance
-       may be better.
-       You can use relative/partial paths for filtering. E.g., entering
-       dirA/dirB would match either /dir1/dirA/dirB/myfile1 or
-       /dir2/dirA/dirB/someother/myfile2.
-
-Advanced search history
-
-   The advanced search tool memorizes the last 100 searches performed. You
-   can walk the saved searches by using the up and down arrow keys while
-   the keyboard focus belongs to the advanced search dialog.
-
-   The complex search history can be erased, along with the one for simple
-   search, by selecting the File → Erase Search History menu entry.
-
-3.2.10. The term explorer tool
-
-   Recoll automatically manages the expansion of search terms to their
-   derivatives (e.g.: plural/singular, verb inflections). But there are
-   other cases where the exact search term is not known. For example, you
-   may not remember the exact spelling, or only know the beginning of the
-   name.
-
-   The search will only propose replacement terms with spelling variations
-   when no matching document were found. In some cases, both proper
-   spellings and mispellings are present in the index, and it may be
-   interesting to look for them explicitly.
-
-   The term explorer tool (started from the toolbar icon or from the Term
-   explorer entry of the Tools menu) can be used to search the full index
-   terms list, or (later addition), display some statistics or other index
-   information. It has several modes of operations:
-
-   Wildcard
-          In this mode of operation, you can enter a search string with
-          shell-like wildcards (*, ?, []). e.g.: xapi* would display all
-          index terms beginning with xapi. (More about wildcards
-          [250]here).
-
-   Regular expression
-          This mode will accept a regular expression as input. Example:
-          word[0-9]+. The expression is implicitly anchored at the
-          beginning. E.g.: press will match pression but not expression.
-          You can use .*press to match the latter, but be aware that this
-          will cause a full index term list scan, which can be quite long.
-
-   Stem expansion
-          This mode will perform the usual stem expansion normally done as
-          part user input processing. As such it is probably mostly useful
-          to demonstrate the process.
-
-   Spelling/Phonetic
-          In this mode, you enter the term as you think it is spelled, and
-          Recoll will do its best to find index terms that sound like your
-          entry. This mode uses the Aspell spelling application, which
-          must be installed on your system for things to work (if your
-          documents contain non-ASCII characters, Recoll needs an aspell
-          version newer than 0.60 for UTF-8 support). The language which
-          is used to build the dictionary out of the index terms (which is
-          done at the end of an indexing pass) is the one defined by your
-          NLS environment. Weird things will probably happen if languages
-          are mixed up.
-
-   Show index statistics
-          This will print a long list of boring numbers about the index
-
-   List files which could not be indexed
-          This will show the files which caused errors, usually because
-          recollindex could not translate their format into text.
-
-   Note that in cases where Recoll does not know the beginning of the
-   string to search for (e.g. a wildcard expression like *coll), the
-   expansion can take quite a long time because the full index term list
-   will have to be processed. The expansion is currently limited at 10000
-   results for wildcards and regular expressions. It is possible to change
-   the limit in the configuration file.
-
-   Double-clicking on a term in the result list will insert it into the
-   simple search entry field. You can also cut/paste between the result
-   list and any entry field (the end of lines will be taken care of).
-
-3.2.11. Searching across multiple indexes
-
-   See the section describing [251]the use of multiple indexes for
+   See the section describing [249]the use of multiple indexes for
    generalities. Only the aspects concerning the recoll GUI are described
    here.
 
@@ -2606,7 +2609,7 @@ Advanced search history
    If the external index is actually located on a volume mounted from
    another machine, and references remote files, there may be a need to
    adjust the result paths so that they match the locally mounted ones
-   (for opening documents). This can be done by using the [252]path
+   (for opening documents). This can be done by using the [250]path
    translation facility.
 
    As building the set of all indexes can be a little tedious when done
@@ -2627,47 +2630,58 @@ export RECOLL_EXTRA_DBS=/some/place/xapiandb:/some/other/db
    mounted volume when starting recoll. Unreachable indexes will
    automatically be deactivated when starting up.
 
-3.2.12. Document history
+3.2.13. Unix-like systems: displaying thumbnails
 
-   Documents that you actually view (with the internal preview or an
-   external tool) are entered into the document history, which is
-   remembered.
+   The default format for the result list entries and the detail area of
+   the result table display an icon for each result document. The icon is
+   either a generic one determined from the MIME type, or a thumbnail of
+   the document appearance. Thumbnails are only displayed if found in the
+   standard freedesktop location, where they would typically have been
+   created by a file manager.
 
-   You can display the history list by using the Tools/Doc History menu
-   entry.
+   Recoll has no capability to create thumbnails. A relatively simple
+   trick is to use the Open parent document/folder entry in the result
+   list popup menu. This should open a file manager window on the
+   containing directory, which should in turn create the thumbnails
+   (depending on your settings). Restarting the search should then display
+   the thumbnails.
 
-   You can erase the document history by using the Erase document history
-   entry in the File menu.
+   There are also [251]some pointers about thumbnail generation in the
+   Recoll FAQ.
 
-3.2.13. Sorting search results and collapsing duplicates
+3.2.14. Unix-like systems: running arbitrary commands on result files
 
-   The documents in a result list are normally sorted in order of
-   relevance. It is possible to specify a different sort order, either by
-   using the vertical arrows in the GUI toolbox to sort by date, or
-   switching to the result table display and clicking on any header. The
-   sort order chosen inside the result table remains active if you switch
-   back to the result list, until you click one of the vertical arrows,
-   until both are unchecked (you are back to sort by relevance).
+   Apart from the Open and Open With operations, which allow starting an
+   application on a result document (or a temporary copy), based on its
+   MIME type, it is also possible to run arbitrary commands on results
+   which are top-level files, using the Run Script entry in the results
+   pop-up menu.
 
-   Sort parameters are remembered between program invocations, but result
-   sorting is normally always inactive when the program starts. It is
-   possible to keep the sorting activation state between program
-   invocations by checking the Remember sort activation state option in
-   the preferences.
+   The commands which will appear in the Run Script submenu must be
+   defined by .desktop files inside the scripts subdirectory of the
+   current configuration directory.
 
-   It is also possible to hide duplicate entries inside the result list
-   (documents with the exact same contents as the displayed one). The test
-   of identity is based on an MD5 hash of the document container, not only
-   of the text contents (so that e.g., a text document with an image added
-   will not be a duplicate of the text only). Duplicates hiding is
-   controlled by an entry in the GUI configuration dialog, and is off by
-   default.
+   Here follows an example of a .desktop file, which could be named for
+   example, ~/.recoll/scripts/myscript.desktop (the exact file name inside
+   the directory is irrelevant):
+[Desktop Entry]
+Type=Application
+Name=MyFirstScript
+Exec=/home/me/bin/tryscript %F
+MimeType=*/*
 
-   When a result document does have undisplayed duplicates, a Dups link
-   will be shown with the result list entry. Clicking the link will
-   display the paths (URLs + ipaths) for the duplicate entries.
+   The Name attribute defines the label which will appear inside the Run
+   Script menu. The Exec attribute defines the program to be run, which
+   does not need to actually be a script, of course. The MimeType
+   attribute is not used, but needs to exist.
 
-3.2.14. Keyboard shortcuts
+   The commands defined this way can also be used from links inside the
+   [252]result paragraph.
+
+   As an example, it might make sense to write a script which would move
+   the document to the trash and purge it from the Recoll index.
+
+3.2.15. Keyboard shortcuts
 
    A number of common actions within the graphical interface can be
    triggered through keyboard shortcuts. As of Recoll 1.29, many of the
@@ -2725,7 +2739,7 @@ export RECOLL_EXTRA_DBS=/some/place/xapiandb:/some/other/db
    Find the next instance of the search term F3
    Find the previous instance of the search term Shift+F3
 
-3.2.15. Search tips
+3.2.16. Search tips
 
 Terms and search expansion
 
@@ -2837,23 +2851,6 @@ search tips from:helpfulgui
    Forced opening of a preview window.  You can use Shift+Click on a
    result list Preview link to force the creation of a preview window
    instead of a new tab in the existing one.
-
-3.2.16. Saving and restoring queries
-
-   Both simple and advanced query dialogs save recent history, but the
-   amount is limited: old queries will eventually be forgotten. Also,
-   important queries may be difficult to find among others. This is why
-   both types of queries can also be explicitly saved to files, from the
-   GUI menus: File → Save last query / Load last query
-
-   The default location for saved queries is a subdirectory of the current
-   configuration directory, but saved queries are ordinary files and can
-   be written or moved anywhere.
-
-   Some of the saved query parameters are part of the preferences (e.g.
-   autophrase or the active external indexes), and may differ when the
-   query is loaded from the time it was saved. In this case, Recoll will
-   warn of the differences, but will not change the user preferences.
 
 3.2.17. Customising the search interface
 
@@ -3259,6 +3256,10 @@ recoll -L en
    The -t option will tell the program to behave exactly like the recollq
    command, printing the results to the standard output (terminal) instead
    of starting a graphical window.
+
+   The -w option starts the program minimized. -W only creates a system
+   tray icon (the system tray support must be enabled in the GUI
+   preferences User interface tab).
 
 3.3. Searching with the KDE KIO slave
 
@@ -6915,27 +6916,27 @@ References
   48. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.INTRODUCTION
   49. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI
   50. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.SIMPLE
-  51. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RESLIST
-  52. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RESTABLE
-  53. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.SIDEFILTERS
-  54. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RUNSCRIPT
-  55. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.THUMBNAILS
-  56. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.PREVIEW
-  57. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.FRAGBUTS
-  58. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX
-  59. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.TERMS
-  60. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.FILTER
-  61. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.HISTORY
+  51. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.SIDEFILTERS
+  52. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RESLIST
+  53. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RESTABLE
+  54. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.PREVIEW
+  55. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX
+  56. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.TERMS
+  57. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.FILTER
+  58. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.HISTORY
+  59. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.HISTORY
+  60. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.SAVING
+  61. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.SORT
   62. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TERMEXPLORER
-  63. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.MULTIDB
-  64. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.HISTORY
-  65. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.SORT
-  66. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.SHORTCUTS
-  67. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TIPS
-  68. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TIPS.TERMS
-  69. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TIPS.PHRASES
-  70. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TIPS.MISC
-  71. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.SAVING
+  63. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.FRAGBUTS
+  64. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.MULTIDB
+  65. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.THUMBNAILS
+  66. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RUNSCRIPT
+  67. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.SHORTCUTS
+  68. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TIPS
+  69. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TIPS.TERMS
+  70. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TIPS.PHRASES
+  71. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.TIPS.MISC
   72. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM
   73. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.APPLICATIONS
   74. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.PREFERENCES
@@ -7055,7 +7056,7 @@ References
  188. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMEMAP
  189. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.STORAGE
  190. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.DBDIR
- 191. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF
+ 191. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.MULTIPLE
  192. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.RECOLLCONF.STORE
  193. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.PERF.MULTIDX
  194. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG
@@ -7105,18 +7106,18 @@ References
  238. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
  239. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
  240. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.CASEDIAC
- 241. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
- 242. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.APPLICATIONS
- 243. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMECONF
- 244. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMEVIEW
- 245. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RUNSCRIPT
- 246. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
- 247. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST.PARA
- 248. https://www.recoll.org/faqsandhowtos/ResultsThumbnails.html
- 249. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.HISTORY
- 250. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
- 251. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.MULTIPLE
- 252. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.PTRANS
+ 241. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG
+ 242. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST
+ 243. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.APPLICATIONS
+ 244. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMECONF
+ 245. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.CONFIG.MIMEVIEW
+ 246. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.RUNSCRIPT
+ 247. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.COMPLEX.HISTORY
+ 248. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
+ 249. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.INDEXING.CONFIG.MULTIPLE
+ 250. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.PTRANS
+ 251. https://www.recoll.org/faqsandhowtos/ResultsThumbnails.html
+ 252. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.GUI.CUSTOM.RESLIST.PARA
  253. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.WILDCARDS
  254. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG.MODIFIERS
  255. file:///home/dockes/projets/fulltext/recoll/src/doc/user/usermanual.html#RCL.SEARCH.LANG

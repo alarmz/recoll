@@ -90,8 +90,8 @@ alink="#0000FF">
                 "#RCL.INDEXING.INTRODUCTION.MODES">Indexing
                 modes</a></span></dt>
                 <dt><span class="sect2">2.1.2. <a href=
-                "#RCL.INDEXING.INTRODUCTION.CONFIG">Configurations,
-                multiple indexes</a></span></dt>
+                "#RCL.INDEXING.INTRODUCTION.CONFIG">The index
+                configuration directory</a></span></dt>
                 <dt><span class="sect2">2.1.3. <a href=
                 "#id1339">Document types</a></span></dt>
                 <dt><span class="sect2">2.1.4. <a href=
@@ -263,29 +263,18 @@ alink="#0000FF">
                 "#RCL.SEARCH.GUI.SIMPLE">Simple
                 search</a></span></dt>
                 <dt><span class="sect2">3.2.2. <a href=
+                "#RCL.SEARCH.GUI.SIDEFILTERS">The filters panel
+                (1.32)</a></span></dt>
+                <dt><span class="sect2">3.2.3. <a href=
                 "#RCL.SEARCH.GUI.RESLIST">The result
                 list</a></span></dt>
-                <dt><span class="sect2">3.2.3. <a href=
+                <dt><span class="sect2">3.2.4. <a href=
                 "#RCL.SEARCH.GUI.RESTABLE">The result
                 table</a></span></dt>
-                <dt><span class="sect2">3.2.4. <a href=
-                "#RCL.SEARCH.GUI.SIDEFILTERS">The filters
-                panel</a></span></dt>
                 <dt><span class="sect2">3.2.5. <a href=
-                "#RCL.SEARCH.GUI.RUNSCRIPT"><span class=
-                "application">Unix</span>-like systems: running
-                arbitrary commands on result files</a></span></dt>
-                <dt><span class="sect2">3.2.6. <a href=
-                "#RCL.SEARCH.GUI.THUMBNAILS"><span class=
-                "application">Unix</span>-like systems: displaying
-                thumbnails</a></span></dt>
-                <dt><span class="sect2">3.2.7. <a href=
                 "#RCL.SEARCH.GUI.PREVIEW">The preview
                 window</a></span></dt>
-                <dt><span class="sect2">3.2.8. <a href=
-                "#RCL.SEARCH.GUI.FRAGBUTS">The Query Fragments
-                window</a></span></dt>
-                <dt><span class="sect2">3.2.9. <a href=
+                <dt><span class="sect2">3.2.6. <a href=
                 "#RCL.SEARCH.GUI.COMPLEX">Assisted Complex Search
                 (A.K.A. "Advanced Search")</a></span></dt>
                 <dd>
@@ -301,22 +290,36 @@ alink="#0000FF">
                     search history</a></span></dt>
                   </dl>
                 </dd>
+                <dt><span class="sect2">3.2.7. <a href=
+                "#RCL.SEARCH.GUI.HISTORY">Document
+                history</a></span></dt>
+                <dt><span class="sect2">3.2.8. <a href=
+                "#RCL.SEARCH.SAVING">Saving and restoring
+                queries</a></span></dt>
+                <dt><span class="sect2">3.2.9. <a href=
+                "#RCL.SEARCH.GUI.SORT">Sorting search results and
+                collapsing duplicates</a></span></dt>
                 <dt><span class="sect2">3.2.10. <a href=
                 "#RCL.SEARCH.GUI.TERMEXPLORER">The term explorer
                 tool</a></span></dt>
                 <dt><span class="sect2">3.2.11. <a href=
+                "#RCL.SEARCH.GUI.FRAGBUTS">The Query Fragments
+                window</a></span></dt>
+                <dt><span class="sect2">3.2.12. <a href=
                 "#RCL.SEARCH.GUI.MULTIDB">Searching across multiple
                 indexes</a></span></dt>
-                <dt><span class="sect2">3.2.12. <a href=
-                "#RCL.SEARCH.GUI.HISTORY">Document
-                history</a></span></dt>
                 <dt><span class="sect2">3.2.13. <a href=
-                "#RCL.SEARCH.GUI.SORT">Sorting search results and
-                collapsing duplicates</a></span></dt>
+                "#RCL.SEARCH.GUI.THUMBNAILS"><span class=
+                "application">Unix</span>-like systems: displaying
+                thumbnails</a></span></dt>
                 <dt><span class="sect2">3.2.14. <a href=
+                "#RCL.SEARCH.GUI.RUNSCRIPT"><span class=
+                "application">Unix</span>-like systems: running
+                arbitrary commands on result files</a></span></dt>
+                <dt><span class="sect2">3.2.15. <a href=
                 "#RCL.SEARCH.GUI.SHORTCUTS">Keyboard
                 shortcuts</a></span></dt>
-                <dt><span class="sect2">3.2.15. <a href=
+                <dt><span class="sect2">3.2.16. <a href=
                 "#RCL.SEARCH.GUI.TIPS">Search tips</a></span></dt>
                 <dd>
                   <dl>
@@ -330,9 +333,6 @@ alink="#0000FF">
                     "#RCL.SEARCH.GUI.TIPS.MISC">Others</a></span></dt>
                   </dl>
                 </dd>
-                <dt><span class="sect2">3.2.16. <a href=
-                "#RCL.SEARCH.SAVING">Saving and restoring
-                queries</a></span></dt>
                 <dt><span class="sect2">3.2.17. <a href=
                 "#RCL.SEARCH.GUI.CUSTOM">Customising the search
                 interface</a></span></dt>
@@ -1042,16 +1042,26 @@ alink="#0000FF">
         <p>The following sections give an overview of different
         aspects of the indexing processes and configuration, with
         links to detailed sections.</p>
-        <p>Depending on your data, temporary files may be needed
+        <p>Depending on your data, temporary files may be created
         during indexing, some of them possibly quite big. You can
-        use the <code class="envar">RECOLL_TMPDIR</code> or
-        <code class="envar">TMPDIR</code> environment variables to
-        determine where they are created (the default is to use
-        <code class="filename">/tmp</code>). Using <code class=
-        "envar">TMPDIR</code> has the nice property that it may
-        also be taken into account by auxiliary commands executed
-        by <span class=
-        "command"><strong>recollindex</strong></span>.</p>
+        set the <code class="envar">RECOLL_TMPDIR</code>
+        environment variable to determine where they are created.
+        If <code class="envar">RECOLL_TMPDIR</code> is not set,
+        <span class="application">Recoll</span> will fall back to
+        other locations depending on the system. On <span class=
+        "application">Unix</span>-like systems and <span class=
+        "application">MacOS</span> systems <code class=
+        "envar">TMPDIR</code>, <code class="envar">TMP</code> and
+        <code class="envar">TEMP</code> will be tried before
+        falling back to <code class="filename">/tmp/</code>. On
+        <span class="application">Windows</span>, <span class=
+        "application">Recoll</span> will call the GetTempPath()
+        function. Using the system normal mechanism instead of
+        <code class="envar">RECOLL_TMPDIR</code> has the nice
+        property that the auxiliary commands executed by
+        <span class="command"><strong>recollindex</strong></span>
+        should then create their own temporary files in the same
+        location.</p>
         <div class="sect2">
           <div class="titlepage">
             <div>
@@ -1106,8 +1116,8 @@ alink="#0000FF">
             <div class="titlepage">
               <div>
                 <div>
-                  <h4 class="title"><a name="id1569" id=
-                  "id1569"></a>Choosing an indexing mode</h4>
+                  <h4 class="title"><a name="id1577" id=
+                  "id1577"></a>Choosing an indexing mode</h4>
                 </div>
               </div>
             </div>
@@ -1133,89 +1143,55 @@ alink="#0000FF">
               <div>
                 <h3 class="title"><a name=
                 "RCL.INDEXING.INTRODUCTION.CONFIG" id=
-                "RCL.INDEXING.INTRODUCTION.CONFIG"></a>2.1.2.&nbsp;Configurations,
-                multiple indexes</h3>
+                "RCL.INDEXING.INTRODUCTION.CONFIG"></a>2.1.2.&nbsp;The
+                index configuration directory</h3>
               </div>
             </div>
           </div>
-          <p><span class="application">Recoll</span> supports
-          defining multiple indexes, each defined by its own
-          configuration directory. A configuration directory
-          contains <a class="link" href="#RCL.INDEXING.CONFIG"
-          title="2.3.&nbsp;Index configuration">several files</a>
-          which describe what should be indexed and how.</p>
+          <p>A Recoll index is defined by its configuration
+          directory. A configuration directory contains <a class=
+          "link" href="#RCL.INDEXING.CONFIG" title=
+          "2.3.&nbsp;Index configuration">several files</a> which
+          describe what should be indexed and how.</p>
           <p>When <span class=
           "command"><strong>recoll</strong></span> or <span class=
           "command"><strong>recollindex</strong></span> is first
-          executed, it creates a default configuration directory.
-          This configuration is the one used for indexing and
-          querying when no specific configuration is specified. It
-          is located in <code class=
-          "filename">$HOME/.recoll/</code> for <span class=
-          "application">Unix</span>-like systems and <code class=
-          "filename">%LOCALAPPDATA%/Recoll</code> on <span class=
-          "application">Windows</span> (typically <code class=
+          executed, it creates a default configuration directory,
+          located in <code class="filename">$HOME/.recoll/</code>
+          on <span class="application">Unix</span>-like systems and
+          <span class="application">MacOS</span> systems and
+          <code class="filename">%LOCALAPPDATA%/Recoll</code> on
+          <span class="application">Windows</span> (typically
+          <code class=
           "filename">C:/Users/[me]/Appdata/Local/Recoll</code>).</p>
           <p>All configuration parameters have defaults, defined in
           system-wide files. Without further customisation, the
           default configuration will process your complete home
           directory, with a reasonable set of defaults. It can be
-          adjusted to process a different area of the file system,
+          adjusted to process different areas of the file storage,
           select files in different ways, and many other
           things.</p>
+          <p>The index configuration can be edited either by using
+          the <span class="command"><strong>recoll</strong></span>
+          GUI <span class="guilabel">Preferences-&gt;Index
+          configuration</span> dialog, or by directly editing the
+          configuration files.</p>
+          <p>A single index can process data from any subset of the
+          computer accessible storage, as defined by the
+          configuration variables. The most important one is
+          <code class="literal">topdirs</code> (<code class=
+          "literal">Start directories</code> in the GUI), which
+          defines the directories to be recursively indexed. Its
+          default value is <code class="literal">~</code>, which
+          translates to your home directory.</p>
           <p>In some cases, it may be useful to create additional
           configuration directories, for example, to separate
           personal and shared indexes, or to take advantage of the
-          organization of your data to improve search
-          precision.</p>
-          <p>In order to do this, you would create an empty
-          directory in a location of your choice, and then instruct
-          <span class="command"><strong>recoll</strong></span> or
-          <span class="command"><strong>recollindex</strong></span>
-          to use it by setting either a command line option
-          (<code class="literal">-c</code> <em class=
-          "replaceable"><code>/some/directory</code></em>), or an
-          environment variable (<code class=
-          "envar">RECOLL_CONFDIR</code>=<em class=
-          "replaceable"><code>/some/directory</code></em>). Any
-          modification performed by the commands (e.g.
-          configuration customisation or searches by <span class=
-          "command"><strong>recoll</strong></span> or index
-          creation by <span class=
-          "command"><strong>recollindex</strong></span>) would then
-          apply to the new directory and not to the default
-          one.</p>
-          <p>Once multiple indexes are created, you can use each of
-          them separately by setting the <code class=
-          "literal">-c</code> option or the <code class=
-          "envar">RECOLL_CONFDIR</code> environment variable when
-          starting a command, to select the desired index.</p>
-          <p>It is also possible to instruct one configuration to
-          query one or several other indexes in addition to its
-          own, by using the <span class="guimenuitem">External
-          index</span> function in the <span class=
-          "command"><strong>recoll</strong></span> GUI, or some
-          equivalent in the command line and programming tools.</p>
-          <p>A plausible usage scenario for the multiple index
-          feature would be for a system administrator to set up a
-          central index for shared data, that you choose to search
-          or not in addition to your personal data. Of course,
-          there are other possibilities. for example, there are
-          many cases where you know the subset of files that should
-          be searched, and where narrowing the search can improve
-          the results. You can achieve approximately the same
-          effect by using a directory filter clause in a search,
-          but multiple indexes may have better performance and may
-          be worth the trouble in some cases.</p>
-          <p>A more advanced use case would be to use multiple
-          indexes to improve indexing performance, by updating
-          several indexes in parallel (using multiple CPU cores and
-          disks, or possibly several machines), and then merging
-          them, or querying them in parallel.</p>
-          <p>See the section about <a class="link" href=
+          organization of your data to improve search precision.
+          See the section about <a class="link" href=
           "#RCL.INDEXING.CONFIG.MULTIPLE" title=
           "2.3.2.&nbsp;Multiple indexes">configuring multiple
-          indexes</a> for more detail</p>
+          indexes</a> for more detail.</p>
         </div>
         <div class="sect2">
           <div class="titlepage">
@@ -1427,26 +1403,15 @@ indexedmimetypes = application/pdf</pre>
               "envar">RECOLL_CONFDIR</code> environment variable,
               or using the <code class="option">-c</code> option to
               the <span class="application">Recoll</span> commands.
-              This method would typically be used to index
-              different areas of the file system to different
-              indexes. For example, if you were to issue the
-              following command:</p>
-              <pre class=
-              "programlisting">recoll -c ~/.indexes-email</pre>
-              <p>Then <span class="application">Recoll</span> would
-              use configuration files stored in <code class=
-              "filename">~/.indexes-email/</code> and, (unless
-              specified otherwise in <code class=
-              "filename">recoll.conf</code>) would look for the
-              index in <code class=
-              "filename">~/.indexes-email/xapiandb/</code>.</p>
-              <p>Using multiple configuration directories and
-              <a class="link" href="#RCL.CONFIG.RECOLLCONF" title=
-              "5.3.&nbsp;Recoll main configuration file, recoll.conf">
-              configuration options</a> allows you to tailor
-              multiple configurations and indexes to handle
-              whatever subset of the available data you wish to
-              make searchable.</p>
+              In turn, the related index would be stored either
+              under the configuration directory, or elsewhere if
+              <code class="literal">dbdir</code> is locally set.
+              This method would typically be used in special cases
+              to index different areas of the file system to
+              different indexes. See the section about <a class=
+              "link" href="#RCL.INDEXING.CONFIG.MULTIPLE" title=
+              "2.3.2.&nbsp;Multiple indexes">configuring multiple
+              indexes</a> for more detail.</p>
             </li>
           </ul>
         </div>
@@ -1729,6 +1694,22 @@ indexedmimetypes = application/pdf</pre>
           indexes can be created by using several configuration
           directories which would typically be set to index
           different areas of the file system.</p>
+          <p>A plausible usage scenario for the multiple index
+          feature would be for a system administrator to set up a
+          central index for shared data, that you choose to search
+          or not in addition to your personal data. Of course,
+          there are other possibilities. for example, there are
+          many cases where you know the subset of files that should
+          be searched, and where narrowing the search can improve
+          the results. You can achieve approximately the same
+          effect by using a directory filter clause in a search,
+          but multiple indexes may have better performance and may
+          be worth the trouble with huge data sets.</p>
+          <p>A more advanced use case would be to use multiple
+          indexes to improve indexing performance, by updating
+          several indexes in parallel (using multiple CPU cores and
+          disks, or possibly several machines), and then either
+          merging them, or querying them in parallel.</p>
           <p>A specific configuration can be selected by setting
           the <code class="envar">RECOLL_CONFDIR</code> environment
           variable or giving the <code class="option">-c</code>
@@ -1791,6 +1772,24 @@ indexedmimetypes = application/pdf</pre>
           mistyped. Also, the GUI or the indexer must be launched
           with a specific option or environment to work on the
           right configuration.</p>
+          <p>To start a new configuration, you need to create an
+          empty directory in a location of your choice, and then
+          instruct <span class=
+          "command"><strong>recoll</strong></span> or <span class=
+          "command"><strong>recollindex</strong></span> to use it
+          by setting either a command line option (<code class=
+          "literal">-c</code> <em class=
+          "replaceable"><code>/some/directory</code></em>), or an
+          environment variable (<code class=
+          "envar">RECOLL_CONFDIR</code>=<em class=
+          "replaceable"><code>/some/directory</code></em>). Any
+          modification performed by the commands (e.g.
+          configuration customisation or searches by <span class=
+          "command"><strong>recoll</strong></span> or index
+          creation by <span class=
+          "command"><strong>recollindex</strong></span>) would then
+          apply to the new directory and not to the default
+          one.</p>
           <div class="sect3">
             <div class="titlepage">
               <div>
@@ -1853,7 +1852,7 @@ indexedmimetypes = application/pdf</pre>
             <span class="guimenu">Query</span> → <span class=
             "guimenuitem">External index dialog</span>. See the
             <a class="link" href="#RCL.SEARCH.GUI.MULTIDB" title=
-            "3.2.11.&nbsp;Searching across multiple indexes">GUI
+            "3.2.12.&nbsp;Searching across multiple indexes">GUI
             external indexes section</a> for more details.</p>
           </div>
           <div class="sect3">
@@ -1883,10 +1882,9 @@ indexedmimetypes = application/pdf</pre>
                   Copy/Paste it. If no desktop icon was created
                   during installation, you can right-drag the
                   recoll.exe program from <code class=
-                  "filename">C:\Program Files (X86)\Recoll</code>
-                  to the desktop and select <span class=
-                  "guilabel">Create shortcuts here</span> to create
-                  one.</p>
+                  "filename">C:\Program Files\Recoll</code> to the
+                  desktop and select <span class="guilabel">Create
+                  shortcuts here</span> to create one.</p>
                 </li>
                 <li class="step">
                   <p>Right-click the new shortcut and go to the
@@ -1896,11 +1894,11 @@ indexedmimetypes = application/pdf</pre>
                 <li class="step">
                   <p>Modify the <span class=
                   "guilabel">Target</span> value from the original
-                  <code class="filename">C:\Program Files
-                  (x86)\Recoll\recoll.exe</code> to something
+                  <code class="filename">C:\Program
+                  Files\Recoll\recoll.exe</code> to something
                   like:</p>
                   <pre class=
-                  "screen">"C:\Program Files (x86)\Recoll\recoll.exe" -c C:\Path\To\My\New\Directory</pre>
+                  "screen">"C:\Program Files\Recoll\recoll.exe" -c C:\Path\To\My\New\Directory</pre>
                   <p>Use double quotes around the directory path is
                   it contains spaces.</p>
                 </li>
@@ -3669,7 +3667,7 @@ recollindex -c "$confdir"</pre>
         re-use them later, perhaps with some tweaking. <span class=
         "application">Recoll</span> can save and restore searches.
         See <a class="link" href="#RCL.SEARCH.SAVING" title=
-        "3.2.16.&nbsp;Saving and restoring queries">Saving and
+        "3.2.8.&nbsp;Saving and restoring queries">Saving and
         restoring queries</a>.</p>
         <div class="sect2">
           <div class="titlepage">
@@ -3814,8 +3812,53 @@ recollindex -c "$confdir"</pre>
           <div class="titlepage">
             <div>
               <div>
+                <h3 class="title"><a name=
+                "RCL.SEARCH.GUI.SIDEFILTERS" id=
+                "RCL.SEARCH.GUI.SIDEFILTERS"></a>3.2.2.&nbsp;The
+                filters panel (1.32)</h3>
+              </div>
+            </div>
+          </div>
+          <p>By default, the GUI displays the filters panel on the
+          left of the results area. You can adjust the width of the
+          panel, and hide it by squeezing it completely. The width
+          will be memorized for the next session.</p>
+          <p>The panel is only active in <span class=
+          "guilabel">Query Language</span> search mode, and it
+          allows filtering by date or filesystem location, by
+          adding <code class="literal">date:</code> and
+          <code class="literal">dir:</code> clauses to the
+          effective query text.</p>
+          <p>The dates filter can be activated by clicking the
+          checkbox. It has two assisted date entry widgets, for the
+          minimum and maximum dates of the search period.</p>
+          <p>The directory filter displays a subset of the
+          filesystem directories, reduced to the indexed area, as
+          defined by the <code class="literal">topdirs</code> list
+          and the name exclusion parameters. Some directories may
+          not be shown at all, depending on their (lack of)
+          indexable content and other indexing parameters.</p>
+          <p>By default, the depth of the displayed tree is limited
+          at 2 levels under the start directories. You can change
+          this in the GUI Preferences, User interface panel. Please
+          note that increasing the depth can strongly delay the GUI
+          startup, you should experiment by single increments if
+          you want to change the value.</p>
+          <p>You can independantly select and deselect directories
+          by clicking them. Note that selecting a directory will
+          activate the whole subtree for searching, there is no
+          need to select the subdirectories, and no way to exclude
+          some of them (use <a class="link" href="#RCL.SEARCH.LANG"
+          title="3.5.&nbsp;The query language"><span class=
+          "guilabel">Query language</span></a> <code class=
+          "literal">dir:</code> clauses if this is needed).</p>
+        </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
                 <h3 class="title"><a name="RCL.SEARCH.GUI.RESLIST"
-                id="RCL.SEARCH.GUI.RESLIST"></a>3.2.2.&nbsp;The
+                id="RCL.SEARCH.GUI.RESLIST"></a>3.2.3.&nbsp;The
                 result list</h3>
               </div>
             </div>
@@ -4000,7 +4043,7 @@ recollindex -c "$confdir"</pre>
             will only appear for results which are top-level files.
             See <a class="link" href="#RCL.SEARCH.GUI.RUNSCRIPT"
             title=
-            "3.2.5.&nbsp;Unix-like systems: running arbitrary commands on result files">
+            "3.2.14.&nbsp;Unix-like systems: running arbitrary commands on result files">
             further</a> for a more detailed description.</p>
             <p>The <span class="guilabel">Copy File Name</span> and
             <span class="guilabel">Copy Url</span> copy the
@@ -4050,7 +4093,7 @@ recollindex -c "$confdir"</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.SEARCH.GUI.RESTABLE"
-                id="RCL.SEARCH.GUI.RESTABLE"></a>3.2.3.&nbsp;The
+                id="RCL.SEARCH.GUI.RESTABLE"></a>3.2.4.&nbsp;The
                 result table</h3>
               </div>
             </div>
@@ -4092,139 +4135,8 @@ recollindex -c "$confdir"</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name=
-                "RCL.SEARCH.GUI.SIDEFILTERS" id=
-                "RCL.SEARCH.GUI.SIDEFILTERS"></a>3.2.4.&nbsp;The
-                filters panel</h3>
-              </div>
-            </div>
-          </div>
-          <p>By default, the GUI displays the filters panel on the
-          left of the results area. This is new in version 1.32.
-          You can adjust the width of the panel, and hide it by
-          squeezing it completely. The width will be memorized for
-          the next session.</p>
-          <p>The panel currently has two areas, for filtering the
-          results by dates, or by filesystem location.</p>
-          <p>The panel is only active in <span class=
-          "guilabel">Query Language</span> search mode, and its
-          effect is to add <code class="literal">date:</code> and
-          <code class="literal">dir:</code> clauses to the actual
-          search.</p>
-          <p>The dates filter can be activated by clicking the
-          checkbox. It has two assisted date entry widgets, for the
-          minimum and maximum dates of the search period.</p>
-          <p>The directory filter displays a subset of the
-          filesystem directories, reduced to the indexed area, as
-          defined by the <code class="literal">topdirs</code> list
-          and the name exclusion parameters. Some directories may
-          not be shown at all, depending on their (lack of)
-          indexable content and other indexing parameters.</p>
-          <p>By default, the depth of the displayed tree is limited
-          at 2 levels under the start directories. You can change
-          this in the GUI Preferences, User interface panel. Please
-          note that increasing the depth can strongly delay the GUI
-          startup, you should experiment by single increments if
-          you want to change the value.</p>
-          <p>You can independantly select and deselect directories
-          by clicking them. Note that selecting a directory will
-          activate the whole subtree for searching, there is no
-          need to select the subdirectories, and no way to exclude
-          some of them (use <a class="link" href="#RCL.SEARCH.LANG"
-          title="3.5.&nbsp;The query language"><span class=
-          "guilabel">Query language</span></a> <code class=
-          "literal">dir:</code> clauses if this is needed).</p>
-        </div>
-        <div class="sect2">
-          <div class="titlepage">
-            <div>
-              <div>
-                <h3 class="title"><a name=
-                "RCL.SEARCH.GUI.RUNSCRIPT" id=
-                "RCL.SEARCH.GUI.RUNSCRIPT"></a>3.2.5.&nbsp;<span class="application">Unix</span>-like
-                systems: running arbitrary commands on result
-                files</h3>
-              </div>
-            </div>
-          </div>
-          <p>Apart from the <span class="guilabel">Open</span> and
-          <span class="guilabel">Open With</span> operations, which
-          allow starting an application on a result document (or a
-          temporary copy), based on its MIME type, it is also
-          possible to run arbitrary commands on results which are
-          top-level files, using the <span class="guilabel">Run
-          Script</span> entry in the results pop-up menu.</p>
-          <p>The commands which will appear in the <span class=
-          "guilabel">Run Script</span> submenu must be defined by
-          <code class="literal">.desktop</code> files inside the
-          <code class="filename">scripts</code> subdirectory of the
-          current configuration directory.</p>
-          <p>Here follows an example of a <code class=
-          "literal">.desktop</code> file, which could be named for
-          example, <code class=
-          "filename">~/.recoll/scripts/myscript.desktop</code> (the
-          exact file name inside the directory is irrelevant):</p>
-          <pre class="programlisting">[Desktop Entry]
-Type=Application
-Name=MyFirstScript
-Exec=/home/me/bin/tryscript %F
-MimeType=*/*</pre>
-          <p>The <code class="literal">Name</code> attribute
-          defines the label which will appear inside the
-          <span class="guilabel">Run Script</span> menu. The
-          <code class="literal">Exec</code> attribute defines the
-          program to be run, which does not need to actually be a
-          script, of course. The <code class=
-          "literal">MimeType</code> attribute is not used, but
-          needs to exist.</p>
-          <p>The commands defined this way can also be used from
-          links inside the <a class="link" href=
-          "#RCL.SEARCH.GUI.CUSTOM.RESLIST.PARA" title=
-          "The paragraph format">result paragraph</a>.</p>
-          <p>As an example, it might make sense to write a script
-          which would move the document to the trash and purge it
-          from the <span class="application">Recoll</span>
-          index.</p>
-        </div>
-        <div class="sect2">
-          <div class="titlepage">
-            <div>
-              <div>
-                <h3 class="title"><a name=
-                "RCL.SEARCH.GUI.THUMBNAILS" id=
-                "RCL.SEARCH.GUI.THUMBNAILS"></a>3.2.6.&nbsp;<span class="application">Unix</span>-like
-                systems: displaying thumbnails</h3>
-              </div>
-            </div>
-          </div>
-          <p>The default format for the result list entries and the
-          detail area of the result table display an icon for each
-          result document. The icon is either a generic one
-          determined from the MIME type, or a thumbnail of the
-          document appearance. Thumbnails are only displayed if
-          found in the standard <span class=
-          "application">freedesktop</span> location, where they
-          would typically have been created by a file manager.</p>
-          <p>Recoll has no capability to create thumbnails. A
-          relatively simple trick is to use the <span class=
-          "guilabel">Open parent document/folder</span> entry in
-          the result list popup menu. This should open a file
-          manager window on the containing directory, which should
-          in turn create the thumbnails (depending on your
-          settings). Restarting the search should then display the
-          thumbnails.</p>
-          <p>There are also <a class="ulink" href=
-          "https://www.recoll.org/faqsandhowtos/ResultsThumbnails.html"
-          target="_top">some pointers about thumbnail
-          generation</a> in the <span class=
-          "application">Recoll</span> FAQ.</p>
-        </div>
-        <div class="sect2">
-          <div class="titlepage">
-            <div>
-              <div>
                 <h3 class="title"><a name="RCL.SEARCH.GUI.PREVIEW"
-                id="RCL.SEARCH.GUI.PREVIEW"></a>3.2.7.&nbsp;The
+                id="RCL.SEARCH.GUI.PREVIEW"></a>3.2.5.&nbsp;The
                 preview window</h3>
               </div>
             </div>
@@ -4343,171 +4255,22 @@ MimeType=*/*</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="RCL.SEARCH.GUI.FRAGBUTS"
-                id="RCL.SEARCH.GUI.FRAGBUTS"></a>3.2.8.&nbsp;The
-                Query Fragments window</h3>
-              </div>
-            </div>
-          </div>
-          <p>The Query Fragments window can be used to control
-          filtering query language elements modifying the current
-          query, simply by clicking a button. This can be useful to
-          save typing, or avoid memorizing, simple clauses of
-          common usage (e.g. selecting only standalone documents or
-          attachments, or filtering out Web results, selecting a
-          file system subtree, a file type, etc.).</p>
-          <p>Selecting the <span class="guimenu">Tools</span> →
-          <span class="guimenuitem">Query Fragments</span> menu
-          entry will open the dialog.</p>
-          <p>The contents of the window are entirely customisable,
-          and defined by the contents of a XML text file, named
-          <code class="filename">fragment-buttons.xml</code> and
-          which will be looked for in the current index
-          configuration directory. The sample file distributed with
-          <span class="application">Recoll</span> contains a number
-          of example filters. This will be automatically copied to
-          the configuration directory if the file does not exist in
-          there (e.g. <code class=
-          "filename">~/.recoll/fragment-buttons.xml</code> under
-          Linux and MacOS, <code class=
-          "filename">$HOME/AppData/Local/Recoll/fragment-buttons.xml</code>
-          for <span class="application">Windows</span>). Editing
-          the copy will allow you to configure the tool for your
-          needs .</p>
-          <div class="note" style=
-          "margin-left: 0.5in; margin-right: 0.5in;">
-            <h3 class="title">Note</h3>
-            <p>The <code class=
-            "filename">fragment-buttons.xml</code> file was named
-            <code class="filename">fragbuts.xml</code> up to
-            <span class="application">Recoll</span> version 1.31.0.
-            This was deemed too close to offensive for native
-            English speakers, so that the file was renamed. An
-            existing <code class="filename">fragbuts.xml</code>
-            will still be used if <code class=
-            "filename">fragment-buttons.xml</code> does not exist.
-            No automatic renaming will be performed.</p>
-          </div>
-          <p>Here follows an example window:</p>
-          <div class="mediaobject"><img src=
-          "frag-sample.png"></div>
-          <p>And the corresponding configuration file:</p>
-          <pre class="programlisting">
-&lt;?xml version="1.0" encoding="UTF-8"?&gt;
-&lt;fragbuttons version="1.0"&gt;
-
-  &lt;radiobuttons&gt;
-    &lt;!-- Toggle Web queue results inclusion --&gt;
-    &lt;fragbutton&gt;
-      &lt;label&gt;Include Web Results&lt;/label&gt;
-      &lt;frag&gt;&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-    &lt;fragbutton&gt;
-      &lt;label&gt;Exclude Web Results&lt;/label&gt;
-      &lt;frag&gt;-rclbes:BGL&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-    &lt;fragbutton&gt;
-      &lt;label&gt;Only Web Results&lt;/label&gt;
-      &lt;frag&gt;rclbes:BGL&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-  &lt;/radiobuttons&gt;
-
-  &lt;radiobuttons&gt;
-    &lt;!-- Standalone vs embedded switch --&gt;
-    &lt;fragbutton&gt;
-      &lt;label&gt;Include embedded documents&lt;/label&gt;
-      &lt;frag&gt;&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-    &lt;fragbutton&gt;
-      &lt;label&gt;Only standalone documents&lt;/label&gt;
-      &lt;frag&gt;issub:0&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-    &lt;fragbutton&gt;
-      &lt;label&gt;Only embedded documents&lt;/label&gt;
-      &lt;frag&gt;issub:1&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-  &lt;/radiobuttons&gt;
-
-  &lt;buttons&gt;
-    &lt;fragbutton&gt;
-      &lt;label&gt;Example: Year 2010&lt;/label&gt;
-      &lt;frag&gt;date:2010-01-01/2010-12-31&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-    &lt;fragbutton&gt;
-      &lt;label&gt;Example: c++ files&lt;/label&gt;
-      &lt;frag&gt;ext:cpp OR ext:cxx&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-    &lt;fragbutton&gt;
-      &lt;label&gt;Example: My Great Directory&lt;/label&gt;
-      &lt;frag&gt;dir:/my/great/directory&lt;/frag&gt;
-    &lt;/fragbutton&gt;
-  &lt;/buttons&gt;
-&lt;/fragbuttons&gt;</pre>
-          <p>There are two types of groupings <code class=
-          "literal">radiobuttons</code> and <code class=
-          "literal">buttons</code>, each defining a line of
-          checkbuttons or radiobuttons inside the window. Any
-          number of <code class="literal">buttons</code> can be
-          selected, but the <code class=
-          "literal">radiobuttons</code> in a line are
-          exclusive.</p>
-          <p>Buttons are defined by a <code class=
-          "literal">fragbutton</code> section, which provides the
-          label for a button, and the <code class="literal">Query
-          Language</code> fragment which will be added (as an AND
-          filter) before performing the query if the button is
-          active.</p>
-          <pre class="programlisting">
-    &lt;fragbutton&gt;
-      &lt;label&gt;Example: My Great Directory&lt;/label&gt;
-      &lt;frag&gt;dir:/my/great/directory&lt;/frag&gt;
-    &lt;/fragbutton&gt;</pre>
-          <p>It is also possible to add <code class=
-          "literal">message</code> elements inside the groups, for
-          documenting the behaviour. <code class=
-          "literal">message</code> elements have a <code class=
-          "literal">label</code> but no <code class=
-          "literal">frag</code> element. Example:</p>
-          <pre class="programlisting">
-  &lt;buttons&gt;
-    &lt;message&gt;
-      &lt;label&gt;This is a message&lt;/label&gt; 
-    &lt;/message&gt;
-  &lt;/buttons&gt;</pre>
-          <p>The <code class="literal">label</code> contents are
-          interpreted as HTML. Take care to replace opening
-          <code class="literal">&lt;</code> characters with the
-          <code class="literal">&amp;lt;</code> entity if you use
-          tags.</p>
-          <p>The only thing that you need to know about XML for
-          editing this file is that any opening tag like <em class=
-          "replaceable"><code>&lt;label&gt;</code></em> needs to be
-          matched by a closing tag after the value: <em class=
-          "replaceable"><code>&lt;/label&gt;</code></em>.</p>
-          <p>You will normally edit the file with a regular text
-          editor, like, e.g. <span class=
-          "command"><strong>vi</strong></span> or <span class=
-          "command"><strong>notepad</strong></span>.
-          Double-clicking the file in a file manager may not work,
-          because this usually opens it in a Web browser, which
-          will not let you modify the contents.</p>
-        </div>
-        <div class="sect2">
-          <div class="titlepage">
-            <div>
-              <div>
                 <h3 class="title"><a name="RCL.SEARCH.GUI.COMPLEX"
                 id=
-                "RCL.SEARCH.GUI.COMPLEX"></a>3.2.9.&nbsp;Assisted
+                "RCL.SEARCH.GUI.COMPLEX"></a>3.2.6.&nbsp;Assisted
                 Complex Search (A.K.A. "Advanced Search")</h3>
               </div>
             </div>
           </div>
           <p>The advanced search dialog helps you build more
-          complex queries without memorizing the search language
-          constructs. It can be opened through the <span class=
-          "guilabel">Tools</span> menu or through the main
-          toolbar.</p>
+          complex queries without having to memorize the search
+          language constructs.</p>
+          <p>The dialog can be opened through the <span class=
+          "guilabel">Tools</span> menu or through the main toolbar.
+          There is also an option to have it open when the program
+          starts. The results of the search are processed and
+          displayed in the same way as the results from the "simple
+          search".</p>
           <p><span class="application">Recoll</span> keeps a
           history of searches. See <a class="link" href=
           "#RCL.SEARCH.GUI.COMPLEX.HISTORY" title=
@@ -4721,6 +4484,97 @@ MimeType=*/*</pre>
           <div class="titlepage">
             <div>
               <div>
+                <h3 class="title"><a name="RCL.SEARCH.GUI.HISTORY"
+                id=
+                "RCL.SEARCH.GUI.HISTORY"></a>3.2.7.&nbsp;Document
+                history</h3>
+              </div>
+            </div>
+          </div>
+          <p>Documents that you actually view (with the internal
+          preview or an external tool) are entered into the
+          document history, which is remembered.</p>
+          <p>You can display the history list by using the
+          <span class="guilabel">Tools/</span><span class=
+          "guilabel">Doc History</span> menu entry.</p>
+          <p>You can erase the document history by using the
+          <span class="guilabel">Erase document history</span>
+          entry in the <span class="guimenu">File</span> menu.</p>
+        </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name="RCL.SEARCH.SAVING" id=
+                "RCL.SEARCH.SAVING"></a>3.2.8.&nbsp;Saving and
+                restoring queries</h3>
+              </div>
+            </div>
+          </div>
+          <p>Both simple and advanced query dialogs save recent
+          history, but the amount is limited: old queries will
+          eventually be forgotten. Also, important queries may be
+          difficult to find among others. This is why both types of
+          queries can also be explicitly saved to files, from the
+          GUI menus: <span class="guimenu">File</span> →
+          <span class="guimenuitem">Save last query / Load last
+          query</span></p>
+          <p>The default location for saved queries is a
+          subdirectory of the current configuration directory, but
+          saved queries are ordinary files and can be written or
+          moved anywhere.</p>
+          <p>Some of the saved query parameters are part of the
+          preferences (e.g. <code class="literal">autophrase</code>
+          or the active external indexes), and may differ when the
+          query is loaded from the time it was saved. In this case,
+          <span class="application">Recoll</span> will warn of the
+          differences, but will not change the user
+          preferences.</p>
+        </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a name="RCL.SEARCH.GUI.SORT" id=
+                "RCL.SEARCH.GUI.SORT"></a>3.2.9.&nbsp;Sorting
+                search results and collapsing duplicates</h3>
+              </div>
+            </div>
+          </div>
+          <p>The documents in a result list are normally sorted in
+          order of relevance. It is possible to specify a different
+          sort order, either by using the vertical arrows in the
+          GUI toolbox to sort by date, or switching to the result
+          table display and clicking on any header. The sort order
+          chosen inside the result table remains active if you
+          switch back to the result list, until you click one of
+          the vertical arrows, until both are unchecked (you are
+          back to sort by relevance).</p>
+          <p>Sort parameters are remembered between program
+          invocations, but result sorting is normally always
+          inactive when the program starts. It is possible to keep
+          the sorting activation state between program invocations
+          by checking the <span class="guilabel">Remember sort
+          activation state</span> option in the preferences.</p>
+          <p>It is also possible to hide duplicate entries inside
+          the result list (documents with the exact same contents
+          as the displayed one). The test of identity is based on
+          an MD5 hash of the document container, not only of the
+          text contents (so that e.g., a text document with an
+          image added will not be a duplicate of the text only).
+          Duplicates hiding is controlled by an entry in the
+          <span class="guilabel">GUI configuration</span> dialog,
+          and is off by default.</p>
+          <p>When a result document does have undisplayed
+          duplicates, a <code class="literal">Dups</code> link will
+          be shown with the result list entry. Clicking the link
+          will display the paths (URLs + ipaths) for the duplicate
+          entries.</p>
+        </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
                 <h3 class="title"><a name=
                 "RCL.SEARCH.GUI.TERMEXPLORER" id=
                 "RCL.SEARCH.GUI.TERMEXPLORER"></a>3.2.10.&nbsp;The
@@ -4835,9 +4689,162 @@ MimeType=*/*</pre>
           <div class="titlepage">
             <div>
               <div>
+                <h3 class="title"><a name="RCL.SEARCH.GUI.FRAGBUTS"
+                id="RCL.SEARCH.GUI.FRAGBUTS"></a>3.2.11.&nbsp;The
+                Query Fragments window</h3>
+              </div>
+            </div>
+          </div>
+          <p>The Query Fragments window can be used to control
+          filtering query language elements modifying the current
+          query, simply by clicking a button. This can be useful to
+          save typing, or avoid memorizing, simple clauses of
+          common usage (e.g. selecting only standalone documents or
+          attachments, or filtering out Web results, selecting a
+          file system subtree, a file type, etc.).</p>
+          <p>Selecting the <span class="guimenu">Tools</span> →
+          <span class="guimenuitem">Query Fragments</span> menu
+          entry will open the dialog.</p>
+          <p>The contents of the window are entirely customisable,
+          and defined by the contents of a XML text file, named
+          <code class="filename">fragment-buttons.xml</code> and
+          which will be looked for in the current index
+          configuration directory. The sample file distributed with
+          <span class="application">Recoll</span> contains a number
+          of example filters. This will be automatically copied to
+          the configuration directory if the file does not exist in
+          there (e.g. <code class=
+          "filename">~/.recoll/fragment-buttons.xml</code> under
+          Linux and MacOS, <code class=
+          "filename">$HOME/AppData/Local/Recoll/fragment-buttons.xml</code>
+          for <span class="application">Windows</span>). Editing
+          the copy will allow you to configure the tool for your
+          needs .</p>
+          <div class="note" style=
+          "margin-left: 0.5in; margin-right: 0.5in;">
+            <h3 class="title">Note</h3>
+            <p>The <code class=
+            "filename">fragment-buttons.xml</code> file was named
+            <code class="filename">fragbuts.xml</code> up to
+            <span class="application">Recoll</span> version 1.31.0.
+            This was deemed too close to offensive for native
+            English speakers, so that the file was renamed. An
+            existing <code class="filename">fragbuts.xml</code>
+            will still be used if <code class=
+            "filename">fragment-buttons.xml</code> does not exist.
+            No automatic renaming will be performed.</p>
+          </div>
+          <p>Here follows an example window:</p>
+          <div class="mediaobject"><img src=
+          "frag-sample.png"></div>
+          <p>And the corresponding configuration file:</p>
+          <pre class="programlisting">
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;fragbuttons version="1.0"&gt;
+
+  &lt;radiobuttons&gt;
+    &lt;!-- Toggle Web queue results inclusion --&gt;
+    &lt;fragbutton&gt;
+      &lt;label&gt;Include Web Results&lt;/label&gt;
+      &lt;frag&gt;&lt;/frag&gt;
+    &lt;/fragbutton&gt;
+    &lt;fragbutton&gt;
+      &lt;label&gt;Exclude Web Results&lt;/label&gt;
+      &lt;frag&gt;-rclbes:BGL&lt;/frag&gt;
+    &lt;/fragbutton&gt;
+    &lt;fragbutton&gt;
+      &lt;label&gt;Only Web Results&lt;/label&gt;
+      &lt;frag&gt;rclbes:BGL&lt;/frag&gt;
+    &lt;/fragbutton&gt;
+  &lt;/radiobuttons&gt;
+
+  &lt;radiobuttons&gt;
+    &lt;!-- Standalone vs embedded switch --&gt;
+    &lt;fragbutton&gt;
+      &lt;label&gt;Include embedded documents&lt;/label&gt;
+      &lt;frag&gt;&lt;/frag&gt;
+    &lt;/fragbutton&gt;
+    &lt;fragbutton&gt;
+      &lt;label&gt;Only standalone documents&lt;/label&gt;
+      &lt;frag&gt;issub:0&lt;/frag&gt;
+    &lt;/fragbutton&gt;
+    &lt;fragbutton&gt;
+      &lt;label&gt;Only embedded documents&lt;/label&gt;
+      &lt;frag&gt;issub:1&lt;/frag&gt;
+    &lt;/fragbutton&gt;
+  &lt;/radiobuttons&gt;
+
+  &lt;buttons&gt;
+    &lt;fragbutton&gt;
+      &lt;label&gt;Example: Year 2010&lt;/label&gt;
+      &lt;frag&gt;date:2010-01-01/2010-12-31&lt;/frag&gt;
+    &lt;/fragbutton&gt;
+    &lt;fragbutton&gt;
+      &lt;label&gt;Example: c++ files&lt;/label&gt;
+      &lt;frag&gt;ext:cpp OR ext:cxx&lt;/frag&gt;
+    &lt;/fragbutton&gt;
+    &lt;fragbutton&gt;
+      &lt;label&gt;Example: My Great Directory&lt;/label&gt;
+      &lt;frag&gt;dir:/my/great/directory&lt;/frag&gt;
+    &lt;/fragbutton&gt;
+  &lt;/buttons&gt;
+&lt;/fragbuttons&gt;</pre>
+          <p>There are two types of groupings <code class=
+          "literal">radiobuttons</code> and <code class=
+          "literal">buttons</code>, each defining a line of
+          checkbuttons or radiobuttons inside the window. Any
+          number of <code class="literal">buttons</code> can be
+          selected, but the <code class=
+          "literal">radiobuttons</code> in a line are
+          exclusive.</p>
+          <p>Buttons are defined by a <code class=
+          "literal">fragbutton</code> section, which provides the
+          label for a button, and the <code class="literal">Query
+          Language</code> fragment which will be added (as an AND
+          filter) before performing the query if the button is
+          active.</p>
+          <pre class="programlisting">
+    &lt;fragbutton&gt;
+      &lt;label&gt;Example: My Great Directory&lt;/label&gt;
+      &lt;frag&gt;dir:/my/great/directory&lt;/frag&gt;
+    &lt;/fragbutton&gt;</pre>
+          <p>It is also possible to add <code class=
+          "literal">message</code> elements inside the groups, for
+          documenting the behaviour. <code class=
+          "literal">message</code> elements have a <code class=
+          "literal">label</code> but no <code class=
+          "literal">frag</code> element. Example:</p>
+          <pre class="programlisting">
+  &lt;buttons&gt;
+    &lt;message&gt;
+      &lt;label&gt;This is a message&lt;/label&gt; 
+    &lt;/message&gt;
+  &lt;/buttons&gt;</pre>
+          <p>The <code class="literal">label</code> contents are
+          interpreted as HTML. Take care to replace opening
+          <code class="literal">&lt;</code> characters with the
+          <code class="literal">&amp;lt;</code> entity if you use
+          tags.</p>
+          <p>The only thing that you need to know about XML for
+          editing this file is that any opening tag like <em class=
+          "replaceable"><code>&lt;label&gt;</code></em> needs to be
+          matched by a closing tag after the value: <em class=
+          "replaceable"><code>&lt;/label&gt;</code></em>.</p>
+          <p>You will normally edit the file with a regular text
+          editor, like, e.g. <span class=
+          "command"><strong>vi</strong></span> or <span class=
+          "command"><strong>notepad</strong></span>.
+          Double-clicking the file in a file manager may not work,
+          because this usually opens it in a Web browser, which
+          will not let you modify the contents.</p>
+        </div>
+        <div class="sect2">
+          <div class="titlepage">
+            <div>
+              <div>
                 <h3 class="title"><a name="RCL.SEARCH.GUI.MULTIDB"
                 id=
-                "RCL.SEARCH.GUI.MULTIDB"></a>3.2.11.&nbsp;Searching
+                "RCL.SEARCH.GUI.MULTIDB"></a>3.2.12.&nbsp;Searching
                 across multiple indexes</h3>
               </div>
             </div>
@@ -4921,62 +4928,85 @@ MimeType=*/*</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="RCL.SEARCH.GUI.HISTORY"
-                id=
-                "RCL.SEARCH.GUI.HISTORY"></a>3.2.12.&nbsp;Document
-                history</h3>
+                <h3 class="title"><a name=
+                "RCL.SEARCH.GUI.THUMBNAILS" id=
+                "RCL.SEARCH.GUI.THUMBNAILS"></a>3.2.13.&nbsp;<span class="application">Unix</span>-like
+                systems: displaying thumbnails</h3>
               </div>
             </div>
           </div>
-          <p>Documents that you actually view (with the internal
-          preview or an external tool) are entered into the
-          document history, which is remembered.</p>
-          <p>You can display the history list by using the
-          <span class="guilabel">Tools/</span><span class=
-          "guilabel">Doc History</span> menu entry.</p>
-          <p>You can erase the document history by using the
-          <span class="guilabel">Erase document history</span>
-          entry in the <span class="guimenu">File</span> menu.</p>
+          <p>The default format for the result list entries and the
+          detail area of the result table display an icon for each
+          result document. The icon is either a generic one
+          determined from the MIME type, or a thumbnail of the
+          document appearance. Thumbnails are only displayed if
+          found in the standard <span class=
+          "application">freedesktop</span> location, where they
+          would typically have been created by a file manager.</p>
+          <p>Recoll has no capability to create thumbnails. A
+          relatively simple trick is to use the <span class=
+          "guilabel">Open parent document/folder</span> entry in
+          the result list popup menu. This should open a file
+          manager window on the containing directory, which should
+          in turn create the thumbnails (depending on your
+          settings). Restarting the search should then display the
+          thumbnails.</p>
+          <p>There are also <a class="ulink" href=
+          "https://www.recoll.org/faqsandhowtos/ResultsThumbnails.html"
+          target="_top">some pointers about thumbnail
+          generation</a> in the <span class=
+          "application">Recoll</span> FAQ.</p>
         </div>
         <div class="sect2">
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="RCL.SEARCH.GUI.SORT" id=
-                "RCL.SEARCH.GUI.SORT"></a>3.2.13.&nbsp;Sorting
-                search results and collapsing duplicates</h3>
+                <h3 class="title"><a name=
+                "RCL.SEARCH.GUI.RUNSCRIPT" id=
+                "RCL.SEARCH.GUI.RUNSCRIPT"></a>3.2.14.&nbsp;<span class="application">Unix</span>-like
+                systems: running arbitrary commands on result
+                files</h3>
               </div>
             </div>
           </div>
-          <p>The documents in a result list are normally sorted in
-          order of relevance. It is possible to specify a different
-          sort order, either by using the vertical arrows in the
-          GUI toolbox to sort by date, or switching to the result
-          table display and clicking on any header. The sort order
-          chosen inside the result table remains active if you
-          switch back to the result list, until you click one of
-          the vertical arrows, until both are unchecked (you are
-          back to sort by relevance).</p>
-          <p>Sort parameters are remembered between program
-          invocations, but result sorting is normally always
-          inactive when the program starts. It is possible to keep
-          the sorting activation state between program invocations
-          by checking the <span class="guilabel">Remember sort
-          activation state</span> option in the preferences.</p>
-          <p>It is also possible to hide duplicate entries inside
-          the result list (documents with the exact same contents
-          as the displayed one). The test of identity is based on
-          an MD5 hash of the document container, not only of the
-          text contents (so that e.g., a text document with an
-          image added will not be a duplicate of the text only).
-          Duplicates hiding is controlled by an entry in the
-          <span class="guilabel">GUI configuration</span> dialog,
-          and is off by default.</p>
-          <p>When a result document does have undisplayed
-          duplicates, a <code class="literal">Dups</code> link will
-          be shown with the result list entry. Clicking the link
-          will display the paths (URLs + ipaths) for the duplicate
-          entries.</p>
+          <p>Apart from the <span class="guilabel">Open</span> and
+          <span class="guilabel">Open With</span> operations, which
+          allow starting an application on a result document (or a
+          temporary copy), based on its MIME type, it is also
+          possible to run arbitrary commands on results which are
+          top-level files, using the <span class="guilabel">Run
+          Script</span> entry in the results pop-up menu.</p>
+          <p>The commands which will appear in the <span class=
+          "guilabel">Run Script</span> submenu must be defined by
+          <code class="literal">.desktop</code> files inside the
+          <code class="filename">scripts</code> subdirectory of the
+          current configuration directory.</p>
+          <p>Here follows an example of a <code class=
+          "literal">.desktop</code> file, which could be named for
+          example, <code class=
+          "filename">~/.recoll/scripts/myscript.desktop</code> (the
+          exact file name inside the directory is irrelevant):</p>
+          <pre class="programlisting">[Desktop Entry]
+Type=Application
+Name=MyFirstScript
+Exec=/home/me/bin/tryscript %F
+MimeType=*/*</pre>
+          <p>The <code class="literal">Name</code> attribute
+          defines the label which will appear inside the
+          <span class="guilabel">Run Script</span> menu. The
+          <code class="literal">Exec</code> attribute defines the
+          program to be run, which does not need to actually be a
+          script, of course. The <code class=
+          "literal">MimeType</code> attribute is not used, but
+          needs to exist.</p>
+          <p>The commands defined this way can also be used from
+          links inside the <a class="link" href=
+          "#RCL.SEARCH.GUI.CUSTOM.RESLIST.PARA" title=
+          "The paragraph format">result paragraph</a>.</p>
+          <p>As an example, it might make sense to write a script
+          which would move the document to the trash and purge it
+          from the <span class="application">Recoll</span>
+          index.</p>
         </div>
         <div class="sect2">
           <div class="titlepage">
@@ -4984,7 +5014,7 @@ MimeType=*/*</pre>
               <div>
                 <h3 class="title"><a name=
                 "RCL.SEARCH.GUI.SHORTCUTS" id=
-                "RCL.SEARCH.GUI.SHORTCUTS"></a>3.2.14.&nbsp;Keyboard
+                "RCL.SEARCH.GUI.SHORTCUTS"></a>3.2.15.&nbsp;Keyboard
                 shortcuts</h3>
               </div>
             </div>
@@ -5209,7 +5239,7 @@ MimeType=*/*</pre>
             <div>
               <div>
                 <h3 class="title"><a name="RCL.SEARCH.GUI.TIPS" id=
-                "RCL.SEARCH.GUI.TIPS"></a>3.2.15.&nbsp;Search
+                "RCL.SEARCH.GUI.TIPS"></a>3.2.16.&nbsp;Search
                 tips</h3>
               </div>
             </div>
@@ -5394,36 +5424,6 @@ MimeType=*/*</pre>
             to force the creation of a preview window instead of a
             new tab in the existing one.</p>
           </div>
-        </div>
-        <div class="sect2">
-          <div class="titlepage">
-            <div>
-              <div>
-                <h3 class="title"><a name="RCL.SEARCH.SAVING" id=
-                "RCL.SEARCH.SAVING"></a>3.2.16.&nbsp;Saving and
-                restoring queries</h3>
-              </div>
-            </div>
-          </div>
-          <p>Both simple and advanced query dialogs save recent
-          history, but the amount is limited: old queries will
-          eventually be forgotten. Also, important queries may be
-          difficult to find among others. This is why both types of
-          queries can also be explicitly saved to files, from the
-          GUI menus: <span class="guimenu">File</span> →
-          <span class="guimenuitem">Save last query / Load last
-          query</span></p>
-          <p>The default location for saved queries is a
-          subdirectory of the current configuration directory, but
-          saved queries are ordinary files and can be written or
-          moved anywhere.</p>
-          <p>Some of the saved query parameters are part of the
-          preferences (e.g. <code class="literal">autophrase</code>
-          or the active external indexes), and may differ when the
-          query is loaded from the time it was saved. In this case,
-          <span class="application">Recoll</span> will warn of the
-          differences, but will not change the user
-          preferences.</p>
         </div>
         <div class="sect2">
           <div class="titlepage">
@@ -6178,7 +6178,7 @@ MimeType=*/*</pre>
               (if the document is embedded, the script will be
               started on the top-level parent). See the <a class=
               "link" href="#RCL.SEARCH.GUI.RUNSCRIPT" title=
-              "3.2.5.&nbsp;Unix-like systems: running arbitrary commands on result files">
+              "3.2.14.&nbsp;Unix-like systems: running arbitrary commands on result files">
               section about defining scripts</a>. Note that
               <em class="replaceable"><code>scriptname</code></em>
               value should be the value of the <code class=
@@ -6267,6 +6267,12 @@ MimeType=*/*</pre>
           "command"><strong>recollq</strong></span> command,
           printing the results to the standard output (terminal)
           instead of starting a graphical window.</p>
+          <p>The <code class="option">-w</code> option starts the
+          program minimized. <code class="option">-W</code> only
+          creates a system tray icon (the system tray support must
+          be enabled in the <span class="guilabel">GUI
+          preferences</span> <span class="guilabel">User
+          interface</span> tab).</p>
         </div>
       </div>
       <div class="sect1">
@@ -9677,8 +9683,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5164" id=
-                "id5164"></a>GUI settings</h3>
+                <h3 class="title"><a name="id5172" id=
+                "id5172"></a>GUI settings</h3>
               </div>
             </div>
           </div>
@@ -9694,8 +9700,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5171" id=
-                "id5171"></a>Index configuration parameters</h3>
+                <h3 class="title"><a name="id5179" id=
+                "id5179"></a>Index configuration parameters</h3>
               </div>
             </div>
           </div>
@@ -9927,7 +9933,7 @@ defaultcharset = utf-8</pre>
             <dd>
               <p>Help for setting up external indexes. See
               <a class="link" href="#RCL.SEARCH.GUI.MULTIDB" title=
-              "3.2.11.&nbsp;Searching across multiple indexes">this
+              "3.2.12.&nbsp;Searching across multiple indexes">this
               paragraph</a> for explanations.</p>
             </dd>
             <dt><span class="term"><code class=

@@ -292,13 +292,15 @@
       <para>The following sections give an overview of different aspects of the indexing processes
         and configuration, with links to detailed sections.</para>
 
-      <para>Depending on your data, temporary files may be needed during indexing, some of them
-        possibly quite big. You can use the
-        <envar>RECOLL_TMPDIR</envar> or <envar>TMPDIR</envar> environment
-        variables to determine where they are created (the default is to
-        use <filename>/tmp</filename>). Using <envar>TMPDIR</envar> has
-        the nice property that it may also be taken into account by 
-        auxiliary commands executed by <command>recollindex</command>.</para>
+      <para>Depending on your data, temporary files may be created during indexing, some of them
+      possibly quite big. You can set the <envar>RECOLL_TMPDIR</envar> environment variable to
+      determine where they are created.  If <envar>RECOLL_TMPDIR</envar> is not set, &RCL; will fall
+      back to other locations depending on the system. On &LIN; and &MAC; <envar>TMPDIR</envar>,
+      <envar>TMP</envar> and <envar>TEMP</envar> will be tried before falling back to
+      <filename>/tmp/</filename>. On &WIN;, &RCL; will call the GetTempPath() function. Using the
+      system normal mechanism instead of <envar>RECOLL_TMPDIR</envar> has the nice property that the
+      auxiliary commands executed by <command>recollindex</command> should then create their own
+      temporary files in the same location.</para>
 
       <sect2 xml:id="RCL.INDEXING.INTRODUCTION.MODES">
         <title>Indexing modes</title> 
@@ -349,64 +351,38 @@
       </sect2>
 
       <sect2 xml:id="RCL.INDEXING.INTRODUCTION.CONFIG">
-        <title>Configurations, multiple indexes</title>
+        <title>The index configuration directory</title>
 
-        <para>&RCL; supports defining multiple indexes, each defined by its
-          own configuration directory. A configuration directory contains
-          <link linkend="RCL.INDEXING.CONFIG">several files</link> which
-          describe what should be indexed and how.</para>
+        <para>A Recoll index is defined by its configuration directory. A configuration directory
+        contains <link linkend="RCL.INDEXING.CONFIG">several files</link> which describe what should
+        be indexed and how.</para>
 
-        <para>When <command>recoll</command> or
-          <command>recollindex</command> is first executed, it creates a default configuration
-          directory. This configuration is the one used for indexing and querying when no specific
-          configuration is specified. It is located in <filename>$HOME/.recoll/</filename> for &LIN;
-          and <filename>%LOCALAPPDATA%/Recoll</filename> on &WIN;
-          (typically <filename>C:/Users/[me]/Appdata/Local/Recoll</filename>).</para>
+        <para>When <command>recoll</command> or <command>recollindex</command> is first executed, it
+        creates a default configuration directory, located in <filename>$HOME/.recoll/</filename>
+        on &LIN; and &MAC; and <filename>%LOCALAPPDATA%/Recoll</filename> on &WIN; (typically
+        <filename>C:/Users/[me]/Appdata/Local/Recoll</filename>).</para>
 
         <para>All configuration parameters have defaults, defined in system-wide files. Without
-          further customisation, the default configuration will process your complete home
-          directory, with a reasonable set of defaults. It can be adjusted to process a different
-          area of the file system, select files in different ways, and many other things.</para>
+        further customisation, the default configuration will process your complete home directory,
+        with a reasonable set of defaults. It can be adjusted to process different areas of the file
+        storage, select files in different ways, and many other things.</para>
 
-        <para>In some cases, it may be useful to create additional configuration directories, for
-          example, to separate personal and shared indexes, or to take advantage of the organization
-          of your data to improve search precision.</para>
+        <para>The index configuration can be edited either by using the <command>recoll</command>
+        GUI <guilabel>Preferences->Index configuration</guilabel> dialog, or by directly editing
+        the configuration files.</para>
 
-        <para>In order to do this, you would create an empty directory in a
-          location of your choice, and then instruct
-          <command>recoll</command> or <command>recollindex</command> to use
-          it by setting either a command line option (<literal>-c</literal>
-          <replaceable>/some/directory</replaceable>), or an environment variable
-          (<envar>RECOLL_CONFDIR</envar>=<replaceable>/some/directory</replaceable>).  Any
-          modification performed by the commands (e.g. configuration customisation or searches
-          by <command>recoll</command> or index creation by <command>recollindex</command>) would
-          then apply to the new directory and not to the default one.</para>
-
-        <para>Once multiple indexes are created, you can use each of them
-          separately by setting the <literal>-c</literal> option or the
-          <envar>RECOLL_CONFDIR</envar> environment variable when starting a
-          command, to select the desired index.</para>
-
-        <para>It is also possible to instruct one configuration to query one or several other
-          indexes in addition to its own, by using the <guimenuitem>External index</guimenuitem>
-          function in the <command>recoll</command> GUI, or some equivalent in the command line and
-          programming tools.</para>
+        <para>A single index can process data from any subset of the computer accessible storage, as
+        defined by the configuration variables. The most important one is <literal>topdirs</literal>
+        (<literal>Start directories</literal> in the GUI), which defines the directories to be
+        recursively indexed. Its default value is <literal>~</literal>, which translates to your
+        home directory.</para>
         
-        <para>A plausible usage scenario for the multiple index feature would be for a system
-          administrator to set up a central index for shared data, that you choose to search or not
-          in addition to your personal data. Of course, there are other possibilities. for example,
-          there are many cases where you know the subset of files that should be searched, and where
-          narrowing the search can improve the results. You can achieve approximately the same
-          effect by using a directory filter clause in a search, but multiple indexes may have
-          better performance and may be worth the trouble in some cases.</para>
-
-        <para>A more advanced use case would be to use multiple indexes to improve indexing
-          performance, by updating several indexes in parallel (using multiple CPU cores and disks,
-          or possibly several machines), and then merging them, or querying them in parallel.</para>
-
-        <para>See the section about
+        <para>In some cases, it may be useful to create additional configuration directories, for
+        example, to separate personal and shared indexes, or to take advantage of the organization
+        of your data to improve search precision. See the section about
           <link linkend="RCL.INDEXING.CONFIG.MULTIPLE">configuring multiple indexes</link>
-          for more detail</para>
+        for more detail.</para>
+
       </sect2>
 
       <sect2>
@@ -544,30 +520,20 @@ indexedmimetypes = application/pdf</programlisting>
         <itemizedlist>
 
           <listitem><para>For a given configuration directory, you can specify a non-default storage
-              location for the index by setting the <link
-              linkend="RCL.CONFIG.RECOLLCONF.DBDIR"><varname>dbdir</varname></link> parameter in the
-              configuration file. Use this method to keep the configuration directory in its default
-              location, and use another location for the index, typically because of disk occupation
-              or performance reasons.</para></listitem>
+          location for the index by setting the <link
+          linkend="RCL.CONFIG.RECOLLCONF.DBDIR"><varname>dbdir</varname></link> parameter in the
+          configuration file. Use this method to keep the configuration directory in its default
+          location, and use another location for the index, typically because of disk occupation or
+          performance reasons.</para></listitem>
 
-          <listitem><para>You can specify a different configuration directory by setting
-              the <envar>RECOLL_CONFDIR</envar> environment variable, or using
-              the <option>-c</option> option to the &RCL; commands. This method would typically be
-              used to index different areas of the file system to different indexes. For example, if
-              you were to issue the following command:
-              <programlisting>recoll -c ~/.indexes-email</programlisting> Then
-              &RCL; would use configuration files 
-              stored in <filename>~/.indexes-email/</filename> and,
-              (unless specified otherwise in
-              <filename>recoll.conf</filename>) would look for 
-              the index in
-              <filename>~/.indexes-email/xapiandb/</filename>.</para>
-
-            <para>Using multiple configuration directories and
-              <link linkend="RCL.CONFIG.RECOLLCONF">configuration options</link>
-              allows you to tailor multiple configurations and
-              indexes to handle whatever subset of the available data you wish
-              to make searchable.</para>
+          <listitem><para>You can specify a different configuration directory by setting the
+          <envar>RECOLL_CONFDIR</envar> environment variable, or using the <option>-c</option>
+          option to the &RCL; commands. In turn, the related index would be stored either under the
+          configuration directory, or elsewhere if <literal>dbdir</literal> is locally set. This
+          method would typically be used in special cases to index different areas of the file
+          system to different indexes. See the section about <link
+          linkend="RCL.INDEXING.CONFIG.MULTIPLE">configuring multiple indexes</link> for more
+          detail.</para>
           </listitem>
 
         </itemizedlist>
@@ -657,12 +623,12 @@ indexedmimetypes = application/pdf</programlisting>
           </listitem>
         </itemizedlist>
 
-        <para>&RCL; versions 1.38 and newer have an option to use
-          <link linkend="RCL.INDEXING.PERF.MULTIDX">multiple temporary indexes and a final
-          merge</link> internally. This was designed as a CPU performance optimization (increasing
-          parallelism), but it may also provide a simple solution for the index size issue,
-          though it may not give enough control over the temporary indexes physical placement for
-          really huge datasets.</para>
+        <para>&RCL; versions 1.38 and newer have an option to use <link
+        linkend="RCL.INDEXING.PERF.MULTIDX">multiple temporary indexes and a final merge</link>
+        internally. This was designed as a CPU performance optimization (increasing parallelism),
+        but it may also provide a simple solution for the index size issue, though it may not give
+        enough control over the temporary indexes physical placement for really huge
+        datasets.</para>
         
       </sect2>
       
@@ -750,9 +716,22 @@ indexedmimetypes = application/pdf</programlisting>
 
       <sect2 xml:id="RCL.INDEXING.CONFIG.MULTIPLE">
         <title>Multiple indexes</title>
-
+      
         <para>Multiple &RCL; indexes can be created by using several configuration directories which
-          would typically be set to index different areas of the file system.</para>
+        would typically be set to index different areas of the file system.</para>
+
+        <para>A plausible usage scenario for the multiple index feature would be for a system
+        administrator to set up a central index for shared data, that you choose to search or not in
+        addition to your personal data. Of course, there are other possibilities. for example, there
+        are many cases where you know the subset of files that should be searched, and where
+        narrowing the search can improve the results. You can achieve approximately the same effect
+        by using a directory filter clause in a search, but multiple indexes may have better
+        performance and may be worth the trouble with huge data sets.</para>
+
+        <para>A more advanced use case would be to use multiple indexes to improve indexing
+        performance, by updating several indexes in parallel (using multiple CPU cores and disks, or
+        possibly several machines), and then either merging them, or querying them in
+        parallel.</para>
 
         <para>A specific configuration can be selected by setting the <envar>RECOLL_CONFDIR</envar>
         environment variable or giving the <option>-c</option> option to <command>recoll</command>
@@ -795,6 +774,15 @@ indexedmimetypes = application/pdf</programlisting>
         not do it. This is to avoid mistakenly creating additional directories when an argument is
         mistyped. Also, the GUI or the indexer must be launched with a specific option or
         environment to work on the right configuration.</para>
+
+        <para>To start a new configuration, you need to create an empty directory in a location of
+        your choice, and then instruct <command>recoll</command> or <command>recollindex</command>
+        to use it by setting either a command line option (<literal>-c</literal>
+        <replaceable>/some/directory</replaceable>), or an environment variable
+        (<envar>RECOLL_CONFDIR</envar>=<replaceable>/some/directory</replaceable>).  Any
+        modification performed by the commands (e.g. configuration customisation or searches by
+        <command>recoll</command> or index creation by <command>recollindex</command>) would then
+        apply to the new directory and not to the default one.</para>
 
         <sect3>
           <title>Creating and using an additional index: &LIN; example</title>
@@ -861,15 +849,15 @@ indexedmimetypes = application/pdf</programlisting>
 
           <step><para>Select the Recoll icon on the desktop and Copy/Paste it. If no desktop icon was
               created during installation, you can right-drag the recoll.exe program from
-              <filename>C:\Program Files (X86)\Recoll</filename> to the desktop and select
+              <filename>C:\Program Files\Recoll</filename> to the desktop and select
               <guilabel>Create shortcuts here</guilabel> to create one.</para></step>
 
           <step><para>Right-click the new shortcut and go to
               the <guilabel>Properties->shortcut</guilabel> tab</para></step>
           <step><para>Modify the <guilabel>Target</guilabel> value from the original
-              <filename>C:\Program Files (x86)\Recoll\recoll.exe</filename> to something like:
+              <filename>C:\Program Files\Recoll\recoll.exe</filename> to something like:
   
-          <screen>"C:\Program Files (x86)\Recoll\recoll.exe" -c C:\Path\To\My\New\Directory</screen>
+          <screen>"C:\Program Files\Recoll\recoll.exe" -c C:\Path\To\My\New\Directory</screen>
 
           Use double quotes around the directory path is it contains spaces.</para></step>
 
@@ -2151,6 +2139,39 @@ recollindex -c "$confdir"</programlisting>
 
       </sect2>
 
+      <sect2 xml:id="RCL.SEARCH.GUI.SIDEFILTERS">
+        <title>The filters panel (1.32)</title>
+
+        <para>By default, the GUI displays the filters panel on the left of the results area.  You
+        can adjust the width of the panel, and hide it by squeezing it completely. The width will be
+        memorized for the next session.</para>
+
+        <para>The panel is only active in <guilabel>Query Language</guilabel> search mode, and it
+        allows filtering by date or filesystem location, by adding <literal>date:</literal> and
+        <literal>dir:</literal> clauses to the effective query text.</para>
+
+        <para>The dates filter can be activated by clicking the checkbox. It has two assisted date
+        entry widgets, for the minimum and maximum dates of the search period.</para>
+
+        <para>The directory filter displays a subset of the filesystem directories, reduced to the
+        indexed area, as defined by the <literal>topdirs</literal> list and the name exclusion
+        parameters. Some directories may not be shown at all, depending on their (lack of) indexable
+        content and other indexing parameters.</para>
+
+        <para>By default, the depth of the displayed tree is limited at 2 levels under the start
+        directories. You can change this in the GUI Preferences, User interface panel. Please note
+        that increasing the depth can strongly delay the GUI startup, you should experiment by
+        single increments if you want to change the value.</para>
+
+        <para>You can independantly select and deselect directories by clicking them. Note that
+          selecting a directory will activate the whole subtree for searching, there is no need to
+          select the subdirectories, and no way to exclude some of them
+          (use <link linkend="RCL.SEARCH.LANG"><guilabel>Query
+          language</guilabel></link> <literal>dir:</literal> clauses if this is needed).</para>
+
+
+      </sect2>
+
       <sect2 xml:id="RCL.SEARCH.GUI.RESLIST">
         <title>The result list</title>
 
@@ -2358,99 +2379,6 @@ recollindex -c "$confdir"</programlisting>
       </sect2>
 
 
-      <sect2 xml:id="RCL.SEARCH.GUI.SIDEFILTERS">
-        <title>The filters panel</title>
-
-        <para>By default, the GUI displays the filters panel on the left of the results area. This
-          is new in version 1.32. You can adjust the width of the panel, and hide it by squeezing it
-          completely. The width will be memorized for the next session.</para>
-
-        <para>The panel currently has two areas, for filtering the results by dates, or by
-          filesystem location.</para> 
-
-        <para>The panel is only active in <guilabel>Query Language</guilabel> search mode, and its
-          effect is to add <literal>date:</literal> and <literal>dir:</literal> clauses to the
-          actual search.</para>
-
-        <para>The dates filter can be activated by clicking the checkbox. It has two assisted date
-          entry widgets, for the minimum and maximum dates of the search period.</para>
-
-        <para>The directory filter displays a subset of the filesystem directories, reduced to the
-        indexed area, as defined by the <literal>topdirs</literal> list and the name exclusion
-        parameters. Some directories may not be shown at all, depending on their (lack of) indexable
-        content and other indexing parameters.</para>
-
-        <para>By default, the depth of the displayed tree is limited at 2 levels under the start
-        directories. You can change this in the GUI Preferences, User interface panel. Please note
-        that increasing the depth can strongly delay the GUI startup, you should experiment by
-        single increments if you want to change the value.</para>
-
-        <para>You can independantly select and deselect directories by clicking them. Note that
-          selecting a directory will activate the whole subtree for searching, there is no need to
-          select the subdirectories, and no way to exclude some of them
-          (use <link linkend="RCL.SEARCH.LANG"><guilabel>Query
-          language</guilabel></link> <literal>dir:</literal> clauses if this is needed).</para>
-
-
-      </sect2>
-
-
-      <sect2 xml:id="RCL.SEARCH.GUI.RUNSCRIPT">
-        <title>&LIN;: running arbitrary commands on result files</title> 
-
-        <para>Apart from the <guilabel>Open</guilabel> and <guilabel>Open With</guilabel>
-        operations, which allow starting an application on a result document (or a temporary copy),
-        based on its MIME type, it is also possible to run arbitrary commands on results which are
-        top-level files, using the <guilabel>Run Script</guilabel> entry in the results pop-up
-        menu.</para>
-
-        <para>The commands which will appear in the <guilabel>Run Script</guilabel> submenu must be
-        defined by <literal>.desktop</literal> files inside the <filename>scripts</filename>
-        subdirectory of the current configuration directory.</para>
-
-        <para>Here follows an example of a <literal>.desktop</literal> file, which could be named
-        for example, <filename>~/.recoll/scripts/myscript.desktop</filename> (the exact file name
-        inside the directory is irrelevant):
-        <programlisting>[Desktop Entry]
-Type=Application
-Name=MyFirstScript
-Exec=/home/me/bin/tryscript %F
-MimeType=*/*</programlisting>
-        The <literal>Name</literal> attribute defines the label which will appear inside the
-        <guilabel>Run Script</guilabel> menu. The <literal>Exec</literal> attribute defines the
-        program to be run, which does not need to actually be a script, of course. The
-        <literal>MimeType</literal> attribute is not used, but needs to exist.</para>
-
-        <para>The commands defined this way can also be used from links inside the <link
-        linkend="RCL.SEARCH.GUI.CUSTOM.RESLIST.PARA">result paragraph</link>.</para>
-        
-        <para>As an example, it might make sense to write a script which would move the document to
-        the trash and purge it from the &RCL; index.</para>
-
-      </sect2>
-
-
-      <sect2 xml:id="RCL.SEARCH.GUI.THUMBNAILS">
-        <title>&LIN;: displaying thumbnails</title>
-
-        <para>The default format for the result list entries and the detail area of the result table
-        display an icon for each result document. The icon is either a generic one determined from
-        the MIME type, or a thumbnail of the document appearance. Thumbnails are only displayed if
-        found in the standard <application>freedesktop</application> location, where they would
-        typically have been created by a file manager.</para>
-
-        <para>Recoll has no capability to create thumbnails. A relatively simple trick is to use the
-        <guilabel>Open parent document/folder</guilabel> entry in the result list popup menu. This
-        should open a file manager window on the containing directory, which should in turn create
-        the thumbnails (depending on your settings). Restarting the search should then display the
-        thumbnails.</para>
-        
-        <para>There are also <link xl:href="&FAQS;ResultsThumbnails.html">some pointers about
-        thumbnail generation</link> in the &RCL; FAQ.</para>
-
-      </sect2>
-
-
       <sect2 xml:id="RCL.SEARCH.GUI.PREVIEW">
         <title>The preview window</title>
 
@@ -2524,139 +2452,16 @@ MimeType=*/*</programlisting>
         
       </sect2>
 
-      <sect2 xml:id="RCL.SEARCH.GUI.FRAGBUTS">
-        <title>The Query Fragments window</title>
-
-        <para>The Query Fragments window can be used to control filtering query language elements
-        modifying the current query, simply by clicking a button. This can be useful to save typing,
-        or avoid memorizing, simple clauses of common usage (e.g. selecting only standalone
-        documents or attachments, or filtering out Web results, selecting a file system subtree, a
-        file type, etc.).</para>
-        
-        <para>Selecting the <menuchoice><guimenu>Tools</guimenu> <guimenuitem>Query
-        Fragments</guimenuitem></menuchoice> menu entry will open the dialog.</para>
-
-
-        <para>The contents of the window are entirely customisable, and defined by the contents of a
-        XML text file, named <filename>fragment-buttons.xml</filename> and which will be looked for
-        in the current index configuration directory. The sample file distributed with &RCL;
-        contains a number of example filters. This will be automatically copied to the configuration
-        directory if the file does not exist in there
-        (e.g. <filename>~/.recoll/fragment-buttons.xml</filename> under Linux and MacOS,
-        <filename>$HOME/AppData/Local/Recoll/fragment-buttons.xml</filename> for &WIN;). Editing the
-        copy will allow you to configure the tool for your needs .</para>
-
-      <note><para>The <filename>fragment-buttons.xml</filename> file was named
-      <filename>fragbuts.xml</filename> up to &RCL; version 1.31.0. This was deemed too close to
-      offensive for native English speakers, so that the file was renamed. An existing
-      <filename>fragbuts.xml</filename> will still be used if
-      <filename>fragment-buttons.xml</filename> does not exist. No automatic renaming will be
-      performed.</para></note>
-
-      <para>Here follows an example window:</para>
-      <para><mediaobject><imageobject><imagedata fileref="frag-sample.png"></imagedata>
-      </imageobject></mediaobject></para>
-
-      <para>And the corresponding configuration file:
-        <programlisting><![CDATA[
-<?xml version="1.0" encoding="UTF-8"?>
-<fragbuttons version="1.0">
-
-  <radiobuttons>
-    <!-- Toggle Web queue results inclusion -->
-    <fragbutton>
-      <label>Include Web Results</label>
-      <frag></frag>
-    </fragbutton>
-    <fragbutton>
-      <label>Exclude Web Results</label>
-      <frag>-rclbes:BGL</frag>
-    </fragbutton>
-    <fragbutton>
-      <label>Only Web Results</label>
-      <frag>rclbes:BGL</frag>
-    </fragbutton>
-  </radiobuttons>
-
-  <radiobuttons>
-    <!-- Standalone vs embedded switch -->
-    <fragbutton>
-      <label>Include embedded documents</label>
-      <frag></frag>
-    </fragbutton>
-    <fragbutton>
-      <label>Only standalone documents</label>
-      <frag>issub:0</frag>
-    </fragbutton>
-    <fragbutton>
-      <label>Only embedded documents</label>
-      <frag>issub:1</frag>
-    </fragbutton>
-  </radiobuttons>
-
-  <buttons>
-    <fragbutton>
-      <label>Example: Year 2010</label>
-      <frag>date:2010-01-01/2010-12-31</frag>
-    </fragbutton>
-    <fragbutton>
-      <label>Example: c++ files</label>
-      <frag>ext:cpp OR ext:cxx</frag>
-    </fragbutton>
-    <fragbutton>
-      <label>Example: My Great Directory</label>
-      <frag>dir:/my/great/directory</frag>
-    </fragbutton>
-  </buttons>
-</fragbuttons>]]></programlisting></para>
-        
-        <para>There are two types of groupings <literal>radiobuttons</literal>
-          and <literal>buttons</literal>, each defining a line of checkbuttons or radiobuttons
-          inside the window. Any number of <literal>buttons</literal> can be selected, but
-          the <literal>radiobuttons</literal> in a line are exclusive.</para>
-
-        <para>Buttons are defined by a <literal>fragbutton</literal> section, which provides the
-          label for a button, and the <literal>Query Language</literal> fragment which will be added
-          (as an AND filter) before performing the query if the button is active.
-          <programlisting><![CDATA[
-    <fragbutton>
-      <label>Example: My Great Directory</label>
-      <frag>dir:/my/great/directory</frag>
-    </fragbutton>]]></programlisting></para>
-
-
-        <para>It is also possible to add <literal>message</literal> elements inside the groups, for
-          documenting the behaviour. <literal>message</literal> elements have
-          a <literal>label</literal> but no <literal>frag</literal> element. Example:
-        <programlisting><![CDATA[
-  <buttons>
-    <message>
-      <label>This is a message</label> 
-    </message>
-  </buttons>]]></programlisting></para>
-
-        <para>The <literal>label</literal> contents are interpreted as HTML. Take care to replace
-          opening <literal>&lt;</literal> characters with the <literal>&amp;lt;</literal> entity
-          if you use tags.</para>
-        
-        <para>The only thing that you need to know about XML for editing this file is that any
-          opening tag like <replaceable>&lt;label&gt;</replaceable> needs to be matched by a closing
-          tag after the value: <replaceable>&lt;/label&gt;</replaceable>.</para>
-
-        <para>You will normally edit the file with a regular text editor, like,
-          e.g. <command>vi</command> or <command>notepad</command>. Double-clicking the file in a
-          file manager may not work, because this usually opens it in a Web browser, which will not
-          let you modify the contents.</para>
-
-      </sect2>
-
-
       <sect2 xml:id="RCL.SEARCH.GUI.COMPLEX">
         <title>Assisted Complex Search (A.K.A. "Advanced Search")</title>
 
-        <para>The advanced search dialog helps you build more complex queries without memorizing the
-        search language constructs. It can be opened through the <guilabel>Tools</guilabel> menu or
-        through the main toolbar.</para>
+        <para>The advanced search dialog helps you build more complex queries without having to
+        memorize the search language constructs.</para>
+
+        <para>The dialog can be opened through the <guilabel>Tools</guilabel> menu or
+        through the main toolbar. There is also an option to have it open when the program
+        starts. The results of the search are processed and displayed in the same way as the results
+        from the "simple search".</para>
 
         <para>&RCL; keeps a history of searches. See <link
         linkend="RCL.SEARCH.GUI.COMPLEX.HISTORY">Advanced search history</link>.</para>
@@ -2789,8 +2594,85 @@ MimeType=*/*</programlisting>
           </menuchoice> menu entry.</para>
 
         </sect3>
+      </sect2>
+
+
+      <sect2 xml:id="RCL.SEARCH.GUI.HISTORY">
+        <title>Document history</title>
+
+        <para>Documents that you actually view (with the internal preview
+        or an external tool) are entered into the document history,
+        which is remembered.</para> 
+        <para>You can display the history list by using
+        the <guilabel>Tools/</guilabel><guilabel>Doc History</guilabel> menu
+        entry.</para> 
+        <para>You can erase the document history by using the
+        <guilabel>Erase document history</guilabel> entry in the
+        <guimenu>File</guimenu> menu.</para>
 
       </sect2>
+
+
+      <sect2 xml:id="RCL.SEARCH.SAVING">
+        <title>Saving and restoring queries</title>
+
+        <para>Both simple and advanced query dialogs save recent
+        history, but the amount is limited: old queries will eventually
+        be forgotten. Also, important queries may be difficult to find
+        among others. This is why both types of queries can also be
+        explicitly saved to files, from the GUI menus:
+        <menuchoice>
+          <guimenu>File</guimenu>
+          <guimenuitem>Save last query / Load last query</guimenuitem>
+        </menuchoice>
+        </para>
+
+        <para>The default location for saved queries is a subdirectory
+        of the current configuration directory, but saved queries are
+        ordinary files and can be written or moved anywhere.</para>
+
+        <para>Some of the saved query parameters are part of the
+        preferences (e.g. <literal>autophrase</literal> or the active
+        external indexes), and may differ when the query is
+        loaded from the time it was saved. In this case, &RCL; will warn
+        of the differences, but will not change the user
+        preferences.</para>
+
+      </sect2>
+
+
+      <sect2 xml:id="RCL.SEARCH.GUI.SORT">
+        <title>Sorting search results and collapsing duplicates</title>
+
+        <para>The documents in a result list are normally sorted in
+        order of relevance. It is possible to specify a different sort
+        order, either by using the vertical arrows in the GUI toolbox to
+        sort by date, or switching to the result table display and clicking
+        on any header. The sort order chosen inside the result table
+        remains active if you switch back to the result list, until you
+        click one of the vertical arrows, until both are unchecked (you are
+        back to sort by relevance).</para>
+
+        <para>Sort parameters are remembered between program
+        invocations, but result sorting is normally always inactive
+        when the program starts. It is possible to keep the sorting
+        activation state between program invocations by checking the
+        <guilabel>Remember sort activation state</guilabel> option in
+        the preferences.</para>
+
+        <para>It is also possible to hide duplicate entries inside the result list (documents with
+        the exact same contents as the displayed one). The test of identity is based on an MD5 hash
+        of the document container, not only of the text contents (so that e.g., a text document with
+        an image added will not be a duplicate of the text only). Duplicates hiding is controlled by
+        an entry in the <guilabel>GUI configuration</guilabel> dialog, and is off by default.</para>
+
+        <para>When a result document does have undisplayed duplicates,
+          a <literal>Dups</literal> link will be shown with the result list
+          entry. Clicking the link will display the paths (URLs + ipaths)
+          for the duplicate entries.</para>
+
+      </sect2>
+
 
       <sect2 xml:id="RCL.SEARCH.GUI.TERMEXPLORER">
         <title>The term explorer tool</title>
@@ -2884,6 +2766,132 @@ MimeType=*/*</programlisting>
 
       </sect2>
 
+      <sect2 xml:id="RCL.SEARCH.GUI.FRAGBUTS">
+        <title>The Query Fragments window</title>
+
+        <para>The Query Fragments window can be used to control filtering query language elements
+        modifying the current query, simply by clicking a button. This can be useful to save typing,
+        or avoid memorizing, simple clauses of common usage (e.g. selecting only standalone
+        documents or attachments, or filtering out Web results, selecting a file system subtree, a
+        file type, etc.).</para>
+        
+        <para>Selecting the <menuchoice><guimenu>Tools</guimenu> <guimenuitem>Query
+        Fragments</guimenuitem></menuchoice> menu entry will open the dialog.</para>
+
+
+        <para>The contents of the window are entirely customisable, and defined by the contents of a
+        XML text file, named <filename>fragment-buttons.xml</filename> and which will be looked for
+        in the current index configuration directory. The sample file distributed with &RCL;
+        contains a number of example filters. This will be automatically copied to the configuration
+        directory if the file does not exist in there
+        (e.g. <filename>~/.recoll/fragment-buttons.xml</filename> under Linux and MacOS,
+        <filename>$HOME/AppData/Local/Recoll/fragment-buttons.xml</filename> for &WIN;). Editing the
+        copy will allow you to configure the tool for your needs .</para>
+
+      <note><para>The <filename>fragment-buttons.xml</filename> file was named
+      <filename>fragbuts.xml</filename> up to &RCL; version 1.31.0. This was deemed too close to
+      offensive for native English speakers, so that the file was renamed. An existing
+      <filename>fragbuts.xml</filename> will still be used if
+      <filename>fragment-buttons.xml</filename> does not exist. No automatic renaming will be
+      performed.</para></note>
+
+      <para>Here follows an example window:</para>
+      <para><mediaobject><imageobject><imagedata fileref="frag-sample.png"></imagedata>
+      </imageobject></mediaobject></para>
+
+      <para>And the corresponding configuration file:
+        <programlisting><![CDATA[
+<?xml version="1.0" encoding="UTF-8"?>
+<fragbuttons version="1.0">
+
+  <radiobuttons>
+    <!-- Toggle Web queue results inclusion -->
+    <fragbutton>
+      <label>Include Web Results</label>
+      <frag></frag>
+    </fragbutton>
+    <fragbutton>
+      <label>Exclude Web Results</label>
+      <frag>-rclbes:BGL</frag>
+    </fragbutton>
+    <fragbutton>
+      <label>Only Web Results</label>
+      <frag>rclbes:BGL</frag>
+    </fragbutton>
+  </radiobuttons>
+
+  <radiobuttons>
+    <!-- Standalone vs embedded switch -->
+    <fragbutton>
+      <label>Include embedded documents</label>
+      <frag></frag>
+    </fragbutton>
+    <fragbutton>
+      <label>Only standalone documents</label>
+      <frag>issub:0</frag>
+    </fragbutton>
+    <fragbutton>
+      <label>Only embedded documents</label>
+      <frag>issub:1</frag>
+    </fragbutton>
+  </radiobuttons>
+
+  <buttons>
+    <fragbutton>
+      <label>Example: Year 2010</label>
+      <frag>date:2010-01-01/2010-12-31</frag>
+    </fragbutton>
+    <fragbutton>
+      <label>Example: c++ files</label>
+      <frag>ext:cpp OR ext:cxx</frag>
+    </fragbutton>
+    <fragbutton>
+      <label>Example: My Great Directory</label>
+      <frag>dir:/my/great/directory</frag>
+    </fragbutton>
+  </buttons>
+</fragbuttons>]]></programlisting></para>
+        
+        <para>There are two types of groupings <literal>radiobuttons</literal>
+          and <literal>buttons</literal>, each defining a line of checkbuttons or radiobuttons
+          inside the window. Any number of <literal>buttons</literal> can be selected, but
+          the <literal>radiobuttons</literal> in a line are exclusive.</para>
+
+        <para>Buttons are defined by a <literal>fragbutton</literal> section, which provides the
+          label for a button, and the <literal>Query Language</literal> fragment which will be added
+          (as an AND filter) before performing the query if the button is active.
+          <programlisting><![CDATA[
+    <fragbutton>
+      <label>Example: My Great Directory</label>
+      <frag>dir:/my/great/directory</frag>
+    </fragbutton>]]></programlisting></para>
+
+
+        <para>It is also possible to add <literal>message</literal> elements inside the groups, for
+          documenting the behaviour. <literal>message</literal> elements have
+          a <literal>label</literal> but no <literal>frag</literal> element. Example:
+        <programlisting><![CDATA[
+  <buttons>
+    <message>
+      <label>This is a message</label> 
+    </message>
+  </buttons>]]></programlisting></para>
+
+        <para>The <literal>label</literal> contents are interpreted as HTML. Take care to replace
+          opening <literal>&lt;</literal> characters with the <literal>&amp;lt;</literal> entity
+          if you use tags.</para>
+        
+        <para>The only thing that you need to know about XML for editing this file is that any
+          opening tag like <replaceable>&lt;label&gt;</replaceable> needs to be matched by a closing
+          tag after the value: <replaceable>&lt;/label&gt;</replaceable>.</para>
+
+        <para>You will normally edit the file with a regular text editor, like,
+          e.g. <command>vi</command> or <command>notepad</command>. Double-clicking the file in a
+          file manager may not work, because this usually opens it in a Web browser, which will not
+          let you modify the contents.</para>
+
+      </sect2>
+
       <sect2 xml:id="RCL.SEARCH.GUI.MULTIDB">
         <title>Searching across multiple indexes</title>
 
@@ -2946,50 +2954,59 @@ MimeType=*/*</programlisting>
 
       </sect2>
 
-      <sect2 xml:id="RCL.SEARCH.GUI.HISTORY">
-        <title>Document history</title>
 
-        <para>Documents that you actually view (with the internal preview
-        or an external tool) are entered into the document history,
-        which is remembered.</para> 
-        <para>You can display the history list by using
-        the <guilabel>Tools/</guilabel><guilabel>Doc History</guilabel> menu
-        entry.</para> 
-        <para>You can erase the document history by using the
-        <guilabel>Erase document history</guilabel> entry in the
-        <guimenu>File</guimenu> menu.</para>
+      <sect2 xml:id="RCL.SEARCH.GUI.THUMBNAILS">
+        <title>&LIN;: displaying thumbnails</title>
+
+        <para>The default format for the result list entries and the detail area of the result table
+        display an icon for each result document. The icon is either a generic one determined from
+        the MIME type, or a thumbnail of the document appearance. Thumbnails are only displayed if
+        found in the standard <application>freedesktop</application> location, where they would
+        typically have been created by a file manager.</para>
+
+        <para>Recoll has no capability to create thumbnails. A relatively simple trick is to use the
+        <guilabel>Open parent document/folder</guilabel> entry in the result list popup menu. This
+        should open a file manager window on the containing directory, which should in turn create
+        the thumbnails (depending on your settings). Restarting the search should then display the
+        thumbnails.</para>
+        
+        <para>There are also <link xl:href="&FAQS;ResultsThumbnails.html">some pointers about
+        thumbnail generation</link> in the &RCL; FAQ.</para>
 
       </sect2>
 
-      <sect2 xml:id="RCL.SEARCH.GUI.SORT">
-        <title>Sorting search results and collapsing duplicates</title>
 
-        <para>The documents in a result list are normally sorted in
-        order of relevance. It is possible to specify a different sort
-        order, either by using the vertical arrows in the GUI toolbox to
-        sort by date, or switching to the result table display and clicking
-        on any header. The sort order chosen inside the result table
-        remains active if you switch back to the result list, until you
-        click one of the vertical arrows, until both are unchecked (you are
-        back to sort by relevance).</para>
+      <sect2 xml:id="RCL.SEARCH.GUI.RUNSCRIPT">
+        <title>&LIN;: running arbitrary commands on result files</title> 
 
-        <para>Sort parameters are remembered between program
-        invocations, but result sorting is normally always inactive
-        when the program starts. It is possible to keep the sorting
-        activation state between program invocations by checking the
-        <guilabel>Remember sort activation state</guilabel> option in
-        the preferences.</para>
+        <para>Apart from the <guilabel>Open</guilabel> and <guilabel>Open With</guilabel>
+        operations, which allow starting an application on a result document (or a temporary copy),
+        based on its MIME type, it is also possible to run arbitrary commands on results which are
+        top-level files, using the <guilabel>Run Script</guilabel> entry in the results pop-up
+        menu.</para>
 
-        <para>It is also possible to hide duplicate entries inside the result list (documents with
-        the exact same contents as the displayed one). The test of identity is based on an MD5 hash
-        of the document container, not only of the text contents (so that e.g., a text document with
-        an image added will not be a duplicate of the text only). Duplicates hiding is controlled by
-        an entry in the <guilabel>GUI configuration</guilabel> dialog, and is off by default.</para>
+        <para>The commands which will appear in the <guilabel>Run Script</guilabel> submenu must be
+        defined by <literal>.desktop</literal> files inside the <filename>scripts</filename>
+        subdirectory of the current configuration directory.</para>
 
-        <para>When a result document does have undisplayed duplicates,
-          a <literal>Dups</literal> link will be shown with the result list
-          entry. Clicking the link will display the paths (URLs + ipaths)
-          for the duplicate entries.</para>
+        <para>Here follows an example of a <literal>.desktop</literal> file, which could be named
+        for example, <filename>~/.recoll/scripts/myscript.desktop</filename> (the exact file name
+        inside the directory is irrelevant):
+        <programlisting>[Desktop Entry]
+Type=Application
+Name=MyFirstScript
+Exec=/home/me/bin/tryscript %F
+MimeType=*/*</programlisting>
+        The <literal>Name</literal> attribute defines the label which will appear inside the
+        <guilabel>Run Script</guilabel> menu. The <literal>Exec</literal> attribute defines the
+        program to be run, which does not need to actually be a script, of course. The
+        <literal>MimeType</literal> attribute is not used, but needs to exist.</para>
+
+        <para>The commands defined this way can also be used from links inside the <link
+        linkend="RCL.SEARCH.GUI.CUSTOM.RESLIST.PARA">result paragraph</link>.</para>
+        
+        <para>As an example, it might make sense to write a script which would move the document to
+        the trash and purge it from the &RCL; index.</para>
 
       </sect2>
 
@@ -3339,32 +3356,6 @@ MimeType=*/*</programlisting>
         </sect3>
       </sect2>
 
-      <sect2 xml:id="RCL.SEARCH.SAVING">
-        <title>Saving and restoring queries</title>
-
-        <para>Both simple and advanced query dialogs save recent
-        history, but the amount is limited: old queries will eventually
-        be forgotten. Also, important queries may be difficult to find
-        among others. This is why both types of queries can also be
-        explicitly saved to files, from the GUI menus:
-        <menuchoice>
-          <guimenu>File</guimenu>
-          <guimenuitem>Save last query / Load last query</guimenuitem>
-        </menuchoice>
-        </para>
-
-        <para>The default location for saved queries is a subdirectory
-        of the current configuration directory, but saved queries are
-        ordinary files and can be written or moved anywhere.</para>
-
-        <para>Some of the saved query parameters are part of the
-        preferences (e.g. <literal>autophrase</literal> or the active
-        external indexes), and may differ when the query is
-        loaded from the time it was saved. In this case, &RCL; will warn
-        of the differences, but will not change the user
-        preferences.</para>
-
-      </sect2>
 
       <sect2 xml:id="RCL.SEARCH.GUI.CUSTOM">
         <title>Customising the search interface</title>
@@ -3864,7 +3855,9 @@ MimeType=*/*</programlisting>
         <para>The <option>-t</option> option will tell the program to behave exactly like the
         <command>recollq</command> command, printing the results to the standard output (terminal)
         instead of starting a graphical window.</para>
-
+        <para>The <option>-w</option> option starts the program minimized. <option>-W</option> only
+        creates a system tray icon (the system tray support must be enabled in the <guilabel>GUI
+        preferences</guilabel> <guilabel>User interface</guilabel> tab).</para>
       </sect2>
 
     </sect1> <!-- search GUI -->

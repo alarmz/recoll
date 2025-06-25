@@ -239,7 +239,7 @@ static const char usage [] =
     "       be last on the command line if this is used.\n"
     "       Use -t -h to see the additional non-gui options\n"
     "  -w : open minimized\n"
-    "  -W : do not open at all, only system tray icon (needs system tray!)\n"
+    "  -W : do not open at all, only create a system tray icon (needs a system tray!)\n"
     "recoll -v : print version\n"
     "recoll <url>\n"
     "   This is used to open a recoll url (including an ipath), and called\n"
