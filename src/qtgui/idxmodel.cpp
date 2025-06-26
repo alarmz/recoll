@@ -25,10 +25,10 @@
 
 #include "idxmodel.h"
 
-#include "recoll.h"
-#include "fstreewalk.h"
 #include "log.h"
-#include "rcldoc.h"
+#include "smallut.h"
+#include "fstreewalk.h"
+#include "recoll.h"
 
 // Note: we originally used a file system tree walk to populate the tree. This was wrong
 // because the file system may have changed since the index was created.

@@ -18,8 +18,8 @@
 
 #include <errno.h>
 
+#include "smallut.h"
 #include "log.h"
-#include "cstr.h"
 #include "fetcher.h"
 #include "fsfetcher.h"
 #include "fsindexer.h"

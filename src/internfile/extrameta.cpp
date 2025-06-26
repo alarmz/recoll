@@ -21,6 +21,7 @@
 
 #include <errno.h>
 
+#include "smallut.h"
 #include "rclconfig.h"
 #include "pxattr.h"
 #include "log.h"

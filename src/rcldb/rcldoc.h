@@ -21,7 +21,6 @@
 #include <unordered_map>
 #include <vector>
 
-#include "smallut.h"
 #include "rclutil.h"
 
 namespace Rcl {

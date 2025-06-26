@@ -19,7 +19,6 @@
 #include "rcldoc.h"
 #include "log.h"
 #include "rclutil.h"
-#include "cstr.h"
 
 using namespace std;
 

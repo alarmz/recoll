@@ -22,6 +22,7 @@
 
 #include "exefetcher.h"
 
+#include "smallut.h"
 #include "log.h"
 #include "pathut.h"
 #include "rclconfig.h"

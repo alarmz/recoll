@@ -31,7 +31,6 @@
 #include "hldata.h"
 #include "chrono.h"
 #include "unacpp.h"
-#include "zlibut.h"
 #include "rcldoc.h"
 #include "searchdata.h"
 
