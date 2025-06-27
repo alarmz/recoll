@@ -1,4 +1,4 @@
-/* Copyright (C) 2005 J.F.Dockes
+/* Copyright (C) 2005-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -164,7 +164,7 @@ static bool linenumNeeded(const std::string& cmd)
 }
 static bool termNeeded(const std::string& cmd)
 {
-    return cmd.find("%s") != std::string::npos;
+    return cmd.find("%s") != std::string::npos || cmd.find("%S") != std::string::npos;
 }
 static bool jsonNeeded(const std::string& cmd)
 {
@@ -268,6 +268,8 @@ static std::string jsonData(std::shared_ptr<DocSequence> source, Rcl::Doc& doc)
     return jsondata;
 }
 
+// Only the Snippets viewer sets the qterm parameter. Else, if needed, we ask for it from the query
+// through getFirstMatchpage()
 void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int linenum,
                                 bool enterHistory)
 {
@@ -478,11 +480,40 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
         prefs.showTempFileWarning = settings.value("/Recoll/prefs/showTempFileWarning").toInt();
     }
 
-    // If we are not called with a page number (which would happen for a call from the snippets
-    // window), see if we can compute a page number anyway.
+    // If we are not called with a page number and/or term (which would happen for a call from the
+    // snippets window), see if we can compute a page number + term anyway.
     if (m_source &&
         ((pagenum == -1 && pagenumNeeded(cmd)) || (term.empty() && termNeeded(cmd)))) {
         pagenum = m_source->getFirstMatchPage(doc, term);
+    }
+
+    // If a search/find parameter is needed by the command, and if the search was a simple phrase
+    // (expanded to a simple sequence of single terms), possibly generate a multiword
+    // parameter. This works find with evince, which ignores newlines and capital/diacritics when
+    // searching (but not multiple spaces...). Not sure how this would work with other commands, so
+    // it has its own substitution character. This just handles a very specific but common case of a
+    // simple phrase with no term transformations or expansions finding a match, and where users are
+    // wondering why we don't tell the command to search for it.
+    std::string findparam;
+    if (termNeeded(cmd)) {
+        HighlightData hld;
+        m_source->getTerms(hld);
+        LOGDEB1(hld.toString() << '\n');
+        const auto& itg(hld.index_term_groups);
+        if (itg.size() == 1 && itg[0].kind == HighlightData::TermGroup::TGK_PHRASE &&
+            itg[0].slack == 0) {
+            for (const auto& grp : itg[0].orgroups) {
+                if (grp.size() != 1) {
+                    findparam.clear();
+                    break;
+                }
+                findparam += grp[0] + " ";
+            }
+            trimstring(findparam);
+            LOGDEB0("startNativeViewer: findparam [ " << findparam << "]\n");
+        }
+        if (findparam.empty())
+            findparam = term;
     }
 
     // Experimental and undocumented at the moment: query match terms (qualityTerms) and
@@ -510,8 +541,7 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
     } else {
         efftime = "0";
     }
-    // Try to keep the letters used more or less consistent with the reslist
-    // paragraph format.
+
     map<string, string> subs;
     subs["D"] = efftime;
 #ifdef _WIN32
@@ -524,6 +554,7 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
     subs["l"] = ulltodecstr(linenum);
     subs["M"] = doc.mimetype;
     subs["p"] = ulltodecstr(pagenum);
+    subs["S"] = findparam;
     subs["s"] = term;
     // Our file:// URLs are actually raw paths. Others should be proper URLs. Only encode file://..
     subs["U"] = beginswith(url, cstr_fileu) ? path_pcencode(url) : url;
