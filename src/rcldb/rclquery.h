@@ -131,13 +131,8 @@ public:
     /** Choose most interesting term and return the page number for its first match
      *  @param term returns the chosen term 
      *  @return page number or -1 if term not found or other issue
-     */
+     * could be done and saved while we compute the abstracts, quite a lot of waste here. */
     int getFirstMatchPage(const Doc &doc, std::string& term);
-
-    /** Compute line number for first match of term. Only works if doc.text has text.
-     * This uses a text split. Both this and the above getFirstMaxPage() could be done and saved
-     * while we compute the abstracts, quite a lot of waste here. */
-    int getFirstMatchLine(const Doc &doc, const std::string& term);
     
     /** Retrieve a reference to the searchData we are using */
     std::shared_ptr<SearchData> getSD() {

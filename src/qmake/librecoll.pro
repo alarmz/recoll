@@ -25,6 +25,8 @@ SOURCES += \
 ../bincimapmime/mime.cc \
 ../common/cjksplitter.cpp \
 ../common/cnsplitter.cpp \
+../common/firstmatchline.cpp \
+../common/firstmatchline.h \
 ../common/kosplitter.cpp \
 ../common/cstr.cpp \
 ../common/plaintorich.cpp \

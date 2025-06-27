@@ -136,17 +136,6 @@ int DocSequenceDb::getFirstMatchPage(Rcl::Doc &doc, string& term)
     return -1;
 }
 
-int DocSequenceDb::getFirstMatchLine(const Rcl::Doc &doc, const string& term)
-{
-    std::unique_lock<std::mutex> locker(o_dblock);
-    if (!setQuery())
-        return false;
-    if (m_q->whatDb()) {
-        return m_q->getFirstMatchLine(doc, term);
-    }
-    return 1;
-}
-
 list<string> DocSequenceDb::expand(Rcl::Doc &doc)
 {
     std::unique_lock<std::mutex> locker(o_dblock);

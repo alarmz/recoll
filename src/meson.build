@@ -269,6 +269,7 @@ librecoll_sources = [
     'common/cjksplitter.cpp',
     'common/cnsplitter.cpp',
     'common/cstr.cpp',
+    'common/firstmatchline.cpp',
     'common/kosplitter.cpp',
     'common/rclconfig.cpp',
     'common/rclinit.cpp',

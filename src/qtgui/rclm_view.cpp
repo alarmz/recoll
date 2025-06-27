@@ -27,6 +27,7 @@
 #include "qxtconfirmationmessage.h"
 
 #include "log.h"
+#include "firstmatchline.h"
 #include "fileudi.h"
 #include "execmd.h"
 #include "transcode.h"
@@ -497,7 +498,7 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
         if (doc.text.empty()) {
             rcldb->getDocRawText(doc);
         }
-        linenum = m_source->getFirstMatchLine(doc, term);
+        linenum = getFirstMatchLine(doc, term);
     }
     if (linenum < 0)
         linenum = 1;

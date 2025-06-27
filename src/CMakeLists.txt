@@ -162,6 +162,8 @@ set(librecoll_SOURCES
     common/cnsplitter.h
     common/cstr.cpp
     common/cstr.h
+    common/firstmatchline.cpp
+    common/firstmatchline.h
     common/kosplitter.cpp
     common/rclconfig.cpp
     common/rclconfig.h

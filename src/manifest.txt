@@ -29,6 +29,8 @@ common/cnsplitter.cpp
 common/cnsplitter.h
 common/cstr.cpp
 common/cstr.h
+common/firstmatchline.cpp
+common/firstmatchline.h
 common/kosplitter.cpp
 common/kosplitter.h
 common/plaintorich.cpp

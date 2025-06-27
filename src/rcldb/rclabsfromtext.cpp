@@ -503,47 +503,4 @@ int Query::Native::abstractFromText(
     return ABSRES_OK | splitter.getretflags();
 }
 
-class TermLineSplitter : public TextSplit {
-public:
-    TermLineSplitter(const std::string& term)
-        : TextSplit(), m_term(term) {
-        LOGDEB1("TermLineSplitter: m_term " << m_term << "\n");
-    }
-    bool takeword(const std::string& _term, size_t, size_t, size_t) override {
-        std::string term;
-        if (o_index_stripchars) {
-            if (!unacmaybefold(_term, term, UNACOP_UNACFOLD)) {
-                LOGINFO("PlainToRich::takeword: unac failed for [" << term << "]\n");
-                return true;
-            }
-        }
-        LOGDEB1("TermLineSplitter: checking term " << term << "\n");
-        if (term == m_term) {
-            return false;
-        }
-        return true;
-    }
-    void newline(size_t) override {
-        m_line++;
-    }
-    int getline() {
-        return m_line;
-    }
-private:
-    int m_line{1};
-    std::string m_term;
-};
-
-int Query::getFirstMatchLine(const Doc &doc, const std::string& term)
-{
-    int line = 1;
-    TermLineSplitter splitter(term);
-    bool ret = splitter.text_to_words(doc.text);
-    // The splitter takeword() breaks by returning false as soon as the term is found
-    if (ret == false) {
-        line = splitter.getline();
-    }
-    return line;
-}
-
 }
