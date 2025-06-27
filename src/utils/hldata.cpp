@@ -202,7 +202,7 @@ bool matchGroup(const HighlightData& hldata,
         for (const auto& term : group) {
             const auto pl = inplists.find(term);
             if (pl == inplists.end()) {
-                LOGRP("TextSplitPTR::matchGroup: term [" << term << "] not found in plists\n");
+                LOGRP("Matchgroup::matchGroup: term [" << term << "] not found in plists\n");
                 continue;
             }
             orplists.back().addplist(pl->first, &(pl->second));
@@ -219,7 +219,7 @@ bool matchGroup(const HighlightData& hldata,
     // I think this can't actually happen, was useful when we used to
     // prune the groups, but doesn't hurt.
     if (orplists.size() < 2) {
-        LOGRP("TextSplitPTR::matchGroup: no actual groups found\n");
+        LOGRP("Matchgroup::matchGroup: no actual groups found\n");
         return false;
     }
 
@@ -245,14 +245,14 @@ bool matchGroup(const HighlightData& hldata,
         if (do_proximity_test(
                 window, orplists, 1, pos, pos, &sta, &sto, minpos, isphrase)) {
             setWinMinMax(pos, sta, sto);
-            LOGRP("TextSplitPTR::matchGroup: MATCH termpos [" << sta <<
+            LOGRP("Matchgroup::matchGroup: MATCH termpos [" << sta <<
                     "," << sto << "]\n"); 
             minpos = sto + 1;
             // Translate the position window into a byte offset window
             auto i1 =  gpostobytes.find(sta);
             auto i2 =  gpostobytes.find(sto);
             if (i1 != gpostobytes.end() && i2 != gpostobytes.end()) {
-                LOGDEB2("TextSplitPTR::matchGroup: pushing bpos " <<
+                LOGDEB2("Matchgroup::matchGroup: pushing bpos " <<
                         i1->second.first << " " << i2->second.second << "\n");
                 tboffs.push_back(GroupMatchEntry(i1->second.first, 
                                                  i2->second.second, grpidx));

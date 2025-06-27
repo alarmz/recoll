@@ -1,4 +1,4 @@
-/* Copyright (C) 2016-2019 J.F.Dockes
+/* Copyright (C) 2016-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -17,14 +17,14 @@
 
 #include "autoconfig.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#include "rclutil.h"
+
+#include <errno.h>
 #include <fcntl.h>
-#include "safeunistd.h"
-#include "cstr.h"
-#include "execmd.h"
-#include "fstreewalk.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
 
 #ifdef _WIN32
 
@@ -36,7 +36,7 @@
 #include <windows.h>
 #include <Shlobj.h>
 
-#else // _WIN32
+#else // !_WIN32 ->
 
 #include <sys/param.h>
 #include <pwd.h>
@@ -48,26 +48,26 @@
 #include <mach-o/dyld.h>
 #endif
 
-#include <errno.h>
-#include <sys/types.h>
-
 #include <mutex>
 #include <map>
 #include <unordered_map>
-#include <list>
 #include <vector>
 #include <numeric>
 
-#include "rclutil.h"
-#include "pathut.h"
-#include "wipedir.h"
-#include "transcode.h"
-#include "md5ut.h"
-#include "log.h"
-#include "smallut.h"
-#include "rclconfig.h"
+#include "cstr.h"
 #include "damlev.h"
+#include "fstreewalk.h"
+#include "log.h"
+#include "md5ut.h"
+#include "pathut.h"
+#include "rclconfig.h"
+#include "rcldoc.h"
+#include "smallut.h"
+#include "textsplit.h"
+#include "transcode.h"
+#include "unacpp.h"
 #include "utf8iter.h"
+#include "wipedir.h"
 
 using namespace std;
 
@@ -207,7 +207,7 @@ string path_slashdrive(const string& path)
     return npath;
 }
 
-#else // _WIN32 above
+#else // !_WIN32 ->
 
 static bool path_gettempfilename(string& filename, string& reason)
 {
@@ -232,7 +232,7 @@ static bool path_gettempfilename(string& filename, string& reason)
     free(cp);
     return true;
 }
-#endif // posix
+#endif // !WIN32
 
 bool path_samepath(const std::string& p1, const std::string& p2)
 {

@@ -52,31 +52,29 @@ class SearchDataClauseDist;
 class SdataWalker;
 
 /** 
-    A SearchData object represents a Recoll user query, for translation
-    into a Xapian query tree. This could probably better called a 'question'.
+    A SearchData object represents a Recoll user query, to be translated into a Xapian query
+    tree. This could probably better called a 'question'.
 
-    This is a list of SearchDataClause objects combined through either
+    This is a mostly a list of SearchDataClause objects (possibly sublists) combined through either
     OR or AND.
 
-    Clauses either reflect user entry in a query field: some text, a
-    clause type (AND/OR/NEAR etc.), possibly a distance, or are the
-    result of parsing query language input. A clause can also point to
-    another SearchData representing a subquery.
+    Clauses either reflect user entry in a query field: some raw text, a clause type (AND/OR/NEAR
+    etc.), possibly a distance, or are the result of parsing query language input. A clause can also
+    point to another SearchData representing a subquery.
 
-    The content of each clause when added may not be fully parsed yet
-    (may come directly from a gui field). It will be parsed and may be
-    translated to several queries in the Xapian sense, for example
-    several terms and phrases as would result from 
-    ["this is a phrase"  term1 term2] . 
+    The content of each clause when added may not be fully parsed yet (e.g. may come directly from a
+    GUI field). It will be parsed and may be translated to several queries in the Xapian sense, for
+    example several terms and phrases as would result from ["this is a phrase" term1 term2] .
 
-    This is why the clauses also have an AND/OR/... type. They are an 
-    intermediate form between the primary user input and 
-    the final Xapian::Query tree.
+    This is why the clauses also have an AND/OR/... type. They are an intermediate form between the
+    primary user input and the final Xapian::Query tree.
 
-    For example, a phrase clause could be added either explicitly or
-    using double quotes: {SCLT_PHRASE, [this is a phrase]} or as
-    {SCLT_XXX, ["this is a phrase"]}
+    For example, a phrase clause could be added either explicitly or using double quotes:
+    {SCLT_PHRASE, [this is a phrase]} or as {SCLT_XXX, ["this is a phrase"]}
 
+    For natural text clauses (not file names or value range queries), the first step in the
+    processing towards the Xapian query always transforms the text into possible index terms:
+    capitals and diacritics stripped or not, depending on the index type.
 */
 class SearchData {
 public:

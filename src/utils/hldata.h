@@ -25,52 +25,42 @@
 #include <set>
 #include <unordered_map>
 
-/** Store data about user search terms and their expansions. This is used
- * mostly for highlighting result text and walking the matches, generating 
- * spelling suggestions.
- */
+/** Store data about user search terms and their expansions.
+ *  This is used mostly for highlighting result text and walking the matches, generating
+ *  spelling suggestions. */
 struct HighlightData {
-    /** The user terms, excluding those with wildcards. This list is
-     * intended for orthographic suggestions so the terms are always
-     * lowercased, unaccented or not depending on the type of index 
-     * (as the spelling dictionary is generated from the index terms).
-     */
+    /** The user terms, excluding those with wildcards. This list is intended for orthographic
+     *  suggestions so the terms are always lowercased, unaccented or not depending on the type of
+     *  index (as the spelling dictionary is generated from the index terms). */
     std::set<std::string> uterms;
 
     /** The db query terms linked to the uterms entry they were expanded from. 
-     * This is used for aggregating term stats when generating snippets (for 
-     * choosing the best terms, allocating slots, etc. )
-     */
+     *  This is used for aggregating term stats when generating snippets (for choosing the best
+     * terms, allocating slots, etc. ) */
     std::unordered_map<std::string, std::string> terms;
 
-    /** The original user terms-or-groups. This is for display
-     * purposes: ie when creating a menu to look for a specific
-     * matched group inside a preview window. We want to show the
-     * user-entered data in the menu, not some transformation, so
-     * these are always raw, diacritics and case preserved.
-     */
+    /** The original user terms-or-groups.
+     *  This is for display purposes: e.g. when creating a menu to look for a specific matched
+     *  group inside a preview window. We want to show the user-entered data in the menu, but this
+     *  is collected after the initial split, so the terms are indexed terms (raw or not depending
+     *  on index type). This could be changed by performing a separate non-transforming split
+     *  just for this purpose. */
     std::vector<std::vector<std::string> > ugroups;
 
-    /** Processed/expanded terms and groups. Used for looking for
-     * regions to highlight. A group can be a PHRASE or NEAR entry
-     * Terms are just groups with 1 entry. All
-     * terms are transformed to be compatible with index content
-     * (unaccented and lowercased as needed depending on
-     * configuration), and the list may include values
-     * expanded from the original terms by stem or wildcard expansion.
-     */
+    /** Processed/expanded terms and groups.
+     *  Used for looking for regions to highlight. A group can be a PHRASE or NEAR entry.
+     *  Terms are just groups with 1 entry.
+     *  All terms are index terms (raw or not depending on index type), and the list may include
+     *  values expanded from the original terms by stem or wildcard expansion.
+     *  Each entry references the user entry they were expanded from, as an index into ugroups:
+     *  as a user term or group may generate many processed/expanded terms or groups, this is how
+     *  we relate an expansion to its source (used, e.g. for generating anchors for walking search
+     *  matches in the preview window). */
     struct TermGroup {
-        // We'd use an union but no can do
-        std::string term;
+        std::string term; // One of term or orgroups is set depending on kind.
         std::vector<std::vector<std::string> > orgroups;
         int slack{0};
-
-        /* Index into ugroups. As a user term or group may generate
-         * many processed/expanded terms or groups, this is how we
-         * relate an expansion to its source (used, e.g. for
-         * generating anchors for walking search matches in the
-         * preview window). */
-        size_t grpsugidx{0};
+        size_t grpsugidx{0}; // Index into ugroups
         enum TGK {TGK_TERM, TGK_NEAR, TGK_PHRASE};
         TGK kind{TGK_TERM};
     };
@@ -93,10 +83,8 @@ struct HighlightData {
     std::string toString() const;
 };
 
-/* The following is used by plaintorich.cpp for finding zones to
-   highlight and by rclabsfromtext.cpp to choose fragments for the
-   abstract */
-
+/* The following is used by plaintorich.cpp for finding zones to highlight and by rclabsfromtext.cpp
+ * to choose fragments for the abstract */
 struct GroupMatchEntry {
     // Start/End byte offsets in the document text
     std::pair<size_t, size_t> offs;
@@ -104,8 +92,7 @@ struct GroupMatchEntry {
     // match to the original user input.
     size_t grpidx;
     GroupMatchEntry(size_t sta, size_t sto, size_t idx) 
-        : offs(sta, sto), grpidx(idx) {
-    }
+        : offs(sta, sto), grpidx(idx) {}
 };
 
 // Find NEAR or PHRASE matches for one group of terms.

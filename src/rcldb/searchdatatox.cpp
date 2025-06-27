@@ -827,18 +827,17 @@ bool SearchDataClauseSimple::processUserString(
     m_curcl = 0;
     const StopList stops = db.getStopList();
 
-    // Simple whitespace-split input into user-level words and
-    // double-quoted phrases: word1 word2 "this is a phrase". 
+    // Simple whitespace-split input into user-level words and double-quoted phrases: word1 word2
+    // "this is a phrase".
     //
-    // The text splitter may further still decide that the resulting
-    // "words" are really phrases, this depends on separators:
-    // [paul@dom.net] would still be a word (span), but [about-me]
-    // will probably be handled as a phrase.
+    // The text splitter may further still decide that the resulting "words" are really phrases,
+    // this depends on separators: [paul@dom.net] would still be a word (span), but [about-me] will
+    // probably be handled as a phrase.
     vector<string> phrases;
     TextSplit::stringToStrings(iq, phrases);
 
-    // Process each element: textsplit into terms, handle stem/wildcard 
-    // expansion and transform into an appropriate Xapian::Query
+    // Process each element: textsplit into terms, handle stem/wildcard expansion and transform into
+    // an appropriate Xapian::Query
     try {
         for (auto& wordorphrase : phrases) {
             LOGDEB0("strToXapianQ: phrase/word: [" << wordorphrase << "]\n");
@@ -862,7 +861,7 @@ bool SearchDataClauseSimple::processUserString(
             // and the last position
 
             // The term processing pipeline:
-            // split -> [unac/case ->] stops -> store terms
+            //   split -> [unac/case ->] stops -> store terms
             TermProcQ tpq;
             TermProc *nxt = &tpq;
             TermProcStop tpstop(nxt, stops); nxt = &tpstop;

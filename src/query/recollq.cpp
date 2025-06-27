@@ -29,24 +29,22 @@
 #include <list>
 #include <string>
 
-#include "rcldb.h"
-#include "rclquery.h"
-#include "rclconfig.h"
-#include "pathut.h"
-#include "rclinit.h"
-#include "wasatorcl.h"
-#include "internfile.h"
-#include "transcode.h"
-#include "textsplit.h"
-#include "smallut.h"
-#include "chrono.h"
 #include "base64.h"
-#include "rclutil.h"
-#include "internfile.h"
-#include "plaintorich.h"
+#include "chrono.h"
 #include "hldata.h"
+#include "internfile.h"
+#include "pathut.h"
+#include "plaintorich.h"
+#include "rclconfig.h"
+#include "rcldb.h"
 #include "rcldoc.h"
+#include "rclinit.h"
+#include "rclquery.h"
+#include "rclutil.h"
 #include "searchdata.h"
+#include "smallut.h"
+#include "transcode.h"
+#include "wasatorcl.h"
 
 static PlainToRich g_hiliter;
 static const std::string cstr_ellipsis("...");
