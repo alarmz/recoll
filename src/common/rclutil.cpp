@@ -35,6 +35,7 @@
 #define NOGDI
 #include <windows.h>
 #include <Shlobj.h>
+#include "safeunistd.h"
 
 #else // !_WIN32 ->
 
