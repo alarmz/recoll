@@ -14,9 +14,9 @@ SERIES="focal jammy noble oracular plucky"
 
 PPA_KEYID=7808CE96D38B9201
 
-RCLVERS=1.43.2
+RCLVERS=1.43.3
 GSSPVERS=1.1.3
-PPAVERS=4
+PPAVERS=1
 
 PPANAME=recoll15-ppa
 # PPANAME=recollexp-ppa

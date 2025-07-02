@@ -1,3 +1,25 @@
+recoll (1.43.3-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * GUI: viewer execution: add %S to substitute with phrase if the query
+    was a simple single phrase. Else substitutes as %s
+  * GUI: preferences fix duplication of language list in interface language
+    choice. 
+  * GUI: add alt+S shortcut to open the advanced search dialog (use ^W to
+    close)
+  * GUI: change the "Open parent" operation to desktop default instead of
+    Dolphin. Using Dolphin when available allows highlighting the doc
+    entry, but it was of course an issue on non KDE desktops.
+  * Zip handler: detect encoding of metadata element when possible. Uses
+    chardet. 
+  * GUI: result table save to CSV: improve performance for very big lists.
+  * Repurpose the currently unused rclimg.py to perform OCR on image files.
+    If rclimg.py is specified for image files in mimeconf (instead of the
+    Perl+exiftool default rclimg), and if the imgocr recoll.conf parameter
+    is true for the current location, OCR will be performed and the output
+    used as document main text.
+
+ -- Jean-Francois Dockes <jf@dockes.org>  Wed, 27 Jun 2025 17:38:00 +0200
+
 recoll (1.43.2-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Fix static initialisation order bug causing an immediate crash with
