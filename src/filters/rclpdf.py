@@ -67,11 +67,6 @@ except:
 
 tmpdir = None
 
-_htmlprefix = b"""<html><head>
-<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">
-</head><body><pre>"""
-_htmlsuffix = b"""</pre></body></html>"""
-
 
 def finalcleanup():
     global tmpdir
@@ -111,6 +106,34 @@ try:
 except:
     pass
 
+## Special case utility: extract text between <pre> and </pre> from pdftohtml output. This is
+## only used if pdfforceocr is set, which really of rare use, which is why we chose the
+## suboptimal approach of extracting it from the initial output rather than doing it as part of
+## the main processing. This is also not a general routine as it is highly dependant on the
+## pdftohtml output format.
+def _splithtml(input):
+    beforepre = True
+    inpre = afterpre = False
+    beftxt = pretxt = aftxt = b""
+    for line in input.split(b"\n"):
+        if line.find(b"<pre>") != -1:
+            beftxt += line + b"\n"
+            beforepre = False
+            inpre = True
+            afterpre = False
+            continue
+        elif line.find(b"</pre>") != -1:
+            beforepre = False
+            inpre = False
+            afterpre = True
+        if beforepre:
+            beftxt += line + b"\n"
+        elif inpre:
+            pretxt += line + b"\n"
+        else:
+            aftxt += line + b"\n"
+    return beftxt, pretxt, aftxt
+        
 
 class PDFExtractor:
     def __init__(self, em):
@@ -652,10 +675,10 @@ class PDFExtractor:
         html, isempty = self._fixhtml(html)
         # self.em.rclog("ISEMPTY: %d : data: \n%s" % (isempty, html))
 
-        if isempty:
-            self.config.setKeyDir(os.path.dirname(self.filename))
-            s = self.config.getConfParam("pdfocr")
-            if rclexecm.configparamtrue(s):
+        self.config.setKeyDir(os.path.dirname(self.filename))
+        forceocr = rclexecm.configparamtrue(self.config.getConfParam("pdfforceocr"))
+        if forceocr or isempty:
+            if rclexecm.configparamtrue(self.config.getConfParam("pdfocr")):
                 try:
                     cmd = [
                         sys.executable,
@@ -666,7 +689,8 @@ class PDFExtractor:
                     ocrproc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
                     data, stderr = ocrproc.communicate()
                     ocrproc = None
-                    html = _htmlprefix + rclexecm.htmlescape(data) + _htmlsuffix
+                    bef,pre,aft = _splithtml(html)
+                    html = bef + pre + rclexecm.htmlescape(data) + aft
                 except Exception as e:
                     self.em.rclog(f"{cmd} failed: {e}")
                     pass
