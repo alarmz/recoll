@@ -606,7 +606,8 @@ bool Db::dirlist(int depth, std::string& root, std::vector<std::string>& dirs)
                     }
                     ixterm = fileurltolocalpath(doc.url);
                 }
-
+                if (!ixterm.empty() && ixterm.back() == '|')
+                    ixterm.pop_back();
                 listall.push_back(ixterm);
             }
             break;
@@ -622,9 +623,22 @@ bool Db::dirlist(int depth, std::string& root, std::vector<std::string>& dirs)
         return false;
     }
 
-    root = commonprefix(listall);
+    // We call commonprefix with aspaths==true, which means that it will use /home/ as a prefix even
+    // if a shorter /home exists in the list. commonprefix could still be /home/bin/abc if all file
+    // paths in /home/bin begin with abc and /home/bin/ is not in the index. In almost all cases, we
+    // can use getfather and get the actual overall prefix directory, the only exception I can think
+    // of being a single empty directory being indexed (the final root would be its parent)
+    root = commonprefix(listall, true);
+    if (!root.empty() && root.back() != '/')
+        root = path_getfather(root);
+
+    // Keep all paths with at most depth / characters after the root
     std::unordered_set<std::string> unics;
     for (auto& entry : listall) {
+        if (entry.size() < root.size()) {
+            //possible because it could be /home/dockes with root /home/dockes/
+            continue;
+        }
         string::size_type pos = root.size();
         for (int i = 0; i < depth; i++) {
             auto npos = entry.find("/", pos+1);

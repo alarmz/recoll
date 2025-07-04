@@ -451,28 +451,33 @@ template <class T> std::string stringsToCSV(const T& tokens, char sep)
     return s;
 }
 
-template <class T> std::string commonprefix(const T& values)
+template <class T> std::string commonprefix(const T& values, bool aspaths)
 {
     if (values.empty())
         return {};
     if (values.size() == 1)
         return *values.begin();
-    unsigned int i = 0;
-    for (;;++i) {
-        auto it = values.begin();
-        if (it->size() <= i) {
-            goto out;
-        }
-        auto val = (*it)[i];
-        it++;
-        for (;it < values.end(); it++) {
-            if (it->size() <= i || (*it)[i] != val) {
-                goto out;
+    auto prefix = *values.begin();
+    // Look at all input  strings
+    for (const auto& value : values) {
+        // As long as the string does not begin with the prefix, reduce the prefix size and retry
+        // Stop if the prefix length goes to 0
+        // If processing paths, choose a prefix ending with a / even if not the shortest
+        while (value.compare(0, prefix.size(), prefix)) {
+            // If the prefix has an ending / and the value is identical with no / keep the longer
+            if (aspaths && prefix.back() == '/' && !prefix.compare(0, prefix.size()-1, value)) {
+                break;
             }
+            prefix.pop_back();
+            if (prefix.empty())
+                return {};
+        }
+        if (aspaths &&
+            value.size() > prefix.size() && prefix.back() != '/' && value[prefix.size()] == '/') {
+            prefix += '/';
         }
     }
-out:
-    return values.begin()->substr(0, i);
+    return prefix;
 }
 
 #ifdef SMALLUT_EXTERNAL_INSTANTIATIONS
@@ -499,7 +504,8 @@ template std::string stringsToString<std::unordered_set<std::string>>(
     const std::unordered_set<std::string>&);
 template std::string stringsToCSV<std::list<std::string>>(const std::list<std::string>&, char);
 template std::string stringsToCSV<std::vector<std::string>>(const std::vector<std::string>&, char);
-template std::string commonprefix<std::vector<std::string>>(const std::vector<std::string>&values);
+template std::string commonprefix<std::vector<std::string>>(const std::vector<std::string>&values,
+    bool aspaths = false);
 #endif
 
 void stringToTokens(const std::string& str, std::vector<std::string>& tokens,
