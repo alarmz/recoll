@@ -505,7 +505,7 @@ template std::string stringsToString<std::unordered_set<std::string>>(
 template std::string stringsToCSV<std::list<std::string>>(const std::list<std::string>&, char);
 template std::string stringsToCSV<std::vector<std::string>>(const std::vector<std::string>&, char);
 template std::string commonprefix<std::vector<std::string>>(const std::vector<std::string>&values,
-    bool aspaths = false);
+                                                            bool aspaths);
 #endif
 
 void stringToTokens(const std::string& str, std::vector<std::string>& tokens,
