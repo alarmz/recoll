@@ -23,6 +23,13 @@
   <url type="donation">https://www.lesbonscomptes.com/donations</url>
   <url type="vcs-browser">https://framagit.org/medoc92/recoll</url>
   <releases>
+    <release version="1.43.4pre1" date="2025-07-06">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
     <release version="1.43.3" date="2025-06-27">
       <description>
         <ul>
