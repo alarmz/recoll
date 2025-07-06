@@ -51,8 +51,6 @@
 #include <string>
 #include <map>
 
-#include "base64.h"
-
 /** A class to represent a MIME header value with parameters */
 class MimeHeaderValue {
 public:
@@ -71,8 +69,7 @@ extern bool parseMimeHeaderValue(const std::string& in, MimeHeaderValue& psd);
 /** 
  * Quoted Printable decoding. 
  *
- * Doubles up as rfc2231 decoder, with the help of the hence the @param esc 
- * parameter.
+ * Doubles up as rfc2231 decoder, with the help of the @param esc parameter.
  * RFC2045 Quoted Printable uses '=' , RFC2331 uses '%'. The two encodings are
  * otherwise similar.
  */

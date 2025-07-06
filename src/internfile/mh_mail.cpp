@@ -26,6 +26,7 @@
 #include <map>
 #include <sstream>
 
+#include "base64.h"
 #include "cstr.h"
 #include "mimehandler.h"
 #include "readfile.h"
