@@ -1,4 +1,4 @@
-/* Copyright (C) 2004-2023 J.F.Dockes 
+/* Copyright (C) 2004-2025 J.F.Dockes 
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -14,8 +14,6 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-
-#include "autoconfig.h"
 
 #include <string>
 #include <vector>
@@ -36,9 +34,18 @@ using namespace std;
 
 //#define DEBUG_MIMEPARSE 
 #ifdef DEBUG_MIMEPARSE
-#define DPRINT(X) fprintf X
+#include "log.h"
+#define DPRINT(X) LOGDEB(X)
 #else
 #define DPRINT(X)
+#endif
+
+//#define DEBUGDATE
+#ifdef DEBUGDATE
+#include "log.h"
+#define DATEDEB(X) LOGDEB(X)
+#else
+#define DATEDEB(X)
 #endif
 
 // Parsing a header value. Only content-type and content-disposition
@@ -424,20 +431,19 @@ bool qp_decode(const string& in, string &out, char esc)
 }
 
 // Decode an word encoded as quoted printable or base 64
-static bool rfc2047_decodeParsed(const std::string& charset, 
-                                 const std::string& encoding, 
-                                 const std::string& value, 
-                                 std::string &utf8)
+static bool rfc2047_decodeParsed(const std::string& charset, const std::string& encoding,
+                                 const std::string& value, std::string &utf8)
 {
-    DPRINT((stderr, "DecodeParsed: charset [%s] enc [%s] val [%s]\n",
-            charset.c_str(), encoding.c_str(), value.c_str()));
+    DPRINT("rfc2047_decodeParsed: charset [" << charset << " enc [" << encoding <<
+           "] val [" << value << "]\n");
+
     utf8.clear();
 
     string decoded;
     if (!stringlowercmp("b", encoding)) {
         if (!base64_decode(value, decoded))
             return false;
-        DPRINT((stderr, "FromB64: [%s]\n", decoded.c_str()));
+        DPRINT("rfc2047_decodeParsed: fromB64: [" << decoded << "]\n");
     } else if (!stringlowercmp("q", encoding)) {
         if (!qp_decode(value, decoded))
             return false;
@@ -449,14 +455,14 @@ static bool rfc2047_decodeParsed(const std::string& charset,
             else 
                 temp += decoded[pos];
         decoded = temp;
-        DPRINT((stderr, "FromQP: [%s]\n", decoded.c_str()));
+        DPRINT("rfc2047_decodeParsed: fromQP: [" << decoded << "]\n");
     } else {
-        DPRINT((stderr, "Bad encoding [%s]\n", encoding.c_str()));
+        DPRINT("rfc2047_decodeParsed: bad encoding [" << encoding << "]\n");
         return false;
     }
 
     if (!transcode(decoded, utf8, charset, cstr_utf8)) {
-        DPRINT((stderr, "Transcode failed\n"));
+        DPRINT("rfc2047_decodeParsed: transcode failed\n");
         return false;
     }
     return true;
@@ -474,11 +480,12 @@ typedef enum  {rfc2047ready, rfc2047open_eq,
 
 bool rfc2047_decode(const std::string& in, std::string &out) 
 {
-    DPRINT((stderr, "rfc2047_decode: [%s]\n", in.c_str()));
+    DPRINT("rfc2047_decode: [" << in << "]\n");
 
     Rfc2047States state = rfc2047ready;
     string encoding, charset, value, utf8;
-
+    bool hadrfc2047 = false;
+    
     out.clear();
 
     for (string::size_type ii = 0; ii < in.length(); ii++) {
@@ -486,33 +493,32 @@ bool rfc2047_decode(const std::string& in, std::string &out)
         switch (state) {
         case rfc2047ready: 
         {
-            DPRINT((stderr, "STATE: ready, ch %c\n", ch));
+            DPRINT("rfc2047_decode: STATE: ready, ch " << ch << '\n');
             switch (ch) {
-                // Whitespace: stay ready
-            case ' ': case '\t': value += ch;break;
-                // '=' -> forward to next state
-            case '=': state = rfc2047open_eq; break;
-                DPRINT((stderr, "STATE: open_eq\n"));
-                // Other: go back to sleep
-            default: value += ch; state = rfc2047ready;
+            case '=': // -> next state
+                state = rfc2047open_eq;
+                DPRINT("rfc2047_decode: STATE: open_eq\n");
+                break;
+            default: // Any other: stay in initial state
+                value += ch; state = rfc2047ready; break;
             }
         }
         break;
         case rfc2047open_eq: 
         {
-            DPRINT((stderr, "STATE: open_eq, ch %c\n", ch));
+            DPRINT("rfc2047_decode: STATE: open_eq, ch " << ch << '\n');
             switch (ch) {
             case '?': 
             {
-                // Transcode current (unencoded part) value:
-                // we sometimes find 8-bit chars in
-                // there. Interpret as Iso8859.
+                // Transcode current (unencoded part) value: we sometimes find 8-bit chars in
+                // there. Interpret as CP1252.
                 if (value.length() > 0) {
-                    transcode(value, utf8, "ISO-8859-1", cstr_utf8);
+                    transcode(value, utf8, "CP1252", cstr_utf8);
                     out += utf8;
                     value.clear();
                 }
                 state = rfc2047charset; 
+                hadrfc2047 = true;
             }
             break;
             default: state = rfc2047ready; value += '='; value += ch;break;
@@ -521,7 +527,7 @@ bool rfc2047_decode(const std::string& in, std::string &out)
         break;
         case rfc2047charset: 
         {
-            DPRINT((stderr, "STATE: charset, ch %c\n", ch));
+            DPRINT("rfc2047_decode: STATE: charset, ch " << ch << '\n');
             switch (ch) {
             case '?': state = rfc2047encoding; break;
             default: charset += ch; break;
@@ -530,7 +536,7 @@ bool rfc2047_decode(const std::string& in, std::string &out)
         break;
         case rfc2047encoding: 
         {
-            DPRINT((stderr, "STATE: encoding, ch %c\n", ch));
+            DPRINT("rfc2047_decode: STATE: encoding, ch " << ch << '\n');
             switch (ch) {
             case '?': state = rfc2047value; break;
             default: encoding += ch; break;
@@ -539,7 +545,7 @@ bool rfc2047_decode(const std::string& in, std::string &out)
         break;
         case rfc2047value: 
         {
-            DPRINT((stderr, "STATE: value, ch %c\n", ch));
+            DPRINT("rfc2047_decode: STATE: value, ch " << ch << '\n');
             switch (ch) {
             case '?': state = rfc2047close_q; break;
             default: value += ch;break;
@@ -548,15 +554,15 @@ bool rfc2047_decode(const std::string& in, std::string &out)
         break;
         case rfc2047close_q: 
         {
-            DPRINT((stderr, "STATE: close_q, ch %c\n", ch));
+            DPRINT("rfc2047_decode: STATE: close_q, ch " << ch << '\n');
             switch (ch) {
             case '=': 
             {
-                DPRINT((stderr, "End of encoded area. Charset %s, Encoding %s\n", charset.c_str(), encoding.c_str()));
+                DPRINT("rfc2047_decode: end of encoded area. Charset " << charset <<
+                       " encoding " << encoding << "\n");
                 string utf8;
                 state = rfc2047ready; 
-                if (!rfc2047_decodeParsed(charset, encoding, value, 
-                                          utf8)) {
+                if (!rfc2047_decodeParsed(charset, encoding, value, utf8)) {
                     return false;
                 }
                 out += utf8;
@@ -570,27 +576,32 @@ bool rfc2047_decode(const std::string& in, std::string &out)
         }
         break;
         default: // ??
-            DPRINT((stderr, "STATE: default ?? ch %c\n", ch));
+            DPRINT("rfc2047_decode: STATE: default ?? ch " << ch << '\n');
             return false;
         }
     }
 
+    
     if (value.length() > 0) {
-        transcode(value, utf8, "CP1252", cstr_utf8);
-        out += utf8;
-        value.clear();
+        // Residual (could be whole input)
+        // If rfc2047 was not used at all, give a try at decoding from UTF-8 because some buggy
+        // agents (esp. news/RSS) send such headers. Note that this additional step is not very
+        // expensive because it will succeed in the normal case where the header value is ASCII.
+        if (!hadrfc2047 && transcode(value, utf8, cstr_utf8, cstr_utf8)) {
+            out += utf8;
+        } else {
+            transcode(value, utf8, "CP1252", cstr_utf8);
+            out += utf8;
+        }
     }
-    if (state != rfc2047ready) 
+    if (state != rfc2047ready) {
+        // Bad format. Just try to decode and return the result
+        if (!transcode(in, out, cstr_utf8, cstr_utf8))
+            transcode(in, out, "CP1252", cstr_utf8);
         return false;
+    }
     return true;
 }
-
-#define DEBUGDATE 0
-#if DEBUGDATE
-#define DATEDEB(X) fprintf X
-#else
-#define DATEDEB(X)
-#endif
 
 // Convert rfc822 date to unix time. A date string normally looks like:
 //  Mon, 3 Jul 2006 09:51:58 +0200
@@ -604,8 +615,7 @@ time_t rfc2822DateToUxTime(const string& dt)
     string::size_type idx;
     if ((idx = dt.find_first_of(",")) != string::npos) {
         if (idx == dt.length() - 1) {
-            DATEDEB((stderr, "Bad rfc822 date format (short1): [%s]\n", 
-                     dt.c_str()));
+            DATEDEB("Bad rfc822 date format (short1): [" << dt << "]\n");
             return (time_t)-1;
         }
         string date = dt.substr(idx+1);
@@ -627,15 +637,14 @@ time_t rfc2822DateToUxTime(const string& dt)
     }
 
 #if DEBUGDATE
-    for (list<string>::iterator it = toks.begin(); it != toks.end(); it++) {
-        DATEDEB((stderr, "[%s] ", it->c_str()));
+    for (const auto& tok : toks) {
+        DATEDEB("[" << tok << "] ");
     }
-    DATEDEB((stderr, "\n"));
+    DATEDEB("\n");
 #endif
 
     if (toks.size() < 6) {
-        DATEDEB((stderr, "Bad rfc822 date format (toks cnt): [%s]\n", 
-                 dt.c_str()));
+        DATEDEB("Bad rfc822 date format (toks cnt): [" << dt << "]\n");
         return (time_t)-1;
     }
 
@@ -670,8 +679,7 @@ time_t rfc2822DateToUxTime(const string& dt)
         (*it == "Oct" || *it == "October") tm.tm_mon = 9; else if
         (*it == "Nov" || *it == "November") tm.tm_mon = 10; else if
         (*it == "Dec" || *it == "December") tm.tm_mon = 11; else {
-        DATEDEB((stderr, "Bad rfc822 date format (month): [%s]\n", 
-                 dt.c_str()));
+        DATEDEB("Bad rfc822 date format (month): [" << dt << "]\n");
         return (time_t)-1;
     }
     it++;
@@ -698,15 +706,14 @@ time_t rfc2822DateToUxTime(const string& dt)
     // Timezone is supposed to be either +-XYZT or a zone name
     int zonesecs = 0;
     if (it->length() < 1) {
-        DATEDEB((stderr, "Bad rfc822 date format (zlen): [%s]\n", dt.c_str()));
+        DATEDEB("Bad rfc822 date format (zlen): [" << dt << "]\n");
         return (time_t)-1;
     }
     if (it->at(0) == '-' || it->at(0) == '+') {
         // Note that +xy:zt (instead of +xyzt) sometimes happen, we
         // may want to process it one day
         if (it->length() < 5) {
-            DATEDEB((stderr, "Bad rfc822 date format (zlen1): [%s]\n", 
-                     dt.c_str()));
+            DATEDEB("Bad rfc822 date format (zlen1): [" << dt << "]\n");
             goto nozone;
         }
         zonesecs = 3600*((it->at(1)-'0') * 10 + it->at(2)-'0')+ 
@@ -738,14 +745,13 @@ time_t rfc2822DateToUxTime(const string& dt)
         else if (*it == "IST") hours= -5; else if (*it == "WET") hours= 0; 
         else if (*it == "MET") hours= -1; 
         else {
-            DATEDEB((stderr, "Bad rfc822 date format (zname): [%s]\n", 
-                     dt.c_str()));
+            DATEDEB("Bad rfc822 date format (zname): [" << dt << "]\n");
             // Forget tz
             goto nozone;
         }
         zonesecs = 3600 * hours;
     }
-    DATEDEB((stderr, "Tz: [%s] -> %d\n", it->c_str(), zonesecs));
+    DATEDEB("Tz: [" << *it << "] -> " << zonesecs << "\n");
 nozone:
 
     // Compute the UTC Unix time value
@@ -754,21 +760,19 @@ nozone:
 #else
     // No timegm on Sun. Use mktime, then correct for local timezone
     time_t tim = mktime(&tm);
-    // altzone and timezone hold the difference in seconds between UTC
-    // and local. They are negative for places east of greenwich
+    // altzone and timezone hold the difference in seconds between UTC and local. They are negative
+    // for places east of greenwich
     // 
-    // mktime takes our buffer to be local time, so it adds timezone
-    // to the conversion result (if timezone is < 0 it's currently
-    // earlier in greenwhich). 
+    // mktime takes our buffer to be local time, so it adds timezone to the conversion result (if
+    // timezone is < 0 it's currently earlier in greenwhich).
     //
-    // We have to substract it back (hey! hopefully! maybe we have to
-    // add it). Who can really know?
+    // We have to substract it back (hey! hopefully! maybe we have to add it). Who can really know?
     tim -= timezone;
 #endif
 
     // And add in the correction from the email's Tz
     tim += zonesecs;
 
-    DATEDEB((stderr, "Date: %s  uxtime %ld \n", ctime(&tim), tim));
+    DATEDEB("Date: " << ctime(&tim) << " uxtime " << tim << '\n');
     return tim;
 }

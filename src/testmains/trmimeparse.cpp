@@ -26,7 +26,7 @@
 #include <string>
 #include "mimeparse.h"
 #include "readfile.h"
-
+#include "base64.h"
 
 using namespace std;
 extern bool rfc2231_decode(const string& in, string& out, string& charset); 
@@ -165,7 +165,7 @@ main(int argc, const char **argv)
 #endif
 
     } else if (op_flags & (OPT_7|OPT_1)) {
-        // rfc2047
+        // rfc2047 or 2231
         char line [1024];
         string out;
         bool res;
@@ -184,7 +184,7 @@ main(int argc, const char **argv)
             if (res)
                 fprintf(stderr, "Out:  [%s] cs %s\n", out.c_str(), charset.c_str());
             else
-                fprintf(stderr, "Decoding failed\n");
+                fprintf(stderr, "Decoding failed, out [%s]\n", out.c_str());
         }
     } else if (op_flags & OPT_t) {
         time_t t;
