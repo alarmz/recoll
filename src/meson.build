@@ -517,6 +517,9 @@ endif
 if get_option('qtgui')
     subdir('qtgui')
 endif
+if get_option('catch')
+   subdir('catch')
+endif
 
 manfiles = files(
 'doc/man/recoll.1',

@@ -53,6 +53,7 @@ option('qtzeitgeist', type: 'boolean', value: false,
        description: 'Use the qt zeitgeist library for generating zeitgeist events')
 option('appimage', type: 'boolean', value: false,
        description: 'build for inclusion in an AppImage')
+option('catch', type: 'boolean', value: false, description: 'build the catch2 unit tests')
 option('systemd', type: 'boolean', value: true,
        description: 'Install the systemd unit files')
 # Was supplied in configure.ac 'pkg-config --variable systemd_system_unit_dir systemd'
