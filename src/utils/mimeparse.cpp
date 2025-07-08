@@ -17,9 +17,8 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
-#include <ctype.h>
-#include <stdio.h>
 #include <ctype.h>
 #include <time.h>
 #include <cstdlib>
@@ -29,13 +28,13 @@
 #include "base64.h"
 #include "transcode.h"
 #include "smallut.h"
+#include "log.h"
 
 using namespace std;
 
 //#define DEBUG_MIMEPARSE 
 #ifdef DEBUG_MIMEPARSE
-#include "log.h"
-#define DPRINT(X) LOGDEB(X)
+#define DPRINT(X) LOGERR(X)
 #else
 #define DPRINT(X)
 #endif
@@ -63,16 +62,16 @@ using namespace std;
 
 
 
-/** Decode a MIME parameter value encoded according to rfc2231
+/** Decode a MIME parameter value encoded according to rfc2231. The input has already been processed
+ *  for continuations, we just process the %-encoding and transcoding to UTF-8
  *
- * Example input withs input charset == "":  
- *     [iso-8859-1'french'RE%A0%3A_Smoke_Tests%20bla]
- * Or (if charset is set) : RE%A0%3A_Smoke_Tests%20bla
+ * Example input with @param charset == "":  [iso-8859-1'french'RE%A0%3A_Smoke_Tests%20bla]
+ *   Or if charset is set: RE%A0%3A_Smoke_Tests%20bla
  *
  * @param in input string, ascii with rfc2231 markup
  * @param out output string
- * @param charset if empty: decode string like 'charset'lang'more%20stuff,
- *      else just do the %XX part
+ * @param charset if empty: extract charset from input like 'charset'lang'more%20stuff,
+ *  the input just has the %XX part
  * @return out output string encoded in utf-8
  */
 bool rfc2231_decode(const string &in, string &out, string &charset)
@@ -83,20 +82,19 @@ bool rfc2231_decode(const string &in, string &out, string &charset)
         if ((pos1 = in.find("'")) == string::npos)
             return false;
         charset = in.substr(0, pos1);
-        // fprintf(stderr, "Charset: [%s]\n", charset.c_str());
+        LOGDEB1("Charset: [" << charset << "\n");
         pos1++;
 
         if ((pos2 = in.find("'", pos1)) == string::npos)
             return false;
         // We have no use for lang for now
         // string lang = in.substr(pos1, pos2-pos1); 
-        // fprintf(stderr, "Lang: [%s]\n", lang.c_str());
+        LOGDEB1("Lang: [" << lang << "\n");
         pos2++;
     }
 
     string raw;
     qp_decode(in.substr(pos2), raw, '%');
-    // fprintf(stderr, "raw [%s]\n", raw.c_str());
     if (!transcode(raw, out, charset, cstr_utf8))
         return false;
     return true;
@@ -119,8 +117,7 @@ public:
 };
 
 // Skip mime comment. This must be called with in[start] == '('
-static string::size_type 
-skip_comment(const string &in, string::size_type start, Lexical &lex)
+static string::size_type skip_comment(const string &in, string::size_type start, Lexical &lex)
 {
     int commentlevel = 0;
     for (; start < in.size(); start++) {
@@ -137,8 +134,10 @@ skip_comment(const string &in, string::size_type start, Lexical &lex)
         if (in[start] == '(')
             commentlevel++;
         if (in[start] == ')') {
-            if (--commentlevel == 0)
+            if (--commentlevel == 0) {
+                ++start;
                 break;
+            }
         }
     }
     if (start == in.size() && commentlevel != 0) {
@@ -150,8 +149,7 @@ skip_comment(const string &in, string::size_type start, Lexical &lex)
 
 // Skip initial whitespace and (possibly nested) comments. 
 static string::size_type 
-skip_whitespace_and_comment(const string &in, string::size_type start, 
-                            Lexical &lex)
+skip_whitespace_and_comment(const string &in, string::size_type start, Lexical &lex)
 {
     while (1) {
         if ((start = in.find_first_not_of(" \t\r\n", start)) == string::npos)
@@ -173,14 +171,16 @@ skip_whitespace_and_comment(const string &in, string::size_type start,
 /// @param lex  the returned token and its description
 /// @param delims separators we should look for
 static string::size_type 
-find_next_token(const string &in, string::size_type start, 
-                Lexical &lex, string delims = ";=")
+find_next_token(const string &in, string::size_type start, Lexical &lex, string delims = ";=")
 {
     char oquot, cquot;
 
     start = skip_whitespace_and_comment(in, start, lex);
-    if (start == string::npos || start == in.size())
+    if (start == string::npos || start == in.size()) {
+        lex.what = Lexical::token;
+        lex.value.clear();
         return in.size();
+    }
 
     // Begins with separator ? return it.
     string::size_type delimi = delims.find_first_of(in[start]);
@@ -249,12 +249,6 @@ public:
     vector<Chunk> chunks;
 };
 
-void stringtolower(string &out, const string& in)
-{
-    for (string::size_type i = 0; i < in.size(); i++)
-        out.append(1, char(tolower(in[i])));
-}
-
 // Parse MIME field value. Should look like:
 //  somevalue ; param1=val1;param2=val2
 bool parseMimeHeaderValue(const string& value, MimeHeaderValue& parsed)
@@ -267,57 +261,77 @@ bool parseMimeHeaderValue(const string& value, MimeHeaderValue& parsed)
 
     // Get the field value
     start = find_next_token(value, start, lex);
-    if (start == string::npos || lex.what != Lexical::token) 
+    LOGDEB1("lex.what " << lex.what << " lex.value [" << lex.value << "] start " << start << "\n");
+    if (start == string::npos)
         return false;
-    parsed.value = lex.value;
+    if  (lex.what == Lexical::separator && lex.value == ";") {
+        // Ok, empty value
+    } else if (lex.what == Lexical::token) {
+        parsed.value = lex.value;
+    } else {
+        return false;
+    }
 
     map<string, string> rawparams;
     // Look for parameters
     for (;;) {
+        if (start >= value.size()) {
+            break;
+        }
         string paramname, paramvalue;
         lex.reset();
         start = find_next_token(value, start, lex);
-        if (start == value.size())
-            break;
         if (start == string::npos) {
-            //fprintf(stderr, "Find_next_token error(1)\n");
+            LOGDEB1("Find_next_token error(1)\n");
             return false;
         }
         if (lex.what == Lexical::separator && lex.value[0] == ';')
             continue;
         if (lex.what != Lexical::token) 
             return false;
-        stringtolower(paramname, lex.value);
-
-        start = find_next_token(value, start, lex);
-        if (start == string::npos || lex.what != Lexical::separator || 
-            lex.value[0] != '=') {
-            //fprintf(stderr, "Find_next_token error (2)\n");
-            return false;
+        paramname = stringtolower((const std::string&)lex.value);
+        // EOD with just param name
+        if (start >= value.size()) {
+            rawparams[paramname] = "";
+            break;
         }
 
         start = find_next_token(value, start, lex);
+        if (start == string::npos) {
+            LOGDEB1("Find_next_token error (2)\n");
+            return false;
+        }
+        if (lex.what == Lexical::separator && (lex.value.empty() || lex.value[0] == ';')) {
+            // Parameter with no value, process as null value
+            rawparams[paramname] = "";
+            continue;
+        } else if (lex.what == Lexical::separator && lex.value[0] == '=') {
+            // Normal
+        } else {
+            LOGDEB1("Find_next_token error (3)\n");
+            return false;
+        }
+            
+        start = find_next_token(value, start, lex);
         if (start == string::npos || lex.what != Lexical::token) {
-            //fprintf(stderr, "Parameter has no value!");
+            LOGDEB1("Parameter has no value!");
             return false;
         }
         paramvalue = lex.value;
         rawparams[paramname] = paramvalue;
-        //fprintf(stderr, "RAW: name [%s], value [%s]\n", paramname.c_str(),
-        //              paramvalue.c_str());
+        LOGDEB1("RAW: name [" << paramname << "] value [" << paramvalue << "]\n");
     }
-    //    fprintf(stderr, "Number of raw params %d\n", rawparams.size());
+    LOGDEB1("Number of raw params " << rawparams.size() << '\n');
 
     // RFC2231 handling: 
     // - if a parameter name ends in * it must be decoded 
     // - If a parameter name looks line name*ii[*] it is a
     //   partial value, and must be concatenated with other such.
     
-    map<string, Chunks> chunks;
-    for (map<string, string>::const_iterator it = rawparams.begin(); 
-         it != rawparams.end(); it++) {
-        string nm = it->first;
-        //      fprintf(stderr, "NM: [%s]\n", nm.c_str());
+    map<string, Chunks> allchunks;
+    for (const auto& [rawnm, rawvalue] : rawparams) {
+        string nm = rawnm;
+        LOGDEB1("NM: [" << nm << "]\n")
         if (nm.empty()) // ??
             continue;
 
@@ -327,57 +341,50 @@ bool parseMimeHeaderValue(const string& value, MimeHeaderValue& parsed)
             chunk.decode = true;
         } else
             chunk.decode = false;
-        //      fprintf(stderr, "NM1: [%s]\n", nm.c_str());
+        LOGDEB1("NM1: [" << nm << "]\n");
 
-        chunk.value = it->second;
+        chunk.value = rawvalue;
 
         // Look for another asterisk in nm. If none, assign index 0
         string::size_type aster;
         int idx = 0;
         if ((aster = nm.rfind("*")) != string::npos) {
             string num = nm.substr(aster+1);
-            //fprintf(stderr, "NUM: [%s]\n", num.c_str());
+            LOGDEB1("NUM: [" << num << "]\n");
             nm.erase(aster);
             idx = atoi(num.c_str());
         }
         Chunks empty;
-        if (chunks.find(nm) == chunks.end())
-            chunks[nm] = empty;
-        chunks[nm].chunks.resize(idx+1);
-        chunks[nm].chunks[idx] = chunk;
-        //fprintf(stderr, "CHNKS: nm [%s], idx %d, decode %d, value [%s]\n", 
-        // nm.c_str(), idx, int(chunk.decode), chunk.value.c_str());
+        if (allchunks.find(nm) == allchunks.end())
+            allchunks[nm] = empty;
+        allchunks[nm].chunks.resize(idx+1);
+        allchunks[nm].chunks[idx] = chunk;
+        LOGDEB1("CHNKS: nm [" << nm << "] idx " << idx << " decode " << chunk.decode << " value [" <<
+               chunk.value << "]\n");
     }
 
-    // For each parameter name, concatenate its chunks and possibly
-    // decode Note that we pass the whole concatenated string to
-    // decoding if the first chunk indicates that decoding is needed,
-    // which is not right because there might be uncoded chunks
-    // according to the rfc.
-    for (map<string, Chunks>::const_iterator it = chunks.begin(); 
-         it != chunks.end(); it++) {
-        if (it->second.chunks.empty())
+    // For each parameter name, concatenate its chunks and possibly decode Note that we pass the
+    // whole concatenated string to decoding if the first chunk indicates that decoding is needed,
+    // which is not right because there might be uncoded chunks according to the rfc.
+    for (const auto& [nm, chunks] : allchunks) {
+        if (chunks.chunks.empty())
             continue;
-        string nm = it->first;
         // Create the name entry
         if (parsed.params.find(nm) == parsed.params.end())
             parsed.params[nm].clear();
-        // Concatenate all chunks and decode the whole if the first one needs
-        // to. Yes, this is not quite right.
+        // Concatenate all chunks and decode the whole if indicated by the first one.
         string value;
-        for (vector<Chunk>::const_iterator vi = it->second.chunks.begin();
-             vi != it->second.chunks.end(); vi++) {
-            value += vi->value;
+        for (const auto& chunk : chunks.chunks) {
+            value += chunk.value;
         }
-        if (it->second.chunks[0].decode) {
+        if (chunks.chunks[0].decode) {
             string charset;
             rfc2231_decode(value, parsed.params[nm], charset);
         } else {
             // rfc2047 MUST NOT but IS used by some agents
             rfc2047_decode(value, parsed.params[nm]);
         }
-        //fprintf(stderr, "FINAL: nm [%s], value [%s]\n", 
-        //nm.c_str(), parsed.params[nm].c_str());
+        LOGDEB1("FINAL: nm [" << nm << "] value [" << parsed.params[nm] << "]\n");
     }
     
     return true;
@@ -428,6 +435,19 @@ bool qp_decode(const string& in, string &out, char esc)
         }
     }
     return true;
+}
+
+// We should get ASCII data in, but give a try at decoding from UTF-8 because some buggy agents
+// (esp. news/RSS) send such headers. If this fails, decode from CP1252, ASCII superset guaranteed
+// to succeed.
+static void utf8OrCp1252(const std::string& in, std::string& utf8)
+{
+    utf8.clear();
+    int ecnt;
+    if (!transcode(in, utf8, cstr_utf8, cstr_utf8, &ecnt) || ecnt != 0) {
+        utf8.clear();
+        transcode(in, utf8, "CP1252", cstr_utf8);
+    }
 }
 
 // Decode an word encoded as quoted printable or base 64
@@ -484,7 +504,6 @@ bool rfc2047_decode(const std::string& in, std::string &out)
 
     Rfc2047States state = rfc2047ready;
     string encoding, charset, value, utf8;
-    bool hadrfc2047 = false;
     
     out.clear();
 
@@ -513,12 +532,11 @@ bool rfc2047_decode(const std::string& in, std::string &out)
                 // Transcode current (unencoded part) value: we sometimes find 8-bit chars in
                 // there. Interpret as CP1252.
                 if (value.length() > 0) {
-                    transcode(value, utf8, "CP1252", cstr_utf8);
+                    utf8OrCp1252(value, utf8);
                     out += utf8;
                     value.clear();
                 }
                 state = rfc2047charset; 
-                hadrfc2047 = true;
             }
             break;
             default: state = rfc2047ready; value += '='; value += ch;break;
@@ -581,24 +599,15 @@ bool rfc2047_decode(const std::string& in, std::string &out)
         }
     }
 
-    
-    if (value.length() > 0) {
-        // Residual (could be whole input)
-        // If rfc2047 was not used at all, give a try at decoding from UTF-8 because some buggy
-        // agents (esp. news/RSS) send such headers. Note that this additional step is not very
-        // expensive because it will succeed in the normal case where the header value is ASCII.
-        if (!hadrfc2047 && transcode(value, utf8, cstr_utf8, cstr_utf8)) {
-            out += utf8;
-        } else {
-            transcode(value, utf8, "CP1252", cstr_utf8);
-            out += utf8;
-        }
-    }
     if (state != rfc2047ready) {
         // Bad format. Just try to decode and return the result
-        if (!transcode(in, out, cstr_utf8, cstr_utf8))
-            transcode(in, out, "CP1252", cstr_utf8);
+        utf8OrCp1252(in, out);
         return false;
+    }
+    if (value.length() > 0) {
+        // Residual (could be whole input)
+        utf8OrCp1252(value, utf8);
+        out += utf8;
     }
     return true;
 }
