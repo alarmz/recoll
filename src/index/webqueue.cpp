@@ -426,14 +426,14 @@ WebQueueIndexer::processone(
     fileUdi::make_udi(udipath, cstr_null, udi);
 
     LOGDEB("WebQueueIndexer::processone: udi [" << udi << "]\n");
-    ascdate = lltodecstr(stp.pst_mtime);
+    ascdate = std::to_string(stp.pst_mtime);
 
     if (!stringlowercmp("bookmark", dotdoc.meta[Rcl::Doc::keybght])) {
         // For bookmarks, we just index the doc that was built from the metadata.
         if (dotdoc.fmtime.empty())
             dotdoc.fmtime = ascdate;
 
-        dotdoc.pcbytes = lltodecstr(stp.pst_size);
+        dotdoc.pcbytes = std::to_string(stp.pst_size);
 
         // Document signature for up to date checks: none. 
         dotdoc.sig.clear();
@@ -470,7 +470,7 @@ WebQueueIndexer::processone(
             doc.fmtime = ascdate;
         dotdoc.fmtime = doc.fmtime;
 
-        dotdoc.pcbytes = doc.pcbytes = lltodecstr(stp.pst_size);
+        dotdoc.pcbytes = doc.pcbytes = std::to_string(stp.pst_size);
         // Document signature for up to date checks: none. 
         doc.sig.clear();
         doc.url = dotdoc.url;

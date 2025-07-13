@@ -182,11 +182,6 @@ extern std::string escapeShell(const std::string& in);
 /** Truncate a string to a given maxlength, avoiding cutting off midword if reasonably possible. */
 extern std::string truncate_to_word(const std::string& input, std::string::size_type maxlen);
 
-void ulltodecstr(uint64_t val, std::string& buf);
-void lltodecstr(int64_t val, std::string& buf);
-std::string lltodecstr(int64_t val);
-std::string ulltodecstr(uint64_t val);
-
 /** Convert byte count into unit (KB/MB...) appropriate for display */
 std::string displayableBytes(int64_t size);
 

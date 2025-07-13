@@ -209,7 +209,7 @@ void grepit(std::istream& instream, const Rcl::Doc& doc)
 
         ++lnum;
         if ((op_flags & OPT_n) && !(op_flags & OPT_c)) {
-            ln = ulltodecstr(lnum) + ":";
+            ln = std::to_string(lnum) + ":";
         }
 
         bool ismatch = false;

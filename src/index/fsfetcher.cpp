@@ -60,8 +60,8 @@ bool FSDocFetcher::fetch(RclConfig* cnf, const Rcl::Doc& idoc, RawDoc& out)
 
 void fsmakesig(const struct PathStat& stp, string& out)
 {
-    out = lltodecstr(stp.pst_size) + 
-        lltodecstr(o_uptodate_test_use_mtime ? stp.pst_mtime : stp.pst_ctime);
+    out = std::to_string(stp.pst_size) + 
+        std::to_string(o_uptodate_test_use_mtime ? stp.pst_mtime : stp.pst_ctime);
 }
 
 bool FSDocFetcher::makesig(RclConfig* cnf, const Rcl::Doc& idoc, string& sig)

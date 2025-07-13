@@ -181,7 +181,7 @@ void rclIxIonice(const RclConfig *config)
     if (ExecCmd::which("choom", choompath) && !choompath.empty()) {
         std::string oomadj = "300";
         config->getConfParam("oomadj", oomadj);
-        std::string spid = lltodecstr(getpid());
+        std::string spid = std::to_string(getpid());
         ExecCmd cmd;
         std::string msg;
         cmd.doexec(choompath, {"-n", oomadj, "-p", spid}, nullptr, &msg);

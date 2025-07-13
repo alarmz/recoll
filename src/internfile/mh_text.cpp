@@ -161,7 +161,7 @@ bool MimeHandlerText::next_document()
         // Paging: set ipath then read next chunk. 
 
         int64_t start_offset = m_offs - srclen;
-        string buf = lltodecstr(start_offset);
+        string buf = std::to_string(start_offset);
 
         // Don't set ipath for the first chunk to avoid having 2
         // records for small files (one for the file, one for the

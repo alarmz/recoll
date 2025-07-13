@@ -293,15 +293,8 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
     ConfSimple viewerattrs;
     string cmd;
     theconfig->valueSplitAttributes(cmdplusattr, cmd, viewerattrs);
-    bool ignoreipath = false;
-    int execwflags = 0;
-    if (viewerattrs.get("ignoreipath", cmdplusattr))
-        ignoreipath = stringToBool(cmdplusattr);
-    if (viewerattrs.get("maximize", cmdplusattr)) {
-        if (stringToBool(cmdplusattr)) {
-            execwflags |= ExecCmd::EXF_MAXIMIZED;
-        }
-    }
+    bool ignoreipath = viewerattrs.getBool("ignoreipath", false);
+    int execwflags = viewerattrs.getBool("maximize", false) ? ExecCmd::EXF_MAXIMIZED : 0;
     
     // Split the command line
     vector<string> lcmd;
@@ -551,9 +544,9 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
     subs["F"] = fn;
     subs["i"] = FileInterner::getLastIpathElt(doc.ipath);
     subs["j"] = jsondata;
-    subs["l"] = ulltodecstr(linenum);
+    subs["l"] = std::to_string(linenum);
     subs["M"] = doc.mimetype;
-    subs["p"] = ulltodecstr(pagenum);
+    subs["p"] = std::to_string(pagenum);
     subs["S"] = findparam;
     subs["s"] = term;
     // Our file:// URLs are actually raw paths. Others should be proper URLs. Only encode file://..

@@ -677,7 +677,7 @@ TempFile::Internal::Internal(const string& suffix)
     std::fstream fout;
     if (!path_streamopen(m_filename, ios::out|ios::trunc, fout)) {
         m_reason = string("Open/create error. errno : ") +
-            lltodecstr(errno) + " file name: " + m_filename;
+            std::to_string(errno) + " file name: " + m_filename;
         LOGSYSERR("Tempfile::Internal::Internal", "open/create", m_filename);
         m_filename.erase();
     }

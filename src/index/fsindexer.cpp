@@ -704,15 +704,14 @@ FsTreeWalker::Status FsIndexer::processonefile(
 
     Rcl::Doc doc;
 
-    std::string ascdate;
-    lltodecstr(stp.pst_mtime, ascdate);
+    std::string ascdate = std::to_string(stp.pst_mtime);
 
 #ifdef EXT4_BIRTH_TIME
     std::string brdate;
     if (stp.pst_btime) {
         // Note that btime==0 is a valid date. At the moment though we reserve it for "no value"
         // TBD if this is acceptable or not
-        lltodecstr(stp.pst_btime, brdate);
+        brdate = std::to_string(stp.pst_btime);
     }
 #endif
 
@@ -782,7 +781,7 @@ FsTreeWalker::Status FsIndexer::processonefile(
             // Set container file name for all docs, top or subdoc
             doc.meta[Rcl::Doc::keyctfn] = utf8fn;
 
-            doc.pcbytes = lltodecstr(stp.pst_size);
+            doc.pcbytes = std::to_string(stp.pst_size);
             // Document signature for up to date checks. All subdocs inherit the
             // file's.
             doc.sig = sig;
@@ -877,7 +876,7 @@ FsTreeWalker::Status FsIndexer::processonefile(
             fileDoc.url = path_pathtofileurl(fn);
             if (m_havelocalfields) 
                 setlocalfields(localfields, fileDoc);
-            fileDoc.pcbytes = lltodecstr(stp.pst_size);
+            fileDoc.pcbytes = std::to_string(stp.pst_size);
         }
 
         fileDoc.sig = sig;

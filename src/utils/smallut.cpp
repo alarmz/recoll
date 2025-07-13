@@ -831,65 +831,6 @@ bool pcSubst(const std::string& in, std::string& out,
     return pcSubst(in, out, std::bind(&PcSubstMapMapper::domap, &mapper, _1));
 }
 
-void ulltodecstr(uint64_t val, std::string& buf)
-{
-    buf.clear();
-    if (val == 0) {
-        buf = "0";
-        return;
-    }
-
-    char rbuf[30];
-    int idx=29;
-    rbuf[idx--] = 0;
-    do {
-        rbuf[idx--] = '0' + val % 10;
-        val /= 10;
-    } while (val);
-
-    buf.assign(&rbuf[idx+1]);
-}
-
-void lltodecstr(int64_t val, std::string& buf)
-{
-    buf.clear();
-    if (val == 0) {
-        buf = "0";
-        return;
-    }
-
-    bool neg = val < 0;
-    if (neg) {
-        val = -val;
-    }
-
-    char rbuf[30];
-    int idx=29;
-    rbuf[idx--] = 0;
-    do {
-        rbuf[idx--] = '0' + val % 10;
-        val /= 10;
-    } while (val);
-    if (neg) {
-        rbuf[idx--] = '-';
-    }
-    buf.assign(&rbuf[idx+1]);
-}
-
-std::string lltodecstr(int64_t val)
-{
-    std::string buf;
-    lltodecstr(val, buf);
-    return buf;
-}
-
-std::string ulltodecstr(uint64_t val)
-{
-    std::string buf;
-    ulltodecstr(val, buf);
-    return buf;
-}
-
 // Convert byte count into unit (KB/MB...) appropriate for display
 std::string displayableBytes(int64_t size)
 {
@@ -910,7 +851,7 @@ std::string displayableBytes(int64_t size)
         roundable = double(size) / 1E9;
     }
     size = int64_t(std::round(roundable));
-    return lltodecstr(size).append(unit);
+    return std::to_string(size).append(unit);
 }
 
 std::string breakIntoLines(const std::string& in, unsigned int ll, unsigned int maxlines)

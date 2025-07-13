@@ -164,8 +164,7 @@ public:
                 << cacheoffset(msgnum) << "\n");
         instream.seekg(cacheoffset(msgnum));
         if (!instream.good()) {
-            LOGSYSERR("MboxCache::get_offset", "seek",
-                      lltodecstr(cacheoffset(msgnum)));
+            LOGSYSERR("MboxCache::get_offset", "seek", std::to_string(cacheoffset(msgnum)));
             return -1;
         }
         int64_t offset = -1;

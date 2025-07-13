@@ -426,7 +426,7 @@ int ConfSimple::set(const std::string& nm, const std::string& value, const std::
 
 int ConfSimple::set(const std::string& nm, long long val, const std::string& sk)
 {
-    return this->set(nm, lltodecstr(val), sk);
+    return this->set(nm, std::to_string(val), sk);
 }
 
 // Internal set variable: no rw checking or file rewriting. If init is

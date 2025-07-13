@@ -447,7 +447,7 @@ static bool idocget(recoll_DocObject *self, const string& key, string& value)
         break;
     case 'x':
         if (!key.compare("xdocid")) {
-            ulltodecstr(self->doc->xdocid, value);
+            value = std::to_string(self->doc->xdocid);
             return true;
         }
         break;

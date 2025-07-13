@@ -543,7 +543,7 @@ bool FileInterner::dijontorcl(Rcl::Doc& doc)
                 // point if the last container filter is directly
                 // returning text/plain content, so that there is no
                 // ipath-less filter at the top
-                lltodecstr(doc.text.length(), doc.fbytes);
+                 doc.fbytes = std::to_string(doc.text.length());
                 LOGDEB("FileInterner::dijontorcl: fbytes->" << doc.fbytes << "\n");
             }
         } else if (ent.first == cstr_dj_keymd) {
@@ -662,7 +662,7 @@ void FileInterner::collectIpathAndMT(Rcl::Doc& doc) const
                 copymeta(m_cfg, doc, m_handlers[i == 0 ? 0 : i-1]);
             }
             if (doc.fbytes.empty()) {
-                lltodecstr(m_handlers[i]->get_docsize(), doc.fbytes);
+                doc.fbytes = std::to_string(m_handlers[i]->get_docsize());
                 LOGDEB("collectIpath..: fbytes->" << doc.fbytes << endl);
             }
         }

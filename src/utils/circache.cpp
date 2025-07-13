@@ -1520,7 +1520,7 @@ bool CCDataToFile::putFile(const std::string& udi, const ConfSimple *dicp, const
     int dupnum = 1;
     std::string fn;
     for (;;) {
-        fn = path_cat(m_dir, "circache-" + hash + "-" + lltodecstr(dupnum) + dsuff);
+        fn = path_cat(m_dir, "circache-" + hash + "-" + std::to_string(dupnum) + dsuff);
         if (path_exists(fn)) {
             dupnum++;
         } else {
@@ -1541,7 +1541,7 @@ bool CCDataToFile::putFile(const std::string& udi, const ConfSimple *dicp, const
         }
     }
 
-    fn = path_cat(m_dir, "circache-" + hash + "-" + lltodecstr(dupnum) + ".dic");
+    fn = path_cat(m_dir, "circache-" + hash + "-" + std::to_string(dupnum) + ".dic");
     std::ostringstream str;
     dicp->write(str);
     if (!stringtofile(str.str(), fn.c_str(), m_reason)) {

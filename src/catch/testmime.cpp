@@ -1,3 +1,4 @@
+
 #include "catch.hpp"
 
 #include <string>
@@ -52,9 +53,14 @@ TEST_CASE("rfc2231_10", "[mime]") {
         REQUIRE(out.value == "somevalue");
         REQUIRE(out.params == std::map<std::string,std::string>{});
     }
-    SECTION("03") {
+    SECTION("04") {
         REQUIRE(parseMimeHeaderValue("(comment)somevalue(comment) ", out) == true);
         REQUIRE(out.value == "somevalue");
+        REQUIRE(out.params == std::map<std::string,std::string>{});
+    }
+    SECTION("05") {
+        REQUIRE(parseMimeHeaderValue("\"some; value\"", out) == true);
+        REQUIRE(out.value == "some; value");
         REQUIRE(out.params == std::map<std::string,std::string>{});
     }
     SECTION("10") {
@@ -63,11 +69,6 @@ TEST_CASE("rfc2231_10", "[mime]") {
         REQUIRE(out.params == std::map<std::string,std::string>{{"par1","val1"},{"par2","val2"}});
     }
     SECTION("11") {
-        REQUIRE(parseMimeHeaderValue("somevalue", out) == true);
-        REQUIRE(out.value == "somevalue");
-        REQUIRE(out.params == std::map<std::string,std::string>{});
-    }
-    SECTION("12") {
         REQUIRE(parseMimeHeaderValue("somevalue", out) == true);
         REQUIRE(out.value == "somevalue");
         REQUIRE(out.params == std::map<std::string,std::string>{});

@@ -40,7 +40,7 @@ bool RclDHistoryEntry::encode(string& value)
     string budi, bdir;
     base64_encode(udi, budi);
     base64_encode(dbdir, bdir);
-    value = string("V ") + lltodecstr(unixtime) + " " + budi + " " + bdir;
+    value = string("V ") + std::to_string(unixtime) + " " + budi + " " + bdir;
     return true;
 }
 

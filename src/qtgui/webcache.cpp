@@ -362,7 +362,7 @@ void WebcacheEdit::saveColState()
     QStringList newwidths;
     for (int vi = 0; vi < header->count(); vi++) {
         int li = header->logicalIndex(vi);
-        newwidths.push_back(lltodecstr(header->sectionSize(li)).c_str());
+        newwidths.push_back(std::to_string(header->sectionSize(li)).c_str());
     }
     QSettings settings;
     settings.setValue(cwnm, newwidths);

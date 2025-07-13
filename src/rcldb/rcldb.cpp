@@ -737,7 +737,7 @@ void Db::waitUpdIdle()
         }
         m_ndb->m_totalworkns += chron.nanos();
         LOGINFO("Db::waitUpdIdle: total xapian work " <<
-                lltodecstr(m_ndb->m_totalworkns/1000000) << " mS\n");
+                std::to_string(m_ndb->m_totalworkns/1000000) << " mS\n");
     }
 }
 #endif

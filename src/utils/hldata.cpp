@@ -313,7 +313,7 @@ string HighlightData::toString() const
                 out.append("}");
             }
             out.append(" ");
-            out.append(valToString(kindflags, tg.kind)).append("-").append(lltodecstr(tg.slack));
+            out.append(valToString(kindflags,tg.kind)).append("-").append(std::to_string(tg.slack));
             out.append(" }");
         }
     }
