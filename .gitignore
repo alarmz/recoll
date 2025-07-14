@@ -58,8 +58,6 @@ ptrans
 src/doc/user/usermanual.pdf
 src/doc/user/webhelp/docs/*
 src/doc/user/webhelp/xincluded-profiled.xml
-src/filters/conftree.py
-src/filters/rclconfig.py
 src/kde/kioslave/kio_recoll/builddir
 src/python/pyaspell/setup.cfg
 src/python/pyaspell/setup.py

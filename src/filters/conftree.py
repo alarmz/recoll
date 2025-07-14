@@ -1,0 +1,1 @@
+../python/recoll/recoll/conftree.py
