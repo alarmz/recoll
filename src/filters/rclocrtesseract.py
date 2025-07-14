@@ -35,7 +35,7 @@ else:
     ocrlangfile = ".rclocrlang"
     popplerdir = ""
 
-_okexts = (".tif", ".tiff", ".jpg", ".png", ".jpeg")
+_okexts = (".tif", ".tiff", ".jpg", ".png", ".jpeg", ".jp2")
 
 tesseractcmd = None
 pdftoppmcmd = None
