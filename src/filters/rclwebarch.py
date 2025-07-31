@@ -19,10 +19,22 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 # Handler for Mac OS Safari .webarchive format.
+# On MacOS, we use the native "textutil" program. Else plistlib and bs4
 
 import sys
-import subprocess
-import os
+import platform
+
+if sys.platform == "darwin":
+    onmacos = True
+else:
+    onmacos = False
+
+if onmacos:
+    import subprocess
+    import os
+else:
+    import plistlib
+    from bs4 import BeautifulSoup
 
 import rclexecm
 from rclbasehandler import RclBaseHandler
@@ -30,15 +42,54 @@ from rclbasehandler import RclBaseHandler
 class WebarchiveHandler(RclBaseHandler):
     def __init__(self, em):
         self.em = em
-        self.tmpdir = rclexecm.SafeTmpDir("rclwebarch")
-        self.cmdbase = ["textutil", "-convert", "html", "-noload", "-nostore", "-output"]
-    def html_text(self, inpath):
+        self.output_html = True
+        if onmacos:
+            self.tmpdir = rclexecm.SafeTmpDir("rclwebarch")
+            self.cmdbase = ["textutil", "-convert", "html", "-noload", "-nostore", "-output"]
+
+    def html_text_macos(self, inpath):
         self.tmpdir.vacuumdir()
         htmlfile = os.path.join(self.tmpdir.getpath(), "index.html")
         cmd = self.cmdbase + [htmlfile, inpath]
         subprocess.check_call(cmd, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
         return open(htmlfile).read()
+        
+    def html_text_other(self, inpath):
+        with open(inpath, 'rb') as f:
+            plist = plistlib.load(f)
 
+        main_resource = plist.get('WebMainResource', {})
+        data = main_resource.get('WebResourceData')
+
+        if not data:
+            raise RuntimeError("No main HTML content found in the .webarchive file.")
+
+        # Decode HTML content
+        try:
+            html_data = data.decode('utf-8')
+        except UnicodeDecodeError:
+            html_data = data.decode('latin-1', errors='ignore')
+
+        if self.output_html:
+            # Parse HTML and remove all <svg> blocks
+            soup = BeautifulSoup(html_data, 'html.parser')
+            for svg in soup.find_all('svg'):
+                svg.decompose()
+            # Convert to string
+            clean_html = str(soup)
+            self.em.setmimetype("text/html")
+            return clean_html
+        else:
+            self.em.setmimetype("text/plain")
+            text = soup.get_text(separator='\n', strip=True)
+            return rclexecm.htmlescape(text.encode("utf-8"))
+            
+        
+    def html_text(self, inpath):
+        if onmacos:
+            return self.html_text_macos(inpath)
+        else:
+            return self.html_text_other(inpath)
 
 if __name__ == "__main__":
     proto = rclexecm.RclExecM()
