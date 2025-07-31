@@ -59,10 +59,13 @@ public:
 };
 
 /** 
- * Parse MIME Content-type and Content-disposition value
+ * Parse MIME Content-type and Content-disposition value. Note: there is no general
+ * syntax for MIME header contents, the syntax depends on the header type. This parser works for
+ * headers where the value is a single word possibly followed by parameter affectations. It will not
+ * accept a value with embedded spaces such as what we use in mimeconf...
  *
  * @param in the input string should be like: value; pn1=pv1; pn2=pv2. 
- *   Example: text/plain; charset="iso-8859-1" 
+ *   Example: text/plain; charset="iso-8859-1"
  */
 extern bool parseMimeHeaderValue(const std::string& in, MimeHeaderValue& psd);
 
