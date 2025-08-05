@@ -82,6 +82,7 @@ def _guessocrlang(config, path):
     if os.path.isfile(langfile):
         ocrlang = open(langfile, "r").read().strip()
     if ocrlang:
+        ocrlang = ocrlang.strip('"')
         _deb("OCR lang from file: %s" % ocrlang)
         return ocrlang
 
@@ -89,6 +90,7 @@ def _guessocrlang(config, path):
     config.setKeyDir(dirname)
     ocrlang = config.getConfParam("abbyylang")
     if ocrlang:
+        ocrlang = ocrlang.strip('"')
         _deb("OCR lang from config: %s" % ocrlang)
         return ocrlang
 

@@ -31,6 +31,7 @@ import signal
 import importlib.util
 
 import rclconfig
+import conftree
 import rclocrcache
 import rclexecm
 
@@ -128,7 +129,7 @@ if not ocrprogs:
 
 # _deb("ocrprogs: %s" % ocrprogs)
 
-proglist = ocrprogs.split(" ")
+proglist = conftree.stringToStrings(ocrprogs)
 ok = False
 for ocrprog in proglist:
     try:

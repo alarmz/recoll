@@ -122,6 +122,8 @@ def _guesstesseractlang(config, path):
     if os.path.isfile(pdflangfile):
         tesseractlang = open(pdflangfile, "r").read().strip()
     if tesseractlang:
+        # Just in case the lang was mistakenly quoted
+        tesseractlang = tesseractlang.strip('"')
         _deb("Tesseract lang from file: %s" % tesseractlang)
         return tesseractlang
 
@@ -129,6 +131,8 @@ def _guesstesseractlang(config, path):
     config.setKeyDir(dirname)
     tesseractlang = config.getConfParam("tesseractlang")
     if tesseractlang:
+        # Just in case the lang was mistakenly quoted
+        tesseractlang = tesseractlang.strip('"')
         _deb("Tesseract lang from config: %s" % tesseractlang)
         return tesseractlang
 
