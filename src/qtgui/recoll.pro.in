@@ -324,6 +324,7 @@ macx:macxbundlebuild() {
   ../filters/rclpython.py \
   ../filters/rclrar.py \
   ../filters/rclrtf.py \
+  ../filters/rclrunsoffice.py \
   ../filters/rclscribus \
   ../filters/rclsfz.py \
   ../filters/rclshowinfo \
