@@ -64,10 +64,10 @@ class Executor(RclBaseHandler):
                 proc = subprocess.Popen(fullcmd, stdout=subprocess.PIPE)
                 stdout = proc.stdout
             except subprocess.CalledProcessError as err:
-                self.em.rclog("extractone: Popen(%s) error: %s" % (fullcmd, err))
+                self.em.rclog(f"extractone: Popen({fullcmd}) error: {err}")
                 return (False, "")
             except OSError as err:
-                self.em.rclog("extractone: Popen(%s) OS error: %s" % (fullcmd, err))
+                self.em.rclog(f"extractone: Popen({fullcmd}) OS error: {err}")
                 return (False, "")
 
             try:
@@ -82,9 +82,7 @@ class Executor(RclBaseHandler):
             except:
                 return (False, "")
             if (opt & self.opt_ignxval) == 0 and proc.returncode:
-                self.em.rclog(
-                    "extractone: [%s] returncode %d" % (filename, proc.returncode)
-                )
+                self.em.rclog(f"extractone: [{filename}] retcode {proc.returncode}")
                 return False, data
             else:
                 return True, data

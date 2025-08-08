@@ -24,23 +24,17 @@ import os
 
 import rclexecm
 from rclbasehandler import RclBaseHandler
+import rclrunsoffice
 
 _sofficecmd = None
 
 class PagesHandler(RclBaseHandler):
     def __init__(self, em):
         self.em = em
-        self.ntry = 0
-        self.tmpdir = rclexecm.SafeTmpDir("rclpages")
-        self.cmdbase = [_sofficecmd, "--norestore", "--safe-mode", "--headless", "--convert-to", "html", "--outdir"]
+        self.runner = rclrunsoffice.SofficeRunner(_sofficecmd)
+
     def html_text(self, inpath):
-        self.tmpdir.vacuumdir()
-        cmd = self.cmdbase + [self.tmpdir.getpath(), inpath]
-        subprocess.check_call(cmd, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
-        infn = os.path.basename(inpath)
-        inbase = os.path.splitext(infn)[0]
-        htmlfile = os.path.join(self.tmpdir.getpath().encode('utf-8'), inbase) + b".html"
-        return open(htmlfile).read()
+        return self.runner.runsoffice(inpath)
 
 
 if __name__ == "__main__":

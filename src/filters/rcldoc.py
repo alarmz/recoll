@@ -1,4 +1,25 @@
 #!/usr/bin/env python3
+# Copyright (C) 2010-2025 J.F.Dockes
+#
+# License: GPL 2.1
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2.1 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, write to the
+# Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+# Handler for msword docs. Try antiword, and if this fails, check for an rtf or text document (.doc
+# are sometimes like this...). Also try soffice or vwWare if the doc is actually a word doc
 
 import rclexecm
 import rclexec1
@@ -7,8 +28,8 @@ import sys
 import os
 
 
-# Processing the output from antiword: create html header and tail, process
-# continuation lines escape, HTML special characters, accumulate the data.
+# Processing the output from antiword: create HTML header and tail, process continuation lines
+# escape, HTML special characters, accumulate the data.
 class WordProcessData:
     def __init__(self, em):
         self.em = em
@@ -64,9 +85,8 @@ class WordProcessData:
         return b"\n".join(self.out)
 
 
-# Null data accumulator. We use this when antiword has failed, and the
-# data actually comes from rclrtf, rcltext or vwWare, which all
-# output HTML
+# Null data accumulator. We use this when antiword has failed, and the data actually comes from
+# rclrtf, rcltext or vwWare, which all output HTML
 class WordPassData:
     def __init__(self, em):
         self.out = []
@@ -80,9 +100,7 @@ class WordPassData:
         return b"\n".join(self.out)
 
 
-# Filter for msword docs. Try antiword, and if this fails, check for
-# an rtf or text document (.doc are sometimes like this...). Also try
-# vwWare if the doc is actually a word doc
+# MS-Word handler as rclexec1 worker
 class WordFilter:
     def __init__(self, em, td):
         self.em = em
@@ -90,6 +108,7 @@ class WordFilter:
         self.execdir = td
         self.rtfprolog = b"{\\rtf1"
         self.docprolog = b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1"
+        self.hasSoffice = None
 
     def reset(self):
         self.ntry = 0
@@ -122,45 +141,42 @@ class WordFilter:
             return "text/plain"
 
     def getCmd(self, fn):
-        """Return command to execute, and postprocessor, according to
-        our state: first try antiword, then others depending on mime
-        identification. Do 2 tries at most"""
+        """Return command to execute, and postprocessor, according to our state: first try antiword,
+        then others depending on mime identification. Do 2 tries at most"""
         if self.ntry == 0:
             self.ntry = 1
             cmd = rclexecm.which("antiword")
             if cmd:
                 return ([cmd, "-t", "-i", "1", "-m", "UTF-8"], WordProcessData(self.em))
-            else:
-                return ([], None)
         elif self.ntry == 1:
             self.ntry = 2
-            # antiword failed. Check for an rtf file, or text and
-            # process accordingly. It the doc is actually msword, try
-            # wvWare.
+            # antiword failed. Re-check the MIME type: it happens that .doc files are actually RTF,
+            # or text/plain. Else, some actual MS-Word files are not processed by antiword (usual
+            # message: "text stream too small to handle", so try either soffice or wvWare depending
+            # on what is available.
             mt = self.mimetype(fn)
             self.em.rclog("rcldoc.py: actual MIME type %s" % mt)
             if mt == "text/plain":
-                return (
-                    [sys.executable, os.path.join(self.execdir, "rcltext.py")],
-                    WordPassData(self.em),
-                )
+                return ([sys.executable, os.path.join(self.execdir, "rcltext.py")],
+                        WordPassData(self.em))
             elif mt == "text/rtf":
-                cmd = [sys.executable, os.path.join(self.execdir, "rclrtf.py"), "-s"]
-                self.em.rclog("rcldoc.py: returning cmd %s" % cmd)
-                return (cmd, WordPassData(self.em))
+                return ([sys.executable, os.path.join(self.execdir, "rclrtf.py"), "-s"],
+                        WordPassData(self.em))
             elif mt == "application/msword":
+                if self.hasSoffice is None:
+                    cmd = rclexecm.which("soffice")
+                    if cmd:
+                        self.hasSoffice = True
+                    else:
+                        self.hasSoffice = False
+                if self.hasSoffice:
+                    return ([sys.executable, os.path.join(self.execdir, "rclrunsoffice.py")],
+                            WordPassData(self.em))
+                    
                 cmd = rclexecm.which("wvWare")
                 if cmd:
-                    return (
-                        [cmd, "--nographics", "--charset=utf-8"],
-                        WordPassData(self.em),
-                    )
-                else:
-                    return ([], None)
-            else:
-                return ([], None)
-        else:
-            return ([], None)
+                    return ([cmd, "--nographics", "--charset=utf-8"], WordPassData(self.em))
+        return ([], None)
 
 
 if __name__ == "__main__":
