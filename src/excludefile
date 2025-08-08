@@ -19,6 +19,7 @@ Makefile.in
 aclocal.m4
 autom4te.cache
 build
+catch
 cleancmakestuff.sh
 cmake
 common/autoconfig-win.h

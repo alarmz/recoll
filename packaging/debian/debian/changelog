@@ -1,6 +1,19 @@
 recoll (1.43.4-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
-  * Handle unencoded utf8 email headers
+  * GUI: HTML preview in dark mode: do not use a dark background by
+    default, there is no way that this can work with many documents CSS,
+    and often results in dark text on dark background. Add option to
+    restore the previous behaviour.
+  * MS-Word handler: when antiword fails on a small .doc, fall back to
+    soffice, then only to wvWare, which is obsolete. Very few files trigger
+    this anyway. Another possibility would have been to use abiword itself,
+    which might be faster.
+  * Added code to process Mac OS webarchive format on other platforms.hanks
+    to Mansour Alghamdi. Needs the plistlib and bs4 Python3 packages.
+  * Add .jp2 to the image formats considered for OCR (when enabled).
+  * Fixed/improved the computation of the directory side filter entries.
+  * PDF: added option to force OCR on files which are not pure images.
+  * Handle unencoded utf8 email headers.
 
  -- Jean-Francois Dockes <jf@dockes.org>  Sun, 06 Jul 2025 17:38:00 +0200
 
