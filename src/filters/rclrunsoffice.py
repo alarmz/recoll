@@ -28,7 +28,7 @@ import os
 
 class SofficeRunner(object):
     def __init__(self, sofficecmd):
-        self.tmpdir = rclexecm.SafeTmpDir("rclpages")
+        self.tmpdir = rclexecm.SafeTmpDir("rclrsoff")
         self.cmdbase = [sofficecmd, "--norestore", "--safe-mode", "--headless",
                         "--convert-to", "html", "--outdir"]
 
