@@ -1,3 +1,9 @@
+recoll (1.43.4-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Handle unencoded utf8 email headers
+
+ -- Jean-Francois Dockes <jf@dockes.org>  Sun, 06 Jul 2025 17:38:00 +0200
+
 recoll (1.43.3-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * GUI: viewer execution: add %S to substitute with phrase if the query
