@@ -71,7 +71,11 @@ string PlainToRichQtPreview::header()
 }
 </style>
 )-"};
-    fontstyle = prefs.htmlHeaderContents(true);
+    int opts = PrefsPack::HHC_NOUSER;
+    if (m_inputhtml && !prefs.previewdarkbg) {
+        opts |= PrefsPack::HHC_NODARK;
+    }
+    fontstyle = prefs.htmlHeaderContents(opts);
 #endif
     
     if (m_inputhtml) {

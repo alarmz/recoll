@@ -6,7 +6,7 @@
 a {
    color: #F0FFFF;
 }
-body, table {
+html, body, p, form, fieldset, table, tr, td, img, pre {
    background: #373737;
    color: #ffffff;
 }

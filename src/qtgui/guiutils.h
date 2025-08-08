@@ -173,6 +173,7 @@ public:
     bool singleapp{false};
     int previewLinesOverAnchor{4};
     QString uilanguage;
+    bool previewdarkbg{false};
     /*INSERTHERE*/
 
     // See widgets/qxtconfirmationmessage.
@@ -188,7 +189,8 @@ public:
     std::string stemlang();
 
     // HTML Header contents for both the result list, the snippets window and others
-    std::string htmlHeaderContents(bool nouser=false);
+    enum HHC_Opts {HHC_NOUSER=1, HHC_NODARK=2};
+    std::string htmlHeaderContents(int opts=0);
     std::string snipCSS();
     
     // MIME types for which we prefer to use stored text from preview

@@ -227,6 +227,7 @@ void UIPrefsDialog::setFromPrefs()
         uilanguageCMB->setCurrentIndex(idx);
     if (prefs.colorscheme < colorschemeCMB->count())
         colorschemeCMB->setCurrentIndex(prefs.colorscheme);
+    previewdarkbgCB->setChecked(prefs.previewdarkbg);
     /*INSERTHERE_LOAD*/
 
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -515,6 +516,7 @@ void UIPrefsDialog::accept()
     prefs.previewLinesOverAnchor = previewLinesOverAnchorSB->value();
     prefs.uilanguage = uilanguageCMB->currentData().toString();
     prefs.colorscheme = colorschemeCMB->currentIndex();
+    prefs.previewdarkbg = previewdarkbgCB->isChecked();
     /*INSERTHERE_ACCEPT*/
 
     // -1 is the qxtconf... predefined value to show the dialog

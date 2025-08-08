@@ -1220,6 +1220,19 @@
          </property>
         </widget>
        </item>
+      <item>
+        <widget class="QCheckBox" name="previewdarkbgCB">
+         <property name="toolTip">
+          <string>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</string>
+         </property>
+         <property name="text">
+          <string>Use dark background when displaying HTML in dark mode.</string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QCheckBox" name="previewActiveLinksCB">
          <property name="toolTip">

@@ -927,9 +927,28 @@ bool Preview::loadDocInCurrentTab(Rcl::Doc &idoc, int docnum)
     }
 #endif
 
+    bool inputishtml = !lthr.fdoc.mimetype.compare("text/html");
+    
+#if defined(PREVIEW_WEBKIT)
+    // The webkit object inherits some of the QT style (e.g.: dark background). This does not happen
+    // with webengine (better in this respect). Restore reasonable colors so that the default colors
+    // are what an HTML style would expect (esp: many don't set the background so that we sometimes
+    // would get black-on-dark text)
+    if (prefs.darkMode) {
+        if (inputishtml) {
+            QString sstyle{"* {background-color: #ffffff;"
+                           "color: #000000;"
+                           "selection-background-color: #fefe00;"
+                           "selection-color: #707070;}"};
+            editor->setStyleSheet(sstyle);
+        } else {
+            applyStyle();
+        }
+    }
+#endif
+    
     editor->setFont(m_font);
     editor->setHtml("");
-    bool inputishtml = !lthr.fdoc.mimetype.compare("text/html");
     QStringList qrichlst;
     editor->m_plaintorich->set_activatelinks(prefs.previewActiveLinks);
     

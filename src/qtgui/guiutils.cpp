@@ -315,6 +315,7 @@ void rwSettings(bool writing)
 #else
     SETTING_RW(prefs.colorscheme, "/Recoll/ui/colorscheme", Int ,PrefsPack::CS_LIGHT)
 #endif
+    SETTING_RW(prefs.previewdarkbg, "/Recoll/preview/previewdarkbg", Bool, false)
     /*INSERTHERE*/
     
     // See qxtconfirmationmessage. Needs to be -1 for the dialog to show.
@@ -598,7 +599,7 @@ std::string PrefsPack::snipCSS()
     return std::string();
 }
 
-std::string PrefsPack::htmlHeaderContents(bool nouser)
+std::string PrefsPack::htmlHeaderContents(int opts)
 {
     // recoll-common.css just has a default font size setting at the moment.
     auto comfn = path_cat(theconfig->getDatadir(), {"examples", "recoll-common.css"});
@@ -634,13 +635,13 @@ std::string PrefsPack::htmlHeaderContents(bool nouser)
     oss << "}\n</style>\n";
 
     // Dark mode CSS
-    if (darkMode) {
+    if (darkMode && !(opts&HHC_NODARK)) {
         string fn = path_cat(theconfig->getDatadir(), {"examples", "recoll-dark.css"});
         oss << cacheget(fn);
     }
 
     // User CSS
-    if (!nouser)
+    if (!(opts&HHC_NOUSER))
         oss << qs2utf8s(prefs.reslistheadertext);
 
     std::string css = oss.str();
