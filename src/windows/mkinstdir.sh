@@ -101,8 +101,12 @@ copyqt()
     fi
 }
 
-# Note that pyhwp is pre-copied into the python distribution directory
-# and also needs olefile and six (also copied to the python tree)
+# Note that pyhwp is pre-copied into the python distribution directory and also needs
+# olefile. It used to also need six, which we don't ship any more. pyhwp was trivially
+# fixed to get rid of six.with_metaclass, unneeded now that py2 is gone:
+#  < class ControlData(with_metaclass(ControlDataType, RecordModel)):
+#  ---
+#  > class ControlData(RecordModel, metaclass=ControlDataType):
 copypython()
 {
     set -x
