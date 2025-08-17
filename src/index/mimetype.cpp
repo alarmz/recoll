@@ -17,18 +17,16 @@
 
 #include "autoconfig.h"
 
-#include <ctype.h>
-
 #include <string>
-#include <list>
 
 #ifdef ENABLE_LIBMAGIC
 #include <magic.h>
+#else
+#include "execmd.h"
 #endif
 
 #include "mimetype.h"
 #include "log.h"
-#include "execmd.h"
 #include "rclconfig.h"
 #include "smallut.h"
 #include "idfile.h"
@@ -75,19 +73,18 @@ static string mimetypefromdata(RclConfig *cfg, const string &fn, bool usfc)
     // Windows mostly at the moment)
 
 #ifdef ENABLE_LIBMAGIC
-
-    // Caching the open mgtoken would slightly improve performance but we'd need locking because
-    // libmagic is not thread-safe
-    auto mgtoken = magic_open(MAGIC_MIME_TYPE);
-    if (mgtoken) {
+    {
+        auto mgtoken = magic_open(MAGIC_MIME_TYPE);
+        if (mgtoken) {
 #ifdef _WIN32
-        string magicfile = path_cat(path_rclpkgdatadir(), "magic.mgc");
-        int ret = magic_load(mgtoken, magicfile.c_str());
+            string magicfile = path_cat(path_rclpkgdatadir(), "magic.mgc");
+            int ret = magic_load(mgtoken, magicfile.c_str());
 #else
-        int ret = magic_load(mgtoken, nullptr);
+            int ret = magic_load(mgtoken, nullptr);
 #endif
-        if (ret == 0) {
-            mime = magic_file(mgtoken, fn.c_str());
+            if (ret == 0) {
+                mime = magic_file(mgtoken, fn.c_str());
+            }
             magic_close(mgtoken);
         }
     }
@@ -100,9 +97,9 @@ static string mimetypefromdata(RclConfig *cfg, const string &fn, bool usfc)
         // On the Mac, /usr/bin/file wants a -I to print the MIME type, but we may be using
         // a MacPorts or Homebrew version, needing -i. Fortunately both accept --mime-type
                                                {"--mime-type"}
-#else
+#else // !APPLE->
                                                {"-i"}
-#endif
+#endif // __APPPLE__
     };
 
     vector<string> cmd;
