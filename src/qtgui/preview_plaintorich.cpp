@@ -59,22 +59,15 @@ bool PlainToRichQtPreview::haveAnchors()
 
 string PlainToRichQtPreview::header()
 {
-    std::string fontstyle, hstyle;
+    std::string hstyle("<style>\n.rclhighlight {\nfont-size :150%;\n");
+    hstyle += qs2utf8s(prefs.qtermstyle) + ";\n}</style>\n";
 
-    hstyle = std::string{R"-(
-<style>
-.rclhighlight {
-    color: red;
-    background-color: yellow;
-    font-size :150%;
-}
-</style>
-)-"};
     int opts = PrefsPack::HHC_NOUSER;
     if (m_inputhtml && !prefs.previewdarkbg) {
         opts |= PrefsPack::HHC_NODARK;
     }
-    fontstyle = prefs.htmlHeaderContents(opts);
+
+    std::string fontstyle = prefs.htmlHeaderContents(opts);
     
     if (m_inputhtml) {
         return fontstyle + hstyle;
