@@ -321,11 +321,12 @@ int main(int argc, char **argv)
 #endif
 
 #if defined(USING_WEBENGINE) || defined(USING_WEBKIT)
-    // Prevent WebEngine HTTP connections by setting a bogus proxy. This is for preventing network
-    // accesses from webengine when it is used to implement the preview window: depending on the
-    // loaded document, these could be unsafe. Otoh this also means that the display will be less
-    // nice than it could be if we let the engine load necessary javascript etc.  Note that this may
-    // still be less safe than using a QTextBrowser (or webkit probably) for the Preview.
+    // Prevent Webkit HTTP connections by setting a bogus proxy. This is for preventing network
+    // accesses from webkit when it is used to implement the preview window. E.g. this is what
+    // blocks fetching images from external sites.
+    // This only partially works for for webengine (ok for image fetches, not JS). We use a request
+    // interceptor for blocking external fetches, see rclwebpage.h.
+    // Note that this may still be less safe than using a QTextBrowser for the Preview.
     QNetworkProxy proxy;
     proxy.setType(QNetworkProxy::Socks5Proxy);
     proxy.setHostName("127.0.0.1");

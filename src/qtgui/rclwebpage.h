@@ -23,6 +23,10 @@
 #include <QWebEngineView>
 #include <QWebEnginePage>
 #include <QUrl>
+#include <QWebEngineProfile>
+#include <QWebEngineUrlRequestInterceptor>
+#include <QWebEngineUrlRequestInfo>
+#include <QDebug>
 
 // Subclass the page to hijack the link clicks
 class RclWebPage : public QWebEnginePage {
@@ -31,7 +35,8 @@ class RclWebPage : public QWebEnginePage {
 public:
     RclWebPage(QWidget *parent) 
         : QWebEnginePage((QWidget *)parent) {}
-
+    RclWebPage(QWebEngineProfile *profile, QObject *parent = nullptr)
+        : QWebEnginePage(profile, parent) {}
 protected:
     bool acceptNavigationRequest(const QUrl& url, NavigationType tp, bool isMainFrame) override {
         Q_UNUSED(isMainFrame);
@@ -46,6 +51,19 @@ signals:
     void linkClicked(const QUrl&);
 };
 
+// We intercept and forbid all loads except the initial page data (type 1, TypeTyped)
+class RclWebInterceptor: public QWebEngineUrlRequestInterceptor {
+public:
+    RclWebInterceptor(QObject *p = nullptr)
+        : QWebEngineUrlRequestInterceptor(p) {}
+    virtual void interceptRequest(QWebEngineUrlRequestInfo &info) {
+        if (info.navigationType() != QWebEngineUrlRequestInfo::NavigationTypeTyped) {
+            //qDebug() << "interceptRequest: blocking navtype " << info.navigationType() <<
+            //  " url " << info.requestUrl().toString().left(40);
+            info.block(true);
+        }
+    }
+};
 // For enums
 #define WEBPAGE QWebEnginePage
 

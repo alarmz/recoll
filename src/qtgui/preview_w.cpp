@@ -1145,11 +1145,19 @@ PreviewTextEdit::PreviewTextEdit(QWidget* parent, const char* nm, Preview *pv)
     connect(this, SIGNAL(customContextMenuRequested(const QPoint&)),
             this, SLOT(createPopupMenu(const QPoint&)));
 
+    // We do need javascript in the preview for walking the anchors. JS external fetches are blocked
+    // by CORS (and additionally by the interceptor for Webengine).
 #if defined(PREVIEW_WEBKIT)
     page()->setLinkDelegationPolicy(QWebPage::DelegateAllLinks);
+    settings()->setAttribute(QWebSettings::JavascriptEnabled, true);
     connect(this, SIGNAL(linkClicked(const QUrl &)), this, SLOT(onAnchorClicked(const QUrl &)));
 #elif defined(PREVIEW_WEBENGINE)
-    setPage(new RclWebPage(this));
+    // It seems that the only way for preventing webengine from fetching stuff from the web is to
+    // set an interceptor (forbidding everything except the initial page load).
+    auto profile = new QWebEngineProfile(this);
+    profile->setUrlRequestInterceptor(new RclWebInterceptor());
+    setPage(new RclWebPage(profile, this));
+    settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     connect(page(), SIGNAL(linkClicked(const QUrl &)), this, SLOT(onAnchorClicked(const QUrl &)));
 #else
     setOpenExternalLinks(false);
