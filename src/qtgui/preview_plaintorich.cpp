@@ -61,7 +61,6 @@ string PlainToRichQtPreview::header()
 {
     std::string fontstyle, hstyle;
 
-#if defined(PREVIEW_WEBKIT) || defined(PREVIEW_WEBENGINE)
     hstyle = std::string{R"-(
 <style>
 .rclhighlight {
@@ -76,7 +75,6 @@ string PlainToRichQtPreview::header()
         opts |= PrefsPack::HHC_NODARK;
     }
     fontstyle = prefs.htmlHeaderContents(opts);
-#endif
     
     if (m_inputhtml) {
         return fontstyle + hstyle;
