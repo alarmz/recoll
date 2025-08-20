@@ -7130,35 +7130,25 @@ application/x-blobapp = internal text/plain</programlisting>
 
       <itemizedlist>
 
-        <listitem><para>PDF files need <command>pdftotext</command>
-        which is part of <application>Poppler</application> (usually
-        comes with the <literal>poppler-utils</literal>
-        package). Avoid the original one from 
-        <application>Xpdf</application>.</para></listitem>
+        <listitem><para>PDF files need <command>pdftotext</command> which is part of
+        <application>Poppler</application> (usually comes with the <literal>poppler-utils</literal>
+        package). Avoid the original one from <application>Xpdf</application>.</para></listitem>
 
-        <listitem><para>MS Word documents need
-        <command>antiword</command>. It is also useful to have
-        <command>wvWare</command> installed as it may be 
-        be used as a fallback for some files which
-        <command>antiword</command> does not handle.</para></listitem>
+        <listitem><para>MS Word documents need <command>antiword</command>. It is also useful to
+        have <command>wvWare</command> installed as it may be be used as a fallback for some files
+        which <command>antiword</command> does not handle.</para></listitem>
 
-        <listitem><para>RTF files need <command>unrtf</command>,
-        which, in its older versions, has much trouble with
-        non-western character sets. Many Linux distributions carry
-        outdated <command>unrtf</command> versions. Check
-        &RCLAPPS; for details.</para></listitem>
+        <listitem><para>RTF files need <command>unrtf</command>.
+        Check &RCLAPPS; for details.</para></listitem>
 
-        <listitem><para>Pictures: &RCL; uses the 
-        <application>Exiftool</application>
-        <application>Perl</application> package to extract tag
-        information. Most image file formats are
-        supported.</para></listitem> 
+        <listitem><para>Pictures: &RCL; uses the <application>Exiftool</application>
+        <application>Perl</application> package to extract tag information. Most image file formats
+        are supported.</para></listitem>
 
         <listitem><para>Up to &RCL; 1.24, many XML-based formats need the
         <command>xsltproc</command> command, which usually comes with
-        <application>libxslt</application>. These are: abiword, fb2
-        ebooks, kword, openoffice, opendocument svg. &RCL; 1.25 and later
-        process them internally (using libxslt).</para>
+        <application>libxslt</application>. These are: abiword, fb2 ebooks, kword, openoffice,
+        opendocument svg. &RCL; 1.25 and later process them internally (using libxslt).</para>
         </listitem>
       </itemizedlist>
 
