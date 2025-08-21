@@ -6664,9 +6664,7 @@ Note
      * MS Word documents need antiword. It is also useful to have wvWare
        installed as it may be be used as a fallback for some files which
        antiword does not handle.
-     * RTF files need unrtf, which, in its older versions, has much
-       trouble with non-western character sets. Many Linux distributions
-       carry outdated unrtf versions. Check
+     * RTF files need unrtf. Check
        [321]https://www.recoll.org/pages/features.html for details.
      * Pictures: Recoll uses the Exiftool Perl package to extract tag
        information. Most image file formats are supported.

@@ -7107,26 +7107,21 @@ application/x-blobapp = internal text/plain</programlisting>
     <sect1 xml:id="RCL.INSTALL.EXTERNAL">
       <title>Supporting packages</title>
 
-      <note><para>The &WIN; installation of &RCL; is self-contained.
-      &WIN; users can skip this section.</para></note>
+      <note><para>The &WIN; installation of &RCL; is self-contained.  &WIN; users can skip this
+      section.</para></note>
       
-      <para>&RCL; uses external applications to index some file
-      types. You need to install them for the file types that you wish to
-      have indexed (these are run-time optional dependencies. None is
-      needed for building or running &RCL; except for indexing their
-      specific file type).</para>
+      <para>&RCL; uses external applications to index some file types. You need to install them for
+      the file types that you wish to have indexed (these are run-time optional dependencies. None
+      is needed for building or running &RCL; except for indexing their specific file type).</para>
 
-      <para>After an indexing pass, the commands that were found
-      missing can be displayed from the <command>recoll</command>
-      <guilabel>File</guilabel> menu. The list is stored in the
-      <filename>missing</filename> text file inside the configuration
-      directory.</para>
+      <para>After an indexing pass, the commands that were found missing can be displayed from the
+      <command>recoll</command> <guilabel>File</guilabel> menu. The list is stored in the
+      <filename>missing</filename> text file inside the configuration directory.</para>
 
-      <para>The past has proven that I was unable to maintain an up to date
-      application list in this manual. Please check &RCLAPPS; for a
-      complete list along with links to the home pages or best
-      source/patches pages, and misc tips. What follows is only a
-      very short extract of the stable essentials.</para>
+      <para>The past has proven that I was unable to maintain an up to date application list in this
+      manual. Please check &RCLAPPS; for a complete list along with links to the home pages or best
+      source/patches pages, and misc tips. What follows is only a very short extract of the stable
+      essentials.</para>
 
       <itemizedlist>
 
@@ -7150,6 +7145,7 @@ application/x-blobapp = internal text/plain</programlisting>
         <application>libxslt</application>. These are: abiword, fb2 ebooks, kword, openoffice,
         opendocument svg. &RCL; 1.25 and later process them internally (using libxslt).</para>
         </listitem>
+        <listitem>Please check &RCLAPPS; for a much more complete and up to date list.</listitem>
       </itemizedlist>
 
 
