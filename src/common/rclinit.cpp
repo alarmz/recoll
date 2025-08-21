@@ -373,10 +373,11 @@ RclConfig *recollinit(
     // Retrieve the log file name and level. Daemon and batch indexing
     // processes may use specific values, else fall back on common
     // ones.
-    string logfilename, loglevel;
+    string logfilename, loglevel, logthedate;
     if (flags & RCLINIT_DAEMON) {
         config->getConfParam(string("daemlogfilename"), logfilename);
         config->getConfParam(string("daemloglevel"), loglevel);
+        config->getConfParam(string("daemlogthedate"), logthedate);
     }
     if (flags & RCLINIT_IDX) {
         if (logfilename.empty()) {
@@ -384,6 +385,9 @@ RclConfig *recollinit(
         }
         if (loglevel.empty()) {
             config->getConfParam(string("idxloglevel"), loglevel);
+        }
+        if (logthedate.empty()) {
+            config->getConfParam(string("idxlogthedate"), logthedate);
         }
     }
     if (flags & RCLINIT_PYTHON) {
@@ -393,12 +397,17 @@ RclConfig *recollinit(
         if (loglevel.empty()) {
             config->getConfParam(string("pyloglevel"), loglevel);
         }
+        if (logthedate.empty()) {
+            config->getConfParam(string("pylogthedate"), logthedate);
+        }
     }
 
     if (logfilename.empty())
         config->getConfParam(string("logfilename"), logfilename);
     if (loglevel.empty())
         config->getConfParam(string("loglevel"), loglevel);
+    if (logthedate.empty())
+        config->getConfParam(string("logthedate"), logthedate);
 
     // Initialize logging
     if (!logfilename.empty()) {
@@ -413,6 +422,13 @@ RclConfig *recollinit(
     if (!loglevel.empty()) {
         int lev = atoi(loglevel.c_str());
         Logger::getTheLog("")->setLogLevel(Logger::LogLevel(lev));
+    }
+    if (!logthedate.empty()) {
+        auto val = stringToBool(logthedate);
+        if (val) {
+            Logger::getTheLog("")->setdateformat("%Y-%m-%dT%H:%M:%S%z ");
+            Logger::getTheLog("")->logthedate(true);
+        }
     }
     LOGINF(Rcl::version_string() << " [" << config->getConfDir() << "]\n");
     LOGDEB("Rclinit: PATH [" << getenv("PATH") << "]\n");
