@@ -231,18 +231,26 @@
 .avi = video/x-msvideo
 .ts = video/MP2T
 
-.png = image/png
-.jp2 = image/jp2
-.jpg = image/jpeg
-.jpeg = image/jpeg
-.gif = image/gif
-.tiff = image/tiff
-.tif  = image/tiff
-.xcf  = image/x-xcf
+.avci = image/avif
+.avcs = image/avif
 .bmp = image/bmp
-.xpm = image/x-xpmi
+.gif = image/gif
+.heic = image/heic
+.heics = image/heic-sequence
+.heif = image/heif
+.heifs =image/heif-sequence
+.hif = image/avif
+.jp2 = image/jp2
+.jpeg = image/jpeg
+.jpg = image/jpeg
 .nef = image/x-nikon-nef
 .nrw = image/x-nikon-nef
+.png = image/png
+.tif  = image/tiff
+.tiff = image/tiff
+.xcf  = image/x-xcf
+.xpm = image/x-xpmi
+
 
 .fb2 = text/x-fictionbook
 

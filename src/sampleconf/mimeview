@@ -133,15 +133,21 @@ application/ogg = vlc --start-time %p %f
 
 audio/x-karaoke = kmid %f
 
+image/vnd.djvu = djview %f
+
 image/jpeg = ristretto %f
 image/jp2 = ristretto %f
 image/png = ristretto %f
 image/tiff = ristretto %f
 image/gif  = ristretto %f
-image/vnd.djvu = djview %f
 image/bmp = ristretto %f
 image/x-ms-bmp = ristretto %f
 image/x-xpmi = ristretto %f
+image/heic = ristretto %f
+image/heic-sequence = ristretto %f
+image/heif = ristretto %f
+image/heif-sequence = ristretto %f
+image/avif = ristretto %f
 
 image/x-xcf = gimp %f
 image/x-nikon-nef = ufraw %f
