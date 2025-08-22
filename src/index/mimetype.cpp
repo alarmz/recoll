@@ -21,6 +21,8 @@
 
 #ifdef ENABLE_LIBMAGIC
 #include <magic.h>
+#include <mutex>
+static std::mutex magiclock;
 #else
 #include "execmd.h"
 #endif
@@ -41,19 +43,18 @@ static std::map<std::string, std::string> mimealiases{
     {"text/xml", "application/xml"}, // libmagic wrong. We right: rfc7303
 };
 
-/// Identification of file from contents. This is called for files with
-/// unrecognized extensions.
-///
-/// The system 'file' utility does not always work for us. For example
-/// it will mistake mail folders for simple text files if there is no
-/// 'Received' header, which would be the case, for example in a
-/// 'Sent' folder. Also "file -i" does not exist on all systems, and
-/// is quite costly to execute.
-/// So we first call the internal file identifier, which currently
-/// only knows about mail, but in which we can add the more
-/// current/interesting file types.
-/// As a last resort we execute 'file' or its configured replacement
-/// (except if forbidden by config)
+// Identification of file from contents. This is called for files with unrecognized extensions.
+//
+// The system 'file' utility does not always work for us. For example it will mistake mail folders
+// for simple text files if there is no 'Received' header, which would be the case, for example in
+// a 'Sent' folder. Also "file -i" does not exist on all systems, and is quite costly to execute.
+//
+// So we first call the internal file identifier, which currently only knows about mail, but in
+// which we can possibly add the more current/interesting file types in the future (note 10 years
+// later: never happened).
+//
+// As a last resort we either call into libmagic or execute 'file' or its configured replacement
+// (except if forbidden by config)
 static string mimetypefromdata(RclConfig *cfg, const string &fn, bool usfc)
 {
     LOGDEB1("mimetypefromdata: fn [" << fn << "]\n");
@@ -69,23 +70,31 @@ static string mimetypefromdata(RclConfig *cfg, const string &fn, bool usfc)
         return string();
     }
 
-    // Last resort: use "file -i", or its configured replacement, or libmagic (the latter on
-    // Windows mostly at the moment)
+    // Last resort: use either libmagic or "file -i" or its configured replacement.
 
 #ifdef ENABLE_LIBMAGIC
+    // We now use a cached descriptor and global locking around libmagic. The lock is because
+    // libmagic is not as thread-safe as it's supposed to be (crashes on Mac ARM, see issue
+    // 340). The caching is because we get better performance this way. We don't bother about ever
+    // freeing the descriptor.
     {
-        auto mgtoken = magic_open(MAGIC_MIME_TYPE);
-        if (mgtoken) {
+        std::unique_lock<std::mutex> lck(magiclock);
+        static magic_t mgtoken;
+        if (mgtoken == NULL) {
+            mgtoken = magic_open(MAGIC_MIME_TYPE);
 #ifdef _WIN32
             string magicfile = path_cat(path_rclpkgdatadir(), "magic.mgc");
             int ret = magic_load(mgtoken, magicfile.c_str());
 #else
             int ret = magic_load(mgtoken, nullptr);
 #endif
-            if (ret == 0) {
-                mime = magic_file(mgtoken, fn.c_str());
+            if (ret != 0) {
+                magic_close(mgtoken);
+                mgtoken = NULL;
             }
-            magic_close(mgtoken);
+        }
+        if (mgtoken) {
+            mime = magic_file(mgtoken, fn.c_str());
         }
     }
 
@@ -117,8 +126,7 @@ static string mimetypefromdata(RclConfig *cfg, const string &fn, bool usfc)
         }
         cmd.push_back(fn);
     } else {
-        LOGDEB("mimetype:systemfilecommand not found, using " <<
-               stringsToString(tradfilecmd) << "\n");
+        LOGDEB("systemfilecommand not found, using " << stringsToString(tradfilecmd) << "\n");
         cmd = tradfilecmd;
     }
 
