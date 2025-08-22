@@ -30,10 +30,12 @@
 
 #if defined(USING_WEBENGINE) && !defined(PREVIEW_FORCETEXTBROWSER)
 #  include <QWebEngineView>
+#  include <QWebEngineSettings>
 #  define PREVIEW_PARENTCLASS QWebEngineView
 #  define PREVIEW_WEBENGINE
 #elif defined(USING_WEBKIT) && !defined(PREVIEW_FORCETEXTBROWSER)
 #  include <QWebView>
+#  include <QWebSettings>
 #  define PREVIEW_PARENTCLASS QWebView
 #  define PREVIEW_WEBKIT
 #else
