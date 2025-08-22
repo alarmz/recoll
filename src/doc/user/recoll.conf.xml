@@ -608,12 +608,19 @@ only errors and warnings. 3 will print information like document updates,
 <term><varname>logfilename</varname></term>
 <listitem><para>Log file destination. Use "stderr" (default) to write to the
 console. </para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.LOGTHEDATE">
+<term><varname>logthedate</varname></term>
+<listitem><para>Have each log line begin with the date and time. e.g.: 2025-08-21T18:58:24+0200 :3:...
+</para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.IDXLOGLEVEL">
 <term><varname>idxloglevel</varname></term>
 <listitem><para>Override loglevel for the indexer. </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.IDXLOGFILENAME">
 <term><varname>idxlogfilename</varname></term>
 <listitem><para>Override logfilename for the indexer. </para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.IDXLOGTHEDATE">
+<term><varname>idxlogthedate</varname></term>
+<listitem><para>override logthedate for the indexer. </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.HELPERLOGFILENAME">
 <term><varname>helperlogfilename</varname></term>
 <listitem><para>Destination file for external helpers standard error output. The external program error output is left alone by default,
@@ -623,22 +630,24 @@ directory to completely suppress the output.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.DAEMLOGLEVEL">
 <term><varname>daemloglevel</varname></term>
-<listitem><para>Override loglevel for the indexer in real time
-mode. The default is to use the idx... values if set, else
-the log... values.
+<listitem><para>Override loglevel for the real time indexer. The default is to use the idx... values if set, else the log... values.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.DAEMLOGFILENAME">
 <term><varname>daemlogfilename</varname></term>
-<listitem><para>Override logfilename for the indexer in real time
-mode. The default is to use the idx... values if set, else
-the log... values.
+<listitem><para>Override logfilename for the real time indexer. The default is to use the idx... values if set, else the log... values.
 </para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.DAEMLOGTHEDATE">
+<term><varname>daemlogthedate</varname></term>
+<listitem><para>override logthedate for the real time indexer. </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.PYLOGLEVEL">
 <term><varname>pyloglevel</varname></term>
-<listitem><para>Override loglevel for the python module. </para></listitem></varlistentry>
+<listitem><para>Override loglevel for the Python extension. </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.PYLOGFILENAME">
 <term><varname>pylogfilename</varname></term>
-<listitem><para>Override logfilename for the python module. </para></listitem></varlistentry>
+<listitem><para>Override logfilename for the Python extension. </para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.PYLOGTHEDATE">
+<term><varname>pylogthedate</varname></term>
+<listitem><para>override logthedate for the Python extension. </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.IDXNOAUTOPURGE">
 <term><varname>idxnoautopurge</varname></term>
 <listitem><para>Do not purge data for deleted or inaccessible files This can be overridden by recollindex command line options and may be useful if some parts

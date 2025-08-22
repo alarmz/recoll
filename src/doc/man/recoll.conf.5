@@ -585,11 +585,17 @@ only errors and warnings. 3 will print information like document updates,
 Log file destination. Use "stderr" (default) to write to the
 console. 
 .TP
+.BI "logthedate = "bool
+Have each log line begin with the date and time. e.g.: 2025-08-21T18:58:24+0200 :3:...
+.TP
 .BI "idxloglevel = "int
 Override loglevel for the indexer. 
 .TP
 .BI "idxlogfilename = "fn
 Override logfilename for the indexer. 
+.TP
+.BI "idxlogthedate = "bool
+override logthedate for the indexer. 
 .TP
 .BI "helperlogfilename = "fn
 Destination file for external helpers standard error output. The external program error output is left alone by default,
@@ -598,20 +604,22 @@ from the command line. Use /dev/null or a file inside a non-existent
 directory to completely suppress the output.
 .TP
 .BI "daemloglevel = "int
-Override loglevel for the indexer in real time
-mode. The default is to use the idx... values if set, else
-the log... values.
+Override loglevel for the real time indexer. The default is to use the idx... values if set, else the log... values.
 .TP
 .BI "daemlogfilename = "fn
-Override logfilename for the indexer in real time
-mode. The default is to use the idx... values if set, else
-the log... values.
+Override logfilename for the real time indexer. The default is to use the idx... values if set, else the log... values.
+.TP
+.BI "daemlogthedate = "bool
+override logthedate for the real time indexer. 
 .TP
 .BI "pyloglevel = "int
-Override loglevel for the python module. 
+Override loglevel for the Python extension. 
 .TP
 .BI "pylogfilename = "fn
-Override logfilename for the python module. 
+Override logfilename for the Python extension. 
+.TP
+.BI "pylogthedate = "bool
+override logthedate for the Python extension. 
 .TP
 .BI "idxnoautopurge = "bool
 Do not purge data for deleted or inaccessible files This can be overridden by recollindex command line options and may be useful if some parts

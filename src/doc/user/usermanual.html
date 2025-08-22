@@ -11002,6 +11002,14 @@ defaultcharset = utf-8</pre>
                 <p>Log file destination. Use "stderr" (default) to
                 write to the console.</p>
               </dd>
+              <dt><a name="RCL.CONFIG.RECOLLCONF.LOGTHEDATE" id=
+              "RCL.CONFIG.RECOLLCONF.LOGTHEDATE"></a><span class=
+              "term"><code class=
+              "varname">logthedate</code></span></dt>
+              <dd>
+                <p>Have each log line begin with the date and time.
+                e.g.: 2025-08-21T18:58:24+0200 :3:...</p>
+              </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.IDXLOGLEVEL" id=
               "RCL.CONFIG.RECOLLCONF.IDXLOGLEVEL"></a><span class=
               "term"><code class=
@@ -11013,6 +11021,11 @@ defaultcharset = utf-8</pre>
               id="RCL.CONFIG.RECOLLCONF.IDXLOGFILENAME"></a><span class="term"><code class="varname">idxlogfilename</code></span></dt>
               <dd>
                 <p>Override logfilename for the indexer.</p>
+              </dd>
+              <dt><a name="RCL.CONFIG.RECOLLCONF.IDXLOGTHEDATE" id=
+              "RCL.CONFIG.RECOLLCONF.IDXLOGTHEDATE"></a><span class="term"><code class="varname">idxlogthedate</code></span></dt>
+              <dd>
+                <p>override logthedate for the indexer.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.HELPERLOGFILENAME"
               id=
@@ -11031,29 +11044,44 @@ defaultcharset = utf-8</pre>
               "term"><code class=
               "varname">daemloglevel</code></span></dt>
               <dd>
-                <p>Override loglevel for the indexer in real time
-                mode. The default is to use the idx... values if
-                set, else the log... values.</p>
+                <p>Override loglevel for the real time indexer. The
+                default is to use the idx... values if set, else
+                the log... values.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.DAEMLOGFILENAME"
               id=
               "RCL.CONFIG.RECOLLCONF.DAEMLOGFILENAME"></a><span class="term"><code class="varname">daemlogfilename</code></span></dt>
               <dd>
-                <p>Override logfilename for the indexer in real
-                time mode. The default is to use the idx... values
-                if set, else the log... values.</p>
+                <p>Override logfilename for the real time indexer.
+                The default is to use the idx... values if set,
+                else the log... values.</p>
+              </dd>
+              <dt><a name="RCL.CONFIG.RECOLLCONF.DAEMLOGTHEDATE"
+              id="RCL.CONFIG.RECOLLCONF.DAEMLOGTHEDATE"></a><span class="term"><code class="varname">daemlogthedate</code></span></dt>
+              <dd>
+                <p>override logthedate for the real time
+                indexer.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.PYLOGLEVEL" id=
               "RCL.CONFIG.RECOLLCONF.PYLOGLEVEL"></a><span class=
               "term"><code class=
               "varname">pyloglevel</code></span></dt>
               <dd>
-                <p>Override loglevel for the python module.</p>
+                <p>Override loglevel for the Python extension.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.PYLOGFILENAME" id=
               "RCL.CONFIG.RECOLLCONF.PYLOGFILENAME"></a><span class="term"><code class="varname">pylogfilename</code></span></dt>
               <dd>
-                <p>Override logfilename for the python module.</p>
+                <p>Override logfilename for the Python
+                extension.</p>
+              </dd>
+              <dt><a name="RCL.CONFIG.RECOLLCONF.PYLOGTHEDATE" id=
+              "RCL.CONFIG.RECOLLCONF.PYLOGTHEDATE"></a><span class=
+              "term"><code class=
+              "varname">pylogthedate</code></span></dt>
+              <dd>
+                <p>override logthedate for the Python
+                extension.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.IDXNOAUTOPURGE"
               id="RCL.CONFIG.RECOLLCONF.IDXNOAUTOPURGE"></a><span class="term"><code class="varname">idxnoautopurge</code></span></dt>
