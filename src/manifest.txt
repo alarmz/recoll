@@ -474,6 +474,7 @@ qtgui/preview_w.h
 qtgui/ptrans.ui
 qtgui/ptrans_w.cpp
 qtgui/ptrans_w.h
+qtgui/pv_search.cpp
 qtgui/qmkmk.sh
 qtgui/rclhelp.cpp
 qtgui/rclhelp.h

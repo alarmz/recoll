@@ -58,6 +58,7 @@ set(qtgui_SOURCES
     preview_w.h
     ptrans_w.cpp
     ptrans_w.h
+    pv_search.cpp
     rclhelp.cpp
     rclhelp.h
     rclm_idx.cpp

@@ -214,6 +214,7 @@ private:
                        QProgressDialog& progress, bool canGetRawText);
     // doSearch() when walking hit locations (as opposed to incremental text entry)
     void walkAnchors(PreviewTextEdit *edit, bool reverse);
+    void initSTermWalk();
 };
 
 #endif /* _PREVIEW_W_H_INCLUDED_ */

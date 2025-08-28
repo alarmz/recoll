@@ -64,6 +64,7 @@ SOURCES += \
         preview_plaintorich.cpp \
         preview_w.cpp \
         ptrans_w.cpp \
+        pv_search.cpp \
         rclhelp.cpp \
         rclm_idx.cpp \
         rclm_menus.cpp \
