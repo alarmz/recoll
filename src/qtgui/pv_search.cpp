@@ -27,6 +27,7 @@
 #include "preview_plaintorich.h"
 #include "guiutils.h"
 #include "rclwebpage.h"
+#include "chrono.h"
 
 // Make an attempt at trimming wildcard exprs at both ends of string
 static void trimwildcards(std::string& elt)
