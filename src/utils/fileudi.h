@@ -35,5 +35,8 @@ void make_udi(const std::string& fn, const std::string& ipath, std::string &udi)
 // the data record. The current value is 150.
 int hashed_udi_size();
 
+// length of the path part hashed_udi_size() - hash_size
+int hashed_udi_path_size();
+
 }
 #endif /* _FILEUDI_H_INCLUDED_ */

@@ -77,7 +77,12 @@ int hashed_udi_size()
 {
     return PATHHASHLEN;
 }
-    
+// length of the path part
+int hashed_udi_path_size()
+{
+    return PATHHASHLEN - HASHLEN;
+}
+
 // Compute the unique term used to link documents to their file-system source:
 // Hashed path + possible internal path
 void make_udi(const string& fn, const string& ipath, string &udi)
