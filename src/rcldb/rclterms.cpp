@@ -1,4 +1,4 @@
-/* Copyright (C) 2004-2022 J.F.Dockes
+/* Copyright (C) 2004-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -562,10 +562,9 @@ bool Db::idxTermMatch(int typ_sens, const string &expr,
 // std::unordered_set. Other approaches may exist, for example, by skipping same prefix in the list
 // (which is sorted). Did not try, as the current approach is reasonably fast.
 //
-// This is admittedly horrible, and might be too slow on very big indexes, or actually fail if the
-// requested depth is such that we reach the max term length and the terms are
-// truncated-hashed. We'd need to look at the doc data for the full URLs, but this would be much
-// slower.
+// This is admittedly horrible, and might be too slow on very big indexes. Especially if there are
+// long path name elements such that we reach the max term length and the terms are truncated-hashed
+// so that we need to look at the doc data for the full URLs.
 //
 // Still I have no other idea of how to do this, other than disable the side filter if directories
 // are not indexed?
@@ -574,12 +573,26 @@ bool Db::idxTermMatch(int typ_sens, const string &expr,
 // need two passes in any case because of the common root computation).
 //
 
+// Count slashes between st and nd
+static int countslashes(const std::string& in, std::string::size_type st, std::string::size_type nd)
+{
+    int ns = 0;
+    for (auto i = st; i < nd; i++) {
+        if (in[i] == '/')
+            ns++;
+    }
+    return ns;
+}
+
 bool Db::dirlist(int depth, std::string& root, std::vector<std::string>& dirs)
 {
     // Build a full list of filesystem paths.
     Xapian::Database xdb = m_ndb->xrdb;
     auto prefix = wrap_prefix("Q");
     std::vector<std::string> listall;
+    std::string commonroot;
+    std::string::size_type hashedudisize = fileUdi::hashed_udi_size();
+    std::string::size_type prehashsize = fileUdi::hashed_udi_path_size();
     for (int tries = 0; tries < 2; tries++) { 
         try {
             Xapian::TermIterator it = xdb.allterms_begin(); 
@@ -594,20 +607,39 @@ bool Db::dirlist(int depth, std::string& root, std::vector<std::string>& dirs)
                 if (!path_isabsolute(ixterm))
                     continue;
                 // Skip subdocs
-                auto pos = ixterm.find_first_of('|');
+                auto pos = ixterm.rfind('|');
                 if (pos < ixterm.size() - 1)
                     continue;
 
-                // Have to check for a hashed UDI, and fetch the data record and its URL then.
-                if ((int)ixterm.size() == fileUdi::hashed_udi_size()) {
-                    Rcl::Doc doc;
-                    if (!getDoc(ixterm, -1, doc, false) || doc.pc == -1) {
-                        continue;
+                // Have to check for a hashed UDI. We may need to fetch the data record for the full
+                // URL then. We do this only if the part stored in the term is not enough given the
+                // current value of the common root and of the depth.
+                bool needcallcommonroot = true;
+                if (ixterm.size() == hashedudisize) {
+                    // If the current prefix is shorter than the intact part, no need for the full
+                    // path. Then directly compute the common root.
+                    bool rootneedsurl = commonroot.size() >= prehashsize || commonroot.size() == 0;
+                    if (!rootneedsurl) {
+                        commonroot = commonprefix(commonroot, ixterm, true);
+                        needcallcommonroot = false;
                     }
-                    ixterm = fileurltolocalpath(doc.url);
+                    // We may need the full url for the dir tree if the visible part depth is too
+                    // short.
+                    bool treeneedsurl =
+                        countslashes(ixterm, commonroot.size(), prehashsize) <= depth;
+
+                    if (rootneedsurl || treeneedsurl) {
+                        Rcl::Doc doc;
+                        if (!getDoc(ixterm, -1, doc, false) || doc.pc == -1) {
+                            continue;
+                        }
+                        ixterm = fileurltolocalpath(doc.url);
+                    }
                 }
                 if (!ixterm.empty() && ixterm.back() == '|')
                     ixterm.pop_back();
+                if (needcallcommonroot)
+                    commonroot = commonprefix(commonroot, ixterm, true);
                 listall.push_back(ixterm);
             }
             break;
@@ -629,6 +661,7 @@ bool Db::dirlist(int depth, std::string& root, std::vector<std::string>& dirs)
     // can use getfather and get the actual overall prefix directory, the only exception I can think
     // of being a single empty directory being indexed (the final root would be its parent)
     root = commonprefix(listall, true);
+    std::cerr << "ROOT [" << root << "] commonroot [" << commonroot << "]\n";
     if (!root.empty() && root.back() != '/')
         root = path_getfather(root);
 
