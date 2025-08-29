@@ -3,7 +3,7 @@
 // autoconfig.h before the build.
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.43.4"
+#define PACKAGE_VERSION "1.43.5"
 
 /* No X11 session monitoring support */
 #define DISABLE_X11MON 1
