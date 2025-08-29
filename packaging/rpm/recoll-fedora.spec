@@ -1,16 +1,21 @@
 %global         gsspver 1.1.3
 %global         __cmake_in_source_build 1
 
+%if 0%{?fedora} < 42 && 0%{?rhel} < 11
+%global         kio4 1
+%endif
+
 Summary:        Desktop full text search tool with Qt GUI
 Name:           recoll
-Version:        1.42.1
-Release:        1%{?dist}
+Version:        1.43.5
+Release:        4%{?dist}
 # Automatically converted from old format: GPLv2+ - review is highly recommended.
 License:        GPL-2.0-or-later
 URL:            https://www.recoll.org
 Source0:        https://www.recoll.org/recoll-%{version}.tar.gz
 Source1:        https://www.recoll.org/downloads/src/gssp-recoll-%{gsspver}.tar.gz
-Source10:       qmake-qt5.sh
+Source10:       qmake-qt6.sh
+Patch:          recoll-1.42.1-cmake4.patch
 BuildRequires:  aspell-devel
 BuildRequires:  bison
 BuildRequires:  chmlib-devel
@@ -19,13 +24,13 @@ BuildRequires:  extra-cmake-modules
 BuildRequires:  file-devel
 BuildRequires:  gcc-c++
 # kio
-BuildRequires:  kdelibs4-devel
-BuildRequires:  kf5-kio-devel
+%{?kio4:BuildRequires:  kdelibs4-devel}
+BuildRequires:  kf6-kio-devel
 # krunner
-BuildRequires:  kf5-ki18n-devel
-BuildRequires:  kf5-krunner-devel
-BuildRequires:  kf5-knotifications-devel
-BuildRequires:  kf5-kpackage-devel
+BuildRequires:  kf6-ki18n-devel
+BuildRequires:  kf6-krunner-devel
+BuildRequires:  kf6-knotifications-devel
+BuildRequires:  kf6-kpackage-devel
 
 BuildRequires:  libxslt-devel
 BuildRequires:  make
@@ -33,9 +38,9 @@ BuildRequires:  meson
 BuildRequires:  python-rpm-macros
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
-BuildRequires:  qt5-linguist
-BuildRequires:  qt5-qtbase-devel
-BuildRequires:  qt5-qtwebkit-devel
+BuildRequires:  qt6-linguist
+BuildRequires:  qt6-qtbase-devel
+BuildRequires:  systemd-rpm-macros
 BuildRequires:  xapian-core-devel
 BuildRequires:  zlib-devel
 Requires:       xdg-utils
@@ -83,7 +88,7 @@ Requires:      python3-pydbus
 This package contains the Recoll GNOME Shell search provider
 
 %prep
-%setup -q -D -a 1
+%autosetup -p1 -D -a 1
 sed -i -e '1{\,^#!/usr/bin/env,d}' python/recoll/recoll/rclconfig.py
 ln -s gssp-recoll-%{gsspver} gssp
 
@@ -93,9 +98,9 @@ CXXFLAGS="%{optflags}"; export CXXFLAGS
 LDFLAGS="%{?__global_ldflags}"; export LDFLAGS
 
 # force use of custom/local qmake, to inject proper build flags (above)
-install -m755 -D %{SOURCE10} qmake-qt5.sh
-export QMAKE=$(pwd)/qmake-qt5.sh
-%meson -Drecollq=true -Dsystemd=true
+install -m755 -D %{SOURCE10} qmake-qt6.sh
+export QMAKE=$(pwd)/qmake-qt6.sh
+%meson -Drecollq=true -Dsystemd=true -Dwebkit=false -Dwebengine=true
 %meson_build
 
 # gssp
@@ -118,22 +123,26 @@ export RECOLL_LIB_DIR=%{_builddir}/%{name}-%{version}/redhat-linux-build/
 
 # kio_recoll -kde5
 pushd kde/kioslave/kio_recoll
-%cmake -DRECOLL_PUBLIC_LIB=1
+cp CMakeLists-KF6.txt CMakeLists.txt
+%cmake -DRECOLL_PUBLIC_LIB=1 -DQT_MAJOR_VERSION=6
 %cmake_build
 %cmake_install
 popd
 
+%if 0%{?kio4}
 # kio_recoll -kde4
 export QMAKE=qmake-qt4
 pushd kde/kioslave/kio_recoll-kde4
-%cmake_kde4 -DRECOLL_PUBLIC_LIB=1
+%cmake_kde4 -DRECOLL_PUBLIC_LIB=1 -DCMAKE_POLICY_VERSION_MINIMUM=3.5
 %cmake_build
 %cmake_install
 popd
+%endif
 
 # krunner_recoll
 pushd kde/krunner
-%cmake -DRECOLL_PUBLIC_LIB=1
+cp CMakeLists-KF6.txt CMakeLists.txt
+%cmake -DRECOLL_PUBLIC_LIB=1 -DQT_MAJOR_VERSION=6
 %cmake_build
 %cmake_install
 popd
@@ -184,16 +193,18 @@ echo "%{_libdir}/recoll" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/recoll-%{_arc
 
 %files kio
 %license COPYING
+%{_libdir}/qt6/plugins/kf6/kio/kio_recoll.so
+%if 0%{?kio4}
 %{_libdir}/kde4/kio_recoll.so
-%{_libdir}/qt5/plugins/kf5/kio/kio_recoll.so
 %{_datadir}/kde4/apps/kio_recoll/
 %{_datadir}/kde4/services/recoll.protocol
 %{_datadir}/kde4/services/recollf.protocol
+%endif
 %{_datadir}/kio_recoll/help.html
 %{_datadir}/kio_recoll/welcome.html
 
 %files krunner
-%{_libdir}/qt5/plugins/kf5/krunner/krunner_recoll.so
+%{_libdir}/qt6/plugins/kf6/krunner/krunner_recoll.so
 
 %files gssp
 %license COPYING
@@ -203,6 +214,40 @@ echo "%{_libdir}/recoll" > %{buildroot}%{_sysconfdir}/ld.so.conf.d/recoll-%{_arc
 %{_datadir}/applications/org.recoll.Recoll.SearchProvider.desktop
 
 %changelog
+* Tue Aug 26 2025 FeRD (Frank Dana) <ferdnyc@gmail.com> - 1.43.4-4
+- Remove QtWebKit from build requirements, no longer used
+
+* Thu Aug 21 2025 Terje Rosten <terjeros@gmail.com> - 1.43.4-3
+- Bump to qt6 and kf6
+
+* Fri Aug 15 2025 Python Maint <python-maint@redhat.com> - 1.43.4-2
+- Rebuilt for Python 3.14.0rc2 bytecode
+
+* Sun Aug 10 2025 Terje Rosten <terjeros@gmail.com> - 1.43.4-1
+- 1.43.4
+
+* Fri Jul 25 2025 Fedora Release Engineering <releng@fedoraproject.org> - 1.43.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_43_Mass_Rebuild
+
+* Sat Jul 05 2025 Terje Rosten <terjeros@gmail.com> - 1.43.3-1
+- 1.43.3
+
+* Mon Jun 02 2025 Python Maint <python-maint@redhat.com> - 1.43.2-2
+- Rebuilt for Python 3.14
+
+* Thu May 08 2025 Terje Rosten <terjeros@gmail.com> - 1.43.2-1
+- 1.43.2
+
+* Sat Mar 29 2025 Terje Rosten <terjeros@gmail.com> - 1.43.0-1
+- 1.43.0
+
+* Sat Mar 01 2025 Terje Rosten <terjeros@gmail.com> - 1.42.4-1
+- 1.42.1
+- Fix build issue with GCC 15
+
+* Sat Jan 18 2025 Fedora Release Engineering <releng@fedoraproject.org> - 1.40.4-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_42_Mass_Rebuild
+
 * Sat Nov 16 2024 Terje Rosten <terjeros@gmail.com> - 1.40.4-1
 - 1.40.4
 
