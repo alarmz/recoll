@@ -451,31 +451,41 @@ template <class T> std::string stringsToCSV(const T& tokens, char sep)
     return s;
 }
 
+std::string commonprefix(const std::string& curpfx, const std::string& value, bool aspaths)
+{
+    if (curpfx.empty()) {
+        return value;
+    }
+    auto prefix = curpfx;
+    while (value.compare(0, prefix.size(), prefix)) {
+        // If the prefix has an ending / and the value is identical with no / keep the longer
+        if (aspaths && prefix.back() == '/' && !prefix.compare(0, prefix.size()-1, value)) {
+            break;
+        }
+        prefix.pop_back();
+        if (prefix.empty())
+            return {};
+    }
+    if (aspaths &&
+        value.size() > prefix.size() && prefix.back() != '/' && value[prefix.size()] == '/') {
+        prefix += '/';
+    }
+            
+    return prefix;
+}
+
 template <class T> std::string commonprefix(const T& values, bool aspaths)
 {
     if (values.empty())
         return {};
     if (values.size() == 1)
         return *values.begin();
-    auto prefix = *values.begin();
+    std::string prefix;
     // Look at all input  strings
     for (const auto& value : values) {
-        // As long as the string does not begin with the prefix, reduce the prefix size and retry
-        // Stop if the prefix length goes to 0
-        // If processing paths, choose a prefix ending with a / even if not the shortest
-        while (value.compare(0, prefix.size(), prefix)) {
-            // If the prefix has an ending / and the value is identical with no / keep the longer
-            if (aspaths && prefix.back() == '/' && !prefix.compare(0, prefix.size()-1, value)) {
-                break;
-            }
-            prefix.pop_back();
-            if (prefix.empty())
-                return {};
-        }
-        if (aspaths &&
-            value.size() > prefix.size() && prefix.back() != '/' && value[prefix.size()] == '/') {
-            prefix += '/';
-        }
+        prefix = commonprefix(prefix, value, aspaths);
+        if (prefix.empty())
+            return std::string();
     }
     return prefix;
 }
