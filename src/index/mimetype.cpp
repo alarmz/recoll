@@ -74,9 +74,12 @@ static string mimetypefromdata(RclConfig *cfg, const string &fn, bool usfc)
 
 #ifdef ENABLE_LIBMAGIC
     // We now use a cached descriptor and global locking around libmagic. The lock is because
-    // libmagic is not as thread-safe as it's supposed to be (crashes on Mac ARM, see issue
+    // libmagic is not as thread-safe as it's rumoured to be (crashes on Mac ARM, see issue
     // 340). The caching is because we get better performance this way. We don't bother about ever
-    // freeing the descriptor.
+    // freeing the descriptor. Things are now actually faster. After looking at libmagic code, the
+    // only mystery is why the original Linux code did not crash. We could treat
+    // RECOLL_AS_MAC_BUNDLE like _WIN32, but the current version was well tested on Mac ARM (not by
+    // me), so let's keep it safe, and magic_load() is only called once anyway.
     {
         std::unique_lock<std::mutex> lck(magiclock);
         static magic_t mgtoken;
