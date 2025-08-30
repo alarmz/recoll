@@ -40,6 +40,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  qt6-linguist
 BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qtwebengine-devel
 BuildRequires:  systemd-rpm-macros
 BuildRequires:  xapian-core-devel
 BuildRequires:  zlib-devel
