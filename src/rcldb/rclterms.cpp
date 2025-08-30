@@ -661,7 +661,6 @@ bool Db::dirlist(int depth, std::string& root, std::vector<std::string>& dirs)
     // can use getfather and get the actual overall prefix directory, the only exception I can think
     // of being a single empty directory being indexed (the final root would be its parent)
     root = commonprefix(listall, true);
-    std::cerr << "ROOT [" << root << "] commonroot [" << commonroot << "]\n";
     if (!root.empty() && root.back() != '/')
         root = path_getfather(root);
 
