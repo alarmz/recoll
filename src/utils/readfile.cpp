@@ -58,22 +58,21 @@
 using namespace std;
 
 ///////////////
-// Implementation of basic interface: read whole file to memory buffer
+// FileScanDo specialisation:: read whole file to memory buffer
 class FileToString : public FileScanDo {
 public:
     FileToString(string& data) : m_data(data) {}
 
-    // Note: the fstat() + reserve() (in init()) calls divide cpu
-    // usage almost by 2 on both linux i586 and macosx (compared to
-    // just append()) Also tried a version with mmap, but it's
-    // actually slower on the mac and not faster on linux.
-    virtual bool init(int64_t size, string *) {
+    // Note: the fstat() + reserve() (in init()) calls divide cpu usage almost by 2 on both linux
+    // i586 and macosx (compared to just append()) Also tried a version with mmap, but it's actually
+    // slower on the mac and not faster on linux.
+    virtual bool init(int64_t size, string *) override {
         if (size > 0) {
             m_data.reserve((size_t)size);
         }
         return true;
     }
-    virtual bool data(const char *buf, int cnt, string *reason) {
+    virtual bool data(const char *buf, int cnt, string *reason) override {
         try {
             m_data.append(buf, cnt);
         } catch (...) {
@@ -86,8 +85,7 @@ public:
     string& m_data;
 };
 
-bool file_to_string(const string& fn, string& data, int64_t offs, size_t cnt,
-                    string *reason)
+bool file_to_string(const string& fn, string& data, int64_t offs, size_t cnt, string *reason)
 {
     FileToString accum(data);
     return file_scan(fn, &accum, offs, cnt, reason
@@ -106,8 +104,7 @@ bool file_to_string(const string& fn, string& data, string *reason)
 /////////////
 //  Callback/filtering interface
 
-// Abstract class base for both source (origin) and filter
-// (midstream). Both have a downstream
+// Abstract class base for both source (origin) and filter (midstream). Both have a downstream
 class FileScanUpstream {
 public:
     virtual ~FileScanUpstream() = default;
@@ -130,11 +127,10 @@ public:
     virtual bool scan() = 0;
 };
 
-// Inside element of a transformation pipe. The idea is that elements
-// which don't recognize the data get themselves out of the pipe
-// (pop()). Typically, only one of the decompression modules
-// (e.g. gzip/bzip2/xz...) would remain. For now there is only gzip,
-// it pops itself if the data does not have the right magic number
+// Inside element of a transformation pipe. The idea is that elements which don't recognize the data
+// get themselves out of the pipe (pop()). Typically, only one of the decompression modules
+// (e.g. gzip/bzip2/xz...) would remain. For now there is only gzip, it pops itself if the data does
+// not have the right magic number
 class FileScanFilter : public FileScanDo, public FileScanUpstream {
 public:
     virtual void insertAtSink(FileScanDo *sink, FileScanUpstream *upstream) {
@@ -422,88 +418,117 @@ protected:
 // Source taking data from a ZIP archive member
 class FileScanSourceZip : public FileScanSource {
 public:
-    FileScanSourceZip(FileScanDo *next, const string& fn,
-                      const string& member, string *reason)
-        : FileScanSource(next), m_fn(fn), m_member(member),
-          m_reason(reason) {}
-
-    FileScanSourceZip(const char *data, size_t cnt, FileScanDo *next,
-                      const string& member, string *reason)
-        : FileScanSource(next), m_data(data), m_cnt(cnt), m_member(member),
-          m_reason(reason) {}
-
-    virtual bool scan() {
-        bool ret = false;
-        mz_zip_archive zip;
-        mz_zip_zero_struct(&zip);
-        void *opaque = this;
-
-        bool ret1;
-        if (m_fn.empty()) {
-            ret1 = mz_zip_reader_init_mem(&zip, m_data, m_cnt, 0);
-        } else {
+    FileScanSourceZip(FileScanDo *next, const string& fn, const string& member, string *reason)
+        : FileScanSource(next), m_member(member), m_reason(reason) {
 #ifdef _WIN32
-            auto buf = utf8towchar(m_fn);
+            auto buf = utf8towchar(fn);
             auto realpath = buf.get();
 #else
-            auto realpath = m_fn.c_str();
+            auto realpath = fn.c_str();
 #endif
-            ret1 = mz_zip_reader_init_file(&zip, realpath, 0);
-        }
-        if (!ret1) {
+            mz_zip_zero_struct(&m_zip);
+            if (!mz_zip_reader_init_file(&m_zip, realpath, 0)) {
+                if (m_reason) {
+                    *m_reason += "mz_zip_reader_init_xx() failed: ";
+                    *m_reason += string(mz_zip_get_error_string(m_zip.m_last_error));
+                }
+                return;
+            }
+            m_ok = true;
+    }
+
+    FileScanSourceZip(
+        const char *data, size_t cnt, FileScanDo *next, const string& member, string *reason)
+        : FileScanSource(next), m_data(data), m_cnt(cnt), m_member(member), m_reason(reason) {
+        mz_zip_zero_struct(&m_zip);
+        if (!mz_zip_reader_init_mem(&m_zip, m_data, m_cnt, 0)) {
             if (m_reason) {
                 *m_reason += "mz_zip_reader_init_xx() failed: ";
-                *m_reason +=
-                    string(mz_zip_get_error_string(zip.m_last_error));
+                *m_reason += string(mz_zip_get_error_string(m_zip.m_last_error));
             }
-            return false;
+            return;
         }
+        m_ok = true;
+    }
+    virtual ~FileScanSourceZip() {
+        if (m_ok)
+            mz_zip_reader_end(&m_zip);
+    }
 
-        mz_uint32 file_index;
-        if (mz_zip_reader_locate_file_v2(&zip, m_member.c_str(), NULL, 0,
-                                         &file_index) < 0) {
-            if (m_reason) {
-                *m_reason += "mz_zip_reader_locate_file() failed: ";
-                *m_reason += string(mz_zip_get_error_string(zip.m_last_error));
-            }
+    void setmember(const std::string& member) {
+        m_member = member;
+    }
+    void setdoer(FileScanDo* doer) {
+        setDownstream(doer);
+    }
+    
+    virtual bool scan() {
+        void *opaque = this;
+        bool ret = false;
+        if (!m_ok)
             goto out;
-        }
 
-        mz_zip_archive_file_stat zstat;
-        if (!mz_zip_reader_file_stat(&zip, file_index, &zstat)) {
-            if (m_reason) {
-                *m_reason += "mz_zip_reader_file_stat() failed: ";
-                *m_reason += string(mz_zip_get_error_string(zip.m_last_error));
-            }
-            goto out;
-        }
-        if (out()) {
-            if (!out()->init(zstat.m_uncomp_size, m_reason)) {
+        if (m_member != "*") {
+            mz_uint32 file_index;
+            if (mz_zip_reader_locate_file_v2(&m_zip, m_member.c_str(), NULL, 0, &file_index) < 0) {
+                if (m_reason) {
+                    *m_reason += "mz_zip_reader_locate_file() failed: ";
+                    *m_reason += string(mz_zip_get_error_string(m_zip.m_last_error));
+                }
                 goto out;
             }
-        }
-                
-        if (!mz_zip_reader_extract_to_callback(
-                &zip, file_index, write_cb, opaque, 0)) {
-            if (m_reason) {
-                *m_reason += "mz_zip_reader_extract_to_callback() failed: ";
-                *m_reason += string(mz_zip_get_error_string(zip.m_last_error));
+            mz_zip_archive_file_stat zstat;
+            if (!mz_zip_reader_file_stat(&m_zip, file_index, &zstat)) {
+                if (m_reason) {
+                    *m_reason += "mz_zip_reader_file_stat() failed: ";
+                    *m_reason += string(mz_zip_get_error_string(m_zip.m_last_error));
+                }
+                goto out;
             }
-            goto out;
+            if (out()) {
+                if (!out()->init(zstat.m_uncomp_size, m_reason)) {
+                    goto out;
+                }
+            }
+                
+            if (!mz_zip_reader_extract_to_callback(&m_zip, file_index, write_cb, opaque, 0)) {
+                if (m_reason) {
+                    *m_reason += "mz_zip_reader_extract_to_callback() failed: ";
+                    *m_reason += string(mz_zip_get_error_string(m_zip.m_last_error));
+                }
+                goto out;
+            }
+        } else {
+            // Enumerate entries
+            auto num_files = mz_zip_reader_get_num_files(&m_zip);
+            for (mz_uint i = 0; i < num_files; i++) {
+                mz_zip_archive_file_stat zstat;
+                if (!mz_zip_reader_file_stat(&m_zip, i, &zstat)) {
+                    if (m_reason) {
+                        *m_reason += "mz_zip_reader_file_stat() failed: ";
+                        *m_reason += string(mz_zip_get_error_string(m_zip.m_last_error));
+                    }
+                    goto out;
+                }
+                if (out()) {
+                    if (!out()->data(zstat.m_filename,
+                                     strnlen(zstat.m_filename, MZ_ZIP_MAX_ARCHIVE_FILENAME_SIZE),
+                                     m_reason)) {
+                        goto out;
+                    }
+                }
+            }
         }
         
         ret = true;
     out:
-        mz_zip_reader_end(&zip);
         return ret;
     }
 
-    static size_t write_cb(void *pOpaque, mz_uint64 file_ofs,
-                           const void *pBuf, size_t n) {
+    static size_t write_cb(void *pOpaque, mz_uint64 file_ofs, const void *pBuf, size_t n) {
         const char *cp = (const char*)pBuf;
         PRETEND_USE(file_ofs);
-        LOGDEB1("write_cb: ofs " << file_ofs << " cnt " << n << " data: " <<
-                string(cp, n) << endl);
+        LOGDEB1("write_cb: ofs " << file_ofs << " cnt " << n << " data: " << string(cp, n) << '\n');
         FileScanSourceZip *ths = (FileScanSourceZip *)pOpaque;
         if (ths->out()) {
             if (!ths->out()->data(cp, static_cast<int>(n), ths->m_reason)) {
@@ -514,12 +539,34 @@ public:
     }
     
 protected:
-    const char *m_data;
+    const char *m_data{nullptr};
     size_t m_cnt;
-    string m_fn;
-    string m_member;
-    string *m_reason;
+    bool m_ok{false};
+    mz_zip_archive m_zip;
+    std::string m_member;
+    std::string *m_reason;
 };
+
+
+std::shared_ptr<FileScanSourceZip> init_scan(
+    const std::string& filename, std::string *reason)
+{
+    return std::make_shared<FileScanSourceZip>(nullptr, filename, std::string(), reason);
+}
+
+std::shared_ptr<FileScanSourceZip> init_scan(
+    const char *data, size_t cnt, std::string *reason)
+{
+    return std::make_shared<FileScanSourceZip>(data, cnt, nullptr, std::string(), reason);
+}
+
+bool zip_scan(
+    std::shared_ptr<FileScanSourceZip> zip, const std::string& membername, FileScanDo* doer)
+{
+    zip->setdoer(doer);
+    zip->setmember(membername);
+    return zip->scan();
+}
 
 bool file_scan(const std::string& filename, const std::string& membername,
                FileScanDo* doer, std::string *reason)

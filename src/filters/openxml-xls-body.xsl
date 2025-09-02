@@ -10,10 +10,17 @@
     </div>
   </xsl:template>
 
+
+  <xsl:template match="x:v">
+    <p>
+      <xsl:value-of select="."/>
+    </p>
+  </xsl:template>
   <xsl:template match="x:t">
     <p>
       <xsl:value-of select="."/>
     </p>
   </xsl:template>
+<xsl:template match="text()|@*"/>
 
 </xsl:stylesheet>

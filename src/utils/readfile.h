@@ -1,4 +1,4 @@
-/* Copyright (C) 2004 J.F.Dockes
+/* Copyright (C) 2004-2025 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU Lesser General Public License as published by
  *   the Free Software Foundation; either version 2.1 of the License, or
@@ -17,13 +17,16 @@
 #ifndef _READFILE_H_INCLUDED_
 #define _READFILE_H_INCLUDED_
 
+// Code for reading data which may be stored in plain or zlib format or insize a zip archive,
+// and sending the data for processing by a sink object.
 #include <sys/types.h>
 
 #include <string>
+#include <memory>
 
 class FileScanUpstream;
 
-/** Data sink for the file reader. */
+/** Data sink, your code goes there. */
 class FileScanDo {
 public:
     FileScanDo() {}
@@ -35,7 +38,7 @@ public:
      * @param reason[output] set to error message in case of error.
      * @return false for error (file_scan will return), true if ok.
      */
-    virtual bool init(int64_t size, std::string *reason) = 0;
+    virtual bool init(int64_t size, std::string *reason) {return true;}
     /* Process chunk of data
      * @param buf  the data buffer.
      * @param cnt byte count.
@@ -73,36 +76,44 @@ bool file_scan(const std::string& fn, FileScanDo* doer, int64_t startoffs,
     );
 
 /** Same as above, not offset/cnt/md5 */
-bool file_scan(const std::string& filename, FileScanDo* doer,
-               std::string *reason);
+bool file_scan(const std::string& filename, FileScanDo* doer, std::string *reason);
 
-/** Same as file_scan, from a memory buffer. No libz processing */
-bool string_scan(const char *data, size_t cnt, FileScanDo* doer, 
-                 std::string *reason
+/** Same as file_scan, from a memory buffer. No zlib processing at the moment */
+bool string_scan(const char *data, size_t cnt, FileScanDo* doer,  std::string *reason
 #ifdef READFILE_ENABLE_MD5
                  , std::string *md5p
 #endif
     );
 
 #if defined(READFILE_ENABLE_MINIZ)
-/* Process a zip archive member */
+/** Process a zip archive
+ * @param membername member to process, or if "*", list member names instead through the data()
+ *  callback.
+ */
 bool file_scan(const std::string& filename, const std::string& membername,
                FileScanDo* doer, std::string *reason);
 bool string_scan(const char* data, size_t cnt, const std::string& membername,
                  FileScanDo* doer, std::string *reason);
+// Interface using reusable object to save init time
+class FileScanSourceZip;
+std::shared_ptr<FileScanSourceZip> init_scan(const std::string& filename, std::string *reason);
+std::shared_ptr<FileScanSourceZip> init_scan(const char *data, size_t cnt, std::string *reason);
+bool zip_scan(
+    std::shared_ptr<FileScanSourceZip> zip, const std::string& membername, FileScanDo* doer);
 #endif
 
 /**
- * Read file into string.
+ * Scanner-based helper: read file into string.
  * @return true for ok, false else
  */
-bool file_to_string(const std::string& filename, std::string& data,
-                    std::string *reason = nullptr);
+bool file_to_string(const std::string& filename, std::string& data, std::string *reason = nullptr);
 
-/** Read file chunk into string. Set cnt to -1 for going to
- * eof, offs to -1 for going from the start without decompression */
+/**
+ * Scanner-based helper: Read file chunk into string.
+ * @param offs set to -1 for going from the start without decompression 
+ * @param cnt Set to -1 for going to eof,
+ */
 bool file_to_string(const std::string& filename, std::string& data,
                     int64_t offs, size_t cnt, std::string *reason = nullptr);
-
 
 #endif /* _READFILE_H_INCLUDED_ */

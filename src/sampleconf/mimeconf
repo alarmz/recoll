@@ -106,17 +106,21 @@ application/vnd.openxmlformats-officedocument.wordprocessingml.template = \
  body word/footnotes.xml openxml-word-body.xsl \
  body word/comments.xml openxml-word-body.xsl \
  body word/endnotes.xml openxml-word-body.xsl 
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet = \
+ internal xsltproc meta docProps/core.xml openxml-meta.xsl \
+ body xl/sharedStrings.xml openxml-xls-body.xsl \
+ body xl/worksheets/sheet*.xml openxml-xls-body.xsl
+application/vnd.openxmlformats-officedocument.spreadsheetml.template =\
+ internal xsltproc meta docProps/core.xml openxml-meta.xsl \
+ body xl/sharedStrings.xml openxml-xls-body.xsl \
+ body xl/worksheets/sheet*.xml openxml-xls-body.xsl
+# Powerpoint and Visio still use the Python handler, because it does a few things which the C++
+# generic zip+xml handler does not do, like sorting sheets by numeric name
 application/vnd.openxmlformats-officedocument.presentationml.template = \
  execm rclopxml.py
 application/vnd.openxmlformats-officedocument.presentationml.presentation = \
  execm rclopxml.py
 application/vnd.ms-visio.drawing = execm rclopxml.py
-application/vnd.openxmlformats-officedocument.spreadsheetml.sheet = \
- internal xsltproc meta docProps/core.xml openxml-meta.xsl \
- body xl/sharedStrings.xml openxml-xls-body.xsl
-application/vnd.openxmlformats-officedocument.spreadsheetml.template =\
- internal xsltproc meta docProps/core.xml openxml-meta.xsl \
- body xl/sharedStrings.xml openxml-xls-body.xsl
 
 application/vnd.sun.xml.calc = \
  internal xsltproc meta meta.xml opendoc-meta.xsl \
