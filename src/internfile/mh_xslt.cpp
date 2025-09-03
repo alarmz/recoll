@@ -141,6 +141,7 @@ nameList(std::shared_ptr<FileScanSourceZip> zip, const std::string& pattern)
         LOGERR("nameList: listing members failed\n");
         return {};
     }
+    sortAlphanumStrings(doer.m_result);
     return doer.m_result;
 }
 
@@ -385,6 +386,8 @@ bool MimeHandlerXslt::Internal::process_doc_or_string(
                     LOGERR("apply_stylesheet failed: " << reason << '\n');
                     return false;
                 }
+                if (forpreview)
+                    result += std::string("<h2>") + nm + "</h2>";
                 result += part;
             }
         }

@@ -30,8 +30,8 @@
 #include <list>
 #include <map>
 #include <set>
-#include <unordered_set>
 #include <string>
+#include <unordered_set>
 #include <utility>
 #include <vector>
 
@@ -1242,6 +1242,46 @@ bool parseHTTPRanges(const std::string& ranges, std::vector<std::pair<int64_t, i
     }
     return true;
 }
+
+
+
+// Extract a numeric part from an alphanumeric string
+static bool extractNumber(const std::string &s, size_t &i, int &num)
+{
+    if (i >= s.size()) return false;
+    size_t start = i;
+//    if (s[start] == '0' && start + 1 < s.size() && isdigit(s[start + 1])) {
+        // Handle leading zeros if needed
+//    }
+    while (i < s.size() && isdigit(s[i])) i++;
+    if (i == start) return false;
+    num = std::stoi(s.substr(start, i - start));
+    return true;
+}
+
+// Custom comparator for sorting alphanumeric strings with natural sorting of the numeric parts
+static bool naturalCompare(const std::string &a, const std::string &b)
+{
+    size_t i = 0, j = 0;
+    while (i < a.size() && j < b.size()) {
+        if (isdigit(a[i]) && isdigit(b[j])) {
+            int numA, numB;
+            extractNumber(a, i, numA);
+            extractNumber(b, j, numB);
+            if (numA != numB) return numA < numB;
+        } else {
+            if (a[i] != b[j]) return a[i] < b[j];
+            i++; j++;
+        }
+    }
+    return a.size() < b.size();
+}
+
+void sortAlphanumStrings(std::vector<std::string> & strings)
+{
+    std::sort(strings.begin(), strings.end(), naturalCompare);
+}
+
 
 void millisleep(int millis)
 {

@@ -291,6 +291,8 @@ extern std::string valToString(const std::vector<CharFlags>&, unsigned int val);
 /// Decode percent-encoded string
 extern std::string pc_decode(const std::string&);
 
+extern void sortAlphanumStrings(std::vector<std::string> &strings);
+
 /// Parse HTTP range header value into a vector of offset pairs. -1 is used as a placeholder
 /// wherever a part of a range is absent: either for a missing end or for a suffix range (absent
 /// start meaning count from the end).
