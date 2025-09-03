@@ -411,6 +411,8 @@ set(filter_files
     filters/opendoc-flat.xsl
     filters/opendoc-meta.xsl
     filters/openxml-meta.xsl
+    filters/openxml-ppt-body.xsl
+    filters/openxml-visio-body.xsl
     filters/openxml-word-body.xsl
     filters/openxml-xls-body.xsl
     filters/ppt-dump.py
