@@ -1,8 +1,11 @@
 1 results
 application/vnd.openxmlformats-officedocument.wordprocessingml.document	[file:///home/dockes/projets/fulltext/testrecoll/opxml/Missionaries.docx]	[Missionaries.docx]	20328	bytes	
 1 results
-application/vnd.openxmlformats-officedocument.presentationml.presentation	[file:///home/dockes/projets/fulltext/testrecoll/opxml/College_Application_Process_1_18_08.pptx]	[College_Application_Process_1_18_08.pptx]	713280	bytes	
+application/vnd.openxmlformats-officedocument.presentationml.presentation	[file:///home/dockes/projets/fulltext/testrecoll/opxml/College_Application_Process_1_18_08.pptx]	[Slide 1]	713280	bytes	
 1 results
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet	[file:///home/dockes/projets/fulltext/testrecoll/opxml/GuitarHero2_Helper.xlsx]	[GuitarHero2_Helper.xlsx]	17147	bytes	
 1 results
 application/vnd.ms-visio.drawing	[file:///home/dockes/projets/fulltext/testrecoll/visio/visio2.vsdx]	[visio2.vsdx]	96002	bytes	
+Checking numbers found in xlsx spreadsheet
+1 results
+application/vnd.openxmlformats-officedocument.spreadsheetml.sheet	[file:///home/dockes/projets/fulltext/testrecoll/opxml/GuitarHero2_Helper.xlsx]	[GuitarHero2_Helper.xlsx]	17147	bytes	
