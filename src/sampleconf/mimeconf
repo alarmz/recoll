@@ -94,6 +94,9 @@ application/vnd.oasis.opendocument.text-flat-xml = \
 application/vnd.oasis.opendocument.spreadsheet-flat-xml = \
  internal xsltproc opendoc-flat.xsl
 
+# Powerpoint and Visio are now processed by the C++ libxsl-based module which has gained the
+# capability to process an indeterminate number of body pages. The Python handler is still around
+# because it is of course easier to customise, and can also process xlsx and docx.
 application/vnd.openxmlformats-officedocument.wordprocessingml.document = \
  internal xsltproc meta docProps/core.xml openxml-meta.xsl \
  body word/document.xml openxml-word-body.xsl \
@@ -114,24 +117,20 @@ application/vnd.openxmlformats-officedocument.spreadsheetml.template =\
  internal xsltproc meta docProps/core.xml openxml-meta.xsl \
  body xl/sharedStrings.xml openxml-xls-body.xsl \
  body xl/worksheets/sheet*.xml openxml-xls-body.xsl
-# Powerpoint and Visio still use the Python handler, because it does a few things which the C++
-# generic zip+xml handler does not do, like sorting sheets by numeric name
-#application/vnd.openxmlformats-officedocument.presentationml.template = \
-# execm rclopxml.py
-#application/vnd.openxmlformats-officedocument.presentationml.presentation = \
-# execm rclopxml.py
+#application/vnd.openxmlformats-officedocument.presentationml.template = execm rclopxml.py
+#application/vnd.openxmlformats-officedocument.presentationml.presentation = execm rclopxml.py
 application/vnd.openxmlformats-officedocument.presentationml.presentation = \
- internal xsltproc meta docProps/core.xml openxml-meta.xsl \
- body ppt/slides/slide*.xml openxml-ppt-body.xsl \
- body ppt/notesSlides/notesSlide*.xml openxml-ppt-body.xsl 
+    internal xsltproc meta docProps/core.xml openxml-meta.xsl \
+    body ppt/slides/slide*.xml openxml-ppt-body.xsl \
+    body ppt/notesSlides/notesSlide*.xml openxml-ppt-body.xsl 
 application/vnd.openxmlformats-officedocument.presentationml.template = \
- internal xsltproc meta docProps/core.xml openxml-meta.xsl \
- body ppt/slides/slide*.xml openxml-ppt-body.xsl \
- body ppt/notesSlides/notesSlide*.xml openxml-ppt-body.xsl 
+    internal xsltproc meta docProps/core.xml openxml-meta.xsl \
+    body ppt/slides/slide*.xml openxml-ppt-body.xsl \
+    body ppt/notesSlides/notesSlide*.xml openxml-ppt-body.xsl 
 #application/vnd.ms-visio.drawing = execm rclopxml.py
 application/vnd.ms-visio.drawing = \
- internal xsltproc meta docProps/core.xml openxml-meta.xsl \
- body visio/pages/page*.xml openxml-visio-body.xsl
+    internal xsltproc meta docProps/core.xml openxml-meta.xsl \
+    body visio/pages/page*.xml openxml-visio-body.xsl
 
 
 application/vnd.sun.xml.calc = \
