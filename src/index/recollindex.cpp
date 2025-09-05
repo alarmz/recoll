@@ -100,6 +100,7 @@ static struct option long_options[] = {
     {"notindexed", 0, nullptr, OPTVAL_DIAGS_NOTINDEXED},
     {"diagsfile", required_argument, nullptr, OPTVAL_DIAGS_DIAGSFILE},
     {"nopurge", 0, nullptr, OPTVAL_NOPURGE},
+    {"help", 0, nullptr, 'h'},
     {nullptr, 0, nullptr, 0}
 };
 
