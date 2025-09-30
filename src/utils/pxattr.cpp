@@ -425,7 +425,7 @@ static bool list(int fd, const string& path, vector<string>* names, flags flags,
 #if defined(PXAFREEBSD)
     char *cp = buf.buf;
     unsigned int len;
-    while (cp < buf.buf + ret + 1) {
+    while (cp < buf.buf + ret) {
         len = *cp;
         *cp = 0;
         cp += len + 1;
