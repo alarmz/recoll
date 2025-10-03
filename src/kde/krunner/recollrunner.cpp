@@ -79,17 +79,17 @@ void RecollRunner::init()
         // Initialize data for the match session. This gets called from the main thread
         RclConfig *m_rclconfig = recollinit(0, nullptr, nullptr, m_reason);
         if (nullptr == m_rclconfig) {
-            std::cerr << "RecollRunner: Could not open recoll configuration\n";
+            LOGERR("RecollRunner: Could not open recoll configuration\n");
             return;
         }
         m_rclconfig->getConfParam("kioshowsubdocs", &m_showSubdocs);
         m_rcldb = new Rcl::Db(m_rclconfig);
         if (nullptr == m_rcldb) {
-            std::cerr << "RecollRunner: Could not build database object. (out of memory ?)";
+            LOGERR("RecollRunner: Could not build database object. (out of memory ?)");
             return;
         }
         if (!m_rcldb->open(Rcl::Db::DbRO)) {
-            std::cerr << "RecollRunner: Could not open index in " + m_rclconfig->getDbDir() << "\n";
+            LOGERR("RecollRunner: Could not open index in " + m_rclconfig->getDbDir() << "\n");
             return;
         }
         char *cp = getenv("RECOLL_KIO_STEMLANG");
@@ -113,7 +113,7 @@ void RecollRunner::match(KRUNNS::RunnerContext &context)
     std::unique_lock<std::mutex> lockit(m_mutex);
     
     QString query = context.query();
-    //std::cerr << "RecollRunner::match: input query: " << qs2utf8s(query) << "\n";
+    LOGDEB0("RecollRunner::match: input query: " << qs2utf8s(query) << "\n");
     if (query == QLatin1Char('.') || query == QLatin1String("..")) {
         return;
     }
@@ -135,21 +135,21 @@ void RecollRunner::match(KRUNNS::RunnerContext &context)
 //    }
    
     if (!context.isValid()) {
-        std::cerr << "RecollRunner::match: context not valid\n";
+        LOGERR("RecollRunner::match: context not valid\n");
         return;
     }
 
     std::string qs = qs2utf8s(query);
-    std::cerr << "RecollRunner::match: recoll query: " << qs2utf8s(query) << "\n";
+    LOGDEB0("RecollRunner::match: recoll query: " << qs2utf8s(query) << "\n");
     std::shared_ptr<Rcl::SearchData> sdata = wasaStringToRcl(m_rclconfig, m_stemlang, qs, m_reason);
     if (!sdata) {
-        std::cerr << "RecollRunner::match: wasaStringToRcl failed for [" << qs << "]\n";
+        LOGINF("RecollRunner::match: wasaStringToRcl failed for [" << qs << "]\n");
         return;
     }
     sdata->setSubSpec(m_showSubdocs ? Rcl::SearchData::SUBDOC_ANY: Rcl::SearchData::SUBDOC_NO);
     std::unique_ptr<Rcl::Query> rclq = std::make_unique<Rcl::Query>(m_rcldb);
     if (!rclq->setQuery(sdata)) {
-        std::cerr << "RecollRunner::match: setquery failed\n";
+        LOGERR("RecollRunner::match: setquery failed\n");
         m_reason = "Query execute failed. Invalid query or syntax error?";
         return;
     }
