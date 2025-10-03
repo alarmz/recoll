@@ -93,13 +93,14 @@ static int     op_flags;
 #define OPTVAL_DIAGS_NOTINDEXED 1002
 #define OPTVAL_DIAGS_DIAGSFILE 1003
 #define OPTVAL_NOPURGE 1004
-
+#define OPTVAL_STOP 1005
 static struct option long_options[] = {
     {"webcache-compact", 0, nullptr, OPTVAL_WEBCACHE_COMPACT},
     {"webcache-burst", required_argument, nullptr, OPTVAL_WEBCACHE_BURST},
     {"notindexed", 0, nullptr, OPTVAL_DIAGS_NOTINDEXED},
     {"diagsfile", required_argument, nullptr, OPTVAL_DIAGS_DIAGSFILE},
     {"nopurge", 0, nullptr, OPTVAL_NOPURGE},
+    {"stop", 0, nullptr, OPTVAL_STOP},
     {"help", 0, nullptr, 'h'},
     {nullptr, 0, nullptr, 0}
 };
@@ -410,6 +411,8 @@ static const char usage [] =
 "    -x  : Disable exit on end of X11 session.\n"
 #endif /* DISABLE_X11MON */
 #endif /* RCL_MONITOR */
+"recollindex [-c config] --stop : stop indexer currently running on this configuration.\n"
+"  May take a bit of time to allow for flushing memory data.\n"
 "recollindex -e [<filepath [path ...]>]\n"
 "    Purge data for individual files. No stem database updates.\n"
 "    Reads paths on stdin if none is given as argument.\n"
@@ -491,6 +494,27 @@ static void lockorexit(Pidfile *pidfile, RclConfig *config)
         cerr << "Can't become exclusive indexer: " << pidfile->getreason() << '\n';
         exit(1);
     }
+}
+
+static void stopindexer(Pidfile *pidfile, RclConfig *config)
+{
+#ifdef _WIN32
+    std::fstream ost;
+    if (!path_streamopen(theconfig->getIdxStopFile(), std::fstream::out, ost)) {
+        LOGSYSERR("toggleIndexing", "path_streamopen", theconfig->getIdxStopFile());
+    }
+#else
+    pid_t pid = pidfile->open();
+    if (0 == pid) {
+        std::cerr << "No running indexer.\n";
+        exit(0);
+    } else if (pid < 0) {
+        std::cerr << "Error accessing Pid file.\n";
+        exit(1);
+    }
+    std::cout << "Signalling process " << pid << '\n';
+    kill(pid, SIGTERM);
+#endif
 }
 
 static string reasonsfile;
@@ -577,7 +601,8 @@ int main(int argc, char *argv[])
     bool webcache_burst{false};
     bool diags_notindexed{false};
     bool opt_nopurge{false};
-
+    bool opt_stop{false};
+    
     std::string burstdir;
     std::string diagsfile;
     while ((ret = getopt_long(argc, (char *const*)&args[0], "c:CDOdEefhikKlmnPp:rR:sSw:xZz",
@@ -623,6 +648,7 @@ int main(int argc, char *argv[])
         case OPTVAL_DIAGS_NOTINDEXED: diags_notindexed = true;break;
         case OPTVAL_DIAGS_DIAGSFILE: diagsfile = optarg;break;
         case OPTVAL_NOPURGE: opt_nopurge = true;break;
+        case OPTVAL_STOP: opt_stop = true;break;
         default: Usage(); break;
         }
     }
@@ -653,6 +679,12 @@ int main(int argc, char *argv[])
 
     string reason;
     int flags = RCLINIT_IDX;
+    if (opt_stop) {
+        config = recollinit(flags, cleanup, sigcleanup, reason, &a_config);
+        Pidfile pidfile(config->getPidfile());
+        stopindexer(&pidfile, config);
+        return 0;
+    }
     if ((op_flags & OPT_m) && !(op_flags & OPT_D)) {
         flags |= RCLINIT_DAEMON;
     }
