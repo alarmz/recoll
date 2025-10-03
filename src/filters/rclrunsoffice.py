@@ -41,6 +41,8 @@ class SofficeRunner(object):
         infn = os.path.basename(inpath)
         inbase = os.path.splitext(infn)[0]
         htmlfn = os.path.join(self.tmpdir.getpath().encode("UTF-8"), inbase) + b".html"
+        if not os.path.exists(htmlfn):
+            return ""
         return open(htmlfn).read()
 
 
