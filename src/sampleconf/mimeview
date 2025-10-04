@@ -57,8 +57,8 @@ application/x-hwp = libreoffice
 application/pdf  = evince --page-index=%p --find=%S %f
 # Or:
 #application/pdf  = qpdfview --search %s %f#%p
-# Or okular, but it does not take a search string on the command line.
-#application/pdf  = okular --unique -p %p %f
+# Or okular. Old versions had no --find option so you may need to edit this.
+#application/pdf  = okular --unique --find %s -p %p %f
 
 application/postscript = evince --page-index=%p --find=%s %f
 application/x-dvi = evince --page-index=%p --find=%s  %f
