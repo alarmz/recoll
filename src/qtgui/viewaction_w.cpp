@@ -28,6 +28,7 @@
 #include "log.h"
 #include "guiutils.h"
 #include "smallut.h"
+#include "rclhelp.h"
 
 #ifdef _WIN32
 #include "pathut.h"
@@ -67,6 +68,8 @@ void ViewAction::init()
             }
         }
     }
+    (void)new HelpClient(this);
+    HelpClient::installMap(qs2u8s(objectName()), "RCL.SEARCH.GUI.CUSTOM.APPLICATIONS");
 }
 
 

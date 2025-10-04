@@ -2890,11 +2890,23 @@ Choosing the viewer applications
    document type. This is probably not the most convenient approach in
    most cases.
 
-   In all cases, the applications choice dialog accepts multiple
-   selections of MIME types in the top section, and lets you define how
-   they are processed in the bottom one. In most cases, you will be using
-   %f as a place holder to be replaced by the file name in the application
-   command line.
+   The applications choice dialog accepts multiple selections of MIME
+   types in the top section, and lets you define how they are processed in
+   the bottom one.
+
+   Some substitutions will be performed on the template command line
+   before execution:
+     * %f : document file name.
+     * %i : ipath.
+     * %l : hit line number.
+     * %M : MIME type.
+     * %p : hit page number.
+     * %S : a possibly multiword matched phrase. Only for simple phrase
+       searches, else as %s.
+     * %s : a heuristically selected matched term.
+     * %U : URL of file path.
+     * %u : URL.
+     * %(xx) : xx metadata field value.
 
    You may also change the choice of applications by editing the
    [257]mimeview configuration file if you find this more convenient.

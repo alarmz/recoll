@@ -3402,10 +3402,25 @@ MimeType=*/*</programlisting>
           applications will be used, and can be changed for each document type. This is probably not
           the most convenient approach in most cases.</para>
 
-          <para>In all cases, the applications choice dialog accepts multiple selections of MIME
-          types in the top section, and lets you define how they are processed in the bottom one. In
-          most cases, you will be using <literal>%f</literal> as a place holder to be replaced by
-          the file name in the application command line.</para>
+          <para>The applications choice dialog accepts multiple selections of MIME
+          types in the top section, and lets you define how they are processed in the bottom
+          one.</para>
+
+          <para>Some substitutions will be performed on the template command line before execution:
+          <itemizedlist>
+            <listitem>%f : document file name.</listitem>
+            <listitem>%i : ipath.</listitem>
+            <listitem>%l : hit line number.</listitem>
+            <listitem>%M : MIME type.</listitem>
+            <listitem>%p : hit page number.</listitem>
+            <listitem>%S : a possibly multiword matched phrase. Only for simple phrase searches, else
+            as %s.</listitem>
+            <listitem>%s : a heuristically selected matched term.</listitem>
+            <listitem>%U : URL of file path.</listitem>
+            <listitem>%u : URL.</listitem>
+            <listitem>%(xx) : xx metadata field value.</listitem>
+          </itemizedlist>
+          </para>
 
           <para>You may also change the choice of applications by editing
             the

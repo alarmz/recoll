@@ -157,6 +157,9 @@
             <property name="text">
              <string>Action (empty -&gt; recoll default)</string>
             </property>
+            <property name="toolTip">
+             <string>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br>%f: document file name. F1 for more help.</string>
+     </property>
            </widget>
           </item>
           <item>

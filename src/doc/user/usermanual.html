@@ -5493,13 +5493,31 @@ MimeType=*/*</pre>
             predefined applications will be used, and can be
             changed for each document type. This is probably not
             the most convenient approach in most cases.</p>
-            <p>In all cases, the applications choice dialog accepts
-            multiple selections of MIME types in the top section,
-            and lets you define how they are processed in the
-            bottom one. In most cases, you will be using
-            <code class="literal">%f</code> as a place holder to be
-            replaced by the file name in the application command
-            line.</p>
+            <p>The applications choice dialog accepts multiple
+            selections of MIME types in the top section, and lets
+            you define how they are processed in the bottom
+            one.</p>
+            <p>Some substitutions will be performed on the template
+            command line before execution:</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist" style=
+              "list-style-type: disc;">
+                <li class="listitem">%f : document file name.</li>
+                <li class="listitem">%i : ipath.</li>
+                <li class="listitem">%l : hit line number.</li>
+                <li class="listitem">%M : MIME type.</li>
+                <li class="listitem">%p : hit page number.</li>
+                <li class="listitem">%S : a possibly multiword
+                matched phrase. Only for simple phrase searches,
+                else as %s.</li>
+                <li class="listitem">%s : a heuristically selected
+                matched term.</li>
+                <li class="listitem">%U : URL of file path.</li>
+                <li class="listitem">%u : URL.</li>
+                <li class="listitem">%(xx) : xx metadata field
+                value.</li>
+              </ul>
+            </div>
             <p>You may also change the choice of applications by
             editing the <a class="link" href="#RCL.CONFIG.MIMEVIEW"
             title="5.7.&nbsp;The mimeview file"><code class=
@@ -9683,8 +9701,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5172" id=
-                "id5172"></a>GUI settings</h3>
+                <h3 class="title"><a name="id5183" id=
+                "id5183"></a>GUI settings</h3>
               </div>
             </div>
           </div>
@@ -9700,8 +9718,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5179" id=
-                "id5179"></a>Index configuration parameters</h3>
+                <h3 class="title"><a name="id5190" id=
+                "id5190"></a>Index configuration parameters</h3>
               </div>
             </div>
           </div>
