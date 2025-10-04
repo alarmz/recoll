@@ -17,16 +17,14 @@
 #ifndef _VIEWACTION_W_H_INCLUDED_
 #define _VIEWACTION_W_H_INCLUDED_
 
-#include <qdialog.h>
+#include <QDialog>
 
 #include "ui_viewaction.h"
 
-class QDialog;
 class QMouseEvent;
 class QTableWidget;
 
-class ViewAction : public QDialog, public Ui::ViewActionBase
-{
+class ViewAction : public QDialog, public Ui::ViewActionBase {
     Q_OBJECT
 
 public:
@@ -46,6 +44,7 @@ public slots:
     virtual void onUseDesktopCBToggled(int);
     virtual void onSetExceptCBToggled(int);
     virtual void onSelSameClicked();
+    virtual void onClose();
 private:
     virtual void init();
     virtual void fillLists();

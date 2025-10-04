@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
-    <height>726</height>
+    <width>640</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -67,7 +67,7 @@
       <bool>true</bool>
      </property>
      <attribute name="horizontalHeaderDefaultSectionSize">
-      <number>150</number>
+      <number>350</number>
      </attribute>
      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
       <bool>true</bool>
@@ -117,11 +117,11 @@
       </widget>
      </item>
      <item>
-       <widget class="QPushButton" name="selSamePB">
-         <property name="text">
-           <string>Select same</string>
-         </property>
-       </widget>
+      <widget class="QPushButton" name="selSamePB">
+       <property name="text">
+        <string>Select same</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -136,13 +136,13 @@
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QLabel" name="label_new">
-            <property name="text">
-             <string>&lt;b&gt;New Values:&lt;/b&gt;</string>
-            </property>
-           </widget>
-          </item>
+        <item>
+         <widget class="QLabel" name="label_new">
+          <property name="text">
+           <string>&lt;b&gt;New Values:&lt;/b&gt;</string>
+          </property>
+         </widget>
+        </item>
         <item>
          <widget class="QCheckBox" name="setExceptCB">
           <property name="text">

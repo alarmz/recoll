@@ -14,7 +14,6 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-#include "autoconfig.h"
 
 #include "viewaction_w.h"
 
@@ -23,36 +22,70 @@
 #include <string>
 
 #include <QMessageBox>
+#include <QSettings>
 
 #include "recoll.h"
 #include "log.h"
 #include "guiutils.h"
 #include "smallut.h"
+
+#ifdef _WIN32
 #include "pathut.h"
+#endif
 
-using namespace std;
-
+static const char *settingskey_fieldwidths="/Recoll/prefs/viewActionWidths";
+static const char *settingskey_height="/Recoll/prefs/viewActionHeight";
+static const char *settingskey_width="/Recoll/prefs/viewActionWidth";
 
 void ViewAction::init()
 {
     selSamePB->setEnabled(false);
-    connect(closePB, SIGNAL(clicked()), this, SLOT(close()));
+    connect(closePB, SIGNAL(clicked()), this, SLOT(onClose()));
     connect(chgActPB, SIGNAL(clicked()), this, SLOT(editActions()));
-    connect(actionsLV,
-            SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)),
-            this,
-            SLOT(onCurrentItemChanged(QTableWidgetItem *, QTableWidgetItem *)));
+    connect(actionsLV, SIGNAL(currentItemChanged(QTableWidgetItem *, QTableWidgetItem *)),
+            this, SLOT(onCurrentItemChanged(QTableWidgetItem *, QTableWidgetItem *)));
     useDesktopCB->setChecked(prefs.useDesktopOpen);
     onUseDesktopCBToggled(prefs.useDesktopOpen);
-    connect(useDesktopCB, SIGNAL(stateChanged(int)), 
-            this, SLOT(onUseDesktopCBToggled(int)));
-    connect(setExceptCB, SIGNAL(stateChanged(int)), 
-            this, SLOT(onSetExceptCBToggled(int)));
-    connect(selSamePB, SIGNAL(clicked()),
-            this, SLOT(onSelSameClicked()));
-    resize(QSize(640, 480).expandedTo(minimumSizeHint()));
+    connect(useDesktopCB, SIGNAL(stateChanged(int)), this, SLOT(onUseDesktopCBToggled(int)));
+    connect(setExceptCB, SIGNAL(stateChanged(int)), this, SLOT(onSetExceptCBToggled(int)));
+    connect(selSamePB, SIGNAL(clicked()), this, SLOT(onSelSameClicked()));
+
+    QSettings settings;
+    auto w = settings.value(settingskey_width).toInt();
+    auto h = settings.value(settingskey_height).toInt();
+    if (w != 0 && h != 0) {
+        resize(QSize(w, h).expandedTo(minimumSizeHint()));
+    }
+    auto qw = settings.value(settingskey_fieldwidths).toString();
+    if (!qw.isEmpty()) {
+        auto *header = actionsLV->horizontalHeader();
+        std::vector<std::string> vw;
+        stringToStrings(qs2utf8s(qw), vw);
+        if (int(vw.size()) == header->count()) {
+            for (unsigned int i = 0; i < vw.size(); i++) {
+                header->resizeSection(i, atoi(vw[i].c_str()));
+            }
+        }
+    }
 }
-        
+
+
+void ViewAction::onClose()
+{
+    QSettings settings;
+    auto qw = settings.value(settingskey_fieldwidths).toString();
+    auto *header = actionsLV->horizontalHeader();
+    std::vector<std::string> vw;
+    for (int i = 0; i < 2; i++){
+        vw.push_back(std::to_string(header->sectionSize(i)));
+    }
+    auto s = stringsToString(vw);
+    settings.setValue(settingskey_fieldwidths, u8s2qs(s));
+    settings.setValue(settingskey_width, width());
+    settings.setValue(settingskey_height, height());
+    close();
+}
+
 void ViewAction::onUseDesktopCBToggled(int onoff)
 {
     prefs.useDesktopOpen = onoff != 0;
@@ -70,11 +103,11 @@ void ViewAction::fillLists()
     currentLBL->clear();
     actionsLV->clear();
     actionsLV->verticalHeader()->setDefaultSectionSize(20); 
-    vector<pair<string, string> > defs;
+    std::vector<std::pair<std::string, std::string> > defs;
     theconfig->getMimeViewerDefs(defs);
     actionsLV->setRowCount(static_cast<int>(defs.size()));
 
-    set<string> viewerXs;
+    std::set<std::string> viewerXs;
     if (prefs.useDesktopOpen) {
         viewerXs = theconfig->getMimeViewerAllEx();
     }
@@ -111,17 +144,16 @@ void ViewAction::onSelSameClicked()
     QString value = currentLBL->text();
     if (value.isEmpty())
         return;
-    string action = qs2utf8s(value);
+    std::string action = qs2utf8s(value);
     LOGDEB1("ViewAction::onSelSameClicked: value: " << action << endl);
 
-    vector<pair<string, string> > defs;
+    std::vector<std::pair<std::string, std::string> > defs;
     theconfig->getMimeViewerDefs(defs);
     for (const auto& def : defs) {
         if (def.second == action) {
             QList<QTableWidgetItem *>items = actionsLV->findItems(
                 u8s2qs(def.first), Qt::MatchFixedString|Qt::MatchCaseSensitive);
-            for (QList<QTableWidgetItem *>::iterator it = items.begin();
-                 it != items.end(); it++) {
+            for (QList<QTableWidgetItem *>::iterator it = items.begin(); it != items.end(); it++) {
                 (*it)->setSelected(true);
                 actionsLV->item((*it)->row(), 1)->setSelected(true);
             }
@@ -137,9 +169,9 @@ void ViewAction::onCurrentItemChanged(QTableWidgetItem *item, QTableWidgetItem *
         return;
     }
     QTableWidgetItem *item0 = actionsLV->item(item->row(), 0);
-    string mtype = qs2utf8s(item0->text());
+    std::string mtype = qs2utf8s(item0->text());
 
-    vector<pair<string, string> > defs;
+    std::vector<std::pair<std::string, std::string> > defs;
     theconfig->getMimeViewerDefs(defs);
     for (const auto& def : defs) {
         if (def.first == mtype) {
@@ -155,14 +187,14 @@ void ViewAction::editActions()
     QString action0;
     bool except0 = false;
 
-    set<string> viewerXs = theconfig->getMimeViewerAllEx();
-    vector<string> mtypes;
+    std::set<std::string> viewerXs = theconfig->getMimeViewerAllEx();
+    std::vector<std::string> mtypes;
     bool dowarnmultiple = true;
     for (int row = 0; row < actionsLV->rowCount(); row++) {
         QTableWidgetItem *item0 = actionsLV->item(row, 0);
         if (!item0->isSelected())
             continue;
-        string mtype = qs2utf8s(item0->text());
+        std::string mtype = qs2utf8s(item0->text());
         mtypes.push_back(mtype);
         QTableWidgetItem *item1 = actionsLV->item(row, 1);
         QString action = item1->text();
@@ -188,7 +220,7 @@ void ViewAction::editActions()
 
     if (action0.isEmpty())
         return;
-    string sact = qs2utf8s(newActionLE->text());
+    std::string sact = qs2utf8s(newActionLE->text());
     if (!sact.empty()) {
         trimstring(sact);
 #ifdef _WIN32
@@ -214,9 +246,9 @@ void ViewAction::editActions()
         // rclconfig has no way to tell us if the value comes from the
         // system config or the user file. So just check if the value
         // disappears after setting it, and restore it if it does.
-        string oldvalue = theconfig->getMimeViewerDef(entry, "", 0);
+        std::string oldvalue = theconfig->getMimeViewerDef(entry, "", 0);
         theconfig->setMimeViewerDef(entry, sact);
-        string newvalue = theconfig->getMimeViewerDef(entry, "", 0);
+        std::string newvalue = theconfig->getMimeViewerDef(entry, "", 0);
         if (!oldvalue.empty() && newvalue.empty()) {
             theconfig->setMimeViewerDef(entry, oldvalue);
         }
