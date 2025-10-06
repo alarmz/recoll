@@ -1,3 +1,31 @@
+recoll (1.43.6-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Improve the code using xslt to process xml-based formats to process
+    multiple body or meta members: allows processing pptx, vsdx and
+    accessing numbers in multiple xlsx sheets.
+  * recollindex --stop and --help options.
+  * Fix crash caused by write beyond buffer when listing extended
+    attributes on xxBSD
+  * GUI: view actions editor: memorize the window and column sizes.
+  * KDE krunner: remove spurious stderr messages.
+ 
+ -- Jean-Francois Dockes <jf@dockes.org>  Mon, 06 Oct 2025 20:31:00 +0200
+
+recoll (1.43.5-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * GUI: improve blocking of possible webengine network requests,
+  * GUI: preview: have qtextbrowser use the highlight style as the
+    implementations based on webkit or webengine.
+  * GUI: optimize the code for building the left-side directory filter
+    tree. It could become very slow with long paths.
+  * Add xxlogthedate configuration variables to log timestamps with log
+    lines.
+  * Use global lock around libmagic. It is not really thread-safe on some
+    platforms. Cache the descriptor to recover a bit of lost performance.
+  * Fix small memory leak: libmagic not properly closed.
+
+ -- Jean-Francois Dockes <jf@dockes.org>  Fri, 29 Aug 2025 09:42:00 +0200
+
 recoll (1.43.4-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * GUI: HTML preview in dark mode: do not use a dark background by
