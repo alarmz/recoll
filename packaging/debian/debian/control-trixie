@@ -20,9 +20,10 @@ Build-Depends: debhelper,
                python3-all,
                python3-all-dev,
                python3-setuptools,
+               qtbase5-dev,
 # For some reason raspbian trixie has qt5 webkit and no webengine. Edit by hand when needed
-#               qtbase5-dev, libqt5webkit5-dev,
-               qtbase5-dev, qtwebengine5-dev,
+#               libqt5webkit5-dev, qttools5-dev-tools,
+               qtwebengine5-dev,
 #              qt6-base-dev, qt6-webengine-dev, qt6-l10n-tools, qt6-tools-dev,
 Vcs-Git: https://salsa.debian.org/debian/recoll.git
 Vcs-Browser: https://salsa.debian.org/debian/recoll

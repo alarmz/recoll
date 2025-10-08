@@ -8,19 +8,18 @@
 # 20.04LTS focal    2025-06
 # 22.04LTS jammy    2027-06
 # 24.04LTS noble    2029-06
-# 24.10    oracular 2025-07
 # 25.04    plucky   2026-01
-SERIES="focal jammy noble oracular plucky"
-#SERIES=plucky
+SERIES="focal jammy noble plucky questing"
+#SERIES=questing
 
 PPA_KEYID=7808CE96D38B9201
 
-RCLVERS=1.43.4
+RCLVERS=1.43.6
 GSSPVERS=1.1.3
 PPAVERS=1
 
 PPANAME=recoll15-ppa
-PPANAME=recollexp-ppa
+#PPANAME=recollexp-ppa
 
 # recoll 
 series_rcl=$SERIES
