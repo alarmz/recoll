@@ -20,7 +20,7 @@ Build-Depends: debhelper,
                python3-all,
                python3-all-dev,
                python3-setuptools,
-               qtbase5-dev,
+               qtbase5-dev, qttools5-dev-tools,
 # For some reason raspbian trixie has qt5 webkit and no webengine. Edit by hand when needed
 #               libqt5webkit5-dev, qttools5-dev-tools,
                qtwebengine5-dev,
