@@ -25,6 +25,11 @@ if not get_option('guidebug')
 else
     qtgui_conf.set('QMAKE_ENABLE_GUIDEBUG', '')
 endif
+if get_option('noqtsingleapp')
+    qtgui_conf.set('QMAKE_ENABLE_SINGLEAPP', '#')
+else
+    qtgui_conf.set('QMAKE_ENABLE_SINGLEAPP', '')
+endif
 qtgui_conf.set('LIBRECOLL_FOR_QMAKE', librecoll.full_path())
 
 # Tell qmake that we are running an unix-type build, not a macx qcreator one

@@ -410,7 +410,7 @@ unix:!macxbundlebuild() {
 
 VPATH = @srcdir@
 # For SingleApplication
-include(@srcdir@/singleapplication.pri)
+@QMAKE_ENABLE_SINGLEAPP@include(@srcdir@/singleapplication.pri)
 
 @QMAKE_ENABLE_WEBKIT@QT += webkitwidgets
 @QMAKE_ENABLE_WEBKIT@DEFINES += USING_WEBKIT

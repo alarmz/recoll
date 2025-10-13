@@ -16,6 +16,8 @@ option('recollq', type: 'boolean', value: false,
        description: 'Build the recollq command line query tool')
 option('qtgui', type: 'boolean', value: true,
        description: 'Build the Qt GUI')
+option('noqtsingleapp', type: 'boolean', value: false,
+       description: 'Do not use Use the SingleApplication module')
 option('webkit', type: 'boolean', value: true,
        description: 'Use Qt Webkit')
 option('webengine', type: 'boolean', value: false,
