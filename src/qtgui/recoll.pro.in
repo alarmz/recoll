@@ -149,7 +149,6 @@ windows {
   DEFINES += __WIN32__
   DEFINES += UNICODE
   RC_FILE = recoll.rc
-  #QCBUILDLOC = Desktop_Qt_6_7_3_MSVC2019_64bit
   QCBUILDLOC = Desktop_Qt_6_8_2_MSVC2022_64bit
 
   HEADERS += \
