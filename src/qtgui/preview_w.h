@@ -115,6 +115,11 @@ private:
 
     // What are we currently displaying: text/fields/image
     DspType m_curdsp{PTE_DSPTXT};
+
+#ifdef PREVIEW_WEBENGINE
+    std::string m_datafilename;
+    bool webengineShowContent();
+#endif
 };
 
 class QShortcut;

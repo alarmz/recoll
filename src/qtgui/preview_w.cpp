@@ -231,6 +231,9 @@ void Preview::closeEvent(QCloseEvent *e)
         PreviewTextEdit *edit = editor(i);
         if (edit) {
             forgetTempFile(edit->m_imgfilename);
+#ifdef PREVIEW_WEBENGINE
+            forgetTempFile(edit->m_datafilename);
+#endif
         }
     }
     emit previewExposed(this, m_searchId, -1);
@@ -627,6 +630,34 @@ public:
     ~LoadGuard() {*m_bp = false; CancelCheck::instance().setCancel(false);}
 };
 
+#ifdef PREVIEW_WEBENGINE
+bool PreviewTextEdit::webengineShowContent()
+{
+    // Webengine can't setHtml() over 2MB, we need to use a temporary file in this case. 
+    if (m_richtxt.size() > 1024*1024) {
+        if (m_datafilename.empty()) {
+            TempFile temp(".html");
+            if (!temp.ok()) {
+                LOGERR("Preview: TEMP NOT OK: [" << temp.getreason() << "]\n");
+                return false;
+            }
+            rememberTempFile(temp);
+            m_datafilename = temp.filename();
+        }
+        std::fstream s{m_datafilename, s.binary | s.trunc | s.out};
+        if (s.is_open()) {
+            std::string chars = qs2utf8s(m_richtxt);
+            s.write(chars.c_str(), chars.size());
+        }
+        QUrl qurl(path_pathtofileurl(m_datafilename).c_str());
+        load(qurl);
+    } else {
+        setHtml(m_richtxt, baseUrl);
+    }
+    return true;
+}
+#endif // Webengine
+
 bool Preview::loadDocInCurrentTab(Rcl::Doc &idoc, int docnum)
 {
     LOGDEB1("Preview::loadDocInCurrentTab()\n");
@@ -829,7 +860,13 @@ bool Preview::loadDocInCurrentTab(Rcl::Doc &idoc, int docnum)
         editor->m_richtxt.append(chunk);
     }
     LOGDEB2("HTML: " << qs2utf8s(editor->m_richtxt).substr(0, 5000) << "\n");
+#ifdef USING_WEBENGINE
+    // Work around 2mb limit of webengine setHtml()
+    if (!editor->webengineShowContent())
+        return false;
+#else // Webkit->
     editor->setHtml(editor->m_richtxt, baseUrl);
+#endif // Webkit
 #endif
     
     progress.close();
@@ -1045,11 +1082,9 @@ void PreviewTextEdit::redisplay()
 // Display main text
 void PreviewTextEdit::displayText()
 {
-    // Ensuring that the view does not move when changing the font
-    // size and redisplaying the text: can't find a good way to do
-    // it. The only imperfect way I found was to get the position for
-    // the last line (approximately), and make the position visible
-    // after the change.
+    // Ensuring that the view does not move when changing the font size and redisplaying the text:
+    // can't find a good way to do it. The only imperfect way I found was to get the position for
+    // the last line (approximately), and make the position visible after the change.
 #ifdef PREVIEW_TEXTBROWSER
     auto c = cursorForPosition(QPoint(0,height()-20));
     int pos = c.position();
@@ -1063,7 +1098,12 @@ void PreviewTextEdit::displayText()
     }
     m_curdsp = PTE_DSPTXT;
 #else
+#ifdef USING_WEBENGINE
+    // Work around 2mb limit of webengine setHtml()
+    webengineShowContent();
+#else // Webkit->
     setHtml(m_richtxt, baseUrl);
+#endif // Webkit
 #endif
 }
 
