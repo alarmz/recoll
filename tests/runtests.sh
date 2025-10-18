@@ -128,7 +128,6 @@ if iswindows; then
     # empty: fails because of differing dir sizes (0 vs 4096), not worth fixing
     # nonumbers: fails because of paths and testing on unix is enough
     # pdf-annots: needs the poppler glib bindings
-    # pdfattach: needs pdftk
     # postscript: needs ghostscript
     # program: issues with suffix-less files
     # pythonapi: would need a lot of porting. Design windows-specific one?
@@ -138,7 +137,7 @@ if iswindows; then
               djvu dvi Maildir Maildir1 man empty nonumbers pdf-annots \
               pdf-ocr pdfattach postscript purple pythonapi scribus xattr xml"
 else
-    checkcmds recollq pxattr xadump pdftk || exit 1
+    checkcmds recollq pxattr xadump || exit 1
     if test x$noindex = x ; then
         checkcmds recollindex || exit 1
     fi

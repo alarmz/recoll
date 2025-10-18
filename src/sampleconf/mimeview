@@ -53,7 +53,7 @@ application/x-kword = kword %f
 application/x-abiword = abiword %f
 application/x-hwp = libreoffice
 
-# Note: the Linux Mint evince clones, atril and xread, have the same options
+# Note: the evince clones, atril and xread, have the same options
 application/pdf  = evince --page-index=%p --find=%S %f
 # Or:
 #application/pdf  = qpdfview --search %s %f#%p

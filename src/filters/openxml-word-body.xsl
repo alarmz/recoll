@@ -14,14 +14,23 @@
 
   <xsl:template match="/">
     <div>
-    <xsl:for-each select="//w:p"> 
-      <p>
-      <xsl:for-each select=".//w:t"> 
-        <xsl:text> </xsl:text>
-        <xsl:value-of select="." />
+      <xsl:for-each select="//w:p"> 
+        <p>
+          <xsl:for-each select=".//w:t">
+            <xsl:choose>
+              <xsl:when test="@space">
+                <xsl:if test="@space!='preserve'">
+                  <xsl:text> </xsl:text>
+                </xsl:if>
+                <xsl:value-of select="." />
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="." />
+              </xsl:otherwise>
+            </xsl:choose>
+          </xsl:for-each>
+        </p>
       </xsl:for-each>
-      </p>
-    </xsl:for-each>
     </div>
   </xsl:template>
 
