@@ -3,7 +3,7 @@
 /* htmlparse.h: simple HTML parser for omega indexer
  *
  * Copyright 1999,2000,2001 BrightStation PLC
- * Copyright 2002,2006 Olly Betts
+ * Copyright 2002,2006,2008,2009,2011,2016 Olly Betts
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -42,8 +42,7 @@ public:
     virtual bool opening_tag(const std::string &/*tag*/) { return true; }
     virtual bool closing_tag(const std::string &/*tag*/) { return true; }
     virtual void parse_html(const std::string &text);
-    virtual void do_eof() {}
-    HtmlParser();
+    HtmlParser() = default;
     virtual ~HtmlParser() = default;
 };
 

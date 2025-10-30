@@ -569,17 +569,3 @@ MyHtmlParser::closing_tag(const string &tag)
     }
     return true;
 }
-
-// This gets called when hitting eof. 
-// We used to do: 
-//    > If the <body> is open, do
-//    > something with the text (that is, don't throw up). Else, things are
-//    > too weird, throw an error. We don't get called if the parser finds
-//    > a closing body tag (exception gets thrown by closing_tag())
-// But we don't throw any more. Whatever text we've extracted up to now is
-// better than nothing.
-void
-MyHtmlParser::do_eof()
-{
-}
-

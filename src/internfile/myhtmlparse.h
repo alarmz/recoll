@@ -55,11 +55,11 @@ public:
 
     bool indexing_allowed;
 
-    void process_text(const std::string &text);
-    bool opening_tag(const std::string &tag);
-    bool closing_tag(const std::string &tag);
-    void do_eof();
-    void decode_entities(std::string &s);
+    void process_text(const std::string &text) override;
+    bool opening_tag(const std::string &tag) override;
+    bool closing_tag(const std::string &tag) override;
+    void decode_entities(std::string &s) override;
+
     void reset_charsets() {fromcharset = tocharset = "";}
     void set_charsets(const std::string& f, const std::string& t) {
         fromcharset = f;
