@@ -291,6 +291,7 @@ extern std::string valToString(const std::vector<CharFlags>&, unsigned int val);
 /// Decode percent-encoded string
 extern std::string pc_decode(const std::string&);
 
+/// Sort alphanumeric strings with integer ordering for the numeric parts.
 extern void sortAlphanumStrings(std::vector<std::string> &strings);
 
 /// Parse HTTP range header value into a vector of offset pairs. -1 is used as a placeholder
