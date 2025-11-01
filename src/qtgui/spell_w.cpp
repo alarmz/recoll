@@ -366,7 +366,7 @@ void SpellW::showFailed()
         LOGERR("SpellW::doExpand:rcldb::dbStats failed\n" );
         return;
     }
-    for (auto entry : res.failedurls) {
+    for (const auto &entry : res.failedurls) {
         resTW->setRowCount(row+1);
         resTW->setItem(row, 0, new QTableWidgetItem(u8s2qs(entry)));
         resTW->setItem(row++, 1, new QTableWidgetItem(""));
@@ -388,7 +388,7 @@ void SpellW::textDoubleClicked(int row, int)
 {
     QTableWidgetItem *item = resTW->item(row, 0);
     if (item)
-        emit(wordSelect(item->text()));
+        emit wordSelect(item->text());
 }
 
 void SpellW::onModeChanged(int idx)

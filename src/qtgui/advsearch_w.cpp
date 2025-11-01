@@ -416,10 +416,11 @@ void AdvSearch::browsePB_clicked()
     subtreeCMB->setEditText(dir);
 }
 
+static QRegularExpression respaces("[\\s]+");
 size_t AdvSearch::stringToSize(QString qsize)
 {
     size_t size = size_t(-1);
-    qsize.replace(QRegularExpression("[\\s]+"), "");
+    qsize.replace(respaces, "");
     if (!qsize.isEmpty()) {
         string csize(qs2utf8s(qsize));
         char *cp;

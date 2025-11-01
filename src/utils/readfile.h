@@ -38,7 +38,7 @@ public:
      * @param reason[output] set to error message in case of error.
      * @return false for error (file_scan will return), true if ok.
      */
-    virtual bool init(int64_t size, std::string * /* reason */) {return true;}
+    virtual bool init(int64_t /* size */, std::string * /* reason */) {return true;}
     /* Process chunk of data
      * @param buf  the data buffer.
      * @param cnt byte count.

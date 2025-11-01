@@ -135,7 +135,8 @@ void UIPrefsDialog::init()
     connect(ssNoCompleteCB, SIGNAL(toggled(bool)),
             ssearchCompleterHistCntSB, SLOT(setDisabled(bool)));
     connect(resetscPB, SIGNAL(clicked()), this, SLOT(resetShortcuts()));
-
+    connect(showTrayIconCB, SIGNAL(clicked()), this, SLOT(showTrayIconCB_clicked()));
+    
     (void)new HelpClient(this);
     HelpClient::installMap("tab_shortcuts", "RCL.SEARCH.GUI.SHORTCUTS");
     setFromPrefs();
@@ -777,7 +778,7 @@ void UIPrefsDialog::delExtraDbPB_clicked()
     }
 }
 
-void UIPrefsDialog::on_showTrayIconCB_clicked()
+void UIPrefsDialog::showTrayIconCB_clicked()
 {
     if (!showTrayIconCB->checkState()) {
         closeToTrayCB->setChecked(false);

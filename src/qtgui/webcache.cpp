@@ -278,9 +278,9 @@ WebcacheEdit::WebcacheEdit(RclMain *parent)
 void WebcacheEdit::onHeaderChanged(WebStore *ws)
 {
     headerInfoLBL->setText(tr("Maximum size %1 (Index config.). Current size %2. Write position %3.")
-                           .arg(u8s2qs(displayableBytes(ws->cc()->maxsize())))
-                           .arg(u8s2qs(displayableBytes(ws->cc()->size())))
-                           .arg(u8s2qs(displayableBytes(ws->cc()->writepos())))
+                           .arg(u8s2qs(displayableBytes(ws->cc()->maxsize())),
+                                u8s2qs(displayableBytes(ws->cc()->size())), 
+                                u8s2qs(displayableBytes(ws->cc()->writepos())))
         );
 }
 

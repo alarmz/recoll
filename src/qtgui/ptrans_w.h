@@ -39,10 +39,10 @@ public:
 
 public slots:
     virtual void onItemDoubleClicked(QTableWidgetItem *);
-    virtual void on_savePB_clicked();
-    virtual void on_addPB_clicked();
-    virtual void on_delPB_clicked();
-    virtual void on_transTW_itemSelectionChanged();
+    virtual void savePB_clicked();
+    virtual void addPB_clicked();
+    virtual void delPB_clicked();
+    virtual void transTW_itemSelectionChanged();
 private:
     virtual void init(const std::string& dbdir);
     std::string m_dbdir;

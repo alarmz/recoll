@@ -78,7 +78,8 @@ void RclMain::saveLastQuery()
     if (!fileDialog.exec())
         return;
 
-    QString s = fileDialog.selectedFiles().first();
+    auto selfiles = fileDialog.selectedFiles();
+    auto s = selfiles.first();
     if (s.isEmpty()) {
         return;
     }

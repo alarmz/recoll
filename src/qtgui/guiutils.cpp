@@ -149,7 +149,7 @@ void rwSettings(bool writing)
         }
         prefs.advSearchClauses.clear();
         prefs.advSearchClauses.reserve(clauses.size());
-        for (auto clause : clauses) {
+        for (const auto &clause : clauses) {
             prefs.advSearchClauses.push_back(atoi(clause.c_str()));
         }
     }
@@ -420,7 +420,7 @@ void rwSettings(bool writing)
         while (prefs.asearchSubdirHist.size() > 20)
             prefs.asearchSubdirHist.pop_back();
         g_dynconf->eraseAll(asbdSk);
-        for (const auto& qdbd : prefs.asearchSubdirHist) {
+        for (const auto& qdbd : qAsConst(prefs.asearchSubdirHist)) {
             g_dynconf->enterString(asbdSk, qs2utf8s(qdbd));
         }
     } else {

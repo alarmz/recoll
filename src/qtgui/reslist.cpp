@@ -979,7 +979,7 @@ void ResList::mouseDoubleClickEvent(QMouseEvent *event)
 {
     RESLIST_PARENTCLASS::mouseDoubleClickEvent(event);
 #if defined(USING_WEBKIT) 
-    emit(wordSelect(selectedText()));
+    emit wordSelect(selectedText());
 #elif defined(USING_WEBENGINE)
     // webengineview does not have such an event function, and
     // reimplementing event() itself is not useful (tried) as it does
@@ -987,7 +987,7 @@ void ResList::mouseDoubleClickEvent(QMouseEvent *event)
     // not that useful, so left aside for now.
 #else
     if (textCursor().hasSelection())
-        emit(wordSelect(textCursor().selectedText()));
+        emit wordSelect(textCursor().selectedText());
 #endif
 }
 
@@ -1047,7 +1047,7 @@ void ResList::onLinkClicked(const QUrl &qurl)
     { 
         if (!havedoc)
             return;
-        emit(showSnippets(doc));
+        emit showSnippets(doc);
     }
     break;
     case 'D': // Show duplicates

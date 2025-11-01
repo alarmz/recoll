@@ -42,7 +42,7 @@ void ConfigSwitchW::init()
             m_qdirs.push_back(path2qs(e));
     }
     m_qdirs.push_back(tr("Choose other"));
-    for (const auto& e : m_qdirs) {
+    for (const auto& e : qAsConst(m_qdirs)) {
         dirsCMB->addItem(e);
     }
 

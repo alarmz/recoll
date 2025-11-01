@@ -653,7 +653,8 @@ void ResTable::init(QStringList _ifields)
     
     connect(tableView, SIGNAL(customContextMenuRequested(const QPoint&)),
             this, SLOT(createPopupMenu(const QPoint&)));
-
+    connect(tableView, SIGNAL(entered(const QModelIndex&)),
+            this, SLOT(tableView_entered(const QModelIndex&)));
     QHeaderView *header = tableView->horizontalHeader();
     if (header) {
         if (_ifields.empty()) {
@@ -1007,10 +1008,10 @@ void ResTable::onTableView_currentChanged(const QModelIndex& index)
     if (!displaydone && showmeta) {
         m_pager->displaySingleDoc(theconfig, m_detaildocnum, m_detaildoc, m_model->m_hdata);
     }
-    emit(detailDocChanged(doc, m_model->getDocSource()));
+    emit detailDocChanged(doc, m_model->getDocSource());
 }
 
-void ResTable::on_tableView_entered(const QModelIndex& index)
+void ResTable::tableView_entered(const QModelIndex& index)
 {
     LOGDEB2("ResTable::on_tableView_entered(" << index.row() << ", "  <<
             index.column() << ")\n");
@@ -1139,7 +1140,7 @@ void ResTable::onLinkClicked(const QUrl &qurl)
     switch (what) {
         // Open abstract/snippets window
     case 'A':
-        emit(showSnippets(m_detaildoc));
+        emit showSnippets(m_detaildoc);
         break;
     case 'D':
     {

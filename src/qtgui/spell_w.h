@@ -42,7 +42,7 @@ public slots:
     virtual void wordChanged(const QString&);
     virtual void textDoubleClicked();
     virtual void textDoubleClicked(int, int);
-    virtual void setMode(comboboxchoice);
+    virtual void setMode(SpellW::comboboxchoice);
 
 private slots:
     virtual void onModeChanged(int);

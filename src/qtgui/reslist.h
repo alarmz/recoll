@@ -166,7 +166,6 @@ private:
     // Running js after page load. Sometimes we don't want to do it on the first event (which may be
     // a reset), hence the countdown.
     QString m_js;
-    int m_js_countdown{0};
     RclMain   *m_rclmain{0};
     bool m_ismainres{true};
 

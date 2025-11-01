@@ -76,7 +76,6 @@ void ViewAction::init()
 void ViewAction::onClose()
 {
     QSettings settings;
-    auto qw = settings.value(settingskey_fieldwidths).toString();
     auto *header = actionsLV->horizontalHeader();
     std::vector<std::string> vw;
     for (int i = 0; i < 2; i++){

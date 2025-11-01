@@ -292,7 +292,7 @@ string HighlightData::toString() const
     out.append(cbuf);
 
     size_t ugidx = (size_t) - 1;
-    for (HighlightData::TermGroup tg : index_term_groups) {
+    for (const HighlightData::TermGroup &tg : index_term_groups) {
         if (ugidx != tg.grpsugidx) {
             ugidx = tg.grpsugidx;
             out.append("\n(");

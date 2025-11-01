@@ -129,7 +129,7 @@ void RclMain::openWith(Rcl::Doc doc, string cmdspec)
     if (!stringToStrings(cmdspec, lcmd)) {
         QMessageBox::warning(0, "Recoll", tr("Bad desktop app spec for %1: [%2]\n"
                                              "Please check the desktop file")
-                             .arg(u8s2qs(doc.mimetype)).arg(path2qs(cmdspec)));
+                             .arg(u8s2qs(doc.mimetype), path2qs(cmdspec)));
         return;
     }
 
@@ -301,7 +301,7 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
     if (!stringToStrings(cmd, lcmd)) {
         QMessageBox::warning(0, "Recoll", tr("Bad viewer command line for %1: [%2]\n"
                                              "Please check the mimeview file")
-            .arg(u8s2qs(doc.mimetype)).arg(path2qs(cmd)));
+                             .arg(u8s2qs(doc.mimetype), path2qs(cmd)));
         return;
     }
 
@@ -335,7 +335,7 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
         QString mt = QString::fromUtf8(doc.mimetype.c_str());
         QString message = tr("The viewer specified in mimeview for %1: %2"
                              " is not found.\nDo you want to start the preferences dialog ?")
-            .arg(mt).arg(path2qs(lcmd.front()));
+            .arg(mt, path2qs(lcmd.front()));
 
         switch(QMessageBox::warning(0, "Recoll", message, 
                                     QMessageBox::Yes|QMessageBox::No, QMessageBox::No)) {

@@ -201,7 +201,7 @@ void Preview::emitShowNext()
         return;
     PreviewTextEdit *edit = currentEditor();
     if (edit) {
-        emit(showNext(this, m_searchId, edit->m_docnum));
+        emit showNext(this, m_searchId, edit->m_docnum);
     }
 }
 
@@ -211,7 +211,7 @@ void Preview::emitShowPrev()
         return;
     PreviewTextEdit *edit = currentEditor();
     if (edit) {
-        emit(showPrev(this, m_searchId, edit->m_docnum));
+        emit showPrev(this, m_searchId, edit->m_docnum);
     }
 }
 
@@ -367,7 +367,7 @@ void Preview::currentChanged(int index)
     }
 #endif
     searchTextCMB->installEventFilter(this);
-    emit(previewExposed(this, m_searchId, edit->m_docnum));
+    emit previewExposed(this, m_searchId, edit->m_docnum);
 }
 
 void Preview::closeCurrentTab()
@@ -516,7 +516,7 @@ void Preview::togglePlainPre()
 
 void Preview::emitWordSelect(QString word)
 {
-    emit(wordSelect(word));
+    emit wordSelect(word);
 }
 
 // Display message dialog after load failed
@@ -668,7 +668,7 @@ bool Preview::loadDocInCurrentTab(Rcl::Doc &idoc, int docnum)
     setCurTabProps(idoc, docnum);
 
     QString msg = QString("Loading: %1 (size %2 bytes)")
-        .arg(path2qs(idoc.url)).arg(u8s2qs(idoc.fbytes));
+        .arg(path2qs(idoc.url), u8s2qs(idoc.fbytes));
 
     QProgressDialog progress(msg, tr("Cancel"), 0, 0, this);
     progress.setMinimumDuration(2000);
@@ -856,7 +856,7 @@ bool Preview::loadDocInCurrentTab(Rcl::Doc &idoc, int docnum)
     }
 #else
     editor->m_richtxt.clear();
-    for (const auto& chunk : qrichlst) {
+    for (const auto& chunk : qAsConst(qrichlst)) {
         editor->m_richtxt.append(chunk);
     }
     LOGDEB2("HTML: " << qs2utf8s(editor->m_richtxt).substr(0, 5000) << "\n");
@@ -937,9 +937,9 @@ bool Preview::loadDocInCurrentTab(Rcl::Doc &idoc, int docnum)
     } else {
         // Position to the first query term
         if (editor->m_plaintorich->haveAnchors()) {
+#ifdef PREVIEW_TEXTBROWSER
             QString aname = editor->m_plaintorich->curAnchorName();
             LOGDEB2("Call movetoanchor(" << qs2utf8s(aname) << ")\n");
-#ifdef PREVIEW_TEXTBROWSER
             editor->scrollToAnchor(aname);
             // Position the cursor approximately at the anchor (top of
             // viewport) so that searches start from here
@@ -956,7 +956,7 @@ bool Preview::loadDocInCurrentTab(Rcl::Doc &idoc, int docnum)
     historyEnterDoc(rcldb, g_dynconf, idoc);
 
     editor->setFocus();
-    emit(previewExposed(this, m_searchId, docnum));
+    emit previewExposed(this, m_searchId, docnum);
     LOGDEB("loadDocInCurrentTab: returning true\n");
     return true;
 }

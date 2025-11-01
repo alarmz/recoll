@@ -177,7 +177,7 @@ void RclMain::init()
     restable = new ResTable(this);
     resultsHLayout->insertWidget(1, restable);
     actionShowResultsAsTable->setChecked(prefs.showResultsAsTable);
-    on_actionShowResultsAsTable_toggled(prefs.showResultsAsTable);
+    showResultsAsTable(prefs.showResultsAsTable);
 
     onNewShortcuts();
     Preview::listShortcuts();
@@ -226,6 +226,9 @@ void RclMain::init()
     connect(queryPrefsAction, SIGNAL(triggered()), this, SLOT(showUIPrefs()));
     connect(extIdxAction, SIGNAL(triggered()), this, SLOT(showExtIdxDialog()));
     connect(enbSynAction, SIGNAL(toggled(bool)), this, SLOT(setSynEnabled(bool)));
+    connect(actionSortByDateAsc, SIGNAL(toggled(bool)), this, SLOT(sortByDateAsc(bool)));
+    connect(actionSortByDateDesc, SIGNAL(toggled(bool)), this, SLOT(sortByDateDesc(bool)));
+    connect(actionShowResultsAsTable, SIGNAL(toggled(bool)), this, SLOT(showResultsAsTable(bool)));
 
     connect(toggleFullScreenAction, SIGNAL(triggered()), this, SLOT(toggleFullScreen()));
     zoomInAction->setShortcut(QKeySequence::ZoomIn);
@@ -902,7 +905,7 @@ void RclMain::initiateQuery()
     QApplication::restoreOverrideCursor();
     m_queryActive = false;
     restable->setEnabled(true);
-    emit(resultsReady());
+    emit resultsReady();
 }
 
 void RclMain::resetSearch()
@@ -988,9 +991,9 @@ void RclMain::toggleTable()
     actionShowResultsAsTable->toggle();
 }
 
-void RclMain::on_actionShowResultsAsTable_toggled(bool on)
+void RclMain::showResultsAsTable(bool on)
 {
-    LOGDEB("RclMain::on_actionShowResultsAsTable_toggled(" << on << ")\n");
+    LOGDEB("RclMain::showResultsAsTable(" << on << ")\n");
     prefs.showResultsAsTable = on;
     displayingTable = on;
     restable->setVisible(on);
@@ -1026,9 +1029,9 @@ void RclMain::on_actionShowResultsAsTable_toggled(bool on)
     }
 }
 
-void RclMain::on_actionSortByDateAsc_toggled(bool on)
+void RclMain::sortByDateAsc(bool on)
 {
-    LOGDEB("RclMain::on_actionSortByDateAsc_toggled(" << on << ")\n");
+    LOGDEB("RclMain::sortByDateAsc(" << on << ")\n");
     if (on) {
         if (actionSortByDateDesc->isChecked()) {
             actionSortByDateDesc->setChecked(false);
@@ -1040,9 +1043,9 @@ void RclMain::on_actionSortByDateAsc_toggled(bool on)
     initiateQuery();
 }
 
-void RclMain::on_actionSortByDateDesc_toggled(bool on)
+void RclMain::sortByDateDesc(bool on)
 {
-    LOGDEB("RclMain::on_actionSortByDateDesc_toggled(" << on << ")\n");
+    LOGDEB("RclMain::sortByDateDesc(" << on << ")\n");
     if (on) {
         if (actionSortByDateAsc->isChecked()) {
             actionSortByDateAsc->setChecked(false);
@@ -1251,19 +1254,21 @@ void RclMain::catgFilter(int id)
     if (id < 0 || id >= int(m_catgbutvec.size()))
         return; 
 
+    auto fbuttons = m_filtBGRP->buttons();
+    auto factions = m_filtMN->actions();
     switch (prefs.filterCtlStyle) {
     case PrefsPack::FCS_MN:
         m_filtCMB->setCurrentIndex(id);
-        m_filtBGRP->buttons()[id]->setChecked(true);
+        fbuttons[id]->setChecked(true);
         break;
     case PrefsPack::FCS_CMB:
-        m_filtBGRP->buttons()[id]->setChecked(true);
-        m_filtMN->actions()[id]->setChecked(true);
+        fbuttons[id]->setChecked(true);
+        factions[id]->setChecked(true);
         break;
     case PrefsPack::FCS_BT:
     default:
         m_filtCMB->setCurrentIndex(id);
-        m_filtMN->actions()[id]->setChecked(true);
+        factions[id]->setChecked(true);
     }
 
     m_catgbutvecidx = id;

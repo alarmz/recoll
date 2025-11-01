@@ -148,8 +148,8 @@ FragButs::FragButs(QWidget* parent)
     }
     FragButsParser parser(data, this, m_buttons);
     if (!parser.Parse()) {
-        QMessageBox::warning(0, "Recoll", tr("%1:\n %2").arg(path2qs(m_fn))
-                             .arg(u8s2qs(parser.getLastErrorMessage())));
+        QMessageBox::warning(
+            0, "Recoll", tr("%1:\n %2").arg(path2qs(m_fn), u8s2qs(parser.getLastErrorMessage())));
         return;
     }
     for (auto& entry : m_buttons) {

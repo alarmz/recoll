@@ -46,6 +46,10 @@ void EditTrans::init(const string& dbdir)
     connect(transTW, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
             this, SLOT(onItemDoubleClicked(QTableWidgetItem *)));
     connect(cancelPB, SIGNAL(clicked()), this, SLOT(close()));
+    connect(savePB, SIGNAL(clicked()), this, SLOT(savePB_clicked()));
+    connect(addPB, SIGNAL(clicked()), this, SLOT(addPB_clicked()));
+    connect(delPB, SIGNAL(clicked()), this, SLOT(delPB_clicked()));
+    connect(transTW, SIGNAL(itemSelectionChanged()), this, SLOT(transTW_itemSelectionChanged()));
 
     QString lab = whatIdxLA->text();
     lab.append(path2qs(m_dbdir));
@@ -78,7 +82,7 @@ void EditTrans::onItemDoubleClicked(QTableWidgetItem *item)
     transTW->editItem(item);
 }
 
-void EditTrans::on_savePB_clicked()
+void EditTrans::savePB_clicked()
 {
     ConfSimple *conftrans = theconfig->getPTrans();
     if (!conftrans) {
@@ -103,7 +107,7 @@ void EditTrans::on_savePB_clicked()
     close();
 }
 
-void EditTrans::on_addPB_clicked()
+void EditTrans::addPB_clicked()
 {
     transTW->setRowCount(transTW->rowCount()+1);
     int row = transTW->rowCount()-1;
@@ -112,7 +116,7 @@ void EditTrans::on_addPB_clicked()
     transTW->editItem(transTW->item(row, 0));
 }
 
-void EditTrans::on_delPB_clicked()
+void EditTrans::delPB_clicked()
 {
     QModelIndexList indexes = transTW->selectionModel()->selectedIndexes();
     vector<int> rows;
@@ -126,7 +130,7 @@ void EditTrans::on_delPB_clicked()
     }
 }
 
-void EditTrans::on_transTW_itemSelectionChanged()
+void EditTrans::transTW_itemSelectionChanged()
 {
     QModelIndexList indexes = transTW->selectionModel()->selectedIndexes();
     if(indexes.size() < 1)

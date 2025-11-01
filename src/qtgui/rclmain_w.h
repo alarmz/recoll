@@ -148,7 +148,7 @@ public slots:
                                    int line = -1, bool enterHistory=true);
     virtual void openWith(Rcl::Doc, std::string);
     virtual void saveDocToFile(Rcl::Doc);
-    virtual void populateSideFilters(SideFilterUpdateReason);
+    virtual void populateSideFilters(RclMain::SideFilterUpdateReason);
     virtual void previewNextInTab(Preview *, int sid, int docnum);
     virtual void previewPrevInTab(Preview *, int sid, int docnum);
     virtual void previewExposed(Preview *, int sid, int docnum);
@@ -165,9 +165,9 @@ public slots:
     virtual void onFragmentsChanged();
     virtual void initDbOpen();
     virtual void toggleFullScreen();
-    virtual void on_actionSortByDateAsc_toggled(bool on);
-    virtual void on_actionSortByDateDesc_toggled(bool on);
-    virtual void on_actionShowResultsAsTable_toggled(bool on);
+    virtual void sortByDateAsc(bool on);
+    virtual void sortByDateDesc(bool on);
+    virtual void showResultsAsTable(bool on);
     virtual void onSortDataChanged(DocSeqSortSpec);
     virtual void onExtSortDataChanged(DocSeqSortSpec);
     virtual void resultCount(int);

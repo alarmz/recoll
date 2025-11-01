@@ -155,7 +155,7 @@ public:
 
 public slots:
     virtual void onTableView_currentChanged(const QModelIndex&);
-    virtual void on_tableView_entered(const QModelIndex& index);
+    virtual void tableView_entered(const QModelIndex& index);
     virtual void setDocSource(std::shared_ptr<DocSequence> nsource);
     virtual void saveColState();
     virtual void resetSource();

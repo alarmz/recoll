@@ -58,7 +58,7 @@ public slots:
     virtual void addExtraDbPB_clicked();
     virtual void delExtraDbPB_clicked();
     virtual void togExtraDbPB_clicked();
-    virtual void on_showTrayIconCB_clicked();
+    virtual void showTrayIconCB_clicked();
     virtual void actAllExtraDbPB_clicked();
     virtual void unacAllExtraDbPB_clicked();
     virtual void setStemLang(const QString& lang);
