@@ -333,7 +333,8 @@ void RclMain::showUIPrefs()
 void RclMain::showExtIdxDialog()
 {
     showUIPrefs();
-    uiprefs->tabWidget->setCurrentIndex(5);
+    auto w = uiprefs->tabWidget->findChild<QWidget*>("tab_extradbs");
+    uiprefs->tabWidget->setCurrentWidget(w);
 }
 
 void RclMain::showAboutDialog()
