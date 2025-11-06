@@ -1,3 +1,14 @@
+recoll (1.43.7-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * GUI: updated SingleApplication to 3.5.4 for license change
+    necessitated for Debian inclusion. 
+  * GUI: menu entry "query->ext dialog" was showing the wrong tab.
+  * GUI: preview: work around webengine setHtml() 2Mb limit.
+  * openxml indexing: properly process whitespace in Word docs
+    with revisions/tracks.
+ 
+ -- Jean-Francois Dockes <jf@dockes.org>  Thu, 06 Nov 2025 08:14:00 +0100
+
 recoll (1.43.6-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Improve the code using xslt to process xml-based formats to process
