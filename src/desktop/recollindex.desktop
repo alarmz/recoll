@@ -2,7 +2,7 @@
 Name=Recoll real time indexer
 Comment=Runs in background to extract and index text from modified documents
 Icon=system-run
-Exec=recollindex -w 60 -m
+Exec=recollindex -w 15 -m -c %c
 Terminal=false
 TerminalOptions=
 Type=Application

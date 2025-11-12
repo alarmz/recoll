@@ -17,6 +17,8 @@
 #ifndef _RTITOOL_W_H_INCLUDED_
 #define _RTITOOL_W_H_INCLUDED_
 
+#include <string>
+
 #include "ui_rtitool.h"
 
 class QPushButton;
@@ -40,6 +42,8 @@ private:
     void accept();
 private:
     void init();
+	std::string getautostartfn();
+	std::string confignick;
 #endif
 };
 

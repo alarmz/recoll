@@ -211,8 +211,7 @@ void RclMain::showIndexSched(bool modal)
     LOGDEB("showIndexSched()\n" );
     if (indexSched == 0) {
         indexSched = new IdxSchedW(this);
-        connect(new QShortcut(quitKeySeq, indexSched), SIGNAL (activated()), 
-                this, SLOT (fileExit()));
+        connect(new QShortcut(quitKeySeq, indexSched), SIGNAL (activated()), this, SLOT(fileExit()));
 #ifdef _WIN32
         indexSched->cronCLB->setText(tr("Batch scheduling"));
         indexSched->cronCLB->setDescription(
@@ -221,20 +220,14 @@ void RclMain::showIndexSched(bool modal)
         indexSched->mainExplainLBL->hide();
         indexSched->rtidxCLB->hide();
 #endif
-        connect(indexSched->cronCLB, SIGNAL(clicked()), 
-                this, SLOT(execCronTool()));
-        if (theconfig && theconfig->isDefaultConfig()) {
+        connect(indexSched->cronCLB, SIGNAL(clicked()), this, SLOT(execCronTool()));
 #ifdef RCL_MONITOR
-            connect(indexSched->rtidxCLB, SIGNAL(clicked()), 
-                    this, SLOT(execRTITool()));
+		connect(indexSched->rtidxCLB, SIGNAL(clicked()), this, SLOT(execRTITool()));
 #else
-            indexSched->rtidxCLB->setEnabled(false);
-            indexSched->rtidxCLB->setToolTip(tr("Disabled because the real time indexer was not compiled in."));
+		indexSched->rtidxCLB->setEnabled(false);
+		indexSched->rtidxCLB->setToolTip(
+			tr("Disabled because the real time indexer was not compiled in."));
 #endif
-        } else {
-            indexSched->rtidxCLB->setEnabled(false);
-            indexSched->rtidxCLB->setToolTip(tr("This configuration tool only works for the main index."));
-        }
     } else {
         // Close and reopen, in hope that makes us visible...
         indexSched->close();

@@ -15,15 +15,14 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-#include "autoconfig.h"
-
-#include <stdio.h>
-#include "safeunistd.h"
 #include <signal.h>
 
 #include <string>
 
 #include <QMessageBox>
+#include <QInputDialog>
+#include <QSettings>
+#include <QString>
 
 #include "recoll.h"
 #include "rtitool.h"
@@ -33,38 +32,45 @@
 #include "readfile.h"
 #include "execmd.h"
 
-using std::string;
-using std::vector;
-using std::map;
-using std::list;
 
-static const char *rautostartfile = ".config/autostart/recollindex.desktop";
+std::string RTIToolW::getautostartfn()
+{
+	const static QString settingskey_confignick("/Recoll/prefs/index/confignickname");
+	std::string autostartfile;
+	std::string confighome;
+	auto xdg = getenv("XDG_CONFIG_HOME");
+	if (xdg) {
+		confighome = xdg;
+	} else {
+		confighome = path_cat(path_home(), ".config/autostart");
+	}
+	if (theconfig->isDefaultConfig()) {
+		return path_cat(confighome, "recollindex.desktop");
+	} 
 
-// Just in case we don't find the file in the shared dir, have a
-// default text ready
-static const char *desktopfiletext = 
-    "[Desktop Entry]\n"
-    "Name=Recoll real time indexer\n"
-    "Comment=Runs in background to extract and index text from modified "
-    "documents\n"
-    "Icon=system-run\n"
-    "Exec=recollindex -w 60 -m\n"
-    "Terminal=false\n"
-    "TerminalOptions=\n"
-    "Type=Application\n"
-    "Categories=Utility;Filesystem;Database;\n"
-    "NoDisplay=true\n"
-    "X-GNOME-Autostart-enabled=true\n"
-    "X-KDE-autostart-after=panel\n"
-    "X-KDE-UniqueApplet=true\n"
-    ;
+	if (confignick.empty()) {
+		// Not the default configuration. Check if we stored the nickname, else ask for it
+		QSettings settings(
+			u8s2qs(path_cat(theconfig->getConfDir(), "recollgui.ini")), QSettings::IniFormat);
+		QString qnm = settings.value(settingskey_confignick).toString();
+		if (qnm.isEmpty()) {
+			qnm = QInputDialog::getText(
+				this, tr("Configuration name"), tr("Short alphanumeric nickname for this config"));
+			if (qnm.isEmpty()) {
+				return std::string();
+			}
+			settings.setValue(settingskey_confignick, qnm);
+		}
+		confignick = qs2path(qnm);
+	}
+	return path_cat(confighome, std::string("recollindex-") + confignick + ".desktop");
+}
 
 void RTIToolW::init()
 {
-    connect(this->sesCB, SIGNAL(clicked(bool)), 
-            this, SLOT(sesclicked(bool)));
-    string autostartfile = path_cat(path_home(), rautostartfile);
-    if (path_exists(autostartfile)) {
+    connect(this->sesCB, SIGNAL(clicked(bool)), this, SLOT(sesclicked(bool)));
+    std::string autostartfile = getautostartfn();
+    if (!autostartfile.empty() && path_exists(autostartfile)) {
         sesCB->setChecked(true);
     }
 }
@@ -79,41 +85,44 @@ void RTIToolW::sesclicked(bool on)
 void RTIToolW::accept()
 {
     bool exitdial = false;
-    string autostartfile = path_cat(path_home(), rautostartfile);
+
+	auto autostartfile = getautostartfn();
+	if (autostartfile.empty())
+		return;
 
     if (sesCB->isChecked()) {
         // Setting up daemon indexing autostart
 
         if (path_exists(autostartfile)) {
             QString msg = tr("Replacing: ") + path2qs(autostartfile);
-    
-            QMessageBox::Button rep = 
-                QMessageBox::question(this, tr("Replacing file"), msg,
-                                      QMessageBox::Ok | QMessageBox::Cancel);
+            QMessageBox::Button rep = QMessageBox::question(
+                this, tr("Replacing file"), msg, QMessageBox::Ok | QMessageBox::Cancel);
             if (rep != QMessageBox::Ok) {
-                goto out;
+				return;
             }
         }
 
-        string text;
-        if (theconfig) {
-            string sourcefile = path_cat(theconfig->getDatadir(), "examples");
-            sourcefile = path_cat(sourcefile, "recollindex.desktop");
-            if (path_exists(sourcefile)) {
-                file_to_string(sourcefile, text);
-            }
-        }
-        if (text.empty())
-            text = desktopfiletext;
-
+		std::string sourcefile = path_cat(theconfig->getDatadir(), "examples");
+		sourcefile = path_cat(sourcefile, "recollindex.desktop");
+        std::string prototext;
+		if (path_exists(sourcefile)) {
+			file_to_string(sourcefile, prototext);
+		}
+        if (prototext.empty()) {
+			QMessageBox::warning(0, "Recoll", tr("Could not find ") + path2qs(sourcefile));
+			return;
+		}
+		std::string text;
+		pcSubst(prototext , text, {{'c', theconfig->getConfDir()}});
+		
         // Try to create .config and autostart anyway. If they exists this will 
         // do nothing. An error will be detected when we try to create the file
-        string dir = path_cat(path_home(), ".config");
+        auto dir = path_cat(path_home(), ".config");
         path_makepath(dir, 0700);
         dir = path_cat(dir, "autostart");
         path_makepath(dir, 0700);
 
-        string reason;
+        std::string reason;
         if (!stringtofile(text, autostartfile.c_str(), reason)) {
             QString msg = tr("Can't create: ") + path2qs(autostartfile);
             QMessageBox::warning(0, tr("Warning"), msg, QMessageBox::Ok);
@@ -122,16 +131,17 @@ void RTIToolW::accept()
 
         if (nowCB->isChecked()) {
             ExecCmd cmd;
-            vector<string> args; 
+            std::vector<std::string> args; 
             int status;
 
             args.push_back("-m");
             args.push_back("-w");
             args.push_back("0");
+			args.push_back("-c");
+			args.push_back(theconfig->getConfDir());
             status = cmd.doexec("recollindex", args, 0, 0);
             if (status) {
-                QMessageBox::warning(0, tr("Warning"), 
-                                     tr("Could not execute recollindex"), 
+                QMessageBox::warning(0, tr("Warning"), tr("Could not execute recollindex"), 
                                      QMessageBox::Ok);
                 goto out;
             }
@@ -142,10 +152,8 @@ void RTIToolW::accept()
         // Turning autostart off
         if (path_exists(autostartfile)) {
             QString msg = tr("Deleting: ") + path2qs(autostartfile);
-    
-            QMessageBox::Button rep = 
-                QMessageBox::question(this, tr("Deleting file"), msg,
-                                      QMessageBox::Ok | QMessageBox::Cancel);
+            QMessageBox::Button rep = QMessageBox::question(
+				this, tr("Deleting file"), msg, QMessageBox::Ok | QMessageBox::Cancel);
             if (rep == QMessageBox::Ok) {
                 exitdial = true;
                 unlink(autostartfile.c_str());
@@ -173,4 +181,5 @@ out:
     if (exitdial)
         QDialog::accept();
 }
-#endif
+
+#endif // _WIN32

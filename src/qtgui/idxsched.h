@@ -27,8 +27,7 @@ public:
         : QDialog(parent) {
         setupUi(this);
         (void)new HelpClient(this);
-        HelpClient::installMap((const char *)this->objectName().toUtf8(), 
-                               "RCL.INDEXING");
+        HelpClient::installMap((const char *)this->objectName().toUtf8(),  "RCL.INDEXING");
     }
 };
 
