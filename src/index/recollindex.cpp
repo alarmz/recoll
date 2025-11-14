@@ -500,8 +500,8 @@ static void stopindexer(Pidfile *pidfile, RclConfig *config)
 {
 #ifdef _WIN32
     std::fstream ost;
-    if (!path_streamopen(theconfig->getIdxStopFile(), std::fstream::out, ost)) {
-        LOGSYSERR("toggleIndexing", "path_streamopen", theconfig->getIdxStopFile());
+    if (!path_streamopen(config->getIdxStopFile(), std::fstream::out, ost)) {
+        LOGSYSERR("toggleIndexing", "path_streamopen", config->getIdxStopFile());
     }
 #else
     pid_t pid = pidfile->open();
