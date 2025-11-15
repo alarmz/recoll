@@ -9,12 +9,14 @@
 # 22.04LTS jammy    2027-06
 # 24.04LTS noble    2029-06
 # 25.04    plucky   2026-01
+# 25.10    questing 2026-07
+
 SERIES="focal jammy noble plucky questing"
 #SERIES=questing
 
 PPA_KEYID=7808CE96D38B9201
 
-RCLVERS=1.43.6
+RCLVERS=1.43.7
 GSSPVERS=1.1.3
 PPAVERS=1
 

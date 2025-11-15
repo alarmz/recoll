@@ -11,8 +11,9 @@ DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
 
-# Note rasbian bookworm: qt6 / webengine not there yet. Also edit
-# control's deps and meson line below
+# Note: manually adjust QMAKE and the meson setup line in accordance to the control file for
+# choosing qt5/6 webkit/webengine
+
 export QMAKE=qmake
 #export QMAKE=qmake6
 
