@@ -352,15 +352,18 @@ RclConfig *recollinit(
             pythonpath = cp;
         auto appdir = getenv("APPDIR");
         if (appdir) {
+            // We also used to set LD_LIBRARY_PATH but this is not needed or a good idea because
+            // linuxdeployqt sets RUNPATH in the binaries, so that everything just runs fine. Also,
+            // setting it complicates the matters when running system apps (we needed to
+            // conditionally unset it in execmd)
+
             auto npath = path_cat(appdir, "usr/lib/python3/dist-packages/");
             if (!pythonpath.empty()) {
                 npath += path_PATHsep() + pythonpath;
             }
             setenv("PYTHONPATH", npath.c_str(), 1);
 
-            npath = path_cat(appdir, "usr/lib");
-            setenv("LD_LIBRARY_PATH", npath.c_str(), 1);
-
+            // Not sure if the PATH setting is needed but it can't hurt.
             npath = path_cat(appdir, "usr/bin");
             PATH = PATH + path_PATHsep() + npath;
             setenv("PATH", PATH.c_str(), 1);

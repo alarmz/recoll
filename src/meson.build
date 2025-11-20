@@ -101,9 +101,6 @@ defineslist =     [
         '-DREADFILE_ENABLE_MD5',
         '-DRECOLL_DATADIR="' + recoll_datadir + '"',
     ]
-if get_option('appimage')
-    defineslist += '-DRECOLL_APPIMAGE'
-endif
 
 add_project_arguments(
     defineslist,
