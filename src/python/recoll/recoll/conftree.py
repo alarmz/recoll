@@ -220,10 +220,12 @@ class ConfTree(ConfSimple):
 
         # Try all sk ancestors as submaps (/a/b/c-> /a/b/c, /a/b, /a, b'')
         while True:
-            if sk in self.submaps:
-                return ConfSimple.getbin(self, nm, sk)
-            if sk + b"/" in self.submaps:
-                return ConfSimple.getbin(self, nm, sk + b"/")
+            val = ConfSimple.getbin(self, nm, sk)
+            if val is not None:
+                return val
+            val = ConfSimple.getbin(self, nm, sk + b"/")
+            if val is not None:
+                return val
             nsk = os.path.dirname(sk)
             if nsk == sk:
                 # sk was already root, we're done.
@@ -239,7 +241,8 @@ class ConfStack(object):
     This typically provides for defaults overridden by sparse values in the
     topmost file."""
 
-    def __init__(self, nm, dirs, tp="simple"):
+    def __init__(self, nm, dirs, tp="simple", casesensitive=True):
+        self.casesens = casesensitive
         fnames = []
         for dir in dirs:
             fnm = os.path.join(dir, nm)
@@ -250,9 +253,9 @@ class ConfStack(object):
         self.confs = []
         for fname in fnames:
             if tp.lower() == "simple":
-                conf = ConfSimple(fname)
+                conf = ConfSimple(fname, casesensitive = self.casesens)
             else:
-                conf = ConfTree(fname)
+                conf = ConfTree(fname, casesensitive = self.casesens)
             self.confs.append(conf)
 
     # Accepts / returns binary strings (non-unicode)

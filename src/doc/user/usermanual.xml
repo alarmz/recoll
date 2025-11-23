@@ -1624,40 +1624,35 @@ class MetaFixer(object):
         <para>To enable the &RCL; OCR feature, you need to install one of the supported OCR
         applications (<application>tesseract</application> or <application>ABBYY</application>),
         enable OCR in the PDF or image handler by setting the appropriate configuration parameter,
-        tell &RCL; how to run the OCR by setting the specific OCR <link
+        and tell &RCL; how to run the OCR by setting the specific OCR <link
         linkend="RCL.CONFIG.RECOLLCONF.OCR">configuration variables</link>. All parameters can be
         localized in subdirectories through the usual main configuration mechanism (path
         sections).</para>
         
-        <para>This facility got a major update in &RCL; 1.26.5. Older versions had a more limited,
-          non-caching capability to execute an external OCR program in the PDF handler. The new
-          function has the following features:
+        <para>Running OCR is relatively slow and expensive. Recoll caches OCR output, stored as
+        separate files. The caching is ultimately based on a hash value of the original file
+        contents, so that it is immune to file renames. A first path-based layer ensures fast
+        operation for unchanged (unmoved files), and the data hash (which is still orders of
+        magnitude faster than OCR) is only re-computed if the file was moved. OCR is only performed
+        if the file was not previously processed or if it changed.</para>
 
-          <itemizedlist>
-            <listitem><para>The OCR output is cached, stored as separate files. The caching is
-            ultimately based on a hash value of the original file contents, so that it is immune to
-            file renames. A first path-based layer ensures fast operation for unchanged (unmoved
-            files), and the data hash (which is still orders of magnitude faster than OCR) is only
-            re-computed if the file has moved. OCR is only performed if the file was not previously
-            processed or if it changed.</para></listitem>
-            <listitem><para>The support for a specific OCR program is implemented in a simple Python
-            module. It should be straightforward to add support for any OCR engine with a capability
-            to run from the command line.</para></listitem>
-            <listitem><para>Modules initially exist for <application>tesseract</application> (Linux
-            and &WIN;), and <application>ABBYY FineReader</application> (Linux, tested with
-            version 11). ABBYY FineReader is a commercial closed source program, but it sometimes
-            perform better than tesseract.</para></listitem>
-          </itemizedlist>
-        </para>
+        <para>The support for a specific OCR program is implemented in a simple Python
+        module. It should be straightforward to add support for any OCR engine with a capability
+        to run from the command line.</para>
+
+        <para>Modules initially exist for <application>tesseract</application> (Linux
+        and &WIN;), and <application>ABBYY FineReader</application> (Linux, tested with
+        version 11). ABBYY FineReader is a commercial closed source program, but it sometimes
+        perform better than tesseract.</para>
 
         <sect3>
         <title>OCR for PDF documents</title>
 
-        <para>It must be noted that, if modifying the files (or a copy) is acceptable, then using
-        <link xl:href="https://ocrmypdf.readthedocs.io/en/latest/index.html">OCRmyPDF</link> to add a
-        text layer to the PDF itself is a better solution than using the &RCL; OCR feature:
+        <note><para>If modifying the files (or a copy) is acceptable, then using
+        <link xl:href="https://ocrmypdf.readthedocs.io/en/latest/index.html">OCRmyPDF</link> to add
+        a text layer to the PDF itself is a better solution than using the &RCL; OCR feature:
         e.g. allowing &RCL; to position the PDF viewer on the search target when opening the
-        document, and permitting secondary search in the native tool.</para>
+        document, and permitting secondary search in the native tool.</para></note>
         
         <para>The &RCL; OCR is enabled by the <literal>pdfocr</literal> configuration variable, and
         will only be executed if the processed file has no text content.</para>
@@ -1669,6 +1664,14 @@ tesseractlang = eng</programlisting>
 
         <para>The <literal>pdfocr</literal> variable can be set globally or for specific
         subtrees.</para>
+
+        <para>Under Windows the <filename>recoll.conf</filename> configuration file is found by
+        default in <filename>C:/Users/[you]/AppData/Local/Recoll/recoll.conf</filename> and you will
+        probably need to indicate the actual path of the tesseract command by setting the
+        <literal>tesseractcmd</literal> variable, for example:
+      <programlisting>tesseractcmd = C:/Program Files/Tesseract-OCR/tesseract.exe</programlisting>
+        </para>
+
         </sect3>
 
         <sect3>
@@ -1677,17 +1680,12 @@ tesseractlang = eng</programlisting>
           execute OCR on image files. The default image handler is the Perl-based
           <command>rclimg</command> script and has not been OCR-enabled. So, for performing image
           OCR, you need to tell &RCL; to use the alternate handler and also to enable OCR by setting
-          the <literal>imgocr</literal> variable.</para>
+          the <literal>imgocr</literal> variable. This is done by editing two text files in the
+          index configuration directory (by default <filename>~/.recoll</filename> under &LIN; or
+          &MAC;, or <filename>C:/users/[you]/AppData/Local/Recoll</filename> under &WIN;.</para>
 
-          <para>If you are running an older &RCL; release, you can grab an up to date copy of
-          <filename>rclimg.py</filename> from the <link
-          xl:href="https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rclimg.py?ref_type=heads">git
-          repository</link>. You will have to copy it to the &RCL; <filename>filters/</filename>
-          directory and make it executable. The script needs to run from the installation directory
-          because of how it runs the OCR script.</para>
-          
           <para>Example configuration:</para>
-          <para>In <filename>$RECOLL_CONFDIR/mimeconf</filename>
+          <para>In <filename>mimeconf</filename>
           (e.g. <replaceable>~/.recoll/mimeconf</replaceable>): 
 <programlisting>[index]
 image/gif = execm rclimg.py
@@ -1700,13 +1698,23 @@ image/x-xcf = execm rclimg.py
 </programlisting>
           Of course you can also only use a subset of the image types.
           </para>
-          <para>In <filename>$RECOLL_CONFDIR/recoll.conf</filename>:
+          <para>In <filename>recoll.conf</filename>, by example for Windows, the
+          <literal>tesseractcmd</literal> setting is usually not needed otherwise:
           <programlisting>ocrprogs = tesseract
+tesseractcmd = C:/Program Files(x86)/Tesseract-OCR/tesseract.exe
 tesseractlang = eng
 [/path/to/my/images/directory]          
 imgocr = 1</programlisting>
           </para>
 
+          <para>If you are running an older &RCL; release, you can grab an up to date copy of
+          <filename>rclimg.py</filename> from the <link
+          xl:href="https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rclimg.py?ref_type=heads">git
+          repository</link>. You will have to copy it to the &RCL; <filename>filters/</filename>
+          directory and make it executable. The script needs to run from the installation directory
+          because of how it runs the OCR script.</para>
+          
+          
         </sect3>
         
       </sect2>

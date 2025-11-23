@@ -27,24 +27,27 @@
 #
 
 #
-# maps image file tags to xapian tags
+# maps image file tags to recoll fields (sort of).
 #
 $tagMap = {
-	'subject' => 'subject',
-	'comment' => 'description',
-	'title' => 'title',
-	'headline' => 'title',
-	'caption' => 'caption',
-	'caption-abstract' => 'caption',
-	'author' => 'author',
-	'creator' => 'creator',
-	'from' => 'from',
-	'keywords' => 'keywords',
-	'keyword' => 'keyword',
-	'tag' => 'tag',
+    'author' => 'author',
+    'caption' => 'caption',
+    'caption-abstract' => 'caption',
+    'comment' => 'description',
+    'creator' => 'creator',
+    'date' => 'date',
+    'from' => 'from',
+    'headline' => 'title',
+    'keyword' => 'keyword',
+    'keywords' => 'keywords',
+    'subject' => 'subject',
+    'tag' => 'tag',
+    'title' => 'title',
 };
 
-%options = ('CharsetIPTC' => 'UTF8');
+%options = ('CharsetIPTC' => 'UTF8',
+            'DateFormat' => '%Y-%m-%d %H:%M:%S'
+    );
 
 # set to non-zero if tags which map to xapian tags are to output
 # in the body as well as the header
@@ -57,24 +60,28 @@ $headAndBody = 1;
 sub xapianTag {
 	my $imgtag = shift;
 	while ( ( $tagre, $xapiantag) = each %{$tagMap} ) {
-		return $xapiantag  if $imgtag =~ /^$tagre$/i;
+            if ($imgtag =~ /^$tagre$/i) {
+		return $xapiantag  ;
+            }
 	}
 	return undef;
 }
 
 sub imgTagsToHtml {
-    my $imageFile = shift;
+    my %defaults = (
+        filename => "",
+        json => 0,
+    );
+    my %opts = (%defaults, @_);  # user args override defaults
+
+    my $imageFile = $opts{filename};
     my $output = "";
     $imageFile = '-' if $imageFile eq '';
-    unless ( open(IMGF, $imageFile)  ) {
-	print STDERR "$0: can't open file $imageFile\n";
-	return $output; # file doesn't exist or can't be read
-    }
-    $info = ImageInfo(\*IMGF, \%options);
+    $info = ImageInfo($imageFile, \%options);
     return $output unless $info;
-    close(\*IMGF);
     $fields = [];
     $other = [];
+    my %hashfields = {}; # All tags and values for json output
     $titleHtmlTag = "";
     foreach $tagname ( sort keys %{$info} ) {
 	$xapiantag = xapianTag($tagname);
@@ -85,6 +92,7 @@ sub imgTagsToHtml {
                 } else {
                     $titleHtmlTag = $info->{$tagname};
                 }
+                $hashfields{"completeTitle"} = $titleHtmlTag;
 	    } else {
                 push @{$fields}, [ $xapiantag, $info->{$tagname} ];
             }
@@ -92,23 +100,31 @@ sub imgTagsToHtml {
 	} else {
 	    push @{$other}, [ $tagname, $info->{$tagname} ];
 	}
+        if (! ($info->{$tagname} =~ "^SCALAR\\(|HASH\\(")) {
+            $hashfields{$tagname} = $info->{$tagname};
+        }
     }
-    $output = "<html>\n<head>\n";
-    if ($titleHtmlTag) {
-        $output = $output . "<title>" . $titleHtmlTag . "</title>\n";
+    if ($opts{"json"}) {
+        my $json = JSON->new->allow_nonref;
+        $output = $json->encode(\%hashfields);
+    } else {
+        $output = "<html>\n<head>\n";
+        if ($titleHtmlTag) {
+            $output = $output . "<title>" . $titleHtmlTag . "</title>\n";
+        }
+        $output = $output . 
+            "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">\n";
+        foreach $tagpair ( @{$fields} ) {
+            ($tagname, $value) = @{$tagpair};
+            $output = $output . "<meta name=\"$tagname\" content=\"$value\">\n";
+        }
+        $output = $output . "</head><body>\n";
+        foreach $tagpair (@{$other} ) {
+            ($tagname, $value) = @{$tagpair};
+            $output = $output . sprintf("%30s : %s<br>\n", $tagname, $value);
+        }
+        $output = $output . "</body>\n</html>\n";
     }
-    $output = $output . 
-     "<meta http-equiv=\"Content-Type\" content=\"text/html;charset=UTF-8\">\n";
-    foreach $tagpair ( @{$fields} ) {
-	($tagname, $value) = @{$tagpair};
-	$output = $output . "<meta name=\"$tagname\" content=\"$value\">\n";
-    }
-    $output = $output . "</head><body>\n";
-    foreach $tagpair (@{$other} ) {
-	($tagname, $value) = @{$tagpair};
-	$output = $output . sprintf("%30s : %s<br>\n", $tagname, $value);
-    }
-    $output = $output . "</body>\n</html>\n";
     return $output;
 }
 
@@ -154,6 +170,9 @@ sub readparam {
 #
 # Main program starts here. Talks the rclexecm protocol
 #
+use strict;
+use Getopt::Std;
+use JSON;
 
 # JFD: replaced the "use" call with a runtime load with error checking,
 # for compat with the missing filter detection code.
@@ -164,17 +183,39 @@ if ($@) {
 	exit(1);
 }
 
+my %options=();
+getopts("dfj", \%options);
+
+# If we have an argument, we go into command line test mode, no cmdtalk loop.
+if ($ARGV[0]) {
+    my $json = 0;
+    if (defined $options{j}) {
+        $json = 1;
+    }
+
+    my $data = imgTagsToHtml(
+        filename => $ARGV[0],
+        json => $json
+        );
+    if (defined $options{d} || defined $options{j}) {
+        print("$data\n");
+    }
+    exit(0);
+}
+
+# Cmdtalk processing loop
+
 binmode(STDIN)      || die "cannot binmode STDIN";
 binmode(STDOUT)     || die "cannot binmode STDOUT";
-
-#print STDERR "RCLIMG: Starting\n";
+# Force fflush after every write
 $| = 1;
+
 while (1) {
     # print STDERR "RCLIMG: waiting for command\n";
 
     my %params = ();
     # Read at most 10 parameters (we only actually use one), stop at empty line
-    for($i = 1; $i < 10; $i++) {
+    for(my $i = 1; $i < 10; $i++) {
         my ($name, $value) = readparam;
         if ($name eq "") {
             last;
@@ -190,7 +231,9 @@ while (1) {
     }
 
     print "Mimetype: 9\ntext/html";
-    my $data = imgTagsToHtml($params{"filename:"});
+    my $data = imgTagsToHtml(
+        filename => $params{"filename:"}
+        );
     my $l = length($data);
     print "Document: $l\n";
     # print STDERR "RCLIMG: writing $l bytes of data\n";

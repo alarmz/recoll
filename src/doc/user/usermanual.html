@@ -3070,7 +3070,7 @@ class MetaFixer(object):
           applications (<span class="application">tesseract</span>
           or <span class="application">ABBYY</span>), enable OCR in
           the PDF or image handler by setting the appropriate
-          configuration parameter, tell <span class=
+          configuration parameter, and tell <span class=
           "application">Recoll</span> how to run the OCR by setting
           the specific OCR <a class="link" href=
           "#RCL.CONFIG.RECOLLCONF.OCR" title=
@@ -3145,6 +3145,16 @@ ocrprogs = tesseract
 tesseractlang = eng</pre>
             <p>The <code class="literal">pdfocr</code> variable can
             be set globally or for specific subtrees.</p>
+            <p>Under Windows the <code class=
+            "filename">recoll.conf</code> configuration file is
+            found by default in <code class=
+            "filename">C:/Users/[you]/AppData/Local/Recoll/recoll.conf</code>
+            and you will probably need to indicate the actual path
+            of the tesseract command by setting the <code class=
+            "literal">tesseractcmd</code> variable, for
+            example:</p>
+            <pre class=
+            "programlisting">tesseractcmd = C:/Program Files(x86)/Tesseract-OCR/tesseract.exe</pre>
           </div>
           <div class="sect3">
             <div class="titlepage">
@@ -3165,21 +3175,15 @@ tesseractlang = eng</pre>
             need to tell <span class="application">Recoll</span> to
             use the alternate handler and also to enable OCR by
             setting the <code class="literal">imgocr</code>
-            variable.</p>
-            <p>If you are running an older <span class=
-            "application">Recoll</span> release, you can grab an up
-            to date copy of <code class="filename">rclimg.py</code>
-            from the <a class="ulink" href=
-            "https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rclimg.py?ref_type=heads"
-            target="_top">git repository</a>. You will have to copy
-            it to the <span class="application">Recoll</span>
-            <code class="filename">filters/</code> directory and
-            make it executable. The script needs to run from the
-            installation directory because of how it runs the OCR
-            script.</p>
+            variable. This is done by editing two text files in the
+            index configuration directory (by default <code class=
+            "filename">~/.recoll</code> under <span class=
+            "application">Unix</span>-like systems or <span class=
+            "application">MacOS</span> systems, or <code class=
+            "filename">C:/users/[you]/AppData/Local/Recoll</code>
+            under <span class="application">Windows</span>.</p>
             <p>Example configuration:</p>
-            <p>In <code class=
-            "filename">$RECOLL_CONFDIR/mimeconf</code> (e.g.
+            <p>In <code class="filename">mimeconf</code> (e.g.
             <em class=
             "replaceable"><code>~/.recoll/mimeconf</code></em>):</p>
             <pre class="programlisting">[index]
@@ -3193,12 +3197,26 @@ image/x-xcf = execm rclimg.py
 </pre>
             <p>Of course you can also only use a subset of the
             image types.</p>
-            <p>In <code class=
-            "filename">$RECOLL_CONFDIR/recoll.conf</code>:</p>
+            <p>In <code class="filename">recoll.conf</code>, by
+            example for Windows, the <code class=
+            "literal">tesseractcmd</code> setting is usually not
+            needed otherwise:</p>
             <pre class="programlisting">ocrprogs = tesseract
+tesseractcmd = C:/Program Files(x86)/Tesseract-OCR/tesseract.exe
 tesseractlang = eng
 [/path/to/my/images/directory]          
 imgocr = 1</pre>
+            <p>If you are running an older <span class=
+            "application">Recoll</span> release, you can grab an up
+            to date copy of <code class="filename">rclimg.py</code>
+            from the <a class="ulink" href=
+            "https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rclimg.py?ref_type=heads"
+            target="_top">git repository</a>. You will have to copy
+            it to the <span class="application">Recoll</span>
+            <code class="filename">filters/</code> directory and
+            make it executable. The script needs to run from the
+            installation directory because of how it runs the OCR
+            script.</p>
           </div>
         </div>
         <div class="sect2">
@@ -9701,8 +9719,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5183" id=
-                "id5183"></a>GUI settings</h3>
+                <h3 class="title"><a name="id5194" id=
+                "id5194"></a>GUI settings</h3>
               </div>
             </div>
           </div>
@@ -9718,8 +9736,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5190" id=
-                "id5190"></a>Index configuration parameters</h3>
+                <h3 class="title"><a name="id5201" id=
+                "id5201"></a>Index configuration parameters</h3>
               </div>
             </div>
           </div>
