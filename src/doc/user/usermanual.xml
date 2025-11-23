@@ -1624,7 +1624,7 @@ class MetaFixer(object):
         <para>To enable the &RCL; OCR feature, you need to install one of the supported OCR
         applications (<application>tesseract</application> or <application>ABBYY</application>),
         enable OCR in the PDF or image handler by setting the appropriate configuration parameter,
-        tell &RCL; how to run the OCR by setting the specific OCR <link
+        and tell &RCL; how to run the OCR by setting the specific OCR <link
         linkend="RCL.CONFIG.RECOLLCONF.OCR">configuration variables</link>. All parameters can be
         localized in subdirectories through the usual main configuration mechanism (path
         sections).</para>
@@ -1669,6 +1669,13 @@ tesseractlang = eng</programlisting>
 
         <para>The <literal>pdfocr</literal> variable can be set globally or for specific
         subtrees.</para>
+
+        <para>Under Windows the <filename>recoll.conf</filename> configuration file is found by
+        default in <filename>C:/Users/[you]/AppData/Local/Recoll/recoll.conf</filename> and you will
+        probably need to indicate the actual path of the tesseract command by setting the
+        <literal>tesseractcmd</literal> variable, for example:
+        <programlisting>tesseractcmd = C:/Program Files(x86)/Tesseract-OCR/tesseract.exe</programlisting>
+        </para>
         </sect3>
 
         <sect3>
@@ -1677,17 +1684,12 @@ tesseractlang = eng</programlisting>
           execute OCR on image files. The default image handler is the Perl-based
           <command>rclimg</command> script and has not been OCR-enabled. So, for performing image
           OCR, you need to tell &RCL; to use the alternate handler and also to enable OCR by setting
-          the <literal>imgocr</literal> variable.</para>
+          the <literal>imgocr</literal> variable. This is done by editing two text files in the
+          index configuration directory (by default <filename>~/.recoll</filename> under &LIN; or
+          &MAC;, or <filename>C:/users/[you]/AppData/Local/Recoll</filename> under &WIN;.</para>
 
-          <para>If you are running an older &RCL; release, you can grab an up to date copy of
-          <filename>rclimg.py</filename> from the <link
-          xl:href="https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rclimg.py?ref_type=heads">git
-          repository</link>. You will have to copy it to the &RCL; <filename>filters/</filename>
-          directory and make it executable. The script needs to run from the installation directory
-          because of how it runs the OCR script.</para>
-          
           <para>Example configuration:</para>
-          <para>In <filename>$RECOLL_CONFDIR/mimeconf</filename>
+          <para>In <filename>mimeconf</filename>
           (e.g. <replaceable>~/.recoll/mimeconf</replaceable>): 
 <programlisting>[index]
 image/gif = execm rclimg.py
@@ -1700,13 +1702,23 @@ image/x-xcf = execm rclimg.py
 </programlisting>
           Of course you can also only use a subset of the image types.
           </para>
-          <para>In <filename>$RECOLL_CONFDIR/recoll.conf</filename>:
+          <para>In <filename>recoll.conf</filename>, by example for Windows, the
+          <literal>tesseractcmd</literal> setting is usually not needed otherwise:
           <programlisting>ocrprogs = tesseract
+tesseractcmd = C:/Program Files(x86)/Tesseract-OCR/tesseract.exe
 tesseractlang = eng
 [/path/to/my/images/directory]          
 imgocr = 1</programlisting>
           </para>
 
+          <para>If you are running an older &RCL; release, you can grab an up to date copy of
+          <filename>rclimg.py</filename> from the <link
+          xl:href="https://framagit.org/medoc92/recoll/-/blob/master/src/filters/rclimg.py?ref_type=heads">git
+          repository</link>. You will have to copy it to the &RCL; <filename>filters/</filename>
+          directory and make it executable. The script needs to run from the installation directory
+          because of how it runs the OCR script.</para>
+          
+          
         </sect3>
         
       </sect2>

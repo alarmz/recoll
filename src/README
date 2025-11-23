@@ -1589,7 +1589,7 @@ PDF attachment indexing
    To enable the Recoll OCR feature, you need to install one of the
    supported OCR applications (tesseract or ABBYY), enable OCR in the PDF
    or image handler by setting the appropriate configuration parameter,
-   tell Recoll how to run the OCR by setting the specific OCR
+   and tell Recoll how to run the OCR by setting the specific OCR
    [227]configuration variables. All parameters can be localized in
    subdirectories through the usual main configuration mechanism (path
    sections).
@@ -1631,23 +1631,26 @@ tesseractlang = eng
 
    The pdfocr variable can be set globally or for specific subtrees.
 
+   Under Windows the recoll.conf configuration file is found by default in
+   C:/Users/[you]/AppData/Local/Recoll/recoll.conf and you will probably
+   need to indicate the actual path of the tesseract command by setting
+   the tesseractcmd variable, for example:
+tesseractcmd = C:/Program Files(x86)/Tesseract-OCR/tesseract.exe
+
 OCR for image documents
 
    As of Recoll 1.43.3, the alternate Python rclimg.py handler can execute
    OCR on image files. The default image handler is the Perl-based rclimg
    script and has not been OCR-enabled. So, for performing image OCR, you
    need to tell Recoll to use the alternate handler and also to enable OCR
-   by setting the imgocr variable.
-
-   If you are running an older Recoll release, you can grab an up to date
-   copy of rclimg.py from the [229]git repository. You will have to copy
-   it to the Recoll filters/ directory and make it executable. The script
-   needs to run from the installation directory because of how it runs the
-   OCR script.
+   by setting the imgocr variable. This is done by editing two text files
+   in the index configuration directory (by default ~/.recoll under
+   Unix-like systems or MacOS systems, or
+   C:/users/[you]/AppData/Local/Recoll under Windows.
 
    Example configuration:
 
-   In $RECOLL_CONFDIR/mimeconf (e.g. ~/.recoll/mimeconf):
+   In mimeconf (e.g. ~/.recoll/mimeconf):
 [index]
 image/gif = execm rclimg.py
 image/jp2 = execm rclimg.py
@@ -1659,11 +1662,19 @@ image/x-xcf = execm rclimg.py
 
    Of course you can also only use a subset of the image types.
 
-   In $RECOLL_CONFDIR/recoll.conf:
+   In recoll.conf, by example for Windows, the tesseractcmd setting is
+   usually not needed otherwise:
 ocrprogs = tesseract
+tesseractcmd = C:/Program Files(x86)/Tesseract-OCR/tesseract.exe
 tesseractlang = eng
 [/path/to/my/images/directory]
 imgocr = 1
+
+   If you are running an older Recoll release, you can grab an up to date
+   copy of rclimg.py from the [229]git repository. You will have to copy
+   it to the Recoll filters/ directory and make it executable. The script
+   needs to run from the installation directory because of how it runs the
+   OCR script.
 
 2.7.4. Running a speech to text program on audio files
 
