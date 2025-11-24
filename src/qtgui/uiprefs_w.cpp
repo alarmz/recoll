@@ -96,10 +96,10 @@ void UIPrefsDialog::init()
     colorschemeCMB->addItem(tr("Light"));
     colorschemeCMB->addItem(tr("Dark"));
 #if (QT_VERSION >= QT_VERSION_CHECK(6, 5, 0))
-        // Qt 6.5 brings a way to detect the desktop dark/light mode.
+    // Qt 6.5 brings a way to detect the desktop dark/light mode.
     colorschemeCMB->addItem(tr("System"));
 #if defined(__APPLE__)
-        // __APPLE__ with qt6.5+: always use the system mode. We have problems with the others.
+    // __APPLE__ with qt6.5+: always use the system mode. We have problems with the others.
     colorschemeCMB->hide();
 #endif
 #endif
@@ -417,6 +417,7 @@ void UIPrefsDialog::setupReslistFontPB()
 
 void UIPrefsDialog::accept()
 {
+    emit delPTrans();
     // Most values are stored in the prefs struct. Some rarely used
     // ones go directly through the settings
     QSettings settings;
@@ -587,6 +588,7 @@ void UIPrefsDialog::editHeaderText()
 
 void UIPrefsDialog::reject()
 {
+    emit delPTrans();
     setFromPrefs();
     QDialog::reject();
 }
@@ -724,21 +726,20 @@ void UIPrefsDialog::extradDbSelectChanged()
 
 void UIPrefsDialog::extraDbEditPtrans()
 {
-    string dbdir;
+    std::string dbdir;
     if (idxLV->selectedItems().size() == 0) {
+        // No extra index selected: work on default index
         dbdir = theconfig->getDbDir();
     } else if (idxLV->selectedItems().size() == 1) {
         QListWidgetItem *item = idxLV->selectedItems()[0];
         QString qd = item->data(Qt::DisplayRole).toString();
         dbdir = qs2path(qd);
     } else {
-        QMessageBox::warning(
-            0, "Recoll", tr("At most one index should be selected"));
+        QMessageBox::warning(0, "Recoll", tr("At most one index should be selected"));
         return;
     }
     dbdir = path_canon(dbdir);
-    EditTrans *etrans = new EditTrans(dbdir, this);
-    etrans->show();
+    emit showPTrans(path2qs(dbdir));
 }
 
 void UIPrefsDialog::togExtraDbPB_clicked()

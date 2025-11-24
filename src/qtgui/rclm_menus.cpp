@@ -132,6 +132,7 @@ void RclMain::buildMenus()
     queryMenu->addSeparator();
     extIdxAction->setText(extIdxAction->text() + ellips);
     queryMenu->addAction(extIdxAction);
+    queryMenu->addAction(pTransAction);
     connect(queryMenu, SIGNAL(triggered(QAction *)), this, SLOT(onSSTypMenu(QAction *)));
     connect(sSearch->searchTypCMB, SIGNAL(currentIndexChanged(int)), this, SLOT(onSSTypCMB(int)));
     queryMenu->addSection(QIcon(), tr("Stemming language"));

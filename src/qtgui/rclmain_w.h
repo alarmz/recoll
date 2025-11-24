@@ -53,6 +53,7 @@ class ActSearchW;
 class IdxTreeModel;
 class UIPrefsDialog;
 class ConfigSwitchW;
+class PTransEdit;
 
 #include "ui_rclmain.h"
 
@@ -127,6 +128,8 @@ public slots:
     virtual void setSynEnabled(bool);
     virtual void showUIPrefs();
     virtual void showIndexConfig();
+    virtual void showPTrans(const QString& = "");
+    virtual void delPTrans();
     virtual void execIndexConfig();
     virtual void showConfigSwitch();
     virtual void showCronTool();
@@ -210,6 +213,7 @@ private:
     AdvSearch      *asearchform{0};
     UIPrefsDialog  *uiprefs{0};
     ConfIndexW     *indexConfig{0};
+    PTransEdit     *pathTrans{0};
     IdxSchedW      *indexSched{0};
 #ifdef _WIN32
     WinSchedToolW  *cronTool{0};
@@ -269,7 +273,7 @@ private:
     // preview (if no ext app set)
     QString          m_urltoview;
     RclTrayIcon     *m_trayicon{0};
-   // We sometimes take the indexer lock (e.g.: when editing the webcache)
+    // We sometimes take the indexer lock (e.g.: when editing the webcache)
     Pidfile         *m_pidfile{0};
     IdxTreeModel    *m_idxtreemodel{nullptr};
     

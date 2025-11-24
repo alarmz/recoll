@@ -394,6 +394,14 @@
     <cstring>indexConfigAction</cstring>
    </property>
   </action>
+  <action name="pTransAction">
+   <property name="text">
+    <string>Path translations</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>pTransAction</cstring>
+   </property>
+  </action>
   <action name="indexScheduleAction">
    <property name="text">
     <string>Indexing &amp;schedule</string>

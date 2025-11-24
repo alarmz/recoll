@@ -222,6 +222,7 @@ void RclMain::init()
     connect(actionWebcache_Editor, SIGNAL(triggered()), this, SLOT(showWebcacheDialog()));
     connect(actionQuery_Fragments, SIGNAL(triggered()), this, SLOT(showFragButs()));
     connect(indexConfigAction, SIGNAL(triggered()), this, SLOT(showIndexConfig()));
+    connect(pTransAction, SIGNAL(triggered()), this, SLOT(showPTrans()));
     connect(indexScheduleAction, SIGNAL(triggered()), this, SLOT(showIndexSched()));
     connect(queryPrefsAction, SIGNAL(triggered()), this, SLOT(showUIPrefs()));
     connect(extIdxAction, SIGNAL(triggered()), this, SLOT(showExtIdxDialog()));

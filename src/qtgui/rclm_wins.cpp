@@ -40,6 +40,7 @@
 #include "docseqdocs.h"
 #include "uiprefs_w.h"
 #include "configswitch.h"
+#include "ptrans_w.h"
 
 using namespace std;
 
@@ -175,6 +176,21 @@ void RclMain::showSpecIdx()
     }
 }
 
+void RclMain::showPTrans(const QString& qdbdir)
+{
+    // Delete / recreate in case external indexes changed
+    deleteZ(pathTrans);
+    pathTrans = new PTransEdit(qs2path(qdbdir), nullptr);
+    pathTrans->setCurrentDb(qs2path(qdbdir));
+    pathTrans->hide();
+    pathTrans->show();
+}
+
+void RclMain::delPTrans()
+{
+    deleteZ(pathTrans);
+}
+
 void RclMain::showIndexConfig()
 {
     showIndexConfig(false);
@@ -222,11 +238,11 @@ void RclMain::showIndexSched(bool modal)
 #endif
         connect(indexSched->cronCLB, SIGNAL(clicked()), this, SLOT(execCronTool()));
 #ifdef RCL_MONITOR
-		connect(indexSched->rtidxCLB, SIGNAL(clicked()), this, SLOT(execRTITool()));
+        connect(indexSched->rtidxCLB, SIGNAL(clicked()), this, SLOT(execRTITool()));
 #else
-		indexSched->rtidxCLB->setEnabled(false);
-		indexSched->rtidxCLB->setToolTip(
-			tr("Disabled because the real time indexer was not compiled in."));
+        indexSched->rtidxCLB->setEnabled(false);
+        indexSched->rtidxCLB->setToolTip(
+            tr("Disabled because the real time indexer was not compiled in."));
 #endif
     } else {
         // Close and reopen, in hope that makes us visible...
@@ -309,6 +325,8 @@ void RclMain::showUIPrefs()
     prefs.tmpActiveExtraDbs.clear();
     if (uiprefs == 0) {
         uiprefs = new UIPrefsDialog(this);
+        connect(uiprefs, SIGNAL(showPTrans(const QString&)), this, SLOT(showPTrans(const QString&)));
+        connect(uiprefs, SIGNAL(delPTrans()), this, SLOT(delPTrans()));
         connect(new QShortcut(quitKeySeq, uiprefs), SIGNAL (activated()), 
                 this, SLOT (fileExit()));
         connect(uiprefs, SIGNAL(uiprefsDone()), this, SLOT(setUIPrefs()));
