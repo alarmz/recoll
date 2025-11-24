@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sustabdyti realaus laiko indeksatorių, kai naudojamas baterijos energija.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Indeksatorius palauks grįžimo į AC ir iš naujo vykdys save, kai tai įvyks.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(pagal nutylėjimą, aspell siūlo klaidingus rašybos variantus, kai užklausa neturi rezultatų).</translation>
     </message>
 </context>
 <context>
@@ -1361,15 +1361,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konfigūracijos pavadinimas</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Trumpas alfanumerinis slapyvardis šiai konfigūracijai</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nepavyko rasti</translation>
     </message>
 </context>
 <context>
@@ -1379,8 +1379,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Paieškos rezultatai</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Paieškos rezultatai</translation>
     </message>
 </context>
 <context>
@@ -2075,12 +2075,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Rodyklė, nurodyta mimeview skirta %1: %2, nerasta. Ar norite paleisti nustatymų dialogą?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">su papildomu pranešimu:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rodyti išplėstinį paieškos dialogą</translation>
     </message>
 </context>
 <context>
@@ -2463,11 +2463,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kelio vertimai</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Su nepavykusiais failais bandymas iš naujo</translation>
     </message>
 </context>
 <context>
@@ -3195,8 +3195,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Didelė raidė, kad būtų slopinamas kamieno plėtimas&lt;/td&gt;&lt;td&gt;Apatinis lygis&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">skirtis nuo esamų nuostatų (išsaugotų)</translation>
     </message>
 </context>
 <context>
@@ -3690,16 +3690,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">Rašybos plėtros klaida.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Dokumentai sukurti/atnaujinti</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Failai patikrinti</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Nesurūšiuoti failai</translation>
     </message>
 </context>
 <context>
@@ -3802,15 +3802,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Šviesa</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tamsus</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sistema</translation>
     </message>
 </context>
 <context>
@@ -4118,7 +4118,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Reikšmė yra vykdomas komandinė eilutė. Pakeitimai: %s: paieškos eilutė; %p: puslapio numeris; &lt;br&gt;%f: dokumento failo pavadinimas. F1 daugiau pagalbos.</translation>
     </message>
 </context>
 <context>
@@ -5235,15 +5235,15 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Spalvų schema</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rodydami HTML tamsiuoju režimu, bandykite naudoti tamsų foną (ir šviesią spalvą). Tai prieštarauja daugeliui dokumentų, kurie perrašys mūsų šviesų nustatymą savo CSS (tamsia) priekinės spalvos, rezultatu būdamas neįskaitomas dokumentas, todėl pagal nutylėjimą tai yra išjungta.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Naudokite tamsų foną rodydami HTML tamsiuoju režimu.</translation>
     </message>
 </context>
 </TS>

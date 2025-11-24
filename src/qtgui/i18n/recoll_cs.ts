@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pozastavit indexování v reálném čase při běhu na baterii.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Indexér bude čekat na návrat na AC a znovu se spustí, když se to stane.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(výchozí nastavení je, že aspell navrhuje překlepy, když dotaz nemá žádné výsledky).</translation>
     </message>
 </context>
 <context>
@@ -1363,15 +1363,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Název konfigurace</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krátký alfanumerický přezdívka pro tuto konfiguraci</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nepodařilo se najít</translation>
     </message>
 </context>
 <context>
@@ -1381,8 +1381,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Nalezeno</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Nalezeno</translation>
     </message>
 </context>
 <context>
@@ -2077,12 +2077,12 @@ Do you want to start the preferences dialog ?</source>
 Chcete spustit dialog s nastavením?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">s dodatečnou zprávou:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Zobrazit dialog pokročilého vyhledávání</translation>
     </message>
 </context>
 <context>
@@ -2465,11 +2465,11 @@ Chcete spustit dialog s nastavením?</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Překlady cest</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">S neúspěšnými soubory se opakuje pokus</translation>
     </message>
 </context>
 <context>
@@ -3197,8 +3197,8 @@ Použijte odkaz &lt;b&gt;Ukázat hledání&lt;/b&gt;, když máte o výsledku po
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Velká počáteční písmena pro potlačení rozšíření stonku&lt;/td&gt;&lt;td&gt;Přízemí&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">liší se od aktuálních preferencí (uloženo)</translation>
     </message>
 </context>
 <context>
@@ -3692,16 +3692,16 @@ Použijte odkaz &lt;b&gt;Ukázat hledání&lt;/b&gt;, když máte o výsledku po
         <translation type="unfinished">Chyba rozšíření pravopisu.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Dokumenty vytvořené/aktualizované</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Soubory testovány</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Nenindexované soubory</translation>
     </message>
 </context>
 <context>
@@ -3804,15 +3804,15 @@ Použijte odkaz &lt;b&gt;Ukázat hledání&lt;/b&gt;, když máte o výsledku po
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Světlo</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Temný</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Systém</translation>
     </message>
 </context>
 <context>
@@ -4121,7 +4121,7 @@ Dadurch sollten Ergebnisse, die exakte Übereinstimmungen der Suchworte enthalte
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hodnota je příkazový řádek, který má být proveden. Nahrazování: %s: hledaný řetězec; %p: číslo stránky; &lt;br&gt;%f: název dokumentu. F1 pro více nápovědy.</translation>
     </message>
 </context>
 <context>
@@ -5242,15 +5242,15 @@ Výchozí hodnota je 2 (procenta).</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Barevné schéma</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Při zobrazení HTML v tmavém režimu se snažte použít tmavé pozadí (a světlou barvu). To však může být v rozporu s mnoha dokumenty, které přepíší naše světlé nastavení svou vlastní CSS (tmavou) přední barvou, což má za následek nečitelný dokument, takže je tato funkce ve výchozím stavu vypnuta.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Použijte tmavé pozadí při zobrazení HTML v tmavém režimu.</translation>
     </message>
 </context>
 </TS>

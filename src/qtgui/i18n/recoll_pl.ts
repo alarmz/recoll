@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wstrzymaj indeksowanie w czasie rzeczywistym podczas pracy na baterii.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Indeksator będzie czekał na zwrot na AC i ponownie uruchomi się, gdy to nastąpi.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(domyslnie, aspell sugeruje bledy ortograficzne, gdy zapytanie nie zwraca wynikow)</translation>
     </message>
 </context>
 <context>
@@ -1365,15 +1365,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nazwa konfiguracji</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Krótki alfanumeryczny pseudonim dla tej konfiguracji</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nie można znaleźć</translation>
     </message>
 </context>
 <context>
@@ -1383,8 +1383,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Trafienia</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Wyniki</translation>
     </message>
 </context>
 <context>
@@ -2078,12 +2078,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Podgląd określony w mimeview dla %1: %2 nie został znaleziony. Czy chcesz uruchomić okno dialogowe preferencji?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">z dodatkową wiadomością:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pokaż zaawansowane okno wyszukiwania</translation>
     </message>
 </context>
 <context>
@@ -2466,11 +2466,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Tłumaczenia ścieżek</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Ponowna próba plików nieudanych</translation>
     </message>
 </context>
 <context>
@@ -3198,8 +3198,8 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Zastosuj wielką literę, aby zablokować rozwinięcie formy podstawowej&lt;/td&gt;&lt;td&gt;Piętro&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">różnią się od obecnych preferencji (zachowanych)</translation>
     </message>
 </context>
 <context>
@@ -3693,16 +3693,16 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
         <translation type="unfinished">Błąd rozszerzania pisowni.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Dokumenty utworzone/ zaktualizowane</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Pliki przetestowane</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Niezaindeksowane pliki</translation>
     </message>
 </context>
 <context>
@@ -3805,15 +3805,15 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Światło</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ciemny</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">System</translation>
     </message>
 </context>
 <context>
@@ -4122,7 +4122,7 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wartość jest poleceniem do wykonania w wierszu poleceń. Podstawienia: %s: ciąg wyszukiwania; %p: numer strony; &lt;br&gt;%f: nazwa pliku dokumentu. F1 dla więcej pomocy.</translation>
     </message>
 </context>
 <context>
@@ -5242,15 +5242,15 @@ Domyślna wartość to 2 (%).</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schemat kolorów</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Podczas wyświetlania HTML w trybie ciemnym, spróbuj użyć ciemnego tła (i jasnego koloru). To koliduje z wieloma dokumentami, które nadpiszą nasze ustawienia jasnego tła ich własnym CSS (ciemnym) kolorem tekstu, co skutkuje nieczytelnym dokumentem, dlatego jest to domyślnie wyłączone.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Użyj ciemnego tła podczas wyświetlania HTML w trybie ciemnym.</translation>
     </message>
 </context>
 </TS>

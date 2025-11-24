@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pausa den realtidsindexerare när den körs på batteri.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Indexer kommer att vänta på en retur på AC och köra om sig själv när det inträffar.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(standardinställningen är att aspell föreslår felstavningar när en sökning inte ger några resultat).</translation>
     </message>
 </context>
 <context>
@@ -871,7 +871,7 @@ Klicka på Avbryt om du vill redigera konfigurationsfilen innan indexering start
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Välj en eller flera filtyper, använd sedan kontrollerna i ramen nedan för att ändra hur de behandlas.</translation>
     </message>
     <message>
         <source>Add</source>
@@ -1363,15 +1363,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konfigurationsnamn</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kort alfanumeriskt smeknamn för denna konfiguration</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kunde inte hitta</translation>
     </message>
 </context>
 <context>
@@ -1381,8 +1381,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Träffar</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Träffar</translation>
     </message>
 </context>
 <context>
@@ -2077,12 +2077,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Den visare som anges i mimeview för %1: %2 hittades inte. Vill du starta inställningsdialogen?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">med ytterligare meddelande:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Visa avancerad sökdialog</translation>
     </message>
 </context>
 <context>
@@ -2465,11 +2465,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sökvägöversättningar</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Med misslyckade filer försöker igen</translation>
     </message>
 </context>
 <context>
@@ -3197,8 +3197,8 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Kapitalisera för att undertrycka stamexpansion&lt;/td&gt;&lt;td&gt;Golv&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">skiljer sig från nuvarande preferenser (sparade)</translation>
     </message>
 </context>
 <context>
@@ -3692,16 +3692,16 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
         <translation type="unfinished">Stavningsutvidgningsfel.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Dokument skapade/uppdaterade</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Filer testade</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Oindexerade filer</translation>
     </message>
 </context>
 <context>
@@ -3804,15 +3804,15 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ljus</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mörk</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">System - System</translation>
     </message>
 </context>
 <context>
@@ -4121,7 +4121,7 @@ Detta bör ge högre företräde till de träffar där söktermerna visas exakt 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Värdet är en kommandorad som ska köras. Substitutioner: %s: söksträng; %p: sidnummer; &lt;br&gt;%f: dokumentfilnamn. F1 för mer hjälp.</translation>
     </message>
 </context>
 <context>
@@ -5242,15 +5242,15 @@ Standardvärdet är 2 (procent). </translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Färgsättning</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">När du visar HTML i mörkt läge, försök att använda en mörk bakgrund (och ljus färg). Detta strider mot många dokument som kommer att åsidosätta vår ljusa inställning med sin egen CSS (mörk) förgrundsfärg, vilket resulterar i ett oläsbart dokument, så det är avstängt som standard.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Använd mörk bakgrund när du visar HTML i mörkt läge.</translation>
     </message>
 </context>
 </TS>

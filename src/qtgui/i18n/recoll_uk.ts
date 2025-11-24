@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Призупинити індексатор у реальному часі під час роботи на батареї.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Індексатор буде чекати на повернення на AC і повторно виконувати себе, коли це станеться.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">за замовчуванням, aspell пропонує варіанти неправильного написання слів, коли запит не має результатів.</translation>
     </message>
 </context>
 <context>
@@ -1364,15 +1364,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Назва конфігурації</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Коротке алфавітно-цифрове ім&apos;я для цієї конфігурації</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Не вдалося знайти</translation>
     </message>
 </context>
 <context>
@@ -1382,8 +1382,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Пошуки</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Пошуки</translation>
     </message>
 </context>
 <context>
@@ -2079,12 +2079,12 @@ Do you want to start the preferences dialog ?</source>
 Бажаєте відкрити діалогове вікно налаштувань?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">з додатковим повідомленням:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Показати діалогове вікно розширеного пошуку</translation>
     </message>
 </context>
 <context>
@@ -2467,11 +2467,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Переклад шляхів</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">З помилковими файлами повторна спроба</translation>
     </message>
 </context>
 <context>
@@ -3199,8 +3199,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Зробити велику літеру, щоб приглушити розширення стему&lt;/td&gt;&lt;td&gt;Підлога&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">відрізняються від поточних уподобань (збережено)</translation>
     </message>
 </context>
 <context>
@@ -3694,16 +3694,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">Помилка розширення заклинання.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Документи створені/оновлені</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Файли перевірені</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Непроіндексовані файли</translation>
     </message>
 </context>
 <context>
@@ -3806,15 +3806,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Світло</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Темний</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Система</translation>
     </message>
 </context>
 <context>
@@ -4123,7 +4123,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Значення - це командний рядок, який потрібно виконати. Підстановки: %s: рядок пошуку; %p: номер сторінки; &lt;br&gt;%f: назва файлу документа. F1 для отримання додаткової довідки.</translation>
     </message>
 </context>
 <context>
@@ -5244,15 +5244,15 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Кольорова схема</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">При відображенні HTML у темному режимі, спробуйте використовувати темний фон (і світлі кольори). Це суперечить багатьом документам, які перевизначать наші світлі налаштування своїм власним CSS (темним) переднім кольором, що призводить до нерозбірливого документа, тому це вимкнено за замовчуванням.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Використовуйте темний фон при відображенні HTML у темному режимі.</translation>
     </message>
 </context>
 </TS>

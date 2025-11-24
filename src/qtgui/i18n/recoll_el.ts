@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Αναστείλετε τον δείκτη πραγματικού χρόνου κατά τη λειτουργία με μπαταρία.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Ο δείκτης θα περιμένει για επιστροφή στο AC και θα εκτελέσει ξανά τον εαυτό του όταν συμβεί αυτό.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">Προεπιλογή, το aspell προτείνει ορθογραφικά λάθη όταν μια αναζήτηση δεν έχει αποτελέσματα.</translation>
     </message>
 </context>
 <context>
@@ -1362,15 +1362,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Όνομα διαμόρφωσης</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Σύντομο αλφαριθμητικό ψευδώνυμο για αυτή τη διαμόρφωση</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Δεν μπόρεσα να βρω</translation>
     </message>
 </context>
 <context>
@@ -1380,8 +1380,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Εντοπισμοί</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Εντοπισμοί</translation>
     </message>
 </context>
 <context>
@@ -2076,12 +2076,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Ο προβολέας που καθορίζεται στο mimeview για το %1: %2 δεν βρέθηκε. Θέλετε να ξεκινήσετε το παράθυρο προτιμήσεων;</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">με επιπλέον μήνυμα:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Εμφάνιση προχωρημένου παραθύρου αναζήτησης</translation>
     </message>
 </context>
 <context>
@@ -2464,11 +2464,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Μεταφράσεις διαδρομής</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Με αποτυχημένα αρχεία επανάληψη</translation>
     </message>
 </context>
 <context>
@@ -3200,8 +3200,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Μέγεθος&lt;/td&gt;&lt;td&gt;μέγεθος&gt;100k μέγεθος&lt;1M&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">διαφέρουν από τις τρέχουσες προτιμήσεις (διατηρούνται)</translation>
     </message>
 </context>
 <context>
@@ -3695,16 +3695,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">Σφάλμα διαστολής ξενόγλωσσων.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Έγγραφα που δημιουργήθηκαν/ενημερώθηκαν</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Αρχεία ελέγχθηκαν</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Μη ευρετηριασμένα αρχεία</translation>
     </message>
 </context>
 <context>
@@ -3807,15 +3807,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Φως</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Σκοτεινό</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Σύστημα</translation>
     </message>
 </context>
 <context>
@@ -4124,7 +4124,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Η τιμή είναι μια γραμμή εντολών που πρέπει να εκτελεστεί. Αντικαταστάσεις: %s: συμβολοσειρά αναζήτησης; %p: αριθμός σελίδας; &lt;br&gt;%f: όνομα αρχείου εγγράφου. F1 για περισσότερη βοήθεια.</translation>
     </message>
 </context>
 <context>
@@ -5243,15 +5243,15 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Χρωματικό σχήμα</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Κατά την εμφάνιση HTML σε λειτουργία σκοτεινού χρώματος, προσπαθήστε να χρησιμοποιήσετε σκοτεινό φόντο (και ανοιχτό χρώμα). Αυτό δημιουργεί σύγκρουση με πολλά έγγραφα τα οποία θα αντικαταστήσουν τη ρύθμιση φωτεινότητας μας με το δικό τους CSS (σκοτεινό) χρώμα προσκηνίου, με αποτέλεσμα ένα αναγνώσιμο έγγραφο, γι&apos; αυτό είναι απενεργοποιημένο από προεπιλογή.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Χρησιμοποιήστε σκούρο φόντο κατά την εμφάνιση HTML σε λειτουργία σκοτεινού τρόπου.</translation>
     </message>
 </context>
 </TS>

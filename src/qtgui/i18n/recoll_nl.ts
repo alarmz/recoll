@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schakel de real-time indexeerder uit wanneer deze op batterijvoeding werkt.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">De indexeerder zal wachten op een reactie op AC en zichzelf opnieuw uitvoeren wanneer dit gebeurt.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(standaard suggereert aspell verkeerd gespelde woorden wanneer een zoekopdracht geen resultaten oplevert).</translation>
     </message>
 </context>
 <context>
@@ -867,7 +867,7 @@ Klik op Annuleren als u het configuratiebestand wilt bewerken voordat u het inde
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Selecteer één of meerdere bestandstypen, en gebruik vervolgens de bedieningselementen in het kader hieronder om te wijzigen hoe ze worden verwerkt.</translation>
     </message>
     <message>
         <source>Add</source>
@@ -1358,15 +1358,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Configuratienaam</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Korte alfanumerieke bijnaam voor deze configuratie</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kon niet vinden</translation>
     </message>
 </context>
 <context>
@@ -1376,8 +1376,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Resultaten</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Treffers</translation>
     </message>
 </context>
 <context>
@@ -2068,12 +2068,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">De viewer gespecificeerd in mimeview voor %1: %2 is niet gevonden. Wilt u het voorkeurenvenster openen?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">met extra bericht:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Toon geavanceerd zoekvenster</translation>
     </message>
 </context>
 <context>
@@ -2458,11 +2458,11 @@ Start real time indexer</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Padvertalingen</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Met mislukte bestanden opnieuw proberen</translation>
     </message>
 </context>
 <context>
@@ -3190,8 +3190,8 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Hoofdletters om stamuitbreiding te onderdrukken&lt;/td&gt;&lt;td&gt;Vloer&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">verschillen van huidige voorkeuren (behouden)</translation>
     </message>
 </context>
 <context>
@@ -3685,16 +3685,16 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
         <translation type="unfinished">Spelfoutuitbreidingfout.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Documenten aangemaakt/bijgewerkt</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Bestanden getest</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Ongeïndexeerde bestanden</translation>
     </message>
 </context>
 <context>
@@ -3797,15 +3797,15 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Licht</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Donker</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Systeem</translation>
     </message>
 </context>
 <context>
@@ -4112,7 +4112,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">De waarde is een opdrachtregel die moet worden uitgevoerd. Vervangingen: %s: zoekreeks; %p: paginanummer; &lt;br&gt;%f: documentbestandsnaam. F1 voor meer hulp.</translation>
     </message>
 </context>
 <context>
@@ -5225,15 +5225,15 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kleurenschema</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bij het weergeven van HTML in donkere modus, probeer een donkere achtergrond te gebruiken (en lichte kleur). Dit conflicteert met veel documenten die onze lichte instelling zullen overschrijven met hun eigen CSS (donkere) voorgrondkleur, resulterend in een onleesbaar document, dus het staat standaard uit.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gebruik een donkere achtergrond bij het weergeven van HTML in de donkere modus.</translation>
     </message>
 </context>
 </TS>

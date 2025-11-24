@@ -319,7 +319,7 @@
     <message>
         <source>Max. size for the web store (MB)</source>
         <translatorcomment>
-Max. size for the web store (MB)        </translatorcomment>
+Max. size for the web store (MB)                </translatorcomment>
         <translation>Max. size for the web store (MB)</translation>
     </message>
     <message>
@@ -388,7 +388,7 @@ Max. size for the web store (MB)        </translatorcomment>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached</source>
-        <translation type="vanished">Note：&#x3000;最大サイズに達すると、古いページが消去され、新しいページ用のスペースが確保されます</translation>
+        <translation type="vanished">Note：　最大サイズに達すると、古いページが消去され、新しいページ用のスペースが確保されます</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -432,15 +432,15 @@ Max. size for the web store (MB)        </translatorcomment>
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">バッテリー駆動時にリアルタイムインデクサーを一時停止します。</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">インデクサーはACの返信を待ち、それが起こったときに自分自身を再実行します。</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">（デフォルトでは、クエリに結果がない場合、aspellはスペルミスを提案します）。</translation>
     </message>
 </context>
 <context>
@@ -759,7 +759,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Decide if real time indexing will be started when you log in (only for the default index).</source>
         <translatorcomment>
-ログイン時にリアルタイムのインデックス作成を開始するかどうかを決定します（デフォルトのインデックスに対してのみ有効）。        </translatorcomment>
+ログイン時にリアルタイムのインデックス作成を開始するかどうかを決定します（デフォルトのインデックスに対してのみ有効）。                </translatorcomment>
         <translation></translation>
     </message>
 </context>
@@ -1239,15 +1239,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">構成名 (Kousei mei)</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">この構成のための短い英数字のニックネーム</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">次のテキスト断片を日本語に翻訳します。「Could not find」。テキスト検索GUIのコンテキストで使用される想定です。</translation>
     </message>
 </context>
 <context>
@@ -1257,8 +1257,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">ヒット</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">ヒット</translation>
     </message>
 </context>
 <context>
@@ -1718,7 +1718,7 @@ Please check the desktop file</translation>
     <message>
         <source>Could not open/create file</source>
         <translatorcomment>
-ファイル・オープン／作成不可        </translatorcomment>
+ファイル・オープン／作成不可                </translatorcomment>
         <translation></translation>
     </message>
     <message>
@@ -1816,12 +1816,12 @@ Do you want to start the preferences dialog ?</source>
 設定ダイアログを開始しますか？</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">追加メッセージ：</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">高度な検索ダイアログを表示します。</translation>
     </message>
 </context>
 <context>
@@ -2156,11 +2156,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">パスの翻訳</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">失敗したファイルを再試行します。</translation>
     </message>
 </context>
 <context>
@@ -2333,7 +2333,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>&amp;Delete column</source>
         <translatorcomment>
-列を削除(&amp;D)        </translatorcomment>
+列を削除(&amp;D)                </translatorcomment>
         <translation>&amp;Delete column</translation>
     </message>
     <message>
@@ -2612,8 +2612,8 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;語幹の拡張を抑制するために大文字にする&lt;/td&gt;&lt;td&gt;フロア&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">現在の設定と異なります（保持）</translation>
     </message>
 </context>
 <context>
@@ -2965,16 +2965,16 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">スペル拡張エラー。</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">ドキュメントが作成/更新</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">テストされたファイル</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">インデックスされていないファイル</translation>
     </message>
 </context>
 <context>
@@ -3018,7 +3018,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>At most one index should be selected</source>
         <translatorcomment>
-最大で1つのインデックスを選択する必要があります        </translatorcomment>
+最大で1つのインデックスを選択する必要があります                </translatorcomment>
         <translation></translation>
     </message>
     <message>
@@ -3075,15 +3075,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ライト</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ダーク</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">システム</translation>
     </message>
 </context>
 <context>
@@ -3157,7 +3157,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">値は実行されるコマンドラインです。置換: %s: 検索文字列; %p: ページ番号; &lt;br&gt;%f: ドキュメントファイル名。詳細なヘルプにはF1を押してください。</translation>
     </message>
 </context>
 <context>
@@ -3302,7 +3302,7 @@ Do you want to start the preferences dialog ?</source>
     <name>confgui::ConfTabsW</name>
     <message>
         <source>Apply</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">適用する (てきようする)</translation>
     </message>
 </context>
 <context>
@@ -3891,15 +3891,15 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">カラースキーム</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ダークモードでHTMLを表示する際は、ダークな背景（および明るい色）を使用してみてください。&lt;br&gt;これは、多くの文書が自身のCSS（ダーク）の前景色で私たちの明るい設定を上書きし、読めない文書になるため、デフォルトではオフになっています。</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">ダークモードでHTMLを表示する際は、暗い背景を使用してください。</translation>
     </message>
 </context>
 </TS>

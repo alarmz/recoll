@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Suspender el indexador en tiempo real cuando se esté ejecutando con la batería.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">El indexador esperará un retorno en AC y se volverá a ejecutar cuando suceda.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">Por defecto, aspell sugiere errores de ortografía cuando una consulta no arroja resultados.</translation>
     </message>
 </context>
 <context>
@@ -1360,15 +1360,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nombre de configuración</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Apodo corto alfanumérico para esta configuración.</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">No se pudo encontrar</translation>
     </message>
 </context>
 <context>
@@ -1378,8 +1378,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Resultados</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Resultados</translation>
     </message>
 </context>
 <context>
@@ -2074,12 +2074,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">El visor especificado en mimeview para %1: %2 no se encuentra. ¿Desea iniciar el cuadro de diálogo de preferencias?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">con mensaje adicional:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mostrar cuadro de diálogo de búsqueda avanzada</translation>
     </message>
 </context>
 <context>
@@ -2462,11 +2462,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Traducciones de ruta</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Reintentando archivos fallidos</translation>
     </message>
 </context>
 <context>
@@ -3195,8 +3195,8 @@ Usar &lt;b&gt;Mostrar consulta&lt;/b&gt; enlace cuando haya dudas sobre el resul
         <translation type="unfinished">Capitalizar para suprimir la expansión del tallo.</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">diferir de las preferencias actuales (mantenidas)</translation>
     </message>
 </context>
 <context>
@@ -3690,16 +3690,16 @@ Usar &lt;b&gt;Mostrar consulta&lt;/b&gt; enlace cuando haya dudas sobre el resul
         <translation type="unfinished">Error de expansión de hechizo.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Documentos creados/actualizados</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Archivos probados</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Archivos no indexados</translation>
     </message>
 </context>
 <context>
@@ -3802,15 +3802,15 @@ Usar &lt;b&gt;Mostrar consulta&lt;/b&gt; enlace cuando haya dudas sobre el resul
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Luz</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Oscuro</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sistema</translation>
     </message>
 </context>
 <context>
@@ -4119,7 +4119,7 @@ Esto dará mayor precedencia a los resultados en los cuales los términos de bú
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">El valor es una línea de comando que se ejecutará. Sustituciones: %s: cadena de búsqueda; %p: número de página; &lt;br&gt;%f: nombre de archivo del documento. Presiona F1 para obtener más ayuda.</translation>
     </message>
 </context>
 <context>
@@ -5237,15 +5237,15 @@ El valor por defecto es 2 (por ciento).</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Esquema de color</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Al mostrar HTML en modo oscuro, intenta usar un fondo oscuro (y color claro). Esto entra en conflicto con muchos documentos que anularán nuestra configuración clara con su propio color de primer plano CSS (oscuro), lo que resulta en un documento ilegible, por lo que está desactivado de forma predeterminada.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Usar un fondo oscuro al mostrar HTML en modo oscuro.</translation>
     </message>
 </context>
 </TS>

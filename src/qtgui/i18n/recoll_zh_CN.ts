@@ -6,7 +6,7 @@
     <message>
         <source>Menu search</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>搜索菜单</translation>
     </message>
 </context>
@@ -468,15 +468,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在电池供电时暂停实时索引器</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引器将等待AC返回，并在发生时重新执行自身。</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">（默认情况下，当查询没有结果时，拼写检查会建议拼写错误）。</translation>
     </message>
 </context>
 <context>
@@ -686,7 +686,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Translated path</source>
         <translatorcomment>
-存疑        </translatorcomment>
+存疑                </translatorcomment>
         <translation type="vanished">已变换的路径</translation>
     </message>
 </context>
@@ -1436,15 +1436,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">配置名称</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">这个配置的短字母数字昵称</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法找到</translation>
     </message>
 </context>
 <context>
@@ -1452,12 +1452,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hits</source>
         <translatorcomment>
-存疑        </translatorcomment>
+存疑                </translatorcomment>
         <translation type="vanished">点击量</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">点击量</translation>
     </message>
 </context>
 <context>
@@ -2120,13 +2120,13 @@ Please check the desktop file</source>
     <message>
         <source>Show menu search dialog</source>
         <translatorcomment>
-存疑        </translatorcomment>
+存疑                </translatorcomment>
         <translation>显示菜单搜索对话框</translation>
     </message>
     <message>
         <source>Duplicates</source>
         <translatorcomment>
-存疑        </translatorcomment>
+存疑                </translatorcomment>
         <translation>重复的结果</translation>
     </message>
     <message>
@@ -2156,12 +2156,12 @@ Do you want to start the preferences dialog ?</source>
 你想要打开首选项对话框吗？</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">带有附加消息:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示高级搜索对话框</translation>
     </message>
 </context>
 <context>
@@ -2525,7 +2525,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Assisted complex search</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>辅助复杂搜索</translation>
     </message>
     <message>
@@ -2546,11 +2546,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">路径翻译</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">文件失败，正在重试</translation>
     </message>
 </context>
 <context>
@@ -2768,13 +2768,13 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>This spelling guess was added to the search:</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>这个拼写猜测已添加到搜索中：</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>这些拼写猜测已添加到搜索中：</translation>
     </message>
 </context>
@@ -3281,7 +3281,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>History</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>简单搜索历史记录</translation>
     </message>
     <message>
@@ -3293,8 +3293,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation>&lt;tr&gt;&lt;td&gt;将单词大写以避免搜索词扩展&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">与当前偏好不同（保留）</translation>
     </message>
 </context>
 <context>
@@ -3786,20 +3786,20 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>Spell expansion error.</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>拼写扩展错误。</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">文档创建/更新</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">文件已测试</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">未索引的文件</translation>
     </message>
 </context>
 <context>
@@ -3902,15 +3902,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">轻量级</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">暗</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">系统</translation>
     </message>
 </context>
 <context>
@@ -4219,7 +4219,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">该值是要执行的命令行。替换：%s：搜索字符串；%p：页码；&lt;br&gt;%f：文档文件名。按F1获取更多帮助。</translation>
     </message>
 </context>
 <context>
@@ -4324,7 +4324,7 @@ This should give higher precedence to the results where the search terms appear 
     <message>
         <source>Could not create batch file</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>不能创建批量索引所需的文件</translation>
     </message>
 </context>
@@ -4916,7 +4916,7 @@ Frequent terms are a major performance issue with phrases.
 Skipped terms augment the phrase slack, and reduce the autophrase efficiency.
 The default value is 2 (percent). </source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>如果一个搜索词出现的频率超过了某个阈值，我们就不会在自动生成短语功能中使用它。
 频率过高的搜索词会极大影响搜索性能。
 跳过这些搜索词则会提高搜索短语的自由度，但同时也会降低自动升段短语功能的搜索能力。默认情况下，该阈值设定为2%。</translation>
@@ -5164,7 +5164,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>Show button instead.</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>显示按钮</translation>
     </message>
     <message>
@@ -5186,7 +5186,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>禁用Ctrl+[0-9]和Shift+[a-z]这些选择搜索结果行数的快捷键</translation>
     </message>
     <message>
@@ -5208,7 +5208,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>为了在结果列表的详情中显示文档内容而不是文档元数据，请使用：</translation>
     </message>
     <message>
@@ -5230,7 +5230,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>鼠标悬停在结果表时不显示元数据</translation>
     </message>
     <message>
@@ -5256,13 +5256,13 @@ The default value is 2 (percent). </source>
     <message>
         <source>Automatic spelling approximation.</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>自动拼写近似</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>最大拼写距离</translation>
     </message>
     <message>
@@ -5272,13 +5272,13 @@ The default value is 2 (percent). </source>
     <message>
         <source>Maximum number of history entries in completer list</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>当前电脑允许保存的最大历史搜索/文档数量</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>当前电脑内保存的历史搜索/历史文档的数量：</translation>
     </message>
     <message>
@@ -5288,7 +5288,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>Show hit counts in completer popup.</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>在弹出窗口中显示点击数</translation>
     </message>
     <message>
@@ -5298,13 +5298,13 @@ The default value is 2 (percent). </source>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>请在Qt QDateTimeEdit的文档中查看时间格式，比如说yyyy-MM-dd。留空会使用系统默认时间格式</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
         <translatorcomment>
-待定        </translatorcomment>
+待定                </translatorcomment>
         <translation>过滤器的日期格式(修改后需要重启程序)</translation>
     </message>
     <message>
@@ -5365,15 +5365,15 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">颜色方案</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在显示暗模式下的HTML时，请尽量使用暗色背景（和浅色文字）。这与许多文档冲突，它们会用自己的CSS（暗色）前景色覆盖我们的浅色设置，导致文档无法阅读，因此默认情况下关闭。</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在暗模式下显示HTML时，请使用深色背景。</translation>
     </message>
 </context>
 </TS>

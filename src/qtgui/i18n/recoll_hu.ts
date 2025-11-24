@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Felfüggeszteni a valós idejű indexelőt, amikor az akkumulátoron fut.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Az indexelő várni fog egy visszatérésre az AC-n, és újra végrehajtja magát, amikor ez megtörténik.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(alapértelmezés szerint az aspell javaslatokat tesz a helyesírási hibákra, amikor egy lekérdezésnek nincsenek eredményei)</translation>
     </message>
 </context>
 <context>
@@ -1368,15 +1368,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konfigurációs név</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rövid alfanumerikus becenév ehhez a konfigurációhoz</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nem található</translation>
     </message>
 </context>
 <context>
@@ -1386,8 +1386,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Találatok</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Találatok</translation>
     </message>
 </context>
 <context>
@@ -2081,12 +2081,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">A megjelenítő, amelyet a mimeview-hez adtak meg %1: %2 esetén, nem található. Szeretné elindítani a beállítások párbeszédpanelt?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">a további üzenettel:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mutassa az összetett keresési párbeszédpanelt.</translation>
     </message>
 </context>
 <context>
@@ -2469,11 +2469,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Útvonal fordítások</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Sikertelen fájlok újrapróbálása</translation>
     </message>
 </context>
 <context>
@@ -3202,8 +3202,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Nagybetűsítés a tőkibővülés elnyomásához&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">eltér a jelenlegi beállításoktól (tárolt)</translation>
     </message>
 </context>
 <context>
@@ -3698,16 +3698,16 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
         <translation type="unfinished">Helyesírási kiterjesztési hiba.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Dokumentumok létrehozva/frissítve</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Fájlok tesztelve</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Nem indexelt fájlok</translation>
     </message>
 </context>
 <context>
@@ -3810,15 +3810,15 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Fény</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sötét</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rendszer</translation>
     </message>
 </context>
 <context>
@@ -4130,7 +4130,7 @@ automatikusan ext:xxx keresőnyelvi kifejezéssé alakíttatnak</translation>
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Az érték egy végrehajtandó parancssor. Helyettesítések: %s: keresőszó; %p: oldalszám; &lt;br&gt;%f: dokumentumfájl neve. F1 további segítségért.</translation>
     </message>
 </context>
 <context>
@@ -5261,15 +5261,15 @@ A PRE+wrap valószínűleg a legjobb választás.</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Színválasztás</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Amikor sötét módban jelenítjük meg az HTML-t, próbáljunk sötét háttérrel (és világos színekkel) dolgozni. Ez ellentétes sok dokumentummal, amelyek felülírják a mi világos beállításunkat saját CSS (sötét) előtérszínükkel, ami olvashatatlan dokumentumhoz vezet, ezért alapértelmezetten kikapcsolva van.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Használjon sötét háttérképet, amikor sötét módban jeleníti meg az HTML-t.</translation>
     </message>
 </context>
 </TS>

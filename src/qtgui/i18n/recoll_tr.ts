@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pil ile çalışırken gerçek zamanlı dizinleyiciyi askıya alın.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">İndeksleyici, AC üzerinde bir dönüş bekleyecek ve gerçekleştiğinde kendini yeniden yürütecektir.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">Varsayılan olarak, aspell sorguda sonuç bulunamadığında yanlış yazılmış kelimeler önerir.</translation>
     </message>
 </context>
 <context>
@@ -1363,15 +1363,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yapılandırma adı</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Bu yapılandırma için kısa alfasayısal takma ad.</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Belirtilen metin parçası: Bulunamadı.</translation>
     </message>
 </context>
 <context>
@@ -1381,8 +1381,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Arama arayüzünde &quot;Hits&quot; ifadesi için Türkçe çeviri: &quot;Sonuçlar&quot;</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Arama sonuçları</translation>
     </message>
 </context>
 <context>
@@ -2077,12 +2077,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Mimeview için belirtilen görüntüleyici %1: %2 bulunamadı. Tercihler iletişim kutusunu başlatmak ister misiniz?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">ek mesajla birlikte:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gelişmiş arama iletişim kutusunu göster</translation>
     </message>
 </context>
 <context>
@@ -2465,11 +2465,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Yol çevirileri</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Başarısız dosyaları yeniden deneme</translation>
     </message>
 </context>
 <context>
@@ -3197,8 +3197,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Kök genişlemesini bastırmak için büyük harf yapın&lt;/td&gt;&lt;td&gt;Zemin&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">Mevcut tercihlerden farklılık gösterir (saklanır)</translation>
     </message>
 </context>
 <context>
@@ -3692,16 +3692,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">Yazım genişletme hatası.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Belgeler oluşturuldu/güncellendi.</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Test edilen dosyalar</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">İndekslenmemiş dosyalar</translation>
     </message>
 </context>
 <context>
@@ -3804,15 +3804,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Işık</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Karanlık</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sistem</translation>
     </message>
 </context>
 <context>
@@ -4121,7 +4121,7 @@ Bu, aranacak sözcüklerin tam olarak girildiği gibi görüntülendiği sonuçl
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Değer, yürütülecek bir komut satırıdır. Yerine koymalar: %s: arama dizesi; %p: sayfa numarası; &lt;br&gt;%f: belge dosya adı. Daha fazla yardım için F1 tuşuna basın.</translation>
     </message>
 </context>
 <context>
@@ -5242,15 +5242,15 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Renk şeması</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Karanlık modda HTML görüntülerken, koyu bir arka plan (ve açık renk) kullanmaya çalışın. Bu, birçok belgeyle çakışır; çünkü belgeler kendi CSS (koyu) ön plan rengini kullanarak bizim açık ayarımızı geçersiz kılabilir ve okunamayan bir belgeye neden olabilir, bu yüzden varsayılan olarak kapalıdır.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Karanlık modda HTML görüntülerken koyu arka plan kullanın.</translation>
     </message>
 </context>
 </TS>

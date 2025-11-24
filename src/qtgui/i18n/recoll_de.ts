@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Den Echtzeit-Indexer im Batteriebetrieb pausieren.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Der Indexer wird auf eine Rückkehr auf AC warten und sich selbst neu ausführen, wenn dies geschieht.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">Standardmäßig schlägt Aspell falsch geschriebene Wörter vor, wenn eine Abfrage keine Ergebnisse liefert.</translation>
     </message>
 </context>
 <context>
@@ -876,7 +876,7 @@ Drücken Sie Abbrechen, um die Konfigurationsdatei vor dem Start der Indizierung
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Wählen Sie eine oder mehrere Dateitypen aus und verwenden Sie die Steuerelemente im Rahmen unten, um zu ändern, wie sie verarbeitet werden.</translation>
     </message>
     <message>
         <source>Add</source>
@@ -1374,15 +1374,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konfigurationsname</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kurzer alphanumerischer Spitzname für diese Konfiguration</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konnte nicht finden</translation>
     </message>
 </context>
 <context>
@@ -1392,8 +1392,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Treffer</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Treffer</translation>
     </message>
 </context>
 <context>
@@ -2089,12 +2089,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Der im Mimeview für %1 spezifizierte Viewer: %2 wurde nicht gefunden. Möchten Sie den Einstellungsdialog starten?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">mit zusätzlicher Nachricht:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Erweiterte Suchdialog anzeigen</translation>
     </message>
 </context>
 <context>
@@ -2477,11 +2477,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Pfadübersetzungen</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Mit fehlgeschlagenen Dateien erneut versuchen</translation>
     </message>
 </context>
 <context>
@@ -3210,8 +3210,8 @@ Benutze &lt;b&gt;Abfrage anzeigen&lt;/b&gt; Link bei Zweifeln am Ergebnis und si
         <translation type="unfinished">Großschreibung zur Unterdrückung der Stammausdehnung.</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">abweichen von aktuellen Einstellungen (behalten)</translation>
     </message>
 </context>
 <context>
@@ -3706,16 +3706,16 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
         <translation type="unfinished">Rechtschreibfehler.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Dokumente erstellt/aktualisiert</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Dateien getestet</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Nicht indizierte Dateien</translation>
     </message>
 </context>
 <context>
@@ -3818,15 +3818,17 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Licht</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dunkel</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">System
+
+System</translation>
     </message>
 </context>
 <context>
@@ -4136,7 +4138,7 @@ Dadurch sollten Ergebnisse, die exakte Übereinstimmungen der Suchworte enthalte
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Der Wert ist eine Befehlszeile, die ausgeführt werden soll. Ersetzungen: %s: Suchbegriff; %p: Seitennummer; &lt;br&gt;%f: Dateiname des Dokuments. Drücken Sie F1 für weitere Hilfe.</translation>
     </message>
 </context>
 <context>
@@ -5262,15 +5264,15 @@ und vermindern den Nutzender automatischen Phrasen. Der Standardwert ist 2.</tra
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Farbschema</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Beim Anzeigen von HTML im Dunkelmodus versuchen Sie, einen dunklen Hintergrund (und helle Farben) zu verwenden. Dies steht im Konflikt mit vielen Dokumenten, die unsere helle Einstellung mit ihrer eigenen CSS (dunklen) Vordergrundfarbe überschreiben, was zu einem unlesbaren Dokument führt, daher ist es standardmäßig deaktiviert.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Verwenden Sie einen dunklen Hintergrund, wenn HTML im Dunkelmodus angezeigt wird.</translation>
     </message>
 </context>
 </TS>

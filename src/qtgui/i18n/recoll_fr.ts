@@ -417,8 +417,8 @@
         <translation>Traiter la file d&apos;attente de l&apos;historique Web</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation> (par défaut, aspell suggère des erreurs lorsqu&apos;une requête n&apos;a pas de résultats).</translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation>(par défaut, aspell suggère des erreurs lorsqu&apos;une requête n&apos;a pas de résultats).</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -466,11 +466,11 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Suspendre l&apos;indexeur en temps réel lorsqu&apos;il fonctionne sur batterie</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Le moteur d&apos;indexation attendra un retour sur AC et se réexécutera lorsque cela se produira.</translation>
     </message>
 </context>
 <context>
@@ -872,7 +872,7 @@ Cliquez sur Annuler si vous voulez modifier le fichier de configuration avant le
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sélectionnez un ou plusieurs types de fichiers, puis utilisez les contrôles dans le cadre ci-dessous pour modifier la façon dont ils sont traités.</translation>
     </message>
     <message>
         <source>Add</source>
@@ -1364,21 +1364,21 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nom de la configuration</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Court surnom alphanumérique pour cette configuration</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Impossible de trouver</translation>
     </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
     <message>
-        <source> Hits</source>
+        <source>Hits</source>
         <translation>Résultats</translation>
     </message>
 </context>
@@ -1839,8 +1839,8 @@ Merci de vérifier le fichier desktop </translation>
         <translation>L&apos;indexeur est actif. Impossible d&apos;accéder au fichier webcache.</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation> avec le message complémentaire :</translation>
+        <source>with additional message: </source>
+        <translation>avec le message complémentaire :</translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -2075,7 +2075,7 @@ Voulez vous afficher le dialogue de préférences ?</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Afficher la boîte de dialogue de recherche avancée</translation>
     </message>
 </context>
 <context>
@@ -2333,7 +2333,7 @@ Voulez vous afficher le dialogue de préférences ?</translation>
         <translation>Fragments de recherche</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
+        <source>With failed files retrying</source>
         <translation>Avec re-traitement des fichiers en échec</translation>
     </message>
     <message>
@@ -2458,7 +2458,7 @@ Voulez vous afficher le dialogue de préférences ?</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Traduction des chemins</translation>
     </message>
 </context>
 <context>
@@ -2503,8 +2503,8 @@ Voulez vous afficher le dialogue de préférences ?</translation>
         <translation>Date fichier</translation>
     </message>
     <message>
-        <source> Ipath</source>
-        <translation type="vanished"> Ipath</translation>
+        <source>Ipath</source>
+        <translation type="vanished">Ipath</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -3006,7 +3006,7 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
         <translation>Les langages d&apos;expansion pour la recherche sauvegardée : </translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
+        <source>differ from current preferences (kept)</source>
         <translation>diffèrent des préférences en cours (conservées)</translation>
     </message>
     <message>
@@ -3657,16 +3657,16 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
         <translation>Résultats de la dernière indexation :</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation>  Documents créés ou mis à jour</translation>
+        <source>Documents created/updated</source>
+        <translation>Documents créés ou mis à jour</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation>  Fichiers testés</translation>
+        <source>Files tested</source>
+        <translation>Fichiers testés</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation>  Fichiers non indexés</translation>
+        <source>Unindexed files</source>
+        <translation>Fichiers non indexés</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3781,15 +3781,15 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lumière</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Foncé</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Système</translation>
     </message>
 </context>
 <context>
@@ -4098,7 +4098,7 @@ Ceci devrait donner une meilleure pertinence aux résultats où les termes reche
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">La valeur est une ligne de commande à exécuter. Substitutions : %s : chaîne de recherche ; %p : numéro de page ; &lt;br&gt;%f : nom de fichier du document. Appuyez sur F1 pour plus d&apos;aide.</translation>
     </message>
 </context>
 <context>
@@ -5222,15 +5222,15 @@ La valeur par défaut est 2%</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Schéma de couleurs</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lors de l&apos;affichage de HTML en mode sombre, essayez d&apos;utiliser un fond sombre (et une couleur claire). Cela entre en conflit avec de nombreux documents qui remplaceront notre paramètre de couleur claire par leur propre couleur de premier plan CSS (sombre), ce qui entraîne un document illisible, donc il est désactivé par défaut.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utilisez un fond sombre lors de l&apos;affichage du HTML en mode sombre.</translation>
     </message>
 </context>
 </TS>

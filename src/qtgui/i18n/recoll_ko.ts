@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">배터리로 작동 중일 때 실시간 인덱서 일시 중지</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">색인 작업은 AC에 대한 반환을 기다릴 것이며, 그것이 발생할 때 다시 실행될 것입니다.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">기본 설정으로, 쿼리 결과가 없을 때 aspell은 철자 오류를 제안합니다.</translation>
     </message>
 </context>
 <context>
@@ -1365,15 +1365,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">구성 이름</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">이 구성에 대한 짧은 알파벳 닉네임</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다음 텍스트 조각을 한국어로 번역하십시오: Could not find</translation>
     </message>
 </context>
 <context>
@@ -1383,8 +1383,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">검색 결과</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">검색 결과</translation>
     </message>
 </context>
 <context>
@@ -2078,12 +2078,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">%1에 대해 mimeview에서 지정된 뷰어 %2을(를) 찾을 수 없습니다. 환경 설정 대화 상자를 시작하시겠습니까?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">추가 메시지와 함께:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">고급 검색 대화 상자 표시</translation>
     </message>
 </context>
 <context>
@@ -2466,11 +2466,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">경로 번역</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">실패한 파일을 다시 시도합니다.</translation>
     </message>
 </context>
 <context>
@@ -3197,8 +3197,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;어간 확장 억제를 위해 대문자로 변환&lt;/td&gt;&lt;td&gt;바닥&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">현재 선호도와 다릅니다 (보관됨)</translation>
     </message>
 </context>
 <context>
@@ -3692,16 +3692,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation type="unfinished">주문 확장 오류.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">문서가 생성/업데이트 됨</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">테스트된 파일</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">인덱싱되지 않은 파일</translation>
     </message>
 </context>
 <context>
@@ -3804,15 +3804,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">빛</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">어두운</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">시스템</translation>
     </message>
 </context>
 <context>
@@ -4121,7 +4121,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">값은 실행할 명령 줄입니다. 대체: %s: 검색 문자열; %p: 페이지 번호; &lt;br&gt;%f: 문서 파일 이름. 더 많은 도움말을 위해 F1을 누르세요.</translation>
     </message>
 </context>
 <context>
@@ -5236,15 +5236,15 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">색 구성</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다크 모드에서 HTML을 표시할 때는 어두운 배경(및 밝은 색상)을 사용하려고 노력하십시오. 이는 많은 문서와 충돌하며, 이러한 문서는 우리의 밝은 설정을 자체 CSS(어두운) 전경 색상으로 덮어씌우기 때문에 읽기 어려운 문서가 됩니다. 그래서 기본적으로 비활성화되어 있습니다.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">다크 모드에서 HTML을 표시할 때는 어두운 배경을 사용하십시오.</translation>
     </message>
 </context>
 </TS>

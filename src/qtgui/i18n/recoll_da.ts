@@ -462,15 +462,15 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Suspender den realtidsindekser, når du kører på batteri.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Indekseren vil vente på en tilbagevenden på AC og genudføre sig selv, når det sker.</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">Som standard foreslår aspell stavefejl, når en søgning ikke giver resultater.</translation>
     </message>
 </context>
 <context>
@@ -870,7 +870,7 @@ Klik på Annullér, hvis du ønsker at redigere konfigurationsfilen før indekse
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vælg en eller flere filtyper, og brug derefter kontrollerne i rammen nedenfor til at ændre, hvordan de behandles.</translation>
     </message>
     <message>
         <source>Add</source>
@@ -1362,15 +1362,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konfigurationsnavn</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kort alfanumerisk kaldenavn for denne konfiguration</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Kunne ikke finde</translation>
     </message>
 </context>
 <context>
@@ -1380,8 +1380,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Træffere</translation>
     </message>
     <message>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <source>Hits</source>
+        <translation type="unfinished">Træffere</translation>
     </message>
 </context>
 <context>
@@ -2075,12 +2075,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Den viser, der er angivet i mimeview for %1: %2, blev ikke fundet. Vil du starte indstillingsdialogen?</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="unfinished">med yderligere besked:</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Vis avanceret søgedialog</translation>
     </message>
 </context>
 <context>
@@ -2464,11 +2464,11 @@ Start real time indexer</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Sti oversættelser</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Med mislykkede filer forsøges igen</translation>
     </message>
 </context>
 <context>
@@ -3194,8 +3194,8 @@ Brug &lt;b&gt;Vis Forespørgsel&lt;/b&gt; link når i tvivl om resultatet og se 
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Stor forbogstav for at undertrykke stammeudvidelse&lt;/td&gt;&lt;td&gt;Gulv&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">afviger fra nuværende præferencer (bevaret)</translation>
     </message>
 </context>
 <context>
@@ -3689,16 +3689,16 @@ Brug &lt;b&gt;Vis Forespørgsel&lt;/b&gt; link når i tvivl om resultatet og se 
         <translation type="unfinished">Staveudvidelsesfejl.</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Dokumenter oprettet/opdateret</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="unfinished">Filer testet</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Ikke-indekserede filer</translation>
     </message>
 </context>
 <context>
@@ -3801,15 +3801,15 @@ Brug &lt;b&gt;Vis Forespørgsel&lt;/b&gt; link når i tvivl om resultatet og se 
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Lys</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Mørk</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Systemet</translation>
     </message>
 </context>
 <context>
@@ -4118,7 +4118,7 @@ Dette skulle give højere forrang til resultaterne, hvor søgeordene vises nøja
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Værdien er en kommandolinje, der skal udføres. Erstatninger: %s: søgestreng; %p: sidenummer; &lt;br&gt;%f: dokumentfilnavn. F1 for mere hjælp.</translation>
     </message>
 </context>
 <context>
@@ -5238,15 +5238,15 @@ Standardværdien er 2 (procent).</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Farveskema</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Når du viser HTML i mørk tilstand, skal du forsøge at bruge en mørk baggrund (og lys farve). Dette er i konflikt med mange dokumenter, der vil tilsidesætte vores lyse indstilling med deres eget CSS (mørke) forgrundsfarve, hvilket resulterer i et ulæseligt dokument, så det er slået fra som standard.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Brug mørk baggrund, når du viser HTML i mørk tilstand.</translation>
     </message>
 </context>
 </TS>
