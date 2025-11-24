@@ -418,7 +418,7 @@
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">(standardinställningen är att aspell föreslår felstavningar när en sökning inte ger några resultat).</translation>
+        <translation type="obsolete">(standardinställningen är att aspell föreslår felstavningar när en sökning inte ger några resultat).</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -459,6 +459,18 @@
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished">&lt;p&gt;GUI-inställningar lagras normalt i en global fil, giltig för alla index. Att ställa in detta parameter kommer att göra vissa inställningar, såsom resultat-tabelluppställningen, specifika för indexet.</translation>
+    </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -624,54 +636,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Local path</source>
-        <translation>Lokal sökväg</translation>
+        <translation type="vanished">Lokal sökväg</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation>Inställningsfel</translation>
+        <translation type="vanished">Inställningsfel</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation>Ursprunglig sökväg</translation>
+        <translation type="vanished">Ursprunglig sökväg</translation>
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">Sökväg i indexet</translation>
+        <translation type="obsolete">Sökväg i indexet</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">Översatt sökväg</translation>
+        <translation type="obsolete">Översatt sökväg</translation>
     </message>
 </context>
 <context>
     <name>EditTransBase</name>
     <message>
         <source>Path Translations</source>
-        <translation>Sökvägsöversättningar</translation>
+        <translation type="vanished">Sökvägsöversättningar</translation>
     </message>
     <message>
         <source>Setting path translations for </source>
-        <translation>Anger sökvägsöversättningar för </translation>
+        <translation type="vanished">Anger sökvägsöversättningar för </translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation>Välj en eller flera filtyper, använd sedan kontrollerna i ramen nedan, för att ändra hur de bearbetas</translation>
+        <translation type="vanished">Välj en eller flera filtyper, använd sedan kontrollerna i ramen nedan, för att ändra hur de bearbetas</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Lägg till</translation>
+        <translation type="vanished">Lägg till</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Ta bort</translation>
+        <translation type="vanished">Ta bort</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Avbryt</translation>
+        <translation type="vanished">Avbryt</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Spara</translation>
+        <translation type="vanished">Spara</translation>
     </message>
 </context>
 <context>
@@ -826,6 +838,56 @@ Klicka på Avbryt om du vill redigera konfigurationsfilen innan indexering start
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
         <translation type="unfinished">Behöver &quot;Visa systemfältikonen&quot; att vara inställd i inställningarna!</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished">Sökväg i indexet</translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished">Översatt sökväg</translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished">Inställningsfel</translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished">Ursprunglig sökväg</translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished">Lokal sökväg</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished">Sökvägsöversättningar</translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Lägg till</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Ta bort</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Avbryt</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Spara</translation>
     </message>
 </context>
 <context>
@@ -1299,12 +1361,28 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation>Autostartfilen borttagen. Vill du döda aktuell process också?</translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
     <message>
         <source>Hits</source>
-        <translation type="unfinished">Träffar</translation>
+        <translation type="obsolete">Träffar</translation>
+    </message>
+    <message>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1725,7 +1803,7 @@ Kolla desktop-filen.</translation>
     </message>
     <message>
         <source>This configuration tool only works for the main index.</source>
-        <translation>Det här konfigurationsverktyget fungerar bara för huvudindexet.</translation>
+        <translation type="vanished">Det här konfigurationsverktyget fungerar bara för huvudindexet.</translation>
     </message>
     <message>
         <source>The current indexing process was not started from this interface, can&apos;t kill it</source>
@@ -1765,7 +1843,7 @@ Kolla desktop-filen.</translation>
     </message>
     <message>
         <source>with additional message: </source>
-        <translation>med tilläggsmeddelande: </translation>
+        <translation type="vanished">med tilläggsmeddelande: </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -1997,6 +2075,14 @@ Kolla desktop-filen.</translation>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Den visare som anges i mimeview för %1: %2 hittades inte. Vill du starta inställningsdialogen?</translation>
+    </message>
+    <message>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2255,7 +2341,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation>Med misslyckade filers återförsök</translation>
+        <translation type="vanished">Med misslyckade filers återförsök</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2377,6 +2463,14 @@ Do you want to start the preferences dialog ?</source>
         <source>&amp;Online manual (Recoll Web site)</source>
         <translation type="unfinished">&amp;Online manual (Recoll webbplats)</translation>
     </message>
+    <message>
+        <source>Path translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RclTrayIcon</name>
@@ -2421,7 +2515,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Ipath</source>
-        <translation type="vanished">Iväg</translation>
+        <translation>Iväg</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2458,10 +2552,6 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Date and time</source>
         <translation>Datum och tid</translation>
-    </message>
-    <message>
-        <source>Ipath</source>
-        <translation>Iväg</translation>
     </message>
     <message>
         <source>MIME type</source>
@@ -2924,7 +3014,7 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation>skiljer sig från aktuella inställningar (hålls)</translation>
+        <translation type="vanished">skiljer sig från aktuella inställningar (hålls)</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3105,6 +3195,10 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Kapitalisera för att undertrycka stamexpansion&lt;/td&gt;&lt;td&gt;Golv&lt;/td&gt;&lt;/tr&gt;</translation>
+    </message>
+    <message>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3575,15 +3669,15 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation>Skapade/Uppdaterade dokument</translation>
+        <translation type="vanished">Skapade/Uppdaterade dokument</translation>
     </message>
     <message>
         <source>Files tested</source>
-        <translation>Testade filer</translation>
+        <translation type="vanished">Testade filer</translation>
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation>Ej indexerade filer</translation>
+        <translation type="vanished">Ej indexerade filer</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3596,6 +3690,18 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     <message>
         <source>Spell expansion error.</source>
         <translation type="unfinished">Stavningsutvidgningsfel.</translation>
+    </message>
+    <message>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3695,6 +3801,18 @@ Använd &lt;b&gt;Visa fråga&lt;/b&gt; länk när du är osäker på resultatet 
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation type="unfinished">Kan inte lägga till index med olika inställningar för att ta bort storleks- och diakritiska tecken.</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4000,6 +4118,10 @@ Detta bör ge högre företräde till de träffar där söktermerna visas exakt 
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Nya värden:&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4310,6 +4432,13 @@ Detta kommer att underlätta vid genomsökning av mycket stora textfiler (t.ex. 
     <message>
         <source>Max. filter exec. time (s)</source>
         <translation type="vanished">Maxtid för filterexekvering. (s)</translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">Tillämpa</translation>
     </message>
 </context>
 <context>
@@ -4961,11 +5090,11 @@ Standardvärdet är 2 (procent). </translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished">Använder standardmörkt läge stilark</translation>
+        <translation type="obsolete">Använder standardmörkt läge stilark</translation>
     </message>
     <message>
         <source>Dark mode</source>
-        <translation type="unfinished">Mörkt läge</translation>
+        <translation type="obsolete">Mörkt läge</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
@@ -5110,6 +5239,18 @@ Standardvärdet är 2 (procent). </translation>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
         <translation type="unfinished">Ignorera jokertecken i ALLA termer och VILKA termer lägen.</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

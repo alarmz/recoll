@@ -416,6 +416,14 @@
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ConfSubPanelW</name>
@@ -557,60 +565,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>EditTrans</name>
-    <message>
-        <source>Local path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Config error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Original path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Path in index</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Translated path</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>EditTransBase</name>
-    <message>
-        <source>Path Translations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Setting path translations for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>FirstIdxDialog</name>
     <message>
         <source>First indexing setup</source>
@@ -723,6 +677,56 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1109,6 +1113,18 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
@@ -1410,10 +1426,6 @@ Please check the desktop file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This configuration tool only works for the main index.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Can&apos;t set synonyms file (parse error?)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1633,6 +1645,10 @@ Please check the desktop file</source>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1948,6 +1964,10 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Path translations</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2825,6 +2845,18 @@ Do you want to start the preferences dialog ?</source>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ViewAction</name>
@@ -2893,6 +2925,10 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3027,6 +3063,13 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Edit selected entries</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3442,14 +3485,6 @@ The default value is 2 (percent). </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dark mode</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Choose QSS File</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3591,6 +3626,18 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

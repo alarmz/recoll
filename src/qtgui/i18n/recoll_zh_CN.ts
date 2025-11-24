@@ -420,7 +420,7 @@
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation>默认情况下aspell会在搜索不到结果时给出可能的错误拼写提示</translation>
+        <translation type="vanished">默认情况下aspell会在搜索不到结果时给出可能的错误拼写提示</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -465,6 +465,18 @@
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished">&lt;p&gt;GUI设置通常存储在一个全局文件中，适用于所有索引。设置此参数将使一些设置，如结果表格设置，特定于索引。</translation>
+    </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -657,56 +669,56 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Local path</source>
-        <translation>本地路径</translation>
+        <translation type="vanished">本地路径</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation>配置错误</translation>
+        <translation type="vanished">配置错误</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation>原始路径</translation>
+        <translation type="vanished">原始路径</translation>
     </message>
     <message>
         <source>Path in index</source>
-        <translation>索引中的路径</translation>
+        <translation type="vanished">索引中的路径</translation>
     </message>
     <message>
         <source>Translated path</source>
         <translatorcomment>
 存疑        </translatorcomment>
-        <translation>已变换的路径</translation>
+        <translation type="vanished">已变换的路径</translation>
     </message>
 </context>
 <context>
     <name>EditTransBase</name>
     <message>
         <source>Path Translations</source>
-        <translation>路径变换</translation>
+        <translation type="vanished">路径变换</translation>
     </message>
     <message>
         <source>Setting path translations for </source>
-        <translation>针对右侧事务设置路径变换</translation>
+        <translation type="vanished">针对右侧事务设置路径变换</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation>选中一个或多个文件类型，然后使用下面框框中的控件来设置要如何处理它们</translation>
+        <translation type="vanished">选中一个或多个文件类型，然后使用下面框框中的控件来设置要如何处理它们</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>添加</translation>
+        <translation type="vanished">添加</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>删除</translation>
+        <translation type="vanished">删除</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>取消</translation>
+        <translation type="vanished">取消</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>保存</translation>
+        <translation type="vanished">保存</translation>
     </message>
 </context>
 <context>
@@ -885,6 +897,56 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
         <translation>需要在首选项中选中“显示任务栏图标”</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished">索引中的路径</translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished">已变换的路径</translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished">配置错误</translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished">原始路径</translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished">本地路径</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished">路径变换</translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished">选中一个或多个文件类型，然后使用下面框框中的控件来设置要如何处理它们</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">添加</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
     </message>
 </context>
 <context>
@@ -1372,6 +1434,18 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation>自动启动文件已经删除。也要杀死当前进程吗？</translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
@@ -1379,7 +1453,11 @@ p, li { white-space: pre-wrap; }
         <source>Hits</source>
         <translatorcomment>
 存疑        </translatorcomment>
-        <translation>点击量</translation>
+        <translation type="vanished">点击量</translation>
+    </message>
+    <message>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1800,7 +1878,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>This configuration tool only works for the main index.</source>
-        <translation>该配置工具仅适用于主索引</translation>
+        <translation type="vanished">该配置工具仅适用于主索引</translation>
     </message>
     <message>
         <source>The current indexing process was not started from this interface, can&apos;t kill it</source>
@@ -1840,7 +1918,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>with additional message: </source>
-        <translation>带有附加消息：</translation>
+        <translation type="vanished">带有附加消息：</translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -2076,6 +2154,14 @@ Please check the desktop file</source>
 Do you want to start the preferences dialog ?</source>
         <translation>没有找到在mimeview中为%1: %2配置的查看器。
 你想要打开首选项对话框吗？</translation>
+    </message>
+    <message>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2334,7 +2420,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation>正在重试失败的文件</translation>
+        <translation type="vanished">正在重试失败的文件</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2458,6 +2544,14 @@ Do you want to start the preferences dialog ?</source>
         <source>&amp;Online manual (Recoll Web site)</source>
         <translation type="unfinished">在线手册（Recoll网站）</translation>
     </message>
+    <message>
+        <source>Path translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RclTrayIcon</name>
@@ -2502,7 +2596,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Ipath</source>
-        <translation type="vanished">内部路径</translation>
+        <translation>内部路径</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2539,10 +2633,6 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Date and time</source>
         <translation>日期及时间</translation>
-    </message>
-    <message>
-        <source>Ipath</source>
-        <translation>内部路径</translation>
     </message>
     <message>
         <source>MIME type</source>
@@ -3018,7 +3108,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation>与当前的偏好设置不同(已保留)</translation>
+        <translation type="vanished">与当前的偏好设置不同(已保留)</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3201,6 +3291,10 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;将单词大写以避免搜索词扩展&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</translation>
+    </message>
+    <message>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3671,15 +3765,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation>文档已创建/更新</translation>
+        <translation type="vanished">文档已创建/更新</translation>
     </message>
     <message>
         <source>Files tested</source>
-        <translation>文件已测试</translation>
+        <translation type="vanished">文件已测试</translation>
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation>未索引的文件</translation>
+        <translation type="vanished">未索引的文件</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3694,6 +3788,18 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translatorcomment>
 待定        </translatorcomment>
         <translation>拼写扩展错误。</translation>
+    </message>
+    <message>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3793,6 +3899,18 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation>大小写/分隔符清理选项不同，索引添加失败。</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4098,6 +4216,10 @@ This should give higher precedence to the results where the search terms appear 
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
         <translation>&lt;b&gt;新的值：&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4410,6 +4532,13 @@ This will help searching very big text  files (ie: log files).</source>
     <message>
         <source>Max. filter exec. time (s)</source>
         <translation type="vanished">最大筛选执行时间(秒)</translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">应用</translation>
     </message>
 </context>
 <context>
@@ -5066,11 +5195,11 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation>使用默认的暗色模式式样</translation>
+        <translation type="vanished">使用默认的暗色模式式样</translation>
     </message>
     <message>
         <source>Dark mode</source>
-        <translation>暗色模式</translation>
+        <translation type="vanished">暗色模式</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
@@ -5233,6 +5362,18 @@ The default value is 2 (percent). </source>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
         <translation type="unfinished">在“所有词项”和“任意词项”模式下忽略通配符字符。</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

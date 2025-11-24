@@ -418,7 +418,7 @@
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">(standaard suggereert aspell verkeerd gespelde woorden wanneer een zoekopdracht geen resultaten oplevert).</translation>
+        <translation type="obsolete">(standaard suggereert aspell verkeerd gespelde woorden wanneer een zoekopdracht geen resultaten oplevert).</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -459,6 +459,18 @@
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished">GUI-instellingen worden normaal gesproken opgeslagen in een globaal bestand, geldig voor alle indexen. Het instellen van deze parameter zal sommige instellingen, zoals de opmaak van de resultaattabel, specifiek maken voor de index.</translation>
+    </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -621,54 +633,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Local path</source>
-        <translation>lokaal pad</translation>
+        <translation type="vanished">lokaal pad</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation>Configuratie fout</translation>
+        <translation type="vanished">Configuratie fout</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation>Oorspronkelijk pad</translation>
+        <translation type="vanished">Oorspronkelijk pad</translation>
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">Pad in index</translation>
+        <translation type="obsolete">Pad in index</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">Vertaald pad</translation>
+        <translation type="obsolete">Vertaald pad</translation>
     </message>
 </context>
 <context>
     <name>EditTransBase</name>
     <message>
         <source>Path Translations</source>
-        <translation>Pad vertalingen</translation>
+        <translation type="vanished">Pad vertalingen</translation>
     </message>
     <message>
         <source>Setting path translations for </source>
-        <translation>zet vertalingspad voor</translation>
+        <translation type="vanished">zet vertalingspad voor</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation>Selecteer één of meerdere bestandstypen, gebruik dan de bediening in het kader hieronder om te veranderen hoe ze worden verwerkt</translation>
+        <translation type="vanished">Selecteer één of meerdere bestandstypen, gebruik dan de bediening in het kader hieronder om te veranderen hoe ze worden verwerkt</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>toevoegen</translation>
+        <translation type="vanished">toevoegen</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Verwijderen</translation>
+        <translation type="vanished">Verwijderen</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Annuleer</translation>
+        <translation type="vanished">Annuleer</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Bewaar</translation>
+        <translation type="vanished">Bewaar</translation>
     </message>
 </context>
 <context>
@@ -822,6 +834,56 @@ Klik op Annuleren als u het configuratiebestand wilt bewerken voordat u het inde
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
         <translation type="unfinished">Moet &quot;Systeemvakpictogram weergeven&quot; worden ingesteld in de voorkeuren!</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished">Pad in index</translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished">Vertaald pad</translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished">Configuratie fout</translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished">Oorspronkelijk pad</translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished">lokaal pad</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished">Pad vertalingen</translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">toevoegen</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Verwijderen</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Annuleer</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Bewaar</translation>
     </message>
 </context>
 <context>
@@ -1294,12 +1356,28 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation>Autostart ongedaan gemaakt proces ook stoppen ?</translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
     <message>
         <source>Hits</source>
-        <translation type="unfinished">Resultaten</translation>
+        <translation type="obsolete">Resultaten</translation>
+    </message>
+    <message>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1716,7 +1794,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>This configuration tool only works for the main index.</source>
-        <translation>Deze configuratie tool werkt alleen voor de hoofdindex</translation>
+        <translation type="vanished">Deze configuratie tool werkt alleen voor de hoofdindex</translation>
     </message>
     <message>
         <source>The current indexing process was not started from this interface, can&apos;t kill it</source>
@@ -1756,7 +1834,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>with additional message: </source>
-        <translation>met extra bericht: </translation>
+        <translation type="vanished">met extra bericht: </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -1988,6 +2066,14 @@ Please check the desktop file</source>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">De viewer gespecificeerd in mimeview voor %1: %2 is niet gevonden. Wilt u het voorkeurenvenster openen?</translation>
+    </message>
+    <message>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2246,7 +2332,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation>Opnieuw proberen met mislukte bestand</translation>
+        <translation type="vanished">Opnieuw proberen met mislukte bestand</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2370,6 +2456,14 @@ Start real time indexer</translation>
         <source>&amp;Online manual (Recoll Web site)</source>
         <translation type="unfinished">Online handleiding (Recoll-website)</translation>
     </message>
+    <message>
+        <source>Path translations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RclTrayIcon</name>
@@ -2414,7 +2508,7 @@ Start real time indexer</translation>
     </message>
     <message>
         <source>Ipath</source>
-        <translation type="vanished">Ipad</translation>
+        <translation>Ipad</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2451,10 +2545,6 @@ Start real time indexer</translation>
     <message>
         <source>Date and time</source>
         <translation>Datum en tijd</translation>
-    </message>
-    <message>
-        <source>Ipath</source>
-        <translation>Ipad</translation>
     </message>
     <message>
         <source>MIME type</source>
@@ -2917,7 +3007,7 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation>Afwijken van de uidig (bewaarde) voorkeuren</translation>
+        <translation type="vanished">Afwijken van de uidig (bewaarde) voorkeuren</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3098,6 +3188,10 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Hoofdletters om stamuitbreiding te onderdrukken&lt;/td&gt;&lt;td&gt;Vloer&lt;/td&gt;&lt;/tr&gt;</translation>
+    </message>
+    <message>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3568,15 +3662,15 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation>Documenten gemaakt/bijgewerkt</translation>
+        <translation type="vanished">Documenten gemaakt/bijgewerkt</translation>
     </message>
     <message>
         <source>Files tested</source>
-        <translation>Bestanden getest</translation>
+        <translation type="vanished">Bestanden getest</translation>
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation>Ongeindexeerde bestanden</translation>
+        <translation type="vanished">Ongeindexeerde bestanden</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3589,6 +3683,18 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     <message>
         <source>Spell expansion error.</source>
         <translation type="unfinished">Spelfoutuitbreidingfout.</translation>
+    </message>
+    <message>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3688,6 +3794,18 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation type="unfinished">Kan geen index toevoegen met een andere optie voor hoofdletter/diacritische tekens verwijderen.</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3991,6 +4109,10 @@ This should give higher precedence to the results where the search terms appear 
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Nieuwe Waardes:&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -4298,6 +4420,13 @@ This will help searching very big text  files (ie: log files).</source>
     <message>
         <source>Max. filter exec. time (s)</source>
         <translation type="vanished">Max. uitvoertijd filter (s)</translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">Toepassen</translation>
     </message>
 </context>
 <context>
@@ -4944,11 +5073,11 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished">Gebruikt het standaard donkere modus stijlblad</translation>
+        <translation type="obsolete">Gebruikt het standaard donkere modus stijlblad</translation>
     </message>
     <message>
         <source>Dark mode</source>
-        <translation type="unfinished">Donkere modus</translation>
+        <translation type="obsolete">Donkere modus</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
@@ -5093,6 +5222,18 @@ The default value is 2 (percent). </source>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
         <translation type="unfinished">Negeer jokertekens in ALLE termen en ENIGE termen modi.</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
