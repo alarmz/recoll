@@ -80,7 +80,7 @@ class ImgTagExtractor(RclBaseHandler):
         ok = False
         cmd = self.cmd
         cmd.append(os.fsdecode(filename))
-        self.em.rclog(f"cmd: {cmd}")
+        #self.em.rclog(f"cmd: {cmd}")
         try:
             global perlproc
             perlproc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
