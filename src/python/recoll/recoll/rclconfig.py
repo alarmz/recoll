@@ -131,7 +131,7 @@ class RclConfig:
         # Additional config directory, overrides system's, overridden by user's
         if "RECOLL_CONFMID" in os.environ:
             self.cdirs.append(os.environ["RECOLL_CONFMID"])
-        self.cdirs.append(os.path.join(self.datadir, "examples"))
+        self.cdirs.append(baseconfdir)
         # msg("Config dirs: {self.cdirs}")
         self.keydir = ""
 
