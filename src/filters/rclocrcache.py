@@ -239,7 +239,7 @@ class OCRCache(object):
             dd, df, tm, sz, pth = self._readpathfile(pathfilepath)
             return True, dd, df, tm, sz
         except Exception as ex:
-            _deb(f"Error while trying to access pathfile {pathfilepath}: {ex}")
+            #_deb(f"Error while trying to access pathfile {pathfilepath}: {ex}")
             return False, None, None, None, None
 
     # Compute the path hash, and get the mtime and size for given
@@ -276,7 +276,7 @@ class OCRCache(object):
         if (_tmpdir and path.startswith(_tmpdir)) or (
             _recoll_tmpdir and path.startswith(_recoll_tmpdir)
         ):
-            _deb(f"ocrcache: not storing path data for temporary file {path}")
+            #_deb(f"ocrcache: not storing path data for temporary file {path}")
             return
         dir = os.path.join(self.pathdir, pd)
         if not os.path.exists(dir):
@@ -311,7 +311,7 @@ class OCRCache(object):
         try:
             dd, df, tm, sz, orgpath = self._readpathfile(pfn)
         except Exception as ex:
-            _deb(f"Ocrcache: failed reading path file: {ex}")
+            #_deb(f"Ocrcache: failed reading path file: {ex}")
             return False
         dfn = os.path.join(self.objdir, dd, df)
         try:
@@ -337,14 +337,12 @@ class OCRCache(object):
             dfn, dd, df = self._datafilename(path)
 
         if not os.path.exists(dfn):
-            _deb(f"ocrcache: no cached data for {path}")
+            #_deb(f"ocrcache: no cached data for {path}")
             return False, b""
 
         if not pincache:
             # File may have moved. Create/Update path file for next time
-            _deb(
-                f"ocrcache::get: data ok but path file for {path} does not exist: creating it"
-            )
+            #_deb(f"ocrcache::get: data ok but path file for {path} does not exist: creating it")
             pd, pf, tm, sz = self._newpathattrs(path)
             self._updatepathfile(pd, pf, dd, df, tm, sz, path)
 
@@ -373,7 +371,7 @@ class OCRCache(object):
             dd, df, tm, sz, orgpath = self._readpathfile(pathfile)
             needpurge = self._pathstale(orgpath, tm, sz)
             if needpurge:
-                _deb("purgepaths: removing %s (%s)" % (pathfile, orgpath))
+                #_deb("purgepaths: removing %s (%s)" % (pathfile, orgpath))
                 os.remove(pathfile)
 
     def _walk(self, topdir, cb):
@@ -399,10 +397,10 @@ class OCRCache(object):
         p2, dn = os.path.split(p1)
         tst = dn + fn
         if tst in self._pgdt_alldatafns:
-            _deb("purgedata: ok         : %s" % datafn)
+            #_deb("purgedata: ok         : %s" % datafn)
             pass
         else:
-            _deb("purgedata: removing   : %s" % datafn)
+            #_deb("purgedata: removing   : %s" % datafn)
             os.remove(datafn)
 
     def purgedata(self):
@@ -482,7 +480,7 @@ if __name__ == "__main__":
     elif action == "get":
         incache, data = cache.get(imgdatapath)
         if incache:
-            print(f"OCR data from cache {data}")
+            print(f"{data}")
             sys.exit(0)
         else:
             print("OCR Data was not found in cache", file=sys.stderr)

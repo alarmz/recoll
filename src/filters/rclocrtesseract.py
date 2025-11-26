@@ -42,8 +42,7 @@ pdftoppmcmd = None
 pdftocairocmd = None
 
 
-def _deb(s):
-    rclexecm.logmsg("rclocrtesseract: %s" % s)
+from rclexecm import logmsg as _deb
 
 
 tmpdir = None
@@ -124,7 +123,7 @@ def _guesstesseractlang(config, path):
     if tesseractlang:
         # Just in case the lang was mistakenly quoted
         tesseractlang = tesseractlang.strip('"')
-        _deb("Tesseract lang from file: %s" % tesseractlang)
+        #_deb("Tesseract lang from file: %s" % tesseractlang)
         return tesseractlang
 
     # Then look for a config file  option.
@@ -133,7 +132,7 @@ def _guesstesseractlang(config, path):
     if tesseractlang:
         # Just in case the lang was mistakenly quoted
         tesseractlang = tesseractlang.strip('"')
-        _deb("Tesseract lang from config: %s" % tesseractlang)
+        #_deb("Tesseract lang from config: %s" % tesseractlang)
         return tesseractlang
 
     # Half-assed trial to guess from LANG then default to english
@@ -150,7 +149,7 @@ def _guesstesseractlang(config, path):
 
     if not tesseractlang:
         tesseractlang = "eng"
-    _deb("Tesseract lang (guessed): %s" % tesseractlang)
+    #_deb("Tesseract lang (guessed): %s" % tesseractlang)
     return tesseractlang
 
 
@@ -197,9 +196,7 @@ def _pdftesseract(config, path):
     for f in pages:
         size = os.path.getsize(f)
         if os.path.getsize(f) == 0:
-            _deb(
-                "pdftoppm created empty files. " "Suspecting full file system, failing"
-            )
+            _deb("pdftoppm created empty files. " "Suspecting full file system, failing")
             return False, ""
 
     nenv = os.environ.copy()
