@@ -7,14 +7,11 @@ import sys
 import base64
 import platform
 
-try:
-    from . import conftree
-except:
-    import conftree
+import conftree
 
 
 def msg(s):
-    print("%s" % s, file=sys.stderr)
+    print(f"{s}", file=sys.stderr)
 
 
 class RclDynConf:
@@ -195,6 +192,6 @@ class RclExtraDbs:
 
 if __name__ == "__main__":
     config = RclConfig()
-    print("topdirs = %s" % config.getConfParam("topdirs"))
+    print(f"topdirs = {config.getConfParam('topdirs')}")
     extradbs = RclExtraDbs(config)
-    print("%s" % extradbs.getActDbs())
+    print(f"{extradbs.getActDbs()}")

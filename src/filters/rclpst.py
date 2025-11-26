@@ -417,6 +417,8 @@ if True:
     extract = PstExtractor(proto)
     rclexecm.main(proto, extract)
 else:
+    def _deb(s):
+        print(f"{s}", file=sys.stderr)
     reader = PFFReader(_deb, infile=sys.stdin.buffer)
     generator = reader.mainloop()
     for doc, ipath in generator:

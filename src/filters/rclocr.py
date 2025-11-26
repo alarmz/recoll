@@ -33,15 +33,11 @@ import importlib.util
 import rclconfig
 import conftree
 import rclocrcache
-import rclexecm
 
-
-def _deb(s):
-    rclexecm.logmsg("rclocr: %s" % s)
-
+from rclexecm import logmsg as _deb
+from cmdtalk import breakwrite
 
 ocrcleanupmodule = None
-
 
 @atexit.register
 def finalcleanup():
@@ -75,24 +71,6 @@ except:
 def Usage():
     _deb("Usage: rclocr.py <imagefilename>")
     sys.exit(1)
-
-
-def breakwrite(f, data):
-    # On Windows, writing big chunks can fail with a "not enough space"
-    # error. Seems a combined windows/python bug, depending on versions.
-    # See https://bugs.python.org/issue11395
-    # In any case, just break it up
-    total = len(data)
-    bs = 4 * 1024
-    offset = 0
-    while total > 0:
-        if total < bs:
-            tow = total
-        else:
-            tow = bs
-        f.write(data[offset : offset + tow])
-        offset += tow
-        total -= tow
 
 
 if len(sys.argv) != 2:

@@ -11,6 +11,7 @@ from html.parser import HTMLParser
 import subprocess
 
 import rclexecm
+from rclexecm import logmsg as _deb
 
 # pychm has no official port to Python3, hence no package in the
 # standard place. Linux Recoll bundles a python3 port which is identical
@@ -26,10 +27,6 @@ except:
     except:
         print("RECFILTERROR HELPERNOTFOUND python3:chm")
         sys.exit(1)
-
-
-def _deb(s):
-    print("%s" % s, file=sys.stderr)
 
 
 # Small helper routines

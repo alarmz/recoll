@@ -223,7 +223,7 @@ class AudioTagExtractor(RclBaseHandler):
                 pass
 
     def _showMutaInfo(self, mutf):
-        self.em.rclog("%s" % mutf.info.pprint())
+        self.em.rclog(f"{mutf.info.pprint()}")
         for prop in dir(mutf.info):
             self.em.rclog(f"mutinfo: {prop} -> {getattr( mutf.info, prop)}")
 
