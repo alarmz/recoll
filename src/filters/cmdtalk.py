@@ -22,14 +22,12 @@
 
 import sys
 import os
-import tempfile
-import shutil
-import getopt
 import traceback
 import signal
+from typing import Any, Union, TextIO, BinaryIO, Text, AnyStr, Callable, Optional, Dict, Tuple
 
 
-def makebytes(data):
+def makebytes(data: AnyStr) -> bytes:
     if data is None:
         return b""
     if isinstance(data, bytes):
@@ -38,13 +36,35 @@ def makebytes(data):
         return data.encode("UTF-8")
 
 
+def breakwrite(outfile: BinaryIO, data: bytes) -> None:
+    if sys.platform != "win32":
+        outfile.write(data)
+    else:
+        # On Windows, writing big chunks can fail with a "not enough space"
+        # error. Seems a combined windows/python bug, depending on versions.
+        # See https://bugs.python.org/issue11395
+        # In any case, just break it up
+        total = len(data)
+        bs = 4 * 1024
+        offset = 0
+        while total > 0:
+            if total < bs:
+                tow = total
+            else:
+                tow = bs
+            outfile.write(data[offset : offset + tow])
+            offset += tow
+            total -= tow
+
+
 ############################################
 # CmdTalk implements the communication protocol with the master
 # process. It calls an external method to use the args and produce
 # return data.
 class CmdTalk(object):
 
-    def __init__(self, outfile=sys.stdout, infile=sys.stdin, exitfunc=None):
+    def __init__(self, outfile: TextIO = sys.stdout, infile: TextIO = sys.stdin,
+                 exitfunc: Optional[Callable] = None):
         try:
             self.myname = os.path.basename(sys.argv[0])
         except:
@@ -53,59 +73,31 @@ class CmdTalk(object):
         self.outfile = outfile
         self.infile = infile
         self.exitfunc = exitfunc
-        self.fields = {}
 
         if sys.platform == "win32":
             import msvcrt
-
             msvcrt.setmode(self.outfile.fileno(), os.O_BINARY)
             msvcrt.setmode(self.infile.fileno(), os.O_BINARY)
 
-        try:
-            self.debugfile
-        except:
+        if not hasattr(self, 'debugfile'):
             self.debugfile = None
-        try:
-            self.nodecodeinput
-        except:
+        if not hasattr(self, 'nodecodeinput'):
             self.nodecodeinput = False
+        self.errfout: TextIO = sys.stderr
         if self.debugfile:
-            self.errfout = open(self.debugfile, "a")
-        else:
-            self.errfout = sys.stderr
+            self.errfout: TextIO = open(self.debugfile, "a")
 
-    def log(self, s, doexit=0, exitvalue=1):
-        print("CMDTALK: %s: %s" % (self.myname, s), file=self.errfout)
+    def log(self, s: AnyStr, doexit: int = 0, exitvalue: int = 1) -> None:
+        print(f"CMDTALK: {self.myname}: {s!r}", file=self.errfout)
         if doexit:
             if self.exitfunc:
                 self.exitfunc(exitvalue)
             sys.exit(exitvalue)
 
-    def breakwrite(self, outfile, data):
-        if sys.platform != "win32":
-            outfile.write(data)
-        else:
-            # On windows, writing big chunks can fail with a "not enough space"
-            # error. Seems a combined windows/python bug, depending on versions.
-            # See https://bugs.python.org/issue11395
-            # In any case, just break it up
-            total = len(data)
-            bs = 4 * 1024
-            offset = 0
-            while total > 0:
-                if total < bs:
-                    tow = total
-                else:
-                    tow = bs
-                # self.log("Total %d Writing %d to stdout: %s" % (total,tow,data[offset:offset+tow]))
-                outfile.write(data[offset : offset + tow])
-                offset += tow
-                total -= tow
-
     # Read single parameter from process input: line with param name and size
     # followed by data. The param name is returned as str/unicode, the data
-    # as bytes
-    def readparam(self):
+    # as bytes or str, depending on the nodecodeinput option.
+    def readparam(self) -> Tuple[Text, Union[bytes, str]]:
         inf = self.infile.buffer
         s = inf.readline()
         if s == b"":
@@ -140,7 +132,8 @@ class CmdTalk(object):
             paramdata = b""
         if not self.nodecodeinput:
             try:
-                paramdata = paramdata.decode("utf-8")
+                paramstr: str = paramdata.decode("utf-8")
+                return (paramname, paramstr)
             except Exception as ex:
                 self.log("Exception decoding param: %s" % ex)
                 paramdata = b""
@@ -149,14 +142,14 @@ class CmdTalk(object):
         #          (paramname, paramsize, paramdata))
         return (paramname, paramdata)
 
-    def senditem(self, nm, data):
-        data = makebytes(data)
+    def senditem(self, nm: Text, _data: AnyStr) -> None:
+        data: bytes = makebytes(_data)
         l = len(data)
         self.outfile.buffer.write(makebytes("%s: %d\n" % (nm, l)))
-        self.breakwrite(self.outfile.buffer, data)
+        breakwrite(self.outfile.buffer, data)
 
     # Send answer
-    def answer(self, outfields):
+    def answer(self, outfields: Dict[Text, AnyStr]) -> None:
         for nm, value in outfields.items():
             # self.log("Senditem: [%s] -> [%s]" % (nm, value))
             self.senditem(nm, value)
@@ -168,7 +161,7 @@ class CmdTalk(object):
 
     # Call processor with input params, send result. This base version works with, for example
     # the cmdtalkplugin processor.
-    def processmessage(self, processor, params):
+    def processmessage(self, processor, params: Dict[Text, Union[bytes, str]]) -> None:
         # In normal usage we try to recover from processor errors, but
         # we sometimes want to see the real stack trace when testing
         safeexec = True
@@ -187,15 +180,14 @@ class CmdTalk(object):
         self.answer(outfields)
 
     # Loop on messages from our master
-    def mainloop(self, processor):
+    def mainloop(self, processor: Any) -> None:
         while 1:
             # self.log("waiting for command")
-
             params = dict()
 
-            # Read at most 10 parameters (normally 1 or 2), stop at empty line
+            # Read at most 20 parameters (normally 1 or 2), stop at empty line
             # End of message is signalled by empty paramname
-            for i in range(10):
+            for i in range(20):
                 paramname, paramdata = self.readparam()
                 if paramname == "":
                     break
@@ -209,7 +201,7 @@ class CmdTalk(object):
 # engine or a local loop. This means that you can call
 # cmdtalk.main(proto,processor) instead of proto.mainloop(processor)
 # from your module, and get the benefits of command line testing
-def main(proto, processor):
+def main(proto: CmdTalk, processor: Any) -> None:
     if len(sys.argv) == 1:
         proto.mainloop(processor)
         # mainloop does not return. Just in case
@@ -221,7 +213,7 @@ def main(proto, processor):
         sys.exit(1)
 
     def debprint(out, s):
-        proto.breakwrite(out, makebytes(s + "\n"))
+        breakwrite(out, makebytes(s + "\n"))
 
     args = sys.argv[1:]
     if len(args) == 0 or len(args) % 2 != 0:
@@ -234,8 +226,8 @@ def main(proto, processor):
     ioout = sys.stdout.buffer
 
     for nm, value in res.items():
-        # self.log("Senditem: [%s] -> [%s]" % (nm, value))
+        # debprint(f"Senditem: [{nm}] -> [{value}]")
         bdata = makebytes(value)
         debprint(ioout, "%s->" % nm)
-        proto.breakwrite(ioout, bdata)
+        breakwrite(ioout, bdata)
         ioout.write(b"\n")

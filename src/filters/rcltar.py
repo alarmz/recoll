@@ -7,6 +7,8 @@
 # bzipped tar-files at well.
 
 import os
+import sys
+from typing import List
 
 import rclexecm
 from archivextract import ArchiveExtractor
@@ -19,20 +21,18 @@ except:
 
 
 class TarExtractor(ArchiveExtractor):
-    def __init__(self, em):
-        self.namen = []
+    def __init__(self, em: rclexecm.RclExecM) -> None:
+        self.namen: List[bytes] = []
         super().__init__(em)
 
-    def extractone(self, ipath):
+    def extractone(self, ipath: bytes) -> tuple[bool, bytes, bytes, int]:
         docdata = b""
         try:
             info = self.tar.getmember(ipath)
             if info.size > self.em.maxmembersize:
                 # skip
                 docdata = b""
-                self.em.rclog(
-                    "extractone: entry %s size %d too big" % (ipath, info.size)
-                )
+                self.em.rclog(f"extractone: entry {ipath!r} size {info.size} too big")
                 docdata = b""  # raise TarError("Member too big")
             else:
                 docdata = self.tar.extractfile(ipath).read()
