@@ -26,8 +26,8 @@ inode/directory|parentopen = rclstartw %f
 #  Evince: this is usually installed with a version-specific path and in the user directory, so the
 #  exact command value will need some tweaking (user name and version number). 
 application/pdf = C:/users/bill/appdata/local/apps/evince-2.32.0.145/bin/evince --page-index=%p --find=%s %f
-#  SumatraPDF: no search string
-#application/pdf  = "C:/Program Files/SumatraPDF/SumatraPDF.exe" -page %p %f
+# SumatraPDF: the -search option may? only be available with newer versions (works with 3.5.2)
+#application/pdf  = "C:/Program Files/SumatraPDF/SumatraPDF.exe" -page %p -search %s %f
 #  Foxit: no search string 
 #application/pdf = "C:/Program Files (x86)/Foxit Software/Foxit Reader/FoxitReader.exe" %f /A page=%p
 #  PDFXEdit: supports a search string, but beware, the following only works after version 1.32.1,
