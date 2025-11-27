@@ -18,9 +18,9 @@ Build-Depends: debhelper,
                python3-all,
                python3-all-dev,
                python3-setuptools,
-# Note qt5webkit5 is gone from Debian/Ubuntu as of Trixie/Plucky, except on raspbian armhf because
+# Note qt5webkit5 is gone from Debian/Ubuntu as of Trixie/Plucky, except on raspbian armhg because
 # the ARM v6 compat prevents using chromium / webengine
-               qt6-base-dev, qt6-webengine-dev, qt6-l10n-tools, qt6-tools-dev
+               libqt5webkit5-dev, qtbase5-dev, qttools5-dev-tools
 Vcs-Git: https://salsa.debian.org/debian/recoll.git
 Vcs-Browser: https://salsa.debian.org/debian/recoll
 Homepage: https://www.recoll.org

@@ -14,7 +14,7 @@ DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 # Note: manually adjust QMAKE and the meson setup line in accordance to the control file for
 # choosing qt5/6 webkit/webengine
 
-export QMAKE=qmake6
+export QMAKE=qmake
 
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
 	NJOBS := -j $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
@@ -25,7 +25,7 @@ endif
 
 override_dh_auto_configure:
 	dh_auto_configure --buildsystem=meson -- -Drecollq=true -Dxadump=true \
-	-Dwebkit=false -Dwebengine=true \
+	-Dwebkit=true -Dwebengine=false \
 	-Dpython.platlibdir=/usr/lib/python3/dist-packages
 
 override_dh_auto_install:
