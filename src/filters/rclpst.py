@@ -66,10 +66,10 @@ else:
 # data missing (e.g. attachment MIME types). We rebuild a complete
 # message for parsing by the Recoll email handler
 class EmailBuilder(object):
-    def __init__(self, logger, mimemap):
+    def __init__(self, logger, config):
         self.log = logger
         self.reset()
-        self.mimemap = mimemap
+        self.config = config
         self.parser = email.parser.Parser(policy=email.policy.default)
 
     def reset(self):
@@ -184,8 +184,7 @@ class EmailBuilder(object):
 
         for att in self.attachments:
             fn = att[1]
-            ext = met_splitext(fn)[1]
-            mime = self.mimemap.get(ext)
+            mime = self.config.mimeType(fn)
             if not mime:
                 mime = "application/octet-stream"
             # self.log("Attachment: filename %s MIME %s" % (fn, mime))
@@ -203,13 +202,10 @@ class EmailBuilder(object):
 class PFFReader(object):
     def __init__(self, logger, infile=sys.stdin):
         self.log = logger
-        config = rclconfig.RclConfig()
-        dir1 = os.path.join(config.getConfDir(), "examples")
-        dir2 = os.path.join(config.datadir, "examples")
-        self.mimemap = conftree.ConfStack("mimemap", [dir1, dir2])
+        self.config = rclconfig.RclConfig()
         self.infile = infile
         self.fields = {}
-        self.msg = EmailBuilder(self.log, self.mimemap)
+        self.msg = EmailBuilder(self.log, self.config)
 
     # Read single parameter from process input: line with param name and size
     # followed by data. The param name is returned as str/unicode, the data
@@ -421,6 +417,8 @@ if True:
     extract = PstExtractor(proto)
     rclexecm.main(proto, extract)
 else:
+    def _deb(s):
+        print(f"{s}", file=sys.stderr)
     reader = PFFReader(_deb, infile=sys.stdin.buffer)
     generator = reader.mainloop()
     for doc, ipath in generator:

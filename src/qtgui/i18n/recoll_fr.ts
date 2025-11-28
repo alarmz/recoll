@@ -417,8 +417,8 @@
         <translation>Traiter la file d&apos;attente de l&apos;historique Web</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation> (par défaut, aspell suggère des erreurs lorsqu&apos;une requête n&apos;a pas de résultats).</translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation>(par défaut, aspell suggère des erreurs lorsqu&apos;une requête n&apos;a pas de résultats).</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -463,6 +463,14 @@
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation>&lt;p&gt;Les paramètres de l&apos;interface sont normalement stockés dans un fichier global. En activant ce paramètre, certaines valeurs, comme par exemple la configuration du tableau de résultats, seront spéficiques de l&apos;index</translation>
+    </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished">Suspendre l&apos;indexeur en temps réel lorsqu&apos;il fonctionne sur batterie</translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished">Le moteur d&apos;indexation attendra un retour sur AC et se réexécutera lorsque cela se produira.</translation>
     </message>
 </context>
 <context>
@@ -628,54 +636,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Local path</source>
-        <translation>Chemin local</translation>
+        <translation type="vanished">Chemin local</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation>Erreur config</translation>
+        <translation type="vanished">Erreur config</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation>Chemin Originel</translation>
+        <translation type="vanished">Chemin Originel</translation>
     </message>
     <message>
         <source>Path in index</source>
-        <translation>Chemin stocké dans l&apos;index</translation>
+        <translation type="vanished">Chemin stocké dans l&apos;index</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation>Chemin modifié</translation>
+        <translation type="vanished">Chemin modifié</translation>
     </message>
 </context>
 <context>
     <name>EditTransBase</name>
     <message>
         <source>Path Translations</source>
-        <translation>Traductions de chemins</translation>
+        <translation type="vanished">Traductions de chemins</translation>
     </message>
     <message>
         <source>Setting path translations for </source>
-        <translation>Ajustement des traductions de chemins pour</translation>
+        <translation type="vanished">Ajustement des traductions de chemins pour</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation>Sélectionner un ou plusieurs types de fichiers, puis utiliser les contrôles dans le cadre ci-dessous pour changer leur traitement</translation>
+        <translation type="vanished">Sélectionner un ou plusieurs types de fichiers, puis utiliser les contrôles dans le cadre ci-dessous pour changer leur traitement</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Ajouter</translation>
+        <translation type="vanished">Ajouter</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Supprimer</translation>
+        <translation type="vanished">Supprimer</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Annuler</translation>
+        <translation type="vanished">Annuler</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Sauvegarder</translation>
+        <translation type="vanished">Sauvegarder</translation>
     </message>
 </context>
 <context>
@@ -831,6 +839,56 @@ Cliquez sur Annuler si vous voulez modifier le fichier de configuration avant le
 </source>
         <translation>Nécessite la préférence &quot;Afficher l&apos;icone dans la barre d&apos;état système¨!
 </translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished">Chemin stocké dans l&apos;index</translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished">Chemin modifié</translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished">Erreur config</translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished">Chemin Originel</translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished">Chemin local</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished">Traductions de chemins</translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished">Sélectionnez un ou plusieurs types de fichiers, puis utilisez les contrôles dans le cadre ci-dessous pour modifier la façon dont ils sont traités.</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Ajouter</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Supprimer</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Annuler</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Sauvegarder</translation>
     </message>
 </context>
 <context>
@@ -1304,11 +1362,23 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation>Fichier autostart détruit. Arrêter le process en cours ?</translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished">Nom de la configuration</translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished">Court surnom alphanumérique pour cette configuration</translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished">Impossible de trouver</translation>
+    </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
     <message>
-        <source> Hits</source>
+        <source>Hits</source>
         <translation>Résultats</translation>
     </message>
 </context>
@@ -1730,7 +1800,7 @@ Merci de vérifier le fichier desktop </translation>
     </message>
     <message>
         <source>This configuration tool only works for the main index.</source>
-        <translation>Cet outil de configuration ne travaille que sur l&apos;index principal.</translation>
+        <translation type="vanished">Cet outil de configuration ne travaille que sur l&apos;index principal.</translation>
     </message>
     <message>
         <source>The current indexing process was not started from this interface, can&apos;t kill it</source>
@@ -1769,8 +1839,8 @@ Merci de vérifier le fichier desktop </translation>
         <translation>L&apos;indexeur est actif. Impossible d&apos;accéder au fichier webcache.</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation> avec le message complémentaire :</translation>
+        <source>with additional message: </source>
+        <translation>avec le message complémentaire :</translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -2002,6 +2072,10 @@ Merci de vérifier le fichier desktop </translation>
 Do you want to start the preferences dialog ?</source>
         <translation>L&apos;application spécifiée dans le fichier mimeview pour %1: %2 n&apos;est pas trouvée.
 Voulez vous afficher le dialogue de préférences ?</translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
+        <translation type="unfinished">Afficher la boîte de dialogue de recherche avancée</translation>
     </message>
 </context>
 <context>
@@ -2259,7 +2333,7 @@ Voulez vous afficher le dialogue de préférences ?</translation>
         <translation>Fragments de recherche</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
+        <source>With failed files retrying</source>
         <translation>Avec re-traitement des fichiers en échec</translation>
     </message>
     <message>
@@ -2382,6 +2456,10 @@ Voulez vous afficher le dialogue de préférences ?</translation>
         <source>&amp;Online manual (Recoll Web site)</source>
         <translation>Manuel en ligne (site WEB Recoll)</translation>
     </message>
+    <message>
+        <source>Path translations</source>
+        <translation type="unfinished">Traduction des chemins</translation>
+    </message>
 </context>
 <context>
     <name>RclTrayIcon</name>
@@ -2425,8 +2503,8 @@ Voulez vous afficher le dialogue de préférences ?</translation>
         <translation>Date fichier</translation>
     </message>
     <message>
-        <source> Ipath</source>
-        <translation type="vanished"> Ipath</translation>
+        <source>Ipath</source>
+        <translation type="vanished">Ipath</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2928,7 +3006,7 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
         <translation>Les langages d&apos;expansion pour la recherche sauvegardée : </translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
+        <source>differ from current preferences (kept)</source>
         <translation>diffèrent des préférences en cours (conservées)</translation>
     </message>
     <message>
@@ -3579,16 +3657,16 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
         <translation>Résultats de la dernière indexation :</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation>  Documents créés ou mis à jour</translation>
+        <source>Documents created/updated</source>
+        <translation>Documents créés ou mis à jour</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation>  Fichiers testés</translation>
+        <source>Files tested</source>
+        <translation>Fichiers testés</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation>  Fichiers non indexés</translation>
+        <source>Unindexed files</source>
+        <translation>Fichiers non indexés</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3700,6 +3778,18 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation>Impossible d&apos;ajouter un index avec une option differente de sensibilite a la casse et aux accents.</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished">Lumière</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished">Foncé</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished">Système</translation>
     </message>
 </context>
 <context>
@@ -4005,6 +4095,10 @@ Ceci devrait donner une meilleure pertinence aux résultats où les termes reche
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Nouveaux param&amp;egrave;tres&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
+        <translation type="unfinished">La valeur est une ligne de commande à exécuter. Substitutions : %s : chaîne de recherche ; %p : numéro de page ; &lt;br&gt;%f : nom de fichier du document. Appuyez sur F1 pour plus d&apos;aide.</translation>
     </message>
 </context>
 <context>
@@ -4314,6 +4408,13 @@ Ceci diminue les ressources consommées par l&apos;indexation et aide le chargem
     <message>
         <source>Max. filter exec. time (s)</source>
         <translation type="vanished">Temps d&apos;exécution maximum pour un filtre (s)</translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">Appliquer</translation>
     </message>
 </context>
 <context>
@@ -4965,11 +5066,11 @@ La valeur par défaut est 2%</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation>Utilise la feuille de style de mode sombre par défaut</translation>
+        <translation type="vanished">Utilise la feuille de style de mode sombre par défaut</translation>
     </message>
     <message>
         <source>Dark mode</source>
-        <translation>Mode sombre</translation>
+        <translation type="vanished">Mode sombre</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
@@ -5118,6 +5219,18 @@ La valeur par défaut est 2%</translation>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
         <translation>Ignorer les caractères joker dans les modes &quot;Tous les termes&quot; et &quot;Certains termes&quot;</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished">Schéma de couleurs</translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished">Lors de l&apos;affichage de HTML en mode sombre, essayez d&apos;utiliser un fond sombre (et une couleur claire). Cela entre en conflit avec de nombreux documents qui remplaceront notre paramètre de couleur claire par leur propre couleur de premier plan CSS (sombre), ce qui entraîne un document illisible, donc il est désactivé par défaut.</translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
+        <translation type="unfinished">Utilisez un fond sombre lors de l&apos;affichage du HTML en mode sombre.</translation>
     </message>
 </context>
 </TS>

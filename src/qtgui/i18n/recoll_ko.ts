@@ -418,7 +418,7 @@
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation>디폴트로, 검색에 대한 결과가 없을 때 aspell 이 올바른 맞춤법을 제시합니다</translation>
+        <translation type="vanished">디폴트로, 검색에 대한 결과가 없을 때 aspell 이 올바른 맞춤법을 제시합니다</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -459,6 +459,18 @@
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished">&lt;p&gt;GUI 설정은 일반적으로 모든 색인에 대해 유효한 전역 파일에 저장됩니다. 이 매개변수를 설정하면 결과 테이블 설정과 같은 일부 설정이 해당 색인에 특정해집니다.</translation>
+    </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished">배터리로 작동 중일 때 실시간 인덱서 일시 중지</translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished">색인 작업은 AC에 대한 반환을 기다릴 것이며, 그것이 발생할 때 다시 실행될 것입니다.</translation>
+    </message>
+    <message>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">기본 설정으로, 쿼리 결과가 없을 때 aspell은 철자 오류를 제안합니다.</translation>
     </message>
 </context>
 <context>
@@ -623,54 +635,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Local path</source>
-        <translation>로컬 경로</translation>
+        <translation type="vanished">로컬 경로</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation>설정 오류</translation>
+        <translation type="vanished">설정 오류</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation>원본 경로</translation>
+        <translation type="vanished">원본 경로</translation>
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">인덱스 경로</translation>
+        <translation type="obsolete">인덱스 경로</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">번역된 경로</translation>
+        <translation type="obsolete">번역된 경로</translation>
     </message>
 </context>
 <context>
     <name>EditTransBase</name>
     <message>
         <source>Path Translations</source>
-        <translation>경로 변경</translation>
+        <translation type="vanished">경로 변경</translation>
     </message>
     <message>
         <source>Setting path translations for </source>
-        <translation>다음 파일을 위한 경로를 변경해주십시오 :</translation>
+        <translation type="vanished">다음 파일을 위한 경로를 변경해주십시오 :</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation>하나 혹은 복수의 파일 형식을 선택한 다음, 아래 프레임의 컨트롤을 사용하여 처리 방식을 변경하십시오.</translation>
+        <translation type="vanished">하나 혹은 복수의 파일 형식을 선택한 다음, 아래 프레임의 컨트롤을 사용하여 처리 방식을 변경하십시오.</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>추가</translation>
+        <translation type="vanished">추가</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>삭제</translation>
+        <translation type="vanished">삭제</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>취소</translation>
+        <translation type="vanished">취소</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>저장</translation>
+        <translation type="vanished">저장</translation>
     </message>
 </context>
 <context>
@@ -825,6 +837,56 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
         <translation type="unfinished">환경 설정에서 &quot;시스템 트레이 아이콘 표시&quot;를 설정해야 합니다!</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished">인덱스 경로</translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished">번역된 경로</translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished">설정 오류</translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished">원본 경로</translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished">로컬 경로</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished">경로 변경</translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished">하나 혹은 복수의 파일 형식을 선택한 다음, 아래 프레임의 컨트롤을 사용하여 처리 방식을 변경하십시오.</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">추가</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">삭제</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">취소</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">저장</translation>
     </message>
 </context>
 <context>
@@ -1301,9 +1363,25 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation>자동실행 파일을 삭제하였습니다. 현재 프로세스도 종료할까요?</translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished">구성 이름</translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished">이 구성에 대한 짧은 알파벳 닉네임</translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished">다음 텍스트 조각을 한국어로 번역하십시오: Could not find</translation>
+    </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
+    <message>
+        <source>Hits</source>
+        <translation type="obsolete">검색 결과</translation>
+    </message>
     <message>
         <source>Hits</source>
         <translation type="unfinished">검색 결과</translation>
@@ -1727,7 +1805,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>This configuration tool only works for the main index.</source>
-        <translation>이 설정 도구는 오직 주 색인에서만 작동합니다.</translation>
+        <translation type="vanished">이 설정 도구는 오직 주 색인에서만 작동합니다.</translation>
     </message>
     <message>
         <source>The current indexing process was not started from this interface, can&apos;t kill it</source>
@@ -1767,7 +1845,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>with additional message: </source>
-        <translation>부가 메세지 : </translation>
+        <translation type="vanished">부가 메세지 : </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -1998,6 +2076,14 @@ Please check the desktop file</source>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">%1에 대해 mimeview에서 지정된 뷰어 %2을(를) 찾을 수 없습니다. 환경 설정 대화 상자를 시작하시겠습니까?</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">추가 메시지와 함께:</translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
+        <translation type="unfinished">고급 검색 대화 상자 표시</translation>
     </message>
 </context>
 <context>
@@ -2256,7 +2342,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation>파일들 재시도 실패</translation>
+        <translation type="vanished">파일들 재시도 실패</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2378,6 +2464,14 @@ Do you want to start the preferences dialog ?</source>
         <source>&amp;Online manual (Recoll Web site)</source>
         <translation type="unfinished">온라인 매뉴얼 (Recoll 웹 사이트)</translation>
     </message>
+    <message>
+        <source>Path translations</source>
+        <translation type="unfinished">경로 번역</translation>
+    </message>
+    <message>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">실패한 파일을 다시 시도합니다.</translation>
+    </message>
 </context>
 <context>
     <name>RclTrayIcon</name>
@@ -2422,7 +2516,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Ipath</source>
-        <translation type="vanished">I경로</translation>
+        <translation>I경로</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2459,10 +2553,6 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Date and time</source>
         <translation>날짜와 시간</translation>
-    </message>
-    <message>
-        <source>Ipath</source>
-        <translation>I경로</translation>
     </message>
     <message>
         <source>MIME type</source>
@@ -2924,7 +3014,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation>현재 환경설정과 다르게 유지합니다.</translation>
+        <translation type="vanished">현재 환경설정과 다르게 유지합니다.</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3105,6 +3195,10 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;어간 확장 억제를 위해 대문자로 변환&lt;/td&gt;&lt;td&gt;바닥&lt;/td&gt;&lt;/tr&gt;</translation>
+    </message>
+    <message>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">현재 선호도와 다릅니다 (보관됨)</translation>
     </message>
 </context>
 <context>
@@ -3575,15 +3669,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation>만들어진/업데이트된 문서들</translation>
+        <translation type="vanished">만들어진/업데이트된 문서들</translation>
     </message>
     <message>
         <source>Files tested</source>
-        <translation>테스트된 파일들</translation>
+        <translation type="vanished">테스트된 파일들</translation>
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation>색인되지 않은 파일들</translation>
+        <translation type="vanished">색인되지 않은 파일들</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3596,6 +3690,18 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>Spell expansion error.</source>
         <translation type="unfinished">주문 확장 오류.</translation>
+    </message>
+    <message>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">문서가 생성/업데이트 됨</translation>
+    </message>
+    <message>
+        <source>Files tested</source>
+        <translation type="unfinished">테스트된 파일</translation>
+    </message>
+    <message>
+        <source>Unindexed files</source>
+        <translation type="unfinished">인덱싱되지 않은 파일</translation>
     </message>
 </context>
 <context>
@@ -3695,6 +3801,18 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation type="unfinished">다른 대/발음 기호 제거 옵션을 사용하여 색인을 추가할 수 없습니다.</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished">빛</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished">어두운</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished">시스템</translation>
     </message>
 </context>
 <context>
@@ -4000,6 +4118,10 @@ This should give higher precedence to the results where the search terms appear 
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
         <translation>&lt;b&gt;새 값:&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
+        <translation type="unfinished">값은 실행할 명령 줄입니다. 대체: %s: 검색 문자열; %p: 페이지 번호; &lt;br&gt;%f: 문서 파일 이름. 더 많은 도움말을 위해 F1을 누르세요.</translation>
     </message>
 </context>
 <context>
@@ -4309,6 +4431,13 @@ This will help searching very big text  files (ie: log files).</source>
     <message>
         <source>Max. filter exec. time (s)</source>
         <translation type="vanished">필터 최대 실행시간</translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">Apply</translation>
     </message>
 </context>
 <context>
@@ -4959,11 +5088,11 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation>스타일 시트를 기본 다크모드로 설정</translation>
+        <translation type="vanished">스타일 시트를 기본 다크모드로 설정</translation>
     </message>
     <message>
         <source>Dark mode</source>
-        <translation>Dark mode</translation>
+        <translation type="vanished">Dark mode</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
@@ -5104,6 +5233,18 @@ The default value is 2 (percent). </source>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
         <translation type="unfinished">모든 용어 및 어떤 용어 모드에서 와일드 카드 문자를 무시합니다.</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished">색 구성</translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished">다크 모드에서 HTML을 표시할 때는 어두운 배경(및 밝은 색상)을 사용하려고 노력하십시오. 이는 많은 문서와 충돌하며, 이러한 문서는 우리의 밝은 설정을 자체 CSS(어두운) 전경 색상으로 덮어씌우기 때문에 읽기 어려운 문서가 됩니다. 그래서 기본적으로 비활성화되어 있습니다.</translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
+        <translation type="unfinished">다크 모드에서 HTML을 표시할 때는 어두운 배경을 사용하십시오.</translation>
     </message>
 </context>
 </TS>

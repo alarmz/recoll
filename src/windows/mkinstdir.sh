@@ -153,9 +153,8 @@ copyrecoll()
     chkcp $RCL/python/recoll/recoll/rclconfig.py $FILTERS
     chkcp $RCL/python/recoll/recoll/conftree.py $FILTERS
 
-    rm -f $FILTERS/rclimg*
-    rm -f $FILTERS/rclimg $FILTERS/rclimg.py
     chkcp $RCLDEPS/rclimg/rclimg.exe $FILTERS
+    chkcp $RCL/filters/rclimgp.py $FILTERS
 
     chkcp $RCL/qtgui/mtpics/*  $DESTDIR/Share/images
     chkcp $RCL/qtgui/build/${QTA}/${qtsdir}/*.qm $DESTDIR/Share/translations

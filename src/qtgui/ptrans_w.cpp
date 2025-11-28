@@ -14,35 +14,22 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-#include "autoconfig.h"
-
-#include <stdio.h>
 
 #include <vector>
 #include <utility>
 #include <string>
 
-using namespace std;
-
-#include <qpushbutton.h>
-#include <qtimer.h>
-
-#include <qlistwidget.h>
-
-#include <qmessagebox.h>
-#include <qinputdialog.h>
-#include <qlayout.h>
+#include <QMessageBox>
 
 #include "recoll.h"
-#include "log.h"
 #include "guiutils.h"
 #include "conftree.h"
 
 #include "ptrans_w.h"
 
-void EditTrans::init(const string& dbdir)
+void PTransEdit::init(const std::string& dbdir)
 {
-    m_dbdir = path_canon(dbdir);
+    auto initdbdir = path_canon(dbdir);
     connect(transTW, SIGNAL(itemDoubleClicked(QTableWidgetItem *)),
             this, SLOT(onItemDoubleClicked(QTableWidgetItem *)));
     connect(cancelPB, SIGNAL(clicked()), this, SLOT(close()));
@@ -50,39 +37,63 @@ void EditTrans::init(const string& dbdir)
     connect(addPB, SIGNAL(clicked()), this, SLOT(addPB_clicked()));
     connect(delPB, SIGNAL(clicked()), this, SLOT(delPB_clicked()));
     connect(transTW, SIGNAL(itemSelectionChanged()), this, SLOT(transTW_itemSelectionChanged()));
-
-    QString lab = whatIdxLA->text();
-    lab.append(path2qs(m_dbdir));
-    whatIdxLA->setText(lab);
+    connect(whatIdxCMB, SIGNAL(currentTextChanged(const QString&)),
+            this, SLOT(curIdxChanged(const QString&)));
 
     QStringList labels(tr("Path in index"));
     labels.push_back(tr("Translated path"));
     transTW->setHorizontalHeaderLabels(labels);
 
+    resize(QSize(640, 300).expandedTo(minimumSizeHint()));
+
+    // Initialize the combobox with the list of extra indexes
+    auto dbsorted = prefs.allExtraDbs;
+    dbsorted.push_back(theconfig->getDbDir());
+    for (auto& dir: dbsorted) {
+        dir = path_canon(dir);
+    }
+    std::sort(dbsorted.begin(), dbsorted.end(),
+              [] (const std::string& l, const std::string& r) {return r < l;});
+    for (const auto& dbdir : dbsorted) {
+        whatIdxCMB->addItem(path2qs(dbdir));
+    }
+    if (!initdbdir.empty()) {
+        whatIdxCMB->setCurrentText(path2qs(initdbdir));
+    }
+    curIdxChanged(whatIdxCMB->currentText());
+}
+
+void PTransEdit::curIdxChanged(const QString& qidx)
+{
+    auto dbdir = qs2path(qidx);
+    setCurrentDb(dbdir);
+}
+
+void PTransEdit::setCurrentDb(const std::string& dbdir)
+{
     ConfSimple *conftrans = theconfig->getPTrans();
     if (!conftrans)
         return;
+    whatIdxCMB->setCurrentText(path2qs(dbdir));
 
     int row = 0;
-    vector<string> opaths = conftrans->getNames(m_dbdir);
+    auto opaths = conftrans->getNames(dbdir);
     for (const auto& opath : opaths) {
         transTW->setRowCount(row+1);
         transTW->setItem(row, 0, new QTableWidgetItem(path2qs(opath)));
-        string npath;
-        conftrans->get(opath, npath, m_dbdir);
+        std::string npath;
+        conftrans->get(opath, npath, dbdir);
         transTW->setItem(row, 1, new QTableWidgetItem(path2qs(npath)));
         row++;
     }
-
-    resize(QSize(640, 300).expandedTo(minimumSizeHint()));
 }
 
-void EditTrans::onItemDoubleClicked(QTableWidgetItem *item)
+void PTransEdit::onItemDoubleClicked(QTableWidgetItem *item)
 {
     transTW->editItem(item);
 }
 
-void EditTrans::savePB_clicked()
+void PTransEdit::savePB_clicked()
 {
     ConfSimple *conftrans = theconfig->getPTrans();
     if (!conftrans) {
@@ -90,24 +101,27 @@ void EditTrans::savePB_clicked()
         return;
     }
     conftrans->holdWrites(true);
-    conftrans->eraseKey(m_dbdir);
+
+    auto dbdir = qs2path(whatIdxCMB->currentText());
+    
+    conftrans->eraseKey(dbdir);
 
     for (int row = 0; row < transTW->rowCount(); row++) {
         QTableWidgetItem *item0 = transTW->item(row, 0);
-        string from = qs2path(item0->text());
+        auto from = qs2path(item0->text());
         QTableWidgetItem *item1 = transTW->item(row, 1);
-        string to = qs2path(item1->text());
-        conftrans->set(from, to, m_dbdir);
+        auto to = qs2path(item1->text());
+        conftrans->set(from, to, dbdir);
     }
     conftrans->holdWrites(false);
-    // The rcldb does not use the same configuration object, but a
-    // copy. Force a reopen, this is quick.
-    string reason;
+    // The rcldb does not use the same configuration object, but a copy.
+    // Force a reopen, this is quick.
+    std::string reason;
     maybeOpenDb(reason, true);
     close();
 }
 
-void EditTrans::addPB_clicked()
+void PTransEdit::addPB_clicked()
 {
     transTW->setRowCount(transTW->rowCount()+1);
     int row = transTW->rowCount()-1;
@@ -116,26 +130,22 @@ void EditTrans::addPB_clicked()
     transTW->editItem(transTW->item(row, 0));
 }
 
-void EditTrans::delPB_clicked()
+void PTransEdit::delPB_clicked()
 {
     QModelIndexList indexes = transTW->selectionModel()->selectedIndexes();
-    vector<int> rows;
+    std::vector<int> rows;
     for (int i = 0; i < indexes.size(); i++) {
         rows.push_back(indexes.at(i).row());
     }
-    sort(rows.begin(), rows.end());
+    std::sort(rows.begin(), rows.end());
     rows.resize(unique(rows.begin(), rows.end()) - rows.begin());
     for (int i = static_cast<int>(rows.size()-1); i >= 0; i--) {
         transTW->removeRow(rows[i]);
     }
 }
 
-void EditTrans::transTW_itemSelectionChanged()
+void PTransEdit::transTW_itemSelectionChanged()
 {
     QModelIndexList indexes = transTW->selectionModel()->selectedIndexes();
-    if(indexes.size() < 1)
-        delPB->setEnabled(0);
-    else 
-        delPB->setEnabled(1);
+    delPB->setEnabled(indexes.size() >= 1);
 }
-

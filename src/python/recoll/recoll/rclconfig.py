@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-from __future__ import print_function
 
 import locale
 import re
@@ -8,14 +7,11 @@ import sys
 import base64
 import platform
 
-try:
-    from . import conftree
-except:
-    import conftree
+import conftree
 
 
 def msg(s):
-    print("%s" % s, file=sys.stderr)
+    print(f"{s}", file=sys.stderr)
 
 
 class RclDynConf:
@@ -35,7 +31,11 @@ class RclConfig:
     def __init__(self, argcnf=None):
         self.config = None
         self.mimemap = None
+        self.casesens = True
         platsys = platform.system()
+        if platsys == "Windows":
+            self.casesens = False
+
         # Find configuration directory
         if argcnf:
             self.confdir = os.path.abspath(argcnf)
@@ -128,7 +128,7 @@ class RclConfig:
         # Additional config directory, overrides system's, overridden by user's
         if "RECOLL_CONFMID" in os.environ:
             self.cdirs.append(os.environ["RECOLL_CONFMID"])
-        self.cdirs.append(os.path.join(self.datadir, "examples"))
+        self.cdirs.append(baseconfdir)
         # msg("Config dirs: {self.cdirs}")
         self.keydir = ""
 
@@ -152,7 +152,8 @@ class RclConfig:
 
     def getConfParam(self, nm):
         if not self.config:
-            self.config = conftree.ConfStack("recoll.conf", self.cdirs, "tree")
+            self.config = conftree.ConfStack("recoll.conf", self.cdirs, tp="tree",
+                                             casesensitive = self.casesens)
         return self.config.get(nm, self.keydir)
 
     # This is a simplified version of the c++ code, intended mostly for the
@@ -160,7 +161,8 @@ class RclConfig:
     # will not work on extension-less paths (e.g. mbox/mail/etc.)
     def mimeType(self, path):
         if not self.mimemap:
-            self.mimemap = conftree.ConfStack("mimemap", self.cdirs, "tree")
+            self.mimemap = conftree.ConfStack("mimemap", self.cdirs, tp="tree",
+                                              casesensitive = self.casesens)
         if os.path.exists(path):
             if os.path.isdir(path):
                 return "inode/directory"
@@ -190,6 +192,6 @@ class RclExtraDbs:
 
 if __name__ == "__main__":
     config = RclConfig()
-    print("topdirs = %s" % config.getConfParam("topdirs"))
+    print(f"topdirs = {config.getConfParam('topdirs')}")
     extradbs = RclExtraDbs(config)
-    print("%s" % extradbs.getActDbs())
+    print(f"{extradbs.getActDbs()}")

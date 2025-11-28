@@ -167,7 +167,7 @@ private:
     // a reset), hence the countdown.
     QString m_js;
 #if defined(USING_WEBENGINE)
-	int m_js_countdown{0};
+    int m_js_countdown{0};
 #endif // Webengine
     RclMain   *m_rclmain{0};
     bool m_ismainres{true};

@@ -1,3 +1,4 @@
+
 /* Copyright (C) 2004-2022 J.F.Dockes 
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -31,6 +32,7 @@
 #ifdef __FreeBSD__
 #include <osreldate.h>
 #endif
+#include <fnmatch.h>
 
 #include <algorithm>
 #include <iostream>
@@ -257,10 +259,10 @@ public:
     static std::string o_localecharset;
     // Limiting set of mime types to be processed. Normally empty.
     ParamStale    m_rmtstate;
-    std::unordered_set<std::string>   m_restrictMTypes; 
+    std::vector<std::string>   m_restrictMTypes; 
     // Exclusion set of mime types. Normally empty
     ParamStale    m_xmtstate;
-    std::unordered_set<std::string>   m_excludeMTypes; 
+    std::vector<std::string>   m_excludeMTypes; 
     // Metadata-gathering external commands (e.g. used to reap tagging info: "tmsu tags %f")
     ParamStale    m_mdrstate;
     std::vector<MDReaper> m_mdreapers;
@@ -1199,27 +1201,35 @@ string RclConfig::getMimeHandlerDef(const string &mtype, bool filtertypes, const
     if (filtertypes) {
         if(m->m_rmtstate.needrecompute()) {
             m->m_restrictMTypes.clear();
-            stringToStrings(stringtolower((const string&)m->m_rmtstate.getvalue()),
-                            m->m_restrictMTypes);
+            stringToStrings(stringtolower(m->m_rmtstate.getvalue()), m->m_restrictMTypes);
         }
         if (m->m_xmtstate.needrecompute()) {
             m->m_excludeMTypes.clear();
-            stringToStrings(stringtolower((const string&)m->m_xmtstate.getvalue()),
-                            m->m_excludeMTypes);
+            stringToStrings(stringtolower(m->m_xmtstate.getvalue()), m->m_excludeMTypes);
         }
-        if (!m->m_restrictMTypes.empty() && !m->m_restrictMTypes.count(stringtolower(mtype))) {
-            IdxDiags::theDiags().record(IdxDiags::NotIncludedMime, fn, mtype);
-            LOGDEB1("RclConfig::getMimeHandlerDef: " << mtype << " not in mime type list\n");
-            return hs;
+        if (!m->m_restrictMTypes.empty()) {
+            bool inallowlist = false;
+            for (const auto& expr : m->m_restrictMTypes) {
+                if (fnmatch(expr.c_str(), mtype.c_str(), 0) == 0) {
+                    inallowlist = true;
+                }
+            }
+            if (!inallowlist) {
+                IdxDiags::theDiags().record(IdxDiags::NotIncludedMime, fn, mtype);
+                LOGERR("RclConfig::getMimeHandlerDef: " << mtype << " not in mime type list\n");
+                return hs;
+            }
         }
-        if (!m->m_excludeMTypes.empty() && m->m_excludeMTypes.count(stringtolower(mtype))) {
-            IdxDiags::theDiags().record(IdxDiags::ExcludedMime, fn, mtype);
-            LOGDEB1("RclConfig::getMimeHandlerDef: " << mtype << " in excluded mime list (fn " <<
-                    fn << ")\n");
-            return hs;
+        for (const auto& expr : m->m_excludeMTypes) {
+            if (fnmatch(expr.c_str(), mtype.c_str(), 0) == 0) {
+                IdxDiags::theDiags().record(IdxDiags::ExcludedMime, fn, mtype);
+                LOGERR("RclConfig::getMimeHandlerDef: " << mtype << " in excluded mime list (fn " <<
+                       fn << ")\n");
+                return hs;
+            }
         }
     }
-
+    
     if (!m->mimeconf->get(mtype, hs, "index")) {
         if (mtype.find("text/") == 0) {
             bool alltext{false};

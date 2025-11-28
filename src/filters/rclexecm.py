@@ -365,7 +365,7 @@ def main(proto, extract):
 
     def debprint(out, s):
         if not actAsSingle:
-            proto.breakwrite(out, makebytes(s + "\n"))
+            cmdtalk.breakwrite(out, makebytes(s + "\n"))
 
     # makebytes does not work for the path arg because of possible surrogates in a non-decodable
     # binary path: https://peps.python.org/pep-0383/
@@ -396,7 +396,7 @@ def main(proto, extract):
             )
             bdata = makebytes(data)
             if debugDumpData or actAsSingle:
-                proto.breakwrite(ioout, bdata)
+                cmdtalk.breakwrite(ioout, bdata)
                 ioout.write(b"\n")
             sys.exit(0)
         else:
@@ -419,7 +419,7 @@ def main(proto, extract):
                     debprint(ioout, "  %s -> %s" % (k, v))
             proto.fields = {}
             if debugDumpData:
-                proto.breakwrite(ioout, bdata)
+                cmdtalk.breakwrite(ioout, bdata)
                 ioout.write(b"\n")
             if eof != RclExecM.noteof:
                 sys.exit(0)

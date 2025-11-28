@@ -42,8 +42,8 @@ private:
     void accept();
 private:
     void init();
-	std::string getautostartfn();
-	std::string confignick;
+    std::string getautostartfn();
+    std::string confignick;
 #endif
 };
 

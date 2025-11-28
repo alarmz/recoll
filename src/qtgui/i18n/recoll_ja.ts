@@ -319,7 +319,7 @@
     <message>
         <source>Max. size for the web store (MB)</source>
         <translatorcomment>
-Max. size for the web store (MB)        </translatorcomment>
+Max. size for the web store (MB)                </translatorcomment>
         <translation>Max. size for the web store (MB)</translation>
     </message>
     <message>
@@ -391,10 +391,6 @@ Max. size for the web store (MB)        </translatorcomment>
         <translation type="vanished">Note：　最大サイズに達すると、古いページが消去され、新しいページ用のスペースが確保されます</translation>
     </message>
     <message>
-        <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Page recycle interval</source>
         <translation></translation>
     </message>
@@ -433,6 +429,18 @@ Max. size for the web store (MB)        </translatorcomment>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished">&lt;p&gt;GUIの設定は通常、すべてのインデックスに有効なグローバルファイルに保存されます。このパラメータを設定すると、結果テーブルのセットアップなど、一部の設定がインデックスに特化します。</translation>
+    </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished">バッテリー駆動時にリアルタイムインデクサーを一時停止します。</translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished">インデクサーはACの返信を待ち、それが起こったときに自分自身を再実行します。</translation>
+    </message>
+    <message>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">（デフォルトでは、クエリに結果がない場合、aspellはスペルミスを提案します）。</translation>
     </message>
 </context>
 <context>
@@ -598,54 +606,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Local path</source>
-        <translation>Local path</translation>
+        <translation type="vanished">Local path</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation>Config error</translation>
+        <translation type="vanished">Config error</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation>Original path</translation>
+        <translation type="vanished">Original path</translation>
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">インデックス内のパス</translation>
+        <translation type="obsolete">インデックス内のパス</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">翻訳されたパス</translation>
+        <translation type="obsolete">翻訳されたパス</translation>
     </message>
 </context>
 <context>
     <name>EditTransBase</name>
     <message>
         <source>Path Translations</source>
-        <translation>Path Translations</translation>
+        <translation type="vanished">Path Translations</translation>
     </message>
     <message>
         <source>Setting path translations for </source>
-        <translation>Setting path translations for </translation>
+        <translation type="vanished">Setting path translations for </translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation>1つまたは複数のファイルタイプを選択し、下のフレームのコントロールを使用して、それらの処理方法を変更します</translation>
+        <translation type="vanished">1つまたは複数のファイルタイプを選択し、下のフレームのコントロールを使用して、それらの処理方法を変更します</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>追加</translation>
+        <translation type="vanished">追加</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>削除</translation>
+        <translation type="vanished">削除</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>キャンセル</translation>
+        <translation type="vanished">キャンセル</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>保存</translation>
+        <translation type="vanished">保存</translation>
     </message>
 </context>
 <context>
@@ -751,7 +759,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Decide if real time indexing will be started when you log in (only for the default index).</source>
         <translatorcomment>
-ログイン時にリアルタイムのインデックス作成を開始するかどうかを決定します（デフォルトのインデックスに対してのみ有効）。        </translatorcomment>
+ログイン時にリアルタイムのインデックス作成を開始するかどうかを決定します（デフォルトのインデックスに対してのみ有効）。                </translatorcomment>
         <translation></translation>
     </message>
 </context>
@@ -780,6 +788,56 @@ p, li { white-space: pre-wrap; }
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
         <translation type="unfinished">設定で「システムトレイアイコンを表示」を設定する必要があります！</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished">インデックス内のパス</translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished">翻訳されたパス</translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished">Config error</translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished">Original path</translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished">Local path</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished">Path Translations</translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished">1つまたは複数のファイルタイプを選択し、下のフレームのコントロールを使用して、それらの処理方法を変更します</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">追加</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">削除</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">キャンセル</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
     </message>
 </context>
 <context>
@@ -1179,9 +1237,25 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation>Autostartファイルが削除されました。現在のプロセスも停止しますか？</translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished">構成名 (Kousei mei)</translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished">この構成のための短い英数字のニックネーム</translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished">次のテキスト断片を日本語に翻訳します。「Could not find」。テキスト検索GUIのコンテキストで使用される想定です。</translation>
+    </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
+    <message>
+        <source>Hits</source>
+        <translation type="obsolete">ヒット</translation>
+    </message>
     <message>
         <source>Hits</source>
         <translation type="unfinished">ヒット</translation>
@@ -1505,7 +1579,7 @@ Please check the desktop file</translation>
     </message>
     <message>
         <source>This configuration tool only works for the main index.</source>
-        <translation>この設定ツールはマイン・インデックスに対してのみ機能します。</translation>
+        <translation type="vanished">この設定ツールはマイン・インデックスに対してのみ機能します。</translation>
     </message>
     <message>
         <source>Can&apos;t set synonyms file (parse error?)</source>
@@ -1537,7 +1611,7 @@ Please check the desktop file</translation>
     </message>
     <message>
         <source>with additional message: </source>
-        <translation>追加メッセージ付き: </translation>
+        <translation type="vanished">追加メッセージ付き: </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -1644,7 +1718,7 @@ Please check the desktop file</translation>
     <message>
         <source>Could not open/create file</source>
         <translatorcomment>
-ファイル・オープン／作成不可        </translatorcomment>
+ファイル・オープン／作成不可                </translatorcomment>
         <translation></translation>
     </message>
     <message>
@@ -1740,6 +1814,14 @@ Please check the desktop file</translation>
 Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">%1: %2のためにmimeviewで指定されたビューアが見つかりません。
 設定ダイアログを開始しますか？</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">追加メッセージ：</translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
+        <translation type="unfinished">高度な検索ダイアログを表示します。</translation>
     </message>
 </context>
 <context>
@@ -1950,7 +2032,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation>With failed files retrying</translation>
+        <translation type="vanished">With failed files retrying</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2071,6 +2153,14 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
         <translation type="unfinished">オンラインマニュアル（Recollウェブサイト）</translation>
+    </message>
+    <message>
+        <source>Path translations</source>
+        <translation type="unfinished">パスの翻訳</translation>
+    </message>
+    <message>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">失敗したファイルを再試行します。</translation>
     </message>
 </context>
 <context>
@@ -2243,7 +2333,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>&amp;Delete column</source>
         <translatorcomment>
-列を削除(&amp;D)        </translatorcomment>
+列を削除(&amp;D)                </translatorcomment>
         <translation>&amp;Delete column</translation>
     </message>
     <message>
@@ -2343,7 +2433,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation>differ from current preferences (kept)</translation>
+        <translation type="vanished">differ from current preferences (kept)</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -2520,6 +2610,10 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;語幹の拡張を抑制するために大文字にする&lt;/td&gt;&lt;td&gt;フロア&lt;/td&gt;&lt;/tr&gt;</translation>
+    </message>
+    <message>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">現在の設定と異なります（保持）</translation>
     </message>
 </context>
 <context>
@@ -2848,15 +2942,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation>Documents created/updated</translation>
+        <translation type="vanished">Documents created/updated</translation>
     </message>
     <message>
         <source>Files tested</source>
-        <translation>Files tested</translation>
+        <translation type="vanished">Files tested</translation>
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation>Unindexed files</translation>
+        <translation type="vanished">Unindexed files</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -2869,6 +2963,18 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Spell expansion error.</source>
         <translation type="unfinished">スペル拡張エラー。</translation>
+    </message>
+    <message>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">ドキュメントが作成/更新</translation>
+    </message>
+    <message>
+        <source>Files tested</source>
+        <translation type="unfinished">テストされたファイル</translation>
+    </message>
+    <message>
+        <source>Unindexed files</source>
+        <translation type="unfinished">インデックスされていないファイル</translation>
     </message>
 </context>
 <context>
@@ -2912,7 +3018,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>At most one index should be selected</source>
         <translatorcomment>
-最大で1つのインデックスを選択する必要があります        </translatorcomment>
+最大で1つのインデックスを選択する必要があります                </translatorcomment>
         <translation></translation>
     </message>
     <message>
@@ -2966,6 +3072,18 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation type="unfinished">異なる大文字/ダイアクリティカルストリッピングオプションを持つインデックスを追加できません。</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished">ライト</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished">ダーク</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished">システム</translation>
     </message>
 </context>
 <context>
@@ -3036,6 +3154,10 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
         <translation>&lt;b&gt;新しい値:&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
+        <translation type="unfinished">値は実行されるコマンドラインです。置換: %s: 検索文字列; %p: ページ番号; &lt;br&gt;%f: ドキュメントファイル名。詳細なヘルプにはF1を押してください。</translation>
     </message>
 </context>
 <context>
@@ -3174,6 +3296,13 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Edit selected entries</source>
         <translation>選択したエントリーを編集</translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">適用する (てきようする)</translation>
     </message>
 </context>
 <context>
@@ -3610,11 +3739,11 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation>デフォルトのダークモード・スタイルシートを使用</translation>
+        <translation type="vanished">デフォルトのダークモード・スタイルシートを使用</translation>
     </message>
     <message>
         <source>Dark mode</source>
-        <translation>ダークモード</translation>
+        <translation type="vanished">ダークモード</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
@@ -3759,6 +3888,18 @@ The default value is 2 (percent). </translation>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
         <translation type="unfinished">すべての用語といずれかの用語モードでワイルドカード文字を無視します。</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished">カラースキーム</translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished">ダークモードでHTMLを表示する際は、ダークな背景（および明るい色）を使用してみてください。&lt;br&gt;これは、多くの文書が自身のCSS（ダーク）の前景色で私たちの明るい設定を上書きし、読めない文書になるため、デフォルトではオフになっています。</translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
+        <translation type="unfinished">ダークモードでHTMLを表示する際は、暗い背景を使用してください。</translation>
     </message>
 </context>
 </TS>

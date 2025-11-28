@@ -35,35 +35,35 @@
 
 std::string RTIToolW::getautostartfn()
 {
-	const static QString settingskey_confignick("/Recoll/prefs/index/confignickname");
-	std::string autostartfile;
-	std::string confighome;
-	auto xdg = getenv("XDG_CONFIG_HOME");
-	if (xdg) {
-		confighome = xdg;
-	} else {
-		confighome = path_cat(path_home(), ".config/autostart");
-	}
-	if (theconfig->isDefaultConfig()) {
-		return path_cat(confighome, "recollindex.desktop");
-	} 
+    const static QString settingskey_confignick("/Recoll/prefs/index/confignickname");
+    std::string autostartfile;
+    std::string confighome;
+    auto xdg = getenv("XDG_CONFIG_HOME");
+    if (xdg) {
+        confighome = xdg;
+    } else {
+        confighome = path_cat(path_home(), ".config/autostart");
+    }
+    if (theconfig->isDefaultConfig()) {
+        return path_cat(confighome, "recollindex.desktop");
+    } 
 
-	if (confignick.empty()) {
-		// Not the default configuration. Check if we stored the nickname, else ask for it
-		QSettings settings(
-			u8s2qs(path_cat(theconfig->getConfDir(), "recollgui.ini")), QSettings::IniFormat);
-		QString qnm = settings.value(settingskey_confignick).toString();
-		if (qnm.isEmpty()) {
-			qnm = QInputDialog::getText(
-				this, tr("Configuration name"), tr("Short alphanumeric nickname for this config"));
-			if (qnm.isEmpty()) {
-				return std::string();
-			}
-			settings.setValue(settingskey_confignick, qnm);
-		}
-		confignick = qs2path(qnm);
-	}
-	return path_cat(confighome, std::string("recollindex-") + confignick + ".desktop");
+    if (confignick.empty()) {
+        // Not the default configuration. Check if we stored the nickname, else ask for it
+        QSettings settings(
+            u8s2qs(path_cat(theconfig->getConfDir(), "recollgui.ini")), QSettings::IniFormat);
+        QString qnm = settings.value(settingskey_confignick).toString();
+        if (qnm.isEmpty()) {
+            qnm = QInputDialog::getText(
+                this, tr("Configuration name"), tr("Short alphanumeric nickname for this config"));
+            if (qnm.isEmpty()) {
+                return std::string();
+            }
+            settings.setValue(settingskey_confignick, qnm);
+        }
+        confignick = qs2path(qnm);
+    }
+    return path_cat(confighome, std::string("recollindex-") + confignick + ".desktop");
 }
 
 void RTIToolW::init()
@@ -86,9 +86,9 @@ void RTIToolW::accept()
 {
     bool exitdial = false;
 
-	auto autostartfile = getautostartfn();
-	if (autostartfile.empty())
-		return;
+    auto autostartfile = getautostartfn();
+    if (autostartfile.empty())
+        return;
 
     if (sesCB->isChecked()) {
         // Setting up daemon indexing autostart
@@ -98,23 +98,23 @@ void RTIToolW::accept()
             QMessageBox::Button rep = QMessageBox::question(
                 this, tr("Replacing file"), msg, QMessageBox::Ok | QMessageBox::Cancel);
             if (rep != QMessageBox::Ok) {
-				return;
+                return;
             }
         }
 
-		std::string sourcefile = path_cat(theconfig->getDatadir(), "examples");
-		sourcefile = path_cat(sourcefile, "recollindex.desktop");
+        std::string sourcefile = path_cat(theconfig->getDatadir(), "examples");
+        sourcefile = path_cat(sourcefile, "recollindex.desktop");
         std::string prototext;
-		if (path_exists(sourcefile)) {
-			file_to_string(sourcefile, prototext);
-		}
+        if (path_exists(sourcefile)) {
+            file_to_string(sourcefile, prototext);
+        }
         if (prototext.empty()) {
-			QMessageBox::warning(0, "Recoll", tr("Could not find ") + path2qs(sourcefile));
-			return;
-		}
-		std::string text;
-		pcSubst(prototext , text, {{'c', theconfig->getConfDir()}});
-		
+            QMessageBox::warning(0, "Recoll", tr("Could not find ") + path2qs(sourcefile));
+            return;
+        }
+        std::string text;
+        pcSubst(prototext , text, {{'c', theconfig->getConfDir()}});
+                
         // Try to create .config and autostart anyway. If they exists this will 
         // do nothing. An error will be detected when we try to create the file
         auto dir = path_cat(path_home(), ".config");
@@ -137,8 +137,8 @@ void RTIToolW::accept()
             args.push_back("-m");
             args.push_back("-w");
             args.push_back("0");
-			args.push_back("-c");
-			args.push_back(theconfig->getConfDir());
+            args.push_back("-c");
+            args.push_back(theconfig->getConfDir());
             status = cmd.doexec("recollindex", args, 0, 0);
             if (status) {
                 QMessageBox::warning(0, tr("Warning"), tr("Could not execute recollindex"), 
@@ -153,7 +153,7 @@ void RTIToolW::accept()
         if (path_exists(autostartfile)) {
             QString msg = tr("Deleting: ") + path2qs(autostartfile);
             QMessageBox::Button rep = QMessageBox::question(
-				this, tr("Deleting file"), msg, QMessageBox::Ok | QMessageBox::Cancel);
+                this, tr("Deleting file"), msg, QMessageBox::Ok | QMessageBox::Cancel);
             if (rep == QMessageBox::Ok) {
                 exitdial = true;
                 unlink(autostartfile.c_str());

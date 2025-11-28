@@ -70,7 +70,9 @@ public slots:
     
 signals:
     void uiprefsDone();
-
+    void showPTrans(const QString&);
+    void delPTrans();
+                                   
 protected slots:
     virtual void accept();
     virtual void reject();

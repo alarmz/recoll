@@ -418,7 +418,7 @@
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">(alapértelmezés szerint az aspell javaslatokat tesz a helyesírási hibákra, amikor egy lekérdezésnek nincsenek eredményei)</translation>
+        <translation type="obsolete">(alapértelmezés szerint az aspell javaslatokat tesz a helyesírási hibákra, amikor egy lekérdezésnek nincsenek eredményei)</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -459,6 +459,18 @@
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished">A GUI beállítások általában egy globális fájlban vannak tárolva, ami minden indexre érvényes. Ennek a paraméternek a beállítása néhány beállítást, például a találati tábla beállításait specifikussá teszi az indexre.</translation>
+    </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished">Felfüggeszteni a valós idejű indexelőt, amikor az akkumulátoron fut.</translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished">Az indexelő várni fog egy visszatérésre az AC-n, és újra végrehajtja magát, amikor ez megtörténik.</translation>
+    </message>
+    <message>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(alapértelmezés szerint az aspell javaslatokat tesz a helyesírási hibákra, amikor egy lekérdezésnek nincsenek eredményei)</translation>
     </message>
 </context>
 <context>
@@ -629,54 +641,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Local path</source>
-        <translation>Helyi elérési út</translation>
+        <translation type="vanished">Helyi elérési út</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation>Beállítási hiba</translation>
+        <translation type="vanished">Beállítási hiba</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation>Eredeti elérési út</translation>
+        <translation type="vanished">Eredeti elérési út</translation>
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">Útvonal az indexben</translation>
+        <translation type="obsolete">Útvonal az indexben</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">Fordított elérési útvonal</translation>
+        <translation type="obsolete">Fordított elérési útvonal</translation>
     </message>
 </context>
 <context>
     <name>EditTransBase</name>
     <message>
         <source>Path Translations</source>
-        <translation>Elérési út átalakítása</translation>
+        <translation type="vanished">Elérési út átalakítása</translation>
     </message>
     <message>
         <source>Setting path translations for </source>
-        <translation>Elérési út-átalakítás ehhez: </translation>
+        <translation type="vanished">Elérési út-átalakítás ehhez: </translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation>Kijelölhető egy vagy több elérési út is</translation>
+        <translation type="vanished">Kijelölhető egy vagy több elérési út is</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation>Hozzáadás</translation>
+        <translation type="vanished">Hozzáadás</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation>Törlés</translation>
+        <translation type="vanished">Törlés</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Mégsem</translation>
+        <translation type="vanished">Mégsem</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation>Mentés</translation>
+        <translation type="vanished">Mentés</translation>
     </message>
 </context>
 <context>
@@ -831,6 +843,56 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
         <translation type="unfinished">Szükséges a &quot;Rendszerikon megjelenítése&quot; beállítása a preferenciákban!</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished">Útvonal az indexben</translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished">Fordított elérési útvonal</translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished">Beállítási hiba</translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished">Eredeti elérési út</translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished">Helyi elérési út</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished">Elérési út átalakítása</translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished">Kijelölhető egy vagy több elérési út is</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Hozzáadás</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Törlés</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Mégsem</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Mentés</translation>
     </message>
 </context>
 <context>
@@ -1304,9 +1366,25 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation>Az autostart fájl törölve lett. A most futó indexelőt is le kell állítani?</translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished">Konfigurációs név</translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished">Rövid alfanumerikus becenév ehhez a konfigurációhoz</translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished">Nem található</translation>
+    </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
+    <message>
+        <source>Hits</source>
+        <translation type="obsolete">Találatok</translation>
+    </message>
     <message>
         <source>Hits</source>
         <translation type="unfinished">Találatok</translation>
@@ -1729,7 +1807,7 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     </message>
     <message>
         <source>This configuration tool only works for the main index.</source>
-        <translation>Ez a beállítóeszköz csak az elsődleges indexszel használható.</translation>
+        <translation type="vanished">Ez a beállítóeszköz csak az elsődleges indexszel használható.</translation>
     </message>
     <message>
         <source>The current indexing process was not started from this interface, can&apos;t kill it</source>
@@ -1769,7 +1847,7 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     </message>
     <message>
         <source>with additional message: </source>
-        <translation type="unfinished">with additional message: </translation>
+        <translation type="obsolete">with additional message: </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -2001,6 +2079,14 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">A megjelenítő, amelyet a mimeview-hez adtak meg %1: %2 esetén, nem található. Szeretné elindítani a beállítások párbeszédpanelt?</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">a további üzenettel:</translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
+        <translation type="unfinished">Mutassa az összetett keresési párbeszédpanelt.</translation>
     </message>
 </context>
 <context>
@@ -2259,7 +2345,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation>A sikerteleneket újra</translation>
+        <translation type="vanished">A sikerteleneket újra</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2381,6 +2467,14 @@ Do you want to start the preferences dialog ?</source>
         <source>&amp;Online manual (Recoll Web site)</source>
         <translation type="unfinished">Online kézikönyv (Recoll weboldal)</translation>
     </message>
+    <message>
+        <source>Path translations</source>
+        <translation type="unfinished">Útvonal fordítások</translation>
+    </message>
+    <message>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Sikertelen fájlok újrapróbálása</translation>
+    </message>
 </context>
 <context>
     <name>RclTrayIcon</name>
@@ -2425,7 +2519,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Ipath</source>
-        <translation type="vanished">Belső elérési út</translation>
+        <translation>Belső elérési út</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2462,10 +2556,6 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Date and time</source>
         <translation>Dátum és idő</translation>
-    </message>
-    <message>
-        <source>Ipath</source>
-        <translation>Belső elérési út</translation>
     </message>
     <message>
         <source>MIME type</source>
@@ -2929,7 +3019,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation>eltér a jelenlegi beállítástól (megtartva).</translation>
+        <translation type="vanished">eltér a jelenlegi beállítástól (megtartva).</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3110,6 +3200,10 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Nagybetűsítés a tőkibővülés elnyomásához&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</translation>
+    </message>
+    <message>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">eltér a jelenlegi beállításoktól (tárolt)</translation>
     </message>
 </context>
 <context>
@@ -3581,15 +3675,15 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation>létrehozott/frissített dokumentum</translation>
+        <translation type="vanished">létrehozott/frissített dokumentum</translation>
     </message>
     <message>
         <source>Files tested</source>
-        <translation>vizsgált fájl</translation>
+        <translation type="vanished">vizsgált fájl</translation>
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation>nem indexelt fájl</translation>
+        <translation type="vanished">nem indexelt fájl</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3602,6 +3696,18 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     <message>
         <source>Spell expansion error.</source>
         <translation type="unfinished">Helyesírási kiterjesztési hiba.</translation>
+    </message>
+    <message>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Dokumentumok létrehozva/frissítve</translation>
+    </message>
+    <message>
+        <source>Files tested</source>
+        <translation type="unfinished">Fájlok tesztelve</translation>
+    </message>
+    <message>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Nem indexelt fájlok</translation>
     </message>
 </context>
 <context>
@@ -3701,6 +3807,18 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation type="unfinished">Nem lehet hozzáadni az indexet különböző kis- és nagybetűkkel/diakritikus jelek eltávolítási lehetőséggel.</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished">Fény</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished">Sötét</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished">Rendszer</translation>
     </message>
 </context>
 <context>
@@ -4009,6 +4127,10 @@ automatikusan ext:xxx keresőnyelvi kifejezéssé alakíttatnak</translation>
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
         <translation>&lt;b&gt;Új érték:&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
+        <translation type="unfinished">Az érték egy végrehajtandó parancssor. Helyettesítések: %s: keresőszó; %p: oldalszám; &lt;br&gt;%f: dokumentumfájl neve. F1 további segítségért.</translation>
     </message>
 </context>
 <context>
@@ -4324,6 +4446,13 @@ Néha előfordul (pl. postscript esetén), hogy a szűrő végtelen ciklusba ker
     <message>
         <source>Max. filter exec. time (s)</source>
         <translation type="obsolete">Max. filter exec. time (s)</translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">Apply</translation>
     </message>
 </context>
 <context>
@@ -4980,11 +5109,11 @@ A PRE+wrap valószínűleg a legjobb választás.</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished">Az alapértelmezett sötét mód stíluslapot használja.</translation>
+        <translation type="obsolete">Az alapértelmezett sötét mód stíluslapot használja.</translation>
     </message>
     <message>
         <source>Dark mode</source>
-        <translation type="unfinished">Dark mode</translation>
+        <translation type="obsolete">Dark mode</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
@@ -5129,6 +5258,18 @@ A PRE+wrap valószínűleg a legjobb választás.</translation>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
         <translation type="unfinished">Figyelembe semmilyen helyettesítő karaktert az ÖSSZES kifejezés és BÁRMELY kifejezés módokban.</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished">Színválasztás</translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished">Amikor sötét módban jelenítjük meg az HTML-t, próbáljunk sötét háttérrel (és világos színekkel) dolgozni. Ez ellentétes sok dokumentummal, amelyek felülírják a mi világos beállításunkat saját CSS (sötét) előtérszínükkel, ami olvashatatlan dokumentumhoz vezet, ezért alapértelmezetten kikapcsolva van.</translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
+        <translation type="unfinished">Használjon sötét háttérképet, amikor sötét módban jeleníti meg az HTML-t.</translation>
     </message>
 </context>
 </TS>

@@ -418,7 +418,7 @@
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">(pagal nutylėjimą, aspell siūlo klaidingus rašybos variantus, kai užklausa neturi rezultatų).</translation>
+        <translation type="obsolete">(pagal nutylėjimą, aspell siūlo klaidingus rašybos variantus, kai užklausa neturi rezultatų).</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -459,6 +459,18 @@
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished">Vartotojo sąsajos nustatymai įprastai saugomi globaliame faile, galiojančiame visiems indeksams. Nustatę šį parametrą, kai kurie nustatymai, pvz., rezultatų lentelės sąranka, bus specifiniai indeksui.</translation>
+    </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished">Sustabdyti realaus laiko indeksatorių, kai naudojamas baterijos energija.</translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished">Indeksatorius palauks grįžimo į AC ir iš naujo vykdys save, kai tai įvyks.</translation>
+    </message>
+    <message>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(pagal nutylėjimą, aspell siūlo klaidingus rašybos variantus, kai užklausa neturi rezultatų).</translation>
     </message>
 </context>
 <context>
@@ -622,54 +634,54 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Local path</source>
-        <translation type="unfinished">Local path</translation>
+        <translation type="obsolete">Local path</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation type="unfinished">Config error</translation>
+        <translation type="obsolete">Config error</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation type="unfinished">Original path</translation>
+        <translation type="obsolete">Original path</translation>
     </message>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">Kelias indekse</translation>
+        <translation type="obsolete">Kelias indekse</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">Išverstas kelias</translation>
+        <translation type="obsolete">Išverstas kelias</translation>
     </message>
 </context>
 <context>
     <name>EditTransBase</name>
     <message>
         <source>Path Translations</source>
-        <translation type="unfinished">Path Translations</translation>
+        <translation type="obsolete">Path Translations</translation>
     </message>
     <message>
         <source>Setting path translations for </source>
-        <translation type="unfinished">Setting path translations for </translation>
+        <translation type="obsolete">Setting path translations for </translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished">Select one or several file types, then use the controls in the frame below to change how they are processed</translation>
+        <translation type="obsolete">Select one or several file types, then use the controls in the frame below to change how they are processed</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Add</translation>
+        <translation type="obsolete">Add</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Delete</translation>
+        <translation type="obsolete">Delete</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Atšaukti</translation>
+        <translation type="vanished">Atšaukti</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Save</translation>
+        <translation type="obsolete">Save</translation>
     </message>
 </context>
 <context>
@@ -824,6 +836,56 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
         <translation type="unfinished">Reikia nustatyti &quot;Rodyti sistemos dėklą&quot; pasirinkimuose!</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished">Kelias indekse</translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished">Išverstas kelias</translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished">Config error</translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished">Original path</translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished">Local path</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished">Path Translations</translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished">Select one or several file types, then use the controls in the frame below to change how they are processed</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Add</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Delete</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Atšaukti</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Save</translation>
     </message>
 </context>
 <context>
@@ -1297,9 +1359,25 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation type="unfinished">Autostart file deleted. Kill current process too ?</translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished">Konfigūracijos pavadinimas</translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished">Trumpas alfanumerinis slapyvardis šiai konfigūracijai</translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished">Nepavyko rasti</translation>
+    </message>
 </context>
 <context>
     <name>RclCompleterModel</name>
+    <message>
+        <source>Hits</source>
+        <translation type="obsolete">Paieškos rezultatai</translation>
+    </message>
     <message>
         <source>Hits</source>
         <translation type="unfinished">Paieškos rezultatai</translation>
@@ -1723,7 +1801,7 @@ Please check the desktop file</translation>
     </message>
     <message>
         <source>This configuration tool only works for the main index.</source>
-        <translation type="unfinished">This configuration tool only works for the main index.</translation>
+        <translation type="obsolete">This configuration tool only works for the main index.</translation>
     </message>
     <message>
         <source>The current indexing process was not started from this interface, can&apos;t kill it</source>
@@ -1763,7 +1841,7 @@ Please check the desktop file</translation>
     </message>
     <message>
         <source>with additional message: </source>
-        <translation type="unfinished">with additional message: </translation>
+        <translation type="obsolete">with additional message: </translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -1995,6 +2073,14 @@ Please check the desktop file</translation>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Rodyklė, nurodyta mimeview skirta %1: %2, nerasta. Ar norite paleisti nustatymų dialogą?</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">su papildomu pranešimu:</translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
+        <translation type="unfinished">Rodyti išplėstinį paieškos dialogą</translation>
     </message>
 </context>
 <context>
@@ -2253,7 +2339,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation type="unfinished">With failed files retrying</translation>
+        <translation type="obsolete">With failed files retrying</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2375,6 +2461,14 @@ Do you want to start the preferences dialog ?</source>
         <source>&amp;Online manual (Recoll Web site)</source>
         <translation type="unfinished">Interneto vadovas (Recoll tinklalapis)</translation>
     </message>
+    <message>
+        <source>Path translations</source>
+        <translation type="unfinished">Kelio vertimai</translation>
+    </message>
+    <message>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Su nepavykusiais failais bandymas iš naujo</translation>
+    </message>
 </context>
 <context>
     <name>RclTrayIcon</name>
@@ -2419,7 +2513,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Ipath</source>
-        <translation type="obsolete">Ipath</translation>
+        <translation type="unfinished">Ipath</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2456,10 +2550,6 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Date and time</source>
         <translation type="unfinished">Date and time</translation>
-    </message>
-    <message>
-        <source>Ipath</source>
-        <translation type="unfinished">Ipath</translation>
     </message>
     <message>
         <source>MIME type</source>
@@ -2922,7 +3012,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">differ from current preferences (kept)</translation>
+        <translation type="obsolete">differ from current preferences (kept)</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3103,6 +3193,10 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
         <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Didelė raidė, kad būtų slopinamas kamieno plėtimas&lt;/td&gt;&lt;td&gt;Apatinis lygis&lt;/td&gt;&lt;/tr&gt;</translation>
+    </message>
+    <message>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">skirtis nuo esamų nuostatų (išsaugotų)</translation>
     </message>
 </context>
 <context>
@@ -3573,15 +3667,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation type="unfinished">Documents created/updated</translation>
+        <translation type="obsolete">Documents created/updated</translation>
     </message>
     <message>
         <source>Files tested</source>
-        <translation type="unfinished">Files tested</translation>
+        <translation type="obsolete">Files tested</translation>
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation type="unfinished">Unindexed files</translation>
+        <translation type="obsolete">Unindexed files</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3594,6 +3688,18 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>Spell expansion error.</source>
         <translation type="unfinished">Rašybos plėtros klaida.</translation>
+    </message>
+    <message>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Dokumentai sukurti/atnaujinti</translation>
+    </message>
+    <message>
+        <source>Files tested</source>
+        <translation type="unfinished">Failai patikrinti</translation>
+    </message>
+    <message>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Nesurūšiuoti failai</translation>
     </message>
 </context>
 <context>
@@ -3693,6 +3799,18 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
         <translation type="unfinished">Negalima pridėti indekso su skirtingu didžiųjų/mažųjų raidžių ar diakritinių ženklų pašalinimo parinktimi.</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished">Šviesa</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished">Tamsus</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished">Sistema</translation>
     </message>
 </context>
 <context>
@@ -3997,6 +4115,10 @@ This should give higher precedence to the results where the search terms appear 
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
         <translation type="unfinished">&lt;b&gt;New Values:&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
+        <translation type="unfinished">Reikšmė yra vykdomas komandinė eilutė. Pakeitimai: %s: paieškos eilutė; %p: puslapio numeris; &lt;br&gt;%f: dokumento failo pavadinimas. F1 daugiau pagalbos.</translation>
     </message>
 </context>
 <context>
@@ -4304,6 +4426,13 @@ This will help searching very big text  files (ie: log files).</source>
     <message>
         <source>Max. filter exec. time (s)</source>
         <translation type="obsolete">Max. filter exec. time (s)</translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">Pritaikyti</translation>
     </message>
 </context>
 <context>
@@ -4954,11 +5083,11 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished">Naudoti numatytąjį tamsaus režimo stiliaus lapą</translation>
+        <translation type="obsolete">Naudoti numatytąjį tamsaus režimo stiliaus lapą</translation>
     </message>
     <message>
         <source>Dark mode</source>
-        <translation type="unfinished">Dark mode</translation>
+        <translation type="obsolete">Dark mode</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
@@ -5103,6 +5232,18 @@ The default value is 2 (percent). </translation>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
         <translation type="unfinished">Ignoruokite laukinius simbolius visuose terminuose ir bet kuriuose terminuose režimuose.</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished">Spalvų schema</translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished">Rodydami HTML tamsiuoju režimu, bandykite naudoti tamsų foną (ir šviesią spalvą). Tai prieštarauja daugeliui dokumentų, kurie perrašys mūsų šviesų nustatymą savo CSS (tamsia) priekinės spalvos, rezultatu būdamas neįskaitomas dokumentas, todėl pagal nutylėjimą tai yra išjungta.</translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
+        <translation type="unfinished">Naudokite tamsų foną rodydami HTML tamsiuoju režimu.</translation>
     </message>
 </context>
 </TS>
