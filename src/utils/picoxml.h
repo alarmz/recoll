@@ -69,7 +69,7 @@ typedef char XML_Char;
 class PicoXMLParser {
 public:
     PicoXMLParser(const std::string& input)
-        : m_in(input), m_pos(0) {}
+        : m_input(input), m_pos(0) {}
 
     virtual ~PicoXMLParser() = default;
     PicoXMLParser(const PicoXMLParser&) = delete;
@@ -85,7 +85,10 @@ public:
     virtual std::string getLastErrorMessage() {
         return m_reason.str();
     }
-        
+    virtual std::string::size_type getCurrentByteIndex(void) {
+        return m_pos;
+    }
+    
 protected:
 
     /* Methods to be overriden */
@@ -143,9 +146,11 @@ protected:
     };
     std::vector<StackEl> m_path;
 
+    const std::string& m_input;
+
 private:
-    const std::string& m_in;
     std::string::size_type m_pos{0};
+    std::string::size_type m_tagstart{0};
     std::stringstream m_reason;
     std::vector<std::string> m_tagstack;
 
@@ -153,7 +158,7 @@ private:
                     const std::map<std::string, std::string>& attrs, bool empty) {
         m_path.emplace_back(tagname);
         StackEl& lastelt = m_path.back();
-        lastelt.start_index = m_pos;
+        lastelt.start_index = m_tagstart;
         lastelt.attributes = attrs;
 
         startElement(tagname, attrs);
@@ -203,7 +208,7 @@ private:
         
         for (;;) {
             // Current char is '<' and the next char is not '?'
-            //std::cerr << "m_pos " << m_pos << " char " << m_in[m_pos] << "\n";
+            //std::cerr << "m_pos " << m_pos << " char " << m_input[m_pos] << "\n";
             // skipComment also processes
             bool wascomment;
             if (!skipComment(wascomment)) {
@@ -218,13 +223,14 @@ private:
             }
             if (wascomment)
                 continue;
+            m_tagstart = m_pos;
             m_pos++;
             if (nomore()) {
                 m_reason << "EOF within tag";
                 return false;
             }
             std::string::size_type spos = m_pos;
-            int isendtag = m_in[m_pos] == '/' ? 1 : 0;
+            int isendtag = m_input[m_pos] == '/' ? 1 : 0;
 
             skipStr(">");
             if (m_pos == std::string::npos || m_pos <= spos + 1) {
@@ -232,13 +238,13 @@ private:
                 return false;
             }
 
-            int emptyel = m_in[m_pos-2] == '/' ? 1 : 0;
+            int emptyel = m_input[m_pos-2] == '/' ? 1 : 0;
             if (emptyel && isendtag) {
                 m_reason << "Bad tag </xx/> at cpos " << spos;
                 return false;
             }
                     
-            std::string tag = m_in.substr(spos + isendtag, m_pos - (spos + 1 + isendtag + emptyel));
+            std::string tag = m_input.substr(spos + isendtag, m_pos - (spos + 1 + isendtag + emptyel));
             //std::cerr << "TAG NAME [" << tag << "]\n";
             trimtag(tag);
             std::map<std::string, std::string> attrs;
@@ -263,12 +269,12 @@ private:
 
     bool _chardata() {
         std::string::size_type spos = m_pos;
-        m_pos = m_in.find("<", m_pos);
+        m_pos = m_input.find("<", m_pos);
         if (nomore()) {
             return true;
         }
         if (m_pos != spos) {
-            std::string data{unQuote(m_in.substr(spos, m_pos - spos))};
+            std::string data{unQuote(m_input.substr(spos, m_pos - spos))};
             if (m_unquoteError) {
                 return false;
             }
@@ -279,7 +285,7 @@ private:
     }
     
     bool nomore(int sz = 0) const {
-        return m_pos == std::string::npos || m_pos >= m_in.size() - sz;
+        return m_pos == std::string::npos || m_pos >= m_input.size() - sz;
     }
     bool skipWS(const std::string& in, std::string::size_type& pos) {
         if (pos == std::string::npos)
@@ -290,7 +296,7 @@ private:
     bool skipStr(const std::string& str) {
         if (m_pos == std::string::npos)
             return false;
-        m_pos = m_in.find(str, m_pos);
+        m_pos = m_input.find(str, m_pos);
         if (m_pos != std::string::npos)
             m_pos += str.size();
         return m_pos != std::string::npos;
@@ -298,7 +304,7 @@ private:
     int peek(int sz = 0) const {
         if (nomore(sz))
             return -1;
-        return m_in[m_pos + 1 + sz];
+        return m_input[m_pos + 1 + sz];
     }
     void trimtag(std::string& tag) {
         auto trimpos = tag.find_last_not_of(" \t\n\r");
@@ -308,13 +314,13 @@ private:
 
     bool skipDecl() {
         for (;;) {
-            if (!skipWS(m_in, m_pos)) {
+            if (!skipWS(m_input, m_pos)) {
                 m_reason << "EOF during initial ws skip";
                 return true;
             }
-            if (m_in[m_pos] != '<') {
+            if (m_input[m_pos] != '<') {
                 m_reason << "EOF file does not begin with decl/tag: m_pos " <<
-                    m_pos << " char [" << m_in[m_pos] << "]\n";
+                    m_pos << " char [" << m_input[m_pos] << "]\n";
                 return false;
             }
             if (peek() == '?') {
@@ -334,9 +340,9 @@ private:
         if (nomore()) {
             return true;
         }
-        if (m_in[m_pos] != '<') {
+        if (m_input[m_pos] != '<') {
             m_reason << "Internal error: skipComment called with wrong "
-                "start: m_pos " << m_pos << " char [" << m_in[m_pos] << "]\n";
+                "start: m_pos " << m_pos << " char [" << m_input[m_pos] << "]\n";
             return false;
         }
         if (peek() == '!' && peek(1) == '-' && peek(2) == '-') {
