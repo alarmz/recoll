@@ -235,8 +235,10 @@ bool ConfIndexW::setupTopPanel(int idx)
 {
     m_w->addParam(idx, ConfTabsW::CFPT_DNL, "topdirs", 
                   tr("Start folders"),
-                  tr("The list of folders/directories to be indexed. "
-                     "Sub-folders will be recursively processed. Default: your home."));
+                  tr("The list of folders/directories to be indexed, recursively with their "
+                     "sub-folders.<br>"
+                     "The '~' character expands to your home directory, which is the default "
+                     "initial value."));
 
     ConfParamW *cparam = m_w->addParam(
         idx, ConfTabsW::CFPT_DNL, "skippedPaths", tr("Skipped paths"),
