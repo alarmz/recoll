@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">Seznam složek/adresářů, které mají být indexovány. Podadresáře budou zpracovány rekurzivně. Výchozí: váš domov.</translation>
+        <translation type="obsolete">Seznam složek/adresářů, které mají být indexovány. Podadresáře budou zpracovány rekurzivně. Výchozí: váš domov.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -467,6 +467,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">Indexér bude čekat na návrat na AC a znovu se spustí, když se to stane.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">Seznam složek/adresářů k indexování rekurzivně s jejich podadresáři.&lt;br&gt;Znak &apos;~&apos; se rozšiřuje na váš domovský adresář, který je výchozí počáteční hodnotou.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -2077,12 +2081,12 @@ Do you want to start the preferences dialog ?</source>
 Chcete spustit dialog s nastavením?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">s dodatečnou zprávou:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Zobrazit dialog pokročilého vyhledávání</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">s dodatečnou zprávou:</translation>
     </message>
 </context>
 <context>

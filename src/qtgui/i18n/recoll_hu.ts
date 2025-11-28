@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">Az indexelendő mappák/lista könyvtárak. Az almappák rekurzívan feldolgozásra kerülnek. Alapértelmezett: a saját otthonod.</translation>
+        <translation type="obsolete">Az indexelendő mappák/lista könyvtárak. Az almappák rekurzívan feldolgozásra kerülnek. Alapértelmezett: a saját otthonod.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -467,6 +467,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">Az indexelő várni fog egy visszatérésre az AC-n, és újra végrehajtja magát, amikor ez megtörténik.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">A könyvtárak/mappák listája, amelyeket rekurzívan indexelni kell az alkönyvtáraikkal együtt.&lt;br&gt;A &apos;~&apos; karakter kiterjesztése a saját otthoni könyvtáradra, ami az alapértelmezett kezdeti érték.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -2081,12 +2085,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">A megjelenítő, amelyet a mimeview-hez adtak meg %1: %2 esetén, nem található. Szeretné elindítani a beállítások párbeszédpanelt?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">a további üzenettel:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Mutassa az összetett keresési párbeszédpanelt.</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">a további üzenettel:</translation>
     </message>
 </context>
 <context>
@@ -3203,7 +3207,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">eltér a jelenlegi beállításoktól (tárolt)</translation>
+        <translation type="unfinished">eltér a jelenlegi preferenciáktól (tárolt)</translation>
     </message>
 </context>
 <context>

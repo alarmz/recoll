@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">Die Liste der zu indexierenden Ordner/Verzeichnisse. Unterordner werden rekursiv verarbeitet. Standardmäßig: Ihr Zuhause.</translation>
+        <translation type="obsolete">Die Liste der zu indexierenden Ordner/Verzeichnisse. Unterordner werden rekursiv verarbeitet. Standardmäßig: Ihr Zuhause.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -467,6 +467,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">Der Indexer wird auf eine Rückkehr auf AC warten und sich selbst neu ausführen, wenn dies geschieht.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">Die Liste der zu indizierenden Ordner/Verzeichnisse, rekursiv mit ihren Unterordnern.&lt;br&gt;Das &apos;~&apos;-Zeichen erweitert sich auf Ihr Home-Verzeichnis, das der Standard-Startwert ist.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -2089,12 +2093,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Der im Mimeview für %1 spezifizierte Viewer: %2 wurde nicht gefunden. Möchten Sie den Einstellungsdialog starten?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">mit zusätzlicher Nachricht:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Erweiterte Suchdialog anzeigen</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">mit zusätzlicher Nachricht:</translation>
     </message>
 </context>
 <context>

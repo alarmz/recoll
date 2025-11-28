@@ -319,7 +319,7 @@
     <message>
         <source>Max. size for the web store (MB)</source>
         <translatorcomment>
-Max. size for the web store (MB)                </translatorcomment>
+Max. size for the web store (MB)                                </translatorcomment>
         <translation>Max. size for the web store (MB)</translation>
     </message>
     <message>
@@ -408,7 +408,7 @@ Max. size for the web store (MB)                </translatorcomment>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">インデックス化するフォルダ/ディレクトリのリスト。サブフォルダは再帰的に処理されます。デフォルト：ホームディレクトリ。</translation>
+        <translation type="obsolete">インデックス化するフォルダ/ディレクトリのリスト。サブフォルダは再帰的に処理されます。デフォルト：ホームディレクトリ。</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -437,6 +437,14 @@ Max. size for the web store (MB)                </translatorcomment>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">インデクサーはACの返信を待ち、それが起こったときに自分自身を再実行します。</translation>
+    </message>
+    <message>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="obsolete">（デフォルトでは、クエリに結果がない場合、aspellはスペルミスを提案します）。</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">インデックス化されるフォルダ/ディレクトリのリストと、そのサブフォルダを再帰的に表示します。&lt;br&gt;「〜」文字はホームディレクトリに展開され、デフォルトの初期値です。</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -759,7 +767,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Decide if real time indexing will be started when you log in (only for the default index).</source>
         <translatorcomment>
-ログイン時にリアルタイムのインデックス作成を開始するかどうかを決定します（デフォルトのインデックスに対してのみ有効）。                </translatorcomment>
+ログイン時にリアルタイムのインデックス作成を開始するかどうかを決定します（デフォルトのインデックスに対してのみ有効）。                                </translatorcomment>
         <translation></translation>
     </message>
 </context>
@@ -1718,7 +1726,7 @@ Please check the desktop file</translation>
     <message>
         <source>Could not open/create file</source>
         <translatorcomment>
-ファイル・オープン／作成不可                </translatorcomment>
+ファイル・オープン／作成不可                                </translatorcomment>
         <translation></translation>
     </message>
     <message>
@@ -1816,12 +1824,12 @@ Do you want to start the preferences dialog ?</source>
 設定ダイアログを開始しますか？</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">追加メッセージ：</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">高度な検索ダイアログを表示します。</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">追加メッセージ：</translation>
     </message>
 </context>
 <context>
@@ -2333,7 +2341,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>&amp;Delete column</source>
         <translatorcomment>
-列を削除(&amp;D)                </translatorcomment>
+列を削除(&amp;D)                                </translatorcomment>
         <translation>&amp;Delete column</translation>
     </message>
     <message>
@@ -2966,7 +2974,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation type="unfinished">ドキュメントが作成/更新</translation>
+        <translation type="unfinished">ドキュメントが作成/更新されました</translation>
     </message>
     <message>
         <source>Files tested</source>
@@ -3018,7 +3026,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>At most one index should be selected</source>
         <translatorcomment>
-最大で1つのインデックスを選択する必要があります                </translatorcomment>
+最大で1つのインデックスを選択する必要があります                                </translatorcomment>
         <translation></translation>
     </message>
     <message>

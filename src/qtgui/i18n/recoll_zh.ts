@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language="zh" sourcelanguage="en">
 <context>
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">菜单搜索</translation>
     </message>
 </context>
 <context>
@@ -64,15 +64,15 @@
     </message>
     <message>
         <source>Advanced Search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">高级搜索</translation>
     </message>
     <message>
         <source>Load next stored search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载下一个存储的搜索</translation>
     </message>
     <message>
         <source>Load previous stored search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载先前存储的搜索</translation>
     </message>
 </context>
 <context>
@@ -204,7 +204,7 @@
     <message>
         <source>Filter birth dates</source>
         <translation>过滤创建日期</translation>
-    </message>    
+    </message>
     <message>
         <source>Find</source>
         <translation>查找</translation>
@@ -238,11 +238,11 @@
     </message>
     <message>
         <source>Top directories</source>
-        <translation type="unfinished">顶级目录</translation>
+        <translation type="obsolete">顶级目录</translation>
     </message>
     <message>
         <source>The list of directories where recursive indexing starts. Default: your home.</source>
-        <translation type="unfinished">索引从这个列表中的目录开始，递归地进行。默认：你的家目录。</translation>
+        <translation type="obsolete">索引从这个列表中的目录开始，递归地进行。默认：你的家目录。</translation>
     </message>
     <message>
         <source>Skipped paths</source>
@@ -250,7 +250,7 @@
     </message>
     <message>
         <source>These are pathnames of directories which indexing will not enter.&lt;br&gt;Path elements may contain wildcards. The entries must match the paths seen by the indexer (e.g.: if topdirs includes &apos;/home/me&apos; and &apos;/home&apos; is actually a link to &apos;/usr/home&apos;, a correct skippedPath entry would be &apos;/home/me/tmp*&apos;, not &apos;/usr/home/me/tmp*&apos;)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">这些是索引不会进入的目录路径。&lt;br&gt;路径元素可能包含通配符。条目必须与索引器看到的路径匹配（例如：如果topdirs包括&apos;/home/me&apos;，而&apos;/home&apos;实际上是指向&apos;/usr/home&apos;的链接，则正确的skippedPath条目应为&apos;/home/me/tmp*&apos;，而不是&apos;/usr/home/me/tmp*&apos;）</translation>
     </message>
     <message>
         <source>Stemming languages</source>
@@ -286,7 +286,7 @@
     </message>
     <message>
         <source>This is the percentage of disk usage - total disk usage, not index size - at which indexing will fail and stop.&lt;br&gt;The default value of 0 removes any limit.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">这是磁盘使用率的百分比 - 总磁盘使用率，而不是索引大小 - 在此百分比下，索引将失败并停止。&lt;br&gt;默认值为0，表示没有任何限制。</translation>
     </message>
     <message>
         <source>No aspell usage</source>
@@ -306,19 +306,21 @@
     </message>
     <message>
         <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">用于存储索引的目录名称
+非绝对路径将相对于配置目录进行处理。默认为&apos;xapiandb&apos;。</translation>
     </message>
     <message>
         <source>Unac exceptions</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Unac exceptions
+Unac异常</translation>
     </message>
     <message>
         <source>&lt;p&gt;These are exceptions to the unac mechanism which, by default, removes all diacritics, and performs canonic decomposition. You can override unaccenting for some characters, depending on your language, and specify additional decompositions, e.g. for ligatures. In each space-separated entry, the first character is the source one, and the rest is the translation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">这些是对unac机制的例外情况，默认情况下会删除所有变音符号，并执行规范分解。您可以根据您的语言覆盖某些字符的去重音，并指定额外的分解，例如连字。在每个以空格分隔的条目中，第一个字符是源字符，其余是翻译。</translation>
     </message>
     <message>
         <source>Enables indexing Firefox visited pages.&lt;br&gt;(you need also install the Firefox Recoll plugin)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">启用索引Firefox访问过的页面。&lt;br&gt;（您还需要安装Firefox Recoll插件）</translation>
     </message>
     <message>
         <source>Web page store directory name</source>
@@ -334,102 +336,142 @@
     </message>
     <message>
         <source>Entries will be recycled once the size is reached.&lt;br&gt;Only increasing the size really makes sense because reducing the value will not truncate an existing file (only waste space at the end).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">一旦达到大小限制，条目将被回收利用。只有增加大小才有意义，因为减小值不会截断现有文件（只会在末尾浪费空间）。</translation>
     </message>
     <message>
         <source>Automatic diacritics sensitivity</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动重音符号敏感度</translation>
     </message>
     <message>
         <source>&lt;p&gt;Automatically trigger diacritics sensitivity if the search term has accented characters (not in unac_except_trans). Else you need to use the query language and the &lt;i&gt;D&lt;/i&gt; modifier to specify diacritics sensitivity.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">如果搜索词中包含重音字符（不在unac_except_trans中），则自动触发重音敏感性。否则，您需要使用查询语言和&lt;i&gt;D&lt;/i&gt;修饰符来指定重音敏感性。</translation>
     </message>
     <message>
         <source>Automatic character case sensitivity</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动字符大小写敏感</translation>
     </message>
     <message>
         <source>&lt;p&gt;Automatically trigger character case sensitivity if the entry has upper-case characters in any but the first position. Else you need to use the query language and the &lt;i&gt;C&lt;/i&gt; modifier to specify character-case sensitivity.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;如果输入中除了第一个位置以外还有大写字符，则自动触发字符大小写敏感性。否则，您需要使用查询语言和&lt;i&gt;C&lt;/i&gt;修饰符来指定字符大小写敏感性。</translation>
     </message>
     <message>
         <source>Maximum term expansion count</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最大术语扩展计数</translation>
     </message>
     <message>
         <source>&lt;p&gt;Maximum expansion count for a single term (e.g.: when using wildcards). The default of 10 000 is reasonable and will avoid queries that appear frozen while the engine is walking the term list.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">单个术语的最大扩展计数（例如：使用通配符时）。默认值为10,000，这是合理的，可以避免在引擎遍历术语列表时出现查询似乎冻结的情况。</translation>
     </message>
     <message>
         <source>Maximum Xapian clauses count</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最大Xapian子句数量</translation>
     </message>
     <message>
         <source>&lt;p&gt;Maximum number of elementary clauses we add to a single Xapian query. In some cases, the result of term expansion can be multiplicative, and we want to avoid using excessive memory. The default of 100 000 should be both high enough in most cases and compatible with current typical hardware configurations.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;我们添加到单个Xapian查询的基本子句的最大数量。在某些情况下，术语扩展的结果可能是乘法的，我们希望避免使用过多的内存。默认值为100,000，在大多数情况下应该足够高，并且与当前典型的硬件配置兼容。</translation>
     </message>
     <message>
         <source>The languages for which stemming expansion dictionaries will be built.&lt;br&gt;See the Xapian stemmer documentation for possible values. E.g. english, french, german...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将构建词干扩展词典的语言。&lt;br&gt;请参阅Xapian词干处理器文档以获取可能的值。例如：英语，法语，德语...</translation>
     </message>
     <message>
         <source>The language for the aspell dictionary. The values are are 2-letter language codes, e.g. &apos;en&apos;, &apos;fr&apos; ...&lt;br&gt;If this value is not set, the NLS environment will be used to compute it, which usually works. To get an idea of what is installed on your system, type &apos;aspell config&apos; and look for .dat files inside the &apos;data-dir&apos; directory.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">拼写词典的语言。值是两个字母的语言代码，例如 &apos;en&apos;，&apos;fr&apos; ...&lt;br&gt;如果未设置此值，则将使用NLS环境来计算它，通常会起作用。要了解系统上安装了什么，请键入 &apos;aspell config&apos; 并查找 &apos;data-dir&apos; 目录中的 .dat 文件。</translation>
     </message>
     <message>
         <source>Indexer log file name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引器日志文件名称</translation>
     </message>
     <message>
         <source>If empty, the above log file name value will be used. It may useful to have a separate log for diagnostic purposes because the common log will be erased when&lt;br&gt;the GUI starts up.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;E.g. 90% to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">如果为空，则将使用上述日志文件名值。为了诊断目的，可能有一个单独的日志文件是有用的，因为当GUI启动时，常规日志将被擦除。</translation>
     </message>
     <message>
         <source>Web history</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">网络历史</translation>
     </message>
     <message>
         <source>Process the Web history queue</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">处理网络历史记录队列</translation>
     </message>
     <message>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="obsolete">（默认情况下，当查询没有结果时，拼写检查会建议拼写错误）。</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">页面回收间隔</translation>
     </message>
     <message>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">默认情况下，缓存中只保留一个URL实例。可以通过将其设置为确定我们保留多个实例的频率的值来更改这一点（&apos;day&apos;，&apos;week&apos;，&apos;month&apos;，&apos;year&apos;）。请注意，增加间隔不会删除现有条目。</translation>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">注意：当达到最大大小时，旧页面将被删除以为新页面腾出空间。当前大小：%1</translation>
+    </message>
+    <message>
+        <source>Start folders</source>
+        <translation type="unfinished">开始文件夹</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
+        <translation type="obsolete">要被索引的文件夹/目录列表。子文件夹将被递归处理。默认值：您的主目录。</translation>
+    </message>
+    <message>
+        <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
+        <translation type="unfinished">磁盘满时停止索引的阈值百分比（例如，90表示在90%满时停止，0或100表示没有限制）</translation>
+    </message>
+    <message>
+        <source>Suspend the real time indexer when running on battery</source>
+        <translation type="unfinished">在电池模式下运行时暂停实时索引器</translation>
+    </message>
+    <message>
+        <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished">索引器将等待AC返回，并在发生时重新执行自身。</translation>
+    </message>
+    <message>
+        <source>Browser add-on download folder</source>
+        <translation type="unfinished">浏览器插件下载文件夹</translation>
+    </message>
+    <message>
+        <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
+        <translation type="unfinished">只有在Web浏览器插件设置中设置了“下载子目录”参数时才设置此选项。&lt;br&gt;在这种情况下，它应该是目录的完整路径（例如/home/[me]/Downloads/my-subdir）。</translation>
+    </message>
+    <message>
+        <source>Store some GUI parameters locally to the index</source>
+        <translation type="unfinished">将一些GUI参数存储到本地索引中。</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
+        <translation type="unfinished">&lt;p&gt;GUI设置通常存储在一个全局文件中，适用于所有索引。设置此参数将使一些设置，如结果表设置，特定于索引。</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">要递归地索引的文件夹/目录列表及其子文件夹。&lt;br&gt;字符“~”会扩展为您的主目录，这是默认初始值。</translation>
+    </message>
+    <message>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">（默认情况下，当查询没有结果时，拼写检查会建议拼写错误）。</translation>
     </message>
 </context>
 <context>
     <name>ConfSubPanelW</name>
     <message>
         <source>Only mime types</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">只有 MIME 类型</translation>
     </message>
     <message>
         <source>An exclusive list of indexed mime types.&lt;br&gt;Nothing else will be indexed. Normally empty and inactive</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">一个专门列出索引的MIME类型的列表。&lt;br&gt;不会索引其他任何内容。通常为空且不活动。</translation>
     </message>
     <message>
         <source>Exclude mime types</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">排除 MIME 类型</translation>
     </message>
     <message>
         <source>Mime types not to be indexed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">不要索引的MIME类型</translation>
     </message>
     <message>
         <source>Max. compressed file size (KB)</source>
@@ -461,16 +503,34 @@ This will help searching very big text  files (ie: log files).</source>
     </message>
     <message>
         <source>Max. filter exec. time (s)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最大过滤器执行时间（秒）</translation>
     </message>
     <message>
         <source>External filters working longer than this will be aborted. This is for the rare case (ie: postscript) where a document could cause a filter to loop. Set to -1 for no limit.
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">外部过滤器工作时间超过此时间将被中止。这是为了罕见情况（例如：后置脚本），其中文档可能导致过滤器循环。设置为-1表示没有限制。</translation>
     </message>
     <message>
         <source>Global</source>
         <translation type="unfinished">全局</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigSwitchDLG</name>
+    <message>
+        <source>Switch to other configuration</source>
+        <translation type="unfinished">切换到其他配置</translation>
+    </message>
+</context>
+<context>
+    <name>ConfigSwitchW</name>
+    <message>
+        <source>Choose other</source>
+        <translation type="unfinished">选择其他</translation>
+    </message>
+    <message>
+        <source>Choose configuration directory</source>
+        <translation type="unfinished">选择配置目录</translation>
     </message>
 </context>
 <context>
@@ -577,53 +637,10 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>EditTrans</name>
-    <message>
-        <source>Source path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Local path</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Config error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Original path</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>EditTransBase</name>
     <message>
-        <source>Path Translations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Setting path translations for </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">取消</translation>
     </message>
 </context>
 <context>
@@ -689,16 +706,16 @@ p, li { white-space: pre-wrap; }
     <name>FragButs</name>
     <message>
         <source>%1 not found.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 未找到。</translation>
     </message>
     <message>
         <source>%1:
  %2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文本片段：％1：％2</translation>
     </message>
     <message>
         <source>Query Fragments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查询片段</translation>
     </message>
 </context>
 <context>
@@ -777,7 +794,62 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&quot;history&quot; file is damaged, please check or remove it: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&quot;历史&quot;文件已损坏，请检查或删除它：</translation>
+    </message>
+    <message>
+        <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
+</source>
+        <translation type="unfinished">需要在首选项中设置“显示系统托盘图标”！</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEdit</name>
+    <message>
+        <source>Path in index</source>
+        <translation type="unfinished">索引中的路径</translation>
+    </message>
+    <message>
+        <source>Translated path</source>
+        <translation type="unfinished">翻译后的路径</translation>
+    </message>
+    <message>
+        <source>Config error</source>
+        <translation type="unfinished">配置错误</translation>
+    </message>
+    <message>
+        <source>Original path</source>
+        <translation type="unfinished">原始路径</translation>
+    </message>
+    <message>
+        <source>Local path</source>
+        <translation type="unfinished">本地路径</translation>
+    </message>
+</context>
+<context>
+    <name>PTransEditBase</name>
+    <message>
+        <source>Path Translations</source>
+        <translation type="unfinished">路径翻译</translation>
+    </message>
+    <message>
+        <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
+        <translation type="unfinished">选择一个或多个文件类型，然后使用下方框架中的控件来更改它们的处理方式。</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">添加</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">删除</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">保存</translation>
     </message>
 </context>
 <context>
@@ -836,11 +908,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">表单</translation>
     </message>
     <message>
         <source>Tab 1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选项卡1</translation>
     </message>
     <message>
         <source>Open</source>
@@ -848,63 +920,63 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Canceled</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">取消</translation>
     </message>
     <message>
         <source>Error loading the document: file missing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载文档时出错：文件丢失。</translation>
     </message>
     <message>
         <source>Error loading the document: no permission.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载文档时出错：无权限。</translation>
     </message>
     <message>
         <source>Error loading: backend not configured.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载错误：后端未配置。</translation>
     </message>
     <message>
         <source>Error loading the document: other handler error&lt;br&gt;Maybe the application is locking the file ?</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载文档时出错：其他处理程序错误&lt;br&gt;也许应用程序正在锁定文件？</translation>
     </message>
     <message>
         <source>Error loading the document: other handler error.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载文档时出错：其他处理程序错误。</translation>
     </message>
     <message>
         <source>&lt;br&gt;Attempting to display from stored text.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">尝试从存储的文本中显示。</translation>
     </message>
     <message>
         <source>Could not fetch stored text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法获取存储的文本</translation>
     </message>
     <message>
         <source>Previous result document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">之前的结果文档</translation>
     </message>
     <message>
         <source>Next result document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下一个结果文档</translation>
     </message>
     <message>
         <source>Preview Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">预览窗口</translation>
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关闭标签页</translation>
     </message>
     <message>
         <source>Close preview window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关闭预览窗口</translation>
     </message>
     <message>
         <source>Show next result</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示下一个结果</translation>
     </message>
     <message>
         <source>Show previous result</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示上一个结果</translation>
     </message>
     <message>
         <source>Print</source>
@@ -955,7 +1027,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开文档</translation>
+    </message>
+    <message>
+        <source>Reload as Plain Text</source>
+        <translation type="unfinished">重新加载为纯文本</translation>
+    </message>
+    <message>
+        <source>Reload as HTML</source>
+        <translation type="unfinished">重新加载为HTML</translation>
     </message>
 </context>
 <context>
@@ -986,7 +1066,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>These are patterns for file or directory  names which should not be indexed.</source>
-        <translation>具有这些模式的文件或目录不会被索引。</translation>
+        <translation type="vanished">具有这些模式的文件或目录不会被索引。</translation>
     </message>
     <message>
         <source>Default character set</source>
@@ -1022,47 +1102,51 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Default&lt;br&gt;character set</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">默认字符集</translation>
     </message>
     <message>
         <source>Character set used for reading files which do not identify the character set internally, for example pure text files.&lt;br&gt;The default value is empty, and the value from the NLS environnement is used.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">用于读取不在文件内部标识字符集的文件的字符集，例如纯文本文件。&lt;br&gt;默认值为空，并使用NLS环境中的值。</translation>
     </message>
     <message>
         <source>Ignored endings</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">忽略的结尾</translation>
     </message>
     <message>
         <source>These are file name endings for files which will be indexed by name only 
 (no MIME type identification attempt, no decompression, no content indexing).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">这些是仅按名称索引的文件的文件名结尾（不尝试识别MIME类型，不解压缩，不进行内容索引）。</translation>
     </message>
     <message>
         <source>&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">随后的参数是在顶层设置的，如果在上面的列表框中没有选择任何内容或选择了空行，或者是为所选的子目录设置的。您可以通过单击“+/-”按钮来添加或删除目录。</translation>
+    </message>
+    <message>
+        <source>These are patterns for file or directory names which should not be indexed.</source>
+        <translation type="unfinished">这些是文件或目录名称的模式，不应该被索引。</translation>
     </message>
 </context>
 <context>
     <name>QWidget</name>
     <message>
         <source>Create or choose save directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">创建或选择保存目录</translation>
     </message>
     <message>
         <source>Choose exactly one directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择一个目录</translation>
     </message>
     <message>
         <source>Could not read directory: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法读取目录:</translation>
     </message>
     <message>
         <source>Unexpected file name collision, cancelling.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">意外的文件名冲突，取消。</translation>
     </message>
     <message>
         <source>Cannot extract document: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法提取文档：</translation>
     </message>
     <message>
         <source>&amp;Preview</source>
@@ -1074,11 +1158,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open With</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开方式</translation>
     </message>
     <message>
         <source>Run Script</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">运行脚本</translation>
     </message>
     <message>
         <source>Copy &amp;File Name</source>
@@ -1094,7 +1178,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Save selection to files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将选择保存到文件</translation>
     </message>
     <message>
         <source>Preview P&amp;arent document/folder</source>
@@ -1110,38 +1194,38 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Open &amp;Snippets window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开“片段”窗口</translation>
     </message>
     <message>
         <source>Show subdocuments / attachments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示子文档/附件</translation>
     </message>
     <message>
         <source>&amp;Open Parent document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开父文档</translation>
     </message>
     <message>
         <source>&amp;Open Parent Folder</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开父文件夹</translation>
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制文本</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制文件路径</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制文件名</translation>
     </message>
 </context>
 <context>
     <name>QxtConfirmationMessage</name>
     <message>
         <source>Do not show again.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">不再显示。</translation>
     </message>
 </context>
 <context>
@@ -1222,6 +1306,29 @@ p, li { white-space: pre-wrap; }
         <source>Autostart file deleted. Kill current process too ?</source>
         <translation>自动启动文件已经删除。也要杀死当前进程吗？</translation>
     </message>
+    <message>
+        <source>Configuration name</source>
+        <translation type="unfinished">配置名称</translation>
+    </message>
+    <message>
+        <source>Short alphanumeric nickname for this config</source>
+        <translation type="unfinished">这个配置的简短字母数字昵称</translation>
+    </message>
+    <message>
+        <source>Could not find </source>
+        <translation type="unfinished">无法找到</translation>
+    </message>
+</context>
+<context>
+    <name>RclCompleterModel</name>
+    <message>
+        <source>Hits</source>
+        <translation type="obsolete">点击量</translation>
+    </message>
+    <message>
+        <source>Hits</source>
+        <translation type="unfinished">点击量</translation>
+    </message>
 </context>
 <context>
     <name>RclMain</name>
@@ -1275,7 +1382,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>This search is not active any more</source>
-        <translation>这个查询已经不是活跃的了</translation>
+        <translation type="vanished">这个查询已经不是活跃的了</translation>
     </message>
     <message>
         <source>Bad viewer command line for %1: [%2]
@@ -1374,7 +1481,7 @@ Please check the mimeconf file</source>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the  preferences dialog ?</source>
-        <translation>没有找到mimeview中为%1: %2配置的查看器。
+        <translation type="vanished">没有找到mimeview中为%1: %2配置的查看器。
 是否要打开选项对话框？</translation>
     </message>
     <message>
@@ -1472,245 +1579,239 @@ Do you want to start the  preferences dialog ?</source>
     <message>
         <source>Bad viewer command line for %1: [%2]
 Please check the mimeview file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1的查看器命令行错误：[%2]
+请检查mimeview文件</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies both file and parent file value: unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1的查看器命令行同时指定文件和父文件值：不支持</translation>
     </message>
     <message>
         <source>Cannot find parent document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法找到父文档</translation>
     </message>
     <message>
         <source>External applications/commands needed for your file types and not found, as stored by the last indexing pass in </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">您文件类型所需的外部应用程序/命令未找到，如上次索引过程中存储的。</translation>
     </message>
     <message>
         <source>Sub-documents and attachments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">子文档和附件</translation>
     </message>
     <message>
         <source>Document filter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文档过滤器</translation>
     </message>
     <message>
         <source>The indexer is running so things should improve when it&apos;s done. </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引器正在运行，当它完成时，情况应该会有所改善。</translation>
     </message>
     <message>
         <source>Bad desktop app spec for %1: [%2]
 Please check the desktop file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1的桌面应用程序规范不好：[%2]
+请检查桌面文件</translation>
     </message>
     <message>
         <source>Indexing interrupted</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引中断</translation>
     </message>
     <message>
         <source>Bad paths</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">不良路径</translation>
     </message>
     <message>
         <source>Selection patterns need topdir</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择模式需要顶级目录</translation>
     </message>
     <message>
         <source>Selection patterns can only be used with a start directory</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择模式只能与起始目录一起使用。</translation>
     </message>
     <message>
         <source>No search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">没有搜索</translation>
     </message>
     <message>
         <source>No preserved previous search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">没有保存之前的搜索</translation>
     </message>
     <message>
         <source>Choose file to save</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择要保存的文件</translation>
     </message>
     <message>
         <source>Saved Queries (*.rclq)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存的查询 (*.rclq)</translation>
     </message>
     <message>
         <source>Write failed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">写入失败</translation>
     </message>
     <message>
         <source>Could not write to file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法写入文件</translation>
     </message>
     <message>
         <source>Read failed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">读取失败</translation>
     </message>
     <message>
         <source>Could not open file: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法打开文件：</translation>
     </message>
     <message>
         <source>Load error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载错误</translation>
     </message>
     <message>
         <source>Could not load saved query</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法加载保存的查询</translation>
     </message>
     <message>
         <source>Disabled because the real time indexer was not compiled in.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This configuration tool only works for the main index.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">因为实时索引器未编译，所以被禁用。</translation>
     </message>
     <message>
         <source>Can&apos;t set synonyms file (parse error?)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法设置同义词文件（解析错误？）</translation>
     </message>
     <message>
         <source>The document belongs to an external index which I can&apos;t update. </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">该文档属于一个我无法更新的外部索引。</translation>
     </message>
     <message>
         <source>Opening a temporary copy. Edits will be lost if you don&apos;t save&lt;br/&gt;them to a permanent location.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开一个临时副本。如果您不将其保存到永久位置，编辑将会丢失。</translation>
     </message>
     <message>
         <source>Do not show this warning next time (use GUI preferences to restore).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">不要在下次显示此警告（使用GUI首选项来恢复）。</translation>
     </message>
     <message>
         <source>Index locked</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引已锁定</translation>
     </message>
     <message>
         <source>Unknown indexer state. Can&apos;t access webcache file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">未知的索引器状态。无法访问网络缓存文件。</translation>
     </message>
     <message>
         <source>Indexer is running. Can&apos;t access webcache file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引器正在运行。无法访问网络缓存文件。</translation>
     </message>
     <message>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <source>with additional message: </source>
+        <translation type="obsolete">带有附加消息:</translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">非致命性索引消息:</translation>
     </message>
     <message>
         <source>Types list empty: maybe wait for indexing to progress?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Viewer command line for %1 specifies parent file but URL is http[s]: unsupported</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">类型列表为空：也许等待索引进展？</translation>
     </message>
     <message>
         <source>Tools</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">工具</translation>
     </message>
     <message>
         <source>Results</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">结果</translation>
     </message>
     <message>
         <source>Content has been indexed for these MIME types:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">这些 MIME 类型的内容已被索引：</translation>
     </message>
     <message>
         <source>Empty or non-existant paths in configuration file. Click Ok to start indexing anyway (absent data will not be purged from the index):
 </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">配置文件中存在空路径或不存在的路径。单击“确定”以继续进行索引（缺失的数据将不会从索引中清除）。</translation>
     </message>
     <message>
         <source>Indexing done</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引完成</translation>
     </message>
     <message>
         <source>Can&apos;t update index: internal error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法更新索引：内部错误</translation>
     </message>
     <message>
         <source>Index not up to date for this file.&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">该文件的索引尚未更新。</translation>
     </message>
     <message>
         <source>&lt;em&gt;Also, it seems that the last index update for the file failed.&lt;/em&gt;&lt;br/&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">此外，似乎文件的最后索引更新失败了。&lt;br/&gt;</translation>
     </message>
     <message>
         <source>Click Ok to try to update the index for this file. You will need to run the query again when indexing is done.&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">点击“确定”尝试更新此文件的索引。索引完成后，您需要重新运行查询。</translation>
     </message>
     <message>
         <source>Click Cancel to return to the list.&lt;br&gt;Click Ignore to show the preview anyway (and remember for this session). There is a risk of showing the wrong entry.&lt;br/&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">点击取消返回到列表。&lt;br&gt;点击忽略仍然显示预览（并记住本次会话）。有显示错误条目的风险。</translation>
     </message>
     <message>
         <source>documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文件</translation>
     </message>
     <message>
         <source>document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文档</translation>
     </message>
     <message>
         <source>files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文件</translation>
     </message>
     <message>
         <source>file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文件</translation>
     </message>
     <message>
         <source>errors</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">错误</translation>
     </message>
     <message>
         <source>error</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">错误</translation>
     </message>
     <message>
         <source>total files)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">总文件数)</translation>
     </message>
     <message>
         <source>No information: initial indexing not yet performed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无信息：尚未执行初始索引。</translation>
     </message>
     <message>
         <source>Batch scheduling</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">批量调度</translation>
     </message>
     <message>
         <source>The tool will let you decide at what time indexing should run.  It uses the Windows task scheduler.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">该工具将让您决定索引何时运行。它使用Windows任务计划程序。</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">确认</translation>
     </message>
     <message>
         <source>Erasing simple and advanced search history lists, please click Ok to confirm</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">擦除简单和高级搜索历史记录，请点击“确定”确认。</translation>
     </message>
     <message>
         <source>Could not open/create file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法打开/创建文件</translation>
     </message>
     <message>
         <source>F&amp;ilter</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">过滤</translation>
     </message>
     <message>
         <source>Simple search type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">简单搜索类型</translation>
     </message>
     <message>
         <source>Any term</source>
@@ -1734,43 +1835,73 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>Main Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">主窗口</translation>
     </message>
     <message>
         <source>Clear search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">清除搜索</translation>
     </message>
     <message>
         <source>Move keyboard focus to search entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将键盘焦点移动到搜索输入框。</translation>
     </message>
     <message>
         <source>Move keyboard focus to search, alt.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将键盘焦点移动到搜索框，按下Alt键。</translation>
     </message>
     <message>
         <source>Toggle tabular display</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">切换表格显示</translation>
     </message>
     <message>
         <source>Move keyboard focus to table</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将键盘焦点移动到表格。</translation>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">刷新</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示菜单搜索对话框</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重复项</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">过滤目录</translation>
+    </message>
+    <message>
+        <source>This search is not active anymore</source>
+        <translation type="unfinished">这个搜索不再处于活动状态。</translation>
+    </message>
+    <message>
+        <source>The viewer specified in mimeview for %1: %2 is not found.
+Do you want to start the preferences dialog ?</source>
+        <translation type="unfinished">在mimeview中为%1指定的查看器未找到：%2。
+您想要启动首选项对话框吗？</translation>
+    </message>
+    <message>
+        <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
+        <translation type="unfinished">查看器命令行为%1指定了父文件，但URL不是file://：不支持</translation>
+    </message>
+    <message>
+        <source>Show advanced search dialog</source>
+        <translation type="unfinished">显示高级搜索对话框</translation>
+    </message>
+    <message>
+        <source>Main index open error: </source>
+        <translation type="unfinished">主索引打开错误：</translation>
+    </message>
+    <message>
+        <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
+        <translation type="unfinished">索引可能已损坏。也许尝试运行xapian-check或重建索引？</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">带有附加消息:</translation>
     </message>
 </context>
 <context>
@@ -1825,7 +1956,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>&amp;User manual</source>
-        <translation>用户手册（&amp;U）</translation>
+        <translation type="vanished">用户手册（&amp;U）</translation>
     </message>
     <message>
         <source>Document &amp;History</source>
@@ -1973,143 +2104,143 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>&amp;Index configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引配置</translation>
     </message>
     <message>
         <source>&amp;GUI configuration</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">GUI配置</translation>
     </message>
     <message>
         <source>&amp;Results</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索结果</translation>
     </message>
     <message>
         <source>Sort by date, oldest first</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">按日期排序，从最早开始</translation>
     </message>
     <message>
         <source>Sort by date, newest first</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">按日期排序，最新的在前</translation>
     </message>
     <message>
         <source>Show as table</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示为表格</translation>
     </message>
     <message>
         <source>Show results in a spreadsheet-like table</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在类似电子表格的表格中显示结果</translation>
     </message>
     <message>
         <source>Save as CSV (spreadsheet) file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存为CSV（电子表格）文件</translation>
     </message>
     <message>
         <source>Saves the result into a file which you can load in a spreadsheet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将结果保存到一个文件中，您可以在电子表格中加载。</translation>
     </message>
     <message>
         <source>Next Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下一页</translation>
     </message>
     <message>
         <source>Previous Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">上一页</translation>
     </message>
     <message>
         <source>First Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">第一页</translation>
     </message>
     <message>
         <source>Query Fragments</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查询片段</translation>
     </message>
     <message>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <source>With failed files retrying</source>
+        <translation type="obsolete">文件失败，正在重试</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">下一个更新将重试之前失败的文件。</translation>
     </message>
     <message>
         <source>Indexing &amp;schedule</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引和计划</translation>
     </message>
     <message>
         <source>Enable synonyms</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">启用同义词</translation>
     </message>
     <message>
         <source>Save last query</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存上次查询</translation>
     </message>
     <message>
         <source>Load saved query</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">加载保存的查询</translation>
     </message>
     <message>
         <source>Special Indexing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">特殊索引</translation>
     </message>
     <message>
         <source>Indexing with special options</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用特殊选项进行索引化</translation>
     </message>
     <message>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查看</translation>
     </message>
     <message>
         <source>Missing &amp;helpers</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">缺失 &amp;helpers</translation>
     </message>
     <message>
         <source>Indexed &amp;MIME types</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引和MIME类型</translation>
     </message>
     <message>
         <source>Index &amp;statistics</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引和统计</translation>
     </message>
     <message>
         <source>Webcache Editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Webcache编辑器</translation>
     </message>
     <message>
         <source>Trigger incremental pass</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">触发增量搜索</translation>
     </message>
     <message>
         <source>E&amp;xport simple search history</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">导出简单搜索历史</translation>
     </message>
     <message>
         <source>&amp;Query</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查询</translation>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">增加结果文本字体大小</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">增加字体大小</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">减小结果文本字体大小</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">减小字体大小</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">开始实时索引器</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查询语言过滤器</translation>
     </message>
     <message>
         <source>Filter dates</source>
@@ -2118,21 +2249,45 @@ Please check the desktop file</source>
     <message>
         <source>Filter birth dates</source>
         <translation type="unfinished">过滤创建日期</translation>
-    </message>    
+    </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">辅助复杂搜索</translation>
+    </message>
+    <message>
+        <source>&amp;User manual (local, one HTML page)</source>
+        <translation type="unfinished">用户手册（本地，一个HTML页面）</translation>
+    </message>
+    <message>
+        <source>&amp;Online manual (Recoll Web site)</source>
+        <translation type="unfinished">在线手册（Recoll网站）</translation>
+    </message>
+    <message>
+        <source>Path translations</source>
+        <translation type="unfinished">路径翻译</translation>
+    </message>
+    <message>
+        <source>Switch Configuration...</source>
+        <translation type="unfinished">切换配置...</translation>
+    </message>
+    <message>
+        <source>Choose another configuration to run on, replacing this process</source>
+        <translation type="unfinished">选择另一个配置来运行，替换当前进程。</translation>
+    </message>
+    <message>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">文件失败，正在重试</translation>
     </message>
 </context>
 <context>
     <name>RclTrayIcon</name>
     <message>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">恢复</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">退出</translation>
     </message>
 </context>
 <context>
@@ -2207,7 +2362,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>Can&apos;t sort by inverse relevance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法按逆相关性排序</translation>
     </message>
 </context>
 <context>
@@ -2298,7 +2453,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>&lt;p&gt;&lt;i&gt;Alternate spellings: &lt;/i&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;p&gt;&lt;i&gt;备选拼写：&lt;/i&gt;</translation>
     </message>
     <message>
         <source>Result count (est.)</source>
@@ -2310,7 +2465,15 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">片段</translation>
+    </message>
+    <message>
+        <source>This spelling guess was added to the search:</source>
+        <translation type="unfinished">这个拼写猜测已添加到搜索中：</translation>
+    </message>
+    <message>
+        <source>These spelling guesses were added to the search:</source>
+        <translation type="unfinished">这些拼写猜测已添加到搜索中：</translation>
     </message>
 </context>
 <context>
@@ -2373,7 +2536,7 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>Result Table</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">结果表</translation>
     </message>
     <message>
         <source>Open</source>
@@ -2385,39 +2548,39 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>Open current result document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开当前结果文档</translation>
     </message>
     <message>
         <source>Open current result and quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开当前结果并退出</translation>
     </message>
     <message>
         <source>Show snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示片段</translation>
     </message>
     <message>
         <source>Show header</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示标题</translation>
     </message>
     <message>
         <source>Show vertical header</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示垂直标题</translation>
     </message>
     <message>
         <source>Copy current result text to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">将当前结果文本复制到剪贴板</translation>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用Shift+点击来显示文本。</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">已复制%1字节到剪贴板</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制结果文本并退出</translation>
     </message>
 </context>
 <context>
@@ -2575,179 +2738,187 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Stemming languages for stored query: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">为存储的查询提取语言:</translation>
     </message>
     <message>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <source>differ from current preferences (kept)</source>
+        <translation type="obsolete">与当前偏好不同（保留）</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">存储查询的自动后缀:</translation>
     </message>
     <message>
         <source>Autophrase is set but it was unset for stored query</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动短语已设置，但对于存储的查询已取消设置</translation>
     </message>
     <message>
         <source>Autophrase is unset but it was set for stored query</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">自动短语未设置，但已为存储查询设置。</translation>
     </message>
     <message>
         <source>Enter search terms here.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在这里输入搜索词。</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;style&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;style&gt;在文本搜索GUI的上下文中，将以下文本片段从英语翻译成中文。 Text fragment: &lt;html&gt;&lt;head&gt;&lt;style&gt;</translation>
     </message>
     <message>
         <source>table, th, td {</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">表格，th，td {</translation>
     </message>
     <message>
         <source>border: 1px solid black;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">边框：1像素实线黑色；</translation>
     </message>
     <message>
         <source>border-collapse: collapse;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">边框折叠：折叠；</translation>
     </message>
     <message>
         <source>}</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文本片段：}</translation>
     </message>
     <message>
         <source>th,td {</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">th,td { 
+
+th,td {</translation>
     </message>
     <message>
         <source>text-align: center;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文本对齐：居中；</translation>
     </message>
     <message>
         <source>&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;/style&gt;&lt;/head&gt;&lt;body&gt; 
+
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</translation>
     </message>
     <message>
         <source>You should really look at the manual (F1)&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">你真的应该查看手册（F1）</translation>
     </message>
     <message>
         <source>&lt;table border=&apos;1&apos; cellspacing=&apos;0&apos;&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;table border=&apos;1&apos; cellspacing=&apos;0&apos;&gt; -&gt; &lt;表 border=&apos;1&apos; cellspacing=&apos;0&apos;&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;th&gt;What&lt;/th&gt;&lt;th&gt;Examples&lt;/th&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;th&gt;什么&lt;/th&gt;&lt;th&gt;示例&lt;/th&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;And&lt;/td&gt;&lt;td&gt;one two&amp;nbsp;&amp;nbsp;&amp;nbsp;one AND two&amp;nbsp;&amp;nbsp;&amp;nbsp;one &amp;&amp; two&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;和&lt;/td&gt;&lt;td&gt;一个 两个&amp;nbsp;&amp;nbsp;&amp;nbsp;一个 AND 两个&amp;nbsp;&amp;nbsp;&amp;nbsp;一个 &amp;&amp; 两个&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Or&lt;/td&gt;&lt;td&gt;one OR two&amp;nbsp;&amp;nbsp;&amp;nbsp;one || two&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;或&lt;/td&gt;&lt;td&gt;one OR two&amp;nbsp;&amp;nbsp;&amp;nbsp;one || two&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Complex boolean. OR has priority, use parentheses&amp;nbsp;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;复杂布尔。OR 优先级高，使用括号</translation>
     </message>
     <message>
         <source>where needed&lt;/td&gt;&lt;td&gt;(one AND two) OR three&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在需要的地方&lt;/td&gt;&lt;td&gt;(one AND two) OR three&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Not&lt;/td&gt;&lt;td&gt;-term&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;不&lt;/td&gt;&lt;td&gt;-term&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Phrase&lt;/td&gt;&lt;td&gt;&quot;pride and prejudice&quot;&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;短语&lt;/td&gt;&lt;td&gt;&quot;傲慢与偏见&quot;&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Ordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;pride prejudice&quot;o1&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;有序接近（松弛=1）&lt;/td&gt;&lt;td&gt;&quot;傲慢与偏见&quot;o1&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Unordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;prejudice pride&quot;po1&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;无序接近（松弛=1）&lt;/td&gt;&lt;td&gt;“偏见骄傲”po1&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Unordered prox. (default slack=10)&lt;/td&gt;&lt;td&gt;&quot;prejudice&amp;nbsp;pride&quot;p&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;tr&gt;&lt;td&gt;No stem expansion: capitalize&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;无序近似（默认松弛=10）&lt;/td&gt;&lt;td&gt;&quot;偏见 骄傲&quot;p&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Field-specific&lt;/td&gt;&lt;td&gt;author:austen&amp;nbsp;&amp;nbsp;title:prejudice&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;字段特定&lt;/td&gt;&lt;td&gt;作者：奥斯汀&amp;nbsp;&amp;nbsp;标题：偏见&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;AND inside field (no order)&lt;/td&gt;&lt;td&gt;author:jane,austen&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;字段内AND（无顺序）&lt;/td&gt;&lt;td&gt;作者：简·奥斯汀&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;OR inside field&lt;/td&gt;&lt;td&gt;author:austen/bronte&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;字段内的OR&lt;/td&gt;&lt;td&gt;作者：奥斯汀/勃朗特&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Field names&lt;/td&gt;&lt;td&gt;title/subject/caption&amp;nbsp;&amp;nbsp;author/from&lt;br&gt;recipient/to&amp;nbsp;&amp;nbsp;filename&amp;nbsp;&amp;nbsp;ext&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;字段名称&lt;/td&gt;&lt;td&gt;标题/主题/说明 作者/发件人 收件人/收件人 文件名 扩展名&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Directory path filter&lt;/td&gt;&lt;td&gt;dir:/home/me&amp;nbsp;&amp;nbsp;dir:doc&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;目录路径过滤器&lt;/td&gt;&lt;td&gt;dir:/home/me&amp;nbsp;&amp;nbsp;dir:doc&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;MIME type filter&lt;/td&gt;&lt;td&gt;mime:text/plain mime:video/*&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt; MIME 类型过滤器 &lt;/td&gt; &lt;td&gt; mime:text/plain mime:video/* &lt;/td&gt; &lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Date intervals&lt;/td&gt;&lt;td&gt;date:2018-01-01/2018-31-12&lt;br&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;日期间隔&lt;/td&gt;&lt;td&gt;日期：2018-01-01/2018-31-12&lt;br&gt;</translation>
     </message>
     <message>
         <source>date:2018&amp;nbsp;&amp;nbsp;date:2018-01-01/P12M&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">日期：2018 日期：2018年01月01日/P12M&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Size&lt;/td&gt;&lt;td&gt;size&amp;gt;100k size&amp;lt;1M&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;大小&lt;/td&gt;&lt;td&gt;大小&amp;gt;100k 大小&amp;lt;1M&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;的中文翻译是：&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Can&apos;t open index</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法打开索引</translation>
     </message>
     <message>
         <source>Could not restore external indexes for stored query:&lt;br&gt; </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无法恢复存储查询的外部索引：&lt;br&gt;</translation>
     </message>
     <message>
         <source>???</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索结果</translation>
     </message>
     <message>
         <source>Using current preferences.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用当前偏好。</translation>
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">简单搜索</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">历史</translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
+        <translation type="unfinished">查询语言备忘单。有疑问：点击&lt;b&gt;显示查询详情&lt;/b&gt;。</translation>
+    </message>
+    <message>
+        <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
+        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;大写以抑制词干扩展&lt;/td&gt;&lt;td&gt;地板&lt;/td&gt;&lt;/tr&gt;</translation>
+    </message>
+    <message>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">与当前偏好不同（保留）</translation>
     </message>
 </context>
 <context>
@@ -2786,11 +2957,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Show query history</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示查询历史</translation>
     </message>
     <message>
         <source>Main menu</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">主菜单</translation>
     </message>
 </context>
 <context>
@@ -2836,11 +3007,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <name>Snippets</name>
     <message>
         <source>Snippets</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">片段</translation>
     </message>
     <message>
         <source>Find:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查找：</translation>
     </message>
     <message>
         <source>Next</source>
@@ -2848,7 +3019,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Prev</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">上一页</translation>
     </message>
 </context>
 <context>
@@ -2859,19 +3030,19 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>&lt;p&gt;Sorry, no exact match was found within limits. Probably the document is very big and the snippets generator got lost in a maze...&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">抱歉，未在限制范围内找到精确匹配。可能是因为文档太大，片段生成器迷失在迷宫中...</translation>
     </message>
     <message>
         <source>Sort By Relevance</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">按相关性排序</translation>
     </message>
     <message>
         <source>Sort By Page</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">按页面排序</translation>
     </message>
     <message>
         <source>Snippets Window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">片段窗口</translation>
     </message>
     <message>
         <source>Find</source>
@@ -2879,38 +3050,46 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Find (alt)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查找 (alt)</translation>
     </message>
     <message>
         <source>Find next</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查找下一个</translation>
     </message>
     <message>
         <source>Find previous</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查找上一个</translation>
     </message>
     <message>
         <source>Close window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">关闭窗口</translation>
+    </message>
+    <message>
+        <source>Increase font size</source>
+        <translation type="unfinished">增加字体大小</translation>
+    </message>
+    <message>
+        <source>Decrease font size</source>
+        <translation type="unfinished">减小字体大小</translation>
     </message>
 </context>
 <context>
     <name>SpecIdxW</name>
     <message>
         <source>Special Indexing</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">特殊索引</translation>
     </message>
     <message>
         <source>Else only modified or failed files will be processed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">否则，只有修改过或失败的文件将被处理。</translation>
     </message>
     <message>
         <source>Erase selected files data before indexing.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在索引之前擦除所选文件的数据。</translation>
     </message>
     <message>
         <source>Directory to recursively index. This must be inside the regular indexed area&lt;br&gt; as defined in the configuration file (topdirs).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">递归索引的目录。这必须在配置文件（topdirs）中定义的常规索引区域内。</translation>
     </message>
     <message>
         <source>Browse</source>
@@ -2918,31 +3097,31 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Leave empty to select all files. You can use multiple space-separated shell-type patterns.&lt;br&gt;Patterns with embedded spaces should be quoted with double quotes.&lt;br&gt;Can only be used if the start target is set.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">留空以选择所有文件。您可以使用多个以空格分隔的shell类型模式。&lt;br&gt;带有嵌入空格的模式应该用双引号引起来。&lt;br&gt;只能在设置了起始目标时使用。</translation>
     </message>
     <message>
         <source>Selection patterns:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择模式:</translation>
     </message>
     <message>
         <source>Top indexed entity</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">顶部索引实体</translation>
     </message>
     <message>
         <source>Retry previously failed files.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重试先前失败的文件。</translation>
     </message>
     <message>
         <source>Start directory. Must be part of the indexed tree. Use full indexed area if empty.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">起始目录。必须是索引树的一部分。如果为空，请使用完整的索引区域。</translation>
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">诊断输出文件。将被截断并接收索引诊断（文件未被索引的原因）。</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">诊断文件</translation>
     </message>
 </context>
 <context>
@@ -2973,15 +3152,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Match</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">匹配</translation>
     </message>
     <message>
         <source>Case</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">案例</translation>
     </message>
     <message>
         <source>Accents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">口音</translation>
     </message>
 </context>
 <context>
@@ -3032,79 +3211,91 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Index: %1 documents, average length %2 terms.%3 results</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引：%1 个文档，平均长度 %2 个词。%3 结果</translation>
     </message>
     <message>
         <source>%1 results</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">%1 个结果</translation>
     </message>
     <message>
         <source>List was truncated alphabetically, some frequent </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">列表按字母顺序截断，一些常见</translation>
     </message>
     <message>
         <source>terms may be missing. Try using a longer root.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">术语可能缺失。尝试使用更长的根词。</translation>
     </message>
     <message>
         <source>Show index statistics</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示索引统计</translation>
     </message>
     <message>
         <source>Number of documents</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文档数量</translation>
     </message>
     <message>
         <source>Average terms per document</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">每个文档的平均术语</translation>
     </message>
     <message>
         <source>Database directory size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">数据库目录大小</translation>
     </message>
     <message>
         <source>MIME types:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">MIME 类型:</translation>
     </message>
     <message>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">项目</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">数值</translation>
     </message>
     <message>
         <source>Smallest document length (terms)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最小文档长度（术语）</translation>
     </message>
     <message>
         <source>Longest document length (terms)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最长文档长度（术语）</translation>
     </message>
     <message>
         <source>Results from last indexing:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">上次索引的结果:</translation>
     </message>
     <message>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation type="obsolete">文档创建/更新</translation>
     </message>
     <message>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation type="obsolete">文件已测试</translation>
     </message>
     <message>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <source>Unindexed files</source>
+        <translation type="obsolete">未索引的文件</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">列出无法被索引的文件（较慢）</translation>
     </message>
     <message>
-        <source>Spell expansion error. </source>
-        <translation type="unfinished"></translation>
+        <source>Spell expansion error.</source>
+        <translation type="unfinished">拼写扩展错误。</translation>
+    </message>
+    <message>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">文档创建/更新</translation>
+    </message>
+    <message>
+        <source>Files tested</source>
+        <translation type="unfinished">文件已测试</translation>
+    </message>
+    <message>
+        <source>Unindexed files</source>
+        <translation type="unfinished">未索引的文件</translation>
     </message>
 </context>
 <context>
@@ -3135,31 +3326,27 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Result list paragraph format (erase all to reset to default)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">结果列表段落格式（擦除所有以重置为默认值）</translation>
     </message>
     <message>
         <source>Result list header (default is empty)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">结果列表标题（默认为空）</translation>
     </message>
     <message>
         <source>Select recoll config directory or xapian index directory (e.g.: /home/me/.recoll or /home/me/.recoll/xapiandb)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择recoll配置目录或xapian索引目录（例如：/home/me/.recoll或/home/me/.recoll/xapiandb）</translation>
     </message>
     <message>
         <source>The selected directory looks like a Recoll configuration directory but the configuration could not be read</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">所选目录看起来像是一个Recoll配置目录，但配置无法读取。</translation>
     </message>
     <message>
         <source>At most one index should be selected</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cant add index with different case/diacritics stripping option</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最多只能选择一个索引。</translation>
     </message>
     <message>
         <source>Default QtWebkit font</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">默认的QtWebkit字体</translation>
     </message>
     <message>
         <source>Any term</source>
@@ -3179,27 +3366,43 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Value from previous program exit</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">上次程序退出时的值</translation>
     </message>
     <message>
         <source>Context</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">上下文</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">描述</translation>
     </message>
     <message>
         <source>Shortcut</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">快捷方式</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">默认</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择QSS文件</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation type="unfinished">轻量</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation type="unfinished">暗</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation type="unfinished">系统</translation>
+    </message>
+    <message>
+        <source>Can&apos;t add index with different case/diacritics stripping option.</source>
+        <translation type="unfinished">无法使用不同大小写/变音符号剥离选项添加索引。</translation>
     </message>
 </context>
 <context>
@@ -3218,11 +3421,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Desktop Default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">桌面默认</translation>
     </message>
     <message>
         <source>Changing entries with different current values</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用不同当前值更改条目</translation>
     </message>
 </context>
 <context>
@@ -3249,96 +3452,106 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Select one or several mime types then use the controls in the bottom frame to change how they are processed.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择一个或多个MIME类型，然后使用底部框架中的控件来更改它们的处理方式。</translation>
     </message>
     <message>
         <source>Use Desktop preferences by default</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">默认使用桌面偏好设置</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择一个或多个文件类型，然后使用下方框架中的控件来更改它们的处理方式。</translation>
     </message>
     <message>
         <source>Exception to Desktop preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">桌面偏好设置的异常情况</translation>
     </message>
     <message>
         <source>Action (empty -&gt; recoll default)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">操作（空 -&gt; recoll 默认）</translation>
     </message>
     <message>
         <source>Apply to current selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">应用于当前选择</translation>
     </message>
     <message>
         <source>Recoll action:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Recoll操作：</translation>
     </message>
     <message>
         <source>current value</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">当前值</translation>
     </message>
     <message>
         <source>Select same</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择相同</translation>
     </message>
     <message>
         <source>&lt;b&gt;New Values:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新值：</translation>
+    </message>
+    <message>
+        <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
+        <translation type="unfinished">该值是要执行的命令行。替换：%s：搜索字符串；%p：页码；&lt;br&gt;%f：文档文件名。按F1获取更多帮助。</translation>
     </message>
 </context>
 <context>
     <name>Webcache</name>
     <message>
         <source>Webcache editor</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Webcache编辑器</translation>
     </message>
     <message>
         <source>Search regexp</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索正则表达式</translation>
+    </message>
+    <message>
+        <source>TextLabel</source>
+        <translation type="unfinished">文本标签</translation>
     </message>
 </context>
 <context>
     <name>WebcacheEdit</name>
     <message>
         <source>Copy URL</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">复制网址</translation>
     </message>
     <message>
         <source>Unknown indexer state. Can&apos;t edit webcache file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">未知的索引器状态。无法编辑Web缓存文件。</translation>
     </message>
     <message>
         <source>Indexer is running. Can&apos;t edit webcache file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">索引器正在运行。无法编辑网页缓存文件。</translation>
     </message>
     <message>
         <source>Delete selection</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除选择</translation>
     </message>
     <message>
         <source>Webcache was modified, you will need to run the indexer after closing this window.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Webcache已被修改，您需要在关闭此窗口后运行索引器。</translation>
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">保存到文件</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文件创建失败：</translation>
+    </message>
+    <message>
+        <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
+        <translation type="unfinished">最大尺寸 %1（索引配置）。当前尺寸 %2。写入位置 %3。</translation>
     </message>
 </context>
 <context>
     <name>WebcacheModel</name>
     <message>
         <source>MIME</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Url</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">MIME
+
+多用途互联网邮件扩展(MIME)是一种互联网标准，用于在电子邮件中传输多媒体内容。</translation>
     </message>
     <message>
         <source>Date</source>
@@ -3346,14 +3559,42 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">尺寸</translation>
+    </message>
+    <message>
+        <source>URL</source>
+        <translation type="unfinished">路径</translation>
     </message>
 </context>
 <context>
     <name>WinSchedToolW</name>
     <message>
         <source>Error</source>
-        <translation type="obsolete">错误</translation>
+        <translation type="unfinished">错误</translation>
+    </message>
+    <message>
+        <source>Recoll Batch indexing</source>
+        <translation type="unfinished">Recoll批量索引</translation>
+    </message>
+    <message>
+        <source>Start Windows Task Scheduler tool</source>
+        <translation type="unfinished">启动Windows任务计划程序工具</translation>
+    </message>
+    <message>
+        <source>Configuration not initialized</source>
+        <translation type="unfinished">配置未初始化</translation>
+    </message>
+    <message>
+        <source>Could not create batch file</source>
+        <translation type="unfinished">无法创建批处理文件</translation>
+    </message>
+    <message>
+        <source>&lt;h3&gt;Recoll indexing batch scheduling&lt;/h3&gt;&lt;p&gt;We use the standard Windows task scheduler for this. The program will be started when you click the button below.&lt;/p&gt;&lt;p&gt;You can use either the full interface (&lt;i&gt;Create task&lt;/i&gt; in the menu on the right), or the simplified &lt;i&gt;Create Basic task&lt;/i&gt; wizard. In both cases Copy/Paste the batch file path listed below as the &lt;i&gt;Action&lt;/i&gt; to be performed.&lt;/p&gt;</source>
+        <translation type="unfinished">&lt;h3&gt;Recoll索引批量调度&lt;/h3&gt;&lt;p&gt;我们使用标准的Windows任务计划程序来实现这一功能。当您点击下面的按钮时，程序将启动。&lt;/p&gt;&lt;p&gt;您可以使用完整界面（右侧菜单中的&lt;i&gt;创建任务&lt;/i&gt;），或者简化的&lt;i&gt;创建基本任务&lt;/i&gt;向导。在两种情况下，将下面列出的批处理文件路径复制/粘贴为要执行的&lt;i&gt;操作&lt;/i&gt;。&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Command already started</source>
+        <translation type="unfinished">命令已经启动</translation>
     </message>
 </context>
 <context>
@@ -3409,19 +3650,19 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Add entry</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">添加条目</translation>
     </message>
     <message>
         <source>Delete selected entries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">删除所选条目</translation>
     </message>
     <message>
         <source>~</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文本片段：~</translation>
     </message>
     <message>
         <source>Edit selected entries</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">编辑所选条目</translation>
     </message>
 </context>
 <context>
@@ -3467,6 +3708,13 @@ This will help searching very big text  files (ie: log files).</source>
 </source>
         <translation type="obsolete">外部过滤器的执行时间如果超过这个值，则会被强行中断。在罕见的情况下，某些文档（例如postscript）会导致过滤器陷入死循环。设置成-1以表示不加限制。
 </translation>
+    </message>
+</context>
+<context>
+    <name>confgui::ConfTabsW</name>
+    <message>
+        <source>Apply</source>
+        <translation type="unfinished">申请</translation>
     </message>
 </context>
 <context>
@@ -3640,7 +3888,7 @@ This will help searching very big text  files (ie: log files).</source>
     </message>
     <message>
         <source>Prefer Html to plain text for preview.</source>
-        <translation>预览中优先使用Html。</translation>
+        <translation type="vanished">预览中优先使用Html。</translation>
     </message>
     <message>
         <source>Search parameters</source>
@@ -3806,279 +4054,382 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Plain text to HTML line style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">纯文本转换为HTML行样式</translation>
     </message>
     <message>
         <source>Lines in PRE text are not folded. Using BR loses some indentation. PRE + Wrap style may be what you want.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在搜索GUI中，PRE文本中的行不会折叠。使用BR会丢失一些缩进。PRE + Wrap样式可能是您想要的。</translation>
     </message>
     <message>
         <source>&lt;BR&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&lt;BR&gt;的中文翻译是: 换行</translation>
     </message>
     <message>
         <source>&lt;PRE&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文本搜索 GUI&lt;/PRE&gt;</translation>
     </message>
     <message>
         <source>&lt;PRE&gt; + wrap</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文本片段： &lt;PRE&gt; + wrap
+
+在文本搜索GUI的上下文中，将上述文本片段从英文翻译成中文为：&lt;PRE&gt; + 自动换行</translation>
     </message>
     <message>
         <source>Disable Qt autocompletion in search entry.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在搜索输入框中禁用Qt自动完成。</translation>
     </message>
     <message>
         <source>Paths translations</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">路径翻译</translation>
     </message>
     <message>
         <source>Click to add another index directory to the list. You can select either a Recoll configuration directory or a Xapian index.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">点击以将另一个索引目录添加到列表中。您可以选择Recoll配置目录或Xapian索引。</translation>
     </message>
     <message>
         <source>Snippets window CSS file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">片段窗口CSS文件</translation>
     </message>
     <message>
         <source>Opens a dialog to select the Snippets window CSS style sheet file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开一个对话框来选择片段窗口的CSS样式表文件。</translation>
     </message>
     <message>
         <source>Resets the Snippets window style</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置片段窗口样式</translation>
     </message>
     <message>
         <source>Decide if document filters are shown as radio buttons, toolbar combobox, or menu.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">决定文档过滤器显示为单选按钮、工具栏组合框还是菜单。</translation>
     </message>
     <message>
         <source>Document filter choice style:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">文档过滤选择样式:</translation>
     </message>
     <message>
         <source>Buttons Panel</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">按钮面板</translation>
     </message>
     <message>
         <source>Toolbar Combobox</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">工具栏组合框</translation>
     </message>
     <message>
         <source>Menu</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">菜单</translation>
     </message>
     <message>
         <source>Show system tray icon.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示系统托盘图标。</translation>
     </message>
     <message>
         <source>Close to tray instead of exiting.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">最小化到托盘而不是退出。</translation>
     </message>
     <message>
         <source>User style to apply to the snippets window.&lt;br&gt; Note: the result page header insert is also included in the snippets window header.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">用户样式应用于片段窗口。&lt;br&gt;注意：结果页面标题插入也包含在片段窗口标题中。</translation>
     </message>
     <message>
         <source>Synonyms file</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">同义词文件</translation>
     </message>
     <message>
         <source>Show warning when opening temporary file.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开临时文件时显示警告。</translation>
     </message>
     <message>
         <source>Highlight CSS style for query terms</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">查询词的高亮CSS样式</translation>
     </message>
     <message>
         <source>Recoll - User Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Recoll - 用户偏好</translation>
     </message>
     <message>
         <source>Set path translations for the selected index or for the main one if no selection exists.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">为所选索引设置路径翻译，如果没有选择，则为主要索引设置路径翻译。</translation>
     </message>
     <message>
         <source>Activate links in preview.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在预览中激活链接。</translation>
     </message>
     <message>
         <source>Make links inside the preview window clickable, and start an external browser when they are clicked.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在预览窗口内使链接可点击，并在点击时启动外部浏览器。</translation>
     </message>
     <message>
         <source>Query terms highlighting in results. &lt;br&gt;Maybe try something like &quot;color:red;background:yellow&quot; for something more lively than the default blue...</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在结果中突出显示查询词。也许尝试类似于“color:red;background:yellow”这样的样式，比默认的蓝色更生动一些...</translation>
     </message>
     <message>
         <source>Start search on completer popup activation.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在自动完成弹出窗口激活时开始搜索。</translation>
     </message>
     <message>
         <source>Maximum number of snippets displayed in the snippets window</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">片段窗口中显示的最大片段数</translation>
     </message>
     <message>
         <source>Suppress all beeps.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">抑制所有蜂鸣声。</translation>
     </message>
     <message>
         <source>Application Qt style sheet</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">应用程序Qt样式表</translation>
     </message>
     <message>
         <source>Limit the size of the search history. Use 0 to disable, -1 for unlimited.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">限制搜索历史记录的大小。使用0来禁用，-1表示无限制。</translation>
     </message>
     <message>
         <source>Maximum size of search history (0: disable, -1: unlimited):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索历史记录的最大大小（0：禁用，-1：无限制）：</translation>
     </message>
     <message>
         <source>Generate desktop notifications.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">生成桌面通知。</translation>
     </message>
     <message>
         <source>Sort snippets by page number (default: by weight).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">按页面编号排序片段（默认：按权重排序）。</translation>
     </message>
     <message>
         <source>Misc</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">杂项</translation>
     </message>
     <message>
         <source>Display a Snippets link even if the document has no pages (needs restart).</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">即使文档没有页面，也显示片段链接（需要重新启动）。</translation>
     </message>
     <message>
         <source>Maximum text size highlighted for preview (kilobytes)</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">预览中突出显示的最大文本大小（千字节）</translation>
     </message>
     <message>
         <source>Start with simple search mode: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">从简单搜索模式开始：</translation>
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">快捷方式</translation>
     </message>
     <message>
         <source>Hide result table header.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">隐藏结果表头。</translation>
     </message>
     <message>
         <source>Show result table row headers.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示结果表格的行标题。</translation>
     </message>
     <message>
         <source>Reset shortcuts defaults</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">重置快捷键默认值</translation>
     </message>
     <message>
         <source>Use F1 to  access the manual</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">使用F1键访问手册</translation>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">隐藏一些用户界面元素。</translation>
     </message>
     <message>
         <source>Hide:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">隐藏：</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">工具栏</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">状态栏</translation>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示按钮。</translation>
     </message>
     <message>
         <source>Menu bar</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">菜单栏</translation>
     </message>
     <message>
         <source>Show choice in menu only.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">只在菜单中显示选择。</translation>
     </message>
     <message>
         <source>Simple search type</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">简单搜索类型</translation>
     </message>
     <message>
         <source>Clear/Search buttons</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">清除/搜索按钮</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">禁用 Ctrl+[0-9]/Shift+[a-z] 快捷键以跳转到表格行。</translation>
     </message>
     <message>
         <source>None (default)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uses the default dark mode style sheet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Dark mode</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">无（默认）</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">选择QSS文件</translation>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">在结果表详细区域显示文档文本而不是元数据，请使用：</translation>
     </message>
     <message>
         <source>left mouse click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">左键单击</translation>
     </message>
     <message>
         <source>Shift+click</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Shift+click
+Shift+点击</translation>
     </message>
     <message>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">打开一个对话框来选择样式表文件。&lt;br&gt;查看 /usr/share/recoll/examples/recoll[-dark].qss 以获取示例。</translation>
     </message>
     <message>
         <source>Result Table</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">结果表</translation>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">当鼠标悬停在行上时，请勿显示元数据。</translation>
     </message>
     <message>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">通过在锚文本之前插入空格来解决泰米尔语QTBUG-78923。</translation>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">该错误导致在突出显示的泰米尔语单词内显示奇怪的圆圈字符。解决方法是插入一个额外的空格字符，这似乎可以解决问题。</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">侧边过滤器目录树的深度</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">用户界面的缩放比例。如果默认值不适合您的屏幕分辨率，这将非常有用。</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">显示比例（默认1.0）:</translation>
+    </message>
+    <message>
+        <source>If set, starting a new instance on the same index will raise an existing one.</source>
+        <translation type="unfinished">如果设置了，在相同索引上启动一个新实例将会引发现有的实例。</translation>
+    </message>
+    <message>
+        <source>Single application</source>
+        <translation type="unfinished">单个应用程序</translation>
+    </message>
+    <message>
+        <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
+        <translation type="unfinished">设置为0以禁用并加快启动速度，避免树计算。</translation>
+    </message>
+    <message>
+        <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
+        <translation type="unfinished">查看Qt QDateTimeEdit文档。例如，yyyy-MM-dd。留空以使用默认的Qt/System格式。</translation>
+    </message>
+    <message>
+        <source>Side filter dates format (change needs restart)</source>
+        <translation type="unfinished">侧边栏筛选日期格式（更改需要重新启动）</translation>
+    </message>
+    <message>
+        <source>The completion only changes the entry when activated.</source>
+        <translation type="unfinished">只有在激活时完成才会更改条目。</translation>
+    </message>
+    <message>
+        <source>Completion: no automatic line editing.</source>
+        <translation type="unfinished">完成：无自动行编辑。</translation>
+    </message>
+    <message>
+        <source>Maximum number of history entries in completer list</source>
+        <translation type="unfinished">自动完成列表中的历史记录条目最大数量</translation>
+    </message>
+    <message>
+        <source>Number of history entries in completer:</source>
+        <translation type="unfinished">自动完成器中的历史记录条目数:</translation>
+    </message>
+    <message>
+        <source>Displays the total number of occurences of the term in the index</source>
+        <translation type="unfinished">显示索引中术语的总出现次数</translation>
+    </message>
+    <message>
+        <source>Show hit counts in completer popup.</source>
+        <translation type="unfinished">在自动完成弹出窗口中显示命中次数。</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation type="unfinished">颜色方案</translation>
+    </message>
+    <message>
+        <source>Interface language (needs restart):</source>
+        <translation type="unfinished">界面语言（需要重新启动）:</translation>
+    </message>
+    <message>
+        <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
+        <translation type="unfinished">注意：大多数翻译是不完整的。留空以使用系统环境。</translation>
+    </message>
+    <message>
+        <source>Preview</source>
+        <translation type="unfinished">预览</translation>
+    </message>
+    <message>
+        <source>Prefer HTML to plain text for preview.</source>
+        <translation type="unfinished">偏好使用HTML而不是纯文本进行预览。</translation>
+    </message>
+    <message>
+        <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
+        <translation type="unfinished">在显示暗模式下的HTML时，请尝试使用暗色背景（和浅色文字）。这与许多文档冲突，这些文档将用它们自己的CSS（暗色）前景色覆盖我们的浅色设置，导致文档无法阅读，因此默认情况下关闭。</translation>
+    </message>
+    <message>
+        <source>Use dark background when displaying HTML in dark mode.</source>
+        <translation type="unfinished">在暗模式下显示HTML时，请使用深色背景。</translation>
+    </message>
+    <message>
+        <source>Set to 0 to disable details/summary feature</source>
+        <translation type="unfinished">设置为0以禁用详细/摘要功能。</translation>
+    </message>
+    <message>
+        <source>Fields display: max field length before using summary:</source>
+        <translation type="unfinished">字段显示：在使用摘要之前的最大字段长度:</translation>
+    </message>
+    <message>
+        <source>Number of lines to be shown over a search term found by preview search.</source>
+        <translation type="unfinished">在预览搜索中找到的搜索词上方要显示的行数。</translation>
+    </message>
+    <message>
+        <source>Search term line offset:</source>
+        <translation type="unfinished">搜索词行偏移量:</translation>
+    </message>
+    <message>
+        <source>Add common spelling approximations for rare terms.</source>
+        <translation type="unfinished">为罕见术语添加常见的拼写近似。</translation>
+    </message>
+    <message>
+        <source>Automatic spelling approximation.</source>
+        <translation type="unfinished">自动拼写近似。</translation>
+    </message>
+    <message>
+        <source>Max spelling distance</source>
+        <translation type="unfinished">最大拼写距离</translation>
+    </message>
+    <message>
+        <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
+        <translation type="unfinished">通配符字符*?[]将被处理为标点符号，而不是被展开。</translation>
+    </message>
+    <message>
+        <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
+        <translation type="unfinished">在“所有术语”和“任意术语”模式下忽略通配符字符</translation>
     </message>
 </context>
 </TS>

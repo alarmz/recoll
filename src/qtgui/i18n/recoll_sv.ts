@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="sv-SE" sourcelanguage="en">
+<TS version="2.1" language="sv_SE" sourcelanguage="en">
 <context>
     <name>ActSearchDLG</name>
     <message>
@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">Listan över mappar/kataloger som ska indexeras. Undermappar kommer att bearbetas rekursivt. Standard: din hemkatalog.</translation>
+        <translation type="obsolete">Listan över mappar/kataloger som ska indexeras. Undermappar kommer att bearbetas rekursivt. Standard: din hemkatalog.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -469,8 +469,12 @@
         <translation type="unfinished">Indexer kommer att vänta på en retur på AC och köra om sig själv när det inträffar.</translation>
     </message>
     <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">Listan över mappar/kataloger som ska indexeras, rekursivt med deras undermappar. Tecknet &apos;~&apos; expanderar till din hemkatalog, vilket är det förvalda initialvärdet.</translation>
+    </message>
+    <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">(standardinställningen är att aspell föreslår felstavningar när en sökning inte ger några resultat).</translation>
+        <translation type="unfinished">(standardinställningen är att aspell föreslår felstavningar när en sökning inte ger några resultat)</translation>
     </message>
 </context>
 <context>
@@ -2077,12 +2081,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Den visare som anges i mimeview för %1: %2 hittades inte. Vill du starta inställningsdialogen?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">med ytterligare meddelande:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Visa avancerad sökdialog</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">med ytterligare meddelande:</translation>
     </message>
 </context>
 <context>

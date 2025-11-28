@@ -393,10 +393,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -422,6 +418,10 @@
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -6,7 +6,7 @@
     <message>
         <source>Menu search</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>搜索菜单</translation>
     </message>
 </context>
@@ -444,7 +444,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">要被索引的文件夹/目录列表。子文件夹将被递归处理。默认值：您的主目录。</translation>
+        <translation type="obsolete">要被索引的文件夹/目录列表。子文件夹将被递归处理。默认值：您的主目录。</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -473,6 +473,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">索引器将等待AC返回，并在发生时重新执行自身。</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">要递归地索引的文件夹/目录列表及其子文件夹。&lt;br&gt;字符“~”会扩展为您的主目录，这是默认初始值。</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -686,7 +690,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Translated path</source>
         <translatorcomment>
-存疑                </translatorcomment>
+存疑                                </translatorcomment>
         <translation type="vanished">已变换的路径</translation>
     </message>
 </context>
@@ -1452,7 +1456,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Hits</source>
         <translatorcomment>
-存疑                </translatorcomment>
+存疑                                </translatorcomment>
         <translation type="vanished">点击量</translation>
     </message>
     <message>
@@ -2120,13 +2124,13 @@ Please check the desktop file</source>
     <message>
         <source>Show menu search dialog</source>
         <translatorcomment>
-存疑                </translatorcomment>
+存疑                                </translatorcomment>
         <translation>显示菜单搜索对话框</translation>
     </message>
     <message>
         <source>Duplicates</source>
         <translatorcomment>
-存疑                </translatorcomment>
+存疑                                </translatorcomment>
         <translation>重复的结果</translation>
     </message>
     <message>
@@ -2156,12 +2160,12 @@ Do you want to start the preferences dialog ?</source>
 你想要打开首选项对话框吗？</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">带有附加消息:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">显示高级搜索对话框</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">带有额外消息:</translation>
     </message>
 </context>
 <context>
@@ -2525,7 +2529,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>Assisted complex search</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>辅助复杂搜索</translation>
     </message>
     <message>
@@ -2550,7 +2554,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation type="unfinished">文件失败，正在重试</translation>
+        <translation type="unfinished">重试失败的文件</translation>
     </message>
 </context>
 <context>
@@ -2768,13 +2772,13 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <source>This spelling guess was added to the search:</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>这个拼写猜测已添加到搜索中：</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>这些拼写猜测已添加到搜索中：</translation>
     </message>
 </context>
@@ -3281,7 +3285,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>History</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>简单搜索历史记录</translation>
     </message>
     <message>
@@ -3786,7 +3790,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     <message>
         <source>Spell expansion error.</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>拼写扩展错误。</translation>
     </message>
     <message>
@@ -4324,7 +4328,7 @@ This should give higher precedence to the results where the search terms appear 
     <message>
         <source>Could not create batch file</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>不能创建批量索引所需的文件</translation>
     </message>
 </context>
@@ -4916,7 +4920,7 @@ Frequent terms are a major performance issue with phrases.
 Skipped terms augment the phrase slack, and reduce the autophrase efficiency.
 The default value is 2 (percent). </source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>如果一个搜索词出现的频率超过了某个阈值，我们就不会在自动生成短语功能中使用它。
 频率过高的搜索词会极大影响搜索性能。
 跳过这些搜索词则会提高搜索短语的自由度，但同时也会降低自动升段短语功能的搜索能力。默认情况下，该阈值设定为2%。</translation>
@@ -5164,7 +5168,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>Show button instead.</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>显示按钮</translation>
     </message>
     <message>
@@ -5186,7 +5190,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>禁用Ctrl+[0-9]和Shift+[a-z]这些选择搜索结果行数的快捷键</translation>
     </message>
     <message>
@@ -5208,7 +5212,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>为了在结果列表的详情中显示文档内容而不是文档元数据，请使用：</translation>
     </message>
     <message>
@@ -5230,7 +5234,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>鼠标悬停在结果表时不显示元数据</translation>
     </message>
     <message>
@@ -5256,13 +5260,13 @@ The default value is 2 (percent). </source>
     <message>
         <source>Automatic spelling approximation.</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>自动拼写近似</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>最大拼写距离</translation>
     </message>
     <message>
@@ -5272,13 +5276,13 @@ The default value is 2 (percent). </source>
     <message>
         <source>Maximum number of history entries in completer list</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>当前电脑允许保存的最大历史搜索/文档数量</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>当前电脑内保存的历史搜索/历史文档的数量：</translation>
     </message>
     <message>
@@ -5288,7 +5292,7 @@ The default value is 2 (percent). </source>
     <message>
         <source>Show hit counts in completer popup.</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>在弹出窗口中显示点击数</translation>
     </message>
     <message>
@@ -5298,13 +5302,13 @@ The default value is 2 (percent). </source>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>请在Qt QDateTimeEdit的文档中查看时间格式，比如说yyyy-MM-dd。留空会使用系统默认时间格式</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
         <translatorcomment>
-待定                </translatorcomment>
+待定                                </translatorcomment>
         <translation>过滤器的日期格式(修改后需要重启程序)</translation>
     </message>
     <message>

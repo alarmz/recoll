@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">De lijst met mappen/directories die geïndexeerd moeten worden. Submappen worden recursief verwerkt. Standaard: uw home.</translation>
+        <translation type="obsolete">De lijst met mappen/directories die geïndexeerd moeten worden. Submappen worden recursief verwerkt. Standaard: uw home.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -467,6 +467,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">De indexeerder zal wachten op een reactie op AC en zichzelf opnieuw uitvoeren wanneer dit gebeurt.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">De lijst met mappen/directories die recursief geïndexeerd moeten worden, inclusief hun submappen.&lt;br&gt; Het &apos;~&apos; karakter breidt uit naar uw thuismap, wat de standaard initiële waarde is.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -1377,7 +1381,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Hits</source>
-        <translation type="unfinished">Treffers</translation>
+        <translation type="unfinished">Resultaten</translation>
     </message>
 </context>
 <context>
@@ -2068,12 +2072,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">De viewer gespecificeerd in mimeview voor %1: %2 is niet gevonden. Wilt u het voorkeurenvenster openen?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">met extra bericht:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Toon geavanceerd zoekvenster</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">met extra bericht:</translation>
     </message>
 </context>
 <context>

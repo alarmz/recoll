@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">La lista delle cartelle/directory da indicizzare. Le sottocartelle verranno elaborate in modo ricorsivo. Predefinito: la tua home.</translation>
+        <translation type="obsolete">La lista delle cartelle/directory da indicizzare. Le sottocartelle verranno elaborate in modo ricorsivo. Predefinito: la tua home.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -467,6 +467,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">L&apos;indicizzatore aspetterà un ritorno su AC e si ri-eseguirà quando ciò accadrà.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">L&apos;elenco delle cartelle/directory da indicizzare, in modo ricorsivo con le loro sottocartelle.&lt;br&gt;Il carattere &apos;~&apos; si espande nella tua cartella home, che è il valore iniziale predefinito.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -2076,12 +2080,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Il visualizzatore specificato in mimeview per %1: %2 non è stato trovato. Vuoi avviare il dialogo delle preferenze?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">con messaggio aggiuntivo:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Mostra la finestra di ricerca avanzata</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">con messaggio aggiuntivo:</translation>
     </message>
 </context>
 <context>
@@ -2468,7 +2472,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation type="unfinished">Con file non riusciti riprovare</translation>
+        <translation type="unfinished">Con file non riusciti riprovando</translation>
     </message>
 </context>
 <context>

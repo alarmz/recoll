@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">Listen over mapper/kataloger, der skal indekseres. Undermapper vil blive behandlet rekursivt. Standard: dit hjem.</translation>
+        <translation type="obsolete">Listen over mapper/kataloger, der skal indekseres. Undermapper vil blive behandlet rekursivt. Standard: dit hjem.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -467,6 +467,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">Indekseren vil vente på en tilbagevenden på AC og genudføre sig selv, når det sker.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">Listen over mapper/kataloger, der skal indekseres, rekursivt med deres undermapper.&lt;br&gt;Tegnet &apos;~&apos; udvides til din hjemmemappe, som er standardværdien.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -2075,12 +2079,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Den viser, der er angivet i mimeview for %1: %2, blev ikke fundet. Vil du starte indstillingsdialogen?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">med yderligere besked:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Vis avanceret søgedialog</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">med yderligere besked:</translation>
     </message>
 </context>
 <context>
@@ -2468,7 +2472,7 @@ Start real time indexer</translation>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation type="unfinished">Med mislykkede filer forsøges igen</translation>
+        <translation type="unfinished">Med mislykkede filer genforsøg</translation>
     </message>
 </context>
 <context>

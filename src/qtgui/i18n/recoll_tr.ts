@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">İndekslenmesi gereken klasör/dizin listesi. Alt klasörler tekrarlayarak işlenecektir. Varsayılan: eviniz.</translation>
+        <translation type="obsolete">İndekslenmesi gereken klasör/dizin listesi. Alt klasörler tekrarlayarak işlenecektir. Varsayılan: eviniz.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -467,6 +467,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">İndeksleyici, AC üzerinde bir dönüş bekleyecek ve gerçekleştiğinde kendini yeniden yürütecektir.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">İndekslenmesi gereken klasör/dizin listesi, alt klasörleriyle birlikte özyinelemeli olarak.&lt;br&gt;&apos;~&apos; karakteri, varsayılan başlangıç değeri olan ev dizinine genişler.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -1382,7 +1386,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Hits</source>
-        <translation type="unfinished">Arama sonuçları</translation>
+        <translation type="unfinished">Arama arayüzünde &quot;Hits&quot; ifadesi için Türkçe çeviri: &quot;Sonuçlar&quot;</translation>
     </message>
 </context>
 <context>
@@ -2077,12 +2081,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Mimeview için belirtilen görüntüleyici %1: %2 bulunamadı. Tercihler iletişim kutusunu başlatmak ister misiniz?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">ek mesajla birlikte:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Gelişmiş arama iletişim kutusunu göster</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">ek mesajla birlikte:</translation>
     </message>
 </context>
 <context>
@@ -2469,7 +2473,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation type="unfinished">Başarısız dosyaları yeniden deneme</translation>
+        <translation type="unfinished">Başarısız dosyaların tekrar denemesiyle</translation>
     </message>
 </context>
 <context>
@@ -3198,7 +3202,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">Mevcut tercihlerden farklılık gösterir (saklanır)</translation>
+        <translation type="unfinished">Mevcut tercihlerden farklılık göstermek (saklanan)</translation>
     </message>
 </context>
 <context>
@@ -3697,7 +3701,7 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Files tested</source>
-        <translation type="unfinished">Test edilen dosyalar</translation>
+        <translation type="unfinished">Dosyalar test edildi.</translation>
     </message>
     <message>
         <source>Unindexed files</source>

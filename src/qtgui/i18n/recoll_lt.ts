@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">Sąrašas aplankų/katalogų, kurie bus indeksuojami. Poaplankiai bus apdorojami rekursyviai. Numatytasis: jūsų namai.</translation>
+        <translation type="obsolete">Sąrašas aplankų/katalogų, kurie bus indeksuojami. Poaplankiai bus apdorojami rekursyviai. Numatytasis: jūsų namai.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -467,6 +467,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">Indeksatorius palauks grįžimo į AC ir iš naujo vykdys save, kai tai įvyks.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">Aplankų/katalogų sąrašas, kurie bus indeksuojami, rekursyviai su jų sub-aplankais.&lt;br&gt;Simbolis „~“ išplečiamas į jūsų namų katalogą, kuris yra numatytasis pradinis reikšmės.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -2075,12 +2079,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Rodyklė, nurodyta mimeview skirta %1: %2, nerasta. Ar norite paleisti nustatymų dialogą?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">su papildomu pranešimu:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Rodyti išplėstinį paieškos dialogą</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">su papildomu pranešimu:</translation>
     </message>
 </context>
 <context>

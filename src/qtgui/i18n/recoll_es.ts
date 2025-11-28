@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">La lista de carpetas/directorios a ser indexados. Las subcarpetas serán procesadas de forma recursiva. Por defecto: tu hogar.</translation>
+        <translation type="obsolete">La lista de carpetas/directorios a ser indexados. Las subcarpetas serán procesadas de forma recursiva. Por defecto: tu hogar.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -469,8 +469,12 @@
         <translation type="unfinished">El indexador esperará un retorno en AC y se volverá a ejecutar cuando suceda.</translation>
     </message>
     <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">La lista de carpetas/directorios a indexar, de forma recursiva con sus subcarpetas. El carácter &apos;~&apos; se expande a tu directorio de inicio, que es el valor inicial predeterminado.</translation>
+    </message>
+    <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">Por defecto, aspell sugiere errores de ortografía cuando una consulta no arroja resultados.</translation>
+        <translation type="unfinished">Por defecto, aspell sugiere errores ortográficos cuando una consulta no arroja resultados.</translation>
     </message>
 </context>
 <context>
@@ -2074,12 +2078,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">El visor especificado en mimeview para %1: %2 no se encuentra. ¿Desea iniciar el cuadro de diálogo de preferencias?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">con mensaje adicional:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Mostrar cuadro de diálogo de búsqueda avanzada</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">con mensaje adicional:</translation>
     </message>
 </context>
 <context>

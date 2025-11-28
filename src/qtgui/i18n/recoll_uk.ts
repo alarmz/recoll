@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">Список папок/каталогів для індексації. Підпапки будуть оброблятися рекурсивно. За замовчуванням: ваш домашній каталог.</translation>
+        <translation type="obsolete">Список папок/каталогів для індексації. Підпапки будуть оброблятися рекурсивно. За замовчуванням: ваш домашній каталог.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -467,6 +467,10 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">Індексатор буде чекати на повернення на AC і повторно виконувати себе, коли це станеться.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">Список папок/каталогів для індексації, рекурсивно з їх підкаталогами.&lt;br&gt;Символ &apos;~&apos; розгортається до вашого домашнього каталогу, який є значенням за замовчуванням.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -2079,12 +2083,12 @@ Do you want to start the preferences dialog ?</source>
 Бажаєте відкрити діалогове вікно налаштувань?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">з додатковим повідомленням:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Показати діалогове вікно розширеного пошуку</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">з додатковим повідомленням:</translation>
     </message>
 </context>
 <context>

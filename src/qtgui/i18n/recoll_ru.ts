@@ -377,73 +377,73 @@
         <translation type="vanished">Список каталогов, где начинается рекурсивное индексирование. По умолчанию: домашний каталог.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="242">
+        <location filename="../confgui/confguiindex.cpp" line="244">
         </location>
         <source>Skipped paths</source>
         <translation>Пропущенные пути</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="243">
+        <location filename="../confgui/confguiindex.cpp" line="245">
         </location>
         <source>These are pathnames of directories which indexing will not enter.&lt;br&gt;Path elements may contain wildcards. The entries must match the paths seen by the indexer (e.g.: if topdirs includes &apos;/home/me&apos; and &apos;/home&apos; is actually a link to &apos;/usr/home&apos;, a correct skippedPath entry would be &apos;/home/me/tmp*&apos;, not &apos;/usr/home/me/tmp*&apos;)</source>
         <translation>Полный путь к директории, которая не будет затрагиваться при индексировании. &lt;br&gt;Может содержать маски. Записи должны совпадать с путями, которые видит индексатор (например, если topdirs включает «/home/me», а «/home» на самом деле ведёт к «/usr/home», правильной записью skippedPath будет «/home/me/tmp*», а не «/usr/home/me/tmp*»)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="259">
+        <location filename="../confgui/confguiindex.cpp" line="261">
         </location>
         <source>Stemming languages</source>
         <translation>Языки со словоформами</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="260">
+        <location filename="../confgui/confguiindex.cpp" line="262">
         </location>
         <source>The languages for which stemming expansion dictionaries will be built.&lt;br&gt;See the Xapian stemmer documentation for possible values. E.g. english, french, german...</source>
         <translation>Языки, для которых будут составлены словари словоформ.&lt;br&gt;Доступные значения описаны в документации к Xapian (например, english, french, russian...)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="266">
+        <location filename="../confgui/confguiindex.cpp" line="268">
         </location>
         <source>Log file name</source>
         <translation>Имя файла журнала</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="267">
+        <location filename="../confgui/confguiindex.cpp" line="269">
         </location>
         <source>The file where the messages will be written.&lt;br&gt;Use &apos;stderr&apos; for terminal output</source>
         <translation>Файл, куда будут записываться сообщения.&lt;br&gt;Используйте &apos;stderr&apos; для вывода в терминал</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="271">
+        <location filename="../confgui/confguiindex.cpp" line="273">
         </location>
         <source>Log verbosity level</source>
         <translation>Уровень подробности журнала</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="272">
+        <location filename="../confgui/confguiindex.cpp" line="274">
         </location>
         <source>This value adjusts the amount of messages,&lt;br&gt;from only errors to a lot of debugging data.</source>
         <translation>Это значение определяет подробность сообщений,&lt;br&gt;от ошибок до отладочных данных.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="276">
+        <location filename="../confgui/confguiindex.cpp" line="278">
         </location>
         <source>Indexer log file name</source>
         <translation>Имя файла журнала индексатора</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="277">
+        <location filename="../confgui/confguiindex.cpp" line="279">
         </location>
         <source>If empty, the above log file name value will be used. It may useful to have a separate log for diagnostic purposes because the common log will be erased when&lt;br&gt;the GUI starts up.</source>
         <translation>Если поле пустое, будет использовано имя файла выще. Отдельный файл с журналом для отладки может быть полезен, т.к. общий журнал&lt;br&gt;при старте интерфейса будет затёрт.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="283">
+        <location filename="../confgui/confguiindex.cpp" line="285">
         </location>
         <source>Index flush megabytes interval</source>
         <translation>Интервал сброса данных индекса (МБ)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="284">
+        <location filename="../confgui/confguiindex.cpp" line="286">
         </location>
         <source>This value adjust the amount of data which is indexed between flushes to disk.&lt;br&gt;This helps control the indexer memory usage. Default 10MB </source>
         <translation>Это значение определяет количество данных, индексируеммых между сбросами на диск.&lt;br&gt;Помогает контролировать использование памяти индексатором. Значение по умолчанию: 10МБ </translation>
@@ -463,37 +463,35 @@
         <translation type="unfinished">Начать папки</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="238">
-        </location>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">Список папок/каталогов для индексации. Подпапки будут обрабатываться рекурсивно. По умолчанию: ваш домашний каталог.</translation>
+        <translation type="obsolete">Список папок/каталогов для индексации. Подпапки будут обрабатываться рекурсивно. По умолчанию: ваш домашний каталог.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="290">
+        <location filename="../confgui/confguiindex.cpp" line="292">
         </location>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
         <translation type="unfinished">Процент заполнения диска, при достижении которого мы прекращаем индексацию (например, 90 для остановки на 90% заполнения, 0 или 100 означает отсутствие ограничения)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="292">
+        <location filename="../confgui/confguiindex.cpp" line="294">
         </location>
         <source>This is the percentage of disk usage - total disk usage, not index size - at which indexing will fail and stop.&lt;br&gt;The default value of 0 removes any limit.</source>
         <translation>Процент занятого пространства на диске (в целом, не только индексом), при котором индексирование завершится ошибкой и прекратится.&lt;br&gt;По умолчанию значение 0 снимает ограничение.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="298">
+        <location filename="../confgui/confguiindex.cpp" line="300">
         </location>
         <source>Suspend the real time indexer when running on battery</source>
         <translation type="unfinished">При работе от аккумулятора приостановите индексацию в реальном времени.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="299">
+        <location filename="../confgui/confguiindex.cpp" line="301">
         </location>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">Индексатор будет ожидать возврата по AC и повторно выполнит себя, когда это произойдет.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="301">
+        <location filename="../confgui/confguiindex.cpp" line="303">
         </location>
         <source>No aspell usage</source>
         <translation>Не использовать aspell</translation>
@@ -503,175 +501,181 @@
         <translation type="vanished">(по умолчанию aspell подсказывает об опечатках, когда запрос не даёт результатов)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="302">
+        <location filename="../confgui/confguiindex.cpp" line="238">
         </location>
-        <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">по умолчанию aspell предлагает исправления опечаток, когда запрос не дает результатов.</translation>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">Список папок/каталогов для индексации рекурсивно со всеми их подпапками.&lt;br&gt;Символ &apos;~&apos; расширяется до вашей домашней директории, которая является значением по умолчанию.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="303">
+        <location filename="../confgui/confguiindex.cpp" line="304">
+        </location>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(по умолчанию, aspell предлагает исправления опечаток, когда запрос не дает результатов).</translation>
+    </message>
+    <message>
+        <location filename="../confgui/confguiindex.cpp" line="305">
         </location>
         <source>Disables use of aspell to generate spelling approximation in the term explorer tool.&lt;br&gt; Useful if aspell is absent or does not work. </source>
         <translation>Отключает использование aspell для создания вариантов написания в обозревателе терминов.&lt;br&gt; Полезно, если aspell отсутствует или не работает.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="308">
+        <location filename="../confgui/confguiindex.cpp" line="310">
         </location>
         <source>Aspell language</source>
         <translation>Язык aspell</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="309">
+        <location filename="../confgui/confguiindex.cpp" line="311">
         </location>
         <source>The language for the aspell dictionary. The values are are 2-letter language codes, e.g. &apos;en&apos;, &apos;fr&apos; ...&lt;br&gt;If this value is not set, the NLS environment will be used to compute it, which usually works. To get an idea of what is installed on your system, type &apos;aspell config&apos; and look for .dat files inside the &apos;data-dir&apos; directory.</source>
         <translation>Язык словаря aspell в виде двухбуквенного кода, например, &apos;en&apos;, &apos;fr&apos;, &apos;ru&apos;...&lt;br&gt;Если значение не установлено, будет предпринята попытка вывести его из локали, что обычно срабатывает. Чтобы посмотреть, что установлено на вашей системе, наберите &apos;aspell config&apos; и поищите .dat-файлы в каталоге, указанном как &apos;data-dir&apos;.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="320">
+        <location filename="../confgui/confguiindex.cpp" line="322">
         </location>
         <source>Database directory name</source>
         <translation>Каталог базы данных</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="321">
+        <location filename="../confgui/confguiindex.cpp" line="323">
         </location>
         <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
         <translation>Имя каталога, в котором хранится индекс&lt;br&gt;Путь указывается относительно каталога конфигурации и не является абсолютным. По умолчанию: «xapiandb».</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="325">
+        <location filename="../confgui/confguiindex.cpp" line="327">
         </location>
         <source>Unac exceptions</source>
         <translation>Исключения unac</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="326">
+        <location filename="../confgui/confguiindex.cpp" line="328">
         </location>
         <source>&lt;p&gt;These are exceptions to the unac mechanism which, by default, removes all diacritics, and performs canonic decomposition. You can override unaccenting for some characters, depending on your language, and specify additional decompositions, e.g. for ligatures. In each space-separated entry, the first character is the source one, and the rest is the translation.</source>
         <translation>Это исключения для механизма unac, который по умолчанию отбрасывает все диакритические знаки и проводит каноническую декомпозицию. Можно переопределить механизм удаления надстрочных знаков для отдельных символов или добавить правила декомпозиции (например, для лигатур). В каждой отделённой запятой записи первый символ является исходным, а остальные — его интерпретации.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="343">
+        <location filename="../confgui/confguiindex.cpp" line="345">
         </location>
         <source>Process the Web history queue</source>
         <translation>Обработка очереди истории веб-поиска</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="344">
+        <location filename="../confgui/confguiindex.cpp" line="346">
         </location>
         <source>Enables indexing Firefox visited pages.&lt;br&gt;(you need also install the Firefox Recoll plugin)</source>
         <translation>Включает индексацию посещённых страниц в Firefox.&lt;br&gt;(требуется установка плагина Recoll)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="348">
+        <location filename="../confgui/confguiindex.cpp" line="350">
         </location>
         <source>Web page store directory name</source>
         <translation>Имя каталога с сохранёнными веб-страницами</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="349">
+        <location filename="../confgui/confguiindex.cpp" line="351">
         </location>
         <source>The name for a directory where to store the copies of visited web pages.&lt;br&gt;A non-absolute path is taken relative to the configuration directory.</source>
         <translation>Имя каталога хранения просмотренных веб-страниц.&lt;br&gt;Путь указывается относительно каталога конфигурации и не является абсолютным.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="354">
+        <location filename="../confgui/confguiindex.cpp" line="356">
         </location>
         <source>Max. size for the web store (MB)</source>
         <translation>Предельный размер веб-хранилища (МБ)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="355">
+        <location filename="../confgui/confguiindex.cpp" line="357">
         </location>
         <source>Entries will be recycled once the size is reached.&lt;br&gt;Only increasing the size really makes sense because reducing the value will not truncate an existing file (only waste space at the end).</source>
         <translation>Записи будут удалены при достижении максимального размера хранилища.&lt;br&gt;Целесообразно только увеличивать размер, так как уменьшение значения не повлечёт усечение существующего файла (лишь перестанет использовать его хвост).</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="364">
+        <location filename="../confgui/confguiindex.cpp" line="366">
         </location>
         <source>Page recycle interval</source>
         <translation>Интервал обновления страницы</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="365">
+        <location filename="../confgui/confguiindex.cpp" line="367">
         </location>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
         <translation>&lt;p&gt;По умолчанию в кэше хранится только один экземпляр ссылки. Это можно изменить в настройках, где указывается значение длительности хранения нескольких экземпляров (&apos;день&apos;, &apos;неделя&apos;, &apos;месяц&apos;, &apos;год&apos;). Учтите, что увеличение интервала не сотрёт уже существующие записи.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="378">
+        <location filename="../confgui/confguiindex.cpp" line="380">
         </location>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
         <translation>На заметку: старые страницы будут стёрты, чтобы освободилось место для новых, когда будет достигнут предельный объём. Текущий размер: %1</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="384">
+        <location filename="../confgui/confguiindex.cpp" line="386">
         </location>
         <source>Browser add-on download folder</source>
         <translation type="unfinished">Папка загрузки дополнений для браузера</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="385">
+        <location filename="../confgui/confguiindex.cpp" line="387">
         </location>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
         <translation type="unfinished">Установите это только в том случае, если вы установили параметр &quot;Подкаталог загрузок&quot; в настройках дополнения для веб-браузера. &lt;br&gt; В этом случае это должен быть полный путь к каталогу (например, /home/[me]/Downloads/my-subdir)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="398">
+        <location filename="../confgui/confguiindex.cpp" line="400">
         </location>
         <source>Automatic diacritics sensitivity</source>
         <translation>Автоматический учёт диакритических знаков</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="399">
+        <location filename="../confgui/confguiindex.cpp" line="401">
         </location>
         <source>&lt;p&gt;Automatically trigger diacritics sensitivity if the search term has accented characters (not in unac_except_trans). Else you need to use the query language and the &lt;i&gt;D&lt;/i&gt; modifier to specify diacritics sensitivity.</source>
         <translation>&lt;p&gt;Автоматически включает учёт диакритических знаков, если строка поиска содержит диакритические знаки (кроме unac_except_trans). В противном случае используйте язык запросов и модификатор &lt;i&gt;D&lt;/i&gt; для учёта диакритических знаков.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="406">
+        <location filename="../confgui/confguiindex.cpp" line="408">
         </location>
         <source>Automatic character case sensitivity</source>
         <translation>Автоматический учёт регистра</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="407">
+        <location filename="../confgui/confguiindex.cpp" line="409">
         </location>
         <source>&lt;p&gt;Automatically trigger character case sensitivity if the entry has upper-case characters in any but the first position. Else you need to use the query language and the &lt;i&gt;C&lt;/i&gt; modifier to specify character-case sensitivity.</source>
         <translation>&lt;p&gt;Автоматически включает учёт регистра, если строка поиска содержит заглавные буквы (кроме первой буквы). В противном случае используйте язык запросов и модификатор &lt;i&gt;C&lt;/i&gt; учёта регистра.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="416">
+        <location filename="../confgui/confguiindex.cpp" line="418">
         </location>
         <source>Maximum term expansion count</source>
         <translation>Предельное число однокоренных слов</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="417">
+        <location filename="../confgui/confguiindex.cpp" line="419">
         </location>
         <source>&lt;p&gt;Maximum expansion count for a single term (e.g.: when using wildcards). The default of 10 000 is reasonable and will avoid queries that appear frozen while the engine is walking the term list.</source>
         <translation>&lt;p&gt;Предельное число однокоренных слов для одного слова (например, при использовании масок). Значение по умолчанию в 10 000 является разумным и поможет избежать ситуаций, когда запрос кажется зависшим при переборе списка слов.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="424">
+        <location filename="../confgui/confguiindex.cpp" line="426">
         </location>
         <source>Maximum Xapian clauses count</source>
         <translation>Предельное число Xapian-предложений</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="425">
+        <location filename="../confgui/confguiindex.cpp" line="427">
         </location>
         <source>&lt;p&gt;Maximum number of elementary clauses we add to a single Xapian query. In some cases, the result of term expansion can be multiplicative, and we want to avoid using excessive memory. The default of 100 000 should be both high enough in most cases and compatible with current typical hardware configurations.</source>
         <translation>&lt;p&gt;Предельное число элементарных условий, добавляемых к запросу Xapian. В некоторых случаях результат поиска однокоренных слов может быть избыточным и занять слишком большой объём памяти. Значение по умолчанию в 100 000 достаточно для большинства случаев и подходит для современных аппаратных конфигураций.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="435">
+        <location filename="../confgui/confguiindex.cpp" line="437">
         </location>
         <source>Store some GUI parameters locally to the index</source>
         <translation type="unfinished">Сохраните некоторые параметры GUI локально в индекс.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="436">
+        <location filename="../confgui/confguiindex.cpp" line="438">
         </location>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
         <translation type="unfinished">Настройки GUI обычно хранятся в общем файле, действительном для всех индексов. Установка этого параметра сделает некоторые настройки, такие как настройка таблицы результатов, специфичными для индекса.</translation>
@@ -680,49 +684,49 @@
 <context>
     <name>ConfSubPanelW</name>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="523">
+        <location filename="../confgui/confguiindex.cpp" line="525">
         </location>
         <source>Only mime types</source>
         <translation>Только MIME-типы</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="524">
+        <location filename="../confgui/confguiindex.cpp" line="526">
         </location>
         <source>An exclusive list of indexed mime types.&lt;br&gt;Nothing else will be indexed. Normally empty and inactive</source>
         <translation>Исчерпывающий перечень индексируемых типов MIME.&lt;br&gt;Другие типы индексироваться не будут. Обычно пуст и неактивен</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="533">
+        <location filename="../confgui/confguiindex.cpp" line="535">
         </location>
         <source>Exclude mime types</source>
         <translation>Исключить MIME-типы</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="534">
+        <location filename="../confgui/confguiindex.cpp" line="536">
         </location>
         <source>Mime types not to be indexed</source>
         <translation>Типы MIME, индексирование которых проводиться не будет</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="610">
+        <location filename="../confgui/confguiindex.cpp" line="612">
         </location>
         <source>Max. compressed file size (KB)</source>
         <translation>Предельный размер сжатого файла (KB)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="611">
+        <location filename="../confgui/confguiindex.cpp" line="613">
         </location>
         <source>This value sets a threshold beyond which compressedfiles will not be processed. Set to -1 for no limit, to 0 for no decompression ever.</source>
         <translation>Это значение устанавливает предельный размер сжатых файлов, которые будут обрабатываться. Значение -1 снимает ограничение, 0 отключает распаковку.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="621">
+        <location filename="../confgui/confguiindex.cpp" line="623">
         </location>
         <source>Max. text file size (MB)</source>
         <translation>Предельный размер текстового файла (MB)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="622">
+        <location filename="../confgui/confguiindex.cpp" line="624">
         </location>
         <source>This value sets a threshold beyond which text files will not be processed. Set to -1 for no limit. 
 This is for excluding monster log files from the index.</source>
@@ -730,13 +734,13 @@ This is for excluding monster log files from the index.</source>
 Рекомендуется использовать для исключения файлов журнала большого размера из процесса индексирования.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="633">
+        <location filename="../confgui/confguiindex.cpp" line="635">
         </location>
         <source>Text file page size (KB)</source>
         <translation>Pазмер страницы текстового файла (КБ)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="634">
+        <location filename="../confgui/confguiindex.cpp" line="636">
         </location>
         <source>If this value is set (not equal to -1), text files will be split in chunks of this size for indexing.
 This will help searching very big text  files (ie: log files).</source>
@@ -744,20 +748,20 @@ This will help searching very big text  files (ie: log files).</source>
 Данный параметр полезен при выполнении поиска в очень больших текстовых файлах (например, файлах журналов).</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="645">
+        <location filename="../confgui/confguiindex.cpp" line="647">
         </location>
         <source>Max. filter exec. time (s)</source>
         <translation>Пред. время работы фильтра (с)</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="646">
+        <location filename="../confgui/confguiindex.cpp" line="648">
         </location>
         <source>External filters working longer than this will be aborted. This is for the rare case (ie: postscript) where a document could cause a filter to loop. Set to -1 for no limit.
 </source>
         <translation>Работа внешних фильтров, длящаяся дольше указанного времени, будет прервана. Применяется для редких случаев (например, с фильтром postscript), когда возникает зацикливание фильтра при обработке какого-то документа. Установите значение -1, чтобы снять ограничение.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="681">
+        <location filename="../confgui/confguiindex.cpp" line="683">
         </location>
         <source>Global</source>
         <translation>Общее</translation>
@@ -1485,25 +1489,25 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="453">
+        <location filename="../confgui/confguiindex.cpp" line="455">
         </location>
         <source>&lt;b&gt;Customised subtrees</source>
         <translation>&lt;b&gt;Пользовательские подкаталоги</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="454">
+        <location filename="../confgui/confguiindex.cpp" line="456">
         </location>
         <source>The list of subdirectories in the indexed hierarchy &lt;br&gt;where some parameters need to be redefined. Default: empty.</source>
         <translation>Список подкаталогов индексируемого дерева,&lt;br&gt;к которым должны применяться особые параметры. По умолчанию: пусто.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="485">
+        <location filename="../confgui/confguiindex.cpp" line="487">
         </location>
         <source>&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</source>
         <translation>&lt;i&gt;</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="507">
+        <location filename="../confgui/confguiindex.cpp" line="509">
         </location>
         <source>Skipped names</source>
         <translation>Пропускать</translation>
@@ -1513,19 +1517,19 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">Шаблоны имён файлов или каталогов, имена которых не следует индексировать.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="508">
+        <location filename="../confgui/confguiindex.cpp" line="510">
         </location>
         <source>These are patterns for file or directory names which should not be indexed.</source>
         <translation type="unfinished">Это шаблоны для имен файлов или каталогов, которые не должны быть проиндексированы.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="544">
+        <location filename="../confgui/confguiindex.cpp" line="546">
         </location>
         <source>Ignored endings</source>
         <translation>Игнорируемые окончания</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="545">
+        <location filename="../confgui/confguiindex.cpp" line="547">
         </location>
         <source>These are file name endings for files which will be indexed by name only 
 (no MIME type identification attempt, no decompression, no content indexing).</source>
@@ -1533,37 +1537,37 @@ p, li { white-space: pre-wrap; }
 (без попытки определить типы MIME, разжатия либо индексации содержимого).</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="574">
+        <location filename="../confgui/confguiindex.cpp" line="576">
         </location>
         <source>Default&lt;br&gt;character set</source>
         <translation>Кодировка по умолчанию</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="575">
+        <location filename="../confgui/confguiindex.cpp" line="577">
         </location>
         <source>Character set used for reading files which do not identify the character set internally, for example pure text files.&lt;br&gt;The default value is empty, and the value from the NLS environnement is used.</source>
         <translation>Кодировка, которая будет использована при чтении файлов, в которых кодировка не указана явно; например, простых текстовых файлов.&lt;br&gt;Значение по умолчанию не установлено и берётся из параметров системы (локали).</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="588">
+        <location filename="../confgui/confguiindex.cpp" line="590">
         </location>
         <source>Follow symbolic links</source>
         <translation>Открывать символические ссылки</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="589">
+        <location filename="../confgui/confguiindex.cpp" line="591">
         </location>
         <source>Follow symbolic links while indexing. The default is no, to avoid duplicate indexing</source>
         <translation>Открывать символические ссылки при индексировании. По умолчанию действие не выполняется во избежание дублированного индексирования</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="599">
+        <location filename="../confgui/confguiindex.cpp" line="601">
         </location>
         <source>Index all file names</source>
         <translation>Индексировать все имена файлов</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="600">
+        <location filename="../confgui/confguiindex.cpp" line="602">
         </location>
         <source>Index the names of files for which the contents cannot be identified or processed (no or unsupported mime type). Default true</source>
         <translation>Индексировать имена файлов, содержимое которых невозможно определить или обработать (неизвестный или неподдерживаемый тип MIME). По умолчанию включено</translation>
@@ -1955,7 +1959,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>with additional message: </source>
-        <translation type="vanished">с дополнительным сообщением: </translation>
+        <translation type="obsolete">с дополнительным сообщением:</translation>
     </message>
     <message>
         <location filename="../rclm_idx.cpp" line="164">
@@ -3059,11 +3063,11 @@ Do you want to start the preferences dialog ?</source>
         <location filename="../rclmain.ui" line="575">
         </location>
         <source>With failed files retrying</source>
-        <translation type="unfinished">Повторная попытка с файлами, которые не удалось загрузить</translation>
+        <translation type="unfinished">Повторная попытка с неудачными файлами</translation>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation type="vanished">С повторной обработкой файлов с ошибками</translation>
+        <translation type="obsolete">Повторная попытка с неудачными файлами</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="578">
@@ -3804,7 +3808,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation type="vanished">отличаются от текущих параметров (сохранено)</translation>
+        <translation type="obsolete">отличаются от текущих предпочтений (сохранено)</translation>
     </message>
     <message>
         <location filename="../ssearch_w.cpp" line="673">
@@ -4361,15 +4365,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation type="vanished">Создано/обновлено документов</translation>
+        <translation type="obsolete">Документы созданы/обновлены</translation>
     </message>
     <message>
         <source>Files tested</source>
-        <translation type="vanished">Проверено файлов</translation>
+        <translation type="obsolete">Файлы проверены</translation>
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation type="vanished">Непроиндексированных файлов</translation>
+        <translation type="obsolete">Непроиндексированные файлы</translation>
     </message>
     <message>
         <location filename="../spell_w.cpp" line="325">

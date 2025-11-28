@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">색인할 폴더/디렉토리 목록입니다. 하위 폴더는 재귀적으로 처리됩니다. 기본값: 홈 폴더.</translation>
+        <translation type="obsolete">색인할 폴더/디렉토리 목록입니다. 하위 폴더는 재귀적으로 처리됩니다. 기본값: 홈 폴더.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -469,8 +469,12 @@
         <translation type="unfinished">색인 작업은 AC에 대한 반환을 기다릴 것이며, 그것이 발생할 때 다시 실행될 것입니다.</translation>
     </message>
     <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">색인할 폴더/디렉토리 목록은 하위 폴더와 함께 재귀적으로 색인됩니다. &apos;~&apos; 문자는 홈 디렉토리로 확장되며, 이것이 기본 초기 값입니다.</translation>
+    </message>
+    <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">기본 설정으로, 쿼리 결과가 없을 때 aspell은 철자 오류를 제안합니다.</translation>
+        <translation type="unfinished">(기본 설정으로, 쿼리 결과가 없을 때 aspell은 철자 오류를 제안합니다).</translation>
     </message>
 </context>
 <context>
@@ -2078,12 +2082,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">%1에 대해 mimeview에서 지정된 뷰어 %2을(를) 찾을 수 없습니다. 환경 설정 대화 상자를 시작하시겠습니까?</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">추가 메시지와 함께:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">고급 검색 대화 상자 표시</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">추가 메시지와 함께:</translation>
     </message>
 </context>
 <context>

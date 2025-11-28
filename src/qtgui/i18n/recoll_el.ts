@@ -438,7 +438,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation type="unfinished">Η λίστα των φακέλων/καταλόγων που πρέπει να ευρετηριαστούν. Οι υποφάκελοι θα επεξεργαστούν αναδρομικά. Προεπιλογή: το σπίτι σας.</translation>
+        <translation type="obsolete">Η λίστα των φακέλων/καταλόγων που πρέπει να ευρετηριαστούν. Οι υποφάκελοι θα επεξεργαστούν αναδρομικά. Προεπιλογή: το σπίτι σας.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -469,8 +469,12 @@
         <translation type="unfinished">Ο δείκτης θα περιμένει για επιστροφή στο AC και θα εκτελέσει ξανά τον εαυτό του όταν συμβεί αυτό.</translation>
     </message>
     <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">Η λίστα των φακέλων/καταλόγων που πρέπει να ευρετηριαστούν, αναδρομικά με τους υπο-φακέλους τους. Το χαρακτήρας &apos;~&apos; επεκτείνεται στον φάκελο του αρχικού σας καταλόγου, που είναι η προεπιλεγμένη αρχική τιμή.</translation>
+    </message>
+    <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">Προεπιλογή, το aspell προτείνει ορθογραφικά λάθη όταν μια αναζήτηση δεν έχει αποτελέσματα.</translation>
+        <translation type="unfinished">Προεπιλεγμένα, το aspell προτείνει ορθογραφικά λάθη όταν μια αναζήτηση δεν έχει αποτελέσματα.</translation>
     </message>
 </context>
 <context>
@@ -2076,12 +2080,12 @@ Do you want to start the preferences dialog ?</source>
         <translation type="unfinished">Ο προβολέας που καθορίζεται στο mimeview για το %1: %2 δεν βρέθηκε. Θέλετε να ξεκινήσετε το παράθυρο προτιμήσεων;</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">με επιπλέον μήνυμα:</translation>
-    </message>
-    <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Εμφάνιση προχωρημένου παραθύρου αναζήτησης</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">με επιπλέον μήνυμα:</translation>
     </message>
 </context>
 <context>

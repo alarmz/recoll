@@ -418,7 +418,7 @@
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation>(par défaut, aspell suggère des erreurs lorsqu&apos;une requête n&apos;a pas de résultats).</translation>
+        <translation type="vanished">(par défaut, aspell suggère des erreurs lorsqu&apos;une requête n&apos;a pas de résultats).</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -442,7 +442,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
-        <translation>Liste des répertoires où l&amp;apos;indexation récursive démarre. Défaut: votre répertoire par défaut.</translation>
+        <translation type="vanished">Liste des répertoires où l&amp;apos;indexation récursive démarre. Défaut: votre répertoire par défaut.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
@@ -471,6 +471,14 @@
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
         <translation type="unfinished">Le moteur d&apos;indexation attendra un retour sur AC et se réexécutera lorsque cela se produira.</translation>
+    </message>
+    <message>
+        <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
+        <translation type="unfinished">La liste des dossiers/répertoires à indexer, de manière récursive avec leurs sous-dossiers. Le caractère &apos;~&apos; se développe en votre répertoire personnel, qui est la valeur initiale par défaut.</translation>
+    </message>
+    <message>
+        <source>(by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished">(par défaut, aspell suggère des fautes d&apos;orthographe lorsque la requête ne donne aucun résultat).</translation>
     </message>
 </context>
 <context>
@@ -1379,7 +1387,11 @@ p, li { white-space: pre-wrap; }
     <name>RclCompleterModel</name>
     <message>
         <source>Hits</source>
-        <translation>Résultats</translation>
+        <translation type="vanished">Résultats</translation>
+    </message>
+    <message>
+        <source>Hits</source>
+        <translation type="unfinished">Résultats</translation>
     </message>
 </context>
 <context>
@@ -1840,7 +1852,7 @@ Merci de vérifier le fichier desktop </translation>
     </message>
     <message>
         <source>with additional message: </source>
-        <translation>avec le message complémentaire :</translation>
+        <translation type="vanished">avec le message complémentaire :</translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
@@ -2076,6 +2088,10 @@ Voulez vous afficher le dialogue de préférences ?</translation>
     <message>
         <source>Show advanced search dialog</source>
         <translation type="unfinished">Afficher la boîte de dialogue de recherche avancée</translation>
+    </message>
+    <message>
+        <source>with additional message: </source>
+        <translation type="unfinished">avec un message supplémentaire:</translation>
     </message>
 </context>
 <context>
@@ -2334,7 +2350,7 @@ Voulez vous afficher le dialogue de préférences ?</translation>
     </message>
     <message>
         <source>With failed files retrying</source>
-        <translation>Avec re-traitement des fichiers en échec</translation>
+        <translation type="vanished">Avec re-traitement des fichiers en échec</translation>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
@@ -2460,6 +2476,10 @@ Voulez vous afficher le dialogue de préférences ?</translation>
         <source>Path translations</source>
         <translation type="unfinished">Traduction des chemins</translation>
     </message>
+    <message>
+        <source>With failed files retrying</source>
+        <translation type="unfinished">Avec les fichiers échoués, réessayez</translation>
+    </message>
 </context>
 <context>
     <name>RclTrayIcon</name>
@@ -2504,7 +2524,7 @@ Voulez vous afficher le dialogue de préférences ?</translation>
     </message>
     <message>
         <source>Ipath</source>
-        <translation type="vanished">Ipath</translation>
+        <translation>Ipath</translation>
     </message>
     <message>
         <source>Keywords</source>
@@ -2541,10 +2561,6 @@ Voulez vous afficher le dialogue de préférences ?</translation>
     <message>
         <source>Date and time</source>
         <translation>Date et heure</translation>
-    </message>
-    <message>
-        <source>Ipath</source>
-        <translation>Ipath</translation>
     </message>
     <message>
         <source>MIME type</source>
@@ -3007,7 +3023,7 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
     </message>
     <message>
         <source>differ from current preferences (kept)</source>
-        <translation>diffèrent des préférences en cours (conservées)</translation>
+        <translation type="vanished">diffèrent des préférences en cours (conservées)</translation>
     </message>
     <message>
         <source>Auto suffixes for stored query: </source>
@@ -3188,6 +3204,10 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
         <translation>&lt;tr&gt;&lt;td&gt;Capitaliser pour une recherche littérale&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</translation>
+    </message>
+    <message>
+        <source>differ from current preferences (kept)</source>
+        <translation type="unfinished">différer des préférences actuelles (conservées)</translation>
     </message>
 </context>
 <context>
@@ -3658,15 +3678,15 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
     </message>
     <message>
         <source>Documents created/updated</source>
-        <translation>Documents créés ou mis à jour</translation>
+        <translation type="vanished">Documents créés ou mis à jour</translation>
     </message>
     <message>
         <source>Files tested</source>
-        <translation>Fichiers testés</translation>
+        <translation type="vanished">Fichiers testés</translation>
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation>Fichiers non indexés</translation>
+        <translation type="vanished">Fichiers non indexés</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
@@ -3679,6 +3699,18 @@ Utiliser le lien &lt;b&gt;Afficher la requête en détail&lt;/b&gt; en cas de do
     <message>
         <source>Spell expansion error.</source>
         <translation>Erreur dans les suggestions orthographiques.</translation>
+    </message>
+    <message>
+        <source>Documents created/updated</source>
+        <translation type="unfinished">Documents créés/mis à jour</translation>
+    </message>
+    <message>
+        <source>Files tested</source>
+        <translation type="unfinished">Fichiers testés</translation>
+    </message>
+    <message>
+        <source>Unindexed files</source>
+        <translation type="unfinished">Fichiers non indexés</translation>
     </message>
 </context>
 <context>
