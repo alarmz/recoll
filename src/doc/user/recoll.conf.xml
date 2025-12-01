@@ -18,7 +18,7 @@ tree defined by the 'topdirs' members.
 <varlistentry id="RCL.CONFIG.RECOLLCONF.SKIPPEDNAMES">
 <term><varname>skippedNames</varname></term>
 <listitem><para>File and directory names which should be ignored.  White space separated list of wildcard patterns (simple ones, not paths, must contain no
-'/' characters), which will be tested against file and directory names.
+"/" characters), which will be tested against file and directory names.
 </para><para>
 Have a look at the default configuration for the initial value, some entries may not suit your
 situation. The easiest way to see it is through the GUI Index configuration "local parameters"

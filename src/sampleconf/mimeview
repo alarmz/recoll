@@ -154,7 +154,7 @@ image/x-nikon-nef = ufraw %f
 image/svg+xml = inkview %f
 
 # Opening email messages: the method will depend on your email client.
-# See: https://www.recoll.org/pages/email-opening.html
+# See: https://www.recoll.org/faqsandhowtos/email-opening.html
 #  - Evolution: you need to extract and store the Message-Id headers. See page linked above.
 #  - Thunderbird: will only open a single-message file if it has an .eml
 #    extension, else they will open a 'create message' window with the file as an attachment.
