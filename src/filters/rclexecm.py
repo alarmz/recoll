@@ -318,6 +318,8 @@ def main(proto, extract):
         print("       rclexecm.py -w <prog>", file=sys.stderr)
         sys.exit(1)
 
+    # actAsSingle: we're being executed as a command by another filter. Don't be verbose like we are
+    # when hand-executed. Also, only extract a single document even when ipath is not set.
     actAsSingle = False
     debugDumpData = False
     debugDumpFields = False
@@ -385,15 +387,15 @@ def main(proto, extract):
         sys.exit(1)
 
     ioout = sys.stdout.buffer
+
     if ipath != b"" or actAsSingle:
+        # Either we're being asked for a single subdoc, or run from another filter. Extract a single
+        # document and exit.
         params["ipath"] = ipath
         ok, data, ipath, eof = extract.getipath(params)
         if ok:
-            debprint(
-                ioout,
-                "== Found entry for ipath %s (mimetype [%s]):"
-                % (ipath, proto.mimetype.decode("cp1252")),
-            )
+            debprint(ioout,
+                f"== Found entry for ipath {ipath} (mimetype [{proto.mimetype.decode('cp1252')}]):")
             bdata = makebytes(data)
             if debugDumpData or actAsSingle:
                 cmdtalk.breakwrite(ioout, bdata)
@@ -403,20 +405,19 @@ def main(proto, extract):
             print("Got error, eof %d" % eof, file=sys.stderr)
             sys.exit(1)
 
+
+    # Loop on subdocs like the indexer would.
     ecnt = 0
     while 1:
         ok, data, ipath, eof = extract.getnext(params)
         if ok:
             ecnt = ecnt + 1
             bdata = makebytes(data)
-            debprint(
-                ioout,
-                "== Entry %d dlen %d ipath %s (mimetype [%s]):"
-                % (ecnt, len(data), ipath, proto.mimetype.decode("cp1252")),
-            )
+            debprint(ioout, f"== Entry {ecnt} dlen {len(data)} ipath {ipath} "
+                     f"(mimetype [{proto.mimetype.decode('cp1252')}]):")
             if debugDumpFields:
                 for k, v in proto.fields.items():
-                    debprint(ioout, "  %s -> %s" % (k, v))
+                    debprint(ioout, f"  {k} -> {v}")
             proto.fields = {}
             if debugDumpData:
                 cmdtalk.breakwrite(ioout, bdata)
@@ -424,7 +425,7 @@ def main(proto, extract):
             if eof != RclExecM.noteof:
                 sys.exit(0)
         else:
-            print("Not ok, eof %d" % eof, file=sys.stderr)
+            print(f"Not ok, eof {eof}", file=sys.stderr)
             sys.exit(1)
         # Not sure this makes sense, but going on looping certainly does not
         if actAsSingle:

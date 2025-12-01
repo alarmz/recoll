@@ -157,7 +157,7 @@ class WordFilter:
             mt = self.mimetype(fn)
             self.em.rclog("rcldoc.py: actual MIME type %s" % mt)
             if mt == "text/plain":
-                return ([sys.executable, os.path.join(self.execdir, "rcltext.py")],
+                return ([sys.executable, os.path.join(self.execdir, "rcltext.py"), "-s"],
                         WordPassData(self.em))
             elif mt == "text/rtf":
                 return ([sys.executable, os.path.join(self.execdir, "rclrtf.py"), "-s"],

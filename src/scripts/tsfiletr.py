@@ -91,7 +91,7 @@ language_codes = {
     "pl": "Polish",
     "pt": "Portuguese",
     "ru": "Russian", "ru_RU": "Russian",
-    "sv": "Swedish", "sv-SE": "Swedish",
+    "sv": "Swedish", "sv_SE": "Swedish",
     "th": "Thai",
     "tr": "Turkish",
     "uk": "Ukrainian",
