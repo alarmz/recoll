@@ -220,7 +220,7 @@ for dir in $dirs ; do
         continue
     fi
     cd $dir && echo -n "$dir "
-    sh `basename $dir`.sh
+    `basename $dir`.sh
     cd ..
 done
 
