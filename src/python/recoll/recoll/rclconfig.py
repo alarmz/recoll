@@ -15,10 +15,18 @@ def msg(s):
 
 
 class RclDynConf:
+    """Decoding the contents of the recoll config "history" file.
+    This contains lists of values inside multiple submaps (e.g. "[docs]" for doc history,
+    "[allExtDbs]" for external indexes etc.).
+    In each submap, the values are encoded as base64 and the keys are string integers
+    like 000001, 00002 etc., such that the contents of a submap are ordered.
+    We provide the contents of a submap as a list of binary strings.
+    """
     def __init__(self, fname):
         self.data = conftree.ConfSimple(fname)
 
     def getStringList(self, sk):
+        """Return the contents of a history file submap as a list of binary strings"""
         nms = self.data.getNames(sk)
         out = []
         if nms is not None:
@@ -28,13 +36,30 @@ class RclDynConf:
 
 
 class RclConfig:
+    """A Python class mimicking a subset of the C++ RclConfig interface"""
     def __init__(self, argcnf=None):
+        """Peruse the environment and optional input config location to compute the list
+        of stacked directories (self.cdirs) which will be used to build the configuration
+        objects as ConfStacks.
+        Also set:
+         - self.datadir: (the installed Recoll datadir directory, e.g. /usr/share/recoll on Linux)
+         - self.confdir: the personal config.
+        Initialize self.config and self.mimemap to None for lazy building.
+
+        Most of the interface related to fs locations is str-based, so if you want to
+        use a non-decodable binary string as your configuration location, you are out of luck.
+        However the getConfParam() method will accept a binary key and return a binary
+        string in this case.
+        """
+
         self.config = None
         self.mimemap = None
-        self.casesens = True
+        self.keydir = ""
         platsys = platform.system()
-        if platsys == "Windows":
-            self.casesens = False
+
+        # We now always set casesens to False, even on Linux. ConfTree() sets the submaps names (fs
+        # paths) case-sensitivity depending on the platform.
+        self.casesens = False
 
         # Find configuration directory
         if argcnf:
@@ -130,13 +155,15 @@ class RclConfig:
             self.cdirs.append(os.environ["RECOLL_CONFMID"])
         self.cdirs.append(baseconfdir)
         # msg("Config dirs: {self.cdirs}")
-        self.keydir = ""
+
 
     def getConfDir(self):
         return self.confdir
 
+
     def getDataDir(self):
         return self.datadir
+
 
     def getDbDir(self):
         dir = self.getConfParam("dbdir")
@@ -147,8 +174,10 @@ class RclConfig:
             cachedir = self.confdir
         return os.path.join(cachedir, dir)
 
+
     def setKeyDir(self, dir):
         self.keydir = dir
+
 
     def getConfParam(self, nm):
         if not self.config:
@@ -156,10 +185,11 @@ class RclConfig:
                                              casesensitive = self.casesens)
         return self.config.get(nm, self.keydir)
 
-    # This is a simplified version of the c++ code, intended mostly for the
-    # test mode of rclexecm.py. We don't attempt to check the data, so this
-    # will not work on extension-less paths (e.g. mbox/mail/etc.)
+
     def mimeType(self, path):
+        """This is a simplified version of the c++ code, intended mostly for the
+        test mode of rclexecm.py. We don't attempt to check the data, so this
+        will not work on extension-less paths (e.g. mbox/mail/etc.)"""
         if not self.mimemap:
             self.mimemap = conftree.ConfStack("mimemap", self.cdirs, tp="tree",
                                               casesensitive = self.casesens)
