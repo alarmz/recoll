@@ -36,9 +36,11 @@ class ConfSimple(object):
     dictionaries which lets you retrieve named values from the top
     level or a subsection"""
 
-    def __init__(self, confname, tildexp=False, readonly=True, casesensitive=True):
+    def __init__(self, confname, tildexp=False, readonly=True, casesensitive=False):
         self.casesens = casesensitive
-        self.submaps = self._makedict()
+        if not hasattr(self, "submapcasesens"):
+            self.submapcasesens = self.casesens
+        self.submaps = self._makedict(True)
         self.submaps[b""] = self._makedict()
         self.subkeys_unsorted = []
         self.dotildexpand = tildexp
@@ -55,8 +57,11 @@ class ConfSimple(object):
         self._parseinput(f)
         f.close()
 
-    def _makedict(self):
-        if self.casesens:
+    def _makedict(self, issubmaps = False):
+        casesens = self.casesens
+        if issubmaps:
+            casesens = self.submapcasesens
+        if casesens:
             return dict()
         else:
             return CaseInsensitiveDict()
@@ -208,6 +213,13 @@ class ConfTree(ConfSimple):
     the ancestors. E.g. get(name, '/a/b') will also look in sections '/a' and
     '/' or '' (the last 2 are equivalent)"""
 
+    def __init__(self, *args, **kwargs):
+        if platform.system() in ("Windows", "Darwin"):
+            self.submapcasesens = False
+        else:
+            self.submapcasesens = True
+        super().__init__(*args, **kwargs)
+        
     def getbin(self, nm, sk=b""):
         if type(nm) != type(b"") or type(sk) != type(b""):
             raise TypeError("getbin: parameters must be binary not unicode")
