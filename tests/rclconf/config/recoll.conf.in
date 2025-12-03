@@ -1,0 +1,88 @@
+# The actual recoll.conf is created from this by the top level runtest.sh
+# not by the configure script
+
+cachedir = /home/dockes/tmp/recolltsttmp
+
+loglevel = 3
+logfilename = /home/dockes/tmp/logrcltst
+idxlogfilename = /home/dockes/tmp/idxlogrcltst
+
+daemloglevel = 3
+daemlogfilename = /home/dockes/tmp/rclmontrace
+
+systemfilecommand = xdg-mime query filetype
+# This is the default on unix but not windows, and needed for windows test
+# to succeed
+usesystemfilecommand = 1
+
+noaspell = 1
+
+indexStripChars = 1
+detectxattronly = 1
+
+topdirs = @MYDIR@/docs
+
+#thrQSizes = -1 -1 -1
+idxflushmbs=200
+#thrTmpDbCnt = 4
+#numberdashspans=1
+
+# Adding to skippedNames
+skippedNames+ = notinskippednames
+# Removing from skippedNames
+skippedNames- = recoll.ini
+
+# Adding to noContentSuffixes
+noContentSuffixes+ = .nosuff
+# Removing from noContentSuffixes
+noContentSuffixes- = .md5
+
+# Comics_12 causes rclppt to loop. We keep it around for general testing
+# but it takes too much time when running the test-set
+skippedPaths = \
+    @MYDIR@/docs/.hg \
+    @MYDIR@/docs/skipped/real* \
+    @MYDIR@/docs/config \
+    @MYDIR@/docs/ppt/Comics_12.pps
+daemSkippedPaths =  \
+    @MYDIR@/docs/.hg \
+    @MYDIR@/docs/skipped/real* \
+    @MYDIR@/docs/config
+
+unac_except_trans = åå 
+
+pdfextrameta = pdf:Producer dc:identifier
+
+# Can't use dir key as rclpdf doesnt call setkeydir
+pdfattach = 1
+
+[@MYDIR@/docs/pdf]
+ocrprogs = tesseract
+pdfocr = 1
+pdfocrlang = eng
+
+[@MYDIR@/docs/utf8]
+defaultcharset = utf-8
+[@MYDIR@/docs/ru_RU.KOI8-R]
+defaultcharset = KOI8-R
+
+[@MYDIR@/docs/info]
+localfields = rclaptg=gnuinfo
+
+[@MYDIR@/docs/mail/thunderbird]
+mhmboxquirks = tbird
+
+[@MYDIR@/docs/cjk]
+localfields= ; keyword = ckjtsthuniique; blabla= "some string"
+
+[@MYDIR@/docs/idxtypes]
+indexedmimetypes = text/plain
+
+[@MYDIR@/docs/excltypes]
+excludedmimetypes = text/plain
+
+[@MYDIR@/docs/excludehtml]
+indexedmimetypes = application/pdf
+
+[@MYDIR@/docs/onlynames]
+onlyNames = *.matchesonepat *.matchestwopat

@@ -1,0 +1,3 @@
+
+[view]
+application/pdf = xpdf %f

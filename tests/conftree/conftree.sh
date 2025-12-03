@@ -40,15 +40,16 @@ else:
 sys.path.insert(0, pydir)
 sys.path.insert(0, "/home/dockes/projets/fulltext/recoll/src/python/recoll/recoll")
 
+outputfd = open(outputfn, "w")
+
+def output(s):
+    print(f"{s}", file=outputfd)
+
 ## Done with the shared.sh stuff
 
 import conftree
 
 
-outputfd = open(outputfn, "w")
-
-def output(s):
-    print(f"{s}", file=outputfd)
     
 # The test input config
 configfn = os.path.join(mydir, "cftest.conf")
@@ -93,9 +94,9 @@ for nm, sk, ref in smtuples:
         sys.exit(1)
     output(f"get({nm}, {sk}) -> {value}")
     
+
+
 outputfd.close()
-
-
 diffd = open(difffn, "w")
 cmd = ["diff", "-u", "-w", reffn, outputfn]
 subprocess.run(cmd, stdout = diffd)

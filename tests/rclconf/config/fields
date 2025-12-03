@@ -1,0 +1,10 @@
+[prefixes]
+testfield = TSTFLD
+pdf:producer = XYYPDFPROD
+url = XYYPDFID
+
+[stored]
+testfield=
+pdf:producer =
+url =
+

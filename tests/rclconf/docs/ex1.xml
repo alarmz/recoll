@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<VirtualBox xmlns="http://www.innotek.de/VirtualBox-settings" version="1.9-freebsd">
+  <Machine uuid="{ad59f5ca-6f61-4772-8e3a-f528295d00ad}" name="vfc13" OSType="Fedora" lastStateChange="2011-05-04T08:23:08Z">
+  </Machine>
+</VirtualBox>

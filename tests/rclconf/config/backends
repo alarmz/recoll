@@ -1,0 +1,13 @@
+# This configuration file has a description of the active external indexers. See the manual for more
+# detail: Programming interface -> Python API -> Creating Python external indexers
+#
+# This file should be copied to your configuration directory (e.g. ~/.recoll) an possibly edited.
+# Unlike the other configuration files, no defaults are obtained from the shared configuration
+# directory: only the values from the user configuration are used.
+
+# The Joplin indexer is installed with recoll (filters/rcljoplin.py).
+# Because the indexer script is in the "filters" directory, there is no need for absolute paths
+[JOPLIN]
+fetch = rcljoplin.py fetch
+makesig = rcljoplin.py makesig
+index = rcljoplin.py index
