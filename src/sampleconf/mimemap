@@ -139,8 +139,7 @@
 .mobi = application/x-mobipocket-ebook 
 .lit = application/x-ms-reader
 
-# OpenOffice / opendocument. We handle opendocument as old openoffice files
-# for now
+# OpenOffice / opendocument. We handle opendocument as old openoffice files for now
 .ods = application/vnd.sun.xml.calc
 .sxc = application/vnd.sun.xml.calc
 .stc = application/vnd.sun.xml.calc.template

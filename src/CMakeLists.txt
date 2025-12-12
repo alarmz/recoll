@@ -293,6 +293,8 @@ set(librecoll_SOURCES
     utils/appformime.h
     utils/base64.cpp
     utils/base64.h
+    utils/boolexp.cpp
+    utils/boolexp.h
     utils/cancelcheck.cpp
     utils/cancelcheck.h
     utils/chrono.h

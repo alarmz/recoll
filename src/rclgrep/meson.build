@@ -40,6 +40,7 @@ rclgrep_sources = [
     '../rcldb/rcldoc.cpp',
     '../unac/unac.cpp',
     '../utils/base64.cpp',
+    '../utils/boolexp.cpp',
     '../utils/cancelcheck.cpp',
     '../utils/chrono.cpp',
     '../utils/circache.cpp',

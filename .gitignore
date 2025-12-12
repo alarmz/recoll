@@ -96,4 +96,6 @@ tests/indexedmimetypes/mimeview
 tests/indexedmimetypes/missing
 tests/indexedmimetypes/recoll.conf
 tests/indexedmimetypes/xapiandb
+tests/rclconf/config/mimemap
+tests/rclconf/config/recoll.conf
 tests/xattr/mimeview
