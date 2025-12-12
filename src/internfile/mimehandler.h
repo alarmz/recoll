@@ -22,6 +22,7 @@
 #include <string>
 
 #include "Filter.h"
+#include "pathut.h"
 #include "smallut.h"
 
 class RclConfig;
@@ -164,7 +165,8 @@ protected:
  *     indexedmimetypes (if this is set at all).
  */
 extern RecollFilter *getMimeHandler(const std::string &mtyp, RclConfig *cfg,
-                                    bool filtertypes, const std::string& fn = std::string());
+                                    bool filtertypes, const std::string& fn = std::string(),
+                                    const struct PathStat *stp = nullptr);
 
 /// Free up filter for reuse (you can also delete it)
 extern void returnMimeHandler(RecollFilter *);

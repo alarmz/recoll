@@ -67,102 +67,73 @@ application/msword = execm rcldoc.py
 application/vnd.ms-excel = execm rclxls.py
 application/vnd.ms-outlook = execm rclpst.py
 application/vnd.ms-powerpoint = execm rclppt.py
-# Also Handle the mime type returned by "file -i" for a suffix-less word
-# file. This could probably just as well be an excel file, but we have to
-# chose one.
+# Also handle the mime type returned by "file -i" for a suffix-less word file.
+# This could probably just as well be an excel file, but we have to chose one.
 application/vnd.ms-office = execm rcldoc.py
 
-application/vnd.oasis.opendocument.text = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.oasis.opendocument.text-template = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.oasis.opendocument.presentation = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.oasis.opendocument.spreadsheet = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.oasis.opendocument.graphics = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.oasis.opendocument.presentation-flat-xml = \
- internal xsltproc opendoc-flat.xsl
-application/vnd.oasis.opendocument.text-flat-xml = \
- internal xsltproc opendoc-flat.xsl
-application/vnd.oasis.opendocument.spreadsheet-flat-xml = \
- internal xsltproc opendoc-flat.xsl
 
-# Powerpoint and Visio are now processed by the C++ libxsl-based module which has gained the
-# capability to process an indeterminate number of body pages. The Python handler is still around
-# because it is of course easier to customise, and can also process xlsx and docx.
+application/vnd.sun.xml.writer = internal xsltproc \
+  meta meta.xml opendoc-meta.xsl \
+  body content.xml opendoc-body.xsl
+application/vnd.sun.xml.draw = as application/vnd.sun.xml.writer
+application/vnd.sun.xml.draw.template = as application/vnd.sun.xml.writer
+application/vnd.sun.xml.impress = as application/vnd.sun.xml.writer
+application/vnd.sun.xml.impress.template = as application/vnd.sun.xml.writer
+application/vnd.sun.xml.math = as application/vnd.sun.xml.writer
+application/vnd.sun.xml.writer.global = as application/vnd.sun.xml.writer
+application/vnd.sun.xml.writer.template = as application/vnd.sun.xml.writer
+# Really big spreadsheets cause libxml/xslt memory issues, but are converted ok by soffice, which is
+# too slow to start for small spreadsheets.
+application/vnd.sun.xml.calc = decide sizekbs < 1000 ? \
+ internal xsltproc meta meta.xml opendoc-meta.xsl body content.xml opendoc-body.xsl : \
+ exec rclrunsoffice.py ; mimetype = text/html
+application/vnd.sun.xml.calc.template = as application/vnd.sun.xml.calc
+# These are aliases for the vnd.sun equivalents.
+application/vnd.oasis.opendocument.text = as application/vnd.sun.xml.calc
+application/vnd.oasis.opendocument.text-template = as application/vnd.sun.xml.calc
+application/vnd.oasis.opendocument.presentation = as application/vnd.sun.xml.calc
+application/vnd.oasis.opendocument.spreadsheet = as application/vnd.sun.xml.calc
+application/vnd.oasis.opendocument.graphics = as application/vnd.sun.xml.calc
+
+application/vnd.oasis.opendocument.presentation-flat-xml =  internal xsltproc opendoc-flat.xsl
+application/vnd.oasis.opendocument.text-flat-xml = internal xsltproc opendoc-flat.xsl
+application/vnd.oasis.opendocument.spreadsheet-flat-xml = decide sizekbs < 1000 ? \
+    internal xsltproc opendoc-flat.xsl :  exec rclrunsoffice.py ; mimetype = text/html
+
 application/vnd.openxmlformats-officedocument.wordprocessingml.document = \
  internal xsltproc meta docProps/core.xml openxml-meta.xsl \
  body word/document.xml openxml-word-body.xsl \
  body word/footnotes.xml openxml-word-body.xsl \
  body word/comments.xml openxml-word-body.xsl \
  body word/endnotes.xml openxml-word-body.xsl 
-application/vnd.openxmlformats-officedocument.wordprocessingml.template = \
- internal xsltproc meta docProps/core.xml openxml-meta.xsl \
- body word/document.xml openxml-word-body.xsl \
- body word/footnotes.xml openxml-word-body.xsl \
- body word/comments.xml openxml-word-body.xsl \
- body word/endnotes.xml openxml-word-body.xsl 
+application/vnd.openxmlformats-officedocument.wordprocessingml.template = as \
+    application/vnd.openxmlformats-officedocument.wordprocessingml.document
+
+# Big excel spreadsheets probably cause a memory issue like the libreoffice ones.
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet = \
  internal xsltproc meta docProps/core.xml openxml-meta.xsl \
  body xl/sharedStrings.xml openxml-xls-body.xsl \
  body xl/worksheets/sheet*.xml openxml-xls-body.xsl
-application/vnd.openxmlformats-officedocument.spreadsheetml.template =\
- internal xsltproc meta docProps/core.xml openxml-meta.xsl \
- body xl/sharedStrings.xml openxml-xls-body.xsl \
- body xl/worksheets/sheet*.xml openxml-xls-body.xsl
+application/vnd.openxmlformats-officedocument.spreadsheetml.template = as \
+    application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+# Powerpoint and Visio are now processed by the C++ libxsl-based module which has gained the
+# capability to process an indeterminate number of body pages. The Python handler is still around
+# because it is of course easier to customise, and can also process xlsx and docx.
 #application/vnd.openxmlformats-officedocument.presentationml.template = execm rclopxml.py
 #application/vnd.openxmlformats-officedocument.presentationml.presentation = execm rclopxml.py
 application/vnd.openxmlformats-officedocument.presentationml.presentation = \
     internal xsltproc meta docProps/core.xml openxml-meta.xsl \
     body ppt/slides/slide*.xml openxml-ppt-body.xsl \
     body ppt/notesSlides/notesSlide*.xml openxml-ppt-body.xsl 
-application/vnd.openxmlformats-officedocument.presentationml.template = \
-    internal xsltproc meta docProps/core.xml openxml-meta.xsl \
-    body ppt/slides/slide*.xml openxml-ppt-body.xsl \
-    body ppt/notesSlides/notesSlide*.xml openxml-ppt-body.xsl 
+application/vnd.openxmlformats-officedocument.presentationml.template = as \
+    application/vnd.openxmlformats-officedocument.presentationml.presentation
+
 #application/vnd.ms-visio.drawing = execm rclopxml.py
 application/vnd.ms-visio.drawing = \
     internal xsltproc meta docProps/core.xml openxml-meta.xsl \
     body visio/pages/page*.xml openxml-visio-body.xsl
 
-
-application/vnd.sun.xml.calc = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.sun.xml.calc.template = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.sun.xml.draw = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.sun.xml.draw.template = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.sun.xml.impress = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.sun.xml.impress.template = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.sun.xml.math = \
-  internal xsltproc meta meta.xml opendoc-meta.xsl \
-  body content.xml opendoc-body.xsl
-application/vnd.sun.xml.writer = \
-  internal xsltproc meta meta.xml opendoc-meta.xsl \
-  body content.xml opendoc-body.xsl
-application/vnd.sun.xml.writer.global = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
-application/vnd.sun.xml.writer.template = \
- internal xsltproc meta meta.xml opendoc-meta.xsl \
- body content.xml opendoc-body.xsl
 
 #application/x-mobipocket-ebook = execm rclmobi
 #application/x-tar = execm rcltar.py

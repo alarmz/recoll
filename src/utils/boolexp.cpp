@@ -173,34 +173,22 @@ private:
 };
 
 static std::map<Lexer::token, const char *> token_names {
-    {Lexer::EQUAL, "EQUAL"},
-    {Lexer::NOTEQUAL, "NOTEQUAL"},
-    {Lexer::MATCHES, "MATCHES"},
-    {Lexer::SMALLEREQ, "SMALLEREQ"},
-    {Lexer::SMALLER, "SMALLER"},
-    {Lexer::GREATER, "GREATER"},
-    {Lexer::GREATEREQ, "GREATEREQ"},
-    {Lexer::AND, "AND"},
-    {Lexer::OR, "OR"},
-    {Lexer::PARENTOPEN, "PARENTOPEN"},
-    {Lexer::PARENTCLOSE, "PARENTCLOSE"},
-    {Lexer::WORD, "WORD"},
-    {Lexer::INT, "INT"},
-    {Lexer::QUOTED, "QUOTED"},
+    {Lexer::EQUAL, "EQUAL"}, {Lexer::NOTEQUAL, "NOTEQUAL"}, {Lexer::MATCHES, "MATCHES"},
+    {Lexer::SMALLEREQ, "SMALLEREQ"}, {Lexer::SMALLER, "SMALLER"}, {Lexer::GREATER, "GREATER"},
+    {Lexer::GREATEREQ, "GREATEREQ"}, {Lexer::AND, "AND"}, {Lexer::OR, "OR"},
+    {Lexer::PARENTOPEN, "PARENTOPEN"}, {Lexer::PARENTCLOSE, "PARENTCLOSE"}, {Lexer::WORD, "WORD"},
+    {Lexer::INT, "INT"}, {Lexer::QUOTED, "QUOTED"},
 };
 
+#if 0
+// Debug
 void print_value(const std::variant<int, std::string>& value, std::ostream& os = std::cerr)
 {
     switch (value.index()) {
-    case 0:
-        os << std::get<int>(value);;
-        break;
-    case 1:
-        os << std::get<std::string>(value);
-        break;
+    case 0: os << std::get<int>(value); break;
+    case 1: os << std::get<std::string>(value); break;
     }
 }
-
 void print_token(const std::pair<Lexer::token, std::variant<int, std::string>>& tok,
     std::ostream& os = std::cerr)
 {
@@ -215,10 +203,14 @@ void print_token(const std::pair<Lexer::token, std::variant<int, std::string>>& 
     }
     os << '\n';
 }
+#endif
 
 
+// Evaluate the expression. We use the Shunting Yard algorithm:
+//   https://en.wikipedia.org/wiki/Shunting_yard_algorithm
 int evaluate(const std::string& sexpr,
-             const std::map<std::string, std::variant<int, std::string>>& symtable)
+             const std::map<std::string, std::variant<int, std::string>>& symtable,
+             std::string *errstr)
 {
     std::stack<std::pair<Lexer::token, std::variant<int, std::string>>> output;
     std::stack<Lexer::token> operstack;
@@ -236,25 +228,22 @@ int evaluate(const std::string& sexpr,
         if (kind > Lexer::PARENTCLOSE) {
             // It's a value
             if (kind == Lexer::INT) {
-                std::variant<int, std::string> v = atoi(value.c_str());
-                output.push({kind, v});
+                output.push({kind, {static_cast<int>(atoi(value.c_str()))}});
             } else if (kind == Lexer::QUOTED) {
                 output.push({kind, {value}});
             } else if (kind == Lexer::WORD) {
                 const auto it = symtable.find(value);
                 if (it == symtable.end()) {
-                    std::cerr << "Bad variable name\n";
+                    if (errstr) *errstr = std::string("Bad variable name") + value;
                     return -1;
                 }
                 switch (it->second.index()) {
                 case 0: {
-                    int i = std::get<int>(it->second);
-                    output.push({kind, {i}});
+                    output.push({kind, {std::get<int>(it->second)}});
                     break;
                 }
                 case 1: {
-                    std::string v = std::get<std::string>(it->second);
-                    output.push({kind, {v}});
+                    output.push({kind, {std::get<std::string>(it->second)}});
                     break;
                 }
                 }
@@ -284,7 +273,7 @@ int evaluate(const std::string& sexpr,
         } else if (kind == Lexer::PARENTCLOSE) {
             while (true) {
                 if (operstack.empty()) {
-                    std::cerr << "Empty operstack while looking for opening parenthese\n";
+                    if (errstr) *errstr = "Empty operstack while looking for opening parenthese";
                     return -1;
                 }
                 if (operstack.top() == Lexer::PARENTOPEN) {
@@ -301,7 +290,7 @@ int evaluate(const std::string& sexpr,
     // Move remaining operators from stack to output
     while (!operstack.empty()) {
         if (operstack.top() == Lexer::PARENTOPEN || operstack.top() == Lexer::PARENTCLOSE) {
-            std::cerr << "Mismatched parentheses\n";
+            if (errstr) *errstr = "Mismatched parentheses";
             return -1;
         }
         output.push({operstack.top(), {0}});
@@ -322,13 +311,13 @@ int evaluate(const std::string& sexpr,
             output.push({kind, value});
         } else {
             if (output.empty()) {
-                std::cerr << "Stack underflow\n";
+                if (errstr) *errstr = "Stack underflow";
                 return -1;
             }
             auto [kright, right] = output.top();
             output.pop();
             if (output.empty()) {
-                std::cerr << "Stack underflow\n";
+                if (errstr) *errstr = "Stack underflow";
                 return -1;
             }
             auto [kleft, left] = output.top();
@@ -372,7 +361,7 @@ int evaluate(const std::string& sexpr,
                 case Lexer::MATCHES: {
                     static regex_t reg;
                     if (regcomp(&reg, std::get<std::string>(right).c_str(), REG_EXTENDED|REG_NOSUB)){
-                        std::cerr << "Bad regular expression\n";
+                        if (errstr) *errstr = "Bad regular expression";
                         return -1;
                     }
                     auto res = regexec(&reg, std::get<std::string>(left).c_str(), 0, 0, 0);
@@ -381,11 +370,11 @@ int evaluate(const std::string& sexpr,
                     break;
                 }
                 default:
-                    std::cerr << "Bad oper during eval: " << token_names[kind] << '\n';
+                    if (errstr) *errstr = std::string("Bad oper during eval: ") + token_names[kind];
                     return -1;
                 }
             } catch(...) {
-                std::cerr << "Type error\n";
+                if (errstr) *errstr = "Type error";
                 return -1;
             }
         }
@@ -394,13 +383,12 @@ int evaluate(const std::string& sexpr,
     }
 
     if (output.empty()) {
-        std::cerr << "No result ??\n";
+        if (errstr) *errstr = "No result ??";
         return -1;
     }
-    // std::cout << "RESULT "; print_token(output.top());
     auto& [lkind, lvalue] = output.top();
     if (lkind < Lexer::LAST_OPER) {
-        std::cerr << " Operator ??\n";
+        if (errstr) *errstr = " Operator ??";
         return -1;
     }
     return std::get<int>(lvalue);

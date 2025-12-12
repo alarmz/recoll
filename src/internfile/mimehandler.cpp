@@ -47,6 +47,7 @@
 #include "rcldoc.h"
 #include "rclutil.h"
 #include "conftree.h"
+#include "boolexp.h"
 
 using namespace std;
 
@@ -227,8 +228,7 @@ MimeHandlerExec *mhExecFactory(RclConfig *cfg, const string& mtype, string& hs,
     string cmdstr;
 
     if (!cfg->valueSplitAttributes(hs, cmdstr, attrs)) {
-        LOGERR("mhExecFactory: bad config line for [" <<
-               mtype << "]: [" << hs << "]\n");
+        LOGERR("mhExecFactory: bad config line for [" << mtype << "]: [" << hs << "]\n");
         return 0;
     }
 
@@ -236,8 +236,7 @@ MimeHandlerExec *mhExecFactory(RclConfig *cfg, const string& mtype, string& hs,
     vector<string> cmdtoks;
     stringToStrings(cmdstr, cmdtoks);
     if (cmdtoks.empty()) {
-        LOGERR("mhExecFactory: bad config line for [" << mtype <<
-               "]: [" << hs << "]\n");
+        LOGERR("mhExecFactory: bad config line for [" << mtype << "]: [" << hs << "]\n");
         return 0;
     }
     if (!cfg->processFilterCmd(cmdtoks)) {
@@ -263,36 +262,101 @@ MimeHandlerExec *mhExecFactory(RclConfig *cfg, const string& mtype, string& hs,
     return h;
 }
 
+// Separate e.g. [execm rcldoc.py whatever;some other] into 'execm' and the rest.
+static inline void xtract_tp_cmd(std::string& hs, std::string& handlertype, std::string& cmdstr)
+{
+    trimstring(hs);
+    auto  b1 = hs.find_first_of(" \t");
+    handlertype = hs.substr(0, b1);
+    stringtolower(handlertype);
+    if (b1 != string::npos) {
+        cmdstr = hs.substr(b1);
+        trimstring(cmdstr);
+    }
+}
+
 /* Get handler/filter object for given mime type: */
 RecollFilter *getMimeHandler(const string &mtype, RclConfig *cfg,
-                             bool filtertypes, const std::string& fn)
+                             bool filtertypes, const std::string& fn, const struct PathStat *stp)
 {
-    LOGDEB("getMimeHandler: mtype [" << mtype << "] filtertypes " <<
-           filtertypes << "\n");
+    LOGDEB("getMimeHandler: mtype [" << mtype << "] filtertypes " << filtertypes << "\n");
     RecollFilter *h = 0;
 
-    // Get handler definition for mime type. We do this even if an
-    // appropriate handler object may be in the cache.
-    // This is fast, and necessary to conform to the
-    // configuration, (ie: text/html might be filtered out by
-    // indexedmimetypes but an html handler could still be in the
-    // cache because it was needed by some other interning stack).
-    string hs;
+    // Get handler definition for mime type. We do this even if an appropriate handler object may be
+    // in the cache.
+    // This is fast, and necessary to conform to the configuration, (ie: text/html might be filtered
+    // out by indexedmimetypes but an html handler could still be in the cache because it was needed
+    // by some other interning stack).
+    std::string hs;
     hs = cfg->getMimeHandlerDef(mtype, filtertypes, fn);
-    string id;
 
+    std::string id;
     if (!hs.empty()) { 
         // Got a handler definition line
-        // Break definition into type (internal/exec/execm) 
-        // and name/command string 
-        string::size_type b1 = hs.find_first_of(" \t");
-        string handlertype = hs.substr(0, b1);
-        string cmdstr;
-        if (b1 != string::npos) {
-            cmdstr = hs.substr(b1);
-            trimstring(cmdstr);
+        std::string handlertype;
+        std::string cmdstr;
+
+        // Break definition into type (internal/exec/execm) and name/command string. Repeat if type
+        // is "as" (points to other definition).
+        int i = 0;
+        do { 
+            xtract_tp_cmd(hs, handlertype, cmdstr);
+            if (handlertype == "as") {
+                hs = cfg->getMimeHandlerDef(cmdstr, filtertypes, fn);
+                if (hs.empty()) {
+                    LOGERR("getMimeHandler: 'as' leads to empty def for " << mtype << '\n');
+                    goto out;
+                }
+            }
+            if (++i > 10) {
+                LOGERR("getMimeHandler: got \"as\" loop for " << mtype << '\n');
+                goto out;
+            }
+        } while (handlertype == "as");
+
+        // Process possible conditional treatment: [decide condition ? def1 : def2]
+        // This is used to decide kind of processing, e.g. based on size
+        if (handlertype == "decide") {
+            auto questionpos = cmdstr.find('?');
+            auto colonpos = cmdstr.find(':');
+            if (questionpos == std::string::npos || colonpos == std::string::npos) {
+                LOGERR("Bad definition for decide line : no question mark or no colon\n");
+                goto out;
+            }
+            auto condition = cmdstr.substr(0, questionpos);
+            auto cmdstr1 = cmdstr.substr(questionpos+1, colonpos-questionpos-1);
+            auto cmdstr2 = cmdstr.substr(colonpos+1);
+            LOGDEB0("  CONDITION [" << condition << "] cmd1 [" << cmdstr1 <<
+                    "] cmd2 [" << cmdstr2 << "]\n");
+            // This can only work if we have an actual file name (and actual stat data if size is
+            // involved
+            if (!fn.empty()) {
+                auto sfn = path_getsimple(fn);
+                int size = stp ? static_cast<int>(stp->pst_size/1024) : 0; 
+                std::map<std::string, std::variant<int, std::string>> symtable {
+                    {"sizekbs", size},
+                    {"filename", sfn},
+                };
+                std::string errstr;
+                auto result = BoolExp::evaluate(condition, symtable, &errstr);
+                if (!errstr.empty()) {
+                    LOGERR("Error evaluating [" << condition << "] : " << errstr << '\n');
+                }
+                if (result) {
+                    hs = cmdstr1;
+                } else {
+                    hs = cmdstr2;
+                }
+            } else {
+                // No data: use the first choice.
+                hs = cmdstr1;
+            }
+            xtract_tp_cmd(hs, handlertype, cmdstr);
         }
-        bool internal = !stringlowercmp("internal", handlertype);
+
+        LOGERR(" HANDLERTYPE [" << handlertype << "] cmdstr [" << cmdstr << "]\n");
+        
+        bool internal = (handlertype == "internal");
         if (internal) {
             // For internal types let the factory compute the cache id
             mhFactory(cfg, cmdstr.empty() ? mtype : cmdstr, true, id);
@@ -308,40 +372,41 @@ RecollFilter *getMimeHandler(const string &mtype, RclConfig *cfg,
 
         LOGDEB2("getMimeHandler: " << mtype << " not in cache\n");
         if (internal) {
-            // If there is a parameter after "internal" it's the mime
-            // type to use, or the further qualifier (e.g. style sheet
-            // name for xslt types). This is so that we can have bogus
-            // mime types like text/x-purple-html-log (for ie:
-            // specific icon) and still use the html filter on
-            // them. This is partly redundant with the
-            // localfields/rclaptg, but better? (and the latter will
-            // probably go away at some point in the future?).
+            // A MIME type and other values can be specified as additional text after the handler
+            // type, e.g "internal text/plain"
+            // This is so that we can have specific MIME types like text/x-purple-html-log (allowing
+            // a specific icon and viewer), and process them as text/plain or text/html for indexing.
+            // This is partly redundant with the localfields/rclaptg approach and the newer "as"
+            // indirection.
+            // Also, special processing is performed by mhFactory if the first word is "xsltproc"
+            // because what follows are the intruction for maybe processing multiple XML docs into
+            // main text and metadata.
             LOGDEB2("handlertype internal, cmdstr [" << cmdstr << "]\n");
             h = mhFactory(cfg, cmdstr.empty() ? mtype : cmdstr, false, id);
             goto out;
-        } else if (!stringlowercmp("dll", handlertype)) {
+        } else if ("dll" == handlertype) {
+            // Never actually used :)
         } else {
+            // Executing an external program. Which must be set...
             if (cmdstr.empty()) {
-                LOGERR("getMimeHandler: bad line for " << mtype << ": " <<
-                       hs << "\n");
+                LOGERR("getMimeHandler: bad line for " << mtype << ": " << hs << "\n");
                 goto out;
             }
-            if (!stringlowercmp("exec", handlertype)) {
+            if ("exec" == handlertype) {
                 h = mhExecFactory(cfg, mtype, cmdstr, false, id);
                 goto out;
-            } else if (!stringlowercmp("execm", handlertype)) {
+            } else if ("execm" == handlertype) {
                 h = mhExecFactory(cfg, mtype, cmdstr, true, id);
                 goto out;
             } else {
-                LOGERR("getMimeHandler: bad line for " << mtype << ": " <<
-                       hs << "\n");
+                LOGERR("getMimeHandler: bad line for " << mtype << ": " << hs << "\n");
                 goto out;
             }
         }
     } else {
-        // No identified mime type, or no handler associated.
-        // Unhandled files are either ignored or their name and
-        // generic metadata is indexed, depending on configuration
+        // No identified MIME type, or no handler associated.
+        // Such files are either ignored or their name and generic metadata is indexed, depending on
+        // configuration
         bool indexunknown = false;
         cfg->getConfParam("indexallfilenames", &indexunknown);
         if (indexunknown) {

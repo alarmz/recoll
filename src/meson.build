@@ -331,6 +331,7 @@ librecoll_sources = [
     'unac/unac.cpp',
     'utils/appformime.cpp',
     'utils/base64.cpp',
+    'utils/boolexp.cpp',
     'utils/cancelcheck.cpp',
     'utils/chrono.cpp',
     'utils/circache.cpp',
