@@ -19,9 +19,9 @@
 # Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-# This is used to encapsulate soffice in something which will simply return or print out
-# data. Soffice wants to write to a file inside a target directory, which is not convenient for what
-# we do.
+# This is used to encapsulate the soffice conversion function in something which will simply return
+# or print out data. Soffice wants to write to a file inside a target directory, which is not
+# convenient for what we do.
 
 import rclexecm
 import sys
@@ -35,18 +35,21 @@ class SofficeRunner(object):
                         "--convert-to", "html", "--outdir"]
 
     def runsoffice(self, inpath):
-        if type(inpath) == type(""):
+        if isinstance(inpath, str):
             inpath = inpath.encode("UTF-8")
         self.tmpdir.vacuumdir()
         cmd = self.cmdbase + [self.tmpdir.getpath(), inpath]
-        subprocess.check_call(cmd, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
-        infn = os.path.basename(inpath)
-        inbase = os.path.splitext(infn)[0]
-        htmlfn = os.path.join(self.tmpdir.getpath().encode("UTF-8"), inbase) + b".html"
-        if not os.path.exists(htmlfn):
+        try:
+            subprocess.check_call(cmd, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
+            infn = os.path.basename(inpath)
+            inbase = os.path.splitext(infn)[0]
+            htmlfn = os.path.join(self.tmpdir.getpath().encode("UTF-8"), inbase) + b".html"
+            if not os.path.exists(htmlfn):
+                return ""
+            return open(htmlfn).read()
+        except Exception as ex:
+            rclexecm.logmsg(f"soffice failed: {ex}")
             return ""
-        return open(htmlfn).read()
-
 
 if __name__ == "__main__":
     sofficecmd = rclexecm.which("soffice")
