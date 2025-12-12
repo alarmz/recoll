@@ -30,13 +30,15 @@ namespace BoolExp {
 /** Evaluate a boolean expression given as a string.
  *
  *  Values are ints or quoted strings or name references to the input symbol table
- *  Operators are < > <= >= = && || and parentheses
+ *  Operators are < > <= >= = && || parentheses and ~ (string regexp: str ~ regexp).
  *
  *  @param sexpr the input expression
  *  @param symtable an association of names to int or string values
  *  @return -1 for error, 0 or 1.
  */
 int evaluate(const std::string& sexpr,
-             const std::map<std::string, std::variant<int, std::string>>& symtable);
+             const std::map<std::string, std::variant<int, std::string>>& symtable,
+             std::string *errstr = nullptr
+    );
 
 }

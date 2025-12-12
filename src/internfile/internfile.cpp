@@ -197,6 +197,7 @@ void FileInterner::init(const string &f, const struct PathStat& stp,
     }
 
     int64_t docsize = stp.pst_size;
+    struct PathStat ucstat = stp;
 
     if (!l_mime.empty()) {
         // Has mime: check for a compressed file. If so, create a
@@ -216,7 +217,6 @@ void FileInterner::init(const string &f, const struct PathStat& stp,
                 LOGDEB1("FileInterner:: after ucomp: tfile " << m_tfile <<"\n");
                 m_fn = m_tfile;
                 // Stat the uncompressed file, mainly to get the size
-                struct PathStat ucstat;
                 if (path_fileprops(m_fn, &ucstat) != 0) {
                     LOGERR("FileInterner: can't stat the uncompressed file[" <<
                            m_fn << "] errno " << errno << "\n");
@@ -252,7 +252,7 @@ void FileInterner::init(const string &f, const struct PathStat& stp,
     m_mimetype = l_mime;
 
     // Look for appropriate handler (might still return empty)
-    RecollFilter *df = getMimeHandler(l_mime, m_cfg, !m_forPreview, f);
+    RecollFilter *df = getMimeHandler(l_mime, m_cfg, !m_forPreview, f, &ucstat);
 
     if (!df || df->is_unknown()) {
         // No real handler for this type, for now :( 
