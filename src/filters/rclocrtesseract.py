@@ -25,6 +25,7 @@ import tempfile
 import subprocess
 import glob
 
+import conftree
 import rclexecm
 
 _mswindows = sys.platform == "win32"
@@ -74,17 +75,20 @@ def ocrpossible(config, path):
         config.setKeyDir(os.path.dirname(path))
         tesseractcmd = config.getConfParam("tesseractcmd")
         if tesseractcmd:
-            # It is very tempting to quote this value, esp. on Windows where it
-            # will contain whitespace. There is no chance that an actual
-            # command line would have quotes, so unquote it.
-            tesseractcmd = tesseractcmd.strip('"')
+            # We used to strip double-quotes from there, but actually, it's better to process the
+            # value with stringToStrings(). This allows adding options to the base command
+            if tesseractcmd.find('"') != -1:
+                tesseractcmd = conftree.stringToStrings(tesseractcmd)
+            else:
+                tesseractcmd = [tesseractcmd,]
         else:
-            tesseractcmd = rclexecm.which("tesseract")
+            tesseractcmd = [rclexecm.which("tesseract"),]
+        #_deb(f"tesseractcmd {tesseractcmd}")
         if not tesseractcmd:
             _deb("tesseractcmd not found")
             return False
-    if not os.path.isfile(tesseractcmd):
-        _deb("tesseractcmd parameter [%s] is not a file" % tesseractcmd)
+    if not os.path.isfile(tesseractcmd[0]):
+        _deb(f"tesseractcmd {tesseractcmd[0]} is not a file")
         return False
 
     # Check input format
@@ -211,17 +215,14 @@ def _pdftesseract(config, path):
     for f in sorted(pages):
         out = b""
         try:
-            out = subprocess.check_output(
-                [tesseractcmd, f, f, "-l", tesseractlang],
-                stderr=subprocess.STDOUT,
-                env=nenv,
-            )
+            fullcmd = tesseractcmd + [f, f, "-l", tesseractlang]
+            out = subprocess.check_output(fullcmd, stderr=subprocess.STDOUT, env=nenv)
         except Exception as e:
-            _deb("%s failed: %s" % (tesseractcmd, e))
+            _deb(f"{fullcmd} failed: {e}")
 
         errlines = out.split(b"\n")
         if len(errlines) > 5:
-            _deb("Tesseract error output: %d %s" % (len(errlines), out))
+            _deb(f"Tesseract error output: {len(errlines)} {out}")
 
     # Concatenate the result files
     txtfiles = glob.glob(tmpfile + "*" + ".txt")
@@ -234,14 +235,11 @@ def _pdftesseract(config, path):
 
 def _simpletesseract(config, path):
     tesseractlang = _guesstesseractlang(config, path)
-
     try:
-        out = subprocess.check_output(
-            [tesseractcmd, path, "stdout", "-l", tesseractlang],
-            stderr=subprocess.DEVNULL,
-        )
+        fullcmd = tesseractcmd + [path, "stdout", "-l", tesseractlang]
+        out = subprocess.check_output(fullcmd, stderr=subprocess.DEVNULL)
     except Exception as e:
-        _deb("%s failed: %s" % (tesseractcmd, e))
+        _deb(f"{fullcmd} failed: {e}")
         return False, ""
     return True, out
 
