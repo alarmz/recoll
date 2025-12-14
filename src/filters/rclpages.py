@@ -38,7 +38,7 @@ class PagesHandler(RclBaseHandler):
 
 
 if __name__ == "__main__":
-    _sofficecmd = rclexecm.which("soffice")
+    _sofficecmd = rclrunsoffice.findsoffice()
     if not _sofficecmd:
         print("RECFILTERROR HELPERNOTFOUND soffice")
         sys.exit(1)

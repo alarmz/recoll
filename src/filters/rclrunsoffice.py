@@ -23,16 +23,40 @@
 # or print out data. Soffice wants to write to a file inside a target directory, which is not
 # convenient for what we do.
 
-import rclexecm
 import sys
 import subprocess
 import os
 
+import rclexecm
+from rclexecm import logmsg as _deb
+import conftree
+
+def findsoffice():
+    import rclconfig
+
+    config = rclconfig.RclConfig()
+    sofficecmd = config.getConfParam("sofficecmd")
+    if sofficecmd:
+        if sofficecmd.find('"') != -1:
+            sofficecmd = conftree.stringToStrings(sofficecmd)
+        else:
+            sofficecmd = [sofficecmd,]
+    else:
+        sofficecmd = [rclexecm.which("soffice"),]
+    #_deb(f"sofficecmd {sofficecmd}")
+    if not sofficecmd:
+        _deb("sofficecmd not found")
+        return None
+    if not os.path.isfile(sofficecmd[0]):
+        _deb(f"sofficecmd {sofficecmd[0]} is not a file")
+        return None
+    return sofficecmd
+
 class SofficeRunner(object):
     def __init__(self, sofficecmd):
         self.tmpdir = rclexecm.SafeTmpDir("rclrsoff")
-        self.cmdbase = [sofficecmd, "--norestore", "--safe-mode", "--headless",
-                        "--convert-to", "html", "--outdir"]
+        self.cmdbase = sofficecmd + ["--norestore", "--safe-mode", "--headless",
+                                     "--convert-to", "html", "--outdir"]
 
     def runsoffice(self, inpath):
         if isinstance(inpath, str):
@@ -52,7 +76,7 @@ class SofficeRunner(object):
             return ""
 
 if __name__ == "__main__":
-    sofficecmd = rclexecm.which("soffice")
+    sofficecmd = findsoffice()
     if not sofficecmd:
         print("RECFILTERROR HELPERNOTFOUND soffice")
         sys.exit(1)
