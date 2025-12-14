@@ -60,6 +60,8 @@ class SofficeRunner(object):
                                      "--convert-to", "html", "--outdir"]
 
     def runsoffice(self, inpath):
+        if isinstance(inpath, bytes):
+            inpath = os.fsdecode(inpath)
         self.tmpdir.vacuumdir()
         cmd = self.cmdbase + [self.tmpdir.getpath(), inpath]
         try:
@@ -74,6 +76,7 @@ class SofficeRunner(object):
         except Exception as ex:
             rclexecm.logmsg(f"soffice failed: {ex}")
             return ""
+
 
 if __name__ == "__main__":
     sofficecmd = findsoffice()
