@@ -50,6 +50,7 @@ def findsoffice():
     if not os.path.isfile(sofficecmd[0]):
         _deb(f"sofficecmd {sofficecmd[0]} is not a file")
         return None
+    #_deb(f"sofficecmd {sofficecmd}")
     return sofficecmd
 
 class SofficeRunner(object):
@@ -59,16 +60,15 @@ class SofficeRunner(object):
                                      "--convert-to", "html", "--outdir"]
 
     def runsoffice(self, inpath):
-        if isinstance(inpath, str):
-            inpath = inpath.encode("UTF-8")
         self.tmpdir.vacuumdir()
         cmd = self.cmdbase + [self.tmpdir.getpath(), inpath]
         try:
             subprocess.check_call(cmd, stderr=subprocess.DEVNULL, stdout=subprocess.DEVNULL)
             infn = os.path.basename(inpath)
             inbase = os.path.splitext(infn)[0]
-            htmlfn = os.path.join(self.tmpdir.getpath().encode("UTF-8"), inbase) + b".html"
+            htmlfn = os.path.join(self.tmpdir.getpath(), inbase) + ".html"
             if not os.path.exists(htmlfn):
+                _deb("rclrunsoffice: HTML file not found after running command")
                 return ""
             return open(htmlfn).read()
         except Exception as ex:
