@@ -26,10 +26,11 @@ test -d $DESTDIR || mkdir $DESTDIR || fatal cant create $DESTDIR
 WEB=WEBENGINE
 
 # Recoll src tree
-RCL=/c/users/bill/documents/recoll/src/
+TOP=/d/projets
+RCL=${TOP}/recoll/src/
 PYRECOLL=${RCL}/python/recoll/
 # Recoll dependancies
-RCLDEPS=/c/users/bill/documents/recolldeps/
+RCLDEPS=${TOP}/recolldeps/
 LIBXML=${RCLDEPS}/msvc/libxml2/libxml2-2.9.4+dfsg1/win32/bin.msvc/libxml2.dll
 LIBXSLT=${RCLDEPS}/msvc/libxslt/libxslt-1.1.29/win32/bin.msvc/libxslt.dll
 ZLIB=${RCLDEPS}/msvc/zlib-1.2.11

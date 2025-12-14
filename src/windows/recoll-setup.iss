@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Recoll"
-#define MyAppVersion "1.43.4-20250814-qt_6_8_2-51dfd558"
+#define MyAppVersion "1.43.7-20251124-qt_6_8_2-252af7c8"
 #define MyAppPublisher "Recoll.org"
 #define MyAppURL "http://www.recoll.org"
 #define MyAppExeName "recoll.exe"
@@ -32,9 +32,9 @@ SolidCompression=yes
 ;DefaultDirName={userpf}\{#MyAppName}
 PrivilegesRequired=admin
 DefaultDirName={commonpf}\{#MyAppName}
-LicenseFile=C:\install\recoll\COPYING.txt
+LicenseFile=D:\install\recoll\COPYING.txt
 OutputBaseFilename=recoll-setup-{#MyAppVersion}
-SetupIconFile=C:\install\recoll\Share\recoll.ico
+SetupIconFile=D:\install\recoll\Share\recoll.ico
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -44,10 +44,10 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 ; VC++ redistributable runtime. Extracted by VC2017RedistNeedsInstall(), if needed.
-Source: "C:\install\recoll\Share\dist\VC_redist.x64.exe"; DestDir: {tmp}; Flags: dontcopy
+Source: "D:\install\recoll\Share\dist\VC_redist.x64.exe"; DestDir: {tmp}; Flags: dontcopy
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
-Source: "C:\install\recoll\recoll.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\install\recoll\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\install\recoll\recoll.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\install\recoll\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

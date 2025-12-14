@@ -2,7 +2,7 @@ from setuptools import setup, Extension
 
 # For shadow builds: references to the source tree
 import os
-root = "c:/users/bill/documents/"
+root = "d:/projets/"
 top = os.path.join(root, "recoll", "src")
 pytop = os.path.join(top, "python", "pyaspell")
 recolldeps = os.path.join(root, "recolldeps")

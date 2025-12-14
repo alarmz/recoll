@@ -6,7 +6,7 @@ import sys
 # For shadow builds: references to the source tree
 pytop = "./"
 # Windows
-recolldeps = "c:/users/bill/documents/recolldeps/msvc"
+recolldeps = "d:/projets/recolldeps/msvc"
 
 # Need to set this. Where will the default config be stored. e.g. /usr/share/recoll on linux
 # The compiled-in values are not used under Windows, we search from the binary location, which may not always work, in which case, you will need to set RECOLL_DATADIR in the environment.
