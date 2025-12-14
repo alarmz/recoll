@@ -84,7 +84,7 @@ application/vnd.sun.xml.writer.global = as application/vnd.sun.xml.writer
 application/vnd.sun.xml.writer.template = as application/vnd.sun.xml.writer
 # Really big spreadsheets cause libxml/xslt memory issues, but are converted ok by soffice, which is
 # too slow to start for small spreadsheets.
-application/vnd.sun.xml.calc = decide sizekbs < 1000 ? \
+application/vnd.sun.xml.calc = decide sizekbs < 3000 ? \
  internal xsltproc meta meta.xml opendoc-meta.xsl body content.xml opendoc-body.xsl : \
  exec rclrunsoffice.py ; mimetype = text/html
 application/vnd.sun.xml.calc.template = as application/vnd.sun.xml.calc
@@ -97,7 +97,7 @@ application/vnd.oasis.opendocument.graphics = as application/vnd.sun.xml.calc
 
 application/vnd.oasis.opendocument.presentation-flat-xml =  internal xsltproc opendoc-flat.xsl
 application/vnd.oasis.opendocument.text-flat-xml = internal xsltproc opendoc-flat.xsl
-application/vnd.oasis.opendocument.spreadsheet-flat-xml = decide sizekbs < 1000 ? \
+application/vnd.oasis.opendocument.spreadsheet-flat-xml = decide sizekbs < 3000 ? \
     internal xsltproc opendoc-flat.xsl :  exec rclrunsoffice.py ; mimetype = text/html
 
 application/vnd.openxmlformats-officedocument.wordprocessingml.document = \
