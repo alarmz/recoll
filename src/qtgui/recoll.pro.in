@@ -113,6 +113,7 @@ FORMS   = \
 RESOURCES = recoll.qrc
 
 TRANSLATIONS = \
+i18n/recoll_ar.ts \
 i18n/recoll_cs.ts \
 i18n/recoll_da.ts \
 i18n/recoll_de.ts \
