@@ -5,7 +5,7 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished">Menüsuche</translation>
+        <translation>Menüsuche</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Geburtsdaten filtern</translation>
+        <translation>Geburtsdaten filtern</translation>
     </message>
 </context>
 <context>
@@ -318,11 +318,11 @@
     </message>
     <message>
         <source>Database directory name</source>
-        <translation>Verzeichnisname für die Datenbank</translation>
+        <translation type="vanished">Verzeichnisname für die Datenbank</translation>
     </message>
     <message>
         <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation>Der Name eines Verzeichnisses, in dem der Index gespeichert werden soll.&lt;br&gt;Ein nicht-absoluter Pfad ist dabei relativ zum Konfigurationsverzeichnis. Der Standard ist &apos;xapiandb&apos;.</translation>
+        <translation type="vanished">Der Name eines Verzeichnisses, in dem der Index gespeichert werden soll.&lt;br&gt;Ein nicht-absoluter Pfad ist dabei relativ zum Konfigurationsverzeichnis. Der Standard ist &apos;xapiandb&apos;.</translation>
     </message>
     <message>
         <source>Unac exceptions</source>
@@ -414,7 +414,7 @@
     </message>
     <message>
         <source>Process the Web history queue</source>
-        <translation type="unfinished">Verarbeite die Warteschlange des Webverlaufs.</translation>
+        <translation>Verarbeite die Warteschlange des Webverlaufs.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -422,19 +422,19 @@
     </message>
     <message>
         <source>Page recycle interval</source>
-        <translation type="unfinished">Seitenaktualisierungsintervall</translation>
+        <translation>Seitenaktualisierungsintervall</translation>
     </message>
     <message>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
-        <translation type="unfinished">Standardmäßig wird nur eine Instanz einer URL im Cache gespeichert. Dies kann geändert werden, indem dieser Wert auf eine Frequenz gesetzt wird, die bestimmt, wie oft wir mehrere Instanzen behalten (&apos;Tag&apos;, &apos;Woche&apos;, &apos;Monat&apos;, &apos;Jahr&apos;). Beachten Sie, dass das Erhöhen des Intervalls vorhandene Einträge nicht löscht.</translation>
+        <translation>Standardmäßig wird nur eine Instanz einer URL im Cache gespeichert. Dies kann geändert werden, indem dieser Wert auf eine Frequenz gesetzt wird, die bestimmt, wie oft wir mehrere Instanzen behalten (&apos;Tag&apos;, &apos;Woche&apos;, &apos;Monat&apos;, &apos;Jahr&apos;). Beachten Sie, dass das Erhöhen des Intervalls vorhandene Einträge nicht löscht.</translation>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
-        <translation type="unfinished">Hinweis: Alte Seiten werden gelöscht, um Platz für neue zu schaffen, wenn die maximale Größe erreicht ist. Aktuelle Größe: %1</translation>
+        <translation>Hinweis: Alte Seiten werden gelöscht, um Platz für neue zu schaffen, wenn die maximale Größe erreicht ist. Aktuelle Größe: %1</translation>
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished">Ordner starten</translation>
+        <translation>Ordner starten</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
@@ -442,39 +442,47 @@
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished">Speichervollstandsgrenzwert in Prozent, bei dem wir mit dem Indexieren aufhören (z.B. 90, um bei 90 % Voll zu stoppen, 0 oder 100 bedeutet keine Begrenzung)</translation>
+        <translation>Speichervollstandsgrenzwert in Prozent, bei dem wir mit dem Indexieren aufhören (z.B. 90, um bei 90 % Voll zu stoppen, 0 oder 100 bedeutet keine Begrenzung)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished">Browser-Add-On-Download-Ordner</translation>
+        <translation>Browser-Add-On-Download-Ordner</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished">Nur festlegen, wenn Sie den Parameter &quot;Downloads-Unterverzeichnis&quot; in den Einstellungen des Webbrowser-Add-Ons festgelegt haben. In diesem Fall sollte es der vollständige Pfad zum Verzeichnis sein (z.B. /home/[ich]/Downloads/mein-unterverzeichnis)</translation>
+        <translation>Nur festlegen, wenn Sie den Parameter &quot;Downloads-Unterverzeichnis&quot; in den Einstellungen des Webbrowser-Add-Ons festgelegt haben. In diesem Fall sollte es der vollständige Pfad zum Verzeichnis sein (z.B. /home/[ich]/Downloads/mein-unterverzeichnis)</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished">Speichern Sie einige GUI-Parameter lokal im Index.</translation>
+        <translation>Speichern Sie einige GUI-Parameter lokal im Index.</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished">GUI-Einstellungen werden normalerweise in einer globalen Datei gespeichert, die für alle Indizes gültig ist. Das Festlegen dieses Parameters macht einige Einstellungen, wie z.B. die Ergebnistabelleneinrichtung, spezifisch für den Index.</translation>
+        <translation>GUI-Einstellungen werden normalerweise in einer globalen Datei gespeichert, die für alle Indizes gültig ist. Das Festlegen dieses Parameters macht einige Einstellungen, wie z.B. die Ergebnistabelleneinrichtung, spezifisch für den Index.</translation>
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished">Den Echtzeit-Indexer im Batteriebetrieb pausieren.</translation>
+        <translation>Den Echtzeit-Indexer im Batteriebetrieb pausieren.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished">Der Indexer wird auf eine Rückkehr auf AC warten und sich selbst neu ausführen, wenn dies geschieht.</translation>
+        <translation>Der Indexer wird auf eine Rückkehr auf AC warten und sich selbst neu ausführen, wenn dies geschieht.</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
-        <translation type="unfinished">Die Liste der zu indizierenden Ordner/Verzeichnisse, rekursiv mit ihren Unterordnern.&lt;br&gt;Das &apos;~&apos;-Zeichen erweitert sich auf Ihr Home-Verzeichnis, das der Standard-Startwert ist.</translation>
+        <translation>Die Liste der zu indizierenden Ordner/Verzeichnisse, rekursiv mit ihren Unterordnern.&lt;br&gt;Das &apos;~&apos;-Zeichen erweitert sich auf Ihr Home-Verzeichnis, das der Standard-Startwert ist.</translation>
     </message>
     <message>
-        <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">Standardmäßig schlägt Aspell falsch geschriebene Wörter vor, wenn eine Abfrage keine Ergebnisse liefert.</translation>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -546,18 +554,18 @@ Auf -1 setzen, um keine Obergrenze zu haben.
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished">Wechseln Sie zu einer anderen Konfiguration.</translation>
+        <translation>Wechseln Sie zu einer anderen Konfiguration.</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished">Wählen Sie eine andere.</translation>
+        <translation>Wählen Sie eine andere.</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished">Wählen Sie das Konfigurationsverzeichnis aus.</translation>
+        <translation>Wählen Sie das Konfigurationsverzeichnis aus.</translation>
     </message>
 </context>
 <context>
@@ -846,57 +854,57 @@ Drücken Sie Abbrechen, um die Konfigurationsdatei vor dem Start der Indizierung
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished">Muss &quot;System Tray-Symbol anzeigen&quot; in den Einstellungen aktiviert werden!</translation>
+        <translation>Muss &quot;System Tray-Symbol anzeigen&quot; in den Einstellungen aktiviert werden!</translation>
     </message>
 </context>
 <context>
     <name>PTransEdit</name>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">Pfad im Index</translation>
+        <translation>Pfad im Index</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">Übersetzter Pfad</translation>
+        <translation>Übersetzter Pfad</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation type="unfinished">Konfigurationsfehler</translation>
+        <translation>Konfigurationsfehler</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation type="unfinished">Originalpfad</translation>
+        <translation>Originalpfad</translation>
     </message>
     <message>
         <source>Local path</source>
-        <translation type="unfinished">Lokaler Pfad</translation>
+        <translation>Lokaler Pfad</translation>
     </message>
 </context>
 <context>
     <name>PTransEditBase</name>
     <message>
         <source>Path Translations</source>
-        <translation type="unfinished">Pfadumwandlungen</translation>
+        <translation>Pfadumwandlungen</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished">Wählen Sie eine oder mehrere Dateitypen aus und verwenden Sie die Steuerelemente im Rahmen unten, um zu ändern, wie sie verarbeitet werden.</translation>
+        <translation>Wählen Sie eine oder mehrere Dateitypen aus und verwenden Sie die Steuerelemente im Rahmen unten, um zu ändern, wie sie verarbeitet werden.</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Hinzufügen</translation>
+        <translation>Hinzufügen</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Entfernen</translation>
+        <translation>Entfernen</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Abbrechen</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Speichern</translation>
+        <translation>Speichern</translation>
     </message>
 </context>
 <context>
@@ -1098,11 +1106,11 @@ Drücken Sie Abbrechen, um die Konfigurationsdatei vor dem Start der Indizierung
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished">Neu laden als Klartext</translation>
+        <translation>Neu laden als Klartext</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished">Neu laden als HTML</translation>
+        <translation>Neu laden als HTML</translation>
     </message>
 </context>
 <context>
@@ -1207,7 +1215,7 @@ Der Standardwert ist &quot;Nein&quot;, um doppelte Indizierung zu vermeiden.</tr
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished">Dies sind Muster für Datei- oder Verzeichnisnamen, die nicht indiziert werden sollten.</translation>
+        <translation>Dies sind Muster für Datei- oder Verzeichnisnamen, die nicht indiziert werden sollten.</translation>
     </message>
 </context>
 <context>
@@ -1294,15 +1302,15 @@ Der Standardwert ist &quot;Nein&quot;, um doppelte Indizierung zu vermeiden.</tr
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished">Text kopieren</translation>
+        <translation>Text kopieren</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished">Kopieren Sie den Dateipfad.</translation>
+        <translation>Kopieren Sie den Dateipfad.</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished">Dateiname kopieren</translation>
+        <translation>Dateiname kopieren</translation>
     </message>
 </context>
 <context>
@@ -1378,15 +1386,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished">Konfigurationsname</translation>
+        <translation>Konfigurationsname</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished">Kurzer alphanumerischer Spitzname für diese Konfiguration</translation>
+        <translation>Kurzer alphanumerischer Spitzname für diese Konfiguration</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished">Konnte nicht finden</translation>
+        <translation>Konnte nicht finden</translation>
     </message>
 </context>
 <context>
@@ -1396,8 +1404,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Treffer</translation>
     </message>
     <message>
-        <source>Hits</source>
-        <translation type="unfinished">Treffer</translation>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2057,48 +2065,48 @@ Bitte überprüfen Sie die Desktop-Datei</translation>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished">Leeren</translation>
+        <translation>Leeren</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished">Zeige das Menü Suchdialog an.</translation>
+        <translation>Zeige das Menü Suchdialog an.</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished">Duplikate</translation>
+        <translation>Duplikate</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished">Verzeichnisse filtern.</translation>
+        <translation>Verzeichnisse filtern.</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished">Hauptindex-Öffnungsfehler:</translation>
+        <translation>Hauptindex-Öffnungsfehler:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished">Der Index könnte beschädigt sein. Vielleicht versuchen Sie, xapian-check auszuführen oder den Index neu aufzubauen?</translation>
+        <translation>Der Index könnte beschädigt sein. Vielleicht versuchen Sie, xapian-check auszuführen oder den Index neu aufzubauen?</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished">Diese Suche ist nicht mehr aktiv.</translation>
+        <translation>Diese Suche ist nicht mehr aktiv.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished">Betrachter-Befehlszeile für %1 gibt übergeordnete Datei an, aber URL ist nicht file:// : nicht unterstützt.</translation>
+        <translation>Betrachter-Befehlszeile für %1 gibt übergeordnete Datei an, aber URL ist nicht file:// : nicht unterstützt.</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished">Der im Mimeview für %1 spezifizierte Viewer: %2 wurde nicht gefunden. Möchten Sie den Einstellungsdialog starten?</translation>
+        <translation>Der im Mimeview für %1 spezifizierte Viewer: %2 wurde nicht gefunden. Möchten Sie den Einstellungsdialog starten?</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished">Erweiterte Suchdialog anzeigen</translation>
+        <translation>Erweiterte Suchdialog anzeigen</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">mit zusätzlicher Nachricht:</translation>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2429,63 +2437,63 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation type="unfinished">Erhöhen Sie die Schriftgröße der Suchergebnisse.</translation>
+        <translation>Erhöhen Sie die Schriftgröße der Suchergebnisse.</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished">Schriftgröße erhöhen</translation>
+        <translation>Schriftgröße erhöhen</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation type="unfinished">Verringern Sie die Schriftgröße der Suchergebnisse.</translation>
+        <translation>Verringern Sie die Schriftgröße der Suchergebnisse.</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished">Schriftgröße verkleinern</translation>
+        <translation>Schriftgröße verkleinern</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished">Starten Sie den Echtzeit-Indexer.</translation>
+        <translation>Starten Sie den Echtzeit-Indexer.</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished">Abfrage-Sprachfilter</translation>
+        <translation>Abfrage-Sprachfilter</translation>
     </message>
     <message>
         <source>Filter dates</source>
-        <translation type="unfinished">Nach Datum filtern</translation>
+        <translation>Nach Datum filtern</translation>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished">Unterstützte komplexe Suche</translation>
+        <translation>Unterstützte komplexe Suche</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Geburtsdaten filtern.</translation>
+        <translation>Geburtsdaten filtern.</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished">Konfiguration wechseln...</translation>
+        <translation>Konfiguration wechseln...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished">Wählen Sie eine andere Konfiguration aus, um auf dieser zu laufen, und ersetzen Sie diesen Prozess.</translation>
+        <translation>Wählen Sie eine andere Konfiguration aus, um auf dieser zu laufen, und ersetzen Sie diesen Prozess.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished">Benutzerhandbuch (lokal, eine HTML-Seite)</translation>
+        <translation>Benutzerhandbuch (lokal, eine HTML-Seite)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished">Online-Handbuch (Recoll-Website)</translation>
+        <translation>Online-Handbuch (Recoll-Website)</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished">Pfadübersetzungen</translation>
+        <translation>Pfadübersetzungen</translation>
     </message>
     <message>
-        <source>With failed files retrying</source>
-        <translation type="unfinished">Mit fehlgeschlagenen Dateien erneut versuchen</translation>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2702,11 +2710,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished">Dieser Rechtschreibvorschlag wurde zur Suche hinzugefügt:</translation>
+        <translation>Dieser Rechtschreibvorschlag wurde zur Suche hinzugefügt:</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished">Diese Rechtschreibvorschläge wurden der Suche hinzugefügt:</translation>
+        <translation>Diese Rechtschreibvorschläge wurden der Suche hinzugefügt:</translation>
     </message>
 </context>
 <context>
@@ -2821,15 +2829,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished">Verwenden Sie Shift+Klick, um den Text anzuzeigen.</translation>
+        <translation>Verwenden Sie Shift+Klick, um den Text anzuzeigen.</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished">%1 Bytes in die Zwischenablage kopiert.</translation>
+        <translation>%1 Bytes in die Zwischenablage kopiert.</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished">Kopiere den Ergebnistext und beende.</translation>
+        <translation>Kopiere den Ergebnistext und beende.</translation>
     </message>
 </context>
 <context>
@@ -3107,7 +3115,7 @@ Benutze &lt;b&gt;Abfrage anzeigen&lt;/b&gt; Link bei Zweifeln am Ergebnis und si
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Or&lt;/td&gt;&lt;td&gt;one OR two&amp;nbsp;&amp;nbsp;&amp;nbsp;one || two&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Or&lt;/td&gt;&lt;td&gt;one OR two&amp;nbsp;&amp;nbsp;&amp;nbsp;one || two&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Or&lt;/td&gt;&lt;td&gt;one OR two&amp;nbsp;&amp;nbsp;&amp;nbsp;one || two&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Complex boolean. OR has priority, use parentheses&amp;nbsp;</source>
@@ -3199,23 +3207,23 @@ Benutze &lt;b&gt;Abfrage anzeigen&lt;/b&gt; Link bei Zweifeln am Ergebnis und si
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished">Einfache Suche</translation>
+        <translation>Einfache Suche</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished">Verlauf</translation>
+        <translation>Verlauf</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished">Abfrage-Sprache Spickzettel. Im Zweifelsfall: Klicken Sie auf &lt;b&gt;Abfrage-Details anzeigen&lt;/b&gt;.</translation>
+        <translation>Abfrage-Sprache Spickzettel. Im Zweifelsfall: Klicken Sie auf &lt;b&gt;Abfrage-Details anzeigen&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">Großschreibung zur Unterdrückung der Stammausdehnung.</translation>
+        <translation>Großschreibung zur Unterdrückung der Stammausdehnung.</translation>
     </message>
     <message>
-        <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">abweichen von aktuellen Einstellungen (behalten)</translation>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3416,11 +3424,11 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished">Schriftgröße erhöhen.</translation>
+        <translation>Schriftgröße erhöhen.</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished">Schriftgröße verkleinern.</translation>
+        <translation>Schriftgröße verkleinern.</translation>
     </message>
 </context>
 <context>
@@ -3521,11 +3529,11 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation type="unfinished">Diagnoseausgabedatei. Wird abgeschnitten und erhält Indexdiagnose (Gründe für nicht indexierte Dateien).</translation>
+        <translation>Diagnoseausgabedatei. Wird abgeschnitten und erhält Indexdiagnose (Gründe für nicht indexierte Dateien).</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
-        <translation type="unfinished">Diagnosedatei</translation>
+        <translation>Diagnosedatei</translation>
     </message>
 </context>
 <context>
@@ -3707,19 +3715,19 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished">Rechtschreibfehler.</translation>
+        <translation>Rechtschreibfehler.</translation>
     </message>
     <message>
-        <source>Documents created/updated</source>
-        <translation type="unfinished">Dokumente erstellt/aktualisiert</translation>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files tested</source>
-        <translation type="unfinished">Dateien getestet</translation>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unindexed files</source>
-        <translation type="unfinished">Nicht indizierte Dateien</translation>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3814,23 +3822,23 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished">Wählen Sie die QSS-Datei aus.</translation>
+        <translation>Wählen Sie die QSS-Datei aus.</translation>
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished">Kann Index nicht hinzufügen, da unterschiedliche Optionen für Groß-/Kleinschreibung und Diakritika-Entfernung verwendet werden.</translation>
+        <translation>Kann Index nicht hinzufügen, da unterschiedliche Optionen für Groß-/Kleinschreibung und Diakritika-Entfernung verwendet werden.</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished">Licht</translation>
+        <translation>Licht</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished">Dunkel</translation>
+        <translation>Dunkel</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished">System
+        <translation>System
 
 System</translation>
     </message>
@@ -4142,7 +4150,7 @@ Dadurch sollten Ergebnisse, die exakte Übereinstimmungen der Suchworte enthalte
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished">Der Wert ist eine Befehlszeile, die ausgeführt werden soll. Ersetzungen: %s: Suchbegriff; %p: Seitennummer; &lt;br&gt;%f: Dateiname des Dokuments. Drücken Sie F1 für weitere Hilfe.</translation>
+        <translation>Der Wert ist eine Befehlszeile, die ausgeführt werden soll. Ersetzungen: %s: Suchbegriff; %p: Seitennummer; &lt;br&gt;%f: Dateiname des Dokuments. Drücken Sie F1 für weitere Hilfe.</translation>
     </message>
 </context>
 <context>
@@ -4157,7 +4165,7 @@ Dadurch sollten Ergebnisse, die exakte Übereinstimmungen der Suchworte enthalte
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished">Textbeschriftung</translation>
+        <translation>Textbeschriftung</translation>
     </message>
 </context>
 <context>
@@ -4184,15 +4192,15 @@ Dadurch sollten Ergebnisse, die exakte Übereinstimmungen der Suchworte enthalte
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished">In Datei speichern</translation>
+        <translation>In Datei speichern</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished">Dateierstellung fehlgeschlagen:</translation>
+        <translation>Dateierstellung fehlgeschlagen:</translation>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished">Maximale Größe %1 (Index-Konfig.). Aktuelle Größe %2. Schreibposition %3.</translation>
+        <translation>Maximale Größe %1 (Index-Konfig.). Aktuelle Größe %2. Schreibposition %3.</translation>
     </message>
 </context>
 <context>
@@ -4207,15 +4215,15 @@ Dadurch sollten Ergebnisse, die exakte Übereinstimmungen der Suchworte enthalte
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished">Datum</translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Größe</translation>
+        <translation>Größe</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
 </context>
 <context>
@@ -4246,7 +4254,7 @@ Dadurch sollten Ergebnisse, die exakte Übereinstimmungen der Suchworte enthalte
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished">Konnte die Stapeldatei nicht erstellen.</translation>
+        <translation>Konnte die Stapeldatei nicht erstellen.</translation>
     </message>
 </context>
 <context>
@@ -4463,7 +4471,7 @@ Auf -1 setzen, um keine Obergrenze zu haben.</translation>
     <name>confgui::ConfTabsW</name>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Übernehmen</translation>
+        <translation>Übernehmen</translation>
     </message>
 </context>
 <context>
@@ -5072,47 +5080,47 @@ und vermindern den Nutzender automatischen Phrasen. Der Standardwert ist 2.</tra
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished">Verstecke einige Benutzeroberflächenelemente.</translation>
+        <translation>Verstecke einige Benutzeroberflächenelemente.</translation>
     </message>
     <message>
         <source>Hide:</source>
-        <translation type="unfinished">Verstecken:</translation>
+        <translation>Verstecken:</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished">Symbolleisten</translation>
+        <translation>Symbolleisten</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished">Statusleiste</translation>
+        <translation>Statusleiste</translation>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translation type="unfinished">Zeige stattdessen den Button.</translation>
+        <translation>Zeige stattdessen den Button.</translation>
     </message>
     <message>
         <source>Menu bar</source>
-        <translation type="unfinished">Menüleiste</translation>
+        <translation>Menüleiste</translation>
     </message>
     <message>
         <source>Show choice in menu only.</source>
-        <translation type="unfinished">Nur Auswahl im Menü anzeigen.</translation>
+        <translation>Nur Auswahl im Menü anzeigen.</translation>
     </message>
     <message>
         <source>Simple search type</source>
-        <translation type="unfinished">Einfache Suchart</translation>
+        <translation>Einfache Suchart</translation>
     </message>
     <message>
         <source>Clear/Search buttons</source>
-        <translation type="unfinished">Löschen/Suchen Buttons</translation>
+        <translation>Löschen/Suchen Buttons</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translation type="unfinished">Deaktivieren Sie die Tastenkombinationen Ctrl+[0-9]/Shift+[a-z] zum Springen zu Tabellenzeilen.</translation>
+        <translation>Deaktivieren Sie die Tastenkombinationen Ctrl+[0-9]/Shift+[a-z] zum Springen zu Tabellenzeilen.</translation>
     </message>
     <message>
         <source>None (default)</source>
-        <translation type="unfinished">Keine (Standard)</translation>
+        <translation>Keine (Standard)</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
@@ -5124,159 +5132,159 @@ und vermindern den Nutzender automatischen Phrasen. Der Standardwert ist 2.</tra
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished">Wählen Sie die QSS-Datei aus.</translation>
+        <translation>Wählen Sie die QSS-Datei aus.</translation>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translation type="unfinished">Um den Dokumententext anstelle von Metadaten im Detailbereich der Ergebnistabelle anzuzeigen, verwenden Sie:</translation>
+        <translation>Um den Dokumententext anstelle von Metadaten im Detailbereich der Ergebnistabelle anzuzeigen, verwenden Sie:</translation>
     </message>
     <message>
         <source>left mouse click</source>
-        <translation type="unfinished">Linksklick der Maus</translation>
+        <translation>Linksklick der Maus</translation>
     </message>
     <message>
         <source>Shift+click</source>
-        <translation type="unfinished">Umschalt + Klick</translation>
+        <translation>Umschalt + Klick</translation>
     </message>
     <message>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
-        <translation type="unfinished">Öffnet einen Dialog zum Auswählen der Stylesheet-Datei. Schauen Sie sich /usr/share/recoll/examples/recoll[-dark].qss für ein Beispiel an.</translation>
+        <translation>Öffnet einen Dialog zum Auswählen der Stylesheet-Datei. Schauen Sie sich /usr/share/recoll/examples/recoll[-dark].qss für ein Beispiel an.</translation>
     </message>
     <message>
         <source>Result Table</source>
-        <translation type="unfinished">Ergebnistabelle</translation>
+        <translation>Ergebnistabelle</translation>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translation type="unfinished">Zeigen Sie keine Metadaten an, wenn Sie über Zeilen schweben.</translation>
+        <translation>Zeigen Sie keine Metadaten an, wenn Sie über Zeilen schweben.</translation>
     </message>
     <message>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
-        <translation type="unfinished">Umgehen Sie Tamil QTBUG-78923, indem Sie einen Leerschritt vor dem Anker-Text einfügen.</translation>
+        <translation>Umgehen Sie Tamil QTBUG-78923, indem Sie einen Leerschritt vor dem Anker-Text einfügen.</translation>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished">Der Fehler führt dazu, dass seltsame Kreiszeichen innerhalb markierter tamilischer Wörter angezeigt werden. Die Lösung besteht darin, ein zusätzliches Leerzeichen einzufügen, das das Problem zu beheben scheint.</translation>
+        <translation>Der Fehler führt dazu, dass seltsame Kreiszeichen innerhalb markierter tamilischer Wörter angezeigt werden. Die Lösung besteht darin, ein zusätzliches Leerzeichen einzufügen, das das Problem zu beheben scheint.</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished">Tiefe des Seitensuchfilters im Verzeichnisbaum</translation>
+        <translation>Tiefe des Seitensuchfilters im Verzeichnisbaum</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished">Zoomfaktor für die Benutzeroberfläche. Nützlich, wenn die Standardeinstellung nicht für Ihre Bildschirmauflösung geeignet ist.</translation>
+        <translation>Zoomfaktor für die Benutzeroberfläche. Nützlich, wenn die Standardeinstellung nicht für Ihre Bildschirmauflösung geeignet ist.</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished">Anzeigemaßstab (Standard 1.0):</translation>
+        <translation>Anzeigemaßstab (Standard 1.0):</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished">Automatische Rechtschreib-Approximation.</translation>
+        <translation>Automatische Rechtschreib-Approximation.</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished">Maximale Rechtschreibdistanz</translation>
+        <translation>Maximale Rechtschreibdistanz</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished">Fügen Sie gängige Rechtschreib-Annäherungen für seltene Begriffe hinzu.</translation>
+        <translation>Fügen Sie gängige Rechtschreib-Annäherungen für seltene Begriffe hinzu.</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished">Maximale Anzahl von Verlaufseinträgen in der Vervollständigungsliste</translation>
+        <translation>Maximale Anzahl von Verlaufseinträgen in der Vervollständigungsliste</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished">Anzahl der Verlaufseinträge im Vervollständiger:</translation>
+        <translation>Anzahl der Verlaufseinträge im Vervollständiger:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished">Zeigt die Gesamtanzahl der Vorkommen des Begriffs im Index an.</translation>
+        <translation>Zeigt die Gesamtanzahl der Vorkommen des Begriffs im Index an.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished">Zeige Trefferanzahl im Vervollständigungsfenster an.</translation>
+        <translation>Zeige Trefferanzahl im Vervollständigungsfenster an.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished">Bevorzugen Sie HTML anstelle von reinem Text für die Vorschau.</translation>
+        <translation>Bevorzugen Sie HTML anstelle von reinem Text für die Vorschau.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished">Siehe die Qt QDateTimeEdit-Dokumentation. Z.B. yyyy-MM-dd. Lassen Sie das Feld leer, um das Standard-Qt/System-Format zu verwenden.</translation>
+        <translation>Siehe die Qt QDateTimeEdit-Dokumentation. Z.B. yyyy-MM-dd. Lassen Sie das Feld leer, um das Standard-Qt/System-Format zu verwenden.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished">Seitenfilter Datumsformat (Änderung erfordert Neustart)</translation>
+        <translation>Seitenfilter Datumsformat (Änderung erfordert Neustart)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished">Wenn festgelegt, wird das Starten einer neuen Instanz auf demselben Index eine vorhandene erhöhen.</translation>
+        <translation>Wenn festgelegt, wird das Starten einer neuen Instanz auf demselben Index eine vorhandene erhöhen.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished">Einzelanwendung</translation>
+        <translation>Einzelanwendung</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished">Setze auf 0, um die Baum-Berechnung zu deaktivieren und den Startvorgang zu beschleunigen.</translation>
+        <translation>Setze auf 0, um die Baum-Berechnung zu deaktivieren und den Startvorgang zu beschleunigen.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished">Die Vervollständigung ändert den Eintrag nur, wenn sie aktiviert ist.</translation>
+        <translation>Die Vervollständigung ändert den Eintrag nur, wenn sie aktiviert ist.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished">Vervollständigung: keine automatische Zeilenbearbeitung.</translation>
+        <translation>Vervollständigung: keine automatische Zeilenbearbeitung.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished">Benutzeroberfläche-Sprache (Neustart erforderlich):</translation>
+        <translation>Benutzeroberfläche-Sprache (Neustart erforderlich):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished">Hinweis: Die meisten Übersetzungen sind unvollständig. Lassen Sie das Feld leer, um die Systemumgebung zu verwenden.</translation>
+        <translation>Hinweis: Die meisten Übersetzungen sind unvollständig. Lassen Sie das Feld leer, um die Systemumgebung zu verwenden.</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished">Vorschau</translation>
+        <translation>Vorschau</translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished">Setze auf 0, um die Details-/Zusammenfassungsfunktion zu deaktivieren.</translation>
+        <translation>Setze auf 0, um die Details-/Zusammenfassungsfunktion zu deaktivieren.</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished">Felder anzeigen: maximale Feldlänge vor Verwendung der Zusammenfassung:</translation>
+        <translation>Felder anzeigen: maximale Feldlänge vor Verwendung der Zusammenfassung:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished">Anzahl der Zeilen, die über einem Suchbegriff angezeigt werden sollen, der durch die Vorschau-Suche gefunden wurde.</translation>
+        <translation>Anzahl der Zeilen, die über einem Suchbegriff angezeigt werden sollen, der durch die Vorschau-Suche gefunden wurde.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished">Suchbegriff-Zeilenversatz:</translation>
+        <translation>Suchbegriff-Zeilenversatz:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished">Platzhalterzeichen *?[] werden als Satzzeichen verarbeitet, anstatt erweitert zu werden.</translation>
+        <translation>Platzhalterzeichen *?[] werden als Satzzeichen verarbeitet, anstatt erweitert zu werden.</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished">Ignorieren Sie Platzhalterzeichen in den Modi ALLE Begriffe und IRGENDEIN Begriff.</translation>
+        <translation>Ignorieren Sie Platzhalterzeichen in den Modi ALLE Begriffe und IRGENDEIN Begriff.</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished">Farbschema</translation>
+        <translation>Farbschema</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished">Beim Anzeigen von HTML im Dunkelmodus versuchen Sie, einen dunklen Hintergrund (und helle Farben) zu verwenden. Dies steht im Konflikt mit vielen Dokumenten, die unsere helle Einstellung mit ihrer eigenen CSS (dunklen) Vordergrundfarbe überschreiben, was zu einem unlesbaren Dokument führt, daher ist es standardmäßig deaktiviert.</translation>
+        <translation>Beim Anzeigen von HTML im Dunkelmodus versuchen Sie, einen dunklen Hintergrund (und helle Farben) zu verwenden. Dies steht im Konflikt mit vielen Dokumenten, die unsere helle Einstellung mit ihrer eigenen CSS (dunklen) Vordergrundfarbe überschreiben, was zu einem unlesbaren Dokument führt, daher ist es standardmäßig deaktiviert.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished">Verwenden Sie einen dunklen Hintergrund, wenn HTML im Dunkelmodus angezeigt wird.</translation>
+        <translation>Verwenden Sie einen dunklen Hintergrund, wenn HTML im Dunkelmodus angezeigt wird.</translation>
     </message>
 </context>
 </TS>

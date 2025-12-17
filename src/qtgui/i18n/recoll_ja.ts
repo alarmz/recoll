@@ -207,7 +207,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">生年月日をフィルターする</translation>
+        <translation>生年月日をフィルターする</translation>
     </message>
 </context>
 <context>
@@ -290,11 +290,11 @@
     </message>
     <message>
         <source>Database directory name</source>
-        <translation>Database ディレクトリ名</translation>
+        <translation type="vanished">Database ディレクトリ名</translation>
     </message>
     <message>
         <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</translation>
+        <translation type="vanished">The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</translation>
     </message>
     <message>
         <source>Unac exceptions</source>
@@ -388,7 +388,7 @@ Max. size for the web store (MB)                                </translatorcomm
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached</source>
-        <translation type="vanished">Note：　最大サイズに達すると、古いページが消去され、新しいページ用のスペースが確保されます</translation>
+        <translation type="vanished">Note：&#x3000;最大サイズに達すると、古いページが消去され、新しいページ用のスペースが確保されます</translation>
     </message>
     <message>
         <source>Page recycle interval</source>
@@ -404,7 +404,7 @@ Max. size for the web store (MB)                                </translatorcomm
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished">フォルダを開始</translation>
+        <translation>フォルダを開始</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
@@ -412,31 +412,31 @@ Max. size for the web store (MB)                                </translatorcomm
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished">ディスクがいっぱいになったときにインデックスを停止する閾値のパーセンテージ（例：90％で停止、0または100は制限なし）</translation>
+        <translation>ディスクがいっぱいになったときにインデックスを停止する閾値のパーセンテージ（例：90％で停止、0または100は制限なし）</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished">ブラウザのアドオンダウンロードフォルダ</translation>
+        <translation>ブラウザのアドオンダウンロードフォルダ</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished">この設定は、Webブラウザのアドオン設定で「ダウンロードサブディレクトリ」パラメータを設定した場合にのみ設定してください。&lt;br&gt;この場合、ディレクトリへの完全なパスを指定する必要があります（例：/home/[me]/Downloads/my-subdir）。</translation>
+        <translation>この設定は、Webブラウザのアドオン設定で「ダウンロードサブディレクトリ」パラメータを設定した場合にのみ設定してください。&lt;br&gt;この場合、ディレクトリへの完全なパスを指定する必要があります（例：/home/[me]/Downloads/my-subdir）。</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished">インデックスにいくつかのGUIパラメータをローカルに保存します。</translation>
+        <translation>インデックスにいくつかのGUIパラメータをローカルに保存します。</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished">&lt;p&gt;GUIの設定は通常、すべてのインデックスに有効なグローバルファイルに保存されます。このパラメータを設定すると、結果テーブルのセットアップなど、一部の設定がインデックスに特化します。</translation>
+        <translation>&lt;p&gt;GUIの設定は通常、すべてのインデックスに有効なグローバルファイルに保存されます。このパラメータを設定すると、結果テーブルのセットアップなど、一部の設定がインデックスに特化します。</translation>
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished">バッテリー駆動時にリアルタイムインデクサーを一時停止します。</translation>
+        <translation>バッテリー駆動時にリアルタイムインデクサーを一時停止します。</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished">インデクサーはACの返信を待ち、それが起こったときに自分自身を再実行します。</translation>
+        <translation>インデクサーはACの返信を待ち、それが起こったときに自分自身を再実行します。</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -444,11 +444,19 @@ Max. size for the web store (MB)                                </translatorcomm
     </message>
     <message>
         <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
-        <translation type="unfinished">インデックス化されるフォルダ/ディレクトリのリストと、そのサブフォルダを再帰的に表示します。&lt;br&gt;「〜」文字はホームディレクトリに展開され、デフォルトの初期値です。</translation>
+        <translation>インデックス化されるフォルダ/ディレクトリのリストと、そのサブフォルダを再帰的に表示します。&lt;br&gt;「〜」文字はホームディレクトリに展開され、デフォルトの初期値です。</translation>
     </message>
     <message>
-        <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">（デフォルトでは、クエリに結果がない場合、aspellはスペルミスを提案します）。</translation>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -516,18 +524,18 @@ This will help searching very big text  files (ie: log files).</source>
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished">他の設定に切り替える</translation>
+        <translation>他の設定に切り替える</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished">他を選択してください。</translation>
+        <translation>他を選択してください。</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished">構成ディレクトリを選択してください</translation>
+        <translation>構成ディレクトリを選択してください</translation>
     </message>
 </context>
 <context>
@@ -795,57 +803,57 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished">設定で「システムトレイアイコンを表示」を設定する必要があります！</translation>
+        <translation>設定で「システムトレイアイコンを表示」を設定する必要があります！</translation>
     </message>
 </context>
 <context>
     <name>PTransEdit</name>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">インデックス内のパス</translation>
+        <translation>インデックス内のパス</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">翻訳されたパス</translation>
+        <translation>翻訳されたパス</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation type="unfinished">Config error</translation>
+        <translation>Config error</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation type="unfinished">Original path</translation>
+        <translation>Original path</translation>
     </message>
     <message>
         <source>Local path</source>
-        <translation type="unfinished">Local path</translation>
+        <translation>Local path</translation>
     </message>
 </context>
 <context>
     <name>PTransEditBase</name>
     <message>
         <source>Path Translations</source>
-        <translation type="unfinished">Path Translations</translation>
+        <translation>Path Translations</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished">1つまたは複数のファイルタイプを選択し、下のフレームのコントロールを使用して、それらの処理方法を変更します</translation>
+        <translation>1つまたは複数のファイルタイプを選択し、下のフレームのコントロールを使用して、それらの処理方法を変更します</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">追加</translation>
+        <translation>追加</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">削除</translation>
+        <translation>削除</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">キャンセル</translation>
+        <translation>キャンセル</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation>保存</translation>
     </message>
 </context>
 <context>
@@ -1015,11 +1023,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished">プレーンテキストとして再読み込み</translation>
+        <translation>プレーンテキストとして再読み込み</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished">HTML として再読み込み</translation>
+        <translation>HTML として再読み込み</translation>
     </message>
 </context>
 <context>
@@ -1080,7 +1088,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished">これは、インデックスされるべきでないファイルやディレクトリ名のパターンです。</translation>
+        <translation>これは、インデックスされるべきでないファイルやディレクトリ名のパターンです。</translation>
     </message>
 </context>
 <context>
@@ -1247,15 +1255,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished">構成名 (Kousei mei)</translation>
+        <translation>構成名 (Kousei mei)</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished">この構成のための短い英数字のニックネーム</translation>
+        <translation>この構成のための短い英数字のニックネーム</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished">次のテキスト断片を日本語に翻訳します。「Could not find」。テキスト検索GUIのコンテキストで使用される想定です。</translation>
+        <translation>次のテキスト断片を日本語に翻訳します。「Could not find」。テキスト検索GUIのコンテキストで使用される想定です。</translation>
     </message>
 </context>
 <context>
@@ -1265,8 +1273,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">ヒット</translation>
     </message>
     <message>
-        <source>Hits</source>
-        <translation type="unfinished">ヒット</translation>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1799,37 +1807,37 @@ Please check the desktop file</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished">ディレクトリをフィルターする</translation>
+        <translation>ディレクトリをフィルターする</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished">メインインデックスのオープンエラー:</translation>
+        <translation>メインインデックスのオープンエラー:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished">インデックスが壊れている可能性があります。xapian-checkを実行するか、インデックスを再構築してみてはどうでしょうか？</translation>
+        <translation>インデックスが壊れている可能性があります。xapian-checkを実行するか、インデックスを再構築してみてはどうでしょうか？</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished">この検索はもうアクティブではありません。</translation>
+        <translation>この検索はもうアクティブではありません。</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished">%1のビューアコマンドラインは親ファイルを指定していますが、URLがfile://ではありません：サポートされていません</translation>
+        <translation>%1のビューアコマンドラインは親ファイルを指定していますが、URLがfile://ではありません：サポートされていません</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished">%1: %2のためにmimeviewで指定されたビューアが見つかりません。
+        <translation>%1: %2のためにmimeviewで指定されたビューアが見つかりません。
 設定ダイアログを開始しますか？</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished">高度な検索ダイアログを表示します。</translation>
+        <translation>高度な検索ダイアログを表示します。</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">追加メッセージ：</translation>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2144,31 +2152,31 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">生年月日をフィルターする</translation>
+        <translation>生年月日をフィルターする</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished">スイッチの設定...</translation>
+        <translation>スイッチの設定...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished">このプロセスを置き換えて実行する別の構成を選択してください。</translation>
+        <translation>このプロセスを置き換えて実行する別の構成を選択してください。</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished">ユーザーマニュアル（ローカル、1つのHTMLページ）</translation>
+        <translation>ユーザーマニュアル（ローカル、1つのHTMLページ）</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished">オンラインマニュアル（Recollウェブサイト）</translation>
+        <translation>オンラインマニュアル（Recollウェブサイト）</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished">パスの翻訳</translation>
+        <translation>パスの翻訳</translation>
     </message>
     <message>
-        <source>With failed files retrying</source>
-        <translation type="unfinished">失敗したファイルを再試行します。</translation>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2325,11 +2333,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished">このスペルの推測が検索に追加されました。</translation>
+        <translation>このスペルの推測が検索に追加されました。</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished">検索に追加されたスペルの推測:</translation>
+        <translation>検索に追加されたスペルの推測:</translation>
     </message>
 </context>
 <context>
@@ -2613,15 +2621,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished">&lt;p&gt;クエリ言語のチートシート。疑問がある場合は、&lt;b&gt;クエリの詳細を表示&lt;/b&gt;をクリックしてください。&amp;nbsp;</translation>
+        <translation>&lt;p&gt;クエリ言語のチートシート。疑問がある場合は、&lt;b&gt;クエリの詳細を表示&lt;/b&gt;をクリックしてください。&amp;nbsp;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;語幹の拡張を抑制するために大文字にする&lt;/td&gt;&lt;td&gt;フロア&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;語幹の拡張を抑制するために大文字にする&lt;/td&gt;&lt;td&gt;フロア&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">現在の設定と異なります（保持）</translation>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2761,11 +2769,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished">フォントサイズを大きくする</translation>
+        <translation>フォントサイズを大きくする</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished">フォントサイズを小さくする</translation>
+        <translation>フォントサイズを小さくする</translation>
     </message>
 </context>
 <context>
@@ -2970,19 +2978,19 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished">スペル拡張エラー。</translation>
+        <translation>スペル拡張エラー。</translation>
     </message>
     <message>
-        <source>Documents created/updated</source>
-        <translation type="unfinished">ドキュメントが作成/更新されました</translation>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files tested</source>
-        <translation type="unfinished">テストされたファイル</translation>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unindexed files</source>
-        <translation type="unfinished">インデックスされていないファイル</translation>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3079,19 +3087,19 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished">異なる大文字/ダイアクリティカルストリッピングオプションを持つインデックスを追加できません。</translation>
+        <translation>異なる大文字/ダイアクリティカルストリッピングオプションを持つインデックスを追加できません。</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished">ライト</translation>
+        <translation>ライト</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished">ダーク</translation>
+        <translation>ダーク</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished">システム</translation>
+        <translation>システム</translation>
     </message>
 </context>
 <context>
@@ -3165,7 +3173,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished">値は実行されるコマンドラインです。置換: %s: 検索文字列; %p: ページ番号; &lt;br&gt;%f: ドキュメントファイル名。詳細なヘルプにはF1を押してください。</translation>
+        <translation>値は実行されるコマンドラインです。置換: %s: 検索文字列; %p: ページ番号; &lt;br&gt;%f: ドキュメントファイル名。詳細なヘルプにはF1を押してください。</translation>
     </message>
 </context>
 <context>
@@ -3180,7 +3188,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished">テキストラベル</translation>
+        <translation>テキストラベル</translation>
     </message>
 </context>
 <context>
@@ -3215,7 +3223,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished">テキスト検索GUIの文脈で、以下のテキストフラグメントを日本語に翻訳します。テキストフラグメント：最大サイズ%1（インデックス構成）。現在のサイズ%2。書き込み位置%3。</translation>
+        <translation>テキスト検索GUIの文脈で、以下のテキストフラグメントを日本語に翻訳します。テキストフラグメント：最大サイズ%1（インデックス構成）。現在のサイズ%2。書き込み位置%3。</translation>
     </message>
 </context>
 <context>
@@ -3238,38 +3246,38 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
 </context>
 <context>
     <name>WinSchedToolW</name>
     <message>
         <source>Recoll Batch indexing</source>
-        <translation type="unfinished">Recoll バッチインデックス化</translation>
+        <translation>Recoll バッチインデックス化</translation>
     </message>
     <message>
         <source>Start Windows Task Scheduler tool</source>
-        <translation type="unfinished">Windows タスク スケジューラ ツールを開始します。</translation>
+        <translation>Windows タスク スケジューラ ツールを開始します。</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">エラー</translation>
+        <translation>エラー</translation>
     </message>
     <message>
         <source>Configuration not initialized</source>
-        <translation type="unfinished">設定が初期化されていません。</translation>
+        <translation>設定が初期化されていません。</translation>
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished">バッチファイルを作成できませんでした。</translation>
+        <translation>バッチファイルを作成できませんでした。</translation>
     </message>
     <message>
         <source>&lt;h3&gt;Recoll indexing batch scheduling&lt;/h3&gt;&lt;p&gt;We use the standard Windows task scheduler for this. The program will be started when you click the button below.&lt;/p&gt;&lt;p&gt;You can use either the full interface (&lt;i&gt;Create task&lt;/i&gt; in the menu on the right), or the simplified &lt;i&gt;Create Basic task&lt;/i&gt; wizard. In both cases Copy/Paste the batch file path listed below as the &lt;i&gt;Action&lt;/i&gt; to be performed.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;h3&gt;Recoll インデックスバッチスケジューリング&lt;/h3&gt;&lt;p&gt;これには標準のWindowsタスクスケジューラを使用します。プログラムは、以下のボタンをクリックすると開始されます。&lt;/p&gt;&lt;p&gt;完全なインターフェース（右側のメニューにある&lt;i&gt;タスクの作成&lt;/i&gt;）または簡略化された&lt;i&gt;基本タスクの作成&lt;/i&gt;ウィザードのいずれかを使用できます。いずれの場合も、以下にリストされているバッチファイルのパスを&lt;i&gt;アクション&lt;/i&gt;としてコピー/ペーストしてください。&lt;/p&gt;</translation>
+        <translation>&lt;h3&gt;Recoll インデックスバッチスケジューリング&lt;/h3&gt;&lt;p&gt;これには標準のWindowsタスクスケジューラを使用します。プログラムは、以下のボタンをクリックすると開始されます。&lt;/p&gt;&lt;p&gt;完全なインターフェース（右側のメニューにある&lt;i&gt;タスクの作成&lt;/i&gt;）または簡略化された&lt;i&gt;基本タスクの作成&lt;/i&gt;ウィザードのいずれかを使用できます。いずれの場合も、以下にリストされているバッチファイルのパスを&lt;i&gt;アクション&lt;/i&gt;としてコピー/ペーストしてください。&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Command already started</source>
-        <translation type="unfinished">コマンドはすでに開始されています</translation>
+        <translation>コマンドはすでに開始されています</translation>
     </message>
 </context>
 <context>
@@ -3310,7 +3318,7 @@ Do you want to start the preferences dialog ?</source>
     <name>confgui::ConfTabsW</name>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">適用する (てきようする)</translation>
+        <translation>適用する (てきようする)</translation>
     </message>
 </context>
 <context>
@@ -3795,119 +3803,119 @@ The default value is 2 (percent). </translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished">ユーザーインターフェースのズーム倍率。デフォルトが画面解像度に合っていない場合に便利です。</translation>
+        <translation>ユーザーインターフェースのズーム倍率。デフォルトが画面解像度に合っていない場合に便利です。</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished">表示スケール（デフォルト1.0）:</translation>
+        <translation>表示スケール（デフォルト1.0）:</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished">自動スペル近似。</translation>
+        <translation>自動スペル近似。</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished">最大スペル距離</translation>
+        <translation>最大スペル距離</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished">稀な用語に対して一般的な綴りの近似を追加します。</translation>
+        <translation>稀な用語に対して一般的な綴りの近似を追加します。</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished">補完リスト内の履歴エントリの最大数</translation>
+        <translation>補完リスト内の履歴エントリの最大数</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished">補完機能の履歴エントリ数:</translation>
+        <translation>補完機能の履歴エントリ数:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished">インデックス内の用語の総出現回数を表示します。</translation>
+        <translation>インデックス内の用語の総出現回数を表示します。</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished">コンプリータのポップアップにヒット数を表示します。</translation>
+        <translation>コンプリータのポップアップにヒット数を表示します。</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished">プレビューにはプレーンテキストではなくHTMLを使用してください。</translation>
+        <translation>プレビューにはプレーンテキストではなくHTMLを使用してください。</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished">Qt QDateTimeEditのドキュメントを参照してください。例：yyyy-MM-dd。デフォルトのQt/System形式を使用する場合は空白のままにしてください。</translation>
+        <translation>Qt QDateTimeEditのドキュメントを参照してください。例：yyyy-MM-dd。デフォルトのQt/System形式を使用する場合は空白のままにしてください。</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished">サイドフィルタの日付形式（変更には再起動が必要です）</translation>
+        <translation>サイドフィルタの日付形式（変更には再起動が必要です）</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished">設定されている場合、同じインデックスで新しいインスタンスを開始すると、既存のインスタンスが起動されます。</translation>
+        <translation>設定されている場合、同じインデックスで新しいインスタンスを開始すると、既存のインスタンスが起動されます。</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished">単一のアプリケーション</translation>
+        <translation>単一のアプリケーション</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished">ツリー計算を避けて起動を高速化するために、0に設定して無効にします。</translation>
+        <translation>ツリー計算を避けて起動を高速化するために、0に設定して無効にします。</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished">完了は、アクティブ化されたときにのみエントリを変更します。</translation>
+        <translation>完了は、アクティブ化されたときにのみエントリを変更します。</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished">完了：自動行編集なし。</translation>
+        <translation>完了：自動行編集なし。</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished">インターフェース言語（再起動が必要）:</translation>
+        <translation>インターフェース言語（再起動が必要）:</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished">注意：ほとんどの翻訳は不完全です。システム環境を使用する場合は空白のままにしてください。</translation>
+        <translation>注意：ほとんどの翻訳は不完全です。システム環境を使用する場合は空白のままにしてください。</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished">プレビュー</translation>
+        <translation>プレビュー</translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished">詳細/要約機能を無効にするには、0に設定してください。</translation>
+        <translation>詳細/要約機能を無効にするには、0に設定してください。</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished">フィールドの表示：サマリーを使用する前の最大フィールド長：</translation>
+        <translation>フィールドの表示：サマリーを使用する前の最大フィールド長：</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished">プレビュー検索で見つかった検索語の上に表示される行数。</translation>
+        <translation>プレビュー検索で見つかった検索語の上に表示される行数。</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished">検索語の行オフセット:</translation>
+        <translation>検索語の行オフセット:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished">ワイルドカード文字*?[]は、展開される代わりに句読点として処理されます。</translation>
+        <translation>ワイルドカード文字*?[]は、展開される代わりに句読点として処理されます。</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished">すべての用語といずれかの用語モードでワイルドカード文字を無視します。</translation>
+        <translation>すべての用語といずれかの用語モードでワイルドカード文字を無視します。</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished">カラースキーム</translation>
+        <translation>カラースキーム</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished">ダークモードでHTMLを表示する際は、ダークな背景（および明るい色）を使用してみてください。&lt;br&gt;これは、多くの文書が自身のCSS（ダーク）の前景色で私たちの明るい設定を上書きし、読めない文書になるため、デフォルトではオフになっています。</translation>
+        <translation>ダークモードでHTMLを表示する際は、ダークな背景（および明るい色）を使用してみてください。&lt;br&gt;これは、多くの文書が自身のCSS（ダーク）の前景色で私たちの明るい設定を上書きし、読めない文書になるため、デフォルトではオフになっています。</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished">ダークモードでHTMLを表示する際は、暗い背景を使用してください。</translation>
+        <translation>ダークモードでHTMLを表示する際は、暗い背景を使用してください。</translation>
     </message>
 </context>
 </TS>

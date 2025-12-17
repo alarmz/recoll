@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Φιλτράρισμα ημερομηνιών γέννησης</translation>
+        <translation>Φιλτράρισμα ημερομηνιών γέννησης</translation>
     </message>
 </context>
 <context>
@@ -318,11 +318,11 @@
     </message>
     <message>
         <source>Database directory name</source>
-        <translation>Κατάλογος αποθήκευσης του ευρετηρίου</translation>
+        <translation type="vanished">Κατάλογος αποθήκευσης του ευρετηρίου</translation>
     </message>
     <message>
         <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation>Το όνομα του καταλόγου αποθήκευσης του ευρετηρίου&lt;br&gt;Μια σχετική διαδρομή αναφερόμενη στη διαδρομή διαμόρφωσης. Η εξ&apos; ορισμού είναι «xapiandb».</translation>
+        <translation type="vanished">Το όνομα του καταλόγου αποθήκευσης του ευρετηρίου&lt;br&gt;Μια σχετική διαδρομή αναφερόμενη στη διαδρομή διαμόρφωσης. Η εξ&apos; ορισμού είναι «xapiandb».</translation>
     </message>
     <message>
         <source>Unac exceptions</source>
@@ -434,7 +434,7 @@
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished">Έναρξη φακέλων</translation>
+        <translation>Έναρξη φακέλων</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
@@ -442,39 +442,47 @@
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished">Ποσοστό κατωφλίου γεμάτωμα δίσκου στο οποίο σταματάμε τον δείκτη&lt;br&gt;(Π.χ. 90 για να σταματήσει στο 90% γεμάτο, 0 ή 100 σημαίνει ότι δεν υπάρχει όριο)</translation>
+        <translation>Ποσοστό κατωφλίου γεμάτωμα δίσκου στο οποίο σταματάμε τον δείκτη&lt;br&gt;(Π.χ. 90 για να σταματήσει στο 90% γεμάτο, 0 ή 100 σημαίνει ότι δεν υπάρχει όριο)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished">Φάκελος λήψης πρόσθετου προγράμματος περιήγησης</translation>
+        <translation>Φάκελος λήψης πρόσθετου προγράμματος περιήγησης</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished">Ορίστε αυτό μόνο αν έχετε ορίσει την παράμετρο &quot;Υποφάκελος Λήψεων&quot; στις ρυθμίσεις του πρόσθετου περιηγητή ιστού. Σε αυτήν την περίπτωση, πρέπει να είναι ο πλήρης δρόμος προς τον φάκελο (π.χ. /home/[εγώ]/Downloads/my-subdir)</translation>
+        <translation>Ορίστε αυτό μόνο αν έχετε ορίσει την παράμετρο &quot;Υποφάκελος Λήψεων&quot; στις ρυθμίσεις του πρόσθετου περιηγητή ιστού. Σε αυτήν την περίπτωση, πρέπει να είναι ο πλήρης δρόμος προς τον φάκελο (π.χ. /home/[εγώ]/Downloads/my-subdir)</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished">Αποθηκεύστε τις τοπικά κάποιες παραμέτρους GUI στον ευρετήριο</translation>
+        <translation>Αποθηκεύστε τις τοπικά κάποιες παραμέτρους GUI στον ευρετήριο</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished">Ρυθμίσεις διεπαφής χρήστη (GUI) αποθηκεύονται συνήθως σε ένα γενικό αρχείο, έγκυρο για όλους τους δείκτες. Η ρύθμιση αυτή θα κάνει ορισμένες ρυθμίσεις, όπως η διάταξη του πίνακα αποτελεσμάτων, ειδικές για τον δείκτη.</translation>
+        <translation>Ρυθμίσεις διεπαφής χρήστη (GUI) αποθηκεύονται συνήθως σε ένα γενικό αρχείο, έγκυρο για όλους τους δείκτες. Η ρύθμιση αυτή θα κάνει ορισμένες ρυθμίσεις, όπως η διάταξη του πίνακα αποτελεσμάτων, ειδικές για τον δείκτη.</translation>
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished">Αναστείλετε τον δείκτη πραγματικού χρόνου κατά τη λειτουργία με μπαταρία.</translation>
+        <translation>Αναστείλετε τον δείκτη πραγματικού χρόνου κατά τη λειτουργία με μπαταρία.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished">Ο δείκτης θα περιμένει για επιστροφή στο AC και θα εκτελέσει ξανά τον εαυτό του όταν συμβεί αυτό.</translation>
+        <translation>Ο δείκτης θα περιμένει για επιστροφή στο AC και θα εκτελέσει ξανά τον εαυτό του όταν συμβεί αυτό.</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
-        <translation type="unfinished">Η λίστα των φακέλων/καταλόγων που πρέπει να ευρετηριαστούν, αναδρομικά με τους υπο-φακέλους τους. Το χαρακτήρας &apos;~&apos; επεκτείνεται στον φάκελο του αρχικού σας καταλόγου, που είναι η προεπιλεγμένη αρχική τιμή.</translation>
+        <translation>Η λίστα των φακέλων/καταλόγων που πρέπει να ευρετηριαστούν, αναδρομικά με τους υπο-φακέλους τους. Το χαρακτήρας &apos;~&apos; επεκτείνεται στον φάκελο του αρχικού σας καταλόγου, που είναι η προεπιλεγμένη αρχική τιμή.</translation>
     </message>
     <message>
-        <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">Προεπιλεγμένα, το aspell προτείνει ορθογραφικά λάθη όταν μια αναζήτηση δεν έχει αποτελέσματα.</translation>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -542,18 +550,18 @@ This will help searching very big text  files (ie: log files).</source>
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished">Μετάβαση σε άλλη διαμόρφωση</translation>
+        <translation>Μετάβαση σε άλλη διαμόρφωση</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished">Επιλέξτε άλλο</translation>
+        <translation>Επιλέξτε άλλο</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished">Επιλέξτε τον κατάλογο διαμόρφωσης</translation>
+        <translation>Επιλέξτε τον κατάλογο διαμόρφωσης</translation>
     </message>
 </context>
 <context>
@@ -841,57 +849,57 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished">Χρειάζεται να οριστεί το &quot;Εμφάνιση εικονιδίου στη γραμμή εργασιύ&quot; στις προτιμήσεις!</translation>
+        <translation>Χρειάζεται να οριστεί το &quot;Εμφάνιση εικονιδίου στη γραμμή εργασιύ&quot; στις προτιμήσεις!</translation>
     </message>
 </context>
 <context>
     <name>PTransEdit</name>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">Διαδρομή στον ευρετήριο</translation>
+        <translation>Διαδρομή στον ευρετήριο</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">Μεταφρασμένη διαδρομή</translation>
+        <translation>Μεταφρασμένη διαδρομή</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation type="unfinished">Σφάλμα διαμόρφωσης</translation>
+        <translation>Σφάλμα διαμόρφωσης</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation type="unfinished">Αρχική διαδρομή</translation>
+        <translation>Αρχική διαδρομή</translation>
     </message>
     <message>
         <source>Local path</source>
-        <translation type="unfinished">Τοπική διαδρομή</translation>
+        <translation>Τοπική διαδρομή</translation>
     </message>
 </context>
 <context>
     <name>PTransEditBase</name>
     <message>
         <source>Path Translations</source>
-        <translation type="unfinished">Διαδρομή μεταφράσεων</translation>
+        <translation>Διαδρομή μεταφράσεων</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished">Επιλέξτε έναν οι περισσότερους τύπους αρχείων, και στη συνέχεια χρησιμοποιήστε τα κουμπιά ελέγχου στο παρακάτω πλαίσιο για να αλλάξετε τον τρόπο επεξεργασίας</translation>
+        <translation>Επιλέξτε έναν οι περισσότερους τύπους αρχείων, και στη συνέχεια χρησιμοποιήστε τα κουμπιά ελέγχου στο παρακάτω πλαίσιο για να αλλάξετε τον τρόπο επεξεργασίας</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Προσθήκη</translation>
+        <translation>Προσθήκη</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Διαγραφή</translation>
+        <translation>Διαγραφή</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Ακύρωση</translation>
+        <translation>Ακύρωση</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Αποθήκευση</translation>
+        <translation>Αποθήκευση</translation>
     </message>
 </context>
 <context>
@@ -1093,11 +1101,11 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished">Επαναφόρτωση ως Απλό Κείμενο</translation>
+        <translation>Επαναφόρτωση ως Απλό Κείμενο</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished">Επαναφόρτωση ως HTML</translation>
+        <translation>Επαναφόρτωση ως HTML</translation>
     </message>
 </context>
 <context>
@@ -1195,7 +1203,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished">Αυτά είναι μοτίβα για ονόματα αρχείων ή φακέλων τα οποία δεν πρέπει να ευρετηριαστούν.</translation>
+        <translation>Αυτά είναι μοτίβα για ονόματα αρχείων ή φακέλων τα οποία δεν πρέπει να ευρετηριαστούν.</translation>
     </message>
 </context>
 <context>
@@ -1366,15 +1374,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished">Όνομα διαμόρφωσης</translation>
+        <translation>Όνομα διαμόρφωσης</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished">Σύντομο αλφαριθμητικό ψευδώνυμο για αυτή τη διαμόρφωση</translation>
+        <translation>Σύντομο αλφαριθμητικό ψευδώνυμο για αυτή τη διαμόρφωση</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished">Δεν μπόρεσα να βρω</translation>
+        <translation>Δεν μπόρεσα να βρω</translation>
     </message>
 </context>
 <context>
@@ -1384,8 +1392,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Εντοπισμοί</translation>
     </message>
     <message>
-        <source>Hits</source>
-        <translation type="unfinished">Εντοπισμοί</translation>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2068,24 +2076,24 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished">Αυτή η αναζήτηση δεν είναι ενεργή πλέον</translation>
+        <translation>Αυτή η αναζήτηση δεν είναι ενεργή πλέον</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished">Η γραμμή εντολών του προβολέα για το %1 καθορίζει το γονικό αρχείο αλλά η διεύθυνση URL δεν είναι file:// : μη υποστηριζόμενη</translation>
+        <translation>Η γραμμή εντολών του προβολέα για το %1 καθορίζει το γονικό αρχείο αλλά η διεύθυνση URL δεν είναι file:// : μη υποστηριζόμενη</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished">Ο προβολέας που καθορίζεται στο mimeview για το %1: %2 δεν βρέθηκε. Θέλετε να ξεκινήσετε το παράθυρο προτιμήσεων;</translation>
+        <translation>Ο προβολέας που καθορίζεται στο mimeview για το %1: %2 δεν βρέθηκε. Θέλετε να ξεκινήσετε το παράθυρο προτιμήσεων;</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished">Εμφάνιση προχωρημένου παραθύρου αναζήτησης</translation>
+        <translation>Εμφάνιση προχωρημένου παραθύρου αναζήτησης</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">με επιπλέον μήνυμα:</translation>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2448,31 +2456,31 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Φιλτράρισμα ημερομηνιών γέννησης</translation>
+        <translation>Φιλτράρισμα ημερομηνιών γέννησης</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished">Ρύθμιση Διακόπτη...</translation>
+        <translation>Ρύθμιση Διακόπτη...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished">Επιλέξτε μια άλλη διαμόρφωση για να τρέξετε, αντικαθιστώντας αυτή τη διαδικασία.</translation>
+        <translation>Επιλέξτε μια άλλη διαμόρφωση για να τρέξετε, αντικαθιστώντας αυτή τη διαδικασία.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished">Εγχειρίδιο χρήστη (τοπικό, μία σελίδα HTML)</translation>
+        <translation>Εγχειρίδιο χρήστη (τοπικό, μία σελίδα HTML)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished">Ηλεκτρονικό εγχειρίδιο (Ιστοσελίδα του Recoll)</translation>
+        <translation>Ηλεκτρονικό εγχειρίδιο (Ιστοσελίδα του Recoll)</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished">Μεταφράσεις διαδρομής</translation>
+        <translation>Μεταφράσεις διαδρομής</translation>
     </message>
     <message>
-        <source>With failed files retrying</source>
-        <translation type="unfinished">Με αποτυχημένα αρχεία επανάληψη</translation>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3193,19 +3201,19 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished">Φύλλο απατεώνα γλώσσας ερωτήματος. Σε αμφιβολία: κάντε κλικ στο &lt;b&gt;Εμφάνιση λεπτομερειών ερωτήματος&lt;/b&gt;. &amp;nbsp;</translation>
+        <translation>Φύλλο απατεώνα γλώσσας ερωτήματος. Σε αμφιβολία: κάντε κλικ στο &lt;b&gt;Εμφάνιση λεπτομερειών ερωτήματος&lt;/b&gt;. &amp;nbsp;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Κεφαλαία για την κατάσβεση της επέκτασης του κορμού&lt;/td&gt;&lt;td&gt;Δάπεδο&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Κεφαλαία για την κατάσβεση της επέκτασης του κορμού&lt;/td&gt;&lt;td&gt;Δάπεδο&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Size&lt;/td&gt;&lt;td&gt;size&amp;gt;100k size&amp;lt;1M&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Μέγεθος&lt;/td&gt;&lt;td&gt;μέγεθος&gt;100k μέγεθος&lt;1M&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Μέγεθος&lt;/td&gt;&lt;td&gt;μέγεθος&gt;100k μέγεθος&lt;1M&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">διαφέρουν από τις τρέχουσες προτιμήσεις (διατηρούνται)</translation>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3405,11 +3413,11 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished">Αύξηση μεγέθους γραμματοσειράς</translation>
+        <translation>Αύξηση μεγέθους γραμματοσειράς</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished">Μείωση μεγέθους γραμματοσειράς</translation>
+        <translation>Μείωση μεγέθους γραμματοσειράς</translation>
     </message>
 </context>
 <context>
@@ -3696,19 +3704,19 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished">Σφάλμα διαστολής ξενόγλωσσων.</translation>
+        <translation>Σφάλμα διαστολής ξενόγλωσσων.</translation>
     </message>
     <message>
-        <source>Documents created/updated</source>
-        <translation type="unfinished">Έγγραφα που δημιουργήθηκαν/ενημερώθηκαν</translation>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files tested</source>
-        <translation type="unfinished">Αρχεία ελέγχθηκαν</translation>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unindexed files</source>
-        <translation type="unfinished">Μη ευρετηριασμένα αρχεία</translation>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3807,19 +3815,19 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished">Δεν μπορείτε να προσθέσετε δείκτη με διαφορετική επιλογή αφαίρεσης πεζών/διακριτικών.</translation>
+        <translation>Δεν μπορείτε να προσθέσετε δείκτη με διαφορετική επιλογή αφαίρεσης πεζών/διακριτικών.</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished">Φως</translation>
+        <translation>Φως</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished">Σκοτεινό</translation>
+        <translation>Σκοτεινό</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished">Σύστημα</translation>
+        <translation>Σύστημα</translation>
     </message>
 </context>
 <context>
@@ -4128,7 +4136,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished">Η τιμή είναι μια γραμμή εντολών που πρέπει να εκτελεστεί. Αντικαταστάσεις: %s: συμβολοσειρά αναζήτησης; %p: αριθμός σελίδας; &lt;br&gt;%f: όνομα αρχείου εγγράφου. F1 για περισσότερη βοήθεια.</translation>
+        <translation>Η τιμή είναι μια γραμμή εντολών που πρέπει να εκτελεστεί. Αντικαταστάσεις: %s: συμβολοσειρά αναζήτησης; %p: αριθμός σελίδας; &lt;br&gt;%f: όνομα αρχείου εγγράφου. F1 για περισσότερη βοήθεια.</translation>
     </message>
 </context>
 <context>
@@ -4143,7 +4151,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished">ΕτικέταΚειμένου</translation>
+        <translation>ΕτικέταΚειμένου</translation>
     </message>
 </context>
 <context>
@@ -4178,7 +4186,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished">Μέγιστο μέγεθος %1 (Ρυθμίσεις Δείκτη). Τρέχον μέγεθος %2. Θέση εγγραφής %3.</translation>
+        <translation>Μέγιστο μέγεθος %1 (Ρυθμίσεις Δείκτη). Τρέχον μέγεθος %2. Θέση εγγραφής %3.</translation>
     </message>
 </context>
 <context>
@@ -4201,7 +4209,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
 </context>
 <context>
@@ -4232,7 +4240,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished">Δεν ήταν δυνατή η δημιουργία αρχείου πακέτου</translation>
+        <translation>Δεν ήταν δυνατή η δημιουργία αρχείου πακέτου</translation>
     </message>
 </context>
 <context>
@@ -4443,7 +4451,7 @@ This will help searching very big text  files (ie: log files).</source>
     <name>confgui::ConfTabsW</name>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Εφαρμογή</translation>
+        <translation>Εφαρμογή</translation>
     </message>
 </context>
 <context>
@@ -5163,99 +5171,99 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished">Μέγιστος αριθμός καταχωρήσεων ιστορικού στη λίστα συμπληρωτή</translation>
+        <translation>Μέγιστος αριθμός καταχωρήσεων ιστορικού στη λίστα συμπληρωτή</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished">Αριθμός εγγραφών ιστορικού στο συμπληρωτή:</translation>
+        <translation>Αριθμός εγγραφών ιστορικού στο συμπληρωτή:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished">Εμφανίζει τον συνολικό αριθμό εμφανίσεων του όρου στον ευρετήριο.</translation>
+        <translation>Εμφανίζει τον συνολικό αριθμό εμφανίσεων του όρου στον ευρετήριο.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished">Εμφάνιση αριθμού εμφανίσεων στο αναδυόμενο παράθυρο συμπληρωτή.</translation>
+        <translation>Εμφάνιση αριθμού εμφανίσεων στο αναδυόμενο παράθυρο συμπληρωτή.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished">Προτιμήστε το HTML αντί του απλού κειμένου για προεπισκόπηση.</translation>
+        <translation>Προτιμήστε το HTML αντί του απλού κειμένου για προεπισκόπηση.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished">Δείτε την τεκμηρίωση του Qt QDateTimeEdit. Π.χ. yyyy-MM-dd. Αφήστε κενό για να χρησιμοποιήσετε την προεπιλεγμένη μορφή Qt/System.</translation>
+        <translation>Δείτε την τεκμηρίωση του Qt QDateTimeEdit. Π.χ. yyyy-MM-dd. Αφήστε κενό για να χρησιμοποιήσετε την προεπιλεγμένη μορφή Qt/System.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished">Μορφή ημερομηνιών φίλτρου πλευρικού πλαισίου (η αλλαγή απαιτεί επανεκκίνηση)</translation>
+        <translation>Μορφή ημερομηνιών φίλτρου πλευρικού πλαισίου (η αλλαγή απαιτεί επανεκκίνηση)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished">Εάν οριστεί, η έναρξη μιας νέας περίπτωσης στον ίδιο δείκτη θα ενεργοποιήσει μια υπάρχουσα.</translation>
+        <translation>Εάν οριστεί, η έναρξη μιας νέας περίπτωσης στον ίδιο δείκτη θα ενεργοποιήσει μια υπάρχουσα.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished">Μονό εφαρμογή</translation>
+        <translation>Μονό εφαρμογή</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished">Ορίστε το σε 0 για να απενεργοποιήσετε και να επιταχύνετε την εκκίνηση αποφεύγοντας τον υπολογισμό του δέντρου.</translation>
+        <translation>Ορίστε το σε 0 για να απενεργοποιήσετε και να επιταχύνετε την εκκίνηση αποφεύγοντας τον υπολογισμό του δέντρου.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished">Η ολοκλήρωση αλλάζει την καταχώρηση μόνο όταν ενεργοποιείται.</translation>
+        <translation>Η ολοκλήρωση αλλάζει την καταχώρηση μόνο όταν ενεργοποιείται.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished">Ολοκλήρωση: χωρίς αυτόματη επεξεργασία γραμμής.</translation>
+        <translation>Ολοκλήρωση: χωρίς αυτόματη επεξεργασία γραμμής.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished">Γλώσσα διεπαφής (χρειάζεται επανεκκίνηση):</translation>
+        <translation>Γλώσσα διεπαφής (χρειάζεται επανεκκίνηση):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished">Σημείωση: Οι περισσότερες μεταφράσεις είναι ατελείς. Αφήστε κενό για να χρησιμοποιήσετε το περιβάλλον του συστήματος.</translation>
+        <translation>Σημείωση: Οι περισσότερες μεταφράσεις είναι ατελείς. Αφήστε κενό για να χρησιμοποιήσετε το περιβάλλον του συστήματος.</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished">Προεπισκόπηση</translation>
+        <translation>Προεπισκόπηση</translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished">Ορίστε το σε 0 για να απενεργοποιήσετε το χαρακτηριστικό λεπτομερειών/σύνοψης</translation>
+        <translation>Ορίστε το σε 0 για να απενεργοποιήσετε το χαρακτηριστικό λεπτομερειών/σύνοψης</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished">Πεδία εμφάνισης: μέγιστο μήκος πεδίου πριν από τη χρήση σύνοψης</translation>
+        <translation>Πεδία εμφάνισης: μέγιστο μήκος πεδίου πριν από τη χρήση σύνοψης</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished">Αριθμός γραμμών που θα εμφανίζονται πάνω από έναν όρο αναζήτησης που βρέθηκε με προεπισκόπηση αναζήτησης.</translation>
+        <translation>Αριθμός γραμμών που θα εμφανίζονται πάνω από έναν όρο αναζήτησης που βρέθηκε με προεπισκόπηση αναζήτησης.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished">Αναζήτηση όρου μετατόπιση γραμμής:</translation>
+        <translation>Αναζήτηση όρου μετατόπιση γραμμής:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished">Χαρακτήρες μπαλαντέρ *?[] θα επεξεργαστούν ως σημεία στίξης αντί να επεκταθούν</translation>
+        <translation>Χαρακτήρες μπαλαντέρ *?[] θα επεξεργαστούν ως σημεία στίξης αντί να επεκταθούν</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished">Αγνοήστε τους χαρακτήρες μπαλαντέρ σε όλους τους όρους και σε όλους τους τρόπους λειτουργίας.</translation>
+        <translation>Αγνοήστε τους χαρακτήρες μπαλαντέρ σε όλους τους όρους και σε όλους τους τρόπους λειτουργίας.</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished">Χρωματικό σχήμα</translation>
+        <translation>Χρωματικό σχήμα</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished">Κατά την εμφάνιση HTML σε λειτουργία σκοτεινού χρώματος, προσπαθήστε να χρησιμοποιήσετε σκοτεινό φόντο (και ανοιχτό χρώμα). Αυτό δημιουργεί σύγκρουση με πολλά έγγραφα τα οποία θα αντικαταστήσουν τη ρύθμιση φωτεινότητας μας με το δικό τους CSS (σκοτεινό) χρώμα προσκηνίου, με αποτέλεσμα ένα αναγνώσιμο έγγραφο, γι&apos; αυτό είναι απενεργοποιημένο από προεπιλογή.</translation>
+        <translation>Κατά την εμφάνιση HTML σε λειτουργία σκοτεινού χρώματος, προσπαθήστε να χρησιμοποιήσετε σκοτεινό φόντο (και ανοιχτό χρώμα). Αυτό δημιουργεί σύγκρουση με πολλά έγγραφα τα οποία θα αντικαταστήσουν τη ρύθμιση φωτεινότητας μας με το δικό τους CSS (σκοτεινό) χρώμα προσκηνίου, με αποτέλεσμα ένα αναγνώσιμο έγγραφο, γι&apos; αυτό είναι απενεργοποιημένο από προεπιλογή.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished">Χρησιμοποιήστε σκούρο φόντο κατά την εμφάνιση HTML σε λειτουργία σκοτεινού τρόπου.</translation>
+        <translation>Χρησιμοποιήστε σκούρο φόντο κατά την εμφάνιση HTML σε λειτουργία σκοτεινού τρόπου.</translation>
     </message>
 </context>
 </TS>

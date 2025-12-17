@@ -5,7 +5,7 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished">Menu zoeken</translation>
+        <translation>Menu zoeken</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Filter geboortedata</translation>
+        <translation>Filter geboortedata</translation>
     </message>
 </context>
 <context>
@@ -318,11 +318,11 @@
     </message>
     <message>
         <source>Database directory name</source>
-        <translation>Database map naam</translation>
+        <translation type="vanished">Database map naam</translation>
     </message>
     <message>
         <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation>De naam voor een map om de index in op te slaan&lt;br&gt; Een niet absoluut pad ten opzichte van het configuratie bestand is gekozen. Standaard is het &apos;xapian db&apos;.</translation>
+        <translation type="vanished">De naam voor een map om de index in op te slaan&lt;br&gt; Een niet absoluut pad ten opzichte van het configuratie bestand is gekozen. Standaard is het &apos;xapian db&apos;.</translation>
     </message>
     <message>
         <source>Unac exceptions</source>
@@ -414,7 +414,7 @@
     </message>
     <message>
         <source>Process the Web history queue</source>
-        <translation type="unfinished">Verwerk de wachtrij van de webgeschiedenis</translation>
+        <translation>Verwerk de wachtrij van de webgeschiedenis</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -422,19 +422,19 @@
     </message>
     <message>
         <source>Page recycle interval</source>
-        <translation type="unfinished">Pagina recycle interval</translation>
+        <translation>Pagina recycle interval</translation>
     </message>
     <message>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
-        <translation type="unfinished">Standaard wordt slechts één exemplaar van een URL in de cache bewaard. Dit kan worden gewijzigd door dit in te stellen op een waarde die bepaalt met welke frequentie we meerdere exemplaren behouden (&apos;dag&apos;, &apos;week&apos;, &apos;maand&apos;, &apos;jaar&apos;). Let op dat het verhogen van het interval bestaande vermeldingen niet zal wissen.</translation>
+        <translation>Standaard wordt slechts één exemplaar van een URL in de cache bewaard. Dit kan worden gewijzigd door dit in te stellen op een waarde die bepaalt met welke frequentie we meerdere exemplaren behouden (&apos;dag&apos;, &apos;week&apos;, &apos;maand&apos;, &apos;jaar&apos;). Let op dat het verhogen van het interval bestaande vermeldingen niet zal wissen.</translation>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
-        <translation type="unfinished">Let op: oude pagina&apos;s worden gewist om ruimte te maken voor nieuwe wanneer de maximale grootte is bereikt. Huidige grootte: %1</translation>
+        <translation>Let op: oude pagina&apos;s worden gewist om ruimte te maken voor nieuwe wanneer de maximale grootte is bereikt. Huidige grootte: %1</translation>
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished">Start mappen</translation>
+        <translation>Start mappen</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
@@ -442,39 +442,47 @@
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished">Schijf vol drempelpercentage waarbij we stoppen met indexeren&lt;br&gt;(Bijv. 90 om te stoppen bij 90% vol, 0 of 100 betekent geen limiet)</translation>
+        <translation>Schijf vol drempelpercentage waarbij we stoppen met indexeren&lt;br&gt;(Bijv. 90 om te stoppen bij 90% vol, 0 of 100 betekent geen limiet)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished">Map voor het downloaden van browser-add-ons</translation>
+        <translation>Map voor het downloaden van browser-add-ons</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished">Stel dit alleen in als je de parameter &quot;Downloads subdirectory&quot; hebt ingesteld in de instellingen van de webbrowser-add-on. In dat geval moet het het volledige pad naar de map zijn (bijv. /home/[me]/Downloads/my-subdir)</translation>
+        <translation>Stel dit alleen in als je de parameter &quot;Downloads subdirectory&quot; hebt ingesteld in de instellingen van de webbrowser-add-on. In dat geval moet het het volledige pad naar de map zijn (bijv. /home/[me]/Downloads/my-subdir)</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished">Sla enkele GUI-parameters lokaal op in de index.</translation>
+        <translation>Sla enkele GUI-parameters lokaal op in de index.</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished">GUI-instellingen worden normaal gesproken opgeslagen in een globaal bestand, geldig voor alle indexen. Het instellen van deze parameter zal sommige instellingen, zoals de opmaak van de resultaattabel, specifiek maken voor de index.</translation>
+        <translation>GUI-instellingen worden normaal gesproken opgeslagen in een globaal bestand, geldig voor alle indexen. Het instellen van deze parameter zal sommige instellingen, zoals de opmaak van de resultaattabel, specifiek maken voor de index.</translation>
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished">Schakel de real-time indexeerder uit wanneer deze op batterijvoeding werkt.</translation>
+        <translation>Schakel de real-time indexeerder uit wanneer deze op batterijvoeding werkt.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished">De indexeerder zal wachten op een reactie op AC en zichzelf opnieuw uitvoeren wanneer dit gebeurt.</translation>
+        <translation>De indexeerder zal wachten op een reactie op AC en zichzelf opnieuw uitvoeren wanneer dit gebeurt.</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
-        <translation type="unfinished">De lijst met mappen/directories die recursief geïndexeerd moeten worden, inclusief hun submappen.&lt;br&gt; Het &apos;~&apos; karakter breidt uit naar uw thuismap, wat de standaard initiële waarde is.</translation>
+        <translation>De lijst met mappen/directories die recursief geïndexeerd moeten worden, inclusief hun submappen.&lt;br&gt; Het &apos;~&apos; karakter breidt uit naar uw thuismap, wat de standaard initiële waarde is.</translation>
     </message>
     <message>
-        <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">(standaard suggereert aspell verkeerd gespelde woorden wanneer een zoekopdracht geen resultaten oplevert).</translation>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -539,18 +547,18 @@ This will help searching very big text  files (ie: log files).</source>
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished">Overschakelen naar een andere configuratie</translation>
+        <translation>Overschakelen naar een andere configuratie</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished">Kies een andere</translation>
+        <translation>Kies een andere</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished">Kies configuratiemap</translation>
+        <translation>Kies configuratiemap</translation>
     </message>
 </context>
 <context>
@@ -837,57 +845,57 @@ Klik op Annuleren als u het configuratiebestand wilt bewerken voordat u het inde
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished">Moet &quot;Systeemvakpictogram weergeven&quot; worden ingesteld in de voorkeuren!</translation>
+        <translation>Moet &quot;Systeemvakpictogram weergeven&quot; worden ingesteld in de voorkeuren!</translation>
     </message>
 </context>
 <context>
     <name>PTransEdit</name>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">Pad in index</translation>
+        <translation>Pad in index</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">Vertaald pad</translation>
+        <translation>Vertaald pad</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation type="unfinished">Configuratie fout</translation>
+        <translation>Configuratie fout</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation type="unfinished">Oorspronkelijk pad</translation>
+        <translation>Oorspronkelijk pad</translation>
     </message>
     <message>
         <source>Local path</source>
-        <translation type="unfinished">lokaal pad</translation>
+        <translation>lokaal pad</translation>
     </message>
 </context>
 <context>
     <name>PTransEditBase</name>
     <message>
         <source>Path Translations</source>
-        <translation type="unfinished">Pad vertalingen</translation>
+        <translation>Pad vertalingen</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished">Selecteer één of meerdere bestandstypen, en gebruik vervolgens de bedieningselementen in het kader hieronder om te wijzigen hoe ze worden verwerkt.</translation>
+        <translation>Selecteer één of meerdere bestandstypen, en gebruik vervolgens de bedieningselementen in het kader hieronder om te wijzigen hoe ze worden verwerkt.</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">toevoegen</translation>
+        <translation>toevoegen</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Verwijderen</translation>
+        <translation>Verwijderen</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annuleer</translation>
+        <translation>Annuleer</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Bewaar</translation>
+        <translation>Bewaar</translation>
     </message>
 </context>
 <context>
@@ -1089,11 +1097,11 @@ Klik op Annuleren als u het configuratiebestand wilt bewerken voordat u het inde
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished">Herladen als platte tekst</translation>
+        <translation>Herladen als platte tekst</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished">Herladen als HTML</translation>
+        <translation>Herladen als HTML</translation>
     </message>
 </context>
 <context>
@@ -1191,7 +1199,7 @@ Klik op Annuleren als u het configuratiebestand wilt bewerken voordat u het inde
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished">Dit zijn patronen voor bestands- of mapnamen die niet geïndexeerd moeten worden.</translation>
+        <translation>Dit zijn patronen voor bestands- of mapnamen die niet geïndexeerd moeten worden.</translation>
     </message>
 </context>
 <context>
@@ -1278,15 +1286,15 @@ Klik op Annuleren als u het configuratiebestand wilt bewerken voordat u het inde
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished">Kopieer tekst</translation>
+        <translation>Kopieer tekst</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished">Kopieer &amp;Bestandspad</translation>
+        <translation>Kopieer &amp;Bestandspad</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished">Kopieer bestandsnaam</translation>
+        <translation>Kopieer bestandsnaam</translation>
     </message>
 </context>
 <context>
@@ -1362,15 +1370,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished">Configuratienaam</translation>
+        <translation>Configuratienaam</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished">Korte alfanumerieke bijnaam voor deze configuratie</translation>
+        <translation>Korte alfanumerieke bijnaam voor deze configuratie</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished">Kon niet vinden</translation>
+        <translation>Kon niet vinden</translation>
     </message>
 </context>
 <context>
@@ -1380,8 +1388,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Resultaten</translation>
     </message>
     <message>
-        <source>Hits</source>
-        <translation type="unfinished">Resultaten</translation>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2036,48 +2044,48 @@ Please check the desktop file</source>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished">Doorspoelen</translation>
+        <translation>Doorspoelen</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished">Toon het zoekmenuvenster</translation>
+        <translation>Toon het zoekmenuvenster</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished">Duplicaten</translation>
+        <translation>Duplicaten</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished">Filter mappen</translation>
+        <translation>Filter mappen</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished">Hoofdindex open fout:</translation>
+        <translation>Hoofdindex open fout:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished">De index kan beschadigd zijn. Misschien moet u proberen xapian-check uit te voeren of de index opnieuw op te bouwen?</translation>
+        <translation>De index kan beschadigd zijn. Misschien moet u proberen xapian-check uit te voeren of de index opnieuw op te bouwen?</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished">Deze zoekopdracht is niet meer actief.</translation>
+        <translation>Deze zoekopdracht is niet meer actief.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished">Viewer-opdrachtregel voor %1 geeft ouderbestand aan maar URL is geen file:// : niet ondersteund</translation>
+        <translation>Viewer-opdrachtregel voor %1 geeft ouderbestand aan maar URL is geen file:// : niet ondersteund</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished">De viewer gespecificeerd in mimeview voor %1: %2 is niet gevonden. Wilt u het voorkeurenvenster openen?</translation>
+        <translation>De viewer gespecificeerd in mimeview voor %1: %2 is niet gevonden. Wilt u het voorkeurenvenster openen?</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished">Toon geavanceerd zoekvenster</translation>
+        <translation>Toon geavanceerd zoekvenster</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">met extra bericht:</translation>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2408,65 +2416,65 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation type="unfinished">Vergroot de lettergrootte van de zoekresultaten.</translation>
+        <translation>Vergroot de lettergrootte van de zoekresultaten.</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished">Vergroot lettergrootte</translation>
+        <translation>Vergroot lettergrootte</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation type="unfinished">Verminder de lettergrootte van de zoekresultaten.</translation>
+        <translation>Verminder de lettergrootte van de zoekresultaten.</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished">Verklein lettergrootte</translation>
+        <translation>Verklein lettergrootte</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished">Start real time indexer
+        <translation>Start real time indexer
 
 Start real time indexer</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished">Zoektaal Filters</translation>
+        <translation>Zoektaal Filters</translation>
     </message>
     <message>
         <source>Filter dates</source>
-        <translation type="unfinished">Filter datums</translation>
+        <translation>Filter datums</translation>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished">Ondersteunde complexe zoekopdracht</translation>
+        <translation>Ondersteunde complexe zoekopdracht</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Filter geboortedata</translation>
+        <translation>Filter geboortedata</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished">Schakel configuratie...</translation>
+        <translation>Schakel configuratie...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished">Kies een andere configuratie om op uit te voeren, ter vervanging van dit proces.</translation>
+        <translation>Kies een andere configuratie om op uit te voeren, ter vervanging van dit proces.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished">Gebruikershandleiding (lokaal, één HTML-pagina)</translation>
+        <translation>Gebruikershandleiding (lokaal, één HTML-pagina)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished">Online handleiding (Recoll-website)</translation>
+        <translation>Online handleiding (Recoll-website)</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished">Padvertalingen</translation>
+        <translation>Padvertalingen</translation>
     </message>
     <message>
-        <source>With failed files retrying</source>
-        <translation type="unfinished">Met mislukte bestanden opnieuw proberen</translation>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2683,11 +2691,11 @@ Start real time indexer</translation>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished">Deze spellingsuggestie is toegevoegd aan de zoekopdracht:</translation>
+        <translation>Deze spellingsuggestie is toegevoegd aan de zoekopdracht:</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished">Deze spelling suggesties zijn toegevoegd aan de zoekopdracht:</translation>
+        <translation>Deze spelling suggesties zijn toegevoegd aan de zoekopdracht:</translation>
     </message>
 </context>
 <context>
@@ -2802,15 +2810,15 @@ Start real time indexer</translation>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished">Gebruik Shift+klik om de tekst weer te geven.</translation>
+        <translation>Gebruik Shift+klik om de tekst weer te geven.</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished">%1 bytes gekopieerd naar klembord</translation>
+        <translation>%1 bytes gekopieerd naar klembord</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished">Kopieer resultaattekst en sluit</translation>
+        <translation>Kopieer resultaattekst en sluit</translation>
     </message>
 </context>
 <context>
@@ -3179,23 +3187,23 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished">Eenvoudig zoeken</translation>
+        <translation>Eenvoudig zoeken</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished">Geschiedenis</translation>
+        <translation>Geschiedenis</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished">&lt;p&gt;Overzicht van querytaal. Bij twijfel: klik op &lt;b&gt;Toon Query Details&lt;/b&gt;.&amp;nbsp;</translation>
+        <translation>&lt;p&gt;Overzicht van querytaal. Bij twijfel: klik op &lt;b&gt;Toon Query Details&lt;/b&gt;.&amp;nbsp;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Hoofdletters om stamuitbreiding te onderdrukken&lt;/td&gt;&lt;td&gt;Vloer&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Hoofdletters om stamuitbreiding te onderdrukken&lt;/td&gt;&lt;td&gt;Vloer&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">verschillen van huidige voorkeuren (behouden)</translation>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3395,11 +3403,11 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished">Vergroot lettergrootte</translation>
+        <translation>Vergroot lettergrootte</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished">Verklein lettergrootte</translation>
+        <translation>Verklein lettergrootte</translation>
     </message>
 </context>
 <context>
@@ -3500,11 +3508,11 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation type="unfinished">Diagnostisch uitvoerbestand. Zal worden afgekapt en ontvangt indexdiagnostiek (redenen waarom bestanden niet worden geïndexeerd).</translation>
+        <translation>Diagnostisch uitvoerbestand. Zal worden afgekapt en ontvangt indexdiagnostiek (redenen waarom bestanden niet worden geïndexeerd).</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
-        <translation type="unfinished">Diagnostisch bestand</translation>
+        <translation>Diagnostisch bestand</translation>
     </message>
 </context>
 <context>
@@ -3686,19 +3694,19 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished">Spelfoutuitbreidingfout.</translation>
+        <translation>Spelfoutuitbreidingfout.</translation>
     </message>
     <message>
-        <source>Documents created/updated</source>
-        <translation type="unfinished">Documenten aangemaakt/bijgewerkt</translation>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files tested</source>
-        <translation type="unfinished">Bestanden getest</translation>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unindexed files</source>
-        <translation type="unfinished">Ongeïndexeerde bestanden</translation>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3793,23 +3801,23 @@ Gebruik &lt;b&gt; Toon Zoekterm &lt;/b&gt; in geval van twijfel over de uitslag 
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished">Kies QSS-bestand</translation>
+        <translation>Kies QSS-bestand</translation>
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished">Kan geen index toevoegen met een andere optie voor hoofdletter/diacritische tekens verwijderen.</translation>
+        <translation>Kan geen index toevoegen met een andere optie voor hoofdletter/diacritische tekens verwijderen.</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished">Licht</translation>
+        <translation>Licht</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished">Donker</translation>
+        <translation>Donker</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished">Systeem</translation>
+        <translation>Systeem</translation>
     </message>
 </context>
 <context>
@@ -4116,7 +4124,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished">De waarde is een opdrachtregel die moet worden uitgevoerd. Vervangingen: %s: zoekreeks; %p: paginanummer; &lt;br&gt;%f: documentbestandsnaam. F1 voor meer hulp.</translation>
+        <translation>De waarde is een opdrachtregel die moet worden uitgevoerd. Vervangingen: %s: zoekreeks; %p: paginanummer; &lt;br&gt;%f: documentbestandsnaam. F1 voor meer hulp.</translation>
     </message>
 </context>
 <context>
@@ -4131,7 +4139,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished">Tekstlabel</translation>
+        <translation>Tekstlabel</translation>
     </message>
 </context>
 <context>
@@ -4158,15 +4166,15 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished">Opslaan naar bestand</translation>
+        <translation>Opslaan naar bestand</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished">Bestand aanmaken mislukt:</translation>
+        <translation>Bestand aanmaken mislukt:</translation>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished">Maximale grootte %1 (Index config.). Huidige grootte %2. Schrijfpositie %3.</translation>
+        <translation>Maximale grootte %1 (Index config.). Huidige grootte %2. Schrijfpositie %3.</translation>
     </message>
 </context>
 <context>
@@ -4181,15 +4189,15 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished">Datum</translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Grootte</translation>
+        <translation>Grootte</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
 </context>
 <context>
@@ -4220,7 +4228,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished">Kon geen batchbestand maken</translation>
+        <translation>Kon geen batchbestand maken</translation>
     </message>
 </context>
 <context>
@@ -4430,7 +4438,7 @@ This will help searching very big text  files (ie: log files).</source>
     <name>confgui::ConfTabsW</name>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Toepassen</translation>
+        <translation>Toepassen</translation>
     </message>
 </context>
 <context>
@@ -5033,47 +5041,47 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished">Verberg enkele gebruikersinterface-elementen.</translation>
+        <translation>Verberg enkele gebruikersinterface-elementen.</translation>
     </message>
     <message>
         <source>Hide:</source>
-        <translation type="unfinished">Verberg:</translation>
+        <translation>Verberg:</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished">Werkbalken</translation>
+        <translation>Werkbalken</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished">Statusbalk</translation>
+        <translation>Statusbalk</translation>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translation type="unfinished">Toon in plaats daarvan knop.</translation>
+        <translation>Toon in plaats daarvan knop.</translation>
     </message>
     <message>
         <source>Menu bar</source>
-        <translation type="unfinished">Menubalk</translation>
+        <translation>Menubalk</translation>
     </message>
     <message>
         <source>Show choice in menu only.</source>
-        <translation type="unfinished">Toon alleen keuze in menu.</translation>
+        <translation>Toon alleen keuze in menu.</translation>
     </message>
     <message>
         <source>Simple search type</source>
-        <translation type="unfinished">Eenvoudig zoektype</translation>
+        <translation>Eenvoudig zoektype</translation>
     </message>
     <message>
         <source>Clear/Search buttons</source>
-        <translation type="unfinished">Wissen/Zoekknoppen</translation>
+        <translation>Wissen/Zoekknoppen</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translation type="unfinished">Schakel de sneltoetsen Ctrl+[0-9]/Shift+[a-z] uit om naar tabelrijen te springen.</translation>
+        <translation>Schakel de sneltoetsen Ctrl+[0-9]/Shift+[a-z] uit om naar tabelrijen te springen.</translation>
     </message>
     <message>
         <source>None (default)</source>
-        <translation type="unfinished">Geen (standaard)</translation>
+        <translation>Geen (standaard)</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
@@ -5085,159 +5093,159 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished">Kies QSS-bestand</translation>
+        <translation>Kies QSS-bestand</translation>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translation type="unfinished">Om documenttekst weer te geven in plaats van metadata in het detailgebied van de resultatentabel, gebruik:</translation>
+        <translation>Om documenttekst weer te geven in plaats van metadata in het detailgebied van de resultatentabel, gebruik:</translation>
     </message>
     <message>
         <source>left mouse click</source>
-        <translation type="unfinished">linkermuisknop klik</translation>
+        <translation>linkermuisknop klik</translation>
     </message>
     <message>
         <source>Shift+click</source>
-        <translation type="unfinished">Shift+klik</translation>
+        <translation>Shift+klik</translation>
     </message>
     <message>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
-        <translation type="unfinished">Opent een dialoogvenster om het stylesheet-bestand te selecteren.&lt;br&gt;Bekijk /usr/share/recoll/examples/recoll[-dark].qss voor een voorbeeld.</translation>
+        <translation>Opent een dialoogvenster om het stylesheet-bestand te selecteren.&lt;br&gt;Bekijk /usr/share/recoll/examples/recoll[-dark].qss voor een voorbeeld.</translation>
     </message>
     <message>
         <source>Result Table</source>
-        <translation type="unfinished">Resultaat tabel</translation>
+        <translation>Resultaat tabel</translation>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translation type="unfinished">Toon geen metagegevens wanneer u over rijen zweeft.</translation>
+        <translation>Toon geen metagegevens wanneer u over rijen zweeft.</translation>
     </message>
     <message>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
-        <translation type="unfinished">Werk rond Tamil QTBUG-78923 door een spatie in te voegen voor de ankertekst</translation>
+        <translation>Werk rond Tamil QTBUG-78923 door een spatie in te voegen voor de ankertekst</translation>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished">De bug zorgt ervoor dat vreemde cirkeltekens worden weergegeven binnen gemarkeerde Tamil-woorden. De tijdelijke oplossing voegt een extra spatiekarakter toe dat het probleem lijkt op te lossen.</translation>
+        <translation>De bug zorgt ervoor dat vreemde cirkeltekens worden weergegeven binnen gemarkeerde Tamil-woorden. De tijdelijke oplossing voegt een extra spatiekarakter toe dat het probleem lijkt op te lossen.</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished">Diepte van de zijfilter mapstructuur</translation>
+        <translation>Diepte van de zijfilter mapstructuur</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished">Zoomfactor voor de gebruikersinterface. Handig als de standaardinstelling niet juist is voor uw schermresolutie.</translation>
+        <translation>Zoomfactor voor de gebruikersinterface. Handig als de standaardinstelling niet juist is voor uw schermresolutie.</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished">Weergaveschaal (standaard 1.0):</translation>
+        <translation>Weergaveschaal (standaard 1.0):</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished">Automatische spellingbenadering.</translation>
+        <translation>Automatische spellingbenadering.</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished">Maximale spelfoutafstand</translation>
+        <translation>Maximale spelfoutafstand</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished">Voeg gangbare spellingbenaderingen toe voor zeldzame termen.</translation>
+        <translation>Voeg gangbare spellingbenaderingen toe voor zeldzame termen.</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished">Maximale aantal geschiedenisvermeldingen in de voltooierlijst</translation>
+        <translation>Maximale aantal geschiedenisvermeldingen in de voltooierlijst</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished">Aantal geschiedenisvermeldingen in de aanvuller:</translation>
+        <translation>Aantal geschiedenisvermeldingen in de aanvuller:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished">Toont het totale aantal voorkomens van de term in de index.</translation>
+        <translation>Toont het totale aantal voorkomens van de term in de index.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished">Toon het aantal resultaten in de voltooiingspop-up.</translation>
+        <translation>Toon het aantal resultaten in de voltooiingspop-up.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished">Geef de voorkeur aan HTML boven platte tekst voor de voorbeeldweergave.</translation>
+        <translation>Geef de voorkeur aan HTML boven platte tekst voor de voorbeeldweergave.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished">Bekijk de Qt QDateTimeEdit documentatie. Bijv. yyyy-MM-dd. Laat leeg om de standaard Qt/System indeling te gebruiken.</translation>
+        <translation>Bekijk de Qt QDateTimeEdit documentatie. Bijv. yyyy-MM-dd. Laat leeg om de standaard Qt/System indeling te gebruiken.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished">Zijfilter datums formaat (wijziging vereist herstart)</translation>
+        <translation>Zijfilter datums formaat (wijziging vereist herstart)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished">Indien ingesteld, zal het starten van een nieuwe instantie op dezelfde index een bestaande omhoog brengen.</translation>
+        <translation>Indien ingesteld, zal het starten van een nieuwe instantie op dezelfde index een bestaande omhoog brengen.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished">Enkele toepassing</translation>
+        <translation>Enkele toepassing</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished">Stel in op 0 om uit te schakelen en op te starten te versnellen door het vermijden van boom berekening.</translation>
+        <translation>Stel in op 0 om uit te schakelen en op te starten te versnellen door het vermijden van boom berekening.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished">De voltooiing verandert alleen de invoer wanneer deze geactiveerd is.</translation>
+        <translation>De voltooiing verandert alleen de invoer wanneer deze geactiveerd is.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished">Voltooiing: geen automatische regelbewerking.</translation>
+        <translation>Voltooiing: geen automatische regelbewerking.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished">Interfacetaal (moet opnieuw opstarten):</translation>
+        <translation>Interfacetaal (moet opnieuw opstarten):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished">Let op: de meeste vertalingen zijn onvolledig. Laat leeg om het systeemomgeving te gebruiken.</translation>
+        <translation>Let op: de meeste vertalingen zijn onvolledig. Laat leeg om het systeemomgeving te gebruiken.</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished">Bekijken</translation>
+        <translation>Bekijken</translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished">Stel in op 0 om de details/samenvattingsfunctie uit te schakelen.</translation>
+        <translation>Stel in op 0 om de details/samenvattingsfunctie uit te schakelen.</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished">Velden weergeven: maximale veldlengte voordat samenvatting wordt gebruikt:</translation>
+        <translation>Velden weergeven: maximale veldlengte voordat samenvatting wordt gebruikt:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished">Aantal regels dat getoond moet worden boven een zoekterm die gevonden is door de voorbeeldzoekopdracht.</translation>
+        <translation>Aantal regels dat getoond moet worden boven een zoekterm die gevonden is door de voorbeeldzoekopdracht.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished">Zoekterm regelverschuiving:</translation>
+        <translation>Zoekterm regelverschuiving:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished">Wilde kaartkarakters *?[] worden verwerkt als leestekens in plaats van te worden uitgebreid.</translation>
+        <translation>Wilde kaartkarakters *?[] worden verwerkt als leestekens in plaats van te worden uitgebreid.</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished">Negeer jokertekens in ALLE termen en ENIGE termen modi.</translation>
+        <translation>Negeer jokertekens in ALLE termen en ENIGE termen modi.</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished">Kleurenschema</translation>
+        <translation>Kleurenschema</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished">Bij het weergeven van HTML in donkere modus, probeer een donkere achtergrond te gebruiken (en lichte kleur). Dit conflicteert met veel documenten die onze lichte instelling zullen overschrijven met hun eigen CSS (donkere) voorgrondkleur, resulterend in een onleesbaar document, dus het staat standaard uit.</translation>
+        <translation>Bij het weergeven van HTML in donkere modus, probeer een donkere achtergrond te gebruiken (en lichte kleur). Dit conflicteert met veel documenten die onze lichte instelling zullen overschrijven met hun eigen CSS (donkere) voorgrondkleur, resulterend in een onleesbaar document, dus het staat standaard uit.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished">Gebruik een donkere achtergrond bij het weergeven van HTML in de donkere modus.</translation>
+        <translation>Gebruik een donkere achtergrond bij het weergeven van HTML in de donkere modus.</translation>
     </message>
 </context>
 </TS>

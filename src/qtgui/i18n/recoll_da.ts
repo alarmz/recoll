@@ -5,7 +5,7 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished">Menu søgning</translation>
+        <translation>Menu søgning</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Filtrer fødselsdatoer</translation>
+        <translation>Filtrer fødselsdatoer</translation>
     </message>
 </context>
 <context>
@@ -318,11 +318,11 @@
     </message>
     <message>
         <source>Database directory name</source>
-        <translation>Databasens mappenavn</translation>
+        <translation type="vanished">Databasens mappenavn</translation>
     </message>
     <message>
         <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation>Navnet på en mappe hvor du vil gemme indekset&lt;br&gt;En relativ sti er taget i forhold til konfigurationsmappen. Standard er &quot;xapiandb.</translation>
+        <translation type="vanished">Navnet på en mappe hvor du vil gemme indekset&lt;br&gt;En relativ sti er taget i forhold til konfigurationsmappen. Standard er &quot;xapiandb.</translation>
     </message>
     <message>
         <source>Unac exceptions</source>
@@ -414,7 +414,7 @@
     </message>
     <message>
         <source>Process the Web history queue</source>
-        <translation type="unfinished">Behandle webhistorik-køen</translation>
+        <translation>Behandle webhistorik-køen</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -422,19 +422,19 @@
     </message>
     <message>
         <source>Page recycle interval</source>
-        <translation type="unfinished">Side genbrugsinterval</translation>
+        <translation>Side genbrugsinterval</translation>
     </message>
     <message>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
-        <translation type="unfinished">Som standard gemmes kun én instans af en URL i cachen. Dette kan ændres ved at indstille dette til en værdi, der bestemmer, hvor ofte vi beholder flere instanser (&apos;dag&apos;, &apos;uge&apos;, &apos;måned&apos;, &apos;år&apos;). Bemærk, at øge intervallet ikke vil slette eksisterende poster.</translation>
+        <translation>Som standard gemmes kun én instans af en URL i cachen. Dette kan ændres ved at indstille dette til en værdi, der bestemmer, hvor ofte vi beholder flere instanser (&apos;dag&apos;, &apos;uge&apos;, &apos;måned&apos;, &apos;år&apos;). Bemærk, at øge intervallet ikke vil slette eksisterende poster.</translation>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
-        <translation type="unfinished">Bemærk: Gamle sider vil blive slettet for at give plads til nye, når den maksimale størrelse er nået. Aktuel størrelse: %1</translation>
+        <translation>Bemærk: Gamle sider vil blive slettet for at give plads til nye, når den maksimale størrelse er nået. Aktuel størrelse: %1</translation>
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished">Start mapper</translation>
+        <translation>Start mapper</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
@@ -442,39 +442,47 @@
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished">Disk fuld tærskelprocent, hvor vi stopper med at indeksere&lt;br&gt;(F.eks. 90 for at stoppe ved 90% fuld, 0 eller 100 betyder ingen begrænsning)</translation>
+        <translation>Disk fuld tærskelprocent, hvor vi stopper med at indeksere&lt;br&gt;(F.eks. 90 for at stoppe ved 90% fuld, 0 eller 100 betyder ingen begrænsning)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished">Browser-tilføjelsesprogram download-mappe</translation>
+        <translation>Browser-tilføjelsesprogram download-mappe</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished">Sæt kun dette, hvis du har sat parameteren &quot;Downloads undermappe&quot; i webbrowser-tilføjelsesindstillingerne. &lt;br&gt;I dette tilfælde skal det være den fulde sti til mappen (f.eks. /home/[mig]/Downloads/min-undermappe)</translation>
+        <translation>Sæt kun dette, hvis du har sat parameteren &quot;Downloads undermappe&quot; i webbrowser-tilføjelsesindstillingerne. &lt;br&gt;I dette tilfælde skal det være den fulde sti til mappen (f.eks. /home/[mig]/Downloads/min-undermappe)</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished">Gem nogle GUI-parametre lokalt til indekset.</translation>
+        <translation>Gem nogle GUI-parametre lokalt til indekset.</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished">&lt;p&gt;GUI-indstillinger gemmes normalt i en global fil, der er gyldig for alle indekser. Indstilling af denne parameter vil gøre nogle indstillinger, såsom resultat tabelopsætning, specifikke for indekset.</translation>
+        <translation>&lt;p&gt;GUI-indstillinger gemmes normalt i en global fil, der er gyldig for alle indekser. Indstilling af denne parameter vil gøre nogle indstillinger, såsom resultat tabelopsætning, specifikke for indekset.</translation>
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished">Suspender den realtidsindekser, når du kører på batteri.</translation>
+        <translation>Suspender den realtidsindekser, når du kører på batteri.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished">Indekseren vil vente på en tilbagevenden på AC og genudføre sig selv, når det sker.</translation>
+        <translation>Indekseren vil vente på en tilbagevenden på AC og genudføre sig selv, når det sker.</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
-        <translation type="unfinished">Listen over mapper/kataloger, der skal indekseres, rekursivt med deres undermapper.&lt;br&gt;Tegnet &apos;~&apos; udvides til din hjemmemappe, som er standardværdien.</translation>
+        <translation>Listen over mapper/kataloger, der skal indekseres, rekursivt med deres undermapper.&lt;br&gt;Tegnet &apos;~&apos; udvides til din hjemmemappe, som er standardværdien.</translation>
     </message>
     <message>
-        <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">Som standard foreslår aspell stavefejl, når en søgning ikke giver resultater.</translation>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -541,18 +549,18 @@ Dette vil hjælpe søgning i meget store tekstfiler (dvs.: log-filer).</translat
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished">Skift til en anden konfiguration</translation>
+        <translation>Skift til en anden konfiguration</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished">Vælg en anden</translation>
+        <translation>Vælg en anden</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished">Vælg konfigurationsmappe</translation>
+        <translation>Vælg konfigurationsmappe</translation>
     </message>
 </context>
 <context>
@@ -840,57 +848,57 @@ Klik på Annullér, hvis du ønsker at redigere konfigurationsfilen før indekse
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished">Skal &quot;Vis systembakkeikon&quot; være indstillet i præferencerne!</translation>
+        <translation>Skal &quot;Vis systembakkeikon&quot; være indstillet i præferencerne!</translation>
     </message>
 </context>
 <context>
     <name>PTransEdit</name>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">Sti i indekset</translation>
+        <translation>Sti i indekset</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">Oversat sti</translation>
+        <translation>Oversat sti</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation type="unfinished">Konfigureringsfejl</translation>
+        <translation>Konfigureringsfejl</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation type="unfinished">Original sti</translation>
+        <translation>Original sti</translation>
     </message>
     <message>
         <source>Local path</source>
-        <translation type="unfinished">Lokal sti</translation>
+        <translation>Lokal sti</translation>
     </message>
 </context>
 <context>
     <name>PTransEditBase</name>
     <message>
         <source>Path Translations</source>
-        <translation type="unfinished">Oversættelse af stier</translation>
+        <translation>Oversættelse af stier</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished">Vælg en eller flere filtyper, og brug derefter kontrollerne i rammen nedenfor til at ændre, hvordan de behandles.</translation>
+        <translation>Vælg en eller flere filtyper, og brug derefter kontrollerne i rammen nedenfor til at ændre, hvordan de behandles.</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Tilføj</translation>
+        <translation>Tilføj</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Slet</translation>
+        <translation>Slet</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Annuller</translation>
+        <translation>Annuller</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Gem</translation>
+        <translation>Gem</translation>
     </message>
 </context>
 <context>
@@ -1092,11 +1100,11 @@ Klik på Annullér, hvis du ønsker at redigere konfigurationsfilen før indekse
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished">Genindlæs som ren tekst</translation>
+        <translation>Genindlæs som ren tekst</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished">Genindlæs som HTML</translation>
+        <translation>Genindlæs som HTML</translation>
     </message>
 </context>
 <context>
@@ -1195,7 +1203,7 @@ Klik på Annullér, hvis du ønsker at redigere konfigurationsfilen før indekse
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished">Disse er mønstre for fil- eller mappe-navne, som ikke bør indekseres.</translation>
+        <translation>Disse er mønstre for fil- eller mappe-navne, som ikke bør indekseres.</translation>
     </message>
 </context>
 <context>
@@ -1282,15 +1290,15 @@ Klik på Annullér, hvis du ønsker at redigere konfigurationsfilen før indekse
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished">Kopier tekst</translation>
+        <translation>Kopier tekst</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished">Kopier &amp;Filsti</translation>
+        <translation>Kopier &amp;Filsti</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished">Kopier filnavn</translation>
+        <translation>Kopier filnavn</translation>
     </message>
 </context>
 <context>
@@ -1366,15 +1374,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished">Konfigurationsnavn</translation>
+        <translation>Konfigurationsnavn</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished">Kort alfanumerisk kaldenavn for denne konfiguration</translation>
+        <translation>Kort alfanumerisk kaldenavn for denne konfiguration</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished">Kunne ikke finde</translation>
+        <translation>Kunne ikke finde</translation>
     </message>
 </context>
 <context>
@@ -1384,8 +1392,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Træffere</translation>
     </message>
     <message>
-        <source>Hits</source>
-        <translation type="unfinished">Træffere</translation>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2043,48 +2051,48 @@ Tjek venligst desktopfilen</translation>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished">Tømning</translation>
+        <translation>Tømning</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished">Vis menu søgedialog</translation>
+        <translation>Vis menu søgedialog</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished">Dubletter</translation>
+        <translation>Dubletter</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished">Filtrer mapper</translation>
+        <translation>Filtrer mapper</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished">Hovedindeks åbningsfejl:</translation>
+        <translation>Hovedindeks åbningsfejl:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished">Indekset kan være beskadiget. Måske prøv at køre xapian-check eller genopbygge indekset?</translation>
+        <translation>Indekset kan være beskadiget. Måske prøv at køre xapian-check eller genopbygge indekset?</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished">Denne søgning er ikke længere aktiv.</translation>
+        <translation>Denne søgning er ikke længere aktiv.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished">Seerens kommandolinje for %1 angiver overordnet fil, men URL&apos;en er ikke file:// : ikke understøttet</translation>
+        <translation>Seerens kommandolinje for %1 angiver overordnet fil, men URL&apos;en er ikke file:// : ikke understøttet</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished">Den viser, der er angivet i mimeview for %1: %2, blev ikke fundet. Vil du starte indstillingsdialogen?</translation>
+        <translation>Den viser, der er angivet i mimeview for %1: %2, blev ikke fundet. Vil du starte indstillingsdialogen?</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished">Vis avanceret søgedialog</translation>
+        <translation>Vis avanceret søgedialog</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">med yderligere besked:</translation>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2415,64 +2423,64 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation type="unfinished">Forøg skriftstørrelsen på resultatteksten.</translation>
+        <translation>Forøg skriftstørrelsen på resultatteksten.</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished">Forøg skriftstørrelsen</translation>
+        <translation>Forøg skriftstørrelsen</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation type="unfinished">Formindsk resultattekstens skriftstørrelse</translation>
+        <translation>Formindsk resultattekstens skriftstørrelse</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished">Formindsk skriftstørrelsen</translation>
+        <translation>Formindsk skriftstørrelsen</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished">Start real time indexer
+        <translation>Start real time indexer
 Start real time indexer</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished">Søgesprogfiltre</translation>
+        <translation>Søgesprogfiltre</translation>
     </message>
     <message>
         <source>Filter dates</source>
-        <translation type="unfinished">Filtrer datoer</translation>
+        <translation>Filtrer datoer</translation>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished">Hjulpet kompleks søgning</translation>
+        <translation>Hjulpet kompleks søgning</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Filtrer fødselsdatoer</translation>
+        <translation>Filtrer fødselsdatoer</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished">Skift konfiguration...</translation>
+        <translation>Skift konfiguration...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished">Vælg en anden konfiguration at køre på, og erstat denne proces.</translation>
+        <translation>Vælg en anden konfiguration at køre på, og erstat denne proces.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished">Brugervejledning (lokal, én HTML-side)</translation>
+        <translation>Brugervejledning (lokal, én HTML-side)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished">Online manual (Recoll-websted)</translation>
+        <translation>Online manual (Recoll-websted)</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished">Sti oversættelser</translation>
+        <translation>Sti oversættelser</translation>
     </message>
     <message>
-        <source>With failed files retrying</source>
-        <translation type="unfinished">Med mislykkede filer genforsøg</translation>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2689,11 +2697,11 @@ Start real time indexer</translation>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished">Denne stavegæt blev tilføjet til søgningen:</translation>
+        <translation>Denne stavegæt blev tilføjet til søgningen:</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished">Disse staveforslag blev tilføjet til søgningen:</translation>
+        <translation>Disse staveforslag blev tilføjet til søgningen:</translation>
     </message>
 </context>
 <context>
@@ -2808,15 +2816,15 @@ Start real time indexer</translation>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished">Brug Shift+klik for at vise teksten i stedet.</translation>
+        <translation>Brug Shift+klik for at vise teksten i stedet.</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished">%1 bytes kopieret til udklipsholderen</translation>
+        <translation>%1 bytes kopieret til udklipsholderen</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished">Kopier resultatteksten og afslut</translation>
+        <translation>Kopier resultatteksten og afslut</translation>
     </message>
 </context>
 <context>
@@ -3183,23 +3191,23 @@ Brug &lt;b&gt;Vis Forespørgsel&lt;/b&gt; link når i tvivl om resultatet og se 
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished">Simpel søgning</translation>
+        <translation>Simpel søgning</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished">Historie</translation>
+        <translation>Historie</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished">Søgesprog snydeark. I tvivl: klik på &lt;b&gt;Vis forespørgselsdetaljer&lt;/b&gt;. &amp;nbsp;</translation>
+        <translation>Søgesprog snydeark. I tvivl: klik på &lt;b&gt;Vis forespørgselsdetaljer&lt;/b&gt;. &amp;nbsp;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Stor forbogstav for at undertrykke stammeudvidelse&lt;/td&gt;&lt;td&gt;Gulv&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Stor forbogstav for at undertrykke stammeudvidelse&lt;/td&gt;&lt;td&gt;Gulv&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">afviger fra nuværende præferencer (bevaret)</translation>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3399,11 +3407,11 @@ Brug &lt;b&gt;Vis Forespørgsel&lt;/b&gt; link når i tvivl om resultatet og se 
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished">Forøg skriftstørrelsen</translation>
+        <translation>Forøg skriftstørrelsen</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished">Formindsk skriftstørrelsen</translation>
+        <translation>Formindsk skriftstørrelsen</translation>
     </message>
 </context>
 <context>
@@ -3504,11 +3512,11 @@ Brug &lt;b&gt;Vis Forespørgsel&lt;/b&gt; link når i tvivl om resultatet og se 
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation type="unfinished">Diagnostik outputfil. Vil blive afkortet og modtage indekseringsdiagnostik (årsager til filer, der ikke bliver indekseret).</translation>
+        <translation>Diagnostik outputfil. Vil blive afkortet og modtage indekseringsdiagnostik (årsager til filer, der ikke bliver indekseret).</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
-        <translation type="unfinished">Diagnostikfil</translation>
+        <translation>Diagnostikfil</translation>
     </message>
 </context>
 <context>
@@ -3690,19 +3698,19 @@ Brug &lt;b&gt;Vis Forespørgsel&lt;/b&gt; link når i tvivl om resultatet og se 
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished">Staveudvidelsesfejl.</translation>
+        <translation>Staveudvidelsesfejl.</translation>
     </message>
     <message>
-        <source>Documents created/updated</source>
-        <translation type="unfinished">Dokumenter oprettet/opdateret</translation>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files tested</source>
-        <translation type="unfinished">Filer testet</translation>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unindexed files</source>
-        <translation type="unfinished">Ikke-indekserede filer</translation>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3797,23 +3805,23 @@ Brug &lt;b&gt;Vis Forespørgsel&lt;/b&gt; link når i tvivl om resultatet og se 
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished">Vælg QSS-fil</translation>
+        <translation>Vælg QSS-fil</translation>
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished">Kan ikke tilføje indeks med forskellige indstillinger for store/små bogstaver og diakritisk fjernelse.</translation>
+        <translation>Kan ikke tilføje indeks med forskellige indstillinger for store/små bogstaver og diakritisk fjernelse.</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished">Lys</translation>
+        <translation>Lys</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished">Mørk</translation>
+        <translation>Mørk</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished">Systemet</translation>
+        <translation>Systemet</translation>
     </message>
 </context>
 <context>
@@ -4122,7 +4130,7 @@ Dette skulle give højere forrang til resultaterne, hvor søgeordene vises nøja
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished">Værdien er en kommandolinje, der skal udføres. Erstatninger: %s: søgestreng; %p: sidenummer; &lt;br&gt;%f: dokumentfilnavn. F1 for mere hjælp.</translation>
+        <translation>Værdien er en kommandolinje, der skal udføres. Erstatninger: %s: søgestreng; %p: sidenummer; &lt;br&gt;%f: dokumentfilnavn. F1 for mere hjælp.</translation>
     </message>
 </context>
 <context>
@@ -4137,7 +4145,7 @@ Dette skulle give højere forrang til resultaterne, hvor søgeordene vises nøja
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished">Tekstetiket</translation>
+        <translation>Tekstetiket</translation>
     </message>
 </context>
 <context>
@@ -4164,15 +4172,15 @@ Dette skulle give højere forrang til resultaterne, hvor søgeordene vises nøja
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished">Gem til fil</translation>
+        <translation>Gem til fil</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished">Filoprettelse mislykkedes:</translation>
+        <translation>Filoprettelse mislykkedes:</translation>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished">Maksimal størrelse %1 (Indeks konfig.). Aktuel størrelse %2. Skriveposition %3.</translation>
+        <translation>Maksimal størrelse %1 (Indeks konfig.). Aktuel størrelse %2. Skriveposition %3.</translation>
     </message>
 </context>
 <context>
@@ -4187,15 +4195,15 @@ Dette skulle give højere forrang til resultaterne, hvor søgeordene vises nøja
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished">Dato</translation>
+        <translation>Dato</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Størrelse</translation>
+        <translation>Størrelse</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
 </context>
 <context>
@@ -4226,7 +4234,7 @@ Dette skulle give højere forrang til resultaterne, hvor søgeordene vises nøja
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished">Kunne ikke oprette batch-fil</translation>
+        <translation>Kunne ikke oprette batch-fil</translation>
     </message>
 </context>
 <context>
@@ -4438,7 +4446,7 @@ Dette vil hjælpe søgning i meget store tekstfiler (dvs.: log-filer).</translat
     <name>confgui::ConfTabsW</name>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Anvend</translation>
+        <translation>Anvend</translation>
     </message>
 </context>
 <context>
@@ -5046,47 +5054,47 @@ Standardværdien er 2 (procent).</translation>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished">Skjul nogle brugergrænsefladeelementer.</translation>
+        <translation>Skjul nogle brugergrænsefladeelementer.</translation>
     </message>
     <message>
         <source>Hide:</source>
-        <translation type="unfinished">Skjul:</translation>
+        <translation>Skjul:</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished">Værktøjslinjer</translation>
+        <translation>Værktøjslinjer</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished">Statuslinje</translation>
+        <translation>Statuslinje</translation>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translation type="unfinished">Vis knap i stedet.</translation>
+        <translation>Vis knap i stedet.</translation>
     </message>
     <message>
         <source>Menu bar</source>
-        <translation type="unfinished">Menu bjælke</translation>
+        <translation>Menu bjælke</translation>
     </message>
     <message>
         <source>Show choice in menu only.</source>
-        <translation type="unfinished">Vis valgmulighed kun i menuen.</translation>
+        <translation>Vis valgmulighed kun i menuen.</translation>
     </message>
     <message>
         <source>Simple search type</source>
-        <translation type="unfinished">Simpel søgetype</translation>
+        <translation>Simpel søgetype</translation>
     </message>
     <message>
         <source>Clear/Search buttons</source>
-        <translation type="unfinished">Ryd/Søg knapper</translation>
+        <translation>Ryd/Søg knapper</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translation type="unfinished">Deaktiver genvejene Ctrl+[0-9]/Shift+[a-z] for at hoppe til tabelrækker.</translation>
+        <translation>Deaktiver genvejene Ctrl+[0-9]/Shift+[a-z] for at hoppe til tabelrækker.</translation>
     </message>
     <message>
         <source>None (default)</source>
-        <translation type="unfinished">Ingen (standard)</translation>
+        <translation>Ingen (standard)</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
@@ -5098,159 +5106,159 @@ Standardværdien er 2 (procent).</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished">Vælg QSS-fil</translation>
+        <translation>Vælg QSS-fil</translation>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translation type="unfinished">For at vise dokumenttekst i stedet for metadata i detaljeområdet i resultat-tabellen, skal du bruge:</translation>
+        <translation>For at vise dokumenttekst i stedet for metadata i detaljeområdet i resultat-tabellen, skal du bruge:</translation>
     </message>
     <message>
         <source>left mouse click</source>
-        <translation type="unfinished">venstre museklik</translation>
+        <translation>venstre museklik</translation>
     </message>
     <message>
         <source>Shift+click</source>
-        <translation type="unfinished">Skift+klik</translation>
+        <translation>Skift+klik</translation>
     </message>
     <message>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
-        <translation type="unfinished">Åbner en dialogboks for at vælge stylesheet-filen.&lt;br&gt;Se på /usr/share/recoll/examples/recoll[-dark].qss for et eksempel.</translation>
+        <translation>Åbner en dialogboks for at vælge stylesheet-filen.&lt;br&gt;Se på /usr/share/recoll/examples/recoll[-dark].qss for et eksempel.</translation>
     </message>
     <message>
         <source>Result Table</source>
-        <translation type="unfinished">Resultattabel</translation>
+        <translation>Resultattabel</translation>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translation type="unfinished">Vis ikke metadata, når du holder musen over rækkerne.</translation>
+        <translation>Vis ikke metadata, når du holder musen over rækkerne.</translation>
     </message>
     <message>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
-        <translation type="unfinished">Arbejd omkring Tamil QTBUG-78923 ved at indsætte mellemrum før anker tekst.</translation>
+        <translation>Arbejd omkring Tamil QTBUG-78923 ved at indsætte mellemrum før anker tekst.</translation>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished">Fejlen får mærkelige cirkeltegn til at blive vist inde i markerede tamilske ord. Løsningen indsætter et ekstra mellemrumstegn, som ser ud til at løse problemet.</translation>
+        <translation>Fejlen får mærkelige cirkeltegn til at blive vist inde i markerede tamilske ord. Løsningen indsætter et ekstra mellemrumstegn, som ser ud til at løse problemet.</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished">Dybde af sidefiltermappenavigationsstruktur</translation>
+        <translation>Dybde af sidefiltermappenavigationsstruktur</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished">Zoomfaktor for brugergrænsefladen. Nyttig, hvis standardindstillingen ikke er korrekt til din skærmopløsning.</translation>
+        <translation>Zoomfaktor for brugergrænsefladen. Nyttig, hvis standardindstillingen ikke er korrekt til din skærmopløsning.</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished">Vis skala (standard 1.0):</translation>
+        <translation>Vis skala (standard 1.0):</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished">Automatisk stavekontrol.</translation>
+        <translation>Automatisk stavekontrol.</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished">Maksimal staveafstand</translation>
+        <translation>Maksimal staveafstand</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished">Tilføj almindelige staveapproksimationer for sjældne termer.</translation>
+        <translation>Tilføj almindelige staveapproksimationer for sjældne termer.</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished">Maksimalt antal historikposter i udfyldningslisten</translation>
+        <translation>Maksimalt antal historikposter i udfyldningslisten</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished">Antal af historikindgange i auto-fuldførelsen:</translation>
+        <translation>Antal af historikindgange i auto-fuldførelsen:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished">Viser det samlede antal forekomster af udtrykket i indekset.</translation>
+        <translation>Viser det samlede antal forekomster af udtrykket i indekset.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished">Vis antal hits i auto-fuldførelses-popup&apos;en.</translation>
+        <translation>Vis antal hits i auto-fuldførelses-popup&apos;en.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished">Foretræk HTML frem for almindelig tekst til forhåndsvisning.</translation>
+        <translation>Foretræk HTML frem for almindelig tekst til forhåndsvisning.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished">Se Qt QDateTimeEdit-dokumentationen. F.eks. yyyy-MM-dd. Efterlad tom for at bruge standard Qt/System-formatet.</translation>
+        <translation>Se Qt QDateTimeEdit-dokumentationen. F.eks. yyyy-MM-dd. Efterlad tom for at bruge standard Qt/System-formatet.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished">Side filter datoformat (ændring kræver genstart)</translation>
+        <translation>Side filter datoformat (ændring kræver genstart)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished">Hvis indstillet, vil start af en ny instans på samme indeks hæve en eksisterende.</translation>
+        <translation>Hvis indstillet, vil start af en ny instans på samme indeks hæve en eksisterende.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished">Enkelt applikation</translation>
+        <translation>Enkelt applikation</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished">Sæt til 0 for at deaktivere og fremskynde opstart ved at undgå træberegning.</translation>
+        <translation>Sæt til 0 for at deaktivere og fremskynde opstart ved at undgå træberegning.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished">Udfyldelsen ændrer kun posten, når den aktiveres.</translation>
+        <translation>Udfyldelsen ændrer kun posten, når den aktiveres.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished">Udførelse: ingen automatisk linje redigering.</translation>
+        <translation>Udførelse: ingen automatisk linje redigering.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished">Grænsefladesprog (kræver genstart):</translation>
+        <translation>Grænsefladesprog (kræver genstart):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished">Bemærk: De fleste oversættelser er ufuldstændige. Efterlad tom for at bruge systemmiljøet.</translation>
+        <translation>Bemærk: De fleste oversættelser er ufuldstændige. Efterlad tom for at bruge systemmiljøet.</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished">Forhåndsvisning</translation>
+        <translation>Forhåndsvisning</translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished">Sæt til 0 for at deaktivere detaljer/oversigt funktionen.</translation>
+        <translation>Sæt til 0 for at deaktivere detaljer/oversigt funktionen.</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished">Felter vises: maksimalt feltlængde før brug af resumé:</translation>
+        <translation>Felter vises: maksimalt feltlængde før brug af resumé:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished">Antal linjer, der skal vises over et søgeudtryk fundet ved forhåndsvisningssøgning.</translation>
+        <translation>Antal linjer, der skal vises over et søgeudtryk fundet ved forhåndsvisningssøgning.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished">Søgeterm linje offset:</translation>
+        <translation>Søgeterm linje offset:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished">Vilde korttegn *?[] vil blive behandlet som tegnsætning i stedet for at blive udvidet.</translation>
+        <translation>Vilde korttegn *?[] vil blive behandlet som tegnsætning i stedet for at blive udvidet.</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished">Ignorer jokertegn i ALLE vilkår og HVILKE SOM HELST vilkår tilstande</translation>
+        <translation>Ignorer jokertegn i ALLE vilkår og HVILKE SOM HELST vilkår tilstande</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished">Farveskema</translation>
+        <translation>Farveskema</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished">Når du viser HTML i mørk tilstand, skal du forsøge at bruge en mørk baggrund (og lys farve). Dette er i konflikt med mange dokumenter, der vil tilsidesætte vores lyse indstilling med deres eget CSS (mørke) forgrundsfarve, hvilket resulterer i et ulæseligt dokument, så det er slået fra som standard.</translation>
+        <translation>Når du viser HTML i mørk tilstand, skal du forsøge at bruge en mørk baggrund (og lys farve). Dette er i konflikt med mange dokumenter, der vil tilsidesætte vores lyse indstilling med deres eget CSS (mørke) forgrundsfarve, hvilket resulterer i et ulæseligt dokument, så det er slået fra som standard.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished">Brug mørk baggrund, når du viser HTML i mørk tilstand.</translation>
+        <translation>Brug mørk baggrund, når du viser HTML i mørk tilstand.</translation>
     </message>
 </context>
 </TS>

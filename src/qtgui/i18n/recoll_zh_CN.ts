@@ -320,11 +320,11 @@
     </message>
     <message>
         <source>Database directory name</source>
-        <translation>数据库目录名</translation>
+        <translation type="vanished">数据库目录名</translation>
     </message>
     <message>
         <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation>用来储存索引数据的目录的名字&lt;br&gt;如果使用相对路径，则路径会相对于配置目录进行计算。默认值是&apos;xapiandb&apos;。</translation>
+        <translation type="vanished">用来储存索引数据的目录的名字&lt;br&gt;如果使用相对路径，则路径会相对于配置目录进行计算。默认值是&apos;xapiandb&apos;。</translation>
     </message>
     <message>
         <source>Unac exceptions</source>
@@ -440,7 +440,7 @@
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished">开始文件夹</translation>
+        <translation>开始文件夹</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
@@ -448,39 +448,47 @@
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished">磁盘已满阈值百分比，我们停止索引的百分比（例如，90表示在90%满时停止，0或100表示没有限制）</translation>
+        <translation>磁盘已满阈值百分比，我们停止索引的百分比（例如，90表示在90%满时停止，0或100表示没有限制）</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished">浏览器插件下载文件夹</translation>
+        <translation>浏览器插件下载文件夹</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished">只有在Web浏览器插件设置中设置了“下载子目录”参数时才设置此选项。&lt;br&gt;在这种情况下，它应该是目录的完整路径（例如/home/[me]/Downloads/my-subdir）。</translation>
+        <translation>只有在Web浏览器插件设置中设置了“下载子目录”参数时才设置此选项。&lt;br&gt;在这种情况下，它应该是目录的完整路径（例如/home/[me]/Downloads/my-subdir）。</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished">将一些GUI参数存储到本地索引中。</translation>
+        <translation>将一些GUI参数存储到本地索引中。</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished">&lt;p&gt;GUI设置通常存储在一个全局文件中，适用于所有索引。设置此参数将使一些设置，如结果表格设置，特定于索引。</translation>
+        <translation>&lt;p&gt;GUI设置通常存储在一个全局文件中，适用于所有索引。设置此参数将使一些设置，如结果表格设置，特定于索引。</translation>
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished">在电池供电时暂停实时索引器</translation>
+        <translation>在电池供电时暂停实时索引器</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished">索引器将等待AC返回，并在发生时重新执行自身。</translation>
+        <translation>索引器将等待AC返回，并在发生时重新执行自身。</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
-        <translation type="unfinished">要递归地索引的文件夹/目录列表及其子文件夹。&lt;br&gt;字符“~”会扩展为您的主目录，这是默认初始值。</translation>
+        <translation>要递归地索引的文件夹/目录列表及其子文件夹。&lt;br&gt;字符“~”会扩展为您的主目录，这是默认初始值。</translation>
     </message>
     <message>
-        <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">（默认情况下，当查询没有结果时，拼写检查会建议拼写错误）。</translation>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -548,18 +556,18 @@ This will help searching very big text  files (ie: log files).</source>
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished">切换到其他配置</translation>
+        <translation>切换到其他配置</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished">选择其他</translation>
+        <translation>选择其他</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished">选择配置目录</translation>
+        <translation>选择配置目录</translation>
     </message>
 </context>
 <context>
@@ -907,50 +915,50 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     <name>PTransEdit</name>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">索引中的路径</translation>
+        <translation>索引中的路径</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">已变换的路径</translation>
+        <translation>已变换的路径</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation type="unfinished">配置错误</translation>
+        <translation>配置错误</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation type="unfinished">原始路径</translation>
+        <translation>原始路径</translation>
     </message>
     <message>
         <source>Local path</source>
-        <translation type="unfinished">本地路径</translation>
+        <translation>本地路径</translation>
     </message>
 </context>
 <context>
     <name>PTransEditBase</name>
     <message>
         <source>Path Translations</source>
-        <translation type="unfinished">路径变换</translation>
+        <translation>路径变换</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished">选中一个或多个文件类型，然后使用下面框框中的控件来设置要如何处理它们</translation>
+        <translation>选中一个或多个文件类型，然后使用下面框框中的控件来设置要如何处理它们</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">添加</translation>
+        <translation>添加</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">删除</translation>
+        <translation>删除</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">保存</translation>
+        <translation>保存</translation>
     </message>
 </context>
 <context>
@@ -1255,7 +1263,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished">这些是文件或目录名称的模式，不应该被索引。</translation>
+        <translation>这些是文件或目录名称的模式，不应该被索引。</translation>
     </message>
 </context>
 <context>
@@ -1440,15 +1448,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished">配置名称</translation>
+        <translation>配置名称</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished">这个配置的短字母数字昵称</translation>
+        <translation>这个配置的短字母数字昵称</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished">无法找到</translation>
+        <translation>无法找到</translation>
     </message>
 </context>
 <context>
@@ -1460,8 +1468,8 @@ p, li { white-space: pre-wrap; }
         <translation type="vanished">点击量</translation>
     </message>
     <message>
-        <source>Hits</source>
-        <translation type="unfinished">点击量</translation>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2161,11 +2169,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished">显示高级搜索对话框</translation>
+        <translation>显示高级搜索对话框</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">带有额外消息:</translation>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2542,19 +2550,19 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished">用户手册（本地，一个HTML页面）</translation>
+        <translation>用户手册（本地，一个HTML页面）</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished">在线手册（Recoll网站）</translation>
+        <translation>在线手册（Recoll网站）</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished">路径翻译</translation>
+        <translation>路径翻译</translation>
     </message>
     <message>
-        <source>With failed files retrying</source>
-        <translation type="unfinished">重试失败的文件</translation>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3297,8 +3305,8 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation>&lt;tr&gt;&lt;td&gt;将单词大写以避免搜索词扩展&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">与当前偏好不同（保留）</translation>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3794,16 +3802,16 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
         <translation>拼写扩展错误。</translation>
     </message>
     <message>
-        <source>Documents created/updated</source>
-        <translation type="unfinished">文档创建/更新</translation>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files tested</source>
-        <translation type="unfinished">文件已测试</translation>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unindexed files</source>
-        <translation type="unfinished">未索引的文件</translation>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3906,15 +3914,15 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished">轻量级</translation>
+        <translation>轻量级</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished">暗</translation>
+        <translation>暗</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished">系统</translation>
+        <translation>系统</translation>
     </message>
 </context>
 <context>
@@ -4223,7 +4231,7 @@ This should give higher precedence to the results where the search terms appear 
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished">该值是要执行的命令行。替换：%s：搜索字符串；%p：页码；&lt;br&gt;%f：文档文件名。按F1获取更多帮助。</translation>
+        <translation>该值是要执行的命令行。替换：%s：搜索字符串；%p：页码；&lt;br&gt;%f：文档文件名。按F1获取更多帮助。</translation>
     </message>
 </context>
 <context>
@@ -4542,7 +4550,7 @@ This will help searching very big text  files (ie: log files).</source>
     <name>confgui::ConfTabsW</name>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">应用</translation>
+        <translation>应用</translation>
     </message>
 </context>
 <context>
@@ -5313,71 +5321,71 @@ The default value is 2 (percent). </source>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished">如果设置了，在相同索引上启动一个新实例将会引发现有的实例。</translation>
+        <translation>如果设置了，在相同索引上启动一个新实例将会引发现有的实例。</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished">单个应用程序</translation>
+        <translation>单个应用程序</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished">设置为0以禁用并通过避免树计算加快启动速度。</translation>
+        <translation>设置为0以禁用并通过避免树计算加快启动速度。</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished">只有在激活时完成才会更改条目。</translation>
+        <translation>只有在激活时完成才会更改条目。</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished">完成：无自动行编辑。</translation>
+        <translation>完成：无自动行编辑。</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished">界面语言（需要重新启动）</translation>
+        <translation>界面语言（需要重新启动）</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished">注意：大多数翻译是不完整的。留空以使用系统环境。</translation>
+        <translation>注意：大多数翻译是不完整的。留空以使用系统环境。</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished">预览</translation>
+        <translation>预览</translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished">设置为0以禁用详细/摘要功能。</translation>
+        <translation>设置为0以禁用详细/摘要功能。</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished">字段显示：在使用摘要之前的最大字段长度:</translation>
+        <translation>字段显示：在使用摘要之前的最大字段长度:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished">在预览搜索中找到的搜索词上方要显示的行数。</translation>
+        <translation>在预览搜索中找到的搜索词上方要显示的行数。</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished">搜索词行偏移量:</translation>
+        <translation>搜索词行偏移量:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished">通配符字符*?[]将被处理为标点符号，而不是被展开。</translation>
+        <translation>通配符字符*?[]将被处理为标点符号，而不是被展开。</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished">在“所有词项”和“任意词项”模式下忽略通配符字符。</translation>
+        <translation>在“所有词项”和“任意词项”模式下忽略通配符字符。</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished">颜色方案</translation>
+        <translation>颜色方案</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished">在显示暗模式下的HTML时，请尽量使用暗色背景（和浅色文字）。这与许多文档冲突，它们会用自己的CSS（暗色）前景色覆盖我们的浅色设置，导致文档无法阅读，因此默认情况下关闭。</translation>
+        <translation>在显示暗模式下的HTML时，请尽量使用暗色背景（和浅色文字）。这与许多文档冲突，它们会用自己的CSS（暗色）前景色覆盖我们的浅色设置，导致文档无法阅读，因此默认情况下关闭。</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished">在暗模式下显示HTML时，请使用深色背景。</translation>
+        <translation>在暗模式下显示HTML时，请使用深色背景。</translation>
     </message>
 </context>
 </TS>

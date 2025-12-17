@@ -5,7 +5,7 @@
     <name>ActSearchDLG</name>
     <message>
         <source>Menu search</source>
-        <translation type="unfinished">Menü keresés</translation>
+        <translation>Menü keresés</translation>
     </message>
 </context>
 <context>
@@ -20,11 +20,11 @@
     </message>
     <message>
         <source>texts</source>
-        <translation type="unfinished">texts</translation>
+        <translation>texts</translation>
     </message>
     <message>
         <source>spreadsheets</source>
-        <translation type="unfinished">spreadsheets</translation>
+        <translation>spreadsheets</translation>
     </message>
     <message>
         <source>presentations</source>
@@ -64,7 +64,7 @@
     </message>
     <message>
         <source>Advanced Search</source>
-        <translation type="unfinished">Advanced Search</translation>
+        <translation>Advanced Search</translation>
     </message>
     <message>
         <source>History Next</source>
@@ -76,11 +76,11 @@
     </message>
     <message>
         <source>Load next stored search</source>
-        <translation type="unfinished">Load next stored search</translation>
+        <translation>Load next stored search</translation>
     </message>
     <message>
         <source>Load previous stored search</source>
-        <translation type="unfinished">Load previous stored search</translation>
+        <translation>Load previous stored search</translation>
     </message>
 </context>
 <context>
@@ -227,7 +227,7 @@
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Szűrje a születési dátumokat.</translation>
+        <translation>Szűrje a születési dátumokat.</translation>
     </message>
 </context>
 <context>
@@ -262,7 +262,7 @@
     </message>
     <message>
         <source>These are pathnames of directories which indexing will not enter.&lt;br&gt;Path elements may contain wildcards. The entries must match the paths seen by the indexer (e.g.: if topdirs includes &apos;/home/me&apos; and &apos;/home&apos; is actually a link to &apos;/usr/home&apos;, a correct skippedPath entry would be &apos;/home/me/tmp*&apos;, not &apos;/usr/home/me/tmp*&apos;)</source>
-        <translation type="unfinished">These are pathnames of directories which indexing will not enter.&lt;br&gt;Path elements may contain wildcards. The entries must match the paths seen by the indexer (e.g.: if topdirs includes &apos;/home/me&apos; and &apos;/home&apos; is actually a link to &apos;/usr/home&apos;, a correct skippedPath entry would be &apos;/home/me/tmp*&apos;, not &apos;/usr/home/me/tmp*&apos;)</translation>
+        <translation>These are pathnames of directories which indexing will not enter.&lt;br&gt;Path elements may contain wildcards. The entries must match the paths seen by the indexer (e.g.: if topdirs includes &apos;/home/me&apos; and &apos;/home&apos; is actually a link to &apos;/usr/home&apos;, a correct skippedPath entry would be &apos;/home/me/tmp*&apos;, not &apos;/usr/home/me/tmp*&apos;)</translation>
     </message>
     <message>
         <source>Stemming languages</source>
@@ -298,7 +298,7 @@
     </message>
     <message>
         <source>This is the percentage of disk usage - total disk usage, not index size - at which indexing will fail and stop.&lt;br&gt;The default value of 0 removes any limit.</source>
-        <translation type="unfinished">This is the percentage of disk usage - total disk usage, not index size - at which indexing will fail and stop.&lt;br&gt;The default value of 0 removes any limit.</translation>
+        <translation>This is the percentage of disk usage - total disk usage, not index size - at which indexing will fail and stop.&lt;br&gt;The default value of 0 removes any limit.</translation>
     </message>
     <message>
         <source>No aspell usage</source>
@@ -318,11 +318,11 @@
     </message>
     <message>
         <source>Database directory name</source>
-        <translation>Az adatbázis könyvtárneve</translation>
+        <translation type="vanished">Az adatbázis könyvtárneve</translation>
     </message>
     <message>
         <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation>Az indexet tartalmazó könyvtár neve.&lt;br&gt;Relatív elérési út a beállítási könyvtárhoz képest értendő. Alapértelmezett: „xapiandb”.</translation>
+        <translation type="vanished">Az indexet tartalmazó könyvtár neve.&lt;br&gt;Relatív elérési út a beállítási könyvtárhoz képest értendő. Alapértelmezett: „xapiandb”.</translation>
     </message>
     <message>
         <source>Unac exceptions</source>
@@ -390,19 +390,19 @@
     </message>
     <message>
         <source>The languages for which stemming expansion dictionaries will be built.&lt;br&gt;See the Xapian stemmer documentation for possible values. E.g. english, french, german...</source>
-        <translation type="unfinished">The languages for which stemming expansion dictionaries will be built.&lt;br&gt;See the Xapian stemmer documentation for possible values. E.g. english, french, german...</translation>
+        <translation>The languages for which stemming expansion dictionaries will be built.&lt;br&gt;See the Xapian stemmer documentation for possible values. E.g. english, french, german...</translation>
     </message>
     <message>
         <source>The language for the aspell dictionary. The values are are 2-letter language codes, e.g. &apos;en&apos;, &apos;fr&apos; ...&lt;br&gt;If this value is not set, the NLS environment will be used to compute it, which usually works. To get an idea of what is installed on your system, type &apos;aspell config&apos; and look for .dat files inside the &apos;data-dir&apos; directory.</source>
-        <translation type="unfinished">The language for the aspell dictionary. The values are are 2-letter language codes, e.g. &apos;en&apos;, &apos;fr&apos; ...&lt;br&gt;If this value is not set, the NLS environment will be used to compute it, which usually works. To get an idea of what is installed on your system, type &apos;aspell config&apos; and look for .dat files inside the &apos;data-dir&apos; directory.</translation>
+        <translation>The language for the aspell dictionary. The values are are 2-letter language codes, e.g. &apos;en&apos;, &apos;fr&apos; ...&lt;br&gt;If this value is not set, the NLS environment will be used to compute it, which usually works. To get an idea of what is installed on your system, type &apos;aspell config&apos; and look for .dat files inside the &apos;data-dir&apos; directory.</translation>
     </message>
     <message>
         <source>Indexer log file name</source>
-        <translation type="unfinished">Indexer log file name</translation>
+        <translation>Indexer log file name</translation>
     </message>
     <message>
         <source>If empty, the above log file name value will be used. It may useful to have a separate log for diagnostic purposes because the common log will be erased when&lt;br&gt;the GUI starts up.</source>
-        <translation type="unfinished">If empty, the above log file name value will be used. It may useful to have a separate log for diagnostic purposes because the common log will be erased when&lt;br&gt;the GUI starts up.</translation>
+        <translation>If empty, the above log file name value will be used. It may useful to have a separate log for diagnostic purposes because the common log will be erased when&lt;br&gt;the GUI starts up.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;E.g. 90% to stop at 90% full, 0 or 100 means no limit)</source>
@@ -414,7 +414,7 @@
     </message>
     <message>
         <source>Process the Web history queue</source>
-        <translation type="unfinished">Feldolgozni a webes előzmények sorát.</translation>
+        <translation>Feldolgozni a webes előzmények sorát.</translation>
     </message>
     <message>
         <source>(by default, aspell suggests mispellings when a query has no results).</source>
@@ -422,19 +422,19 @@
     </message>
     <message>
         <source>Page recycle interval</source>
-        <translation type="unfinished">Oldal újratöltési időközönként</translation>
+        <translation>Oldal újratöltési időközönként</translation>
     </message>
     <message>
         <source>&lt;p&gt;By default, only one instance of an URL is kept in the cache. This can be changed by setting this to a value determining at what frequency we keep multiple instances (&apos;day&apos;, &apos;week&apos;, &apos;month&apos;, &apos;year&apos;). Note that increasing the interval will not erase existing entries.</source>
-        <translation type="unfinished">Alapértelmezés szerint csak egy példányt tartunk meg egy URL-ből a gyorsítótárban. Ezt megváltoztathatjuk azzal, hogy beállítjuk egy értékre, amely meghatározza, milyen gyakorisággal tartunk meg több példányt (&apos;nap&apos;, &apos;hét&apos;, &apos;hónap&apos;, &apos;év&apos;). Vegye figyelembe, hogy az időköz növelése nem törli az meglévő bejegyzéseket.</translation>
+        <translation>Alapértelmezés szerint csak egy példányt tartunk meg egy URL-ből a gyorsítótárban. Ezt megváltoztathatjuk azzal, hogy beállítjuk egy értékre, amely meghatározza, milyen gyakorisággal tartunk meg több példányt (&apos;nap&apos;, &apos;hét&apos;, &apos;hónap&apos;, &apos;év&apos;). Vegye figyelembe, hogy az időköz növelése nem törli az meglévő bejegyzéseket.</translation>
     </message>
     <message>
         <source>Note: old pages will be erased to make space for new ones when the maximum size is reached. Current size: %1</source>
-        <translation type="unfinished">Megjegyzés: Az öreg lapok törlődnek az újak helyére, amikor elérjük a maximális méretet. Jelenlegi méret: %1</translation>
+        <translation>Megjegyzés: Az öreg lapok törlődnek az újak helyére, amikor elérjük a maximális méretet. Jelenlegi méret: %1</translation>
     </message>
     <message>
         <source>Start folders</source>
-        <translation type="unfinished">Indító mappák</translation>
+        <translation>Indító mappák</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
@@ -442,39 +442,47 @@
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;(E.g. 90 to stop at 90% full, 0 or 100 means no limit)</source>
-        <translation type="unfinished">Lemez telítettségi küszöb százaléka, amikor leállítjuk az indexelést (pl. 90 a 90%-os telítettségnél, 0 vagy 100 a korlát nélkül)</translation>
+        <translation>Lemez telítettségi küszöb százaléka, amikor leállítjuk az indexelést (pl. 90 a 90%-os telítettségnél, 0 vagy 100 a korlát nélkül)</translation>
     </message>
     <message>
         <source>Browser add-on download folder</source>
-        <translation type="unfinished">Böngésző bővítmény letöltési mappa</translation>
+        <translation>Böngésző bővítmény letöltési mappa</translation>
     </message>
     <message>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation type="unfinished">Csak akkor állítsa be ezt, ha beállította a &quot;Letöltések almappája&quot; paramétert a Web böngésző kiegészítő beállításaiban. Ebben az esetben ez teljes elérési út legyen a könyvtárhoz (pl. /home/[me]/Letöltések/saját-almappám)</translation>
+        <translation>Csak akkor állítsa be ezt, ha beállította a &quot;Letöltések almappája&quot; paramétert a Web böngésző kiegészítő beállításaiban. Ebben az esetben ez teljes elérési út legyen a könyvtárhoz (pl. /home/[me]/Letöltések/saját-almappám)</translation>
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation type="unfinished">Lokálisan tárolja néhány GUI paramétert az indexben.</translation>
+        <translation>Lokálisan tárolja néhány GUI paramétert az indexben.</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
-        <translation type="unfinished">A GUI beállítások általában egy globális fájlban vannak tárolva, ami minden indexre érvényes. Ennek a paraméternek a beállítása néhány beállítást, például a találati tábla beállításait specifikussá teszi az indexre.</translation>
+        <translation>A GUI beállítások általában egy globális fájlban vannak tárolva, ami minden indexre érvényes. Ennek a paraméternek a beállítása néhány beállítást, például a találati tábla beállításait specifikussá teszi az indexre.</translation>
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation type="unfinished">Felfüggeszteni a valós idejű indexelőt, amikor az akkumulátoron fut.</translation>
+        <translation>Felfüggeszteni a valós idejű indexelőt, amikor az akkumulátoron fut.</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
-        <translation type="unfinished">Az indexelő várni fog egy visszatérésre az AC-n, és újra végrehajtja magát, amikor ez megtörténik.</translation>
+        <translation>Az indexelő várni fog egy visszatérésre az AC-n, és újra végrehajtja magát, amikor ez megtörténik.</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
-        <translation type="unfinished">A könyvtárak/mappák listája, amelyeket rekurzívan indexelni kell az alkönyvtáraikkal együtt.&lt;br&gt;A &apos;~&apos; karakter kiterjesztése a saját otthoni könyvtáradra, ami az alapértelmezett kezdeti érték.</translation>
+        <translation>A könyvtárak/mappák listája, amelyeket rekurzívan indexelni kell az alkönyvtáraikkal együtt.&lt;br&gt;A &apos;~&apos; karakter kiterjesztése a saját otthoni könyvtáradra, ami az alapértelmezett kezdeti érték.</translation>
     </message>
     <message>
-        <source>(by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished">(alapértelmezés szerint az aspell javaslatokat tesz a helyesírási hibákra, amikor egy lekérdezésnek nincsenek eredményei)</translation>
+        <source> (by default, aspell suggests mispellings when a query has no results).</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Database directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -528,7 +536,7 @@ Ez segítséget nyújt a nagyon nagy méretű szövegfájlokban (pl. naplófájl
     </message>
     <message>
         <source>Max. filter exec. time (s)</source>
-        <translation type="unfinished">Max. filter exec. time (s)</translation>
+        <translation>Max. filter exec. time (s)</translation>
     </message>
     <message>
         <source>External filters working longer than this will be aborted. This is for the rare case (ie: postscript) where a document could cause a filter to loop. Set to -1 for no limit.
@@ -547,18 +555,18 @@ Néha előfordul (pl. postscript esetén), hogy a szűrő végtelen ciklusba ker
     <name>ConfigSwitchDLG</name>
     <message>
         <source>Switch to other configuration</source>
-        <translation type="unfinished">Váltás más konfigurációra</translation>
+        <translation>Váltás más konfigurációra</translation>
     </message>
 </context>
 <context>
     <name>ConfigSwitchW</name>
     <message>
         <source>Choose other</source>
-        <translation type="unfinished">Válasszon másikat</translation>
+        <translation>Válasszon másikat</translation>
     </message>
     <message>
         <source>Choose configuration directory</source>
-        <translation type="unfinished">Válassza ki a konfigurációs könyvtárat.</translation>
+        <translation>Válassza ki a konfigurációs könyvtárat.</translation>
     </message>
 </context>
 <context>
@@ -751,7 +759,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>%1:
  %2</source>
-        <translation type="unfinished">%1:
+        <translation>%1:
  %2</translation>
     </message>
     <message>
@@ -812,7 +820,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>GroupBox</source>
-        <translation type="unfinished">GroupBox</translation>
+        <translation>GroupBox</translation>
     </message>
 </context>
 <context>
@@ -841,62 +849,62 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>&quot;history&quot; file is damaged, please check or remove it: </source>
-        <translation type="unfinished">&quot;history&quot; file is damaged, please check or remove it: </translation>
+        <translation>&quot;history&quot; file is damaged, please check or remove it: </translation>
     </message>
     <message>
         <source>Needs &quot;Show system tray icon&quot; to be set in preferences!
 </source>
-        <translation type="unfinished">Szükséges a &quot;Rendszerikon megjelenítése&quot; beállítása a preferenciákban!</translation>
+        <translation>Szükséges a &quot;Rendszerikon megjelenítése&quot; beállítása a preferenciákban!</translation>
     </message>
 </context>
 <context>
     <name>PTransEdit</name>
     <message>
         <source>Path in index</source>
-        <translation type="unfinished">Útvonal az indexben</translation>
+        <translation>Útvonal az indexben</translation>
     </message>
     <message>
         <source>Translated path</source>
-        <translation type="unfinished">Fordított elérési útvonal</translation>
+        <translation>Fordított elérési útvonal</translation>
     </message>
     <message>
         <source>Config error</source>
-        <translation type="unfinished">Beállítási hiba</translation>
+        <translation>Beállítási hiba</translation>
     </message>
     <message>
         <source>Original path</source>
-        <translation type="unfinished">Eredeti elérési út</translation>
+        <translation>Eredeti elérési út</translation>
     </message>
     <message>
         <source>Local path</source>
-        <translation type="unfinished">Helyi elérési út</translation>
+        <translation>Helyi elérési út</translation>
     </message>
 </context>
 <context>
     <name>PTransEditBase</name>
     <message>
         <source>Path Translations</source>
-        <translation type="unfinished">Elérési út átalakítása</translation>
+        <translation>Elérési út átalakítása</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
-        <translation type="unfinished">Kijelölhető egy vagy több elérési út is</translation>
+        <translation>Kijelölhető egy vagy több elérési út is</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Hozzáadás</translation>
+        <translation>Hozzáadás</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Törlés</translation>
+        <translation>Törlés</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">Mégsem</translation>
+        <translation>Mégsem</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Mentés</translation>
+        <translation>Mentés</translation>
     </message>
 </context>
 <context>
@@ -959,11 +967,11 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Tab 1</source>
-        <translation type="unfinished">Tab 1</translation>
+        <translation>Tab 1</translation>
     </message>
     <message>
         <source>Open</source>
@@ -971,47 +979,47 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Canceled</source>
-        <translation type="unfinished">Canceled</translation>
+        <translation>Canceled</translation>
     </message>
     <message>
         <source>Error loading the document: file missing.</source>
-        <translation type="unfinished">Error loading the document: file missing.</translation>
+        <translation>Error loading the document: file missing.</translation>
     </message>
     <message>
         <source>Error loading the document: no permission.</source>
-        <translation type="unfinished">Error loading the document: no permission.</translation>
+        <translation>Error loading the document: no permission.</translation>
     </message>
     <message>
         <source>Error loading: backend not configured.</source>
-        <translation type="unfinished">Error loading: backend not configured.</translation>
+        <translation>Error loading: backend not configured.</translation>
     </message>
     <message>
         <source>Error loading the document: other handler error&lt;br&gt;Maybe the application is locking the file ?</source>
-        <translation type="unfinished">Error loading the document: other handler error&lt;br&gt;Maybe the application is locking the file ?</translation>
+        <translation>Error loading the document: other handler error&lt;br&gt;Maybe the application is locking the file ?</translation>
     </message>
     <message>
         <source>Error loading the document: other handler error.</source>
-        <translation type="unfinished">Error loading the document: other handler error.</translation>
+        <translation>Error loading the document: other handler error.</translation>
     </message>
     <message>
         <source>&lt;br&gt;Attempting to display from stored text.</source>
-        <translation type="unfinished">&lt;br&gt;Attempting to display from stored text.</translation>
+        <translation>&lt;br&gt;Attempting to display from stored text.</translation>
     </message>
     <message>
         <source>Could not fetch stored text</source>
-        <translation type="unfinished">Could not fetch stored text</translation>
+        <translation>Could not fetch stored text</translation>
     </message>
     <message>
         <source>Previous result document</source>
-        <translation type="unfinished">Previous result document</translation>
+        <translation>Previous result document</translation>
     </message>
     <message>
         <source>Next result document</source>
-        <translation type="unfinished">Next result document</translation>
+        <translation>Next result document</translation>
     </message>
     <message>
         <source>Preview Window</source>
-        <translation type="unfinished">Preview Window</translation>
+        <translation>Preview Window</translation>
     </message>
     <message>
         <source>Close Window</source>
@@ -1027,7 +1035,7 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Close tab</source>
-        <translation type="unfinished">Close tab</translation>
+        <translation>Close tab</translation>
     </message>
     <message>
         <source>Print tab</source>
@@ -1035,15 +1043,15 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Close preview window</source>
-        <translation type="unfinished">Close preview window</translation>
+        <translation>Close preview window</translation>
     </message>
     <message>
         <source>Show next result</source>
-        <translation type="unfinished">Show next result</translation>
+        <translation>Show next result</translation>
     </message>
     <message>
         <source>Show previous result</source>
-        <translation type="unfinished">Show previous result</translation>
+        <translation>Show previous result</translation>
     </message>
     <message>
         <source>Print</source>
@@ -1094,15 +1102,15 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>Open document</source>
-        <translation type="unfinished">Open document</translation>
+        <translation>Open document</translation>
     </message>
     <message>
         <source>Reload as Plain Text</source>
-        <translation type="unfinished">Újratöltés sima szövegként</translation>
+        <translation>Újratöltés sima szövegként</translation>
     </message>
     <message>
         <source>Reload as HTML</source>
-        <translation type="unfinished">Újratöltés HTML-ként</translation>
+        <translation>Újratöltés HTML-ként</translation>
     </message>
 </context>
 <context>
@@ -1197,11 +1205,11 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</source>
-        <translation type="unfinished">&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</translation>
+        <translation>&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</translation>
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation type="unfinished">Ezek a minták fájl- vagy könyvtárnév-minták, amelyeket nem szabad indexelni.</translation>
+        <translation>Ezek a minták fájl- vagy könyvtárnév-minták, amelyeket nem szabad indexelni.</translation>
     </message>
 </context>
 <context>
@@ -1280,23 +1288,23 @@ Click Cancel if you want to edit the configuration file before indexing starts, 
     </message>
     <message>
         <source>&amp;Open Parent document</source>
-        <translation type="unfinished">&amp;Open Parent document</translation>
+        <translation>&amp;Open Parent document</translation>
     </message>
     <message>
         <source>&amp;Open Parent Folder</source>
-        <translation type="unfinished">&amp;Open Parent Folder</translation>
+        <translation>&amp;Open Parent Folder</translation>
     </message>
     <message>
         <source>Copy Text</source>
-        <translation type="unfinished">Szöveg másolása</translation>
+        <translation>Szöveg másolása</translation>
     </message>
     <message>
         <source>Copy &amp;File Path</source>
-        <translation type="unfinished">Másolás &amp;Fájl elérési útja</translation>
+        <translation>Másolás &amp;Fájl elérési útja</translation>
     </message>
     <message>
         <source>Copy File Name</source>
-        <translation type="unfinished">Fájlnév másolása</translation>
+        <translation>Fájlnév másolása</translation>
     </message>
 </context>
 <context>
@@ -1372,15 +1380,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Configuration name</source>
-        <translation type="unfinished">Konfigurációs név</translation>
+        <translation>Konfigurációs név</translation>
     </message>
     <message>
         <source>Short alphanumeric nickname for this config</source>
-        <translation type="unfinished">Rövid alfanumerikus becenév ehhez a konfigurációhoz</translation>
+        <translation>Rövid alfanumerikus becenév ehhez a konfigurációhoz</translation>
     </message>
     <message>
         <source>Could not find </source>
-        <translation type="unfinished">Nem található</translation>
+        <translation>Nem található</translation>
     </message>
 </context>
 <context>
@@ -1390,8 +1398,8 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Találatok</translation>
     </message>
     <message>
-        <source>Hits</source>
-        <translation type="unfinished">Találatok</translation>
+        <source> Hits</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1650,7 +1658,7 @@ Megnyissuk a beállítások ablakát?</translation>
     </message>
     <message>
         <source>Content has been indexed for these MIME types:</source>
-        <translation type="unfinished">Content has been indexed for these MIME types:</translation>
+        <translation>Content has been indexed for these MIME types:</translation>
     </message>
     <message>
         <source>Index not up to date for this file. Refusing to risk showing the wrong entry. Click Ok to update the index for this file, then re-run the query when indexing is done. Else, Cancel.</source>
@@ -1855,11 +1863,11 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     </message>
     <message>
         <source>Non-fatal indexing message: </source>
-        <translation type="unfinished">Non-fatal indexing message: </translation>
+        <translation>Non-fatal indexing message: </translation>
     </message>
     <message>
         <source>Types list empty: maybe wait for indexing to progress?</source>
-        <translation type="unfinished">Types list empty: maybe wait for indexing to progress?</translation>
+        <translation>Types list empty: maybe wait for indexing to progress?</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is http[s]: unsupported</source>
@@ -1884,32 +1892,32 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     <message>
         <source>Empty or non-existant paths in configuration file. Click Ok to start indexing anyway (absent data will not be purged from the index):
 </source>
-        <translation type="unfinished">Empty or non-existant paths in configuration file. Click Ok to start indexing anyway (absent data will not be purged from the index):
+        <translation>Empty or non-existant paths in configuration file. Click Ok to start indexing anyway (absent data will not be purged from the index):
 </translation>
     </message>
     <message>
         <source>Indexing done</source>
-        <translation type="unfinished">Indexing done</translation>
+        <translation>Indexing done</translation>
     </message>
     <message>
         <source>Can&apos;t update index: internal error</source>
-        <translation type="unfinished">Can&apos;t update index: internal error</translation>
+        <translation>Can&apos;t update index: internal error</translation>
     </message>
     <message>
         <source>Index not up to date for this file.&lt;br&gt;</source>
-        <translation type="unfinished">Index not up to date for this file.&lt;br&gt;</translation>
+        <translation>Index not up to date for this file.&lt;br&gt;</translation>
     </message>
     <message>
         <source>&lt;em&gt;Also, it seems that the last index update for the file failed.&lt;/em&gt;&lt;br/&gt;</source>
-        <translation type="unfinished">&lt;em&gt;Also, it seems that the last index update for the file failed.&lt;/em&gt;&lt;br/&gt;</translation>
+        <translation>&lt;em&gt;Also, it seems that the last index update for the file failed.&lt;/em&gt;&lt;br/&gt;</translation>
     </message>
     <message>
         <source>Click Ok to try to update the index for this file. You will need to run the query again when indexing is done.&lt;br&gt;</source>
-        <translation type="unfinished">Click Ok to try to update the index for this file. You will need to run the query again when indexing is done.&lt;br&gt;</translation>
+        <translation>Click Ok to try to update the index for this file. You will need to run the query again when indexing is done.&lt;br&gt;</translation>
     </message>
     <message>
         <source>Click Cancel to return to the list.&lt;br&gt;Click Ignore to show the preview anyway (and remember for this session). There is a risk of showing the wrong entry.&lt;br/&gt;</source>
-        <translation type="unfinished">Click Cancel to return to the list.&lt;br&gt;Click Ignore to show the preview anyway (and remember for this session). There is a risk of showing the wrong entry.&lt;br/&gt;</translation>
+        <translation>Click Cancel to return to the list.&lt;br&gt;Click Ignore to show the preview anyway (and remember for this session). There is a risk of showing the wrong entry.&lt;br/&gt;</translation>
     </message>
     <message>
         <source>documents</source>
@@ -1917,11 +1925,11 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     </message>
     <message>
         <source>document</source>
-        <translation type="unfinished">document</translation>
+        <translation>document</translation>
     </message>
     <message>
         <source>files</source>
-        <translation type="unfinished">files</translation>
+        <translation>files</translation>
     </message>
     <message>
         <source>file</source>
@@ -1929,7 +1937,7 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     </message>
     <message>
         <source>errors</source>
-        <translation type="unfinished">errors</translation>
+        <translation>errors</translation>
     </message>
     <message>
         <source>error</source>
@@ -1937,35 +1945,35 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     </message>
     <message>
         <source>total files)</source>
-        <translation type="unfinished">total files)</translation>
+        <translation>total files)</translation>
     </message>
     <message>
         <source>No information: initial indexing not yet performed.</source>
-        <translation type="unfinished">No information: initial indexing not yet performed.</translation>
+        <translation>No information: initial indexing not yet performed.</translation>
     </message>
     <message>
         <source>Batch scheduling</source>
-        <translation type="unfinished">Batch scheduling</translation>
+        <translation>Batch scheduling</translation>
     </message>
     <message>
         <source>The tool will let you decide at what time indexing should run.  It uses the Windows task scheduler.</source>
-        <translation type="unfinished">The tool will let you decide at what time indexing should run.  It uses the Windows task scheduler.</translation>
+        <translation>The tool will let you decide at what time indexing should run.  It uses the Windows task scheduler.</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation type="unfinished">Confirm</translation>
+        <translation>Confirm</translation>
     </message>
     <message>
         <source>Erasing simple and advanced search history lists, please click Ok to confirm</source>
-        <translation type="unfinished">Erasing simple and advanced search history lists, please click Ok to confirm</translation>
+        <translation>Erasing simple and advanced search history lists, please click Ok to confirm</translation>
     </message>
     <message>
         <source>Could not open/create file</source>
-        <translation type="unfinished">Could not open/create file</translation>
+        <translation>Could not open/create file</translation>
     </message>
     <message>
         <source>F&amp;ilter</source>
-        <translation type="unfinished">F&amp;ilter</translation>
+        <translation>F&amp;ilter</translation>
     </message>
     <message>
         <source>Could not start recollindex (temp file error)</source>
@@ -1985,7 +1993,7 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     </message>
     <message>
         <source>Simple search type</source>
-        <translation type="unfinished">Simple search type</translation>
+        <translation>Simple search type</translation>
     </message>
     <message>
         <source>Any term</source>
@@ -2009,7 +2017,7 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     </message>
     <message>
         <source>Main Window</source>
-        <translation type="unfinished">Main Window</translation>
+        <translation>Main Window</translation>
     </message>
     <message>
         <source>Focus to Search</source>
@@ -2029,68 +2037,68 @@ Ellenőrizni kell az asztali beállítófájlt!</translation>
     </message>
     <message>
         <source>Clear search</source>
-        <translation type="unfinished">Clear search</translation>
+        <translation>Clear search</translation>
     </message>
     <message>
         <source>Move keyboard focus to search entry</source>
-        <translation type="unfinished">Move keyboard focus to search entry</translation>
+        <translation>Move keyboard focus to search entry</translation>
     </message>
     <message>
         <source>Move keyboard focus to search, alt.</source>
-        <translation type="unfinished">Move keyboard focus to search, alt.</translation>
+        <translation>Move keyboard focus to search, alt.</translation>
     </message>
     <message>
         <source>Toggle tabular display</source>
-        <translation type="unfinished">Toggle tabular display</translation>
+        <translation>Toggle tabular display</translation>
     </message>
     <message>
         <source>Move keyboard focus to table</source>
-        <translation type="unfinished">Move keyboard focus to table</translation>
+        <translation>Move keyboard focus to table</translation>
     </message>
     <message>
         <source>Flushing</source>
-        <translation type="unfinished">Öblítés</translation>
+        <translation>Öblítés</translation>
     </message>
     <message>
         <source>Show menu search dialog</source>
-        <translation type="unfinished">Menü keresési párbeszédablak megjelenítése</translation>
+        <translation>Menü keresési párbeszédablak megjelenítése</translation>
     </message>
     <message>
         <source>Duplicates</source>
-        <translation type="unfinished">Ismétlődések</translation>
+        <translation>Ismétlődések</translation>
     </message>
     <message>
         <source>Filter directories</source>
-        <translation type="unfinished">Szűrje a könyvtárakat.</translation>
+        <translation>Szűrje a könyvtárakat.</translation>
     </message>
     <message>
         <source>Main index open error: </source>
-        <translation type="unfinished">Fő index megnyitási hiba:</translation>
+        <translation>Fő index megnyitási hiba:</translation>
     </message>
     <message>
         <source>. The index may be corrupted. Maybe try to run xapian-check or rebuild the index ?.</source>
-        <translation type="unfinished">Az index lehet, hogy sérült. Talán próbálja meg futtatni a xapian-check parancsot, vagy újraépíteni az indexet?</translation>
+        <translation>Az index lehet, hogy sérült. Talán próbálja meg futtatni a xapian-check parancsot, vagy újraépíteni az indexet?</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation type="unfinished">Ez a keresés már nem aktív.</translation>
+        <translation>Ez a keresés már nem aktív.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
-        <translation type="unfinished">Néző parancssor a %1 számára megadja a szülőfájlt, de az URL nem file:// : nem támogatott</translation>
+        <translation>Néző parancssor a %1 számára megadja a szülőfájlt, de az URL nem file:// : nem támogatott</translation>
     </message>
     <message>
         <source>The viewer specified in mimeview for %1: %2 is not found.
 Do you want to start the preferences dialog ?</source>
-        <translation type="unfinished">A megjelenítő, amelyet a mimeview-hez adtak meg %1: %2 esetén, nem található. Szeretné elindítani a beállítások párbeszédpanelt?</translation>
+        <translation>A megjelenítő, amelyet a mimeview-hez adtak meg %1: %2 esetén, nem található. Szeretné elindítani a beállítások párbeszédpanelt?</translation>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation type="unfinished">Mutassa az összetett keresési párbeszédpanelt.</translation>
+        <translation>Mutassa az összetett keresési párbeszédpanelt.</translation>
     </message>
     <message>
-        <source>with additional message: </source>
-        <translation type="unfinished">a további üzenettel:</translation>
+        <source> with additional message: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2177,11 +2185,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Recoll</source>
-        <translation type="unfinished">Recoll</translation>
+        <translation>Recoll</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished">Ctrl+Q</translation>
+        <translation>Ctrl+Q</translation>
     </message>
     <message>
         <source>Update &amp;index</source>
@@ -2225,7 +2233,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>PgDown</source>
-        <translation type="unfinished">PgDown</translation>
+        <translation>PgDown</translation>
     </message>
     <message>
         <source>Shift+Home, Ctrl+S, Ctrl+Q, Ctrl+S</source>
@@ -2233,7 +2241,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>PgUp</source>
-        <translation type="unfinished">PgUp</translation>
+        <translation>PgUp</translation>
     </message>
     <message>
         <source>&amp;Full Screen</source>
@@ -2241,7 +2249,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>F11</source>
-        <translation type="unfinished">F11</translation>
+        <translation>F11</translation>
     </message>
     <message>
         <source>Full Screen</source>
@@ -2285,7 +2293,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Shift+PgUp</source>
-        <translation type="unfinished">Shift+PgUp</translation>
+        <translation>Shift+PgUp</translation>
     </message>
     <message>
         <source>&amp;Indexing schedule</source>
@@ -2401,11 +2409,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Trigger incremental pass</source>
-        <translation type="unfinished">Trigger incremental pass</translation>
+        <translation>Trigger incremental pass</translation>
     </message>
     <message>
         <source>E&amp;xport simple search history</source>
-        <translation type="unfinished">E&amp;xport simple search history</translation>
+        <translation>E&amp;xport simple search history</translation>
     </message>
     <message>
         <source>Use default dark mode</source>
@@ -2417,67 +2425,67 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&amp;Query</source>
-        <translation type="unfinished">&amp;Query</translation>
+        <translation>&amp;Query</translation>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation type="unfinished">Növelje az eredmények szöveg betűméretét.</translation>
+        <translation>Növelje az eredmények szöveg betűméretét.</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation type="unfinished">Betűméret növelése</translation>
+        <translation>Betűméret növelése</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation type="unfinished">Csökkentsd az eredmények szöveg betűméretét.</translation>
+        <translation>Csökkentsd az eredmények szöveg betűméretét.</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation type="unfinished">Betűméret csökkentése</translation>
+        <translation>Betűméret csökkentése</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation type="unfinished">Indítsa el a valós idejű indexelőt.</translation>
+        <translation>Indítsa el a valós idejű indexelőt.</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
-        <translation type="unfinished">Lekérdezési nyelv szűrők</translation>
+        <translation>Lekérdezési nyelv szűrők</translation>
     </message>
     <message>
         <source>Filter dates</source>
-        <translation type="unfinished">Dátum</translation>
+        <translation>Dátum</translation>
     </message>
     <message>
         <source>Assisted complex search</source>
-        <translation type="unfinished">Segített összetett keresés</translation>
+        <translation>Segített összetett keresés</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation type="unfinished">Születési dátumok szűrése</translation>
+        <translation>Születési dátumok szűrése</translation>
     </message>
     <message>
         <source>Switch Configuration...</source>
-        <translation type="unfinished">Kapcsoló konfiguráció...</translation>
+        <translation>Kapcsoló konfiguráció...</translation>
     </message>
     <message>
         <source>Choose another configuration to run on, replacing this process</source>
-        <translation type="unfinished">Válasszon egy másik konfigurációt, amelyen futtatni szeretné, és cserélje le ezt a folyamatot.</translation>
+        <translation>Válasszon egy másik konfigurációt, amelyen futtatni szeretné, és cserélje le ezt a folyamatot.</translation>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation type="unfinished">Felhasználói kézikönyv (helyi, egy HTML oldal)</translation>
+        <translation>Felhasználói kézikönyv (helyi, egy HTML oldal)</translation>
     </message>
     <message>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation type="unfinished">Online kézikönyv (Recoll weboldal)</translation>
+        <translation>Online kézikönyv (Recoll weboldal)</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation type="unfinished">Útvonal fordítások</translation>
+        <translation>Útvonal fordítások</translation>
     </message>
     <message>
-        <source>With failed files retrying</source>
-        <translation type="unfinished">Sikertelen fájlok újrapróbálása</translation>
+        <source>    With failed files retrying</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2547,7 +2555,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
     <message>
         <source>Mtime</source>
@@ -2567,7 +2575,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Can&apos;t sort by inverse relevance</source>
-        <translation type="unfinished">Can&apos;t sort by inverse relevance</translation>
+        <translation>Can&apos;t sort by inverse relevance</translation>
     </message>
 </context>
 <context>
@@ -2666,7 +2674,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>for</source>
-        <translation type="unfinished">for</translation>
+        <translation>for</translation>
     </message>
     <message>
         <source>&lt;p&gt;&lt;i&gt;Alternate spellings: &lt;/i&gt;</source>
@@ -2694,11 +2702,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
-        <translation type="unfinished">Ez a helyesírási tipp hozzá lett adva a kereséshez:</translation>
+        <translation>Ez a helyesírási tipp hozzá lett adva a kereséshez:</translation>
     </message>
     <message>
         <source>These spelling guesses were added to the search:</source>
-        <translation type="unfinished">Ezeket a helyesírási találgatásokat hozzáadták a kereséshez:</translation>
+        <translation>Ezeket a helyesírási találgatásokat hozzáadták a kereséshez:</translation>
     </message>
 </context>
 <context>
@@ -2769,7 +2777,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Result Table</source>
-        <translation type="unfinished">Result Table</translation>
+        <translation>Result Table</translation>
     </message>
     <message>
         <source>Open</source>
@@ -2789,39 +2797,39 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Open current result document</source>
-        <translation type="unfinished">Open current result document</translation>
+        <translation>Open current result document</translation>
     </message>
     <message>
         <source>Open current result and quit</source>
-        <translation type="unfinished">Open current result and quit</translation>
+        <translation>Open current result and quit</translation>
     </message>
     <message>
         <source>Show snippets</source>
-        <translation type="unfinished">Show snippets</translation>
+        <translation>Show snippets</translation>
     </message>
     <message>
         <source>Show header</source>
-        <translation type="unfinished">Show header</translation>
+        <translation>Show header</translation>
     </message>
     <message>
         <source>Show vertical header</source>
-        <translation type="unfinished">Show vertical header</translation>
+        <translation>Show vertical header</translation>
     </message>
     <message>
         <source>Copy current result text to clipboard</source>
-        <translation type="unfinished">Copy current result text to clipboard</translation>
+        <translation>Copy current result text to clipboard</translation>
     </message>
     <message>
         <source>Use Shift+click to display the text instead.</source>
-        <translation type="unfinished">Használja a Shift+kattintást a szöveg megjelenítéséhez.</translation>
+        <translation>Használja a Shift+kattintást a szöveg megjelenítéséhez.</translation>
     </message>
     <message>
         <source>%1 bytes copied to clipboard</source>
-        <translation type="unfinished">%1 bájt másolva a vágólapra</translation>
+        <translation>%1 bájt másolva a vágólapra</translation>
     </message>
     <message>
         <source>Copy result text and quit</source>
-        <translation type="unfinished">&quot;Másold le az eredmény szövegét és lépj ki&quot;</translation>
+        <translation>&quot;Másold le az eredmény szövegét és lépj ki&quot;</translation>
     </message>
 </context>
 <context>
@@ -3043,39 +3051,39 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>Enter search terms here.</source>
-        <translation type="unfinished">Enter search terms here.</translation>
+        <translation>Enter search terms here.</translation>
     </message>
     <message>
         <source>&lt;html&gt;&lt;head&gt;&lt;style&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head&gt;&lt;style&gt;</translation>
+        <translation>&lt;html&gt;&lt;head&gt;&lt;style&gt;</translation>
     </message>
     <message>
         <source>table, th, td {</source>
-        <translation type="unfinished">table, th, td {</translation>
+        <translation>table, th, td {</translation>
     </message>
     <message>
         <source>border: 1px solid black;</source>
-        <translation type="unfinished">border: 1px solid black;</translation>
+        <translation>border: 1px solid black;</translation>
     </message>
     <message>
         <source>border-collapse: collapse;</source>
-        <translation type="unfinished">border-collapse: collapse;</translation>
+        <translation>border-collapse: collapse;</translation>
     </message>
     <message>
         <source>}</source>
-        <translation type="unfinished">}</translation>
+        <translation>}</translation>
     </message>
     <message>
         <source>th,td {</source>
-        <translation type="unfinished">th,td {</translation>
+        <translation>th,td {</translation>
     </message>
     <message>
         <source>text-align: center;</source>
-        <translation type="unfinished">text-align: center;</translation>
+        <translation>text-align: center;</translation>
     </message>
     <message>
         <source>&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</source>
-        <translation type="unfinished">&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</translation>
+        <translation>&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query&lt;/b&gt;.&amp;nbsp;</source>
@@ -3083,51 +3091,51 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>You should really look at the manual (F1)&lt;/p&gt;</source>
-        <translation type="unfinished">You should really look at the manual (F1)&lt;/p&gt;</translation>
+        <translation>You should really look at the manual (F1)&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;table border=&apos;1&apos; cellspacing=&apos;0&apos;&gt;</source>
-        <translation type="unfinished">&lt;table border=&apos;1&apos; cellspacing=&apos;0&apos;&gt;</translation>
+        <translation>&lt;table border=&apos;1&apos; cellspacing=&apos;0&apos;&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;th&gt;What&lt;/th&gt;&lt;th&gt;Examples&lt;/th&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;th&gt;What&lt;/th&gt;&lt;th&gt;Examples&lt;/th&gt;</translation>
+        <translation>&lt;tr&gt;&lt;th&gt;What&lt;/th&gt;&lt;th&gt;Examples&lt;/th&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;And&lt;/td&gt;&lt;td&gt;one two&amp;nbsp;&amp;nbsp;&amp;nbsp;one AND two&amp;nbsp;&amp;nbsp;&amp;nbsp;one &amp;&amp; two&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;And&lt;/td&gt;&lt;td&gt;one two&amp;nbsp;&amp;nbsp;&amp;nbsp;one AND two&amp;nbsp;&amp;nbsp;&amp;nbsp;one &amp;&amp; two&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;And&lt;/td&gt;&lt;td&gt;one two&amp;nbsp;&amp;nbsp;&amp;nbsp;one AND two&amp;nbsp;&amp;nbsp;&amp;nbsp;one &amp;&amp; two&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Or&lt;/td&gt;&lt;td&gt;one OR two&amp;nbsp;&amp;nbsp;&amp;nbsp;one || two&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Or&lt;/td&gt;&lt;td&gt;one OR two&amp;nbsp;&amp;nbsp;&amp;nbsp;one || two&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Or&lt;/td&gt;&lt;td&gt;one OR two&amp;nbsp;&amp;nbsp;&amp;nbsp;one || two&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Complex boolean. OR has priority, use parentheses&amp;nbsp;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Complex boolean. OR has priority, use parentheses&amp;nbsp;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Complex boolean. OR has priority, use parentheses&amp;nbsp;</translation>
     </message>
     <message>
         <source>where needed&lt;/td&gt;&lt;td&gt;(one AND two) OR three&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">where needed&lt;/td&gt;&lt;td&gt;(one AND two) OR three&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>where needed&lt;/td&gt;&lt;td&gt;(one AND two) OR three&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Not&lt;/td&gt;&lt;td&gt;-term&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Not&lt;/td&gt;&lt;td&gt;-term&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Not&lt;/td&gt;&lt;td&gt;-term&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Phrase&lt;/td&gt;&lt;td&gt;&quot;pride and prejudice&quot;&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Phrase&lt;/td&gt;&lt;td&gt;&quot;pride and prejudice&quot;&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Phrase&lt;/td&gt;&lt;td&gt;&quot;pride and prejudice&quot;&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Ordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;pride prejudice&quot;o1&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Ordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;pride prejudice&quot;o1&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Ordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;pride prejudice&quot;o1&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Unordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;prejudice pride&quot;po1&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Unordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;prejudice pride&quot;po1&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Unordered proximity (slack=1)&lt;/td&gt;&lt;td&gt;&quot;prejudice pride&quot;po1&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Unordered prox. (default slack=10)&lt;/td&gt;&lt;td&gt;&quot;prejudice&amp;nbsp;pride&quot;p&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Unordered prox. (default slack=10)&lt;/td&gt;&lt;td&gt;&quot;prejudice&amp;nbsp;pride&quot;p&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Unordered prox. (default slack=10)&lt;/td&gt;&lt;td&gt;&quot;prejudice&amp;nbsp;pride&quot;p&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;No stem expansion: capitalize&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
@@ -3135,86 +3143,86 @@ Use &lt;b&gt;Show Query&lt;/b&gt; link when in doubt about result and see manual
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Field-specific&lt;/td&gt;&lt;td&gt;author:austen&amp;nbsp;&amp;nbsp;title:prejudice&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Field-specific&lt;/td&gt;&lt;td&gt;author:austen&amp;nbsp;&amp;nbsp;title:prejudice&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Field-specific&lt;/td&gt;&lt;td&gt;author:austen&amp;nbsp;&amp;nbsp;title:prejudice&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;AND inside field (no order)&lt;/td&gt;&lt;td&gt;author:jane,austen&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;AND inside field (no order)&lt;/td&gt;&lt;td&gt;author:jane,austen&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;AND inside field (no order)&lt;/td&gt;&lt;td&gt;author:jane,austen&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;OR inside field&lt;/td&gt;&lt;td&gt;author:austen/bronte&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;OR inside field&lt;/td&gt;&lt;td&gt;author:austen/bronte&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;OR inside field&lt;/td&gt;&lt;td&gt;author:austen/bronte&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Field names&lt;/td&gt;&lt;td&gt;title/subject/caption&amp;nbsp;&amp;nbsp;author/from&lt;br&gt;recipient/to&amp;nbsp;&amp;nbsp;filename&amp;nbsp;&amp;nbsp;ext&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Field names&lt;/td&gt;&lt;td&gt;title/subject/caption&amp;nbsp;&amp;nbsp;author/from&lt;br&gt;recipient/to&amp;nbsp;&amp;nbsp;filename&amp;nbsp;&amp;nbsp;ext&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Field names&lt;/td&gt;&lt;td&gt;title/subject/caption&amp;nbsp;&amp;nbsp;author/from&lt;br&gt;recipient/to&amp;nbsp;&amp;nbsp;filename&amp;nbsp;&amp;nbsp;ext&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Directory path filter&lt;/td&gt;&lt;td&gt;dir:/home/me&amp;nbsp;&amp;nbsp;dir:doc&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Directory path filter&lt;/td&gt;&lt;td&gt;dir:/home/me&amp;nbsp;&amp;nbsp;dir:doc&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Directory path filter&lt;/td&gt;&lt;td&gt;dir:/home/me&amp;nbsp;&amp;nbsp;dir:doc&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;MIME type filter&lt;/td&gt;&lt;td&gt;mime:text/plain mime:video/*&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;MIME type filter&lt;/td&gt;&lt;td&gt;mime:text/plain mime:video/*&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;MIME type filter&lt;/td&gt;&lt;td&gt;mime:text/plain mime:video/*&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Date intervals&lt;/td&gt;&lt;td&gt;date:2018-01-01/2018-31-12&lt;br&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Date intervals&lt;/td&gt;&lt;td&gt;date:2018-01-01/2018-31-12&lt;br&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Date intervals&lt;/td&gt;&lt;td&gt;date:2018-01-01/2018-31-12&lt;br&gt;</translation>
     </message>
     <message>
         <source>date:2018&amp;nbsp;&amp;nbsp;date:2018-01-01/P12M&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">date:2018&amp;nbsp;&amp;nbsp;date:2018-01-01/P12M&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>date:2018&amp;nbsp;&amp;nbsp;date:2018-01-01/P12M&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Size&lt;/td&gt;&lt;td&gt;size&amp;gt;100k size&amp;lt;1M&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Size&lt;/td&gt;&lt;td&gt;size&amp;gt;100k size&amp;lt;1M&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Size&lt;/td&gt;&lt;td&gt;size&amp;gt;100k size&amp;lt;1M&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
         <source>&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Can&apos;t open index</source>
-        <translation type="unfinished">Can&apos;t open index</translation>
+        <translation>Can&apos;t open index</translation>
     </message>
     <message>
         <source>Could not restore external indexes for stored query:&lt;br&gt; </source>
-        <translation type="unfinished">Could not restore external indexes for stored query:&lt;br&gt; </translation>
+        <translation>Could not restore external indexes for stored query:&lt;br&gt; </translation>
     </message>
     <message>
         <source>???</source>
-        <translation type="unfinished">???</translation>
+        <translation>???</translation>
     </message>
     <message>
         <source>Using current preferences.</source>
-        <translation type="unfinished">Using current preferences.</translation>
+        <translation>Using current preferences.</translation>
     </message>
     <message>
         <source>Simple search</source>
-        <translation type="unfinished">Egyszerű keresés</translation>
+        <translation>Egyszerű keresés</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished">Történelem</translation>
+        <translation>Történelem</translation>
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation type="unfinished">&lt;p&gt;Leírás nyelvi csalás-lap. Kétség esetén: kattintson a &lt;b&gt;Lekérdezés részleteinek megjelenítése&lt;/b&gt; gombra. &amp;nbsp;</translation>
+        <translation>&lt;p&gt;Leírás nyelvi csalás-lap. Kétség esetén: kattintson a &lt;b&gt;Lekérdezés részleteinek megjelenítése&lt;/b&gt; gombra. &amp;nbsp;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
-        <translation type="unfinished">&lt;tr&gt;&lt;td&gt;Nagybetűsítés a tőkibővülés elnyomásához&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</translation>
+        <translation>&lt;tr&gt;&lt;td&gt;Nagybetűsítés a tőkibővülés elnyomásához&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</translation>
     </message>
     <message>
-        <source>differ from current preferences (kept)</source>
-        <translation type="unfinished">eltér a jelenlegi preferenciáktól (tárolt)</translation>
+        <source> differ from current preferences (kept)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SSearchBase</name>
     <message>
         <source>SSearchBase</source>
-        <translation type="unfinished">SSearchBase</translation>
+        <translation>SSearchBase</translation>
     </message>
     <message>
         <source>Clear</source>
@@ -3247,7 +3255,7 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Show query history</source>
-        <translation type="unfinished">Show query history</translation>
+        <translation>Show query history</translation>
     </message>
     <message>
         <source>Enter search terms here.</source>
@@ -3255,7 +3263,7 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Main menu</source>
-        <translation type="unfinished">Main menu</translation>
+        <translation>Main menu</translation>
     </message>
 </context>
 <context>
@@ -3364,15 +3372,15 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Sort By Relevance</source>
-        <translation type="unfinished">Sort By Relevance</translation>
+        <translation>Sort By Relevance</translation>
     </message>
     <message>
         <source>Sort By Page</source>
-        <translation type="unfinished">Sort By Page</translation>
+        <translation>Sort By Page</translation>
     </message>
     <message>
         <source>Snippets Window</source>
-        <translation type="unfinished">Snippets Window</translation>
+        <translation>Snippets Window</translation>
     </message>
     <message>
         <source>Find</source>
@@ -3380,7 +3388,7 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Find (alt)</source>
-        <translation type="unfinished">Find (alt)</translation>
+        <translation>Find (alt)</translation>
     </message>
     <message>
         <source>Find Next</source>
@@ -3396,23 +3404,23 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Find next</source>
-        <translation type="unfinished">Find next</translation>
+        <translation>Find next</translation>
     </message>
     <message>
         <source>Find previous</source>
-        <translation type="unfinished">Find previous</translation>
+        <translation>Find previous</translation>
     </message>
     <message>
         <source>Close window</source>
-        <translation type="unfinished">Close window</translation>
+        <translation>Close window</translation>
     </message>
     <message>
         <source>Increase font size</source>
-        <translation type="unfinished">Növelje a betűméretet.</translation>
+        <translation>Növelje a betűméretet.</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation type="unfinished">Betűméret csökkentése</translation>
+        <translation>Betűméret csökkentése</translation>
     </message>
 </context>
 <context>
@@ -3501,7 +3509,7 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Retry previously failed files.</source>
-        <translation type="unfinished">Retry previously failed files.</translation>
+        <translation>Retry previously failed files.</translation>
     </message>
     <message>
         <source>Start directory. Must be part of the indexed tree. We use  topdirs if empty.</source>
@@ -3509,15 +3517,15 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Start directory. Must be part of the indexed tree. Use full indexed area if empty.</source>
-        <translation type="unfinished">Start directory. Must be part of the indexed tree. Use full indexed area if empty.</translation>
+        <translation>Start directory. Must be part of the indexed tree. Use full indexed area if empty.</translation>
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation type="unfinished">Diagnosztikai kimeneti fájl. Levágva lesz és index diagnosztikát fog kapni (az indexálás elmaradásának okai).</translation>
+        <translation>Diagnosztikai kimeneti fájl. Levágva lesz és index diagnosztikát fog kapni (az indexálás elmaradásának okai).</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
-        <translation type="unfinished">Diagnosztikai fájl</translation>
+        <translation>Diagnosztikai fájl</translation>
     </message>
 </context>
 <context>
@@ -3532,7 +3540,7 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Alt+E</source>
-        <translation type="unfinished">Alt+E</translation>
+        <translation>Alt+E</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -3540,7 +3548,7 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+C</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>Term</source>
@@ -3691,7 +3699,7 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
-        <translation type="unfinished">List files which could not be indexed (slow)</translation>
+        <translation>List files which could not be indexed (slow)</translation>
     </message>
     <message>
         <source>Spell expansion error. </source>
@@ -3699,19 +3707,19 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation type="unfinished">Helyesírási kiterjesztési hiba.</translation>
+        <translation>Helyesírási kiterjesztési hiba.</translation>
     </message>
     <message>
-        <source>Documents created/updated</source>
-        <translation type="unfinished">Dokumentumok létrehozva/frissítve</translation>
+        <source>  Documents created/updated</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Files tested</source>
-        <translation type="unfinished">Fájlok tesztelve</translation>
+        <source>  Files tested</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Unindexed files</source>
-        <translation type="unfinished">Nem indexelt fájlok</translation>
+        <source>  Unindexed files</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3790,39 +3798,39 @@ ESC SZÓKÖZ billentyűsorozat: a szó lehetséges kiegészítéseit ajánlja fe
     </message>
     <message>
         <source>Context</source>
-        <translation type="unfinished">Context</translation>
+        <translation>Context</translation>
     </message>
     <message>
         <source>Description</source>
-        <translation type="unfinished">Description</translation>
+        <translation>Description</translation>
     </message>
     <message>
         <source>Shortcut</source>
-        <translation type="unfinished">Shortcut</translation>
+        <translation>Shortcut</translation>
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished">Default</translation>
+        <translation>Default</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished">Válasszon QSS fájlt</translation>
+        <translation>Válasszon QSS fájlt</translation>
     </message>
     <message>
         <source>Can&apos;t add index with different case/diacritics stripping option.</source>
-        <translation type="unfinished">Nem lehet hozzáadni az indexet különböző kis- és nagybetűkkel/diakritikus jelek eltávolítási lehetőséggel.</translation>
+        <translation>Nem lehet hozzáadni az indexet különböző kis- és nagybetűkkel/diakritikus jelek eltávolítási lehetőséggel.</translation>
     </message>
     <message>
         <source>Light</source>
-        <translation type="unfinished">Fény</translation>
+        <translation>Fény</translation>
     </message>
     <message>
         <source>Dark</source>
-        <translation type="unfinished">Sötét</translation>
+        <translation>Sötét</translation>
     </message>
     <message>
         <source>System</source>
-        <translation type="unfinished">Rendszer</translation>
+        <translation>Rendszer</translation>
     </message>
 </context>
 <context>
@@ -4134,7 +4142,7 @@ automatikusan ext:xxx keresőnyelvi kifejezéssé alakíttatnak</translation>
     </message>
     <message>
         <source>The value is a command line to be executed. Substitutions: %s: search string; %p: page number; &lt;br&gt;%f: document file name. F1 for more help.</source>
-        <translation type="unfinished">Az érték egy végrehajtandó parancssor. Helyettesítések: %s: keresőszó; %p: oldalszám; &lt;br&gt;%f: dokumentumfájl neve. F1 további segítségért.</translation>
+        <translation>Az érték egy végrehajtandó parancssor. Helyettesítések: %s: keresőszó; %p: oldalszám; &lt;br&gt;%f: dokumentumfájl neve. F1 további segítségért.</translation>
     </message>
 </context>
 <context>
@@ -4149,7 +4157,7 @@ automatikusan ext:xxx keresőnyelvi kifejezéssé alakíttatnak</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished">Szöveg címke</translation>
+        <translation>Szöveg címke</translation>
     </message>
 </context>
 <context>
@@ -4176,22 +4184,22 @@ automatikusan ext:xxx keresőnyelvi kifejezéssé alakíttatnak</translation>
     </message>
     <message>
         <source>Save to File</source>
-        <translation type="unfinished">Mentés fájlba</translation>
+        <translation>Mentés fájlba</translation>
     </message>
     <message>
         <source>File creation failed: </source>
-        <translation type="unfinished">Fájl létrehozása sikertelen:</translation>
+        <translation>Fájl létrehozása sikertelen:</translation>
     </message>
     <message>
         <source>Maximum size %1 (Index config.). Current size %2. Write position %3.</source>
-        <translation type="unfinished">Legnagyobb méret %1 (Index konfig.). Jelenlegi méret %2. Írási pozíció %3.</translation>
+        <translation>Legnagyobb méret %1 (Index konfig.). Jelenlegi méret %2. Írási pozíció %3.</translation>
     </message>
 </context>
 <context>
     <name>WebcacheModel</name>
     <message>
         <source>MIME</source>
-        <translation type="unfinished">MIME</translation>
+        <translation>MIME</translation>
     </message>
     <message>
         <source>Url</source>
@@ -4199,15 +4207,15 @@ automatikusan ext:xxx keresőnyelvi kifejezéssé alakíttatnak</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished">Dátum</translation>
+        <translation>Dátum</translation>
     </message>
     <message>
         <source>Size</source>
-        <translation type="unfinished">Méret</translation>
+        <translation>Méret</translation>
     </message>
     <message>
         <source>URL</source>
-        <translation type="unfinished">URL</translation>
+        <translation>URL</translation>
     </message>
 </context>
 <context>
@@ -4218,27 +4226,27 @@ automatikusan ext:xxx keresőnyelvi kifejezéssé alakíttatnak</translation>
     </message>
     <message>
         <source>Configuration not initialized</source>
-        <translation type="unfinished">Configuration not initialized</translation>
+        <translation>Configuration not initialized</translation>
     </message>
     <message>
         <source>&lt;h3&gt;Recoll indexing batch scheduling&lt;/h3&gt;&lt;p&gt;We use the standard Windows task scheduler for this. The program will be started when you click the button below.&lt;/p&gt;&lt;p&gt;You can use either the full interface (&lt;i&gt;Create task&lt;/i&gt; in the menu on the right), or the simplified &lt;i&gt;Create Basic task&lt;/i&gt; wizard. In both cases Copy/Paste the batch file path listed below as the &lt;i&gt;Action&lt;/i&gt; to be performed.&lt;/p&gt;</source>
-        <translation type="unfinished">&lt;h3&gt;Recoll indexing batch scheduling&lt;/h3&gt;&lt;p&gt;We use the standard Windows task scheduler for this. The program will be started when you click the button below.&lt;/p&gt;&lt;p&gt;You can use either the full interface (&lt;i&gt;Create task&lt;/i&gt; in the menu on the right), or the simplified &lt;i&gt;Create Basic task&lt;/i&gt; wizard. In both cases Copy/Paste the batch file path listed below as the &lt;i&gt;Action&lt;/i&gt; to be performed.&lt;/p&gt;</translation>
+        <translation>&lt;h3&gt;Recoll indexing batch scheduling&lt;/h3&gt;&lt;p&gt;We use the standard Windows task scheduler for this. The program will be started when you click the button below.&lt;/p&gt;&lt;p&gt;You can use either the full interface (&lt;i&gt;Create task&lt;/i&gt; in the menu on the right), or the simplified &lt;i&gt;Create Basic task&lt;/i&gt; wizard. In both cases Copy/Paste the batch file path listed below as the &lt;i&gt;Action&lt;/i&gt; to be performed.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Command already started</source>
-        <translation type="unfinished">Command already started</translation>
+        <translation>Command already started</translation>
     </message>
     <message>
         <source>Recoll Batch indexing</source>
-        <translation type="unfinished">Recoll Batch indexing</translation>
+        <translation>Recoll Batch indexing</translation>
     </message>
     <message>
         <source>Start Windows Task Scheduler tool</source>
-        <translation type="unfinished">Start Windows Task Scheduler tool</translation>
+        <translation>Start Windows Task Scheduler tool</translation>
     </message>
     <message>
         <source>Could not create batch file</source>
-        <translation type="unfinished">Nem sikerült létrehozni a batch fájlt.</translation>
+        <translation>Nem sikerült létrehozni a batch fájlt.</translation>
     </message>
 </context>
 <context>
@@ -4318,27 +4326,27 @@ automatikusan ext:xxx keresőnyelvi kifejezéssé alakíttatnak</translation>
     <name>confgui::ConfParamSLW</name>
     <message>
         <source>+</source>
-        <translation type="unfinished">+</translation>
+        <translation>+</translation>
     </message>
     <message>
         <source>-</source>
-        <translation type="unfinished">-</translation>
+        <translation>-</translation>
     </message>
     <message>
         <source>Add entry</source>
-        <translation type="unfinished">Add entry</translation>
+        <translation>Add entry</translation>
     </message>
     <message>
         <source>Delete selected entries</source>
-        <translation type="unfinished">Delete selected entries</translation>
+        <translation>Delete selected entries</translation>
     </message>
     <message>
         <source>~</source>
-        <translation type="unfinished">~</translation>
+        <translation>~</translation>
     </message>
     <message>
         <source>Edit selected entries</source>
-        <translation type="unfinished">Edit selected entries</translation>
+        <translation>Edit selected entries</translation>
     </message>
 </context>
 <context>
@@ -4456,7 +4464,7 @@ Néha előfordul (pl. postscript esetén), hogy a szűrő végtelen ciklusba ker
     <name>confgui::ConfTabsW</name>
     <message>
         <source>Apply</source>
-        <translation type="unfinished">Apply</translation>
+        <translation>Apply</translation>
     </message>
 </context>
 <context>
@@ -4614,7 +4622,7 @@ Néha előfordul (pl. postscript esetén), hogy a szűrő végtelen ciklusba ker
     </message>
     <message>
         <source>Helvetica-10</source>
-        <translation type="unfinished">Helvetica-10</translation>
+        <translation>Helvetica-10</translation>
     </message>
     <message>
         <source>Resets the result list font to the system default</source>
@@ -4769,7 +4777,7 @@ automatikusan ext:xxx keresőnyelvi kifejezéssé alakíttatnak</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Discard changes</source>
@@ -4857,15 +4865,15 @@ A PRE+wrap valószínűleg a legjobb választás.</translation>
     </message>
     <message>
         <source>&lt;BR&gt;</source>
-        <translation type="unfinished">&lt;BR&gt;</translation>
+        <translation>&lt;BR&gt;</translation>
     </message>
     <message>
         <source>&lt;PRE&gt;</source>
-        <translation type="unfinished">&lt;PRE&gt;</translation>
+        <translation>&lt;PRE&gt;</translation>
     </message>
     <message>
         <source>&lt;PRE&gt; + wrap</source>
-        <translation type="unfinished">&lt;PRE&gt; + wrap</translation>
+        <translation>&lt;PRE&gt; + wrap</translation>
     </message>
     <message>
         <source>Exceptions</source>
@@ -4949,63 +4957,63 @@ A PRE+wrap valószínűleg a legjobb választás.</translation>
     </message>
     <message>
         <source>Highlight CSS style for query terms</source>
-        <translation type="unfinished">Highlight CSS style for query terms</translation>
+        <translation>Highlight CSS style for query terms</translation>
     </message>
     <message>
         <source>Recoll - User Preferences</source>
-        <translation type="unfinished">Recoll - User Preferences</translation>
+        <translation>Recoll - User Preferences</translation>
     </message>
     <message>
         <source>Set path translations for the selected index or for the main one if no selection exists.</source>
-        <translation type="unfinished">Set path translations for the selected index or for the main one if no selection exists.</translation>
+        <translation>Set path translations for the selected index or for the main one if no selection exists.</translation>
     </message>
     <message>
         <source>Activate links in preview.</source>
-        <translation type="unfinished">Activate links in preview.</translation>
+        <translation>Activate links in preview.</translation>
     </message>
     <message>
         <source>Make links inside the preview window clickable, and start an external browser when they are clicked.</source>
-        <translation type="unfinished">Make links inside the preview window clickable, and start an external browser when they are clicked.</translation>
+        <translation>Make links inside the preview window clickable, and start an external browser when they are clicked.</translation>
     </message>
     <message>
         <source>Query terms highlighting in results. &lt;br&gt;Maybe try something like &quot;color:red;background:yellow&quot; for something more lively than the default blue...</source>
-        <translation type="unfinished">Query terms highlighting in results. &lt;br&gt;Maybe try something like &quot;color:red;background:yellow&quot; for something more lively than the default blue...</translation>
+        <translation>Query terms highlighting in results. &lt;br&gt;Maybe try something like &quot;color:red;background:yellow&quot; for something more lively than the default blue...</translation>
     </message>
     <message>
         <source>Start search on completer popup activation.</source>
-        <translation type="unfinished">Start search on completer popup activation.</translation>
+        <translation>Start search on completer popup activation.</translation>
     </message>
     <message>
         <source>Maximum number of snippets displayed in the snippets window</source>
-        <translation type="unfinished">Maximum number of snippets displayed in the snippets window</translation>
+        <translation>Maximum number of snippets displayed in the snippets window</translation>
     </message>
     <message>
         <source>Sort snippets by page number (default: by weight).</source>
-        <translation type="unfinished">Sort snippets by page number (default: by weight).</translation>
+        <translation>Sort snippets by page number (default: by weight).</translation>
     </message>
     <message>
         <source>Suppress all beeps.</source>
-        <translation type="unfinished">Suppress all beeps.</translation>
+        <translation>Suppress all beeps.</translation>
     </message>
     <message>
         <source>Application Qt style sheet</source>
-        <translation type="unfinished">Application Qt style sheet</translation>
+        <translation>Application Qt style sheet</translation>
     </message>
     <message>
         <source>Limit the size of the search history. Use 0 to disable, -1 for unlimited.</source>
-        <translation type="unfinished">Limit the size of the search history. Use 0 to disable, -1 for unlimited.</translation>
+        <translation>Limit the size of the search history. Use 0 to disable, -1 for unlimited.</translation>
     </message>
     <message>
         <source>Maximum size of search history (0: disable, -1: unlimited):</source>
-        <translation type="unfinished">Maximum size of search history (0: disable, -1: unlimited):</translation>
+        <translation>Maximum size of search history (0: disable, -1: unlimited):</translation>
     </message>
     <message>
         <source>Generate desktop notifications.</source>
-        <translation type="unfinished">Generate desktop notifications.</translation>
+        <translation>Generate desktop notifications.</translation>
     </message>
     <message>
         <source>Misc</source>
-        <translation type="unfinished">Misc</translation>
+        <translation>Misc</translation>
     </message>
     <message>
         <source>Work around QTBUG-78923 by inserting space before anchor text</source>
@@ -5013,11 +5021,11 @@ A PRE+wrap valószínűleg a legjobb választás.</translation>
     </message>
     <message>
         <source>Display a Snippets link even if the document has no pages (needs restart).</source>
-        <translation type="unfinished">Display a Snippets link even if the document has no pages (needs restart).</translation>
+        <translation>Display a Snippets link even if the document has no pages (needs restart).</translation>
     </message>
     <message>
         <source>Maximum text size highlighted for preview (kilobytes)</source>
-        <translation type="unfinished">Maximum text size highlighted for preview (kilobytes)</translation>
+        <translation>Maximum text size highlighted for preview (kilobytes)</translation>
     </message>
     <message>
         <source>Start with simple search mode: </source>
@@ -5045,19 +5053,19 @@ A PRE+wrap valószínűleg a legjobb választás.</translation>
     </message>
     <message>
         <source>Shortcuts</source>
-        <translation type="unfinished">Shortcuts</translation>
+        <translation>Shortcuts</translation>
     </message>
     <message>
         <source>Hide result table header.</source>
-        <translation type="unfinished">Hide result table header.</translation>
+        <translation>Hide result table header.</translation>
     </message>
     <message>
         <source>Show result table row headers.</source>
-        <translation type="unfinished">Show result table row headers.</translation>
+        <translation>Show result table row headers.</translation>
     </message>
     <message>
         <source>Reset shortcuts defaults</source>
-        <translation type="unfinished">Reset shortcuts defaults</translation>
+        <translation>Reset shortcuts defaults</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/[a-z] shortcuts for jumping to table rows.</source>
@@ -5065,51 +5073,51 @@ A PRE+wrap valószínűleg a legjobb választás.</translation>
     </message>
     <message>
         <source>Use F1 to  access the manual</source>
-        <translation type="unfinished">Use F1 to  access the manual</translation>
+        <translation>Use F1 to  access the manual</translation>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation type="unfinished">Néhány felhasználói felületi elem elrejtése.</translation>
+        <translation>Néhány felhasználói felületi elem elrejtése.</translation>
     </message>
     <message>
         <source>Hide:</source>
-        <translation type="unfinished">Elrejtés:</translation>
+        <translation>Elrejtés:</translation>
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished">Eszköztárak</translation>
+        <translation>Eszköztárak</translation>
     </message>
     <message>
         <source>Status bar</source>
-        <translation type="unfinished">Állapot sáv</translation>
+        <translation>Állapot sáv</translation>
     </message>
     <message>
         <source>Show button instead.</source>
-        <translation type="unfinished">Mutassa a gombot helyette.</translation>
+        <translation>Mutassa a gombot helyette.</translation>
     </message>
     <message>
         <source>Menu bar</source>
-        <translation type="unfinished">Menüsor</translation>
+        <translation>Menüsor</translation>
     </message>
     <message>
         <source>Show choice in menu only.</source>
-        <translation type="unfinished">Csak mutassa a választékot a menüben.</translation>
+        <translation>Csak mutassa a választékot a menüben.</translation>
     </message>
     <message>
         <source>Simple search type</source>
-        <translation type="unfinished">Simple search type</translation>
+        <translation>Simple search type</translation>
     </message>
     <message>
         <source>Clear/Search buttons</source>
-        <translation type="unfinished">Törlés/Keresés gombok</translation>
+        <translation>Törlés/Keresés gombok</translation>
     </message>
     <message>
         <source>Disable the Ctrl+[0-9]/Shift+[a-z] shortcuts for jumping to table rows.</source>
-        <translation type="unfinished">Letiltja a Ctrl+[0-9]/Shift+[a-z] gyorsbillentyűket a táblázatsorokra ugráshoz.</translation>
+        <translation>Letiltja a Ctrl+[0-9]/Shift+[a-z] gyorsbillentyűket a táblázatsorokra ugráshoz.</translation>
     </message>
     <message>
         <source>None (default)</source>
-        <translation type="unfinished">Nincs (alapértelmezett)</translation>
+        <translation>Nincs (alapértelmezett)</translation>
     </message>
     <message>
         <source>Uses the default dark mode style sheet</source>
@@ -5121,159 +5129,159 @@ A PRE+wrap valószínűleg a legjobb választás.</translation>
     </message>
     <message>
         <source>Choose QSS File</source>
-        <translation type="unfinished">Válasszon QSS fájlt</translation>
+        <translation>Válasszon QSS fájlt</translation>
     </message>
     <message>
         <source>To display document text instead of metadata in result table detail area, use:</source>
-        <translation type="unfinished">A dokumentum szövegének megjelenítéséhez a metaadatok helyett az eredménytáblázat részletes területén, használja:</translation>
+        <translation>A dokumentum szövegének megjelenítéséhez a metaadatok helyett az eredménytáblázat részletes területén, használja:</translation>
     </message>
     <message>
         <source>left mouse click</source>
-        <translation type="unfinished">bal egérkattintás</translation>
+        <translation>bal egérkattintás</translation>
     </message>
     <message>
         <source>Shift+click</source>
-        <translation type="unfinished">Shift+kattintás</translation>
+        <translation>Shift+kattintás</translation>
     </message>
     <message>
         <source>Opens a dialog to select the style sheet file.&lt;br&gt;Look at /usr/share/recoll/examples/recoll[-dark].qss for an example.</source>
-        <translation type="unfinished">Megnyit egy párbeszédpanelt a stíluslap fájl kiválasztásához.&lt;br&gt;Nézze meg az /usr/share/recoll/examples/recoll[-dark].qss fájlt egy példaért.</translation>
+        <translation>Megnyit egy párbeszédpanelt a stíluslap fájl kiválasztásához.&lt;br&gt;Nézze meg az /usr/share/recoll/examples/recoll[-dark].qss fájlt egy példaért.</translation>
     </message>
     <message>
         <source>Result Table</source>
-        <translation type="unfinished">Result Table</translation>
+        <translation>Result Table</translation>
     </message>
     <message>
         <source>Do not display metadata when hovering over rows.</source>
-        <translation type="unfinished">Ne jelenjen meg a metaadatok, amikor az egérrel fölé viszik a sorokat.</translation>
+        <translation>Ne jelenjen meg a metaadatok, amikor az egérrel fölé viszik a sorokat.</translation>
     </message>
     <message>
         <source>Work around Tamil QTBUG-78923 by inserting space before anchor text</source>
-        <translation type="unfinished">Munka Tamil QTBUG-78923 megkerülése érdekében helyezzen be szóközt az horgony szöveg elé.</translation>
+        <translation>Munka Tamil QTBUG-78923 megkerülése érdekében helyezzen be szóközt az horgony szöveg elé.</translation>
     </message>
     <message>
         <source>The bug causes a strange circle characters to be displayed inside highlighted Tamil words. The workaround inserts an additional space character which appears to fix the problem.</source>
-        <translation type="unfinished">A hiba miatt furcsa kör karakterek jelennek meg a kiemelt tamil szavakban. A kiskapcsoló egy további szóköz karaktert szúr be, ami megoldja a problémát.</translation>
+        <translation>A hiba miatt furcsa kör karakterek jelennek meg a kiemelt tamil szavakban. A kiskapcsoló egy további szóköz karaktert szúr be, ami megoldja a problémát.</translation>
     </message>
     <message>
         <source>Depth of side filter directory tree</source>
-        <translation type="unfinished">Oldalszűrő könyvtárfa mélysége</translation>
+        <translation>Oldalszűrő könyvtárfa mélysége</translation>
     </message>
     <message>
         <source>Zoom factor for the user interface. Useful if the default is not right for your screen resolution.</source>
-        <translation type="unfinished">Nagyítási tényező a felhasználói felülethez. Hasznos, ha az alapértelmezett nem megfelelő a képernyőfelbontásához.</translation>
+        <translation>Nagyítási tényező a felhasználói felülethez. Hasznos, ha az alapértelmezett nem megfelelő a képernyőfelbontásához.</translation>
     </message>
     <message>
         <source>Display scale (default 1.0):</source>
-        <translation type="unfinished">Megjelenítési méretarány (alapértelmezett 1.0):</translation>
+        <translation>Megjelenítési méretarány (alapértelmezett 1.0):</translation>
     </message>
     <message>
         <source>Automatic spelling approximation.</source>
-        <translation type="unfinished">Automatikus helyesírás közelítés.</translation>
+        <translation>Automatikus helyesírás közelítés.</translation>
     </message>
     <message>
         <source>Max spelling distance</source>
-        <translation type="unfinished">Maximális helyesírási távolság</translation>
+        <translation>Maximális helyesírási távolság</translation>
     </message>
     <message>
         <source>Add common spelling approximations for rare terms.</source>
-        <translation type="unfinished">Adjon hozzá gyakori helyesírási közelítéseket ritka kifejezésekhez.</translation>
+        <translation>Adjon hozzá gyakori helyesírási közelítéseket ritka kifejezésekhez.</translation>
     </message>
     <message>
         <source>Maximum number of history entries in completer list</source>
-        <translation type="unfinished">Teljes kiegészítő lista maximális előzménybejegyzéseinek száma</translation>
+        <translation>Teljes kiegészítő lista maximális előzménybejegyzéseinek száma</translation>
     </message>
     <message>
         <source>Number of history entries in completer:</source>
-        <translation type="unfinished">Teljesítőben található előzmények száma:</translation>
+        <translation>Teljesítőben található előzmények száma:</translation>
     </message>
     <message>
         <source>Displays the total number of occurences of the term in the index</source>
-        <translation type="unfinished">Megjeleníti a kifejezés összes előfordulásának számát az indexben.</translation>
+        <translation>Megjeleníti a kifejezés összes előfordulásának számát az indexben.</translation>
     </message>
     <message>
         <source>Show hit counts in completer popup.</source>
-        <translation type="unfinished">Mutassa meg a találatok számát a kiegészítő ablakban.</translation>
+        <translation>Mutassa meg a találatok számát a kiegészítő ablakban.</translation>
     </message>
     <message>
         <source>Prefer HTML to plain text for preview.</source>
-        <translation type="unfinished">Jobban kedveli az HTML-t, mint a sima szöveget az előnézethez.</translation>
+        <translation>Jobban kedveli az HTML-t, mint a sima szöveget az előnézethez.</translation>
     </message>
     <message>
         <source>See Qt QDateTimeEdit documentation. E.g. yyyy-MM-dd. Leave empty to use the default Qt/System format.</source>
-        <translation type="unfinished">Lásd a Qt QDateTimeEdit dokumentációt. Pl. yyyy-MM-dd. Hagyd üresen az alapértelmezett Qt/System formátum használatához.</translation>
+        <translation>Lásd a Qt QDateTimeEdit dokumentációt. Pl. yyyy-MM-dd. Hagyd üresen az alapértelmezett Qt/System formátum használatához.</translation>
     </message>
     <message>
         <source>Side filter dates format (change needs restart)</source>
-        <translation type="unfinished">Oldalszűrő dátumformátum (a változtatáshoz újraindítás szükséges)</translation>
+        <translation>Oldalszűrő dátumformátum (a változtatáshoz újraindítás szükséges)</translation>
     </message>
     <message>
         <source>If set, starting a new instance on the same index will raise an existing one.</source>
-        <translation type="unfinished">Ha be van állítva, egy új példány indítása ugyanazon az indexen meglévőt fog felhívni.</translation>
+        <translation>Ha be van állítva, egy új példány indítása ugyanazon az indexen meglévőt fog felhívni.</translation>
     </message>
     <message>
         <source>Single application</source>
-        <translation type="unfinished">Egyetlen alkalmazás</translation>
+        <translation>Egyetlen alkalmazás</translation>
     </message>
     <message>
         <source>Set to 0 to disable and speed up startup by avoiding tree computation.</source>
-        <translation type="unfinished">Állítsa 0-ra a letiltáshoz és a gyorsabb indításhoz, hogy elkerülje a fa számítását.</translation>
+        <translation>Állítsa 0-ra a letiltáshoz és a gyorsabb indításhoz, hogy elkerülje a fa számítását.</translation>
     </message>
     <message>
         <source>The completion only changes the entry when activated.</source>
-        <translation type="unfinished">A befejezés csak akkor változtatja meg a bejegyzést, ha aktiválva van.</translation>
+        <translation>A befejezés csak akkor változtatja meg a bejegyzést, ha aktiválva van.</translation>
     </message>
     <message>
         <source>Completion: no automatic line editing.</source>
-        <translation type="unfinished">Befejezés: nincs automatikus sor szerkesztés.</translation>
+        <translation>Befejezés: nincs automatikus sor szerkesztés.</translation>
     </message>
     <message>
         <source>Interface language (needs restart):</source>
-        <translation type="unfinished">Felhasználói felület nyelve (újraindítás szükséges):</translation>
+        <translation>Felhasználói felület nyelve (újraindítás szükséges):</translation>
     </message>
     <message>
         <source>Note: most translations are incomplete. Leave empty to use the system environment.</source>
-        <translation type="unfinished">Megjegyzés: a legtöbb fordítás hiányos. Hagyd üresen, hogy a rendszerkörnyezetet használja.</translation>
+        <translation>Megjegyzés: a legtöbb fordítás hiányos. Hagyd üresen, hogy a rendszerkörnyezetet használja.</translation>
     </message>
     <message>
         <source>Preview</source>
-        <translation type="unfinished">Előnézet</translation>
+        <translation>Előnézet</translation>
     </message>
     <message>
         <source>Set to 0 to disable details/summary feature</source>
-        <translation type="unfinished">Állítsa 0-ra a részletek/összegzés funkció letiltásához.</translation>
+        <translation>Állítsa 0-ra a részletek/összegzés funkció letiltásához.</translation>
     </message>
     <message>
         <source>Fields display: max field length before using summary:</source>
-        <translation type="unfinished">Mezők megjelenítése: maximális mezőhossz a összefoglaló használata előtt:</translation>
+        <translation>Mezők megjelenítése: maximális mezőhossz a összefoglaló használata előtt:</translation>
     </message>
     <message>
         <source>Number of lines to be shown over a search term found by preview search.</source>
-        <translation type="unfinished">A keresési kifejezés által talált előnézeti keresés során megjelenítendő sorok száma.</translation>
+        <translation>A keresési kifejezés által talált előnézeti keresés során megjelenítendő sorok száma.</translation>
     </message>
     <message>
         <source>Search term line offset:</source>
-        <translation type="unfinished">Keresési kifejezés sor eltolás:</translation>
+        <translation>Keresési kifejezés sor eltolás:</translation>
     </message>
     <message>
         <source>Wild card characters *?[] will processed as punctuation instead of being expanded</source>
-        <translation type="unfinished">A vadkártya karakterek *?[] írásjeleként lesznek feldolgozva, nem pedig kibővítve.</translation>
+        <translation>A vadkártya karakterek *?[] írásjeleként lesznek feldolgozva, nem pedig kibővítve.</translation>
     </message>
     <message>
         <source>Ignore wild card characters in ALL terms and ANY terms modes</source>
-        <translation type="unfinished">Figyelembe semmilyen helyettesítő karaktert az ÖSSZES kifejezés és BÁRMELY kifejezés módokban.</translation>
+        <translation>Figyelembe semmilyen helyettesítő karaktert az ÖSSZES kifejezés és BÁRMELY kifejezés módokban.</translation>
     </message>
     <message>
         <source>Color scheme</source>
-        <translation type="unfinished">Színválasztás</translation>
+        <translation>Színválasztás</translation>
     </message>
     <message>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation type="unfinished">Amikor sötét módban jelenítjük meg az HTML-t, próbáljunk sötét háttérrel (és világos színekkel) dolgozni. Ez ellentétes sok dokumentummal, amelyek felülírják a mi világos beállításunkat saját CSS (sötét) előtérszínükkel, ami olvashatatlan dokumentumhoz vezet, ezért alapértelmezetten kikapcsolva van.</translation>
+        <translation>Amikor sötét módban jelenítjük meg az HTML-t, próbáljunk sötét háttérrel (és világos színekkel) dolgozni. Ez ellentétes sok dokumentummal, amelyek felülírják a mi világos beállításunkat saját CSS (sötét) előtérszínükkel, ami olvashatatlan dokumentumhoz vezet, ezért alapértelmezetten kikapcsolva van.</translation>
     </message>
     <message>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation type="unfinished">Használjon sötét háttérképet, amikor sötét módban jeleníti meg az HTML-t.</translation>
+        <translation>Használjon sötét háttérképet, amikor sötét módban jeleníti meg az HTML-t.</translation>
     </message>
 </context>
 </TS>
