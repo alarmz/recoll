@@ -162,7 +162,7 @@ image/svg+xml = inkview %f
 #    is distributed with recoll, so just enable it.
 #  - "sylpheed %f" seems to work ok as of version 3.3
 #  - "kmail --view %u" works
-#  - claws-mail: in POP3 mode, works using a small intermediary shell-script. See page linked above
+#  - "claws-mail --select %f" works
 message/rfc822 = thunderbird-open-message.sh %f
 # Evolution: this needs the following in $RECOLL_CONFDIR/fields:
 #   [stored]
