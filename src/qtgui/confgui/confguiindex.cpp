@@ -319,8 +319,8 @@ bool ConfIndexW::setupTopPanel(int idx)
     m_w->enableLink(bparam, cparam, true);
 
     m_w->addParam(
-        idx, ConfTabsW::CFPT_FN, "dbdir", tr("Database directory name"),
-        tr("The name for a directory where to store the index<br>"
+        idx, ConfTabsW::CFPT_FN, "dbdir", tr("Database directory"),
+        tr("The name or path for a directory where to store the index<br>"
            "A non-absolute path is taken relative to the "
            "configuration directory. The default is 'xapiandb'."), true);
     m_w->addParam(idx, ConfTabsW::CFPT_STR, "unac_except_trans",
