@@ -379,7 +379,7 @@
     <message>
         <location filename="../confgui/confguiindex.cpp" line="237"/>
         <source>Start folders</source>
-        <translation>Начать папки</translation>
+        <translation>Начальные папки</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
@@ -420,14 +420,9 @@
         <translation>Список папок/каталогов для индексации рекурсивно со всеми их подпапками.&lt;br&gt;Символ &apos;~&apos; расширяется до вашей домашней директории, которая является значением по умолчанию.</translation>
     </message>
     <message>
-        <location filename="../confgui/confguiindex.cpp" line="304"/>
-        <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../confgui/confguiindex.cpp" line="305"/>
         <source>Disables use of aspell to generate spelling approximation in the term explorer tool.&lt;br&gt; Useful if aspell is absent or does not work. </source>
-        <translation>Отключает использование aspell для создания вариантов написания в обозревателе терминов.&lt;br&gt; Полезно, если aspell отсутствует или не работает.</translation>
+        <translation>Отключает использование aspell для создания вариантов написания в обозревателе терминов.&lt;br&gt; Полезно, если aspell отсутствует или не работает. </translation>
     </message>
     <message>
         <location filename="../confgui/confguiindex.cpp" line="310"/>
@@ -440,22 +435,14 @@
         <translation>Язык словаря aspell в виде двухбуквенного кода, например, &apos;en&apos;, &apos;fr&apos;, &apos;ru&apos;...&lt;br&gt;Если значение не установлено, будет предпринята попытка вывести его из локали, что обычно срабатывает. Чтобы посмотреть, что установлено на вашей системе, наберите &apos;aspell config&apos; и поищите .dat-файлы в каталоге, указанном как &apos;data-dir&apos;.</translation>
     </message>
     <message>
-        <source>Database directory name</source>
-        <translation type="vanished">Каталог базы данных</translation>
-    </message>
-    <message>
-        <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation type="vanished">Имя каталога, в котором хранится индекс&lt;br&gt;Путь указывается относительно каталога конфигурации и не является абсолютным. По умолчанию: «xapiandb».</translation>
-    </message>
-    <message>
         <location filename="../confgui/confguiindex.cpp" line="322"/>
-        <source>Database directory</source>
-        <translation type="unfinished"></translation>
+        <source>Database directory name</source>
+        <translation>Каталог базы данных</translation>
     </message>
     <message>
         <location filename="../confgui/confguiindex.cpp" line="323"/>
-        <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation type="unfinished"></translation>
+        <source>The name for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
+        <translation>Имя каталога, в котором хранится индекс&lt;br&gt;Путь указывается относительно каталога конфигурации и не является абсолютным. По умолчанию: «xapiandb».</translation>
     </message>
     <message>
         <location filename="../confgui/confguiindex.cpp" line="327"/>
@@ -520,7 +507,7 @@
     <message>
         <location filename="../confgui/confguiindex.cpp" line="387"/>
         <source>Only set this if you set the &quot;Downloads subdirectory&quot; parameter in the Web browser add-on settings. &lt;br&gt;In this case, it should be the full path to the directory (e.g. /home/[me]/Downloads/my-subdir)</source>
-        <translation>Установите это только в том случае, если вы установили параметр &quot;Подкаталог загрузок&quot; в настройках дополнения для веб-браузера. &lt;br&gt; В этом случае это должен быть полный путь к каталогу (например, /home/[me]/Downloads/my-subdir)</translation>
+        <translation>Установите это только в том случае, если вы установили параметр «Подкаталог загрузок» в настройках дополнения для веб-браузера. &lt;br&gt;В этом случае это должен быть полный путь к каталогу (например, /home/[me]/Downloads/my-subdir)</translation>
     </message>
     <message>
         <location filename="../confgui/confguiindex.cpp" line="400"/>
@@ -638,7 +625,8 @@ This will help searching very big text  files (ie: log files).</source>
         <location filename="../confgui/confguiindex.cpp" line="648"/>
         <source>External filters working longer than this will be aborted. This is for the rare case (ie: postscript) where a document could cause a filter to loop. Set to -1 for no limit.
 </source>
-        <translation>Работа внешних фильтров, длящаяся дольше указанного времени, будет прервана. Применяется для редких случаев (например, с фильтром postscript), когда возникает зацикливание фильтра при обработке какого-то документа. Установите значение -1, чтобы снять ограничение.</translation>
+        <translation>Работа внешних фильтров, длящаяся дольше указанного времени, будет прервана. Применяется для редких случаев (например, с фильтром postscript), когда возникает зацикливание фильтра при обработке какого-то документа. Установите значение -1, чтобы снять ограничение.
+</translation>
     </message>
     <message>
         <location filename="../confgui/confguiindex.cpp" line="683"/>
@@ -1275,7 +1263,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../confgui/confguiindex.cpp" line="487"/>
         <source>&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</source>
-        <translation>&lt;i&gt;</translation>
+        <translation>&lt;i&gt;Следующие параметры устанавливаются либо на верхнем уровне, если в списке выше ничего не выбрано или выбрана пустая строка, либо для выбранного подкаталога. Вы можете добавить или удалить каталоги, нажав кнопки +/-.</translation>
     </message>
     <message>
         <location filename="../confgui/confguiindex.cpp" line="509"/>
@@ -1349,7 +1337,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../multisave.cpp" line="83"/>
         <source>Could not read directory: </source>
-        <translation>Невозможно прочитать каталог:</translation>
+        <translation>Невозможно прочитать каталог: </translation>
     </message>
     <message>
         <location filename="../multisave.cpp" line="128"/>
@@ -1505,7 +1493,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rtitool.cpp" line="112"/>
         <source>Could not find </source>
-        <translation>Не удалось найти</translation>
+        <translation>Не удалось найти </translation>
     </message>
     <message>
         <location filename="../rtitool.cpp" line="127"/>
@@ -1550,18 +1538,13 @@ p, li { white-space: pre-wrap; }
         <source>Hits</source>
         <translation type="vanished">(количество нажатий)</translation>
     </message>
-    <message>
-        <location filename="../ssearch_w.cpp" line="142"/>
-        <source> Hits</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>RclMain</name>
     <message>
         <location filename="../rclm_idx.cpp" line="53"/>
         <source>Indexing in progress: </source>
-        <translation>Идёт индексирование:</translation>
+        <translation>Идёт индексирование: </translation>
     </message>
     <message>
         <location filename="../rclm_idx.cpp" line="56"/>
@@ -1655,12 +1638,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../rclm_idx.cpp" line="154"/>
-        <source> with additional message: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>with additional message: </source>
-        <translation type="vanished">с дополнительным сообщением:</translation>
+        <translation>с дополнительным сообщением: </translation>
     </message>
     <message>
         <location filename="../rclm_idx.cpp" line="164"/>
@@ -1807,12 +1786,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../rclm_preview.cpp" line="108"/>
         <source>The indexer is running so things should improve when it&apos;s done. </source>
-        <translation>Индексация выполняется, по завершении должно стать лучше.</translation>
+        <translation>Индексация выполняется, по завершении должно стать лучше. </translation>
     </message>
     <message>
         <location filename="../rclm_preview.cpp" line="112"/>
         <source>The document belongs to an external index which I can&apos;t update. </source>
-        <translation>Документ относится к внешнему индексу, который невозможно обновить.</translation>
+        <translation>Документ относится к внешнему индексу, который невозможно обновить. </translation>
     </message>
     <message>
         <location filename="../rclm_preview.cpp" line="115"/>
@@ -2285,7 +2264,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../rclmain.ui" line="170"/>
         <source>Update &amp;index</source>
-        <translation>Обновить индекс</translation>
+        <translation>Обновить &amp;индекс</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="181"/>
@@ -2300,7 +2279,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../rclmain.ui" line="200"/>
         <source>&amp;Rebuild index</source>
-        <translation>Пересоздать индекс</translation>
+        <translation>&amp;Пересоздать индекс</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="208"/>
@@ -2330,7 +2309,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../rclmain.ui" line="248"/>
         <source>&amp;About Recoll</source>
-        <translation>О программе</translation>
+        <translation>&amp;О программе</translation>
     </message>
     <message>
         <source>&amp;User manual</source>
@@ -2339,12 +2318,12 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../rclmain.ui" line="256"/>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation>Руководство пользователя (локальное, одна HTML-страница)</translation>
+        <translation>&amp;Руководство пользователя (локальное, одна HTML-страница)</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="264"/>
         <source>&amp;Online manual (Recoll Web site)</source>
-        <translation>Онлайн-руководство (веб-сайт Recoll)</translation>
+        <translation>&amp;Онлайн-руководство (веб-сайт Recoll)</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="276"/>
@@ -2359,7 +2338,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../rclmain.ui" line="291"/>
         <source>&amp;Advanced Search</source>
-        <translation>Сложный поиск</translation>
+        <translation>&amp;Сложный поиск</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="294"/>
@@ -2439,7 +2418,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../rclmain.ui" line="399"/>
         <source>Path translations</source>
-        <translation>Перевод путей</translation>
+        <translation>Корректировка путей</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="407"/>
@@ -2475,7 +2454,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../rclmain.ui" line="451"/>
         <source>Full Screen</source>
-        <translation>Во весь &amp;экран</translation>
+        <translation>Во весь экран</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="454"/>
@@ -2569,12 +2548,8 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <location filename="../rclmain.ui" line="575"/>
-        <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>With failed files retrying</source>
-        <translation type="vanished">Повторная попытка с неудачными файлами</translation>
+        <translation>Повторная попытка с неудачными файлами</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="578"/>
@@ -2604,7 +2579,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../rclmain.ui" line="604"/>
         <source>Switch Configuration...</source>
-        <translation>Конфигурация переключателя...</translation>
+        <translation>Переключить конфигурацию...</translation>
     </message>
     <message>
         <location filename="../rclmain.ui" line="607"/>
@@ -2945,7 +2920,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../restable.cpp" line="1440"/>
         <source>&amp;Delete column</source>
-        <translation>Удалить столбец</translation>
+        <translation>&amp;Удалить столбец</translation>
     </message>
     <message>
         <location filename="../restable.cpp" line="1447"/>
@@ -3183,12 +3158,8 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../ssearch_w.cpp" line="664"/>
         <location filename="../ssearch_w.cpp" line="675"/>
-        <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>differ from current preferences (kept)</source>
-        <translation type="vanished">отличаются от текущих предпочтений (сохраненных)</translation>
+        <translation>отличаются от текущих параметров (сохранено)</translation>
     </message>
     <message>
         <location filename="../ssearch_w.cpp" line="673"/>
@@ -3628,30 +3599,18 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <location filename="../spell_w.cpp" line="303"/>
-        <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <source>Documents created/updated</source>
+        <translation>Создано/обновлено документов</translation>
     </message>
     <message>
         <location filename="../spell_w.cpp" line="308"/>
-        <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <source>Files tested</source>
+        <translation>Проверено файлов</translation>
     </message>
     <message>
         <location filename="../spell_w.cpp" line="313"/>
-        <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Documents created/updated</source>
-        <translation type="vanished">Документы созданы/обновлены</translation>
-    </message>
-    <message>
-        <source>Files tested</source>
-        <translation type="vanished">Файлы проверены</translation>
-    </message>
-    <message>
         <source>Unindexed files</source>
-        <translation type="vanished">Непроиндексированные файлы</translation>
+        <translation>Непроиндексированных файлов</translation>
     </message>
     <message>
         <location filename="../spell_w.cpp" line="325"/>
@@ -3714,17 +3673,17 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../uiprefs_w.cpp" line="96"/>
         <source>Light</source>
-        <translation>Свет</translation>
+        <translation>Светлая</translation>
     </message>
     <message>
         <location filename="../uiprefs_w.cpp" line="97"/>
         <source>Dark</source>
-        <translation>Темный</translation>
+        <translation>Тёмная</translation>
     </message>
     <message>
         <location filename="../uiprefs_w.cpp" line="100"/>
         <source>System</source>
-        <translation>Система</translation>
+        <translation>Системная</translation>
     </message>
     <message>
         <location filename="../uiprefs_w.cpp" line="272"/>
@@ -4576,12 +4535,12 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../uiprefs.ui" line="1226"/>
         <source>When displaying HTML in dark mode, try to use a dark background (and light color).&lt;br&gt;This conflicts with many documents which will override our light setting with their own CSS (dark) foreground color, resulting in an unreadable document, so it is off by default.</source>
-        <translation>При отображении HTML в темном режиме старайтесь использовать темный фон (и светлый цвет). Это противоречит многим документам, которые переопределят нашу светлую настройку своим собственным CSS (темным) цветом переднего плана, что приведет к нечитаемому документу, поэтому это отключено по умолчанию.</translation>
+        <translation>При отображении HTML в тёмном режиме старайтесь использовать тёмный фон (и светлый цвет текста).&lt;br&gt;Это противоречит многим документам, которые переопределят нашу светлую настройку своим собственным CSS (тёмным) цветом текста, что сделает документ нечитаемым, поэтому по умолчанию эта функция отключена.</translation>
     </message>
     <message>
         <location filename="../uiprefs.ui" line="1229"/>
         <source>Use dark background when displaying HTML in dark mode.</source>
-        <translation>Используйте темный фон при отображении HTML в темном режиме.</translation>
+        <translation>Используйте тёмный фон при отображении HTML в тёмном режиме.</translation>
     </message>
     <message>
         <location filename="../uiprefs.ui" line="1260"/>
@@ -4591,7 +4550,7 @@ Do you want to start the preferences dialog ?</source>
     <message>
         <location filename="../uiprefs.ui" line="1263"/>
         <source>Fields display: max field length before using summary:</source>
-        <translation>Поля отображения: максимальная длина поля перед использованием резюме:</translation>
+        <translation>Отображение полей: максимальная длина поля перед использованием резюме:</translation>
     </message>
     <message>
         <location filename="../uiprefs.ui" line="1353"/>
