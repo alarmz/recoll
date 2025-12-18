@@ -106,4 +106,6 @@
     <xsl:text>    </xsl:text>
   </xsl:template>
 
+  <xsl:template match="office:binary-data" />
+
 </xsl:stylesheet>
