@@ -583,13 +583,15 @@ bool FileInterner::dijontorcl(Rcl::Doc& doc)
 
 static void copymeta(const RclConfig *cfg, Rcl::Doc& doc, const RecollFilter* hp)
 {
-    // Can't use static init, because it would depend on static initialisation order...
-    static set<string> nocopyfields;
-    if (nocopyfields.empty()) {
-        nocopyfields = set<string>{cstr_dj_keycontent, cstr_dj_keymd,
+    // Populating the set must be done in an initializer because the compiler/runtime then
+    // guarantees the thread-safety of the constructor. We used to test empty and then build, but
+    // this was wrong. Also, as a static local variable, this is initialized on first function call,
+    // so we're sure that all cstr_xx strings are ok, because they're initialized at file level.
+    static set<string> nocopyfields {
+        cstr_dj_keycontent, cstr_dj_keymd,
         cstr_dj_keyanc, cstr_dj_keyorigcharset, cstr_dj_keyfn,
         cstr_dj_keymt, cstr_dj_keycharset, cstr_dj_keyds};
-    }
+    
     for (const auto& entry : hp->get_meta_data()) {
         if (nocopyfields.find(entry.first) == nocopyfields.end()) {
             doc.addmeta(cfg->fieldCanon(entry.first), entry.second);
