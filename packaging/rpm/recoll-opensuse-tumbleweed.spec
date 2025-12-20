@@ -21,6 +21,7 @@ BuildRequires:  file-devel
 BuildRequires:  qt6-gui-devel
 BuildRequires:  qt6-tools
 BuildRequires:  qt6-webenginewidgets-devel
+BuildRequires:  qt6-xml-devel
 BuildRequires:  libxapian-devel
 BuildRequires:  libxslt-devel
 BuildRequires:  meson
@@ -46,8 +47,8 @@ CXXFLAGS="%{optflags}"; export CXXFLAGS
 LDFLAGS="%{?__global_ldflags}"; export LDFLAGS
 
 # force use of custom/local qmake, to inject proper build flags (above)
-install -m755 -D %{SOURCE10} qmake-qt5.sh
-export QMAKE=$(pwd)/qmake-qt5.sh
+install -m755 -D %{SOURCE10} qmake-qt6.sh
+export QMAKE=$(pwd)/qmake-qt6.sh
 %meson -Dwebengine=true -Drecollq=true
 %meson_build
 
