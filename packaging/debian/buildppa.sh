@@ -16,7 +16,7 @@ SERIES="focal jammy noble plucky questing"
 
 PPA_KEYID=7808CE96D38B9201
 
-RCLVERS=1.43.7
+RCLVERS=1.43.8
 GSSPVERS=1.1.3
 PPAVERS=1
 

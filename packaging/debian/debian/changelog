@@ -1,3 +1,27 @@
+recoll (1.43.8-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Indexer: fix thread safety issue leading to rare crashes.
+  * opendoc-flat files: fix image hex strings being indexed by excluding
+    <office:binary-data>. 
+  * Indexer: .ods: very big spreadsheets could cause huge memory usage in
+    the XML parser, possibly leading to crashes. The configuration has been
+    changed so that libreoffice spreadsheets bigger than 3000 KB
+    (adjustable) are now processed by the soffice command, if present,
+    else, not indexed.
+  * Configuration: new "sofficecmd" parameter to point to the program if it
+    is not found in the PATH.
+  * Configuration: tesseract: allow adding default parameters to the
+    command string.
+  * Configuration: the parameter names are now case-insensitive. Only
+    sections defined by paths remain case-sensitive on unix-like systems.
+  * Configuration: Accept wildcards in indexedmimetypes and
+    excludedmimetypes lists.
+  * Windows: enable using OCR on image (non-PDF) files.
+  * GUI: Linux: improve the real time indexing autostart management tool
+    to work on non-default configuration directories.
+    
+ -- Jean-Francois Dockes <jf@dockes.org>  Sat, 20 Dec 2025 09:55:00 +0100
+
 recoll (1.43.7-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * GUI: updated SingleApplication to 3.5.4 for license change

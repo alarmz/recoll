@@ -127,6 +127,7 @@ filters/rclhwp.py
 filters/rclics.py
 filters/rclimg
 filters/rclimg.py
+filters/rclimgp.py
 filters/rclinfo.py
 filters/rclipynb.py
 filters/rcljoplin.py
@@ -389,6 +390,7 @@ qtgui/fragbuts.h
 qtgui/guiutils.cpp
 qtgui/guiutils.h
 qtgui/i18n/
+qtgui/i18n/recoll_ar.ts
 qtgui/i18n/recoll_cs.ts
 qtgui/i18n/recoll_da.ts
 qtgui/i18n/recoll_de.ts
