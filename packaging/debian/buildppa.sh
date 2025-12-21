@@ -5,31 +5,28 @@
 # sudo apt-get install pkg-kde-tools  cdbs
 
 # Active series:
-# 20.04LTS focal    2025-06
 # 22.04LTS jammy    2027-06
 # 24.04LTS noble    2029-06
 # 25.04    plucky   2026-01
 # 25.10    questing 2026-07
 
-SERIES="focal jammy noble plucky questing"
-#SERIES=questing
+SERIES="jammy noble plucky questing"
+SERIES=questing
 
 PPA_KEYID=7808CE96D38B9201
 
 RCLVERS=1.43.8
 GSSPVERS=1.1.3
-PPAVERS=1
+PPAVERS=2
 
 PPANAME=recoll15-ppa
 #PPANAME=recollexp-ppa
 
 # recoll 
-series_rcl=$SERIES
+series_rcl=
 # KIO
-series_kio=
-# krunner: does not build on focal and bionic because of the 5.90 min version requested in the
-# CMakeLists.txt. Did not try to work around.
-series_krunner=
+series_kio=$SERIES
+series_krunner=$SERIES
 # gssp
 series_gssp=
 

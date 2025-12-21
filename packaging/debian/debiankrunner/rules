@@ -1,7 +1,9 @@
 #!/usr/bin/make -f
+export DH_VERBOSE = 1
 
-include /usr/share/cdbs/1/rules/debhelper.mk
-include /usr/share/pkg-kde-tools/makefiles/1/cdbs/kde.mk
+%:
+	dh $@ --with kf5 --build-system=cmake --sourcedirectory=kde/krunner
 
-DEB_CMAKE_EXTRA_FLAGS += -DRECOLL_PUBLIC_LIB=1
-DEB_SRCDIR = kde/krunner
+override_dh_auto_configure:
+	dh_auto_configure -- -DRECOLL_PUBLIC_LIB=1
+
