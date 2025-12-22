@@ -1,4 +1,4 @@
-recoll (1.43.8-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+recoll (1.43.9-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Indexer: fix thread safety issue leading to rare crashes.
   * opendoc-flat files: fix image hex strings being indexed by excluding
@@ -20,7 +20,7 @@ recoll (1.43.8-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
   * GUI: Linux: improve the real time indexing autostart management tool
     to work on non-default configuration directories.
     
- -- Jean-Francois Dockes <jf@dockes.org>  Sat, 20 Dec 2025 09:55:00 +0100
+ -- Jean-Francois Dockes <jf@dockes.org>  Mon, 22 Dec 2025 09:55:00 +0100
 
 recoll (1.43.7-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 

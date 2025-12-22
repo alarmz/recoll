@@ -6,7 +6,7 @@
 <varlistentry id="RCL.CONFIG.RECOLLCONF.TOPDIRS">
 <term><varname>topdirs</varname></term>
 <listitem><para>Space-separated list of files or directories to recursively index. You can use symbolic links in the list, they will be followed, independently of the value
-of the followLinks variable. The default value is ~ : recursively index $HOME.
+of the followLinks variable. The default value is ~ : recursively index the user home folder.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.MONITORDIRS">
 <term><varname>monitordirs</varname></term>
@@ -18,7 +18,7 @@ tree defined by the 'topdirs' members.
 <varlistentry id="RCL.CONFIG.RECOLLCONF.SKIPPEDNAMES">
 <term><varname>skippedNames</varname></term>
 <listitem><para>File and directory names which should be ignored.  White space separated list of wildcard patterns (simple ones, not paths, must contain no
-"/" characters), which will be tested against file and directory names.
+'/' characters), which will be tested against file and directory names.
 </para><para>
 Have a look at the default configuration for the initial value, some entries may not suit your
 situation. The easiest way to see it is through the GUI Index configuration "local parameters"
@@ -123,13 +123,13 @@ followed.
 types from the list will have their contents indexed. The names will be indexed anyway if
 indexallfilenames is set (default). MIME type names should be taken from the mimemap file (the
 values may be different from xdg-mime or file -i output in some cases). Can be redefined for
-subtrees.
+subtrees. Recoll versions after 1.43.7 (excluded) support wildcards in the values.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.EXCLUDEDMIMETYPES">
 <term><varname>excludedmimetypes</varname></term>
 <listitem><para>List of excluded MIME types. Lets you exclude some types from indexing. MIME type names should be taken from the mimemap
 file (the values may be different from xdg-mime or file -i output in some cases) Can be redefined
-for subtrees.
+for subtrees. Recoll versions after 1.43.7 (excluded) support wildcards in the values.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.NOMD5TYPES">
 <term><varname>nomd5types</varname></term>
@@ -795,6 +795,13 @@ lowest "Idle" priority).
 <listitem><para>ionice class level parameter if the class supports it. The default is empty, as the default "Idle" class has no
 levels.
 </para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.SOFFICECMD">
+<term><varname>sofficecmd</varname></term>
+<listitem><para>Path to the soffice command (e.g. from libreoffice) This is used for Apple pages documents and big openoffice spreadsheets.
+Use double-quoting if there are spaces in the path (e.g. C:/Program Files/) *and* you want
+to add parameters to the default command (uncommon). If not set, recoll will try to find it in
+the PATH.
+</para></listitem></varlistentry>
 </variablelist></sect2>
 <sect2  id="RCL.CONFIG.RECOLLCONF.QUERY">
 <title>Query-time parameters (no impact on the index) </title><variablelist>
@@ -963,13 +970,11 @@ manual. imgocr can be defined for subdirectories.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.OCRPROGS">
 <term><varname>ocrprogs</varname></term>
-<listitem><para>OCR modules to try. The top OCR script will try to load the corresponding modules in
-order and use the first which reports being capable of performing OCR on
-the input file. Modules for tesseract (tesseract) and ABBYY FineReader
-(abbyy) are present in the standard distribution. For compatibility with
-the previous version, if this is not defined at all, the default value is
-"tesseract". Use an explicit empty value if needed. A value of "abbyy
-tesseract" will try everything.
+<listitem><para>OCR modules to try. The top OCR script will try to load the corresponding modules in order and use the first
+which reports being capable of performing OCR on the input file. Modules for tesseract (tesseract)
+and ABBYY FineReader (abbyy) are present in the standard distribution. For compatibility with the
+previous version, if this is not defined at all, the default value is "tesseract". Use an explicit
+empty value if needed. The value be redefined in subtrees.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.OCRCACHEDIR">
 <term><varname>ocrcachedir</varname></term>
@@ -978,16 +983,17 @@ OCR data under $RECOLL_CONFDIR/ocrcache.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.TESSERACTLANG">
 <term><varname>tesseractlang</varname></term>
-<listitem><para>Language to assume for tesseract OCR. Important for improving the OCR accuracy. This can also be set
-through the contents of a file in
-the currently processed directory. See the rclocrtesseract.py
-script. Example values: eng, fra... See the tesseract documentation.
+<listitem><para>Language to assume for tesseract OCR. Important for improving the OCR accuracy. This can also be set through the contents of a
+file in the currently processed directory. See the rclocrtesseract.py script. Example values: eng,
+fra... See the tesseract Web sitedocumentation for language codes and how to download additional
+language packs. When specifying multiple languages, use a '+' separator and no spaces, e.g.
+eng+fra. The value be redefined in subtrees.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.TESSERACTCMD">
 <term><varname>tesseractcmd</varname></term>
 <listitem><para>Path for the tesseract command. Do not quote. This is mostly useful on Windows, or for specifying a non-default
 tesseract command. E.g. on Windows.
-tesseractcmd = C:/ProgramFiles(x86)/Tesseract-OCR/tesseract.exe
+tesseractcmd = C:/ProgramFiles/Tesseract-OCR/tesseract.exe
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.ABBYYLANG">
 <term><varname>abbyylang</varname></term>

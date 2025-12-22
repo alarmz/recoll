@@ -57,7 +57,8 @@ space is used for separation, and elements with embedded spaces can be quoted wi
 .TP
 .BI "topdirs = "string
 Space-separated list of files or directories to recursively index. You can use symbolic links in the list, they will be followed, independently of the value
-of the followLinks variable. The default value is ~ : recursively index $HOME.
+of the followLinks variable. The default value is ~ : recursively index the user home folder.
+
 .TP
 .BI "monitordirs = "string
 Space-separated list of files or directories to monitor for
@@ -163,12 +164,12 @@ Restrictive list of indexed MIME types. Normally not set (in which case all supp
 types from the list will have their contents indexed. The names will be indexed anyway if
 indexallfilenames is set (default). MIME type names should be taken from the mimemap file (the
 values may be different from xdg-mime or file -i output in some cases). Can be redefined for
-subtrees.
+subtrees. Recoll versions after 1.43.7 (excluded) support wildcards in the values.
 .TP
 .BI "excludedmimetypes = "string
 List of excluded MIME types. Lets you exclude some types from indexing. MIME type names should be taken from the mimemap
 file (the values may be different from xdg-mime or file -i output in some cases) Can be redefined
-for subtrees.
+for subtrees. Recoll versions after 1.43.7 (excluded) support wildcards in the values.
 .TP
 .BI "nomd5types = "string
 MIME types for which we don't compute a md5 hash. md5 checksums are used only for deduplicating results, and can be very expensive to
@@ -748,6 +749,12 @@ lowest "Idle" priority).
 ionice class level parameter if the class supports it. The default is empty, as the default "Idle" class has no
 levels.
 .TP
+.BI "sofficecmd = "string
+Path to the soffice command (e.g. from libreoffice) This is used for Apple pages documents and big openoffice spreadsheets.
+Use double-quoting if there are spaces in the path (e.g. C:/Program Files/) *and* you want
+to add parameters to the default command (uncommon). If not set, recoll will try to find it in
+the PATH.
+.TP
 .BI "idxlocalguisettings = "bool
 Store some GUI parameters locally to the index. GUI settings are normally stored in a global file, valid for all
 indexes. Setting this parameter will make some settings, such as the result
@@ -878,28 +885,27 @@ manual. imgocr can be defined for subdirectories.
 
 .TP
 .BI "ocrprogs = "string
-OCR modules to try. The top OCR script will try to load the corresponding modules in
-order and use the first which reports being capable of performing OCR on
-the input file. Modules for tesseract (tesseract) and ABBYY FineReader
-(abbyy) are present in the standard distribution. For compatibility with
-the previous version, if this is not defined at all, the default value is
-"tesseract". Use an explicit empty value if needed. A value of "abbyy
-tesseract" will try everything.
+OCR modules to try. The top OCR script will try to load the corresponding modules in order and use the first
+which reports being capable of performing OCR on the input file. Modules for tesseract (tesseract)
+and ABBYY FineReader (abbyy) are present in the standard distribution. For compatibility with the
+previous version, if this is not defined at all, the default value is "tesseract". Use an explicit
+empty value if needed. The value be redefined in subtrees.
 .TP
 .BI "ocrcachedir = "dfn
 Location for caching OCR data. The default if this is empty or undefined is to store the cached
 OCR data under $RECOLL_CONFDIR/ocrcache.
 .TP
 .BI "tesseractlang = "string
-Language to assume for tesseract OCR. Important for improving the OCR accuracy. This can also be set
-through the contents of a file in
-the currently processed directory. See the rclocrtesseract.py
-script. Example values: eng, fra... See the tesseract documentation.
+Language to assume for tesseract OCR. Important for improving the OCR accuracy. This can also be set through the contents of a
+file in the currently processed directory. See the rclocrtesseract.py script. Example values: eng,
+fra... See the tesseract Web sitedocumentation for language codes and how to download additional
+language packs. When specifying multiple languages, use a '+' separator and no spaces, e.g.
+eng+fra. The value be redefined in subtrees.
 .TP
 .BI "tesseractcmd = "fn
 Path for the tesseract command. Do not quote. This is mostly useful on Windows, or for specifying a non-default
 tesseract command. E.g. on Windows.
-tesseractcmd = C:/ProgramFiles(x86)/Tesseract-OCR/tesseract.exe
+tesseractcmd = C:/ProgramFiles/Tesseract-OCR/tesseract.exe
 
 .TP
 .BI "abbyylang = "string

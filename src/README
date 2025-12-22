@@ -1594,32 +1594,32 @@ PDF attachment indexing
    subdirectories through the usual main configuration mechanism (path
    sections).
 
-   This facility got a major update in Recoll 1.26.5. Older versions had a
-   more limited, non-caching capability to execute an external OCR program
-   in the PDF handler. The new function has the following features:
-     * The OCR output is cached, stored as separate files. The caching is
-       ultimately based on a hash value of the original file contents, so
-       that it is immune to file renames. A first path-based layer ensures
-       fast operation for unchanged (unmoved files), and the data hash
-       (which is still orders of magnitude faster than OCR) is only
-       re-computed if the file has moved. OCR is only performed if the
-       file was not previously processed or if it changed.
-     * The support for a specific OCR program is implemented in a simple
-       Python module. It should be straightforward to add support for any
-       OCR engine with a capability to run from the command line.
-     * Modules initially exist for tesseract (Linux and Windows), and
-       ABBYY FineReader (Linux, tested with version 11). ABBYY FineReader
-       is a commercial closed source program, but it sometimes perform
-       better than tesseract.
+   Running OCR is relatively slow and expensive. Recoll caches OCR output,
+   stored as separate files. The caching is ultimately based on a hash
+   value of the original file contents, so that it is immune to file
+   renames. A first path-based layer ensures fast operation for unchanged
+   (unmoved files), and the data hash (which is still orders of magnitude
+   faster than OCR) is only re-computed if the file was moved. OCR is only
+   performed if the file was not previously processed or if it changed.
+
+   The support for a specific OCR program is implemented in a simple
+   Python module. It should be straightforward to add support for any OCR
+   engine with a capability to run from the command line.
+
+   Modules initially exist for tesseract (Linux and Windows), and ABBYY
+   FineReader (Linux, tested with version 11). ABBYY FineReader is a
+   commercial closed source program, but it sometimes perform better than
+   tesseract.
 
 OCR for PDF documents
 
-   It must be noted that, if modifying the files (or a copy) is
-   acceptable, then using [228]OCRmyPDF to add a text layer to the PDF
-   itself is a better solution than using the Recoll OCR feature: e.g.
-   allowing Recoll to position the PDF viewer on the search target when
-   opening the document, and permitting secondary search in the native
-   tool.
+Note
+
+   If modifying the files (or a copy) is acceptable, then using
+   [228]OCRmyPDF to add a text layer to the PDF itself is a better
+   solution than using the Recoll OCR feature: e.g. allowing Recoll to
+   position the PDF viewer on the search target when opening the document,
+   and permitting secondary search in the native tool.
 
    The Recoll OCR is enabled by the pdfocr configuration variable, and
    will only be executed if the processed file has no text content.
@@ -1635,7 +1635,7 @@ tesseractlang = eng
    C:/Users/[you]/AppData/Local/Recoll/recoll.conf and you will probably
    need to indicate the actual path of the tesseract command by setting
    the tesseractcmd variable, for example:
-tesseractcmd = C:/Program Files(x86)/Tesseract-OCR/tesseract.exe
+tesseractcmd = C:/Program Files/Tesseract-OCR/tesseract.exe
 
 OCR for image documents
 
@@ -5202,7 +5202,8 @@ Important
           Space-separated list of files or directories to recursively
           index. You can use symbolic links in the list, they will be
           followed, independently of the value of the followLinks
-          variable. The default value is ~ : recursively index $HOME.
+          variable. The default value is ~ : recursively index the user
+          home folder.
 
    monitordirs
           Space-separated list of files or directories to monitor for
@@ -5329,13 +5330,15 @@ Important
           names will be indexed anyway if indexallfilenames is set
           (default). MIME type names should be taken from the mimemap file
           (the values may be different from xdg-mime or file -i output in
-          some cases). Can be redefined for subtrees.
+          some cases). Can be redefined for subtrees. Recoll versions
+          after 1.43.7 (excluded) support wildcards in the values.
 
    excludedmimetypes
           List of excluded MIME types. Lets you exclude some types from
           indexing. MIME type names should be taken from the mimemap file
           (the values may be different from xdg-mime or file -i output in
-          some cases) Can be redefined for subtrees.
+          some cases) Can be redefined for subtrees. Recoll versions after
+          1.43.7 (excluded) support wildcards in the values.
 
    nomd5types
           MIME types for which we don't compute a md5 hash. md5 checksums
@@ -6000,6 +6003,13 @@ Important
           ionice class level parameter if the class supports it. The
           default is empty, as the default "Idle" class has no levels.
 
+   sofficecmd
+          Path to the soffice command (e.g. from libreoffice) This is used
+          for Apple pages documents and big openoffice spreadsheets. Use
+          double-quoting if there are spaces in the path (e.g. C:/Program
+          Files/) *and* you want to add parameters to the default command
+          (uncommon). If not set, recoll will try to find it in the PATH.
+
 5.3.6. Query-time parameters (no impact on the index)
 
    idxlocalguisettings
@@ -6170,8 +6180,8 @@ Important
           tesseract (tesseract) and ABBYY FineReader (abbyy) are present
           in the standard distribution. For compatibility with the
           previous version, if this is not defined at all, the default
-          value is "tesseract". Use an explicit empty value if needed. A
-          value of "abbyy tesseract" will try everything.
+          value is "tesseract". Use an explicit empty value if needed. The
+          value be redefined in subtrees.
 
    ocrcachedir
           Location for caching OCR data. The default if this is empty or
@@ -6183,13 +6193,16 @@ Important
           the OCR accuracy. This can also be set through the contents of a
           file in the currently processed directory. See the
           rclocrtesseract.py script. Example values: eng, fra... See the
-          tesseract documentation.
+          tesseract Web sitedocumentation for language codes and how to
+          download additional language packs. When specifying multiple
+          languages, use a '+' separator and no spaces, e.g. eng+fra. The
+          value be redefined in subtrees.
 
    tesseractcmd
           Path for the tesseract command. Do not quote. This is mostly
           useful on Windows, or for specifying a non-default tesseract
           command. E.g. on Windows. tesseractcmd =
-          C:/ProgramFiles(x86)/Tesseract-OCR/tesseract.exe
+          C:/ProgramFiles/Tesseract-OCR/tesseract.exe
 
    abbyylang
           Language to assume for abbyy OCR. Important for improving the

@@ -3078,43 +3078,26 @@ class MetaFixer(object):
           variables</a>. All parameters can be localized in
           subdirectories through the usual main configuration
           mechanism (path sections).</p>
-          <p>This facility got a major update in <span class=
-          "application">Recoll</span> 1.26.5. Older versions had a
-          more limited, non-caching capability to execute an
-          external OCR program in the PDF handler. The new function
-          has the following features:</p>
-          <div class="itemizedlist">
-            <ul class="itemizedlist" style=
-            "list-style-type: disc;">
-              <li class="listitem">
-                <p>The OCR output is cached, stored as separate
-                files. The caching is ultimately based on a hash
-                value of the original file contents, so that it is
-                immune to file renames. A first path-based layer
-                ensures fast operation for unchanged (unmoved
-                files), and the data hash (which is still orders of
-                magnitude faster than OCR) is only re-computed if
-                the file has moved. OCR is only performed if the
-                file was not previously processed or if it
-                changed.</p>
-              </li>
-              <li class="listitem">
-                <p>The support for a specific OCR program is
-                implemented in a simple Python module. It should be
-                straightforward to add support for any OCR engine
-                with a capability to run from the command line.</p>
-              </li>
-              <li class="listitem">
-                <p>Modules initially exist for <span class=
-                "application">tesseract</span> (Linux and
-                <span class="application">Windows</span>), and
-                <span class="application">ABBYY FineReader</span>
-                (Linux, tested with version 11). ABBYY FineReader
-                is a commercial closed source program, but it
-                sometimes perform better than tesseract.</p>
-              </li>
-            </ul>
-          </div>
+          <p>Running OCR is relatively slow and expensive. Recoll
+          caches OCR output, stored as separate files. The caching
+          is ultimately based on a hash value of the original file
+          contents, so that it is immune to file renames. A first
+          path-based layer ensures fast operation for unchanged
+          (unmoved files), and the data hash (which is still orders
+          of magnitude faster than OCR) is only re-computed if the
+          file was moved. OCR is only performed if the file was not
+          previously processed or if it changed.</p>
+          <p>The support for a specific OCR program is implemented
+          in a simple Python module. It should be straightforward
+          to add support for any OCR engine with a capability to
+          run from the command line.</p>
+          <p>Modules initially exist for <span class=
+          "application">tesseract</span> (Linux and <span class=
+          "application">Windows</span>), and <span class=
+          "application">ABBYY FineReader</span> (Linux, tested with
+          version 11). ABBYY FineReader is a commercial closed
+          source program, but it sometimes perform better than
+          tesseract.</p>
           <div class="sect3">
             <div class="titlepage">
               <div>
@@ -3124,16 +3107,20 @@ class MetaFixer(object):
                 </div>
               </div>
             </div>
-            <p>It must be noted that, if modifying the files (or a
-            copy) is acceptable, then using <a class="ulink" href=
-            "https://ocrmypdf.readthedocs.io/en/latest/index.html"
-            target="_top">OCRmyPDF</a> to add a text layer to the
-            PDF itself is a better solution than using the
-            <span class="application">Recoll</span> OCR feature:
-            e.g. allowing <span class="application">Recoll</span>
-            to position the PDF viewer on the search target when
-            opening the document, and permitting secondary search
-            in the native tool.</p>
+            <div class="note" style=
+            "margin-left: 0.5in; margin-right: 0.5in;">
+              <h3 class="title">Note</h3>
+              <p>If modifying the files (or a copy) is acceptable,
+              then using <a class="ulink" href=
+              "https://ocrmypdf.readthedocs.io/en/latest/index.html"
+              target="_top">OCRmyPDF</a> to add a text layer to the
+              PDF itself is a better solution than using the
+              <span class="application">Recoll</span> OCR feature:
+              e.g. allowing <span class="application">Recoll</span>
+              to position the PDF viewer on the search target when
+              opening the document, and permitting secondary search
+              in the native tool.</p>
+            </div>
             <p>The <span class="application">Recoll</span> OCR is
             enabled by the <code class="literal">pdfocr</code>
             configuration variable, and will only be executed if
@@ -3154,7 +3141,7 @@ tesseractlang = eng</pre>
             "literal">tesseractcmd</code> variable, for
             example:</p>
             <pre class=
-            "programlisting">tesseractcmd = C:/Program Files(x86)/Tesseract-OCR/tesseract.exe</pre>
+            "programlisting">tesseractcmd = C:/Program Files/Tesseract-OCR/tesseract.exe</pre>
           </div>
           <div class="sect3">
             <div class="titlepage">
@@ -9719,8 +9706,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5194" id=
-                "id5194"></a>GUI settings</h3>
+                <h3 class="title"><a name="id5189" id=
+                "id5189"></a>GUI settings</h3>
               </div>
             </div>
           </div>
@@ -9736,8 +9723,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5201" id=
-                "id5201"></a>Index configuration parameters</h3>
+                <h3 class="title"><a name="id5196" id=
+                "id5196"></a>Index configuration parameters</h3>
               </div>
             </div>
           </div>
@@ -10032,7 +10019,8 @@ defaultcharset = utf-8</pre>
                 recursively index. You can use symbolic links in
                 the list, they will be followed, independently of
                 the value of the followLinks variable. The default
-                value is ~ : recursively index $HOME.</p>
+                value is ~ : recursively index the user home
+                folder.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.MONITORDIRS" id=
               "RCL.CONFIG.RECOLLCONF.MONITORDIRS"></a><span class=
@@ -10220,7 +10208,9 @@ defaultcharset = utf-8</pre>
                 (default). MIME type names should be taken from the
                 mimemap file (the values may be different from
                 xdg-mime or file -i output in some cases). Can be
-                redefined for subtrees.</p>
+                redefined for subtrees. Recoll versions after
+                1.43.7 (excluded) support wildcards in the
+                values.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.EXCLUDEDMIMETYPES"
               id=
@@ -10230,7 +10220,9 @@ defaultcharset = utf-8</pre>
                 some types from indexing. MIME type names should be
                 taken from the mimemap file (the values may be
                 different from xdg-mime or file -i output in some
-                cases) Can be redefined for subtrees.</p>
+                cases) Can be redefined for subtrees. Recoll
+                versions after 1.43.7 (excluded) support wildcards
+                in the values.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.NOMD5TYPES" id=
               "RCL.CONFIG.RECOLLCONF.NOMD5TYPES"></a><span class=
@@ -11354,6 +11346,19 @@ defaultcharset = utf-8</pre>
                 supports it. The default is empty, as the default
                 "Idle" class has no levels.</p>
               </dd>
+              <dt><a name="RCL.CONFIG.RECOLLCONF.SOFFICECMD" id=
+              "RCL.CONFIG.RECOLLCONF.SOFFICECMD"></a><span class=
+              "term"><code class=
+              "varname">sofficecmd</code></span></dt>
+              <dd>
+                <p>Path to the soffice command (e.g. from
+                libreoffice) This is used for Apple pages documents
+                and big openoffice spreadsheets. Use double-quoting
+                if there are spaces in the path (e.g. C:/Program
+                Files/) *and* you want to add parameters to the
+                default command (uncommon). If not set, recoll will
+                try to find it in the PATH.</p>
+              </dd>
             </dl>
           </div>
         </div>
@@ -11710,8 +11715,7 @@ defaultcharset = utf-8</pre>
                 compatibility with the previous version, if this is
                 not defined at all, the default value is
                 "tesseract". Use an explicit empty value if needed.
-                A value of "abbyy tesseract" will try
-                everything.</p>
+                The value be redefined in subtrees.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.OCRCACHEDIR" id=
               "RCL.CONFIG.RECOLLCONF.OCRCACHEDIR"></a><span class=
@@ -11730,7 +11734,11 @@ defaultcharset = utf-8</pre>
                 set through the contents of a file in the currently
                 processed directory. See the rclocrtesseract.py
                 script. Example values: eng, fra... See the
-                tesseract documentation.</p>
+                tesseract Web sitedocumentation for language codes
+                and how to download additional language packs. When
+                specifying multiple languages, use a '+' separator
+                and no spaces, e.g. eng+fra. The value be redefined
+                in subtrees.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.TESSERACTCMD" id=
               "RCL.CONFIG.RECOLLCONF.TESSERACTCMD"></a><span class=
@@ -11741,7 +11749,7 @@ defaultcharset = utf-8</pre>
                 This is mostly useful on Windows, or for specifying
                 a non-default tesseract command. E.g. on Windows.
                 tesseractcmd =
-                C:/ProgramFiles(x86)/Tesseract-OCR/tesseract.exe</p>
+                C:/ProgramFiles/Tesseract-OCR/tesseract.exe</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.ABBYYLANG" id=
               "RCL.CONFIG.RECOLLCONF.ABBYYLANG"></a><span class=
