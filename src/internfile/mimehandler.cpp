@@ -354,7 +354,7 @@ RecollFilter *getMimeHandler(const string &mtype, RclConfig *cfg,
             xtract_tp_cmd(hs, handlertype, cmdstr);
         }
 
-        LOGERR(" HANDLERTYPE [" << handlertype << "] cmdstr [" << cmdstr << "]\n");
+        LOGDEB1(" HANDLERTYPE [" << handlertype << "] cmdstr [" << cmdstr << "]\n");
         
         bool internal = (handlertype == "internal");
         if (internal) {
