@@ -105,6 +105,7 @@ sub imgTagsToHtml {
         }
     }
     if ($opts{"json"}) {
+        use JSON;
         my $json = JSON->new->allow_nonref;
         $output = $json->encode(\%hashfields);
     } else {
@@ -172,7 +173,6 @@ sub readparam {
 #
 use strict;
 use Getopt::Std;
-use JSON;
 
 # JFD: replaced the "use" call with a runtime load with error checking,
 # for compat with the missing filter detection code.
