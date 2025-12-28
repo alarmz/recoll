@@ -11,22 +11,22 @@
 # 25.10    questing 2026-07
 
 SERIES="jammy noble plucky questing"
-SERIES=questing
+SERIES="jammy noble plucky"
 
 PPA_KEYID=7808CE96D38B9201
 
-RCLVERS=1.43.8
+RCLVERS=1.43.9
 GSSPVERS=1.1.3
-PPAVERS=2
+PPAVERS=1
 
 PPANAME=recoll15-ppa
 #PPANAME=recollexp-ppa
 
 # recoll 
-series_rcl=
+series_rcl=$SERIES
 # KIO
-series_kio=$SERIES
-series_krunner=$SERIES
+series_kio=
+series_krunner=
 # gssp
 series_gssp=
 

@@ -59,7 +59,7 @@ Architecture: any
 Breaks: recollgui (<< 1.28.5-1)
 Replaces: recollgui (<< 1.28.5-1)
 Depends: librecoll39 (= ${binary:Version}), ${misc:Depends}, ${shlibs:Depends}
-Recommends: aspell, python3, python3-recoll, xdg-utils, xsltproc
+Recommends: aspell, libjson-perl, python3, python3-recoll, xdg-utils, xsltproc
 Suggests: antiword,
           djvulibre-bin,
           ghostscript,
