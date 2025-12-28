@@ -974,8 +974,12 @@ bool SearchDataClauseSimple::toNativeQuery(Rcl::Db &db, void *p)
 
     vector<Xapian::Query> pqueries;
     std::string pbterm;
-    if (!processUserString(db, m_text, m_reason, pbterm, &pqueries))
+    if (m_text.empty()) {
+        // Simpler to just special-case the empty case here.
+        pqueries = std::vector<Xapian::Query>{Xapian::Query(std::string())};
+    } else if (!processUserString(db, m_text, m_reason, pbterm, &pqueries)) {
         return false;
+    }
     if (pqueries.empty()) {
         LOGDEB("SearchDataClauseSimple: " << m_text << " resolved to null query\n");
         if (!pbterm.empty()) 
@@ -1021,8 +1025,8 @@ bool SearchDataClauseRange::toNativeQuery(Rcl::Db &db, void *p)
     string errstr;
     try {
         if (m_text.empty()) {
-            *qp = Xapian::Query(Xapian::Query::OP_VALUE_LE,
-                                ftp->valueslot, convert_field_value(*ftp, m_t2));
+            *qp = Xapian::Query(Xapian::Query::OP_VALUE_LE, ftp->valueslot,
+                                convert_field_value(*ftp, m_t2));
         } else if (m_t2.empty()) {
             *qp = Xapian::Query(Xapian::Query::OP_VALUE_GE, ftp->valueslot,
                                 convert_field_value(*ftp, m_text));

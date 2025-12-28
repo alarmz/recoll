@@ -81,6 +81,13 @@ topquery: query
     else
         d->m_result = $1;
 }
+| %empty
+{
+    Rcl::SearchData *sd = new Rcl::SearchData(Rcl::SCLT_AND, d->m_stemlang);
+    sd->addClause(new Rcl::SearchDataClauseSimple(Rcl::SCLT_AND, ""));
+    d->m_result = sd;
+}
+;
 
 query: 
 query query %prec UCONCAT
