@@ -1591,7 +1591,7 @@ Vuoi avviare la finestra di dialogo delle preferenze?</translation>
         <translation type="vanished">Dettagli ricerca</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>Impossibile aprire l&apos;indice esterno. Db non è aperto. Controlla l&apos;elenco degli indici esterni.</translation>
     </message>
     <message>

@@ -1592,7 +1592,7 @@ Vill du starta inställningsdialogen?</translation>
         <translation type="vanished">Sökdetaljer</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>Kunde inte öppna externt index. Databasen inte öppen. Kolla extern indexlista.</translation>
     </message>
     <message>

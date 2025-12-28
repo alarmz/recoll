@@ -1276,7 +1276,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation></translation>
     </message>
     <message>

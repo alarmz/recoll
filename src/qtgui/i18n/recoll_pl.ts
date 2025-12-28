@@ -1593,7 +1593,7 @@ Do you want to start the  preferences dialog ?</source>
         <translation type="vanished">Szczegóły zapytania</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>Nie mogę otworzyc zewnętrznego indeksu. Nie otwarta baza danych. Sprawdź listę zewnętrznych indeksów.</translation>
     </message>
     <message>

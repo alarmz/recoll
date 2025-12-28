@@ -1594,7 +1594,7 @@ Do you want to start the  preferences dialog ?</source>
         <translation type="vanished">쿼리 상세보기</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>외부 색인을 열 수 없습니다. DB를 열 수 없습니다. 외부 색인 목록을 확인하십시오.</translation>
     </message>
     <message>

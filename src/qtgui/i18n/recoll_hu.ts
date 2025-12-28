@@ -1597,8 +1597,8 @@ Megnyissuk a beállítások ablakát?</translation>
         <translation type="vanished">A keresés részletei</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
-        <translation>Egy külső index megnyitása nem sikerült. Ellenőrizni kell a külső indexek listáját.</translation>
+        <source>Could not open external index. Db not open. Check external index list.</source>
+        <translation>Egy külső index megnyitása nem sikerült. Ellenőrizni kell a külső index listáját.</translation>
     </message>
     <message>
         <source>No results found</source>

@@ -644,7 +644,7 @@ void RclMain::initDbOpen()
             }
         } else {
             QMessageBox::warning(0, "Recoll", tr("Could not open external index. Db not "
-                                                 "open. Check external indexes list."));
+                                                 "open. Check external index list."));
         }
     }
 

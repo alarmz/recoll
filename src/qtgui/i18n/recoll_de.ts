@@ -1603,7 +1603,7 @@ Wollen Sie den Einstellungs-Dialog starten?</translation>
         <translation type="vanished">Details zur Suchanfrage</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>Externer Index konnte nicht geöffnet werden. Datenbank nicht offen. Überprüfen Sie die Liste der externen Indizes.</translation>
     </message>
     <message>

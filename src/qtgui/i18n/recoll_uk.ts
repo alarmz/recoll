@@ -1593,8 +1593,8 @@ Do you want to start the  preferences dialog ?</source>
         <translation type="vanished">Деталі запиту</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
-        <translation>Не вдалося відкрити зовнішній індекс. Db не відкрито. Перевірте список зовнішніх індексів.</translation>
+        <source>Could not open external index. Db not open. Check external index list.</source>
+        <translation>Не вдалося відкрити зовнішній індекс. Db не відкрито. Перевірте список зовнішніх індекс.</translation>
     </message>
     <message>
         <source>No results found</source>

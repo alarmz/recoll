@@ -1586,7 +1586,7 @@ Do you want to start the  preferences dialog ?</source>
         <translation type="vanished">Zoekopdracht details</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>kon externe index niet openen. Db niet geopend. Controleer externe indexlijst</translation>
     </message>
     <message>

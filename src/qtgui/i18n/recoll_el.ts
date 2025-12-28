@@ -1591,7 +1591,7 @@ Do you want to start the  preferences dialog ?</source>
         <translation type="vanished">Λεπτομέρειες της αναζήτησης</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>Αδύνατο το άνοιγμα ενός εξωτερικού ευρετηρίου. Η βάση δεδομένων δεν είναι ανοιχτή. Ελέγξτε τη λίστα των εξωτερικών ευρετηρίων.</translation>
     </message>
     <message>
