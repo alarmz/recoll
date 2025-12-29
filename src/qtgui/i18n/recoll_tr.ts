@@ -1592,8 +1592,8 @@ Do you want to start the  preferences dialog ?</translation>
         <translation type="vanished">Sorgu detayları</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
-        <translation>Could not open external index. Db not open. Check external indexes list.</translation>
+        <source>Could not open external index. Db not open. Check external index list.</source>
+        <translation>Could not open external index. Db not open. Check external index list.</translation>
     </message>
     <message>
         <source>No results found</source>

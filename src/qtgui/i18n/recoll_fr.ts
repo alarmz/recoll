@@ -1597,7 +1597,7 @@ Voulez vous démarrer le dialogue de préférences ?</translation>
         <translation type="vanished">Détail de la recherche</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>Impossible d&apos;ouvrir un index externe. Base non ouverte. Verifier la liste des index externes.</translation>
     </message>
     <message>

@@ -1667,7 +1667,7 @@ Do you want to start the  preferences dialog ?</source>
         <translation type="vanished">查询语句细节</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>无法打开外部索引。数据库未打开。请检查外部索引列表。</translation>
     </message>
     <message>

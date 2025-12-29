@@ -1591,7 +1591,7 @@ Do you want to start the  preferences dialog ?</source>
         <translation type="vanished">Detaljer i Forespørgsel</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>Kunne ikke åbne ekstern indeks. DB er ikke åben. Tjek liste over eksterne indekser.</translation>
     </message>
     <message>

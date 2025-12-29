@@ -1589,8 +1589,8 @@ Do you want to start the  preferences dialog ?</source>
         <translation type="vanished">Detalles de búsqueda</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
-        <translation>No se puede abrir índice externo. Base de datos no abierta. Revise listado de índices externos.</translation>
+        <source>Could not open external index. Db not open. Check external index list.</source>
+        <translation>No se puede abrir índice externo. Base de datos no abierta. Revise listado de índice externos.</translation>
     </message>
     <message>
         <source>No results found</source>

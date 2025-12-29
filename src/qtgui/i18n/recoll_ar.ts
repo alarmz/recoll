@@ -2081,7 +2081,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <location filename="../rclmain_w.cpp" line="646"/>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>تعذر فتح الفهرس الخارجي. قاعدة البيانات غير مفتوحة. يرجى التحقق من قائمة الفهارس الخارجية.</translation>
     </message>
     <message>

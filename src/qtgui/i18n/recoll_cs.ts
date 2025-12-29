@@ -1592,7 +1592,7 @@ Chcete spustit dialog s nastavením?</translation>
         <translation type="vanished">Podrobnosti o hledání</translation>
     </message>
     <message>
-        <source>Could not open external index. Db not open. Check external indexes list.</source>
+        <source>Could not open external index. Db not open. Check external index list.</source>
         <translation>Nepodařilo se otevřít vnější rejstřík. Databáze neotevřena. Prověřte seznam vnějších rejstříků.</translation>
     </message>
     <message>
