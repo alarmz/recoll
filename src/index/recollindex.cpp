@@ -969,7 +969,7 @@ int main(int argc, char *argv[])
         if (op_flags & OPT_x)
             opts |= RCLMON_NOX11;
         bool monret = startMonitor(config, opts);
-        MONDEB("Monitor returned %d, exiting\n" << monret);
+        MONDEB("Monitor returned " << monret << ", exiting\n");
         exit(monret == false);
 #endif // MONITOR
 
