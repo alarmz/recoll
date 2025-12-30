@@ -1124,7 +1124,7 @@ bool RclConfig::inStopSuffixes(const string& fni)
     SuffixStore::const_iterator it = m->m_stopsuffixes->find(fn);
     if (it != m->m_stopsuffixes->end()) {
         LOGDEB2("RclConfig::inStopSuffixes: Found (" << fni << ") ["  <<
-                ((*it).m->m_str) << "]\n");
+                ((*it).m_str) << "]\n");
         IdxDiags::theDiags().record(IdxDiags::NoContentSuffix, fni);
         return true;
     } else {

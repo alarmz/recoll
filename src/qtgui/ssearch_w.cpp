@@ -134,7 +134,7 @@ QVariant RclCompleterModel::data(const QModelIndex &index, int role) const
             LOGDEB1("RclCompleterModel::data: returning pixmap\n");
             return index.row() < firstfromindex ? QVariant(clockPixmap) : QVariant(interroPixmap);
         } else {
-            LOGDEB1("RclCompleterModel::data: return: " << qs2u8s(currentlist[index.row()]) << "\n");
+            LOGDEB1("RclCompleterModel::data: return: " << qs2u8s(currentlist[index.row()].first) << "\n");
             return QVariant(currentlist[index.row()].first);
         }
     } else if (index.column() == 1 && prefs.showcompleterhitcounts) {

@@ -567,7 +567,7 @@ void RclMain::specialIndex()
         args.push_back(top);
     }
     m_idxproc = new ExecCmd;
-    LOGINFO("specialIndex: exec: " << execToString(recollindex, args) <<endl);
+    LOGINFO("specialIndex: exec: " << execToString(recollindex, args) << std::endl);
     m_idxproc->startExec(recollindex, args, false, false);
 }
 
