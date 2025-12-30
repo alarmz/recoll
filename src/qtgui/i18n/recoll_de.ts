@@ -474,15 +474,15 @@
     </message>
     <message>
         <source> (by default, aspell suggests mispellings when a query has no results).</source>
-        <translation type="unfinished"></translation>
+        <translation> (Standardmäßig schlägt Aspell falsch geschriebene Wörter vor, wenn eine Abfrage keine Ergebnisse liefert).</translation>
     </message>
     <message>
         <source>Database directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Verzeichnisname für die Datenbank</translation>
     </message>
     <message>
         <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Der Name eines Verzeichnisses, in dem der Index gespeichert werden soll.&lt;br&gt;Ein nicht-absoluter Pfad ist dabei relativ zum Konfigurationsverzeichnis. Der Standard ist &apos;xapiandb&apos;.</translation>
     </message>
 </context>
 <context>
@@ -1206,7 +1206,7 @@ Der Standardwert ist &quot;Nein&quot;, um doppelte Indizierung zu vermeiden.</tr
     <message>
         <source>These are file name endings for files which will be indexed by name only 
 (no MIME type identification attempt, no decompression, no content indexing).</source>
-        <translation>Dies sind Dateinamen-Endungen für Dateien, die nur nach Namen indexiert werden
+        <translation>Dies sind Dateinamen-Endungen für Dateien, die nur nach Namen indiziert werden
 (keine MIME-Typ-Identifikationsversuch, keine Dekompression, keine Inhaltsindizierung).</translation>
     </message>
     <message>
@@ -1405,7 +1405,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source> Hits</source>
-        <translation type="unfinished"></translation>
+        <translation> Treffer</translation>
     </message>
 </context>
 <context>
@@ -1588,7 +1588,7 @@ Wollen Sie den Einstellungs-Dialog starten?</translation>
     </message>
     <message>
         <source>Can&apos;t uncompress file: </source>
-        <translation>Fehler beim Dekomprimieren von Datei: </translation>
+        <translation>Fehler beim Entpacken von Datei: </translation>
     </message>
     <message>
         <source>Save file</source>
@@ -2106,7 +2106,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <translation> mit zusätzlicher Nachricht: </translation>
     </message>
 </context>
 <context>
@@ -2493,7 +2493,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>    With failed files retrying</source>
-        <translation type="unfinished"></translation>
+        <translation>    Bei fehlgeschlagenen Dateien erneut versuchen</translation>
     </message>
 </context>
 <context>
@@ -2504,7 +2504,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Verlassen</translation>
+        <translation>Beenden</translation>
     </message>
 </context>
 <context>
@@ -3215,7 +3215,7 @@ Benutze &lt;b&gt;Abfrage anzeigen&lt;/b&gt; Link bei Zweifeln am Ergebnis und si
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation>Abfrage-Sprache Spickzettel. Im Zweifelsfall: Klicken Sie auf &lt;b&gt;Abfrage-Details anzeigen&lt;/b&gt;.</translation>
+        <translation>Abfrage-Sprache Spickzettel. Im Zweifelsfall: Klicken Sie auf &lt;b&gt;Abfrage-Details anzeigen&lt;/b&gt;.&amp;nbsp;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
@@ -3223,7 +3223,7 @@ Benutze &lt;b&gt;Abfrage anzeigen&lt;/b&gt; Link bei Zweifeln am Ergebnis und si
     </message>
     <message>
         <source> differ from current preferences (kept)</source>
-        <translation type="unfinished"></translation>
+        <translation> von den aktuellen Einstellungen unterscheiden (beibehalten)</translation>
     </message>
 </context>
 <context>
@@ -3424,11 +3424,11 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
     </message>
     <message>
         <source>Increase font size</source>
-        <translation>Schriftgröße erhöhen.</translation>
+        <translation>Schriftgröße erhöhen</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation>Schriftgröße verkleinern.</translation>
+        <translation>Schriftgröße verkleinern</translation>
     </message>
 </context>
 <context>
@@ -3525,11 +3525,11 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
     </message>
     <message>
         <source>Start directory. Must be part of the indexed tree. Use full indexed area if empty.</source>
-        <translation>Startverzeichnis. Muss Teil des indexierten Baumes sein. Benutzen Sie den vollen Indexbereich, wenn es leer ist.</translation>
+        <translation>Startverzeichnis. Muss Teil des indizierten Baumes sein. Benutzen Sie den vollen Indexbereich, wenn es leer ist.</translation>
     </message>
     <message>
         <source>Diagnostics output file. Will be truncated and receive indexing diagnostics (reasons for files not being indexed).</source>
-        <translation>Diagnoseausgabedatei. Wird abgeschnitten und erhält Indexdiagnose (Gründe für nicht indexierte Dateien).</translation>
+        <translation>Diagnoseausgabedatei. Wird abgeschnitten und erhält Indexdiagnose (Gründe für nicht indizierte Dateien).</translation>
     </message>
     <message>
         <source>Diagnostics file</source>
@@ -3703,11 +3703,11 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
     </message>
     <message>
         <source>Unindexed files</source>
-        <translation type="vanished">Unindexierte Dateien</translation>
+        <translation type="vanished">Unindizierte Dateien</translation>
     </message>
     <message>
         <source>List files which could not be indexed (slow)</source>
-        <translation>Liste Dateien auf, die nicht indexiert werden konnten (langsam)</translation>
+        <translation>Liste Dateien auf, die nicht indiziert werden konnten (langsam)</translation>
     </message>
     <message>
         <source>Spell expansion error. </source>
@@ -3719,15 +3719,15 @@ Drücken Sie ESC+Leerzeichen für Vervollständigungen des aktuellen Begriffs.</
     </message>
     <message>
         <source>  Documents created/updated</source>
-        <translation type="unfinished"></translation>
+        <translation>  Dokumente wurden erstellt/aktualisiert</translation>
     </message>
     <message>
         <source>  Files tested</source>
-        <translation type="unfinished"></translation>
+        <translation>  Dateien getestet</translation>
     </message>
     <message>
         <source>  Unindexed files</source>
-        <translation type="unfinished"></translation>
+        <translation>  Unindizierte Dateien</translation>
     </message>
 </context>
 <context>
