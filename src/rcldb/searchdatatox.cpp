@@ -372,7 +372,7 @@ public:
             m_lastpos = ipos;
         bool noexpand = be ? m_ts->nostemexp() : true;
         LOGDEB1("TermProcQ::takeword: pushing [" << term << "] pos " <<
-                pos << " noexp " << noexpand << "\n");
+                ipos << " noexp " << noexpand << "\n");
         if (m_terms[ipos].size() < term.size()) {
             m_terms[ipos] = term;
             m_nste[ipos] = noexpand;
