@@ -44,7 +44,7 @@ def findsoffice():
     else:
         sofficecmd = [rclexecm.which("soffice"),]
     #_deb(f"sofficecmd {sofficecmd}")
-    if not sofficecmd:
+    if not sofficecmd or not sofficecmd[0]:
         _deb("sofficecmd not found")
         return None
     if not os.path.isfile(sofficecmd[0]):
