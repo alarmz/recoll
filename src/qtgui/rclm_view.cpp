@@ -482,7 +482,7 @@ void RclMain::startNativeViewer(Rcl::Doc doc, int pagenum, QString qterm, int li
 
     // If a search/find parameter is needed by the command, and if the search was a simple phrase
     // (expanded to a simple sequence of single terms), possibly generate a multiword
-    // parameter. This works find with evince, which ignores newlines and capital/diacritics when
+    // parameter. This works fine with evince, which ignores newlines and capital/diacritics when
     // searching (but not multiple spaces...). Not sure how this would work with other commands, so
     // it has its own substitution character. This just handles a very specific but common case of a
     // simple phrase with no term transformations or expansions finding a match, and where users are
