@@ -88,8 +88,10 @@ bool rfc2231_decode(const string &in, string &out, string &charset)
         if ((pos2 = in.find("'", pos1)) == string::npos)
             return false;
         // We have no use for lang for now
-        // string lang = in.substr(pos1, pos2-pos1); 
-        LOGDEB1("Lang: [" << lang << "\n");
+        if (false) {
+            string lang = in.substr(pos1, pos2-pos1); 
+            LOGDEB1("Lang: [" << lang << "\n");
+        }
         pos2++;
     }
 
