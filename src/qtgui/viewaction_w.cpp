@@ -147,7 +147,7 @@ void ViewAction::onSelSameClicked()
     if (value.isEmpty())
         return;
     std::string action = qs2utf8s(value);
-    LOGDEB1("ViewAction::onSelSameClicked: value: " << action << endl);
+    LOGDEB1("ViewAction::onSelSameClicked: value: " << action << std::endl);
 
     std::vector<std::pair<std::string, std::string> > defs;
     theconfig->getMimeViewerDefs(defs);
