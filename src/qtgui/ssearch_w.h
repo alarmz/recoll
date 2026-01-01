@@ -68,7 +68,7 @@ class SSearch : public QWidget, public Ui::SSearchBase {
 public:
     // The values MUST NOT change, there are assumptions about them in
     // different parts of the code
-    enum SSearchType {SST_ANY = 0, SST_ALL = 1, SST_FNM = 2, SST_LANG = 3};
+    enum SSearchType {SST_ANY = 0, SST_ALL = 1, SST_FNM = 2, SST_LANG = 3, SST_SEM = 4};
 
     SSearch(QWidget* parent = 0, const char * = 0)
         : QWidget(parent) {

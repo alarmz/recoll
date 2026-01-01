@@ -55,10 +55,17 @@ cp rclsem_common.py  rclsem_embed.py  rclsem_query.py  rclsem_segment.py  rclsem
    slicelist.py cmdtalkplugin.py "$venvdir"
 (cd "$venvdir";chmod a+x rclsem_embed.py  rclsem_query.py  rclsem_talk.py)
 
-toprecoll=`dirname $0`/..
-rclpydir="$toprecoll/python/recoll/recoll"
-(cd "$rclpydir";cp conftree.py rclconfig.py "$venvdir")
-cp "$toprecoll"/filters/cmdtalk.py "$venvdir"
+rclindex=`which recollindex`
+if test -z "$rclindex" ; then
+    fatal "recollindex not found. Is recoll installed ?"
+fi
+if test "$rclindex" = /bin/recollindex; then
+    rclindex=/usr/bin/recollindex
+fi
+recolldatadir=`dirname $rclindex`/../share/recoll/
+rclpydir="$recolldatadir/filters"
+test -f $rclpydir/conftree.py || fatal conftree.py not found in $rclpydir
+(cd "$rclpydir";cp conftree.py rclconfig.py cmdtalk.py "$venvdir")
 
 recollmod=`echo 'from recoll import recoll; print(recoll.__file__)' | python3`
 echo recollmod $recollmod

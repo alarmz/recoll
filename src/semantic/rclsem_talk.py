@@ -18,16 +18,17 @@ g_embedmodel = None
 
 @dispatcher.record("query")
 def query(a):
-    global g_rcldb, g_collection, g_embedmodel
+    global g_rcldb, g_collection, g_embedmodel, g_embedsegsize
     # We get the recoll configuration in all questions, but it is only used once, at initialisation
     if not g_rcldb:
-        g_rcldb, g_collection, g_embedmodel = common_init(a["confdir"])
+        g_rcldb, g_collection, g_embedmodel, g_embedsegsize = common_init(a["confdir"])
 
     if "nres" in a:
         nres = int(a["nres"])
     else:
         nres = 5
-    results = direct_query(g_rcldb, g_collection, g_embedmodel, a["question"], nres=nres)
+    results = direct_query(g_rcldb, g_collection, g_embedmodel, g_embedsegsize,
+                           a["question"], nres=nres)
 
     # Do something with the results and return a dict
     encoded = json.dumps(results)

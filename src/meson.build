@@ -64,6 +64,7 @@ if get_option('testmains') or get_option('python-module') or get_option('indexer
     librecolldeps = []
     xapian = dependency('xapian-core')
     librecolldeps += xapian
+    librecolldeps += dependency('jsoncpp')
     if get_option('idxthreads')
         librecolldeps += dependency('threads')
     endif
@@ -301,6 +302,7 @@ librecoll_sources = [
     'query/docseq.cpp',
     'query/docseqdb.cpp',
     'query/docseqhist.cpp',
+    'query/docseqsem.cpp',
     'query/dynconf.cpp',
     'query/filtseq.cpp',
     'common/plaintorich.cpp',

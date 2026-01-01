@@ -564,6 +564,8 @@ query/docseqdb.h
 query/docseqdocs.h
 query/docseqhist.cpp
 query/docseqhist.h
+query/docseqsem.cpp
+query/docseqsem.h
 query/dynconf.cpp
 query/dynconf.h
 query/filtseq.cpp
@@ -637,6 +639,15 @@ sampleconf/recoll-dark.css
 sampleconf/recoll-dark.qss
 sampleconf/recoll.conf
 sampleconf/recoll.qss
+semantic/
+semantic/cmdtalkplugin.py
+semantic/initsemenv.sh
+semantic/rclsem_common.py
+semantic/rclsem_embed.py
+semantic/rclsem_query.py
+semantic/rclsem_segment.py
+semantic/rclsem_talk.py
+semantic/slicelist.py
 testmains/
 testmains/meson.build
 unac/

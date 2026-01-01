@@ -127,6 +127,13 @@ void RclMain::buildMenus()
     actSSQuery->setCheckable(true);
     sstypGroup->addAction(actSSQuery);
     queryMenu->addAction(actSSQuery);
+
+    auto actSSSem = new QAction(tr("Semantic"), this);
+    actSSSem->setData(QVariant(SSearch::SST_SEM));
+    actSSSem->setCheckable(true);
+    sstypGroup->addAction(actSSSem);
+    queryMenu->addAction(actSSSem);
+
     queryMenu->addSeparator();
     queryMenu->addAction(enbSynAction);
     queryMenu->addSeparator();

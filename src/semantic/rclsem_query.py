@@ -75,6 +75,8 @@ def direct_query(rcldb, collection, embedmodel, embedsegsize, question, nres=5):
         phridx = int(id[plus+1:])
 
         # Fetch the doc from recoll
+        if rcludi.find("|") == -1:
+            rcludi += "|"
         doc = rcldb.getDoc(rcludi)
 
         # We would store the texts if we were doing reranking ? Not even sure, maybe be use the

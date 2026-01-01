@@ -207,6 +207,7 @@ void SSearch::init()
     searchTypCMB->addItem(tr("All terms"));
     searchTypCMB->addItem(tr("File name"));
     searchTypCMB->addItem(tr("Query language"));
+    searchTypCMB->addItem(tr("Semantic"));
     
     connect(queryText, SIGNAL(returnPressed()), this, SLOT(startSimpleSearch()));
     connect(queryText, SIGNAL(textChanged(const QString&)),
@@ -602,23 +603,30 @@ bool SSearch::startSimpleSearch(const std::string& u8, int maxexp)
             if (tp == SST_ANY) {
                 xml << "  <SM>OR</SM>\n";
                 clp = new Rcl::SearchDataClauseSimple(Rcl::SCLT_OR, u8);
-            } else {
+            } else if (tp == SST_ALL) {
                 xml << "  <SM>AND</SM>\n";
                 clp = new Rcl::SearchDataClauseSimple(Rcl::SCLT_AND, u8);
+            } else if (tp == SST_SEM) {
+                xml << "  <SM>SEM</SM>\n";
+                clp = new Rcl::SearchDataClauseSimple(Rcl::SCLT_AND, u8);
+            } else {
+                std::cerr << "UNEXPECTED SEARCH TYPE\n";
+                abort();
             }
         }
         sdata->addClause(clp);
     }
 
-    if (prefs.ssearchAutoPhrase && rcldb) {
-        xml << "  <AP/>\n";
-        sdata->maybeAddAutoPhrase(*rcldb, 
-                                  prefs.ssearchAutoPhraseThreshPC / 100.0);
+    if (tp != SST_SEM) {
+        if (prefs.ssearchAutoPhrase && rcldb) {
+            xml << "  <AP/>\n";
+            sdata->maybeAddAutoPhrase(*rcldb, prefs.ssearchAutoPhraseThreshPC / 100.0);
+        }
+        if (maxexp != -1) {
+            sdata->setMaxExpand(maxexp);
+        }
     }
-    if (maxexp != -1) {
-        sdata->setMaxExpand(maxexp);
-    }
-
+    
     for (const auto& dbdir : prefs.activeExtraDbs) {
         xml << "  <EX>" << base64_encode(dbdir) << "</EX>";
     }

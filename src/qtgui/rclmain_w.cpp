@@ -61,6 +61,7 @@
 #include "ssearch_w.h"
 #include "internfile.h"
 #include "docseqdb.h"
+#include "docseqsem.h"
 #include "docseqhist.h"
 #include "docseqdocs.h"
 #include "restable.h"
@@ -822,17 +823,35 @@ void RclMain::startSearch(std::shared_ptr<Rcl::SearchData> sdata, bool issimple)
         rcldb->setSynGroupsFile("");
     }
 
-    Rcl::Query *query = new Rcl::Query(rcldb.get());
-    query->setCollapseDuplicates(prefs.collapseDuplicates);
+    if (issimple && sSearch->getSearchType() == SSearch::SST_SEM) {
+        // Special case the semantic search 
+        class SemWalker: public Rcl::SdataWalker {
+        public:
+            virtual bool clause(Rcl::SearchDataClause* _clp) {
+                auto clp = dynamic_cast<Rcl::SearchDataClauseSimple*>(_clp);
+                m_text = clp->gettext();
+                return true;
+            }
+            std::string m_text;
+        };
+        SemWalker walker;
+        Rcl::sdataWalk(sdata.get(), walker);
+        // We just need the search 
+        m_source = std::make_shared<DocSequenceSem>(qs2utf8s(tr("Query results")), rcldb,
+                                                    walker.m_text);
+    } else {
+        Rcl::Query *query = new Rcl::Query(rcldb.get());
+        query->setCollapseDuplicates(prefs.collapseDuplicates);
 
-    curPreview = 0;
-    DocSequenceDb *src = new DocSequenceDb(rcldb, std::shared_ptr<Rcl::Query>(query), 
-                                           qs2utf8s(tr("Query results")), sdata);
-    src->setAbstractParams(prefs.queryBuildAbstract, prefs.queryReplaceAbstract);
-    m_source = std::shared_ptr<DocSequence>(src);
+        curPreview = 0;
+        DocSequenceDb *src = new DocSequenceDb(rcldb, std::shared_ptr<Rcl::Query>(query), 
+                                               qs2utf8s(tr("Query results")), sdata);
+        src->setAbstractParams(prefs.queryBuildAbstract, prefs.queryReplaceAbstract);
+        m_source = std::shared_ptr<DocSequence>(src);
 
-    m_source->setSortSpec(m_sortspec);
-    setFiltSpec();
+        m_source->setSortSpec(m_sortspec);
+        setFiltSpec();
+    }
     emit docSourceChanged(m_source);
     emit sortDataChanged(m_sortspec);
     initiateQuery();

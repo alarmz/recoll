@@ -76,6 +76,8 @@ public:
                 data.mode = SSearch::SST_ANY;
             } else if (curtxt == "AND") {
                 data.mode = SSearch::SST_ALL;
+            } else if (curtxt == "SEM") {
+                data.mode = SSearch::SST_SEM;
             } else {
                 LOGERR("BAD SEARCH MODE: [" << curtxt << "]\n");
                 contentsOk = false;
