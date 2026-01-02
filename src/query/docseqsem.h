@@ -17,6 +17,9 @@
 #ifndef _DOCSEQSEM_H_INCLUDED_
 #define _DOCSEQSEM_H_INCLUDED_
 
+#include "autoconfig.h"
+#ifdef ENABLE_SEMANTIC
+
 #include <memory>
 
 #include "docseq.h"
@@ -41,5 +44,5 @@ protected:
 private:
     Internal *m{nullptr};
 };
-
+#endif /* ENABLE_SEMANTIC */
 #endif /* _DOCSEQSEM_H_INCLUDED_ */

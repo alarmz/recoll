@@ -14,7 +14,7 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-#include "autoconfig.h"
+#include "autoconfig.h" // For ENABLE_SEMANTIC
 
 #include <sstream>
 #include <set>
@@ -207,8 +207,9 @@ void SSearch::init()
     searchTypCMB->addItem(tr("All terms"));
     searchTypCMB->addItem(tr("File name"));
     searchTypCMB->addItem(tr("Query language"));
+#ifdef ENABLE_SEMANTIC
     searchTypCMB->addItem(tr("Semantic"));
-    
+#endif
     connect(queryText, SIGNAL(returnPressed()), this, SLOT(startSimpleSearch()));
     connect(queryText, SIGNAL(textChanged(const QString&)),
             this, SLOT(searchTextChanged(const QString&)));
@@ -606,9 +607,11 @@ bool SSearch::startSimpleSearch(const std::string& u8, int maxexp)
             } else if (tp == SST_ALL) {
                 xml << "  <SM>AND</SM>\n";
                 clp = new Rcl::SearchDataClauseSimple(Rcl::SCLT_AND, u8);
+#ifdef ENABLE_SEMANTIC
             } else if (tp == SST_SEM) {
                 xml << "  <SM>SEM</SM>\n";
                 clp = new Rcl::SearchDataClauseSimple(Rcl::SCLT_AND, u8);
+#endif // SEMANTIC
             } else {
                 std::cerr << "UNEXPECTED SEARCH TYPE\n";
                 abort();

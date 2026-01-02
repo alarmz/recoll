@@ -14,6 +14,10 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
+
+#include "docseqsem.h"
+
+#ifdef ENABLE_SEMANTIC
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -21,7 +25,6 @@
 
 #include <json/json.h>
 
-#include "docseqsem.h"
 #include "log.h"
 #include "cmdtalk.h"
 #include "rclconfig.h"
@@ -191,3 +194,5 @@ bool DocSequenceSem::getAbstract(Rcl::Doc &doc, PlainToRich *, std::vector<std::
     out.push_back(abs);
     return true;
 }
+
+#endif // ENABLE_SEMANTIC 

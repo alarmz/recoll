@@ -823,6 +823,7 @@ void RclMain::startSearch(std::shared_ptr<Rcl::SearchData> sdata, bool issimple)
         rcldb->setSynGroupsFile("");
     }
 
+#ifdef ENABLE_SEMANTIC
     if (issimple && sSearch->getSearchType() == SSearch::SST_SEM) {
         // Special case the semantic search 
         class SemWalker: public Rcl::SdataWalker {
@@ -840,6 +841,7 @@ void RclMain::startSearch(std::shared_ptr<Rcl::SearchData> sdata, bool issimple)
         m_source = std::make_shared<DocSequenceSem>(qs2utf8s(tr("Query results")), rcldb,
                                                     walker.m_text);
     } else {
+#endif // SEMANTIC
         Rcl::Query *query = new Rcl::Query(rcldb.get());
         query->setCollapseDuplicates(prefs.collapseDuplicates);
 
@@ -851,7 +853,9 @@ void RclMain::startSearch(std::shared_ptr<Rcl::SearchData> sdata, bool issimple)
 
         m_source->setSortSpec(m_sortspec);
         setFiltSpec();
+#ifdef ENABLE_SEMANTIC
     }
+#endif //SEMANTIC
     emit docSourceChanged(m_source);
     emit sortDataChanged(m_sortspec);
     initiateQuery();
