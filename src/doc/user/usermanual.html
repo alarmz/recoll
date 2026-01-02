@@ -12809,7 +12809,11 @@ application/x-blobapp = internal text/plain</pre>
             "application">Recoll</span> version information and
             links to source release files in <span class=
             "command"><strong>tar</strong></span> format.</p>
-            <p>The shopping list follows:</p>
+            <p>The shopping list follows. I try to keep it up to
+            date, but an easy way to see the current list of build
+            dependencies is to have a look at the debian package
+            control file in the recoll source tree (<code class=
+            "filename">packaging/debian/debian/control</code>).</p>
             <div class="itemizedlist">
               <ul class="itemizedlist" style=
               "list-style-type: disc;">
@@ -13110,19 +13114,30 @@ application/x-blobapp = internal text/plain</pre>
                   <div>
                     <h4 class="title"><a name=
                     "RCL.INSTALL.BUILDING.BUILDING.TAR" id=
-                    "RCL.INSTALL.BUILDING.BUILDING.TAR"></a>Normal
-                    procedure, for source extracted from a tar
-                    distribution)</h4>
+                    "RCL.INSTALL.BUILDING.BUILDING.TAR"></a>Building</h4>
                   </div>
                 </div>
               </div>
               <p>For versions 1.38 and later (else check the manual
               inside the older source):</p>
+              <p>For source extracted from a tar file:</p>
               <pre class="screen"><strong class=
               "userinput"><code>cd recoll-xxx</code></strong>
 <strong class="userinput"><code>meson setup <em class=
 "replaceable"><code>[options]</code></em> build</code></strong>
 <strong class="userinput"><code>ninja -C build</code></strong>
+            </pre>
+              <p>For a git clone, the procedure is almost the same,
+              but the top of the source is the <code class=
+              "filename">src</code> subdirectory. Showing an out of
+              tree build (which you could of course also use for
+              the above tar extracion).</p>
+              <pre class="screen"><strong class=
+              "userinput"><code>cd /some/where/</code></strong>
+<strong class="userinput"><code>meson setup <em class=
+"replaceable"><code>[options]</code></em> /path/to/recoll/src recollbuild</code></strong>
+<strong class=
+"userinput"><code>ninja -C recollbuild</code></strong>
             </pre>
             </div>
           </div>

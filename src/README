@@ -6743,7 +6743,10 @@ B.3.1. Prerequisites
    Check the [323]Recoll download page for up to date Recoll version
    information and links to source release files in tar format.
 
-   The shopping list follows:
+   The shopping list follows. I try to keep it up to date, but an easy way
+   to see the current list of build dependencies is to have a look at the
+   debian package control file in the recoll source tree
+   (packaging/debian/debian/control).
      * If you start from git repository source code, you will need the
        git, obviously (package: git).
      * On Unix-like systems systems, you will need the meson and ninja
@@ -6886,13 +6889,22 @@ meson setup options
    -Duser-unit-dir=DIR Provide an install path for the systemd user unit
    file.
 
-Normal procedure, for source extracted from a tar distribution)
+Building
 
    For versions 1.38 and later (else check the manual inside the older
    source):
+
+   For source extracted from a tar file:
 cd recoll-xxx
 meson setup [options] build
 ninja -C build
+
+   For a git clone, the procedure is almost the same, but the top of the
+   source is the src subdirectory. Showing an out of tree build (which you
+   could of course also use for the above tar extracion).
+cd /some/where/
+meson setup [options] /path/to/recoll/src recollbuild
+ninja -C recollbuild
 
 B.3.3. Installing
 

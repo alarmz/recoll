@@ -7197,7 +7197,9 @@ application/x-blobapp = internal text/plain</programlisting>
         page</link> for up to date &RCL; version information and links to source release files in
         <command>tar</command> format.</para>
 
-        <para>The shopping list follows:</para>
+        <para>The shopping list follows. I try to keep it up to date, but an easy way to see the
+        current list of build dependencies is to have a look at the debian package control file in
+        the recoll source tree (<filename>packaging/debian/debian/control</filename>).</para>
 
         <itemizedlist>
 
@@ -7388,16 +7390,23 @@ application/x-blobapp = internal text/plain</programlisting>
         </sect3>        
 
         <sect3 xml:id="RCL.INSTALL.BUILDING.BUILDING.TAR">
-          <title>Normal procedure, for source extracted from a tar distribution)</title>
+          <title>Building</title>
 
           <para>For versions 1.38 and later (else check the manual inside the older source):</para>
-          <para>
+          <para>For source extracted from a tar file:
             <screen><userinput>cd recoll-xxx</userinput>
 <userinput>meson setup <replaceable>[options]</replaceable> build</userinput>
 <userinput>ninja -C build</userinput>
             </screen>
           </para>
-          
+          <para>For a git clone, the procedure is almost the same, but the top of the source is the
+          <filename>src</filename> subdirectory. Showing an out of tree build (which you could of
+          course also use for the above tar extracion).
+            <screen><userinput>cd /some/where/</userinput>
+<userinput>meson setup <replaceable>[options]</replaceable> /path/to/recoll/src recollbuild</userinput>
+<userinput>ninja -C recollbuild</userinput>
+            </screen>
+          </para>
         </sect3>
 
       </sect2>

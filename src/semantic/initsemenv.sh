@@ -48,8 +48,8 @@ deactivate
 ol=`which ollama`
 if test -z "$ol"; then 
     curl -fsSL https://ollama.com/install.sh | sh
-    ollama pull nomic-embed-text
 fi
+ollama pull nomic-embed-text
 
 cp rclsem_common.py  rclsem_embed.py  rclsem_query.py  rclsem_segment.py  rclsem_talk.py  \
    slicelist.py cmdtalkplugin.py "$venvdir"
