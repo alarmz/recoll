@@ -431,7 +431,7 @@ private:
         std::string out;
         out.reserve(s.size());
         std::string::const_iterator it = s.begin();
-        auto epos = 0;
+        std::string::size_type epos = 0;
         while (it != s.end()) {
             if (*it != '&') {
                 out += *it++;
