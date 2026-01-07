@@ -65,7 +65,7 @@ if get_option('testmains') or get_option('python-module') or get_option('indexer
     xapian = dependency('xapian-core')
     librecolldeps += xapian
     if get_option('semantic')
-        librecolldeps += dependency('jsoncpp')
+        librecolldeps += dependency('jsoncpp', version: '>=1.9.0')
     endif
     if get_option('idxthreads')
         librecolldeps += dependency('threads')
