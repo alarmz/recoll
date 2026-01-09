@@ -932,6 +932,8 @@ bool SearchDataClauseSimple::toNativeQuery(Rcl::Db &db, void *p)
     LOGDEB("SearchDataClauseSimple::toNativeQuery: fld [" << m_field <<
            "] val [" << m_text << "] stemlang [" << getStemLang() << "]\n");
 
+    m_hldata.clear();
+
     // Transform (in)equalities into a range query
     switch (getrel()) {
     case REL_EQUALS:
@@ -1002,6 +1004,9 @@ bool SearchDataClauseRange::toNativeQuery(Rcl::Db &db, void *p)
 {
     LOGDEB("SearchDataClauseRange::toNativeQuery: " << m_field <<
            " :[" << m_text << ".." << m_t2 << "]\n");
+
+    m_hldata.clear();
+
     Xapian::Query *qp = (Xapian::Query *)p;
     *qp = Xapian::Query();
 
@@ -1057,6 +1062,8 @@ bool SearchDataClauseRange::toNativeQuery(Rcl::Db &db, void *p)
 // file names
 bool SearchDataClauseFilename::toNativeQuery(Rcl::Db &db, void *p)
 {
+    m_hldata.clear();
+
     Xapian::Query *qp = (Xapian::Query *)p;
     *qp = Xapian::Query();
 
@@ -1078,6 +1085,9 @@ bool SearchDataClauseFilename::toNativeQuery(Rcl::Db &db, void *p)
 bool SearchDataClausePath::toNativeQuery(Rcl::Db &db, void *p)
 {
     LOGDEB("SearchDataClausePath::toNativeQuery: [" << m_text << "]\n");
+
+    m_hldata.clear();
+    
     Xapian::Query *qp = (Xapian::Query *)p;
     *qp = Xapian::Query();
 
@@ -1135,6 +1145,8 @@ bool SearchDataClausePath::toNativeQuery(Rcl::Db &db, void *p)
 bool SearchDataClauseDist::toNativeQuery(Rcl::Db &db, void *p)
 {
     LOGDEB("SearchDataClauseDist::toNativeQuery\n");
+
+    m_hldata.clear();
 
     Xapian::Query *qp = (Xapian::Query *)p;
     *qp = Xapian::Query();

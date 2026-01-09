@@ -26,9 +26,7 @@
 #include "log.h"
 #include "wasatorcl.h"
 
-using std::list;
 using std::string;
-using std::vector;
 
 static const string cstr_mre("[...]");
 
@@ -41,7 +39,7 @@ DocSequenceDb::DocSequenceDb(std::shared_ptr<Rcl::Db> db,
 
 void DocSequenceDb::getTerms(HighlightData& hld)
 {
-    m_fsdata->getTerms(hld);
+    m_sdata->getTerms(hld);
 }
 
 void DocSequenceDb::getDocTerms(const Rcl::Doc& doc, std::vector<std::vector<std::string>>& terms)
@@ -76,7 +74,7 @@ int DocSequenceDb::getResCnt()
 
 // This one only gets called to fill-up the snippets window
 // We ignore most abstract/snippets preferences.
-bool DocSequenceDb::getAbstract(Rcl::Doc &doc, PlainToRich *ptr, vector<Rcl::Snippet>& vpabs,
+bool DocSequenceDb::getAbstract(Rcl::Doc &doc, PlainToRich *ptr, std::vector<Rcl::Snippet>& vpabs,
                                 int maxlen, bool sortbypage)
 {
     LOGDEB("DocSequenceDb::getAbstract/pair\n");
@@ -106,7 +104,7 @@ bool DocSequenceDb::getAbstract(Rcl::Doc &doc, PlainToRich *ptr, vector<Rcl::Sni
     return true;
 }
 
-bool DocSequenceDb::getAbstract(Rcl::Doc &doc,  PlainToRich *ptr, vector<string>& vabs, 
+bool DocSequenceDb::getAbstract(Rcl::Doc &doc,  PlainToRich *ptr, std::vector<string>& vabs, 
                                 bool forcesnips)
 {
     std::unique_lock<std::mutex> locker(o_dblock);
@@ -136,13 +134,13 @@ int DocSequenceDb::getFirstMatchPage(Rcl::Doc &doc, string& term)
     return -1;
 }
 
-list<string> DocSequenceDb::expand(Rcl::Doc &doc)
+std::list<string> DocSequenceDb::expand(Rcl::Doc &doc)
 {
     std::unique_lock<std::mutex> locker(o_dblock);
     if (!setQuery())
-        return list<string>();
-    vector<string> v = m_q->expand(doc);
-    return list<string>(v.begin(), v.end());
+        return std::list<string>();
+    std::vector<string> v = m_q->expand(doc);
+    return std::list<string>(v.begin(), v.end());
 }
 
 string DocSequenceDb::title()
