@@ -570,6 +570,8 @@ query/dynconf.cpp
 query/dynconf.h
 query/filtseq.cpp
 query/filtseq.h
+query/hldata.cpp
+query/hldata.h
 query/location.hh
 query/position.hh
 query/qresultstore.cpp
@@ -697,8 +699,6 @@ utils/fileudi.cpp
 utils/fileudi.h
 utils/fstreewalk.cpp
 utils/fstreewalk.h
-utils/hldata.cpp
-utils/hldata.h
 utils/idfile.cpp
 utils/idfile.h
 utils/listmem.cpp

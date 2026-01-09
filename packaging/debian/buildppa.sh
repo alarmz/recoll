@@ -7,7 +7,6 @@
 # Active series:
 # 22.04LTS jammy    2027-06
 # 24.04LTS noble    2029-06
-# 25.04    plucky   2026-01
 # 25.10    questing 2026-07
 
 SERIES="jammy noble plucky questing"

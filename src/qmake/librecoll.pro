@@ -64,6 +64,7 @@ SOURCES += \
 ../query/docseqhist.cpp \
 ../query/dynconf.cpp \
 ../query/filtseq.cpp \
+../query/hldata.cpp \
 ../query/qresultstore.cpp \
 ../query/recollq.cpp \
 ../query/reslistpager.cpp \
@@ -103,7 +104,6 @@ SOURCES += \
 ../utils/ecrontab.cpp \
 ../utils/fileudi.cpp \
 ../utils/fstreewalk.cpp \
-../utils/hldata.cpp \
 ../utils/idfile.cpp \
 ../utils/listmem.cpp \
 ../utils/log.cpp \

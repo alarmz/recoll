@@ -62,7 +62,7 @@ public:
      * @param in raw text out of internfile.
      * @param[output] out rich text output, divided in chunks (to help our caller to
      *   avoid inserting half tags into textedit which doesnt like it)
-     * @param in hdata terms and groups to be highlighted. See utils/hldata.h
+     * @param in hdata terms and groups to be highlighted. See hldata.h
      * @param chunksize max size of chunks in output list
      */
     virtual bool plaintorich(const std::string &in, std::list<std::string> &out,
