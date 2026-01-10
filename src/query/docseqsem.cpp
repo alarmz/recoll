@@ -122,9 +122,6 @@ bool DocSequenceSem::Internal::mayberunquery()
                              decod_i[2].asString(),
                              decod_i[3].asString(),
                              decod_i[4].asString()});
-        // TBD FIX THIS !
-        if (results.back().rcludi.find('|') == std::string::npos)
-            results.back().rcludi += '|';
     }
 
     return true;
