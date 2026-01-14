@@ -241,6 +241,8 @@ set(librecoll_SOURCES
     query/dynconf.h
     query/filtseq.cpp
     query/filtseq.h
+    query/hldata.h
+    query/hldata.cpp
     common/plaintorich.cpp
     common/plaintorich.h
     query/qresultstore.cpp
@@ -320,8 +322,6 @@ set(librecoll_SOURCES
     utils/fileudi.h
     utils/fstreewalk.cpp
     utils/fstreewalk.h
-    utils/hldata.h
-    utils/hldata.cpp
     utils/idfile.cpp
     utils/idfile.h
     utils/listmem.cpp
