@@ -539,6 +539,7 @@ set(COMMON_INCLUDES_DIRS
     common
     index
     internfile
+    query
     rcldb
     unac
     utils
