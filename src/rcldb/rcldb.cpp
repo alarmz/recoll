@@ -206,7 +206,14 @@ bool Db::open(OpenMode mode, OpenError *error, int flags)
                     *error = DbOpenExtraDb;
                 LOGDEB("Db::Open: adding query db [" << &db << "]\n");
                 // An error here used to be non-fatal (1.13 and older) but I can't see why
-                m_ndb->xrdb.add_database(Xapian::Database(db));
+                std::string ermsg1;
+                try {
+                    m_ndb->xrdb.add_database(Xapian::Database(db));
+                } XCATCHERROR(ermsg1);
+                if (!ermsg1.empty()) {
+                    m_reason += "error adding external Xapian index: " + db + " : " + ermsg1;
+                    return false;
+                }
             }
         }
         if (error)
@@ -230,7 +237,7 @@ bool Db::open(OpenMode mode, OpenError *error, int flags)
         return true;
     } XCATCHERROR(ermsg);
 
-    m_reason = ermsg;
+    m_reason += "error opening Xapian index " + dir + " : " + ermsg;
     LOGERR("Db::open: exception while opening [" << dir << "]: " << ermsg << "\n");
     return false;
 }

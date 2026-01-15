@@ -322,12 +322,10 @@ int recollq(RclConfig **cfp, int argc, char **argv)
         stringToStrings(sf, fields);
     }
     Rcl::Db rcldb(rclconfig);
-    if (!extra_dbs.empty()) {
-        for (const auto& db : extra_dbs) {
-            if (!rcldb.addQueryDb(db)) {
-                std::cerr << "Can't add index: " << db << "\n";
-                exit(1);
-            }
+    for (const auto& db : extra_dbs) {
+        if (!rcldb.addQueryDb(db)) {
+            std::cerr << "Can't add index: " << db << "\n";
+            exit(1);
         }
     }
     if (!syngroupsfn.empty()) {
@@ -340,8 +338,7 @@ int recollq(RclConfig **cfp, int argc, char **argv)
     rcldb.setMaxSpellDist(autospellmaxdist);
     
     if (!rcldb.open(Rcl::Db::DbRO)) {
-        std::cerr << "Cant open database in " << rclconfig->getDbDir() << 
-            " reason: " << rcldb.getReason() << "\n";
+        std::cerr << "Xapian index open error: " << rcldb.getReason() << "\n";
         exit(1);
     }
 
