@@ -1,12 +1,82 @@
 .TH RCLGREP 1 "20 September 2022"
 .SH NAME
-rclgrep \- grep-like program based on the recoll data extraction functions
+rclgrep \- Print lines that match of patterns
+.
 .SH SYNOPSIS
+.B rclgrep \-h
+.br
 .B rclgrep
-[
-.B \--config
-<configdir>
-]
+[\fI\,OPTION\/\fR ...] \fI\,PATTERNS\/\fR [\fI\,FILE\/\fR ...]
+.br
+.B rclgrep
+[\fI\,OPTION\/\fR ...]
+.B \-e
+.I PATTERNS
+\&.\|.\|.\&
+[\fI\,FILE\/\fR ...]
+.br
+.B rclgrep
+[\fI\,OPTION\/\fR ...]
+.B \-f
+.I PATTERNS_FILE
+\&.\|.\|.\&
+[\fI\,FILE\/\fR ...]
+.
 
 .SH DESCRIPTION
-Some bla bla
+.B rclgrep
+mimicks the interface and output of the
+.B grep(1)
+command while using the
+.B recoll
+data extraction subsystem, which enables it to look for matches not only in text files, but in
+mostly any type of document, including nested ones (email attachments, archives, etc.).
+.PP
+The program is mostly an experiment in checking how an index-less pattern search program could be
+useful. In practise it is slow, and maybe not quite finished.
+.PP
+Some of the options which are shared with 
+.B grep(1)
+will not be documented here.
+
+.SH OPTIONS
+.TP
+.BR \-h ", " \-\^\-help
+Print usage string.
+.TP
+.BR \-e ", " \-\^\-regexp= PATTERNS
+Patterns to search for. Can be given multiple times.
+if \-e is used, all non-option arguments will be used as paths (no [pattern] argument).
+.TP
+.BR \-f ", " \-\^\-file= FILE
+Get patterns from the file argument, one per line.
+.TP
+.BR \-r ", " \-\^\-recurse
+Operate recursively on directories. This is the default except if no paths
+are given in which case rclgrep searches stdin. \-r is needed to cause recursing on the current
+directory in the absence of a file argument.
+.TP
+.BR \-\^\-include= FN
+File name pattern for files to be searched. Can be given multiple times.
+.TP
+.BR \-\^\-exclude= FN
+File name pattern for files not to be searched. Can be given multiple times.
+.TP
+.BR \-\^\-exclude-from= FN
+Take file name exclusion patterns from FILE.
+.TP
+.BR \-\^\-config= CONFIGDIR
+Specify configuration directory (default ~/.config/rclgrep). This allows getting data extraction
+options from an existing
+.B recoll
+configuration directory or from the dedicated
+.B rclgrep
+one. 
+.TP
+.B \-v,\-w,\-x,\-c,\-L,\-l,\-H,\-n,\-A,\-B,\-C,\-q,\-s,\-R
+See grep manual.
+
+
+.SH "SEE ALSO"
+.BR grep (1),
+.BR recollindex (1),

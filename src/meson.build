@@ -528,6 +528,7 @@ if get_option('testmains')
 endif
 if get_option('rclgrep')
     subdir('rclgrep')
+    manfiles += 'doc/man/rclgrep.1'
 endif
 if get_option('qtgui')
     subdir('qtgui')
