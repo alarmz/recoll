@@ -261,6 +261,13 @@ cfile = configure_file(output: 'autoconfig.h', configuration: recoll_conf)
 #  command: ['./ylwrap', '@INPUT@'],
 #)
 
+# The config file manpage is the only one that's always installed.
+# Others will be added to the files() set created here,
+# based on which tools are enabled in the build configuration.
+manfiles = files(
+'doc/man/recoll.conf.5',
+)
+
 librecoll_sources = [
     'aspell/rclaspell.cpp',
     'bincimapmime/convert.cc',
@@ -457,6 +464,7 @@ if get_option('indexer')
         install: true,
     )
 
+    manfiles += 'doc/man/recollindex.1'
 endif
 
 ############# Recollq
@@ -474,6 +482,7 @@ if get_option('recollq')
         install: true,
     )
 
+    manfiles += 'doc/man/recollq.1'
 endif
 
 ############# Xadump
@@ -496,6 +505,7 @@ if get_option('xadump')
         install: true,
     )
 
+    manfiles += 'doc/man/xadump.1'
 endif
 
 py_mod = import('python')
@@ -521,18 +531,12 @@ if get_option('rclgrep')
 endif
 if get_option('qtgui')
     subdir('qtgui')
+    manfiles += 'doc/man/recoll.1'
 endif
 if get_option('catch')
    subdir('catch')
 endif
 
-manfiles = files(
-'doc/man/recoll.1',
-'doc/man/recoll.conf.5',
-'doc/man/recollindex.1',
-'doc/man/recollq.1',
-'doc/man/xadump.1',
-)
 install_man(manfiles)
 
 example_files = files(
