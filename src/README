@@ -5742,21 +5742,21 @@ Important
           $XAPIAN_FLUSH_THRESHOLD documents created, modified or deleted:
           as memory usage depends on average document size, not only
           document count, the Xapian approach is is not very useful, and
-          you should let Recoll manage the flushes. The program compiled
-          value is 0. The configured default value (from this file) is now
-          50 MB, and should be ok in many cases. You can set it as low as
-          10 to conserve memory, but if you are looking for maximum speed,
-          you may want to experiment with values between 20 and 200. In my
-          experience, values beyond this are always counterproductive. If
-          you find otherwise, please drop me a note.
+          you should let Recoll manage the flushes, however the program
+          compiled value is 0. The configured default value (from this
+          file) is now 100 MB, and should be ok in many cases. You can set
+          it as low as 10 to conserve memory, but if you are looking for
+          maximum speed, you may want to experiment with values between 20
+          and 300. In my experience, values beyond this tend to be
+          counterproductive. If you find otherwise, please drop me a note.
 
    filtermaxseconds
-          Maximum external filter execution time in seconds. Default 1200
-          (20mn). Set to 0 for no limit. This is mainly to avoid infinite
-          loops in postscript files (loop.ps)
+          Linux: maximum external filter execution time in seconds.
+          Default 1200 (20mn). Set to 0 for no limit. This is mainly to
+          avoid infinite loops in postscript files (loop.ps)
 
    filtermaxmbytes
-          Maximum virtual memory space for filter processes
+          Linux: maximum virtual memory space for filter processes
           (setrlimit(RLIMIT_AS)), in megabytes. Note that this includes
           any mapped libs (there is no reliable Linux way to limit the
           data space only), so we need to be a bit generous here. Anything
@@ -5765,6 +5765,12 @@ Important
           need a lot of VM (most of it text), esp. pdftk when executed
           from Python rclpdf.py. You can use a much lower value if you
           don't need Java.
+
+   oomadj
+          Linux: Out-Of-Memory killer adjust score value for the indexer
+          process. See choom(1). During the indexer startup, this value is
+          passed as the adjust parameter to the choom command with the
+          indexer process as target.
 
    thrQSizes
           Task queue depths for each stage and threading configuration

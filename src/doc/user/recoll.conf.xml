@@ -532,37 +532,35 @@ result list. Defaults to $prefix/share/recoll/images
 <title>Parameters affecting indexing performance and resource usage </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.IDXFLUSHMB">
 <term><varname>idxflushmb</varname></term>
-<listitem><para>Threshold (megabytes of new data) where we flush from memory to
-disk index. Setting this allows some control over memory
-usage by the indexer process. A value of 0 means no explicit flushing,
-which lets Xapian perform its own thing, meaning flushing every
-$XAPIAN_FLUSH_THRESHOLD documents created, modified or deleted: as memory
-usage depends on average document size, not only document count, the
-Xapian approach is is not very useful, and you should let Recoll manage
-the flushes. The program compiled value is 0. The configured default
-value (from this file) is now 50 MB, and should be ok in many cases.
-You can set it as low as 10 to conserve memory, but if you are looking
-for maximum speed, you may want to experiment with values between 20 and
-200. In my experience, values beyond this are always counterproductive. If
-you find otherwise, please drop me a note.
+<listitem><para>Threshold (megabytes of new data) where we flush from memory to disk index. Setting this allows some control over memory usage by the indexer process. A value of 0
+means no explicit flushing, which lets Xapian perform its own thing, meaning flushing every
+$XAPIAN_FLUSH_THRESHOLD documents created, modified or deleted: as memory usage depends on average
+document size, not only document count, the Xapian approach is is not very useful, and you should
+let Recoll manage the flushes, however the program compiled value is 0.
+The configured default value (from this file) is now 100 MB, and should be ok in many cases.  You
+can set it as low as 10 to conserve memory, but if you are looking for maximum speed, you may want
+to experiment with values between 20 and 300. In my experience, values beyond this tend to be
+counterproductive. If you find otherwise, please drop me a note.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.FILTERMAXSECONDS">
 <term><varname>filtermaxseconds</varname></term>
-<listitem><para>Maximum external filter execution time in
-seconds. Default 1200 (20mn). Set to 0 for no limit. This
-is mainly to avoid infinite loops in postscript files
+<listitem><para>Linux: maximum external filter execution time in seconds. Default 1200
+(20mn). Set to 0 for no limit. This is mainly to avoid infinite loops in postscript files
 (loop.ps)
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.FILTERMAXMBYTES">
 <term><varname>filtermaxmbytes</varname></term>
-<listitem><para>Maximum virtual memory space for filter processes
-(setrlimit(RLIMIT_AS)), in megabytes. Note that this includes any mapped libs (there is no reliable
-Linux way to limit the data space only), so we need to be a bit generous
-here. Anything over 2000 will be ignored on 32 bits machines.
-The high default value is needed because of java-based handlers (pdftk)
-which need a lot of VM (most of it text), esp. pdftk when
-executed from Python rclpdf.py. You can use a much lower value if you don't
-need Java.
+<listitem><para>Linux: maximum virtual memory space for filter processes (setrlimit(RLIMIT_AS)), in
+megabytes. Note that this includes any mapped libs (there is no reliable Linux way to limit the data
+space only), so we need to be a bit generous here. Anything over 2000 will be ignored on 32 bits
+machines.  The high default value is needed because of java-based handlers (pdftk) which need a
+lot of VM (most of it text), esp. pdftk when executed from Python rclpdf.py. You can use a much
+lower value if you don't need Java.
+</para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.OOMADJ">
+<term><varname>oomadj</varname></term>
+<listitem><para>Linux: Out-Of-Memory killer adjust score value for the indexer process. See choom(1). During the indexer startup, this value is passed as the adjust parameter to
+the choom command with the indexer process as target.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.THRQSIZES">
 <term><varname>thrQSizes</varname></term>
