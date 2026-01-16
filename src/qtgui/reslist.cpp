@@ -1003,7 +1003,18 @@ void ResList::showQueryDetails()
     QMessageBox::information(this, tr("Query details"), desc);
 }
 
+#if defined(USING_WEBENGINE)
 void ResList::onLinkClicked(const QUrl &qurl)
+{
+    QTimer::singleShot(0, this, [this, qurl] () {onLinkClicked1(qurl);});
+}
+#endif
+
+#if defined(USING_WEBENGINE)
+void ResList::onLinkClicked1(const QUrl &qurl)
+#else
+void ResList::onLinkClicked(const QUrl &qurl)
+#endif
 {
     string strurl = pc_decode(qs2utf8s(qurl.toString()));
 

@@ -123,6 +123,9 @@ protected:
 
 public slots:
     virtual void onLinkClicked(const QUrl &);
+#if defined(USING_WEBENGINE)
+    virtual void onLinkClicked1(const QUrl &);
+#endif
     virtual void onPopupJsDone(const QVariant&);
 
 protected slots:
