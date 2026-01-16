@@ -126,7 +126,7 @@ private:
     bool startCmd();
     bool readDataElement(std::string& name, std::string& data);
     bool m_filefirst;
-    int  m_maxmemberkb;
+    int  m_membermaxkbs;
     MEAdv m_adv;
 };
 

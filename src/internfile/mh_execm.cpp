@@ -49,10 +49,10 @@ bool MimeHandlerExecMultiple::startCmd()
     // Command name
     string cmd = params.front();
     
-    m_maxmemberkb = 50000;
-    m_config->getConfParam("membermaxkbs", &m_maxmemberkb);
+    m_membermaxkbs = 50000;
+    m_config->getConfParam("membermaxkbs", &m_membermaxkbs);
     ostringstream oss;
-    oss << "RECOLL_FILTER_MAXMEMBERKB=" << m_maxmemberkb;
+    oss << "RECOLL_FILTER_MAXMEMBERKB=" << m_membermaxkbs;
     m_cmd.putenv(oss.str());
 
     m_cmd.putenv("RECOLL_CONFDIR", m_config->getConfDir());
@@ -136,8 +136,8 @@ bool MimeHandlerExecMultiple::readDataElement(string& name, string &data)
         return false;
     }
 
-    if (len / 1024 > m_maxmemberkb) {
-        LOGERR("MHExecMultiple: data len > maxmemberkb\n");
+    if (len / 1024 > m_membermaxkbs) {
+        LOGERR("MHExecMultiple: data len > membermaxkbs\n");
         return false;
     }
     
