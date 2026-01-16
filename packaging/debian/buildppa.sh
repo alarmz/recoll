@@ -9,12 +9,11 @@
 # 24.04LTS noble    2029-06
 # 25.10    questing 2026-07
 
-SERIES="jammy noble plucky questing"
-SERIES="jammy noble plucky"
+SERIES="jammy noble questing"
 
 PPA_KEYID=7808CE96D38B9201
 
-RCLVERS=1.43.9
+RCLVERS=1.43.10
 GSSPVERS=1.1.3
 PPAVERS=1
 

@@ -1,3 +1,20 @@
+recoll (1.43.10-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * GUI: fix crash occuring on certain platforms (linux/qt6) when clicking
+    one of the "Next" links inside the result list.
+  * GUI: fixed bug which sometimes prevented using a phrase as search input to
+    the external viewer.
+  * Query language: accept empty query with "all documents" meaning.
+    Avoids the "mime:*" hack when used from the python module or recollq.
+  * rclrunsoffice.py: don't generate exception when soffice is not found,
+    just exit in error. Avoids system popups.
+  * Indexer: avoid a hard dependency on the Perl JSON module, it's only
+    necessary for image OCR which is not enabled by default (rclimgp.py)
+  * Merged the interface to the LLM embedding test scripts as inactive code.
+    use meson -Dsemantic=true to activate.
+    
+ -- Jean-Francois Dockes <jf@dockes.org>  Fri, 16 Jan 2026 14:51:00 +0100
+
 recoll (1.43.9-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Indexer: fix thread safety issue leading to rare crashes.
