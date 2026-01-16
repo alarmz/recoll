@@ -74,6 +74,26 @@ const static QUrl baseUrl("file:///");
 
 using std::string;
 
+#if defined(PREVIEW_WEBENGINE)
+static QWebEngineProfile* theWebEngineProfile;
+RclWebInterceptor *RclWebInterceptor::theInterceptor;
+RclWebInterceptor *RclWebInterceptor::getInterceptor()
+{
+    if (nullptr == theInterceptor) {
+        theInterceptor = new RclWebInterceptor();
+    }
+    return theInterceptor;
+}
+QWebEngineProfile *getTheProfile()
+{
+    if (nullptr == theWebEngineProfile) {
+        theWebEngineProfile = new QWebEngineProfile();
+        theWebEngineProfile->setUrlRequestInterceptor(RclWebInterceptor::getInterceptor());
+    }
+    return theWebEngineProfile;
+}
+
+#endif // Webengine
 
 void Preview::init()
 {
@@ -226,15 +246,10 @@ void Preview::closeEvent(QCloseEvent *e)
     prefs.pvwidth = width();
     prefs.pvheight = height();
 
-    /* Release all temporary files (but maybe none is actually set) */
+    /* Actually close the tabs else we get complaints from WebEngine about profiles being released
+     * too early. This also deletes the temp files if any. */
     for (int i = 0; i < pvTab->count(); i++) {
-        PreviewTextEdit *edit = editor(i);
-        if (edit) {
-            forgetTempFile(edit->m_imgfilename);
-#ifdef PREVIEW_WEBENGINE
-            forgetTempFile(edit->m_datafilename);
-#endif
-        }
+        closeTab(i);
     }
     emit previewExposed(this, m_searchId, -1);
     emit previewClosed(this);
@@ -388,8 +403,12 @@ void Preview::closeTab(int index)
         return;
     }
     PreviewTextEdit *edit = editor(index);
-    if (edit)
+    if (edit) {
         forgetTempFile(edit->m_imgfilename);
+#ifdef PREVIEW_WEBENGINE
+            forgetTempFile(edit->m_datafilename);
+#endif
+    }
     if (pvTab->count() > 1) {
         pvTab->removeTab(index);
     } else {
@@ -856,7 +875,7 @@ bool Preview::loadDocInCurrentTab(Rcl::Doc &idoc, int docnum)
     }
 #else
     editor->m_richtxt.clear();
-    for (const auto& chunk : qAsConst(qrichlst)) {
+    for (const auto& chunk : qrichlst) {
         editor->m_richtxt.append(chunk);
     }
     LOGDEB2("HTML: " << qs2utf8s(editor->m_richtxt).substr(0, 5000) << "\n");
@@ -980,9 +999,7 @@ PreviewTextEdit::PreviewTextEdit(QWidget* parent, const char* nm, Preview *pv)
 #elif defined(PREVIEW_WEBENGINE)
     // It seems that the only way for preventing webengine from fetching stuff from the web is to
     // set an interceptor (forbidding everything except the initial page load).
-    auto profile = new QWebEngineProfile(this);
-    profile->setUrlRequestInterceptor(new RclWebInterceptor());
-    setPage(new RclWebPage(profile, this));
+    setPage(new RclWebPage(getTheProfile(), this));
     settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
     connect(page(), SIGNAL(linkClicked(const QUrl &)), this, SLOT(onAnchorClicked(const QUrl &)));
 #else

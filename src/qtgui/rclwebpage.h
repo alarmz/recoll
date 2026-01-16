@@ -54,8 +54,7 @@ signals:
 // We intercept and forbid all loads except the initial page data (type 1, TypeTyped)
 class RclWebInterceptor: public QWebEngineUrlRequestInterceptor {
 public:
-    RclWebInterceptor(QObject *p = nullptr)
-        : QWebEngineUrlRequestInterceptor(p) {}
+    static RclWebInterceptor *getInterceptor();
     virtual void interceptRequest(QWebEngineUrlRequestInfo &info) {
         if (info.navigationType() != QWebEngineUrlRequestInfo::NavigationTypeTyped) {
             //qDebug() << "interceptRequest: blocking navtype " << info.navigationType() <<
@@ -63,6 +62,10 @@ public:
             info.block(true);
         }
     }
+private:
+    RclWebInterceptor(QObject *p = nullptr)
+        : QWebEngineUrlRequestInterceptor(p) {}
+    static RclWebInterceptor *theInterceptor;
 };
 // For enums
 #define WEBPAGE QWebEnginePage
