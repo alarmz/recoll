@@ -202,7 +202,7 @@ void raiseWidget(QWidget* widget) {
 
 extern void qInitImages_recoll();
 
-static const char *thisprog;
+static string thisprog;
 
 // BEWARE COMPATIBILITY WITH recollq OPTIONS letters
 static int    op_flags;
@@ -250,7 +250,7 @@ Usage(void)
 {
     FILE *fp = (op_flags & OPT_h) ? stdout : stderr;
     fprintf(fp, "%s\n", Rcl::version_string().c_str());
-    fprintf(fp, "%s: Usage: %s", thisprog, usage);
+    fprintf(fp, "%s: Usage: %s", thisprog.c_str(), usage);
     exit((op_flags & OPT_h)==0);
 }
 
@@ -340,35 +340,33 @@ int main(int argc, char **argv)
     string question;
     string urltoview;
 
-    // Avoid disturbing argc and argv. Especially, setting argc to 0 prevents WM_CLASS to be set
-    // from argv[0] (it appears that qt keeps a ref to argc, and that it is used at exec() time to
-    // set WM_CLASS from argv[0]). Curiously, it seems that the argv pointer can be modified without
-    // consequences, but we use a copy to play it safe
-    int myargc = argc;
-    char **myargv = argv;
-    thisprog = myargv[0];
-    myargc--; myargv++;
-    
-    while (myargc > 0 && **myargv == '-') {
-        (*myargv)++;
-        if (!(**myargv))
+    QStringList arguments = app.arguments();
+    thisprog = arguments.takeAt(0).toStdString();
+
+    while (arguments.size() > 0 && arguments.at(0).startsWith('-')) {
+        if (arguments.at(0).size() < 2)
             Usage();
-        while (**myargv)
-            switch (*(*myargv)++) {
+        int argidx = 0;
+        int maxidx = arguments.at(0).size();
+        while (++argidx < maxidx) {
+            switch (arguments.at(0).at(argidx).toLatin1()) {
             case 'a': op_flags |= OPT_a; break;
-            case 'c':   op_flags |= OPT_c; if (myargc < 2)  Usage();
-                a_config = *(++myargv);
-                myargc--; goto b1;
+            case 'c':   op_flags |= OPT_c; if (arguments.size() < 2)  Usage();
+                a_config = arguments.takeAt(1).toStdString();
+                maxidx = 0;  // end inner loop
+                break;
             case 'f': op_flags |= OPT_f; break;
-            case 'h': op_flags |= OPT_h; Usage();break;
-            case 'L':   op_flags |= OPT_L; if (myargc < 2)  Usage();
-                a_lang = *(++myargv);
-                myargc--; goto b1;
+            case 'h': op_flags |= OPT_h; Usage(); break;
+            case 'L':   op_flags |= OPT_L; if (arguments.size() < 2)  Usage();
+                a_lang = arguments.takeAt(1).toStdString();
+                maxidx = 0;  // end inner loop
+                break;
             case 'l': op_flags |= OPT_l; break;
             case 'o': op_flags |= OPT_o; break;
-            case 'q':   op_flags |= OPT_q; if (myargc < 2)  Usage();
-                question = *(++myargv);
-                myargc--; goto b1;
+            case 'q':   op_flags |= OPT_q; if (arguments.size() < 2)  Usage();
+                question = arguments.takeAt(1).toStdString();
+                maxidx = 0;  // end inner loop
+                break;
             case 't': op_flags |= OPT_t; break;
             case 'v': op_flags |= OPT_v;
                 fprintf(stdout, "%s\n", Rcl::version_string().c_str());
@@ -377,26 +375,25 @@ int main(int argc, char **argv)
             case 'w': op_flags |= OPT_w; break;
             default: Usage();
             }
-    b1: myargc--; myargv++;
+        }
+        arguments.removeAt(0);
     }
 
     // If -q was given, all remaining non-option args are concatenated
     // to the query. This is for the common case recoll -q x y z to
     // avoid needing quoting "x y z"
-    if (op_flags & OPT_q)
-        while (myargc > 0) {
-            question += " ";
-            question += *myargv++;
-            myargc--;
-        }
+    if (op_flags & OPT_q && arguments.size() > 0) {
+        question += ' ' + arguments.join(' ').toStdString();
+        arguments.clear();
+    }
 
     // Else the remaining argument should be an URL to be opened
-    if (myargc == 1) {
-        urltoview = *myargv++;myargc--;
+    if (arguments.size() == 1) {
+        urltoview = arguments.takeAt(0).toStdString();
         if (urltoview.compare(0, 7, cstr_fileu)) {
             Usage();
         }
-    } else if (myargc > 0)
+    } else if (arguments.size() > 0)
         Usage();
 
 
