@@ -33,7 +33,6 @@ import glob
 import traceback
 import atexit
 import signal
-import time
 
 import rclexecm
 import rclconfig
@@ -327,58 +326,62 @@ class PDFExtractor:
         # print input
         inheader = False
         inbody = False
+        prolog = True
         didcs = False
-        output = b""
+        output = bytearray()
         isempty = True
         fields = {}
         if self.pdfinfoversion > 211000:
             fields = self._customfields()
-        for line in input.split(b"\n"):
-            if line.find(b"</head>") != -1:
-                inheader = False
-            if line.find(b"</pre>") != -1:
-                inbody = False
+        for line in input:
             if inheader:
-                if not didcs:
-                    output += b'<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">\n'
-                    for fld, val in fields.items():
-                        output += self._metatag(fld, val) + b"\n"
-                    didcs = True
-                m = None
-                if self.needescape:
-                    # Look for a title line and escape the data
-                    m = re.search(rb"(.*<title>)(.*)(<\/title>.*)", line)
-                    if m:
-                        line = m.group(1) + rclexecm.htmlescape(m.group(2)) + m.group(3)
-                if not m:
-                    # Not a title line. Look for a meta one, possibly replace the name and escape
-                    # the data if needed
-                    m = re.search(rb'(.*name=")([^"]*)(.*content=")(.*)(".*/>.*)', line)
-                    if m:
-                        nm = m.group(2)
-                        data = m.group(4)
-                        if self.needescape:
-                            data = rclexecm.htmlescape(data)
-                        if nm in self.metareplace:
-                            nm = self.metareplace[nm]
-                        line = b'<meta name="' + nm + b'" content="' + data + b'"/>'
+                if line.find(b"</head>") != -1:
+                    inheader = False
+                else:
+                    if not didcs:
+                        output += b'<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">\n'
+                        for fld, val in fields.items():
+                            output += self._metatag(fld, val) + b"\n"
+                        didcs = True
+                    m = None
+                    if self.needescape:
+                        # Look for a title line and escape the data
+                        m = re.search(rb"(.*<title>)(.*)(<\/title>.*)", line)
+                        if m:
+                            line = m.group(1) + rclexecm.htmlescape(m.group(2)) + m.group(3)
+                    if not m:
+                        # Not a title line. Look for a meta one, possibly replace the name and escape
+                        # the data if needed
+                        m = re.search(rb'(.*name=")([^"]*)(.*content=")(.*)(".*/>.*)', line)
+                        if m:
+                            nm = m.group(2)
+                            data = m.group(4)
+                            if self.needescape:
+                                data = rclexecm.htmlescape(data)
+                            if nm in self.metareplace:
+                                nm = self.metareplace[nm]
+                            line = b'<meta name="' + nm + b'" content="' + data + b'"/>'
 
             elif inbody:
-                s = line[0:1]
-                if s != b"\x0c" and s != b"<":
-                    isempty = False
-                # We used to remove end-of-line hyphenation (and join lines), but but it's not clear
-                # that we should do this as pdftotext without the -layout option does it ?
-                # pdftotext -htmlmeta v 22.02.0 2024-02 *still* does not escape the body text !
-                line = rclexecm.htmlescape(line)
+                if line.find(b"</pre>") != -1:
+                    inbody = False
+                else:
+                    s = line[0:1]
+                    if s != b"\x0c" and s != b"<":
+                        isempty = False
+                    # We used to remove end-of-line hyphenation (and join lines), but but it's not
+                    # clear that we should do this as pdftotext without the -layout option does it ?
+                    # pdftotext -htmlmeta v 22.02.0 2024-02 *still* does not escape the body text !
+                    line = rclexecm.htmlescape(line)
 
-            if line.find(b"<head>") != -1:
+            if prolog and line.find(b"<head>") != -1:
                 inheader = True
-            if line.find(b"<pre>") != -1:
+                prolog = False
+            elif not inbody and line.find(b"<pre>") != -1:
                 inbody = True
 
-            output += line + b"\n"
-
+            output.extend(line)
+            output.extend(b"\n")
         return output, isempty
 
     def _metatag(self, nm, val):
@@ -658,22 +661,15 @@ class PDFExtractor:
         else:
             eof = rclexecm.RclExecM.noteof
 
-        html = subprocess.check_output(
-            [
-                self.pdftotext,
-                "-htmlmeta",
-                "-enc",
-                "UTF-8",
-                "-eol",
-                "unix",
-                "-q",
-                self.filename,
-                "-",
-            ]
+        process = subprocess.Popen(
+            [self.pdftotext, "-htmlmeta", "-enc", "UTF-8", "-eol", "unix", "-q", self.filename, "-"],
+            stdout=subprocess.PIPE,
         )
 
-        html, isempty = self._fixhtml(html)
+        html, isempty = self._fixhtml(process.stdout)
         # self.em.rclog("ISEMPTY: %d : data: \n%s" % (isempty, html))
+        process.stdout.close()
+        process.wait()
 
         self.config.setKeyDir(os.path.dirname(self.filename))
         forceocr = rclexecm.configparamtrue(self.config.getConfParam("pdfforceocr"))
