@@ -4354,7 +4354,7 @@ Dadurch sollten Ergebnisse, die exakte Übereinstimmungen der Suchworte enthalte
     </message>
     <message>
         <source>Edit selected entries</source>
-        <translation>Ausgewählte Eiinträge bearbeiten</translation>
+        <translation>Ausgewählte Einträge bearbeiten</translation>
     </message>
 </context>
 <context>
