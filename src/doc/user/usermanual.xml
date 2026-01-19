@@ -3875,9 +3875,16 @@ MimeType=*/*</programlisting>
         the <option>-q</option> argument as a query language string. You can use these options to
         interpret the argument as an <literal>Any Term</literal>, <literal>File Name</literal> or
         <literal>All Terms</literal> query instead.</para>
+
         <para>The <option>-t</option> option will tell the program to behave exactly like the
         <command>recollq</command> command, printing the results to the standard output (terminal)
-        instead of starting a graphical window.</para>
+        instead of starting a graphical window. This option must be given separately,
+        e.g.
+        <programlisting>recoll -tq <replaceable>some query</replaceable></programlisting>
+        will *not* work, use
+        <programlisting>recoll -t -q <replaceable>some query</replaceable></programlisting>
+        instead.</para>
+
         <para>The <option>-w</option> option starts the program minimized. <option>-W</option> only
         creates a system tray icon (the system tray support must be enabled in the <guilabel>GUI
         preferences</guilabel> <guilabel>User interface</guilabel> tab).</para>

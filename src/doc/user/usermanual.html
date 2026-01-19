@@ -6289,7 +6289,14 @@ MimeType=*/*</pre>
           the program to behave exactly like the <span class=
           "command"><strong>recollq</strong></span> command,
           printing the results to the standard output (terminal)
-          instead of starting a graphical window.</p>
+          instead of starting a graphical window. This option must
+          be given separately, e.g.</p>
+          <pre class="programlisting">recoll -tq <em class=
+          "replaceable"><code>some query</code></em></pre>
+          <p>will *not* work, use</p>
+          <pre class="programlisting">recoll -t -q <em class=
+          "replaceable"><code>some query</code></em></pre>
+          <p>instead.</p>
           <p>The <code class="option">-w</code> option starts the
           program minimized. <code class="option">-W</code> only
           creates a system tray icon (the system tray support must
@@ -9706,8 +9713,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5189" id=
-                "id5189"></a>GUI settings</h3>
+                <h3 class="title"><a name="id5193" id=
+                "id5193"></a>GUI settings</h3>
               </div>
             </div>
           </div>
@@ -9723,8 +9730,8 @@ db.purge()</pre>
           <div class="titlepage">
             <div>
               <div>
-                <h3 class="title"><a name="id5196" id=
-                "id5196"></a>Index configuration parameters</h3>
+                <h3 class="title"><a name="id5200" id=
+                "id5200"></a>Index configuration parameters</h3>
               </div>
             </div>
           </div>
@@ -10249,7 +10256,9 @@ defaultcharset = utf-8</pre>
                 identification, which can be wasteful in some
                 cases. Limit the waste. Negative means no limit. 0
                 results in no processing of any compressed file.
-                Default 100 MB.</p>
+                Default 100 MB. This does *not* concern archives
+                like zip or rar files, but only single, e.g.
+                gzipped, files.</p>
               </dd>
               <dt><a name="RCL.CONFIG.RECOLLCONF.TEXTFILEMAXMBS"
               id="RCL.CONFIG.RECOLLCONF.TEXTFILEMAXMBS"></a><span class="term"><code class="varname">textfilemaxmbs</code></span></dt>

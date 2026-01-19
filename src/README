@@ -3278,7 +3278,14 @@ recoll -L en
 
    The -t option will tell the program to behave exactly like the recollq
    command, printing the results to the standard output (terminal) instead
-   of starting a graphical window.
+   of starting a graphical window. This option must be given separately,
+   e.g.
+recoll -tq some query
+
+   will *not* work, use
+recoll -t -q some query
+
+   instead.
 
    The -w option starts the program minimized. -W only creates a system
    tray icon (the system tray support must be enabled in the GUI
@@ -5355,6 +5362,8 @@ Important
           a temporary directory for identification, which can be wasteful
           in some cases. Limit the waste. Negative means no limit. 0
           results in no processing of any compressed file. Default 100 MB.
+          This does *not* concern archives like zip or rar files, but only
+          single, e.g. gzipped, files.
 
    textfilemaxmbs
           Size limit for text files. Mostly for skipping monster logs.

@@ -143,7 +143,8 @@ types (e.g. audio/mpeg) or handler names (e.g. rclaudio.py).
 <term><varname>compressedfilemaxkbs</varname></term>
 <listitem><para>Size limit for compressed files. We need to decompress these in a temporary directory for identification, which can be
 wasteful in some cases. Limit the waste. Negative means no limit. 0 results in no processing of
-any compressed file. Default 100 MB.
+any compressed file. Default 100 MB. This does *not* concern archives like zip or rar files, but
+only single, e.g. gzipped, files.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.TEXTFILEMAXMBS">
 <term><varname>textfilemaxmbs</varname></term>
