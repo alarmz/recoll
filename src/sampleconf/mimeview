@@ -105,17 +105,16 @@ application/rtf = libreoffice %f
 
 application/x-dia-diagram = dia %f
 
+# Both dolphin and nautilus can pre-select a file inside a directory. Thunar can't afaik. xdg-open
+# can't pass additional parameters, so the directory MIME types used to be included in xallexcepts,
+# but this caused problems to Mint Cinnamon (nemo) users. So the default for directories is now
+# switched back to using desktop default, to be customized by adventurous users.
 application/x-fsdirectory = dolphin %f
 inode/directory = dolphin %f
-
-# Both dolphin and nautilus can pre-select a file inside a
-# directory. Thunar can't afaik. xdg-open cant pass an additional
-# parameters so these used to be xallexcepts, but this caused problems
-# to Mint Cinnamon (nemo) users. So now switched back to desktop default
 application/x-fsdirectory|parentopen = dolphin --select %(childurl) %f
 inode/directory|parentopen = dolphin --select %(childurl) %f
-#application/x-fsdirectory|parentopen = nautilus %(childurl)
-#inode/directory|parentopen = nautilus %(childurl)
+#application/x-fsdirectory|parentopen = nautilus -w -s %(childurl)
+#inode/directory|parentopen = nautilus -w -s %(childurl)
 
 application/x-gnuinfo = xterm -e "info -f %f"
 application/x-gnumeric = gnumeric %f
