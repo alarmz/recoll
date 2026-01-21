@@ -422,16 +422,11 @@ class AudioTagExtractor(RclBaseHandler):
                     val = val.split("\x00")
                 # Change list to string for sending up to recoll.
                 try:
-                    if isinstance(
-                        val,
-                        (
-                            list,
-                            tuple,
-                        ),
-                    ):
-                        if isinstance(val[0], str):
+                    if isinstance(val, (list, tuple)):
+                        s = set(val)
+                        try:
                             val = " | ".join(val)
-                        else:
+                        except:
                             # Usually mp4.MP4Cover: ignore
                             # self.em.rclog(f"Got value for {ntag} which is list of "
                             #              f"non-strings: {type(val[0])}")
@@ -443,6 +438,8 @@ class AudioTagExtractor(RclBaseHandler):
                 if ntag in minf:
                     # Note that it would be nicer to use proper CSV quoting
                     minf[ntag] += b" | " + val
+                    st = set(minf[ntag].split(b" | "))
+                    minf[ntag] = b" | ".join(st)
                 else:
                     minf[ntag] = val
                 # self.em.rclog(f"Tag <{ntag}> -> <{val}>")
