@@ -257,15 +257,7 @@ static PyObject *QRSDoc_subscript(recoll_QRSDocObject *self, PyObject *key)
    if (nullptr == value) {
         Py_RETURN_NONE;
     }
-    string urlstring;
-    if (name == "url") {
-        printableUrl("UTF-8", value, urlstring);
-        value = urlstring.c_str();
-    }
-    PyObject *bytes = PyBytes_FromString(value);
-    PyObject *u =
-        PyUnicode_FromEncodedObject(bytes, "UTF-8", "backslashreplace");
-    Py_DECREF(bytes);
+    PyObject *u = PyUnicode_Decode(value, strlen(value), "UTF-8", "surrogateescape");
     return u;
 }
 
