@@ -30,10 +30,10 @@ from typing import Any, Union, TextIO, BinaryIO, Text, AnyStr, Callable, Optiona
 def makebytes(data: AnyStr) -> bytes:
     if data is None:
         return b""
-    if isinstance(data, bytes):
-        return data
-    else:
+    if isinstance(data, str):
         return data.encode("UTF-8")
+    else:
+        return data
 
 
 def breakwrite(outfile: BinaryIO, data: bytes) -> None:
