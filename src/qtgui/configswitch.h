@@ -38,20 +38,11 @@ public:
         setupUi(this);
         init();
     }
-    virtual bool eventFilter(QObject *target, QEvent *event);
-
-    bool m_cancelled{false};
 private slots:
-    void onActivated(int);
-    void onTextChanged(const QString&);
-    void cancel();
+    virtual void done(int);
 private:
     void init();
     QStringList m_qdirs;
-    QCompleter *m_completer{nullptr};
-    // Decides if we match the start only or anywhere. Anywhere seems better. May be made a pref one
-    // day.
-    bool m_match_contains{true};
 };
 
 #endif /* _CONFIGSWITCH_H_INCLUDED_ */

@@ -33,9 +33,6 @@
 
 void ConfigSwitchW::init()
 {
-    new QShortcut(QKeySequence("Esc"), this, SLOT(cancel()));
-    connect(dirsCMB, SIGNAL(activated(int)), this, SLOT(onActivated(int)));
-
     std::vector<std::string> sdirs = guess_recoll_confdirs();
     for (const auto& e : sdirs) {
         if (!path_samepath(e, theconfig->getConfDir()))
@@ -45,69 +42,17 @@ void ConfigSwitchW::init()
     for (const auto& e : qAsConst(m_qdirs)) {
         dirsCMB->addItem(e);
     }
+    connect(this, SIGNAL(finished(int)), this, SLOT(done(int)));
+}
 
-    m_completer = new QCompleter(m_qdirs, this);
-    m_completer->setCaseSensitivity(Qt::CaseInsensitive);
-    if (m_match_contains) {
-        m_completer->setFilterMode(Qt::MatchContains);
+void ConfigSwitchW::done(int result)
+{
+    if (result != QDialog::Accepted) {
+        hide();
+        return;
     }
-    dirsCMB->setCompleter(m_completer);
-    m_completer->popup()->installEventFilter(this);
-    dirsCMB->installEventFilter(this);
-}
-
-void ConfigSwitchW::cancel()
-{
-    LOGDEB("ConfigSwitch: cancel\n");
-    dirsCMB->setCurrentIndex(-1);
-    m_cancelled = true;
-    hide();
-}
-
-// This is to avoid that if the user types Backspace or Del while we
-// have inserted / selected the current completion, the lineedit text
-// goes back to what it was, the completion fires, and it looks like
-// nothing was typed. Disable the completion after Del or Backspace
-// is typed.
-bool ConfigSwitchW::eventFilter(QObject *target, QEvent *event)
-{
-    Q_UNUSED(target);
-    if (event->type() != QEvent::KeyPress) {
-        return false;
-    }
-    QKeyEvent *keyEvent = (QKeyEvent *)event;
-    if (keyEvent->key() == Qt::Key_Backspace || keyEvent->key()==Qt::Key_Delete) {
-        dirsCMB->setCompleter(nullptr);
-        return false;
-    } else {
-        if (nullptr == dirsCMB->completer()) {
-            dirsCMB->setCompleter(m_completer);
-        }
-    }        
-    return false;
-}
-
-void ConfigSwitchW::onTextChanged(const QString&)
-{
-    if (dirsCMB->completer() && dirsCMB->completer()->completionCount() == 1) {
-        // We append the completion part to the end of the current input, line, and select it so
-        // that the user has a clear indication of what will happen if they type Enter.
-        auto le = dirsCMB->lineEdit();
-        int pos = le->cursorPosition();
-        auto text = dirsCMB->completer()->currentCompletion();
-        int len = text.size() - dirsCMB->currentText().size();
-        le->setText(text);
-        if (!m_match_contains) {
-            le->setCursorPosition(pos);
-            le->setSelection(pos, len);
-        }
-    }
-}
-
-void ConfigSwitchW::onActivated(int index)
-{
-    LOGDEB("ConfigWwitch: onActivated: index  " << index << " cancel " << m_cancelled << "\n");
-    if (m_cancelled || index < 0 || index >= int(m_qdirs.size()))
+    auto index = dirsCMB->currentIndex();
+    if (index < 0 || index >= int(m_qdirs.size()))
         return;
     QString qconf;
     if (index == m_qdirs.size() - 1) {

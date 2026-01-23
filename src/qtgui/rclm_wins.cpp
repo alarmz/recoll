@@ -519,11 +519,6 @@ void RclMain::showConfigSwitch()
 {
     if (nullptr == configswitchw) {
         configswitchw = new ConfigSwitchW(this);
-        connect(configswitchw->dirsCMB, SIGNAL(editTextChanged(const QString&)),
-                configswitchw, SLOT(onTextChanged(const QString&)));
     }
-    configswitchw->dirsCMB->setCurrentIndex(-1);
-    configswitchw->dirsCMB->clearEditText();
-    configswitchw->m_cancelled = false;
-    configswitchw->show();
+    configswitchw->open();
 }
