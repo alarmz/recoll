@@ -1,3 +1,12 @@
+recoll (1.43.12-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * Python API: qresultstore: use surrogateescape for decoding urls.
+  * rclaudio: avoid duplicating values when adding data to fields.
+  * GUI: configuration switching: use a more standard dialog.
+  * A 1.43.11 version briefly existed, with a bug in rclpdf.py
+  
+ -- Jean-Francois Dockes <jf@dockes.org>  Fri, 23 Jan 2026 17:26:00 +0100
+
 recoll (1.43.10-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * GUI: fix crash occuring on certain platforms (linux/qt6) when clicking
