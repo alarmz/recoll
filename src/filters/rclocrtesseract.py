@@ -171,25 +171,25 @@ def _pdftesseract(config, path):
     tmpfile = os.path.join(tmpdir.getpath(), "ocrXXXXXX")
 
     # Split pdf pages
+    if pdftocairocmd:
+        cmd = [
+            pdftocairocmd,
+            "-tiff",
+            "-tiffcompression",
+            "lzw",
+            "-r",
+            "300",
+            path,
+            tmpfile,
+        ]
+    else:
+        cmd = [pdftoppmcmd, "-r", "300", path, tmpfile]
     try:
         tmpdir.vacuumdir()
-        if pdftocairocmd:
-            cmd = [
-                pdftocairocmd,
-                "-tiff",
-                "-tiffcompression",
-                "lzw",
-                "-r",
-                "300",
-                path,
-                tmpfile,
-            ]
-        else:
-            cmd = [pdftoppmcmd, "-r", "300", path, tmpfile]
             # _deb("Executing %s" % cmd)
         subprocess.check_call(cmd)
     except Exception as e:
-        _deb("%s failed: %s" % (pdftoppmcmd, e))
+        _deb(f"{cmd} (image conversion) failed: {e}")
         return b""
 
     # Note: unfortunately, pdftoppm silently fails if the temp file

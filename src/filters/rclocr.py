@@ -129,8 +129,11 @@ if not ok:
 # The OCR module will retrieve its specific parameters from the
 # configuration
 ocrcleanupmodule = ocr
-status, data = ocr.runocr(config, path)
-
+status = None
+try:
+    status, data = ocr.runocr(config, path)
+except:
+    pass
 if not status:
     _deb("runocr failed")
     sys.exit(1)

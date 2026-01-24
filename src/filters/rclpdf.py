@@ -552,7 +552,8 @@ class PDFExtractor:
                     "file://%s" % urllib.request.pathname2url(os.path.abspath(self.filename)), None)
                 
         except Exception as ex:
-            self.em.rclog(f"Annotations: file open failed: {ex} {traceback.format_exc()}")
+            #self.em.rclog(f"Annotations: file open failed: {ex} {traceback.format_exc()}")
+            self.em.rclog(f"Annotations: file open failed")
             return html
 
         n_pages = doc.get_n_pages()
@@ -669,18 +670,17 @@ class PDFExtractor:
         html, isempty = self._fixhtml(process.stdout)
         # self.em.rclog("ISEMPTY: %d : data: \n%s" % (isempty, html))
         process.stdout.close()
-        process.wait()
+        status = process.wait()
+        self.em.rclog(f"pdftotext failed for {self.filename}")
+        if status:
+            return (False, "", "", rclexecm.RclExecM.eofnow)
 
         self.config.setKeyDir(os.path.dirname(self.filename))
         forceocr = rclexecm.configparamtrue(self.config.getConfParam("pdfforceocr"))
         if forceocr or isempty:
             if rclexecm.configparamtrue(self.config.getConfParam("pdfocr")):
+                cmd = [sys.executable, os.path.join(_execdir, "rclocr.py"), self.filename, ]
                 try:
-                    cmd = [
-                        sys.executable,
-                        os.path.join(_execdir, "rclocr.py"),
-                        self.filename,
-                    ]
                     global ocrproc
                     ocrproc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
                     data, stderr = ocrproc.communicate()
@@ -695,31 +695,20 @@ class PDFExtractor:
             try:
                 html = self._setextrameta(html)
             except Exception as err:
-                self.em.rclog(
-                    f"Metadata extraction failed: {err} {traceback.format_exc()}"
-                )
+                self.em.rclog(f"Metadata extraction failed: {err} {traceback.format_exc()}")
 
         if self.dooutline:
             try:
                 outlinetext = self._process_outline()
-                html = self._injectmeta(
-                    html,
-                    [
-                        ("description", outlinetext),
-                    ],
-                )
+                html = self._injectmeta(html, [("description", outlinetext),])
             except Exception as err:
-                self.em.rclog(
-                    f"Outline extraction failed: {err} {traceback.format_exc()}"
-                )
+                self.em.rclog(f"Outline extraction failed: {err} {traceback.format_exc()}")
 
         if havepopplerglib:
             try:
                 html = self._process_annotations(html)
             except Exception as err:
-                self.em.rclog(
-                    f"Annotation extraction failed: {err} {traceback.format_exc()}"
-                )
+                self.em.rclog(f"Annotation extraction failed: {err} {traceback.format_exc()}")
 
         return (True, html, "", eof)
 
