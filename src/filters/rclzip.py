@@ -164,8 +164,8 @@ class ZipExtractor(ArchiveExtractor):
             self.zip = ZipFile(self.f, metadata_encoding = metadataencoding)
             return True
         except Exception as err_1:
-            # Sometimes, the detected encoding may be wrong and cause exceptions
-            # So we want a fallback
+            # Sometimes, the detected encoding may be wrong and cause exceptions. Also
+            # metadata_encoding is new in Python 3.11 or such, so we want a fallback
             try:
                 self.em.rclog("openfile: failed: [%s]" % err_1)
                 self.em.rclog("openfile: try again with default encoding")
