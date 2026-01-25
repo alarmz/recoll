@@ -213,7 +213,7 @@ copypoppler()
     # Note: the recent poppler build which we ship comes from conda builds, and it includes
     # poppler-data, which has additional fonts and encodings, for, e.g. Chinese. The utilities
     # (e.g. pdftotext) expect to find the data in a directory named shared/poppler, 2 levels above
-    # the exec. There is no way that I could find to explicitely designate the data location, so we
+    # the exec. There is no way that I could find to explicitly designate the data location, so we
     # have to keep the structure of the directories.
     test -d $FILTERS/poppler/Library/bin || mkdir -p $FILTERS/poppler/Library/bin || \
         fatal cant create poppler directory

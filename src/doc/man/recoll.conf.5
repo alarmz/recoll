@@ -181,7 +181,8 @@ types (e.g. audio/mpeg) or handler names (e.g. rclaudio.py).
 .BI "compressedfilemaxkbs = "int
 Size limit for compressed files. We need to decompress these in a temporary directory for identification, which can be
 wasteful in some cases. Limit the waste. Negative means no limit. 0 results in no processing of
-any compressed file. Default 100 MB.
+any compressed file. Default 100 MB. This does *not* concern archives like zip or rar files, but
+only single, e.g. gzipped, files.
 .TP
 .BI "textfilemaxmbs = "int
 Size limit for text files. Mostly for skipping monster logs. Also used for max mail msg body size. Default 20 MB. Use
@@ -195,7 +196,7 @@ see textfilemaxmbs and compressedfilemaxkbs.
 .TP
 .BI "textunknownasplain = "bool
 Process unknown text/xxx files as text/plain Allows indexing misc. text files identified as text/whatever by "file" or "xdg-mime"
-without having to explicitely set config entries for them. This works fine for indexing (also will
+without having to explicitly set config entries for them. This works fine for indexing (also will
 cause processing of a lot of useless files), but the documents indexed this way will be opened by
 the desktop viewer, even if text/plain has a specific editor.
 .TP
@@ -520,35 +521,32 @@ change this would be if you want to change the icons displayed in the
 result list. Defaults to $prefix/share/recoll/images
 .TP
 .BI "idxflushmb = "int
-Threshold (megabytes of new data) where we flush from memory to
-disk index. Setting this allows some control over memory
-usage by the indexer process. A value of 0 means no explicit flushing,
-which lets Xapian perform its own thing, meaning flushing every
-$XAPIAN_FLUSH_THRESHOLD documents created, modified or deleted: as memory
-usage depends on average document size, not only document count, the
-Xapian approach is is not very useful, and you should let Recoll manage
-the flushes. The program compiled value is 0. The configured default
-value (from this file) is now 50 MB, and should be ok in many cases.
-You can set it as low as 10 to conserve memory, but if you are looking
-for maximum speed, you may want to experiment with values between 20 and
-200. In my experience, values beyond this are always counterproductive. If
-you find otherwise, please drop me a note.
+Threshold (megabytes of new data) where we flush from memory to disk index. Setting this allows some control over memory usage by the indexer process. A value of 0
+means no explicit flushing, which lets Xapian perform its own thing, meaning flushing every
+$XAPIAN_FLUSH_THRESHOLD documents created, modified or deleted: as memory usage depends on average
+document size, not only document count, the Xapian approach is is not very useful, and you should
+let Recoll manage the flushes, however the program compiled value is 0.
+The configured default value (from this file) is now 100 MB, and should be ok in many cases.  You
+can set it as low as 10 to conserve memory, but if you are looking for maximum speed, you may want
+to experiment with values between 20 and 300. In my experience, values beyond this tend to be
+counterproductive. If you find otherwise, please drop me a note.
 .TP
 .BI "filtermaxseconds = "int
-Maximum external filter execution time in
-seconds. Default 1200 (20mn). Set to 0 for no limit. This
-is mainly to avoid infinite loops in postscript files
+Linux: maximum external filter execution time in seconds. Default 1200
+(20mn). Set to 0 for no limit. This is mainly to avoid infinite loops in postscript files
 (loop.ps)
 .TP
 .BI "filtermaxmbytes = "int
-Maximum virtual memory space for filter processes
-(setrlimit(RLIMIT_AS)), in megabytes. Note that this includes any mapped libs (there is no reliable
-Linux way to limit the data space only), so we need to be a bit generous
-here. Anything over 2000 will be ignored on 32 bits machines.
-The high default value is needed because of java-based handlers (pdftk)
-which need a lot of VM (most of it text), esp. pdftk when
-executed from Python rclpdf.py. You can use a much lower value if you don't
-need Java.
+Linux: maximum virtual memory space for filter processes (setrlimit(RLIMIT_AS)), in
+megabytes. Note that this includes any mapped libs (there is no reliable Linux way to limit the data
+space only), so we need to be a bit generous here. Anything over 2000 will be ignored on 32 bits
+machines.  The high default value is needed because of java-based handlers (pdftk) which need a
+lot of VM (most of it text), esp. pdftk when executed from Python rclpdf.py. You can use a much
+lower value if you don't need Java.
+.TP
+.BI "oomadj = "int
+Linux: Out-Of-Memory killer adjust score value for the indexer process. See choom(1). During the indexer startup, this value is passed as the adjust parameter to
+the choom command with the indexer process as target.
 .TP
 .BI "thrQSizes = "string
 Task queue depths for each stage and threading configuration control. There are three internal queues in the indexing pipeline stages (file data extraction,

@@ -1,6 +1,6 @@
 #
 # Derived from the Fedora .spec, with KIO and chmlib disabled to avoid non
-# standard deps  + small adjustements like specifying python2 explicitely
+# standard deps  + small adjustements like specifying python2 explicitly
 #
 
 # Turn off the brp-python-bytecompile script

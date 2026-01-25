@@ -1161,7 +1161,7 @@ bool SearchDataClauseDist::toNativeQuery(Rcl::Db &db, void *p)
     string s = cstr_dquote + m_text + cstr_dquote;
     bool useNear = (m_tp == SCLT_NEAR);
     if (!useNear  && !o_expand_phrases && !(m_modifiers & SDCM_EXPANDPHRASE)) {
-        // We are a phrase query. Make sure to disable stemming explicitely in case this is a single
+        // We are a phrase query. Make sure to disable stemming explicitly in case this is a single
         // quoted word because processUserString won't see it as a phrase by itself.
         m_modifiers |= SDCM_NOSTEMMING;
     }

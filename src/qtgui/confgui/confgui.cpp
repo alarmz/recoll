@@ -60,7 +60,7 @@ static const int spacing = 3;
 // left,top,right, bottom
 static QMargins margin(4,3,4,3);
 
-// Margin around text to explicitely set pushbutton sizes lower than
+// Margin around text to explicitly set pushbutton sizes lower than
 // the default min (80?). Different on Mac OS for some reason
 #ifdef __APPLE__
 static const int pbTextMargin = 30;

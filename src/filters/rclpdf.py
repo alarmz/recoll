@@ -151,7 +151,7 @@ class PDFExtractor:
         # "Producer" is the name of the software package used to convert to PDF (e.g. "Writer")
         # "Creator" is the name of the Software used to create the original format (e.g. "MSWord")
         # There is a lot of confusion in actual docs about these, and in general "creator" is more
-        # likely to be understood as a synonym for author (explicitely the case for dc:creator
+        # likely to be understood as a synonym for author (explicitly the case for dc:creator
         # actually). So we replace Producer and Creator with PDF-specific names
         self.metareplace = {
             b"Creator": b"PDFCreator",

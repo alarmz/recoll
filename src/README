@@ -5381,7 +5381,7 @@ Important
    textunknownasplain
           Process unknown text/xxx files as text/plain Allows indexing
           misc. text files identified as text/whatever by "file" or
-          "xdg-mime" without having to explicitely set config entries for
+          "xdg-mime" without having to explicitly set config entries for
           them. This works fine for indexing (also will cause processing
           of a lot of useless files), but the documents indexed this way
           will be opened by the desktop viewer, even if text/plain has a

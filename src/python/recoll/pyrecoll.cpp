@@ -1121,7 +1121,7 @@ public:
     }
     virtual ~PyPlainToRich() = default;
     virtual string startMatch(unsigned int idx) {
-        // if nohl is set or methods was explicitely set to None, do nothing.
+        // if nohl is set or methods was explicitly set to None, do nothing.
         if (m_nohl || m_methods == Py_None) {
             return "";
         }

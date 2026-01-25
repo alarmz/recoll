@@ -1824,7 +1824,7 @@ string RclConfig::getPidfile() const
         if (nullptr == p) {
             // Problem is, we may have been launched outside the desktop, maybe by cron. Basing
             // everything on XDG_RUNTIME_DIR was a mistake, sometimes resulting in different pidfiles
-            // being used by recollindex instances. So explicitely test for /run/user/$uid, still
+            // being used by recollindex instances. So explicitly test for /run/user/$uid, still
             // leaving open the remote possibility that XDG_RUNTIME_DIR would be set to something
             // else...
             rundir = path_cat("/run/user", std::to_string(getuid()));
