@@ -671,8 +671,8 @@ class PDFExtractor:
         # self.em.rclog("ISEMPTY: %d : data: \n%s" % (isempty, html))
         process.stdout.close()
         status = process.wait()
-        self.em.rclog(f"pdftotext failed for {self.filename}")
         if status:
+            self.em.rclog(f"pdftotext failed for {self.filename} status {status}")
             return (False, "", "", rclexecm.RclExecM.eofnow)
 
         self.config.setKeyDir(os.path.dirname(self.filename))
