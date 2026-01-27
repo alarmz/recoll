@@ -3,7 +3,7 @@
 <component type="desktop-application">
   <id>org.recoll.recoll</id>
   <launchable type="desktop-id">recoll-searchgui.desktop</launchable>
-  <metadata_license>CC0-1.0</metadata_license>
+  <metadata_license>GPL-2.0+</metadata_license>
   <name>Recoll</name>
   <summary>Full-text search for your desktop</summary>
   <description>
