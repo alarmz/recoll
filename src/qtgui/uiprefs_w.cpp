@@ -64,24 +64,25 @@ using std::list;
 
 static std::vector<std::pair<QString, QString>> uilanguages{
     {"", ""},    
+    {"Chinese", "zh_CN"},
     {"Czech", "cs"},
     {"Danish", "da"},
+    {"Dutch", "nl"},
+    {"English", "en"},
+    {"French", "fr"},
     {"German", "de"},
     {"Greek", "el"},
-    {"Spanish", "es"},
-    {"French", "fr"},
     {"Hungarian", "hu"},
     {"Italian", "it"},
     {"Japanese", "ja"},
     {"Korean", "ko"},
     {"Lithuanian", "lt"},
-    {"Dutch", "nl"},
     {"Polish", "pl"},
     {"Russian", "ru"},
+    {"Spanish", "es"},
     {"Swedish", "sv"},
     {"Turkish", "tr"},
     {"Ukrainian", "uk"},
-    {"Chinese", "zh_CN"},
 };
 
 void UIPrefsDialog::init()
