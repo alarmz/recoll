@@ -42,6 +42,7 @@
 #include <QKeyEvent>
 #include <QClipboard>
 #include <QToolTip>
+#include <QProgressDialog>
 
 #include "recoll.h"
 #include "docseq.h"
@@ -446,7 +447,14 @@ void RecollModel::saveAsCSV(std::fstream& fp)
     if (!m_source)
         return;
     m_source->setqquantum(30000);
-    
+
+    // The row count at this stage is generally largely underestimated. The proportion varies from 1
+    // to 4, and is unpredictable. We'd have to actually fetch the results, but this takes time.
+    int totRowsForProgress  = rowCount() * 1.5;
+    QProgressDialog progress(tr("Saving to CSV"), tr("Cancel"), 0, totRowsForProgress);
+    if (totRowsForProgress > 5000) {
+        progress.show();
+    }
     int cols = columnCount();
     vector<string> tokens;
 
@@ -467,6 +475,12 @@ void RecollModel::saveAsCSV(std::fstream& fp)
         }
         csv = stringsToCSV(tokens);
         fp << csv << "\n";
+        if (row % 1000 == 0) {
+            qApp->processEvents();
+            if (progress.wasCanceled())
+                return;
+            progress.setValue(row);
+        }
     }
     m_source->setqquantum(100);
 }
