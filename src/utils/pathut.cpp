@@ -896,26 +896,37 @@ std::string path_pkgdatadir(
 
 std::string path_tildexpand(const std::string& s)
 {
+    
+#ifdef _WIN32
+    if (s.empty() || !(startswith(s, "%USERPROFILE%") || s[0] == '~')) {
+        return s;
+    }
+#else
     if (s.empty() || s[0] != '~') {
         return s;
     }
+#endif
+    
     std::string o = s;
 #ifdef _WIN32
+    if (startswith(o, "%USERPROFILE%")) {
+        o.replace(0, 13, "~");
+    }
     path_slashize(o);
 #endif
 
-    if (s.length() == 1) {
+    if (o.length() == 1) {
         o.replace(0, 1, path_home());
-    } else if (s[1] == '/') {
+    } else if (o[1] == '/') {
         o.replace(0, 2, path_home());
     } else {
-        std::string::size_type pos = s.find('/');
-        std::string::size_type l = (pos == std::string::npos) ? s.length() - 1 : pos - 1;
+        std::string::size_type pos = o.find('/');
+        std::string::size_type l = (pos == std::string::npos) ? o.length() - 1 : pos - 1;
 #ifdef _WIN32
         // Dont know what this means. Just replace with HOME
         o.replace(0, l + 1, path_home());
 #else
-        struct passwd *entry = getpwnam(s.substr(1, l).c_str());
+        struct passwd *entry = getpwnam(o.substr(1, l).c_str());
         if (entry) {
             o.replace(0, l + 1, entry->pw_dir);
         }

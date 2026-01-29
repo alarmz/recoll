@@ -237,7 +237,11 @@ bool ConfIndexW::setupTopPanel(int idx)
                   tr("Start folders"),
                   tr("The list of folders/directories to be indexed, recursively with their "
                      "sub-folders.<br>"
+#ifdef _WIN32
+                     "%USERPROFILE% or the '~' character expand to your user profile, which is the default "
+#else
                      "The '~' character expands to your home directory, which is the default "
+#endif
                      "initial value."));
 
     ConfParamW *cparam = m_w->addParam(

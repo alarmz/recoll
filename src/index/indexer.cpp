@@ -114,7 +114,7 @@ bool ConfIndexer::runFirstIndexing()
     }
     // And only do this if the user has kept the default topdirs (~). 
     vector<string> tdl = m_config->getTopdirs();
-    if (tdl.size() != 1 || tdl[0].compare(path_canon(path_tildexpand("~")))) {
+    if (tdl.size() != 1 || tdl[0].compare(path_home())) {
         LOGDEB0("ConfIndexer::runFirstIndexing: no: not home only\n");
         return false;
     }
