@@ -1,4 +1,4 @@
-/* Copyright (C) 2007-2020 J.F.Dockes
+/* Copyright (C) 2007-2026 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -32,7 +32,6 @@
 
 #include "pyrecoll.h"
 
-using namespace std;
 
 //////////////////////////////////////////////////////////////////////
 /// Extractor object code
@@ -103,7 +102,7 @@ Extractor_textextract(rclx_ExtractorObject* self, PyObject *args, PyObject *kwar
                                      "utf-8", &sipath))
         return 0;
 
-    string ipath(sipath);
+    std::string ipath(sipath);
     PyMem_Free(sipath);
 
     if (self->xtr == 0) {
@@ -125,7 +124,7 @@ Extractor_textextract(rclx_ExtractorObject* self, PyObject *args, PyObject *kwar
         return 0;
     }
 
-    string html = self->xtr->get_html();
+    std::string html = self->xtr->get_html();
     if (!html.empty()) {
         result->doc->text = html;
         result->doc->mimetype = "text/html";
@@ -157,11 +156,11 @@ Extractor_idoctofile(rclx_ExtractorObject* self, PyObject *args, PyObject *kwarg
                                      "utf-8", &sipath, "utf-8", &smt, &soutfile))
         return 0;
 
-    string ipath(sipath);
+    std::string ipath(sipath);
     PyMem_Free(sipath);
-    string mimetype(smt);
+    std::string mimetype(smt);
     PyMem_Free(smt);
-    string outfile;
+    std::string outfile;
     if (soutfile && *soutfile)
         outfile.assign(soutfile); 
     

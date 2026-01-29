@@ -20,22 +20,12 @@
 #include <bytesobject.h>
 
 #include <string>
-#include <iostream>
 #include <set>
 
 #include "qresultstore.h"
 #include "log.h"
-#include "rclutil.h"
 
 #include "pyrecoll.h"
-
-using namespace std;
-
-#if PY_MAJOR_VERSION >=3
-#  define Py_TPFLAGS_HAVE_ITER 0
-#else
-#define PyLong_FromLong PyInt_FromLong 
-#endif
 
 struct recoll_QRSDocObject;
 
@@ -247,7 +237,7 @@ static PyObject *QRSDoc_subscript(recoll_QRSDocObject *self, PyObject *key)
         PyErr_SetString(PyExc_AttributeError, "store??");
         return NULL;
     }
-    string name;
+    std::string name;
     if (pys2cpps(key, name) < 0) {
         PyErr_SetString(PyExc_AttributeError, "name??");
         Py_RETURN_NONE;
