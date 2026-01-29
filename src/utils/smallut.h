@@ -86,6 +86,9 @@ extern std::string stringtolower(const std::string& io);
 extern void stringtoupper(std::string& io);
 extern std::string stringtoupper(const std::string& io);
 extern bool beginswith(const std::string& b, const std::string& sml);
+inline bool startswith(const std::string& b, const std::string& sml) {
+    return beginswith(b, sml);
+}
 extern bool endswith(const std::string& bg, const std::string& sml);
 
 #ifdef _WIN32
