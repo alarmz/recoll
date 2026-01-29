@@ -1,10 +1,28 @@
 #!/usr/bin/env python3
+# Copyright (C) 2024 J.F.Dockes
+#
+# License: GPL 2.1
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2.1 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with this program; if not, write to the
+# Free Software Foundation, Inc.,
+# 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
 """Audio extractor for Recoll, using mutagen for metadata and optionally using whisper
 for speech to text."""
 
 import sys
 import os
-import gc
 import time
 import datetime
 import re
@@ -187,9 +205,9 @@ tagdict = {
 
 
 def tobytes(s):
-    if type(s) == type(b""):
+    if isinstance(s, bytes):
         return s
-    if type(s) != type(""):
+    if not isinstance(s, str):
         s = str(s)
     return s.encode("utf-8", errors="replace")
 
@@ -477,23 +495,12 @@ class AudioTagExtractor(RclBaseHandler):
         try:
             with FileLock(lock_file_name):
                 # self.em.rclog(f"Acquired stt file lock: {lock_file_name} to process {filename}.")
-                try:
-                    import whisper
-                    import torch
-                except ImportError:
-                    print("RECFILTERROR HELPERNOTFOUND python3:openai-whisper")
-                    sys.exit(1)
-
                 if sttdataset not in whisper.available_models():
-                    self.em.rclog(
-                        f"Invalid stt model specified, skipping speech transcription "
-                        "for {filename}."
-                    )
+                    self.em.rclog("Invalid stt model specified, skipping speech transcription "
+                                  f"for {filename}.")
                 else:
                     if device_name:
-                        stt_model = whisper.load_model(
-                            name=sttdataset, device=device_name
-                        )
+                        stt_model = whisper.load_model(name=sttdataset, device=device_name)
                     else:
                         stt_model = whisper.load_model(name=sttdataset)
                     try:
@@ -501,10 +508,8 @@ class AudioTagExtractor(RclBaseHandler):
                         raw_result = stt_model.transcribe(filename)
                         del stt_model
                     except Exception as ex:
-                        self.em.rclog(
-                            f"Whisper speech to text transcription error: {ex}, "
-                            "skipping transcription of {filename}."
-                        )
+                        self.em.rclog(f"Whisper speech to text transcription error: {ex}, "
+                                      f"skipping transcription of {filename}.")
                     finally:
                         torch.cuda.empty_cache()
                         gc.collect()
@@ -512,9 +517,7 @@ class AudioTagExtractor(RclBaseHandler):
             # self.em.rclog(f"Released stt file lock for: {filename}.")
         except Exception as ex:
             self.em.rclog(
-                f"Whisper speech to text lock error: {ex}, skipping transcription "
-                "of {filename}."
-            )
+                f"Whisper speech to text lock error: {ex}, skipping transcription of {filename}.")
         return raw_result
 
     def speech_to_text(self, filename: str):
@@ -537,6 +540,13 @@ class AudioTagExtractor(RclBaseHandler):
 
         import rclocrcache
         import json
+        import gc
+        try:
+            import whisper
+            import torch
+        except ImportError:
+            print("RECFILTERROR HELPERNOTFOUND python3:openai-whisper")
+            sys.exit(1)
 
         # The cache can find data either based on file metadata, or, in case, e.g. the file has been
         # renamed, based on a data hash. We limit the hash size to 3mb (which will be taken as 3 1mb
