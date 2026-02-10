@@ -105,6 +105,11 @@ defineslist =     [
         '-DRECOLL_DATADIR="' + recoll_datadir + '"',
     ]
 
+if get_option('ext4-birthtime')
+# Enable the statx use in pathut.cpp. Only needed for the lib.
+    defineslist += '-DENABLE_STATX'
+endif
+
 add_project_arguments(
     defineslist,
     language: 'cpp',

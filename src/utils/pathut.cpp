@@ -1253,7 +1253,11 @@ bool path_samefile(const std::string& p1, const std::string& p2)
 #endif
 }
 
-#if defined(STATX_TYPE)
+// The statx section was supplied by the developpers who needed to use file birth times for recoll.
+// It causes problems with containers builds built with statx support but running on older kernels
+// so it is now disabled by default. Set the ENABLE_STATX flag if needed (only recoll does it at the
+// moment).
+#if defined(STATX_TYPE) && defined(ENABLE_STATX)
 
 #include <sys/syscall.h>
 
