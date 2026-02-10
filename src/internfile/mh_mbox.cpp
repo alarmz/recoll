@@ -1,4 +1,4 @@
-/* Copyright (C) 2005-2019 J.F.Dockes
+/* Copyright (C) 2005-2026 J.F.Dockes
  *   This program is free software; you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
  *   the Free Software Foundation; either version 2 of the License, or
@@ -14,8 +14,9 @@
  *   Free Software Foundation, Inc.,
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-
 #define _FILE_OFFSET_BITS 64
+
+#include "mh_mbox.h"
 
 #include <sys/types.h>
 
@@ -27,7 +28,6 @@
 #include "cstr.h"
 #include "mimehandler.h"
 #include "log.h"
-#include "mh_mbox.h"
 #include "smallut.h"
 #include "rclconfig.h"
 #include "md5ut.h"
@@ -178,14 +178,12 @@ public:
     }
 
     // Save array of offsets for a given file, designated by Udi
-    void put_offsets(RclConfig *config, const string& udi, int64_t fsize,
-                     vector<int64_t>& offs) {
+    void put_offsets(RclConfig *config, const string& udi, int64_t fsize, vector<int64_t>& offs) {
         LOGDEB0("MboxCache::put_offsets: " << offs.size() << " offsets\n");
         if (!ok(config) || !maybemakedir())
             return;
         if (fsize < m_minfsize) {
-            LOGDEB0("MboxCache::put_offsets: fsize " << fsize << " < minsize "
-                    << m_minfsize << endl);
+            LOGDEB0("MboxCache::put_offsets: fsize " << fsize << " < minsize " << m_minfsize <<'\n');
             return;
         }
         std::unique_lock<std::mutex> locker(o_mcache_mutex);
@@ -387,8 +385,7 @@ bool MimeHandlerMbox::Internal::tryUseCache(int mtarg)
     if (pthis->m_udi.empty()) {
         goto out;
     }
-    if ((off = o_mcache.get_offset(pthis->m_config, pthis->m_udi, mtarg,
-                                   fsize)) < 0) {
+    if ((off = o_mcache.get_offset(pthis->m_config, pthis->m_udi, mtarg, fsize)) < 0) {
         goto out;
     }
     instream.seekg(off);
@@ -403,8 +400,7 @@ bool MimeHandlerMbox::Internal::tryUseCache(int mtarg)
     }
     LOGDEB1("MimeHandlerMbox::tryUseCache:getl ok. line:[" << line << "]\n");
 
-    if ((fromregex(line) ||
-         ((quirks & MBOXQUIRK_TBIRD) && minifromregex(line)))  ) {
+    if ((fromregex(line) || ((quirks & MBOXQUIRK_TBIRD) && minifromregex(line)))  ) {
         LOGDEB0("MimeHandlerMbox: Cache: From_ Ok\n");
         instream.seekg(off);
         msgnum = mtarg -1;
@@ -468,12 +464,10 @@ bool MimeHandlerMbox::next_document()
                 LOGDEB0("MimeHandlerMbox:next: eof at " << message_end << endl);
             } else {
                 if (st &  std::ifstream::failbit) {
-                    LOGDEB0("MimeHandlerMbox:next: failbit\n");
-                    LOGSYSERR("MimeHandlerMbox:next:", "", "");
+                    LOGSYSERR("MimeHandlerMbox:next:", "failbit", "");
                 }
                 if (st &  std::ifstream::badbit) {
-                    LOGDEB0("MimeHandlerMbox:next: badbit\n");
-                    LOGSYSERR("MimeHandlerMbox:next:", "", "");
+                    LOGSYSERR("MimeHandlerMbox:next:", "badbit", "");
                 }
                 if (st &  std::ifstream::goodbit) {
                     LOGDEB1("MimeHandlerMbox:next: good\n");
@@ -498,24 +492,23 @@ bool MimeHandlerMbox::next_document()
                     // the best
                     hademptyline = false;
                 }
-                /* The 'F' compare is redundant but it improves performance
-                   A LOT */
-                if (line[0] == 'F' && (
-                        fromregex(line) || 
-                        ((m->quirks & MBOXQUIRK_TBIRD) && minifromregex(line)))
-                    ) {
-                    LOGDEB1("MimeHandlerMbox: msgnum " << m->msgnum <<
-                            ", From_ at line " << m->lineno << " foffset " <<
-                            message_end << " line: [" << line << "]\n");
-                    
+                /* The 'F' compare is redundant but it improves performance A LOT */
+                if (line[0] == 'F' &&
+                    (fromregex(line) || ((m->quirks & MBOXQUIRK_TBIRD) && minifromregex(line))) ) {
+                    LOGDEB1("MimeHandlerMbox: msgnum " << m->msgnum << ", From_ at line " <<
+                            m->lineno << " foffset " << message_end << " line: [" << line << "]\n");
                     if (storeoffsets) {
                         m->offsets.push_back(message_end);
                     }
                     m->msgnum++;
-                    if ((mtarg <= 0 && m->msgnum > 1) || 
-                        (mtarg > 0 && m->msgnum > mtarg)) {
-                        // Got message, go do something with it
-                        break;
+                    if ((mtarg <= 0 && m->msgnum > 1) || (mtarg > 0 && m->msgnum > mtarg)) {
+                        // Got either next or target message, stop and go do something with it,
+                        // except if we're storing offsets during preview in which case we want to
+                        // go to eof so that we can update the cache, happens for an external index, 
+                        // because our cache was not updated during indexing.
+                        if (!(mtarg > 0 && storeoffsets)) {
+                            break;
+                        }
                     }
                     // From_ lines are not part of messages
                     continue;
@@ -530,17 +523,15 @@ bool MimeHandlerMbox::next_document()
             line += '\n';
             msgtxt += line;
             if (msgtxt.size() > max_mbox_member_size) {
-                LOGERR("mh_mbox: huge message (more than " <<
-                       max_mbox_member_size/(1024*1024) << " MB) inside " <<
-                       m->fn << ", giving up\n");
+                LOGERR("mh_mbox: huge message (more than " << max_mbox_member_size/(1024*1024) <<
+                       " MB) inside " << m->fn << ", giving up\n");
                 return false;
             }
         }
     }
-    LOGDEB2("Message text length " << msgtxt.size() << "\n");
+    LOGDEB2("Message text length " << msgtxt.size() << " iseof " << iseof << "\n");
     LOGDEB2("Message text: [" << msgtxt << "]\n");
-    // m->msgnum was incremented when hitting the next From_ or eof, so the data
-    // is for m->msgnum - 1
+    // m->msgnum was incremented when hitting the next From_ or eof, so the data is for m->msgnum - 1
     m_metaData[cstr_dj_keyipath] = std::to_string(m->msgnum - 1);
     m_metaData[cstr_dj_keymt] = "message/rfc822";
     if (iseof) {
