@@ -198,7 +198,7 @@ public:
     };
     const struct Entry* readdir();
     void rewinddir();
-
+    int filepropsat(struct PathStat *stp, bool follow);
 private:
     class Internal;
     Internal *m{nullptr};

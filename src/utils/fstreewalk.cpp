@@ -429,7 +429,7 @@ FsTreeWalker::Status FsTreeWalker::iwalk(
             continue;
         }
 
-        int statret =  path_fileprops(fn.c_str(), &st, data->options&FtwFollow);
+        int statret =  dc.filepropsat(&st, data->options&FtwFollow);
         if (statret == -1) {
             data->logsyserr("stat", fn);
 #ifdef _WIN32
