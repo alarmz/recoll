@@ -178,8 +178,9 @@ export LC_ALL=en_US.UTF-8
 
 RECOLL_TESTS=`pwd`
 if iswindows; then
-    RECOLL_TESTS=`echo $RECOLL_TESTS | sed -e 's,/c,c:,'`
+    RECOLL_TESTS=`echo $RECOLL_TESTS | sed -e 's,/\(.\),\1:,'`
 fi
+
 RECOLL_TESTDATA=${RECOLL_TESTDATA:-/home/dockes/projets/fulltext/testrecoll}
 RECOLL_TESTDATA=`echo $RECOLL_TESTDATA | sed -e 's!/$!!'`
 export RECOLL_CONFDIR=$RECOLL_TESTS/config/
@@ -220,7 +221,7 @@ for dir in $dirs ; do
         continue
     fi
     cd $dir && echo -n "$dir "
-    `basename $dir`.sh
+    ./`basename $dir`.sh
     cd ..
 done
 

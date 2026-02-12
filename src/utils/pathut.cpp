@@ -179,24 +179,24 @@ static time_t FileTimeToUnixTime(const FILETIME *ft)
 
 // Populate our close-to-POSIX PathStat struct from Windows FIND_DATA, as returned from
 // e.g. Find(First/Next)FileW()
-void MapWinToStat(const WIN32_FIND_DATA *fd, struct PathStat *pstp)
+void MapWinFindDataToStat(const WIN32_FIND_DATA *fd, struct PathStat *pstp)
 {
     memset(pstp, 0, sizeof(struct PathStat));
     pstp->pst_size = ((unsigned __int64)fd->nFileSizeHigh << 32) | fd->nFileSizeLow;
     // Note that we don't use pst_mode anywhere at the moment
     pstp->pst_mode = 0;
     enum PstType {PST_REGULAR, PST_SYMLINK, PST_DIR, PST_OTHER, PST_INVALID};
-    pst->pst_type = PathStat::PST_INVALID;
+    pstp->pst_type = PathStat::PST_INVALID;
     if (fd->dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-        pst->pst_type = PathStat::PST_DIR;
+        pstp->pst_type = PathStat::PST_DIR;
         pstp->pst_mode |= S_IFDIR | 0755; 
     } else if (fd->dwFileAttributes & FILE_ATTRIBUTE_DEVICE) {
-        pst->pst_type = PathStat::PST_OTHER;
+        pstp->pst_type = PathStat::PST_OTHER;
     } else if (fd->dwFileAttributes & FILE_ATTRIBUTE_REPARSE_POINT) {
-        pst->pst_type = PathStat::PST_SYMLINK;
+        pstp->pst_type = PathStat::PST_SYMLINK;
         pstp->pst_mode |= S_IFLNK | 0444;
     } else {
-        pst->pst_type = PathStat::PST_REGULAR;
+        pstp->pst_type = PathStat::PST_REGULAR;
         pstp->pst_mode |= S_IFREG | 0644; 
     }
     pstp->pst_mtime = FileTimeToUnixTime(&fd->ftLastWriteTime);
@@ -1548,16 +1548,16 @@ int PathDirContents::filepropsat(struct PathStat *stp, bool follow)
         return -1;
     }
 
-    SYSPATH(m->entry.d_name, syspath);
-    struct STATXSTRUCT mst;
-
 #ifdef _WIN32
     int ret = -1;
     if (nullptr != m->dirhdl) {
-        Win32FindDatawToStat(m->dirhdl->data, stp);
+        MapWinFindDataToStat(&m->dirhdl->data, stp);
         ret = 0;
     }
 #else
+    std::string& dname = m->entry.d_name;
+    SYSPATH(dname, syspath);
+    struct STATXSTRUCT mst;
 #if defined(STATX_TYPE) && defined(ENABLE_STATX)
     int ret = statx(dirfd(m->dirhdl), syspath, follow ? 0 : AT_SYMLINK_NOFOLLOW,
                     STATX_BASIC_STATS | STATX_BTIME, &mst);

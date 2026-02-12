@@ -42,7 +42,7 @@ initvariables() {
     tstdataindir=$tstdata
     if iswindows; then
         # tstdata path when used in dir clauses. Need to change c: to /c
-        tstdataindir=`echo $tstdata | sed -e 's,c:,/c,'`
+        tstdataindir=`echo $tstdata | sed -e 's,\(.\):,/\1,'`
         export MSYS2_ARG_CONV_EXCL='*'
     fi
     toptmp=${TMPDIR:-/tmp}/recolltsttmp
