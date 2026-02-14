@@ -123,6 +123,7 @@ if iswindows; then
     # badsuffs[1] notypes onlynames: tests need 'file' for mime id. onlynames is easy to fix.
     # casediac, cjk koi8r: needs utf8 on the command line
     # compressed: weird unix stuff
+    # conftree pyupdate rclconfig: shebang + choice of python.
     # info kar kword lyx djvu dvi Maildir Maildir1 man purple scribus:
     #   need unix command (info) or code (rclmidi) missing or filter is shell-script etc.
     # empty: fails because of differing dir sizes (0 vs 4096), not worth fixing
@@ -131,11 +132,13 @@ if iswindows; then
     # postscript: needs ghostscript
     # program: issues with suffix-less files
     # pythonapi: would need a lot of porting. Design windows-specific one?
+    # tibetan: utf-8 on cmdline
     # xattr: unix-specific
     # xml: several files are also compressed or have bad suffixes
-    excluded="non-auto casediac cjk compressed info kar koi8r kword lyx \
+    excluded="non-auto casediac conftree pyupdate rclconf cjk compressed info ipynb \
+              kar koi8r kword lyx \
               djvu dvi Maildir Maildir1 man empty nonumbers pdf-annots \
-              pdf-ocr pdfattach postscript purple pythonapi scribus xattr xml"
+              pdf-ocr pdfattach postscript purple pythonapi scribus xattr xml tibetan"
 else
     checkcmds recollq pxattr xadump || exit 1
     if test x$noindex = x ; then
