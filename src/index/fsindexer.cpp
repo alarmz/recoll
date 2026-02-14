@@ -48,6 +48,9 @@
 #include <unistd.h>
 #include <fcntl.h>
 #endif
+#ifdef _WIN32
+#include "unacpp.h"
+#endif
 
 using namespace std;
 
@@ -286,7 +289,11 @@ static bool matchesSkipped(
             // the topdirs members are already canonized.
             LOGDEB1("matchesSkipped: comparing ancestor [" << mpath <<
                     "] to topdir [" << tdlent << "]\n");
+#ifdef _WIN32
+            if (unactolower(mpath) == unactolower(tdlent)) {
+#else
             if (mpath == tdlent) {
+#endif
                 topdir = tdlent;
                 goto goodpath;
             }
