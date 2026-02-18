@@ -64,7 +64,7 @@
     </message>
     <message>
         <source>Advanced Search</source>
-        <translation>Zaawansowane szukanie</translation>
+        <translation>Szukanie zaawansowane </translation>
     </message>
     <message>
         <source>History Next</source>
@@ -76,18 +76,18 @@
     </message>
     <message>
         <source>Load next stored search</source>
-        <translation>Załaduj następne wyszukiwanie</translation>
+        <translation>Załaduj następne zapamiętane wyszukiwanie</translation>
     </message>
     <message>
         <source>Load previous stored search</source>
-        <translation>Załaduj poprzednie wyszukiwanie</translation>
+        <translation>Załaduj poprzednie zapamiętane wyszukiwanie</translation>
     </message>
 </context>
 <context>
     <name>AdvSearchBase</name>
     <message>
         <source>Advanced search</source>
-        <translation>Dokładne szukanie</translation>
+        <translation>Szukanie zaawansowane</translation>
     </message>
     <message>
         <source>Restrict file types</source>
@@ -95,11 +95,11 @@
     </message>
     <message>
         <source>Save as default</source>
-        <translation>Zapamiętaj wybrane typy</translation>
+        <translation>Zapamiętaj jako domyślne</translation>
     </message>
     <message>
         <source>Searched file types</source>
-        <translation>Przeszukaj plik</translation>
+        <translation>Przeszukaj typy plik</translation>
     </message>
     <message>
         <source>All ----&gt;</source>
@@ -119,7 +119,7 @@
     </message>
     <message>
         <source>Ignored file types</source>
-        <translation>Pomiń pliki</translation>
+        <translation>Ignorowane typy plików</translation>
     </message>
     <message>
         <source>Enter top directory for search</source>
@@ -131,7 +131,7 @@
     </message>
     <message>
         <source>Restrict results to files in subtree:</source>
-        <translation>Tylko pliki LEŻĄCE W katalogu:</translation>
+        <translation>Ogranicz wyniki do plików w poddrzewie:</translation>
     </message>
     <message>
         <source>Start Search</source>
@@ -139,7 +139,7 @@
     </message>
     <message>
         <source>Search for &lt;br&gt;documents&lt;br&gt;satisfying:</source>
-        <translation>Wyszukaj &lt;br&gt;dokumentów&lt;br&gt;spełniających następujące warunki:</translation>
+        <translation>Wyszukaj &lt;br&gt;dokumenty&lt;br&gt;spełniające warunki:</translation>
     </message>
     <message>
         <source>Delete clause</source>
@@ -155,7 +155,7 @@
     </message>
     <message>
         <source>By categories</source>
-        <translation>Jako kategoria</translation>
+        <translation>Według kategorii</translation>
     </message>
     <message>
         <source>Check this to use file categories instead of raw mime types</source>
@@ -199,19 +199,19 @@
     </message>
     <message>
         <source>From</source>
-        <translation>Po:</translation>
+        <translation>od:</translation>
     </message>
     <message>
         <source>To</source>
-        <translation>Przed:</translation>
+        <translation>do:</translation>
     </message>
     <message>
         <source>Check this to enable filtering on dates</source>
-        <translation>Zaznacz, by określić datę</translation>
+        <translation>Zaznacz, żeby włączyć filtrowanie wg daty</translation>
     </message>
     <message>
         <source>Filter dates</source>
-        <translation>Po dacie</translation>
+        <translation>wg daty</translation>
     </message>
     <message>
         <source>Find</source>
@@ -219,22 +219,22 @@
     </message>
     <message>
         <source>Check this to enable filtering on sizes</source>
-        <translation>Zaznacz, by określić rozmiar</translation>
+        <translation>Zaznacz, żeby włączyć filtrowanie wg rozmiaru</translation>
     </message>
     <message>
         <source>Filter sizes</source>
-        <translation>Po rozmiarze</translation>
+        <translation>Według rozmiaru</translation>
     </message>
     <message>
         <source>Filter birth dates</source>
-        <translation>Filtruj daty urodzenia</translation>
+        <translation>Według daty</translation>
     </message>
 </context>
 <context>
     <name>ConfIndexW</name>
     <message>
         <source>Can&apos;t write configuration file</source>
-        <translation>Nie można pisać w pliku konfiguracji</translation>
+        <translation>Błąd zapisu do pliku konfiguracji</translation>
     </message>
     <message>
         <source>Global parameters</source>
@@ -258,7 +258,7 @@
     </message>
     <message>
         <source>Skipped paths</source>
-        <translation>Wykluczone ścieżki</translation>
+        <translation>Pomijane katalogi</translation>
     </message>
     <message>
         <source>These are pathnames of directories which indexing will not enter.&lt;br&gt;Path elements may contain wildcards. The entries must match the paths seen by the indexer (e.g.: if topdirs includes &apos;/home/me&apos; and &apos;/home&apos; is actually a link to &apos;/usr/home&apos;, a correct skippedPath entry would be &apos;/home/me/tmp*&apos;, not &apos;/usr/home/me/tmp*&apos;)</source>
@@ -266,15 +266,15 @@
     </message>
     <message>
         <source>Stemming languages</source>
-        <translation>Reguły ciosania (ang. stemming languages)</translation>
+        <translation>Język dla rdzeniowania</translation>
     </message>
     <message>
         <source>The languages for which stemming expansion&lt;br&gt;dictionaries will be built.</source>
-        <translation type="vanished">Języki, dla których zostaną zbudowane dodatkowe&lt;br&gt;słowniki.</translation>
+        <translation type="vanished">Języki, dla których zostaną zbudowane &lt;br&gt;słowniki rdzeniowania</translation>
     </message>
     <message>
         <source>Log file name</source>
-        <translation>Nazwa pliku dziennika (logs)</translation>
+        <translation>Nazwa pliku logowania</translation>
     </message>
     <message>
         <source>The file where the messages will be written.&lt;br&gt;Use &apos;stderr&apos; for terminal output</source>
@@ -282,7 +282,7 @@
     </message>
     <message>
         <source>Log verbosity level</source>
-        <translation>Poziom stężenia komunikatu</translation>
+        <translation>Poziom logowania</translation>
     </message>
     <message>
         <source>This value adjusts the amount of messages,&lt;br&gt;from only errors to a lot of debugging data.</source>
@@ -290,11 +290,11 @@
     </message>
     <message>
         <source>Index flush megabytes interval</source>
-        <translation>Interwał (megabajty) opróżniania indeksowania</translation>
+        <translation>Odstęp zapisu indeksu na dysk (MB)</translation>
     </message>
     <message>
         <source>This value adjust the amount of data which is indexed between flushes to disk.&lt;br&gt;This helps control the indexer memory usage. Default 10MB </source>
-        <translation>Ta wartość dostosowuje ilość danych, które są indeksowane między spłukiwaniami na dysku.&lt;br&gt;Pomaga to kontrolować użycie pamięci indeksatora. Domyślnie 10MB </translation>
+        <translation>Ta wartość dostosowuje ilość danych, które są indeksowane między zapisami na dysku.&lt;br&gt;Pomaga to kontrolować użycie pamięci indeksatora. Domyślnie 10MB </translation>
     </message>
     <message>
         <source>This is the percentage of disk usage - total disk usage, not index size - at which indexing will fail and stop.&lt;br&gt;The default value of 0 removes any limit.</source>
@@ -306,7 +306,7 @@
     </message>
     <message>
         <source>Disables use of aspell to generate spelling approximation in the term explorer tool.&lt;br&gt; Useful if aspell is absent or does not work. </source>
-        <translation>Wyłącza używanie aspektu do generowania przybliżenia pisowni w narzędziu eksploratora terminu.&lt;br&gt; Przydatne jeśli aspekt jest nieobecny lub nie działa. </translation>
+        <translation>Wyłącza używanie aspektu do generowania przybliżenia pisowni w narzędziu eksploratora wyrażenia.&lt;br&gt; Przydatne jeśli aspekt jest nieobecny lub nie działa. </translation>
     </message>
     <message>
         <source>Aspell language</source>
@@ -342,11 +342,11 @@
     </message>
     <message>
         <source>Web page store directory name</source>
-        <translation>Nazwa katalogu dla trzymania stron web</translation>
+        <translation>Nazwa katalogu dla stron web</translation>
     </message>
     <message>
         <source>The name for a directory where to store the copies of visited web pages.&lt;br&gt;A non-absolute path is taken relative to the configuration directory.</source>
-        <translation>Nazwa katalogu, w którym można przechowywać kopie odwiedzanych stron internetowych.&lt;br&gt;Ścieżka nie jest bezwzględna w stosunku do katalogu konfiguracyjnego.</translation>
+        <translation>Nazwa katalogu, w którym będą przechowywane kopie odwiedzanych stron internetowych.&lt;br&gt;Ścieżka względna jest traktowana w stosunku do katalogu konfiguracyjnego.</translation>
     </message>
     <message>
         <source>Max. size for the web store (MB)</source>
@@ -374,15 +374,15 @@
     </message>
     <message>
         <source>Maximum term expansion count</source>
-        <translation>Maksymalna liczba rozszerzeń terminu</translation>
+        <translation>Maksymalna liczba rozszerzeń wyrażenia</translation>
     </message>
     <message>
         <source>&lt;p&gt;Maximum expansion count for a single term (e.g.: when using wildcards). The default of 10 000 is reasonable and will avoid queries that appear frozen while the engine is walking the term list.</source>
-        <translation>&lt;p&gt;Maximum expansion count for a single term (np.: when use wildcards). Wartość domyślna 10 000 jest rozsądna i pozwoli uniknąć zapytań, które pojawiają się w stanie zamrożonym, gdy silnik porusza się na liście terminów.</translation>
+        <translation>&lt;p&gt;Maximum expansion count for a single term (np.: when use wildcards). Wartość domyślna 10 000 jest rozsądna i pozwoli uniknąć zapytań, które pojawiają się w stanie zamrożonym, gdy silnik porusza się na liście wyrażeń.</translation>
     </message>
     <message>
         <source>Maximum Xapian clauses count</source>
-        <translation>Maksymalna liczba klauzuli Xapian </translation>
+        <translation>Maksymalna liczba klauzul Xapian</translation>
     </message>
     <message>
         <source>&lt;p&gt;Maximum number of elementary clauses we add to a single Xapian query. In some cases, the result of term expansion can be multiplicative, and we want to avoid using excessive memory. The default of 100 000 should be both high enough in most cases and compatible with current typical hardware configurations.</source>
@@ -398,11 +398,11 @@
     </message>
     <message>
         <source>Indexer log file name</source>
-        <translation>Nazwa pliku dziennika indeksu</translation>
+        <translation>Nazwa pliku logowania</translation>
     </message>
     <message>
         <source>If empty, the above log file name value will be used. It may useful to have a separate log for diagnostic purposes because the common log will be erased when&lt;br&gt;the GUI starts up.</source>
-        <translation>Jeśli puste, użyta zostanie powyższa nazwa pliku dziennika. Użyteczne może być posiadanie osobnego dziennika do celów diagnostycznych, ponieważ wspólny dziennik zostanie usunięty po uruchomieniu&lt;br&gt;interfejsu graficznego.</translation>
+        <translation>Jeśli puste, użyta zostanie powyższa nazwa pliku dziennika. Użyteczne może być posiadanie oddzielnego pliku logowania do celów diagnostycznych, ponieważ wspólny dziennik zostanie usunięty po uruchomieniu&lt;br&gt;interfejsu graficznego.</translation>
     </message>
     <message>
         <source>Disk full threshold percentage at which we stop indexing&lt;br&gt;E.g. 90% to stop at 90% full, 0 or 100 means no limit)</source>
@@ -410,7 +410,7 @@
     </message>
     <message>
         <source>Web history</source>
-        <translation>Historia sieci</translation>
+        <translation>Historia przeglądania</translation>
     </message>
     <message>
         <source>Process the Web history queue</source>
@@ -434,7 +434,7 @@
     </message>
     <message>
         <source>Start folders</source>
-        <translation>Rozpocznij foldery</translation>
+        <translation>Indeksowane katalogi</translation>
     </message>
     <message>
         <source>The list of folders/directories to be indexed. Sub-folders will be recursively processed. Default: your home.</source>
@@ -454,7 +454,7 @@
     </message>
     <message>
         <source>Store some GUI parameters locally to the index</source>
-        <translation>Zapisz lokalnie niektóre parametry interfejsu GUI do indeksu.</translation>
+        <translation>Zapisz lokalnie niektóre parametry interfejsu GUI do indeksu</translation>
     </message>
     <message>
         <source>&lt;p&gt;GUI settings are normally stored in a global file, valid for all indexes. Setting this parameter will make some settings, such as the result table setup, specific to the index</source>
@@ -462,7 +462,7 @@
     </message>
     <message>
         <source>Suspend the real time indexer when running on battery</source>
-        <translation>Wstrzymaj indeksowanie w czasie rzeczywistym podczas pracy na baterii.</translation>
+        <translation>Wstrzymaj indeksowanie w czasie rzeczywistym podczas pracy na baterii</translation>
     </message>
     <message>
         <source>The indexer will wait for a return on AC and reexec itself when it happens</source>
@@ -470,7 +470,7 @@
     </message>
     <message>
         <source>The list of folders/directories to be indexed, recursively with their sub-folders.&lt;br&gt;The &apos;~&apos; character expands to your home directory, which is the default initial value.</source>
-        <translation>Lista folderów/katalogów do zindeksowania, rekurencyjnie wraz z ich podfolderami.&lt;br&gt;Znak &apos;~&apos; rozszerza się do katalogu domowego, który jest domyślną wartością początkową.</translation>
+        <translation>Lista folderów/katalogów do zindeksowania, rekurencyjnie wraz z ich podfolderami.&lt;br&gt;Znak &apos;~&apos; rozwija się do katalogu domowego, który jest domyślną wartością początkową.</translation>
     </message>
     <message>
         <source> (by default, aspell suggests mispellings when a query has no results).</source>
@@ -478,7 +478,7 @@
     </message>
     <message>
         <source>Database directory</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog bazy danych Xapian</translation>
     </message>
     <message>
         <source>The name or path for a directory where to store the index&lt;br&gt;A non-absolute path is taken relative to the configuration directory. The default is &apos;xapiandb&apos;.</source>
@@ -489,19 +489,19 @@
     <name>ConfSubPanelW</name>
     <message>
         <source>Only mime types</source>
-        <translation>Tylko typy mime</translation>
+        <translation>Tylko typy MIME</translation>
     </message>
     <message>
         <source>An exclusive list of indexed mime types.&lt;br&gt;Nothing else will be indexed. Normally empty and inactive</source>
-        <translation>Lista ekskluzywnych typów indeksowanych mime.&lt;br&gt;Nic innego nie zostanie zindeksowane. Zwykle puste i nieaktywne</translation>
+        <translation>Lista indeksowanych typów MIME.&lt;br&gt;Nic innego nie zostanie zindeksowane. Zwykle puste i nieaktywne</translation>
     </message>
     <message>
         <source>Exclude mime types</source>
-        <translation>Wyklucz typy mime</translation>
+        <translation>Wyklucz typy MIME</translation>
     </message>
     <message>
         <source>Mime types not to be indexed</source>
-        <translation>Typy Mime nie mają być indeksowane</translation>
+        <translation>Typy MIME które nie będą indeksowane</translation>
     </message>
     <message>
         <source>Max. compressed file size (KB)</source>
@@ -670,7 +670,7 @@ p, li { white-space: pre-wrap; }
     <name>EditTransBase</name>
     <message>
         <source>Path Translations</source>
-        <translation type="vanished">Ścieżka tłumaczenia</translation>
+        <translation type="vanished">Tłumaczenia ścieżek</translation>
     </message>
     <message>
         <source>Setting path translations for </source>
@@ -701,7 +701,7 @@ p, li { white-space: pre-wrap; }
     <name>FirstIdxDialog</name>
     <message>
         <source>First indexing setup</source>
-        <translation>Początkowa konfiguracja indeksowania</translation>
+        <translation>Konfiguracja pierwszego indeksowania</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -803,7 +803,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Decide if real time indexing will be started when you log in (only for the default index).</source>
-        <translation>Pozwala uruchomić indeksowanie po zalogowaniu.</translation>
+        <translation>Pozwala uruchomić indeksowanie po zalogowaniu</translation>
     </message>
 </context>
 <context>
@@ -878,7 +878,7 @@ Kliknij Anuluj, jeśli chcesz edytować plik konfiguracyjny przed rozpoczęciem 
     <name>PTransEditBase</name>
     <message>
         <source>Path Translations</source>
-        <translation>Ścieżka tłumaczenia</translation>
+        <translation>Tłumaczenia ścieżek</translation>
     </message>
     <message>
         <source>Select one or several file types, then use the controls in the frame below to change how they are processed</source>
@@ -1119,15 +1119,15 @@ Kliknij Anuluj, jeśli chcesz edytować plik konfiguracyjny przed rozpoczęciem 
     </message>
     <message>
         <source>&lt;b&gt;Customised subtrees</source>
-        <translation>&lt;b&gt;Dostosuj subdrzewa</translation>
+        <translation>&lt;b&gt;Dostosuj indeksowanie katalogów</translation>
     </message>
     <message>
         <source>The list of subdirectories in the indexed hierarchy &lt;br&gt;where some parameters need to be redefined. Default: empty.</source>
-        <translation>Lista podkatalogów w zindeksowanej hierarchii &lt;br&gt;, gdzie niektóre parametry muszą być ponownie zdefiniowane. Domyślnie: puste.</translation>
+        <translation>Lista indeksowanych katalogów &lt;br&gt;, dla których można określić odrębne parametry. Domyślnie: puste.</translation>
     </message>
     <message>
         <source>&lt;i&gt;The parameters that follow are set either at the top level, if nothing&lt;br&gt;or an empty line is selected in the listbox above, or for the selected subdirectory.&lt;br&gt;You can add or remove directories by clicking the +/- buttons.</source>
-        <translation type="vanished">&lt;i&gt;Parametry, które następują, są ustawione na najwyższym poziomie, jeśli nic&lt;br&gt;lub pusta linia jest zaznaczona na liście powyżej lub dla wybranego podkatalogu.&lt;br&gt;Możesz dodać lub usunąć katalogi klikając przycisk +/-.</translation>
+        <translation type="vanished">&lt;i&gt;Poniższe parametry są ustawione na najwyższym poziomie, jeśli nic nie jest zaznaczone na liście powyżej&lt;br&gt;lub dla wybranego katalogu.&lt;br&gt;Katalogi możesz dodać lub usunąć klikając przyciski +/-.</translation>
     </message>
     <message>
         <source>Skipped names</source>
@@ -1152,7 +1152,7 @@ Kliknij Anuluj, jeśli chcesz edytować plik konfiguracyjny przed rozpoczęciem 
     <message>
         <source>Follow symbolic links while indexing. The default is no, to avoid duplicate indexing</source>
         <translation>Follow symbolic links while indexing. The default is no, to avoid duplicate indexing
-Indeksując, idź za dowiązaniami symbolicznymi. Domyślnia wartość to NIE, chroni przed zduplikowanymi indeksami.</translation>
+Indeksując, idź za dowiązaniami symbolicznymi. Domyślnia wartość to NIE, która chroni przed zduplikowanymi indeksami.</translation>
     </message>
     <message>
         <source>Index all file names</source>
@@ -1184,7 +1184,7 @@ Indeksując, idź za dowiązaniami symbolicznymi. Domyślnia wartość to NIE, c
     </message>
     <message>
         <source>Ignored endings</source>
-        <translation>Ignorowane zakończenia</translation>
+        <translation>Wyklucz rozszerzenia</translation>
     </message>
     <message>
         <source>These are file name endings for files which will be indexed by content only 
@@ -1195,8 +1195,7 @@ Indeksując, idź za dowiązaniami symbolicznymi. Domyślnia wartość to NIE, c
     <message>
         <source>These are file name endings for files which will be indexed by name only 
 (no MIME type identification attempt, no decompression, no content indexing).</source>
-        <translation>Są to zakończenia nazwy pliku dla plików, które będą indeksowane tylko po nazwie 
-(brak próby identyfikacji typu MIME, brak dekompresji, brak indeksowania zawartości).</translation>
+        <translation>Są to rozszerzenia nazw plików, które wykluczają indeksowanie na podstawie nazwy typu MIME, bez dekompresji, bez indeksowania zawartości.</translation>
     </message>
     <message>
         <source>&lt;i&gt;The parameters that follow are set either at the top level, if nothing or an empty line is selected in the listbox above, or for the selected subdirectory. You can add or remove directories by clicking the +/- buttons.</source>
@@ -1204,7 +1203,7 @@ Indeksując, idź za dowiązaniami symbolicznymi. Domyślnia wartość to NIE, c
     </message>
     <message>
         <source>These are patterns for file or directory names which should not be indexed.</source>
-        <translation>To są wzorce nazw plików lub katalogów, które nie powinny być indeksowane.</translation>
+        <translation>To są wzorce nazw plików lub katalogów, które nie będą indeksowane.</translation>
     </message>
 </context>
 <context>
@@ -1231,7 +1230,7 @@ Indeksując, idź za dowiązaniami symbolicznymi. Domyślnia wartość to NIE, c
     </message>
     <message>
         <source>&amp;Preview</source>
-        <translation>&amp;Poprzedni</translation>
+        <translation>&amp;Podgląd</translation>
     </message>
     <message>
         <source>&amp;Open</source>
@@ -1275,7 +1274,7 @@ Indeksując, idź za dowiązaniami symbolicznymi. Domyślnia wartość to NIE, c
     </message>
     <message>
         <source>Open &amp;Snippets window</source>
-        <translation>Otwórz okno &amp;snipetów</translation>
+        <translation>Otwórz okno &amp;urywków</translation>
     </message>
     <message>
         <source>Show subdocuments / attachments</source>
@@ -1403,7 +1402,7 @@ p, li { white-space: pre-wrap; }
     <name>RclMain</name>
     <message>
         <source>About Recoll</source>
-        <translation>Karta Recoll</translation>
+        <translation>O Recoll...</translation>
     </message>
     <message>
         <source>Executing: [</source>
@@ -1435,7 +1434,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Indexing in progress: </source>
-        <translation>Indeksowanie w tracie: </translation>
+        <translation>Indeksowanie w trakcie: </translation>
     </message>
     <message>
         <source>Files</source>
@@ -1463,7 +1462,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>Can&apos;t start query: </source>
-        <translation type="vanished">Może&apos;t start zapytania: </translation>
+        <translation type="vanished">Nie można rozpocząć zapytania: </translation>
     </message>
     <message>
         <source>Bad viewer command line for %1: [%2]
@@ -1477,31 +1476,31 @@ Sprawdź plik mimeconf</translation>
     </message>
     <message>
         <source>(no stemming)</source>
-        <translation>wyłącz ciosanie (ang. stemming)</translation>
+        <translation>wyłącz rdzeniowanie</translation>
     </message>
     <message>
         <source>(all languages)</source>
-        <translation>(każdy język)</translation>
+        <translation>(wszystkie języki)</translation>
     </message>
     <message>
         <source>error retrieving stemming languages</source>
-        <translation>Błąd pobierania &quot;reguł ciosania&quot; (ang. stemming languages)</translation>
+        <translation>Błąd pobierania &quot;reguł rdzeniowania&quot;</translation>
     </message>
     <message>
         <source>Update &amp;Index</source>
-        <translation>Odśwież &amp;Indeks</translation>
+        <translation>Odśwież &amp;indeks</translation>
     </message>
     <message>
         <source>Indexing interrupted</source>
-        <translation>Indeksowanie przerwane</translation>
+        <translation>Indeksowanie zostało przerwane</translation>
     </message>
     <message>
         <source>Stop &amp;Indexing</source>
-        <translation>Zatrzymaj &amp;Indeksowanie</translation>
+        <translation>Zatrzymaj &amp;indeksowanie</translation>
     </message>
     <message>
         <source>All</source>
-        <translation>Wszystko</translation>
+        <translation>wszystko</translation>
     </message>
     <message>
         <source>media</source>
@@ -1513,7 +1512,7 @@ Sprawdź plik mimeconf</translation>
     </message>
     <message>
         <source>other</source>
-        <translation>pozostałe</translation>
+        <translation>inne</translation>
     </message>
     <message>
         <source>presentation</source>
@@ -1545,11 +1544,11 @@ Sprawdź plik mimeconf</translation>
     </message>
     <message>
         <source>No helpers found missing</source>
-        <translation>Wszystkie rozszerzenia znaleziono</translation>
+        <translation>Nie znaleziono brakujących wtyczek</translation>
     </message>
     <message>
         <source>Missing helper programs</source>
-        <translation>Brakujące rozszerzenia</translation>
+        <translation>Brakujące wtyczki</translation>
     </message>
     <message>
         <source>Save file dialog</source>
@@ -1646,27 +1645,27 @@ Do you want to start the  preferences dialog ?</source>
     </message>
     <message>
         <source>Index query error</source>
-        <translation>Błąd odpytania indeksu</translation>
+        <translation>Błąd zapytania indeksu</translation>
     </message>
     <message>
         <source>Indexed Mime Types</source>
-        <translation type="vanished">Indeksowane typy Mime</translation>
+        <translation type="vanished">Indeksowane typy MIME</translation>
     </message>
     <message>
         <source>Content has been indexed for these MIME types:</source>
-        <translation>Zawartość została zindeksowana dla tych typów MIME:</translation>
+        <translation>Indeksowano poniższe typy MIME:</translation>
     </message>
     <message>
         <source>Index not up to date for this file. Refusing to risk showing the wrong entry. Click Ok to update the index for this file, then re-run the query when indexing is done. Else, Cancel.</source>
-        <translation type="vanished">Indeks nie aktualny dla tego pliku. Odmawiam ryzyka pokazania błędnego wpisu. Kliknij Ok, aby zaktualizować indeks dla tego pliku, a następnie ponownie uruchom zapytanie po zakończeniu indeksowania. Inne, Anuluj.</translation>
+        <translation type="vanished">Indeks dla tego pliku jest nieaktualny. Błędny wpis nie zostanie pokazany. Kliknij OK, aby zaktualizować indeks dla tego pliku, a następnie ponownie uruchom zapytanie po zakończeniu indeksowania. W przeciwnym przypadku kliknij Anuluj.</translation>
     </message>
     <message>
         <source>Can&apos;t update index: indexer running</source>
-        <translation>Nie mogę zaktualizować indeksu: pracujący indekser</translation>
+        <translation>Nie można zaktualizować indeksu w czasie pracy  indeksatora</translation>
     </message>
     <message>
         <source>Indexed MIME Types</source>
-        <translation>Zaindeksowane typy MIME</translation>
+        <translation>Indeksowane typy MIME...</translation>
     </message>
     <message>
         <source>Bad viewer command line for %1: [%2]
@@ -1696,7 +1695,7 @@ Sprawdź plik widoku MIME</translation>
     </message>
     <message>
         <source>Click Ok to update the index for this file, then re-run the query when indexing is done. Else, Cancel.</source>
-        <translation type="vanished">Kliknij Ok by uaktualnić indeks tego pliku, po zakończeniu ponów zapytanie lub Anuluj.</translation>
+        <translation type="vanished">Kliknij OK by uaktualnić indeks tego pliku, po zakończeniu ponów zapytanie lub Anuluj.</translation>
     </message>
     <message>
         <source>Indexer running so things should improve when it&apos;s done</source>
@@ -1716,15 +1715,15 @@ Sprawdź plik widoku MIME</translation>
     </message>
     <message>
         <source>Click Ok to update the index for this file, then you will need to re-run the query when indexing is done. </source>
-        <translation type="vanished">Kliknij Ok, aby zaktualizować indeks dla tego pliku, a następnie musisz ponownie uruchomić zapytanie po zakończeniu indeksowania. </translation>
+        <translation type="vanished">Kliknij OK, aby zaktualizować indeks dla tego pliku, a następnie musisz ponownie uruchomić zapytanie po zakończeniu indeksowania. </translation>
     </message>
     <message>
         <source>The indexer is running so things should improve when it&apos;s done. </source>
-        <translation>Indekser jest uruchomiony, więc rzeczy powinny się poprawić, gdy&apos;s skończy. </translation>
+        <translation>Indeksator jest uruchomiony, więc rzeczy powinny się poprawić, gdy&apos;s indeksowanie się zakończy. </translation>
     </message>
     <message>
         <source>The document belongs to an external indexwhich I can&apos;t update. </source>
-        <translation type="vanished">Dokument należy do zewnętrznego indeksu, który mogę&apos;t aktualizować. </translation>
+        <translation type="vanished">Dokument należy do zewnętrznego indeksu, którego nie można aktualizować.</translation>
     </message>
     <message>
         <source>Click Cancel to return to the list. Click Ignore to show the preview anyway. </source>
@@ -1820,11 +1819,11 @@ Sprawdź plik pulpitu</translation>
     </message>
     <message>
         <source>The current indexing process was not started from this interface, can&apos;t kill it</source>
-        <translation type="vanished">Bieżący proces indeksowania nie został uruchomiony z tego interfejsu, może&apos;t zabić go</translation>
+        <translation type="vanished">Bieżący proces indeksowania nie został uruchomiony z tego interfejsu, nie można go przerwać</translation>
     </message>
     <message>
         <source>The document belongs to an external index which I can&apos;t update. </source>
-        <translation>Dokument należy do indeksu zewnętrznego, który mogę&apos;t aktualizować. </translation>
+        <translation>Dokument należy do indeksu zewnętrznego, który nie można aktualizować. </translation>
     </message>
     <message>
         <source>Click Cancel to return to the list. &lt;br&gt;Click Ignore to show the preview anyway (and remember for this session).</source>
@@ -1848,11 +1847,11 @@ Sprawdź plik pulpitu</translation>
     </message>
     <message>
         <source>Unknown indexer state. Can&apos;t access webcache file.</source>
-        <translation>Nieznany stan indeksatora. Może&apos;t uzyskać dostęp do pliku pamięci podręcznej.</translation>
+        <translation>Nieznany stan indeksatora. Nie można uzyskać dostępu do historii przeglądania.</translation>
     </message>
     <message>
         <source>Indexer is running. Can&apos;t access webcache file.</source>
-        <translation>Indekser jest uruchomiony. Może&apos;t uzyskać dostęp do pliku pamięci podręcznej.</translation>
+        <translation>Indekser jest uruchomiony. Nie można uzyskać dostępu do historii przeglądania.</translation>
     </message>
     <message>
         <source>with additional message: </source>
@@ -1950,7 +1949,7 @@ Sprawdź plik pulpitu</translation>
     </message>
     <message>
         <source>Batch scheduling</source>
-        <translation>Harmonogram partii</translation>
+        <translation>Harmonogram indeksowania</translation>
     </message>
     <message>
         <source>The tool will let you decide at what time indexing should run.  It uses the Windows task scheduler.</source>
@@ -1990,15 +1989,15 @@ Sprawdź plik pulpitu</translation>
     </message>
     <message>
         <source>Simple search type</source>
-        <translation>Prosty typ wyszukiwania</translation>
+        <translation>Wyszukiwanie proste</translation>
     </message>
     <message>
         <source>Any term</source>
-        <translation>Któryś termin</translation>
+        <translation>Dowolne wyrażenie</translation>
     </message>
     <message>
         <source>All terms</source>
-        <translation>Każdy termin</translation>
+        <translation>Wszystkie wyrażenia</translation>
     </message>
     <message>
         <source>File name</source>
@@ -2010,7 +2009,7 @@ Sprawdź plik pulpitu</translation>
     </message>
     <message>
         <source>Stemming language</source>
-        <translation>Język ciosania</translation>
+        <translation>Opcje rdzeniowania</translation>
     </message>
     <message>
         <source>Main Window</source>
@@ -2078,7 +2077,7 @@ Sprawdź plik pulpitu</translation>
     </message>
     <message>
         <source>This search is not active anymore</source>
-        <translation>Ta wyszukiwarka nie jest już aktywna.</translation>
+        <translation>To wyszukiwanie nie jest już aktywne.</translation>
     </message>
     <message>
         <source>Viewer command line for %1 specifies parent file but URL is not file:// : unsupported</source>
@@ -2091,11 +2090,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Show advanced search dialog</source>
-        <translation>Pokaż zaawansowane okno wyszukiwania</translation>
+        <translation>Pokaż okno szukania zaawansowanego</translation>
     </message>
     <message>
         <source> with additional message: </source>
-        <translation type="unfinished"></translation>
+        <translation> z dodatkowym komunikatem:</translation>
     </message>
 </context>
 <context>
@@ -2138,19 +2137,19 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&amp;About Recoll</source>
-        <translation>&amp;Karta Recoll</translation>
+        <translation>&amp;O Recoll</translation>
     </message>
     <message>
         <source>Document &amp;History</source>
-        <translation>&amp;Historia dokumentu</translation>
+        <translation>&amp;Historia dokumentów</translation>
     </message>
     <message>
         <source>Document  History</source>
-        <translation>Historia Dokumentu</translation>
+        <translation>Historia dokumentów</translation>
     </message>
     <message>
         <source>&amp;Advanced Search</source>
-        <translation>&amp;Zaawansowane szukanie</translation>
+        <translation>&amp;Szukanie zaawansowane </translation>
     </message>
     <message>
         <source>Advanced/complex  Search</source>
@@ -2194,11 +2193,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Term &amp;explorer</source>
-        <translation>Przejżyj &amp;terminy</translation>
+        <translation>Przejrzyj &amp;wyrażenia</translation>
     </message>
     <message>
         <source>Term explorer tool</source>
-        <translation>Przeglądanie terminów</translation>
+        <translation>Przeglądanie wyrażeń</translation>
     </message>
     <message>
         <source>External index dialog</source>
@@ -2222,11 +2221,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>All</source>
-        <translation type="vanished">Wszystko</translation>
+        <translation type="vanished">wszystko</translation>
     </message>
     <message>
         <source>&amp;Show missing helpers</source>
-        <translation type="vanished">Pokaż &amp;brakujących pomocników</translation>
+        <translation type="vanished">Pokaż &amp;brakujące wtyczki</translation>
     </message>
     <message>
         <source>PgDown</source>
@@ -2242,7 +2241,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&amp;Full Screen</source>
-        <translation>Pełen &amp;Ekran</translation>
+        <translation>Cały &amp;ekran</translation>
     </message>
     <message>
         <source>F11</source>
@@ -2250,7 +2249,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Full Screen</source>
-        <translation>Pełen ekran</translation>
+        <translation>Pełny ekran</translation>
     </message>
     <message>
         <source>&amp;Erase search history</source>
@@ -2262,7 +2261,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Sort by dates from oldest to newest</source>
-        <translation>Sortuj po dacie: od najstarszego</translation>
+        <translation>Sortuj po dacie: od najstarszej</translation>
     </message>
     <message>
         <source>sortByDateDesc</source>
@@ -2270,11 +2269,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Sort by dates from newest to oldest</source>
-        <translation>Sortuj po dacie: od najnowszego</translation>
+        <translation>Sortuj po dacie: od najnowszej</translation>
     </message>
     <message>
         <source>Show Query Details</source>
-        <translation>Pokaż szczegóły zapytania</translation>
+        <translation>Szczegóły zapytania...</translation>
     </message>
     <message>
         <source>Show results as table</source>
@@ -2282,11 +2281,11 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&amp;Rebuild index</source>
-        <translation>&amp;Odnów indeks</translation>
+        <translation>&amp;Odbuduj indeks</translation>
     </message>
     <message>
         <source>&amp;Show indexed types</source>
-        <translation type="vanished">Pokaż zaindeksowane &amp;typy</translation>
+        <translation type="vanished">Pokaż indeksowane &amp;typy</translation>
     </message>
     <message>
         <source>Shift+PgUp</source>
@@ -2314,15 +2313,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Sort by date, oldest first</source>
-        <translation>Sortuj po dacie: od najstarszego</translation>
+        <translation>Sortuj wg daty: od najstarszej</translation>
     </message>
     <message>
         <source>Sort by date, newest first</source>
-        <translation>Sortuj po dacie: od najnowszego</translation>
+        <translation>Sortuj wg daty: od najmłodszej</translation>
     </message>
     <message>
         <source>Show as table</source>
-        <translation>Pokaż jako tabela</translation>
+        <translation>Pokaż jako tabelę</translation>
     </message>
     <message>
         <source>Show results in a spreadsheet-like table</source>
@@ -2334,7 +2333,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Saves the result into a file which you can load in a spreadsheet</source>
-        <translation>Zapisz wyniki do pliku czytelnego przez arkusz</translation>
+        <translation>Zapisz wyniki do pliku, który można wczytać do arkusza</translation>
     </message>
     <message>
         <source>Next Page</source>
@@ -2358,7 +2357,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Next update will retry previously failed files</source>
-        <translation>Następna aktualizacja ponownie spróbuje poprzednio nieudane pliki</translation>
+        <translation>Następna aktualizacja ponownie sprawdzi pliki, dla których wystąpiły błędy</translation>
     </message>
     <message>
         <source>Save last query</source>
@@ -2366,7 +2365,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Load saved query</source>
-        <translation>Załaduj zapisane zapytanie</translation>
+        <translation>Wczytaj zapisane zapytanie</translation>
     </message>
     <message>
         <source>Special Indexing</source>
@@ -2390,7 +2389,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Missing &amp;helpers</source>
-        <translation>Brakujący &amp;pomocnik</translation>
+        <translation>Brakujące &amp;wtyczki</translation>
     </message>
     <message>
         <source>Indexed &amp;MIME types</source>
@@ -2398,15 +2397,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Index &amp;statistics</source>
-        <translation>&amp;Statystyki indeksu</translation>
+        <translation>&amp;Statystyki indeksu...</translation>
     </message>
     <message>
         <source>Webcache Editor</source>
-        <translation>Edytor webcache</translation>
+        <translation>Edytor historii przeglądania</translation>
     </message>
     <message>
         <source>Trigger incremental pass</source>
-        <translation>Wyzwalaj przyrostowe przejście</translation>
+        <translation>Inicjuj indeksowanie przyrostowe</translation>
     </message>
     <message>
         <source>E&amp;xport simple search history</source>
@@ -2426,23 +2425,23 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Increase results text font size</source>
-        <translation>Zwiększ rozmiar czcionki wyników tekstu.</translation>
+        <translation>Powiększ czcionkę wyników wyszukiwania</translation>
     </message>
     <message>
         <source>Increase Font Size</source>
-        <translation>Zwiększ rozmiar czcionki</translation>
+        <translation>Powiększ czcionkę</translation>
     </message>
     <message>
         <source>Decrease results text font size</source>
-        <translation>Zmniejsz rozmiar czcionki wyników tekstu.</translation>
+        <translation>Zmniejsz czcionkę wyników wyszukiwania</translation>
     </message>
     <message>
         <source>Decrease Font Size</source>
-        <translation>Zmniejsz rozmiar czcionki</translation>
+        <translation>Zmniejsz czcionkę</translation>
     </message>
     <message>
         <source>Start real time indexer</source>
-        <translation>Uruchom indeksator czasu rzeczywistego.</translation>
+        <translation>Rozpocznij indeksowanie</translation>
     </message>
     <message>
         <source>Query Language Filters</source>
@@ -2450,7 +2449,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Filter dates</source>
-        <translation>Po dacie</translation>
+        <translation>Według daty</translation>
     </message>
     <message>
         <source>Assisted complex search</source>
@@ -2470,15 +2469,15 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>&amp;User manual (local, one HTML page)</source>
-        <translation>&quot;Instrukcja obsługi (lokalna, jedna strona HTML)&quot;</translation>
+        <translation>Podręcznik użytkownika (lokalnie; HTML)</translation>
     </message>
     <message>
-        <source>&amp;Online manual (Recoll Web site)</source>
-        <translation>&quot;Podręcznik online (strona internetowa Recoll)&quot;</translation>
+        <source>&amp;Online manual (Recoll Web site; HTML)</source>
+        <translation>Podręcznik online (na stronie Recoll; HTML)</translation>
     </message>
     <message>
         <source>Path translations</source>
-        <translation>Tłumaczenia ścieżek</translation>
+        <translation>Tłumaczenia ścieżek...</translation>
     </message>
     <message>
         <source>    With failed files retrying</source>
@@ -2500,7 +2499,7 @@ Do you want to start the preferences dialog ?</source>
     <name>RecollModel</name>
     <message>
         <source>Abstract</source>
-        <translation>Abstrakcja</translation>
+        <translation>Streszczenie</translation>
     </message>
     <message>
         <source>Author</source>
@@ -2532,7 +2531,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Keywords</source>
-        <translation>Słowa klucze</translation>
+        <translation>Słowa kluczowe</translation>
     </message>
     <message>
         <source>Mime type</source>
@@ -2572,7 +2571,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Can&apos;t sort by inverse relevance</source>
-        <translation>Można&apos;t sortować według odwrotnej istotności</translation>
+        <translation>Nie można sortować według odwrotnej istotności</translation>
     </message>
 </context>
 <context>
@@ -2635,7 +2634,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Preview</source>
-        <translation>Poprzedni</translation>
+        <translation>Podgląd</translation>
     </message>
     <message>
         <source>Open</source>
@@ -2695,7 +2694,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Snippets</source>
-        <translation>Snipety</translation>
+        <translation>Urywki</translation>
     </message>
     <message>
         <source>This spelling guess was added to the search:</source>
@@ -2802,7 +2801,7 @@ Do you want to start the preferences dialog ?</source>
     </message>
     <message>
         <source>Show snippets</source>
-        <translation>Pokaż fragmenty</translation>
+        <translation>Pokaż urywki</translation>
     </message>
     <message>
         <source>Show header</source>
@@ -2923,11 +2922,11 @@ Do you want to start the preferences dialog ?</source>
     <name>SSearch</name>
     <message>
         <source>Any term</source>
-        <translation>Któryś termin</translation>
+        <translation>Dowolne wyrażenie</translation>
     </message>
     <message>
         <source>All terms</source>
-        <translation>Każdy termin</translation>
+        <translation>Wszystkie wyrażenia</translation>
     </message>
     <message>
         <source>File name</source>
@@ -3203,7 +3202,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>&lt;p&gt;Query language cheat-sheet. In doubt: click &lt;b&gt;Show Query Details&lt;/b&gt;.&amp;nbsp;</source>
-        <translation>Arkusz oszustw języka zapytań. W razie wątpliwości: kliknij &lt;b&gt;Pokaż szczegóły zapytania&lt;/b&gt;. &amp;nbsp;</translation>
+        <translation>Arkusz podpowiedzi języka zapytań. W razie wątpliwości: kliknij &lt;b&gt;Pokaż zapytanie&lt;/b&gt;. &amp;nbsp;</translation>
     </message>
     <message>
         <source>&lt;tr&gt;&lt;td&gt;Capitalize to suppress stem expansion&lt;/td&gt;&lt;td&gt;Floor&lt;/td&gt;&lt;/tr&gt;</source>
@@ -3309,7 +3308,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Any</source>
-        <translation>Któryś</translation>
+        <translation>Dowolny</translation>
     </message>
     <message>
         <source>All</source>
@@ -3336,7 +3335,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     <name>Snippets</name>
     <message>
         <source>Snippets</source>
-        <translation>Snipety</translation>
+        <translation>Urywki</translation>
     </message>
     <message>
         <source>X</source>
@@ -3363,7 +3362,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>&lt;p&gt;Sorry, no exact match was found within limits. Probably the document is very big and the snippets generator got lost in a maze...&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Przepraszamy, nie znaleziono dokładnego dopasowania w granicach. Prawdopodobnie dokument jest bardzo duży i generator fragmentów zgubił się w labiryncie...&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Przepraszamy, nie znaleziono dokładnego dopasowania w granicach. Prawdopodobnie dokument jest bardzo duży i generator urywków zgubił się w labiryncie...&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Sort By Relevance</source>
@@ -3375,7 +3374,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Snippets Window</source>
-        <translation>Okno snippetów</translation>
+        <translation>Okno urywków</translation>
     </message>
     <message>
         <source>Find</source>
@@ -3527,11 +3526,11 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     <name>SpellBase</name>
     <message>
         <source>Term Explorer</source>
-        <translation>Przegląd terminów</translation>
+        <translation>Statystyki indeksu</translation>
     </message>
     <message>
         <source>&amp;Expand </source>
-        <translation>&amp;Rozszerz</translation>
+        <translation>&amp;Rozwiń</translation>
     </message>
     <message>
         <source>Alt+E</source>
@@ -3547,11 +3546,11 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Term</source>
-        <translation type="vanished">Termin</translation>
+        <translation type="vanished">Wyrażenie</translation>
     </message>
     <message>
         <source>No db info.</source>
-        <translation>Brak informacji bd.</translation>
+        <translation>Brak informacji o bazie danych.</translation>
     </message>
     <message>
         <source>Doc. / Tot.</source>
@@ -3563,7 +3562,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Case</source>
-        <translation>Wielkość znaków (Case)</translation>
+        <translation>Wielkość znaków</translation>
     </message>
     <message>
         <source>Accents</source>
@@ -3578,7 +3577,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Regexp</source>
-        <translation>Wyrażenie regułowe (regexp)</translation>
+        <translation>Wyrażenie regularne</translation>
     </message>
     <message>
         <source>Spelling/Phonetic</source>
@@ -3590,7 +3589,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Aspell expansion error. </source>
-        <translation type="vanished">Błąd rozszerzenia Aspell.</translation>
+        <translation type="vanished">Błąd komponentu Aspell.</translation>
     </message>
     <message>
         <source>Stem expansion</source>
@@ -3598,11 +3597,11 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>error retrieving stemming languages</source>
-        <translation>Błąd pobierania &quot;reguł ciosania&quot; (ang. stemming languages)</translation>
+        <translation>Błąd pobierania &quot;reguł rdzeniowania&quot;</translation>
     </message>
     <message>
         <source>No expansion found</source>
-        <translation>Nieznalezione rozszerzenie</translation>
+        <translation>Nie znaleziono żadnego plugina</translation>
     </message>
     <message>
         <source>Term</source>
@@ -3698,11 +3697,11 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Spell expansion error. </source>
-        <translation type="vanished">Błąd rozszerzenia zaklęcia. </translation>
+        <translation type="vanished">Błąd rozwinięcia pisowni. </translation>
     </message>
     <message>
         <source>Spell expansion error.</source>
-        <translation>Błąd rozszerzania pisowni.</translation>
+        <translation>Błąd rozwinięcia pisowni.</translation>
     </message>
     <message>
         <source>  Documents created/updated</source>
@@ -3737,7 +3736,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>error retrieving stemming languages</source>
-        <translation>Błąd pobierania &quot;reguł ciosania&quot; (ang. stemming languages)</translation>
+        <translation>Błąd pobierania &quot;reguł rdzeniowania&quot;</translation>
     </message>
     <message>
         <source>Choose</source>
@@ -3773,11 +3772,11 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Any term</source>
-        <translation>Któryś termin</translation>
+        <translation>Którykolwiek element</translation>
     </message>
     <message>
         <source>All terms</source>
-        <translation>Każdy termin</translation>
+        <translation>Wszystkie elementy</translation>
     </message>
     <message>
         <source>File name</source>
@@ -3817,7 +3816,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Light</source>
-        <translation>Światło</translation>
+        <translation>Jasny</translation>
     </message>
     <message>
         <source>Dark</source>
@@ -3825,7 +3824,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>System</source>
-        <translation>System</translation>
+        <translation>Systemowy</translation>
     </message>
 </context>
 <context>
@@ -3860,11 +3859,11 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Auto-start simple search on whitespace entry.</source>
-        <translation type="vanished">Proste szukanie gdy użyto biłych znaków we wpisie.</translation>
+        <translation type="vanished">Proste szukanie gdy użyto białych znaków we wpisie.</translation>
     </message>
     <message>
         <source>Start with advanced search dialog open.</source>
-        <translation type="vanished">Rozpocznij oknem zaawansowanego szukania.</translation>
+        <translation type="vanished">Rozpocznij oknem szukania zaawansowanego szukania</translation>
     </message>
     <message>
         <source>Start with sort dialog open.</source>
@@ -3876,7 +3875,7 @@ Użyj &lt;b&gt;Pokaż link Zapytania&lt;/b&gt; w razie wątpliwości co do wynik
     </message>
     <message>
         <source>Stemming language</source>
-        <translation type="vanished">Język ciosania</translation>
+        <translation type="vanished">Język rdzeniowania</translation>
     </message>
     <message>
         <source>Dynamically build abstracts</source>
@@ -3964,7 +3963,7 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>Toggle selected</source>
-        <translation type="vanished">Odwróc zaznaczenie</translation>
+        <translation type="vanished">Odwróć zaznaczenie</translation>
     </message>
     <message>
         <source>Activate All</source>
@@ -3988,7 +3987,7 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>Remember sort activation state.</source>
-        <translation type="vanished">Pamiętaj stan sortowania.</translation>
+        <translation type="vanished">Pamiętaj stan sortowania</translation>
     </message>
     <message>
         <source>Maximum text size highlighted for preview (megabytes)</source>
@@ -4012,7 +4011,7 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>Hide duplicate results.</source>
-        <translation type="vanished">Ukryj duplikaty w wynikach.</translation>
+        <translation type="vanished">Ukryj powielone wyniki</translation>
     </message>
     <message>
         <source>Choose editor applications</source>
@@ -4141,11 +4140,11 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     <name>Webcache</name>
     <message>
         <source>Webcache editor</source>
-        <translation>Edytor webcache</translation>
+        <translation>Edytor historię przeglądania</translation>
     </message>
     <message>
         <source>Search regexp</source>
-        <translation>Szukaj regexp</translation>
+        <translation>Szukaj z użyciem wyrażeń regularnych</translation>
     </message>
     <message>
         <source>TextLabel</source>
@@ -4160,11 +4159,11 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>Unknown indexer state. Can&apos;t edit webcache file.</source>
-        <translation>Nieznany stan indeksatora. Można&apos;t edytować plik pamięci podręcznej.</translation>
+        <translation>Nieznany stan indeksatora. Nie można edytować historii przeglądania.</translation>
     </message>
     <message>
         <source>Indexer is running. Can&apos;t edit webcache file.</source>
-        <translation>Indekser jest uruchomiony. Można&apos;t edytować plik webcache</translation>
+        <translation>Indeksator jest uruchomiony. Nie można edytować historii przeglądania</translation>
     </message>
     <message>
         <source>Delete selection</source>
@@ -4172,7 +4171,7 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>Webcache was modified, you will need to run the indexer after closing this window.</source>
-        <translation>Pamięć podręczna została zmodyfikowana, musisz uruchomić indeks po zamknięciu tego okna.</translation>
+        <translation>Historia przeglądania została zmodyfikowana, uruchom indeksator po zamknięciu tego okna</translation>
     </message>
     <message>
         <source>Save to File</source>
@@ -4222,7 +4221,7 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>&lt;h3&gt;Recoll indexing batch scheduling&lt;/h3&gt;&lt;p&gt;We use the standard Windows task scheduler for this. The program will be started when you click the button below.&lt;/p&gt;&lt;p&gt;You can use either the full interface (&lt;i&gt;Create task&lt;/i&gt; in the menu on the right), or the simplified &lt;i&gt;Create Basic task&lt;/i&gt; wizard. In both cases Copy/Paste the batch file path listed below as the &lt;i&gt;Action&lt;/i&gt; to be performed.&lt;/p&gt;</source>
-        <translation>&lt;h3&gt;Ponowne indeksowanie wsadowego harmonogramu&lt;/h3&gt;&lt;p&gt;Używamy standardowego harmonogramu zadań systemu Windows. Program zostanie uruchomiony po kliknięciu poniższego przycisku.&lt;/p&gt;&lt;p&gt;Możesz użyć pełnego interfejsu (&lt;i&gt;Utwórz zadanie&lt;/i&gt; w menu po prawej stronie), lub uproszczony kreator &lt;i&gt;Utwórz zadanie podstawowe&lt;/i&gt; . W obu przypadkach Kopiuj/Wklej ścieżkę pliku wsadowego wymienioną poniżej jako czynność &lt;i&gt;&lt;/i&gt; do wykonania.&lt;/p&gt;</translation>
+        <translation>&lt;h3&gt;Harmonogram indeksowania&lt;/h3&gt;&lt;p&gt;Używamy standardowego harmonogramu zadań Windows. Program zostanie uruchomiony po kliknięciu poniższego przycisku.&lt;/p&gt;&lt;p&gt;Możesz użyć pełnego interfejsu (&lt;i&gt;Utwórz zadanie&lt;/i&gt; w menu po prawej stronie), lub uproszczonego kreatora &lt;i&gt;Utwórz zadanie podstawowe&lt;/i&gt; . W obu przypadkach Kopiuj/Wklej poniższą ścieżkę pliku jako czynność &lt;i&gt;&lt;/i&gt; do wykonania.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Command already started</source>
@@ -4230,11 +4229,11 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>Recoll Batch indexing</source>
-        <translation>Indeksowanie partii recoll</translation>
+        <translation>Harmonogramowanie indeksowania</translation>
     </message>
     <message>
         <source>Start Windows Task Scheduler tool</source>
-        <translation>Uruchom narzędzie Harmonogramu Zadań Windows</translation>
+        <translation>Uruchom Harmonogram zadań Windows</translation>
     </message>
     <message>
         <source>Could not create batch file</source>
@@ -4253,7 +4252,7 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>Web cache directory name</source>
-        <translation type="vanished">Nazwa katalogu pamięci podręcznej</translation>
+        <translation type="vanished">Nazwa katalogu historii przeglądania</translation>
     </message>
     <message>
         <source>The name for a directory where to store the cache for visited web pages.&lt;br&gt;A non-absolute path is taken relative to the configuration directory.</source>
@@ -4300,7 +4299,7 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>Recoll - Index Settings: </source>
-        <translation type="vanished">Recoll - Ustawienia indeksu: </translation>
+        <translation>Recoll - Konfiguracja indeksu: </translation>
     </message>
 </context>
 <context>
@@ -4361,7 +4360,7 @@ To powinno dać pierwszeństwo wynikom, dokładnie tak jak zostały wpisane.</tr
     </message>
     <message>
         <source>Maximum term expansion count</source>
-        <translation type="vanished">Maksymalna liczba rozszerzeń terminu</translation>
+        <translation type="vanished">Maksymalna liczba rozszerzeń wyrażenia</translation>
     </message>
     <message>
         <source>&lt;p&gt;Maximum expansion count for a single term (e.g.: when using wildcards). The default of 10 000 is reasonable and will avoid queries that appear frozen while the engine is walking the term list.</source>
@@ -4473,15 +4472,15 @@ Pomocne przy szukaniu w wielkich plikach (np.: dzienniki systemowe).</translatio
     </message>
     <message>
         <source>Stemming languages</source>
-        <translation type="vanished">Reguły ciosania (ang. stemming languages)</translation>
+        <translation type="vanished">Języki rdzeniowania</translation>
     </message>
     <message>
         <source>The languages for which stemming expansion&lt;br&gt;dictionaries will be built.</source>
-        <translation type="vanished">Języki, dla których zostaną zbudowane dodatkowe&lt;br&gt;słowniki.</translation>
+        <translation type="vanished">Języki, dla których zostaną zbudowane&lt;br&gt;słowniki rdzeniowania</translation>
     </message>
     <message>
         <source>Log file name</source>
-        <translation type="vanished">Nazwa pliku dziennika (logs)</translation>
+        <translation type="vanished">Nazwa pliku dziennika (logów)</translation>
     </message>
     <message>
         <source>The file where the messages will be written.&lt;br&gt;Use &apos;stderr&apos; for terminal output</source>
@@ -4592,11 +4591,11 @@ Pomocne przy szukaniu w wielkich plikach (np.: dzienniki systemowe).</translatio
     </message>
     <message>
         <source>Hide duplicate results.</source>
-        <translation>Ukryj duplikaty w wynikach.</translation>
+        <translation>Ukryj powielone wyniki</translation>
     </message>
     <message>
         <source>Highlight color for query terms</source>
-        <translation type="vanished">Podświetl terminy z zapytania</translation>
+        <translation type="vanished">Podświetl wyrażenia z zapytania</translation>
     </message>
     <message>
         <source>Result list font</source>
@@ -4648,19 +4647,19 @@ Pomocne przy szukaniu w wielkich plikach (np.: dzienniki systemowe).</translatio
     </message>
     <message>
         <source>Auto-start simple search on whitespace entry.</source>
-        <translation type="vanished">Proste szukanie gdy użyto biłych znaków we wpisie.</translation>
+        <translation type="vanished">Proste wyszukiwanie gdy użyto białych znaków we wpisie.</translation>
     </message>
     <message>
         <source>Start with advanced search dialog open.</source>
-        <translation>Rozpocznij oknem zaawansowanego szukania.</translation>
+        <translation>Pokaż okno szukania zaawansowanego przy starcie aplikacji</translation>
     </message>
     <message>
         <source>Start with sort dialog open.</source>
-        <translation type="vanished">Rozpocznij z otwartym oknem sortowania.</translation>
+        <translation type="vanished">Pokaż okno sortowania przy starcie aplikacji</translation>
     </message>
     <message>
         <source>Remember sort activation state.</source>
-        <translation>Pamiętaj stan sortowania.</translation>
+        <translation>Zapamiętaj stan sortowania</translation>
     </message>
     <message>
         <source>Prefer Html to plain text for preview.</source>
@@ -4668,11 +4667,11 @@ Pomocne przy szukaniu w wielkich plikach (np.: dzienniki systemowe).</translatio
     </message>
     <message>
         <source>Search parameters</source>
-        <translation>Parametry szukania</translation>
+        <translation>Parametry wyszukowania</translation>
     </message>
     <message>
         <source>Stemming language</source>
-        <translation>Język ciosania</translation>
+        <translation>Język rdzeniowania</translation>
     </message>
     <message>
         <source>A search for [rolling stones] (2 terms) will be changed to [rolling or stones or (rolling phrase 2 stones)]. 
@@ -4772,7 +4771,7 @@ Może zwalniać dla dużych dokumentów.</translation>
     </message>
     <message>
         <source>Abstract snippet separator</source>
-        <translation>Oddzielacz snipetu streszczenia</translation>
+        <translation>Separator urywków w streszczeniu</translation>
     </message>
     <message>
         <source>Use &lt;PRE&gt; tags instead of &lt;BR&gt;to display plain text as html.</source>
@@ -4882,15 +4881,15 @@ Domyślna wartość to 2 (%).</translation>
     </message>
     <message>
         <source>Snippets window CSS file</source>
-        <translation>Okno snippetów CSS</translation>
+        <translation>Okno urywków CSS</translation>
     </message>
     <message>
         <source>Opens a dialog to select the Snippets window CSS style sheet file</source>
-        <translation>Otwórz okno by wybrać snipet CSS</translation>
+        <translation>Otwórz okno by wybrać urywek CSS</translation>
     </message>
     <message>
         <source>Resets the Snippets window style</source>
-        <translation>Reset stylu okna</translation>
+        <translation>Resetuj styl okna urywków</translation>
     </message>
     <message>
         <source>Decide if document filters are shown as radio buttons, toolbar combobox, or menu.</source>
@@ -4930,7 +4929,7 @@ Domyślna wartość to 2 (%).</translation>
     </message>
     <message>
         <source>User style to apply to the snippets window.&lt;br&gt; Note: the result page header insert is also included in the snippets window header.</source>
-        <translation>Styl użytkownika do zastosowania w oknie snippet.&lt;br&gt; Uwaga: wstawienie nagłówka strony wyników jest również zawarte w nagłówku okna snippet.</translation>
+        <translation>Styl użytkownika do zastosowania w oknie urywków.&lt;br&gt; Uwaga: wstawienie nagłówka strony wyników jest również zawarte w nagłówku okna urywków.</translation>
     </message>
     <message>
         <source>Synonyms file</source>
@@ -4946,7 +4945,7 @@ Domyślna wartość to 2 (%).</translation>
     </message>
     <message>
         <source>Set path translations for the selected index or for the main one if no selection exists.</source>
-        <translation>Ustaw tłumaczenia ścieżki dla wybranego indeksu lub głównego jeśli nie ma wyboru.</translation>
+        <translation>Ustaw tłumaczenia ścieżek dla wybranego indeksu lub głównego jeśli nie ma wyboru.</translation>
     </message>
     <message>
         <source>Activate links in preview.</source>
@@ -4966,11 +4965,11 @@ Domyślna wartość to 2 (%).</translation>
     </message>
     <message>
         <source>Maximum number of snippets displayed in the snippets window</source>
-        <translation>Maksymalna liczba snippetów wyświetlanych w oknie fragmentów</translation>
+        <translation>Maksymalna liczba urywków wyświetlanych w oknie urywków</translation>
     </message>
     <message>
         <source>Sort snippets by page number (default: by weight).</source>
-        <translation>Sortuj fragmenty według numeru strony (domyślnie: według wagi).</translation>
+        <translation>Sortuj urywki według numeru strony (domyślnie: według wagi).</translation>
     </message>
     <message>
         <source>Suppress all beeps.</source>
@@ -5002,11 +5001,11 @@ Domyślna wartość to 2 (%).</translation>
     </message>
     <message>
         <source>Display a Snippets link even if the document has no pages (needs restart).</source>
-        <translation>Wyświetl link Snippets nawet jeśli dokument nie ma żadnych stron (wymaga ponownego uruchomienia).</translation>
+        <translation>Wyświetl link do urywków nawet jeśli dokument nie ma żadnych stron (wymaga ponownego uruchomienia).</translation>
     </message>
     <message>
         <source>Maximum text size highlighted for preview (kilobytes)</source>
-        <translation>Maksymalny rozmiar tekstu podświetlony do podglądu (kilobajty)</translation>
+        <translation>Maksymalny rozmiar tekstu podświetlony do podglądu (KB)</translation>
     </message>
     <message>
         <source>Start with simple search mode: </source>
@@ -5014,23 +5013,23 @@ Domyślna wartość to 2 (%).</translation>
     </message>
     <message>
         <source>Hide toolbars.</source>
-        <translation type="vanished">Ukryj paski narzędzi.</translation>
+        <translation type="vanished">Ukryj paski narzędzi</translation>
     </message>
     <message>
         <source>Hide status bar.</source>
-        <translation type="vanished">Ukryj pasek stanu.</translation>
+        <translation type="vanished">Ukryj pasek stanu</translation>
     </message>
     <message>
         <source>Hide Clear and Search buttons.</source>
-        <translation type="vanished">Ukryj przyciski Wyczyść i Szukaj.</translation>
+        <translation type="vanished">Ukryj przyciski Wyczyść i Szukaj</translation>
     </message>
     <message>
         <source>Hide menu bar (show button instead).</source>
-        <translation type="vanished">Ukryj pasek menu (zamiast tego pokaż przycisk).</translation>
+        <translation type="vanished">Ukryj pasek menu (zamiast tego pokaż przycisk)</translation>
     </message>
     <message>
         <source>Hide simple search type (show in menu only).</source>
-        <translation type="vanished">Ukryj prosty typ wyszukiwania (pokaż tylko w menu).</translation>
+        <translation type="vanished">Ukryj prosty typ wyszukiwania (pokaż tylko w menu)</translation>
     </message>
     <message>
         <source>Shortcuts</source>
@@ -5038,7 +5037,7 @@ Domyślna wartość to 2 (%).</translation>
     </message>
     <message>
         <source>Hide result table header.</source>
-        <translation>Ukryj nagłówek tabeli wyników.</translation>
+        <translation>Ukryj nagłówek tabeli wyników</translation>
     </message>
     <message>
         <source>Show result table row headers.</source>
@@ -5058,7 +5057,7 @@ Domyślna wartość to 2 (%).</translation>
     </message>
     <message>
         <source>Hide some user interface elements.</source>
-        <translation>Ukryj niektóre elementy interfejsu użytkownika.</translation>
+        <translation>Ukryj niektóre elementy interfejsu użytkownika</translation>
     </message>
     <message>
         <source>Hide:</source>

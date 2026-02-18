@@ -353,12 +353,12 @@ equivalent to avoid "invisible" search failures.
 Examples:
 Swedish:
 unac_except_trans = ää Ää öö Öö üü Üü ßss œoe Œoe æae Æae ﬀff ﬁfi ﬂfl åå Åå ’' ❜' ʼ' ‐-
-. German:
+- German:
 unac_except_trans = ää Ää öö Öö üü Üü ßss œoe Œoe æae Æae ﬀff ﬁfi ﬂfl ’' ❜' ʼ' ‐-
-. French: you probably want to decompose oe and ae and nobody would type
+- French: you probably want to decompose oe and ae and nobody would type
 a German ß
 unac_except_trans = ßss œoe Œoe æae Æae ﬀff ﬁfi ﬂfl ’' ❜' ʼ' ‐-
-. The default for all until someone protests follows. These decompositions
+- The default for all until someone protests follows. These decompositions
 are not performed by unac, but it is unlikely that someone would type the
 composed forms in a search.
 unac_except_trans = ßss œoe Œoe æae Æae ﬀff ﬁfi ﬂfl ’' ❜' ʼ' ‐-
@@ -887,8 +887,11 @@ documents.
 <title>Parameters for the PDF handler </title><variablelist>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.PDFOCR">
 <term><varname>pdfocr</varname></term>
-<listitem><para>Attempt OCR of PDF files with no text content. This can be defined in subdirectories. The default is off because
-OCR is so very slow.
+<listitem><para>Attempt OCR of PDF files with no text content. This can be defined in subdirectories. The default is off because OCR is so very slow.
+</para></listitem></varlistentry>
+<varlistentry id="RCL.CONFIG.RECOLLCONF.PDFFORCEOCR">
+<term><varname>pdfforceocr</varname></term>
+<listitem><para>Run OCR even if the PDF document has text content. This can be defined in subdirectories. The OCR output will be concatenated to the PDF text.
 </para></listitem></varlistentry>
 <varlistentry id="RCL.CONFIG.RECOLLCONF.PDFOUTLINE">
 <term><varname>pdfoutline</varname></term>
