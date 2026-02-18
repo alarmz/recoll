@@ -643,3 +643,13 @@ void RclMain::startOnlineManual()
     doc.mimetype = "text/html";
     startNativeViewer(doc, -1, QString(), -1, false);
 }
+
+#ifdef _WIN32
+void RclMain::checkWinVersion()
+{
+    Rcl::Doc doc;
+    doc.url = "https://www.recoll.org/pages/recoll-windows.html";
+    doc.mimetype = "text/html";
+    startNativeViewer(doc, -1, QString(), -1, false);
+}
+#endif // _WIN32

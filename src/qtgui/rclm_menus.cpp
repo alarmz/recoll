@@ -182,7 +182,10 @@ void RclMain::buildMenus()
     helpMenu->addAction(showActiveTypes_Action);
     helpMenu->addSeparator();
     helpMenu->addAction(helpAbout_RecollAction);
-
+#ifdef _WIN32
+    helpMenu->addAction(checkWinVersion_Action);
+#endif
+    
     resultsMenu->addAction(nextPageAction);
     resultsMenu->addAction(prevPageAction);
     resultsMenu->addAction(firstPageAction);

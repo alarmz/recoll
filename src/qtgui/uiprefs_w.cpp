@@ -296,16 +296,12 @@ void UIPrefsDialog::setFromPrefs()
     stemLangCMB->addItem(g_stringAllStem);
     vector<string> langs;
     if (!getStemLangs(langs)) {
-        QMessageBox::warning(0, "Recoll",
-                             tr("error retrieving stemming languages"));
+        QMessageBox::warning(0, "Recoll", tr("error retrieving stemming languages"));
     }
     int cur = prefs.queryStemLang == ""  ? 0 : 1;
-    for (vector<string>::const_iterator it = langs.begin();
-         it != langs.end(); it++) {
-        stemLangCMB->
-            addItem(QString::fromUtf8(it->c_str(), it->length()));
-        if (cur == 0 && !strcmp((const char*)prefs.queryStemLang.toUtf8(),
-                                it->c_str())) {
+    for (const auto& lang : langs) {
+        stemLangCMB->addItem(u8s2qs(lang));
+        if (cur == 0 && qs2u8s(prefs.queryStemLang) == lang) {
             cur = stemLangCMB->count();
         }
     }

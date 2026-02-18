@@ -213,6 +213,9 @@ void RclMain::init()
     connect(actionLoad_saved_query, SIGNAL(triggered()), this, SLOT(loadSavedQuery()));
     connect(actionShow_index_statistics, SIGNAL(triggered()), this, SLOT(showIndexStatistics()));
     connect(helpAbout_RecollAction, SIGNAL(triggered()), this, SLOT(showAboutDialog()));
+#ifdef _WIN32
+    connect(checkWinVersion_Action, SIGNAL(triggered()), this, SLOT(checkWinVersion()));
+#endif
     connect(showMissingHelpers_Action, SIGNAL(triggered()), this, SLOT(showMissingHelpers()));
     connect(showActiveTypes_Action, SIGNAL(triggered()), this, SLOT(showActiveTypes()));
     connect(userManualAction, SIGNAL(triggered()), this, SLOT(startManual()));

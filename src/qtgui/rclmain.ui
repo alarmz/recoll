@@ -251,6 +251,14 @@
     <cstring>helpAbout_RecollAction</cstring>
    </property>
   </action>
+  <action name="checkWinVersion_Action">
+   <property name="text">
+    <string>Check Recoll Web site for current Windows version</string>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>checkWinVersion_Action</cstring>
+   </property>
+  </action>
   <action name="userManualAction">
    <property name="text">
     <string>&amp;User manual (local, one HTML page)</string>

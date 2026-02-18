@@ -122,6 +122,9 @@ public slots:
     virtual void showMissingHelpers();
     virtual void showActiveTypes();
     virtual void startOnlineManual();
+#ifdef _WIN32
+    virtual void checkWinVersion();
+#endif 
     virtual void startManual(const std::string& = std::string());
     virtual void showDocHistory();
     virtual void showExtIdxDialog();
