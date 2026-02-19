@@ -362,7 +362,7 @@ Doc_items(recoll_DocObject *self)
                        PyUnicode_Decode(
                            entry.first.c_str(), entry.first.size(), "UTF-8", "replace"),
                        PyUnicode_Decode(
-                           entry.second.c_str(), entry.second.size(), "UTF-8", "replace"));
+                           entry.second.c_str(), entry.second.size(), "UTF-8", "backslashreplace"));
     }
     return pdict;
 }
@@ -472,7 +472,7 @@ Doc_get(recoll_DocObject *self, PyObject *args)
 
     std::string value;
     if (idocget(self, key, value)) {
-        return PyUnicode_Decode(value.c_str(), value.size(), "UTF-8","replace");
+        return PyUnicode_Decode(value.c_str(), value.size(), "UTF-8", "backslashreplace");
     }
 
     Py_RETURN_NONE;
@@ -531,13 +531,12 @@ Doc_getattro(recoll_DocObject *self, PyObject *nameobj)
         PyErr_SetString(PyExc_AttributeError, "name not unicode nor string??");
         Py_RETURN_NONE;
     }
-
     std::string key = self->rcldb->getConf()->fieldQCanon(name);
     std::string value;
     if (idocget(self, key, value)) {
         LOGDEB1("Doc_getattro: [" << key << "] -> [" << value << "]\n");
         // Return a python unicode object
-        return PyUnicode_Decode(value.c_str(), value.size(), "utf-8","replace");
+        return PyUnicode_Decode(value.c_str(), value.size(), "utf-8", "backslashreplace");
     }
     
     Py_RETURN_NONE;
