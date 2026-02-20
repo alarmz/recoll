@@ -399,7 +399,7 @@ static bool idocget(recoll_DocObject *self, const std::string& key, std::string&
         if (!key.compare(Rcl::Doc::keyipt)) {
             value = self->doc->ipath;
             return true;
-        }
+        } 
         break;
     case 'm':
         if (!key.compare(Rcl::Doc::keytp)) {
@@ -420,7 +420,10 @@ static bool idocget(recoll_DocObject *self, const std::string& key, std::string&
         if (!key.compare(Rcl::Doc::keyudi)) {
             value = self->rcldb->fetchUdi(*self->doc);
             return true;
-        }        
+        } else if (!key.compare(Rcl::Doc::keyidxi)) {
+            value = std::to_string(self->doc->idxi);
+            return true;
+        }
     case 's':
         if (!key.compare(Rcl::Doc::keysig)) {
             value = self->doc->sig;

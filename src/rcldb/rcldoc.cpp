@@ -48,6 +48,7 @@ const string Doc::keysz("size");
 const string Doc::keytp("mtype");
 const string Doc::keytt("title");
 const string Doc::keyudi("rcludi");
+const string Doc::keyidxi("rclidxi");
 const string Doc::keyurl("url");
 #ifdef EXT4_BIRTH_TIME
 const string Doc::keybrt("birtime");

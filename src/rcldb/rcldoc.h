@@ -270,6 +270,7 @@ public:
     static const std::string keybcknd; // backend type when not from the fs
     // udi back from index. Only set by Rcl::Query::getdoc().
     static const std::string keyudi;
+    static const std::string keyidxi;
     static const std::string keyapptg; // apptag. Set from localfields (fs only)
     static const std::string keybght;  // beagle hit type ("beagleHitType")
 };
