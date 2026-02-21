@@ -9,6 +9,7 @@
 import os
 import sys
 from typing import List
+import posixpath
 
 import rclexecm
 from archivextract import ArchiveExtractor
@@ -36,6 +37,8 @@ class TarExtractor(ArchiveExtractor):
                 docdata = b""  # raise TarError("Member too big")
             else:
                 docdata = self.tar.extractfile(ipath).read()
+            self.em.setfield("filename", posixpath.basename(ipath))
+            self.em.setfield("modificationdate", str(info.mtime))
             ok = True
         except Exception as err:
             ok = False
