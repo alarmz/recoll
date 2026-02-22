@@ -208,7 +208,9 @@ void SSearch::init()
     searchTypCMB->addItem(tr("File name"));
     searchTypCMB->addItem(tr("Query language"));
 #ifdef ENABLE_SEMANTIC
-    searchTypCMB->addItem(tr("Semantic"));
+    if (semantic_enabled) {
+        searchTypCMB->addItem(tr("Semantic"));
+    }
 #endif
     connect(queryText, SIGNAL(returnPressed()), this, SLOT(startSimpleSearch()));
     connect(queryText, SIGNAL(textChanged(const QString&)),

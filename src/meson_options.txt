@@ -45,7 +45,7 @@ option('file-command', type: 'string', value: 'file',
        description: 'file type identification command to use by default. This is normally defined in the config')
 option('aspell', type: 'boolean', value: true,
        description: 'Use the aspell program and/or library for spelling approximations')
-option('semantic', type: 'boolean', value: false,
+option('semantic', type: 'boolean', value: true,
        description: 'Enable the semantic search functions')
 option('inotify', type: 'boolean', value: true,
        description: 'Use inotify for monitoring file changes')

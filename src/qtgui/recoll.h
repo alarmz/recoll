@@ -37,6 +37,10 @@ bool getStemLangs(std::vector<std::string>& langs);
 
 extern RclConfig *theconfig;
 
+#ifdef ENABLE_SEMANTIC
+extern bool semantic_enabled;
+#endif
+
 class RclDynConf;
 extern RclDynConf *g_dynconf;
 class AdvSearchHist;

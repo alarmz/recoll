@@ -18,7 +18,6 @@
 
 #include <cstdlib>
 #include <list>
-#include <iostream>
 #include <memory>
 
 #include <QApplication>
@@ -49,7 +48,6 @@
 #include "ssearch_w.h"
 #include "guiutils.h"
 #include "smallut.h"
-#include "readfile.h"
 #include "uncomp.h"
 #include "cstr.h"
 #include "dynconf.h"
@@ -61,6 +59,7 @@ using std::vector;
 
 extern RclConfig *theconfig;
 AdvSearchHist *g_advshistory;
+bool semantic_enabled{false};
 
 std::mutex thetempfileslock;
 // Use a list not a vector so that contained objects have stable
@@ -436,6 +435,15 @@ int main(int argc, char **argv)
     if (loaded)
         app.installTranslator(&translator);
 
+    
+#ifdef ENABLE_SEMANTIC
+    {
+        std::string unused;
+        if (theconfig->getConfParam("sem_venv", unused) && !unused.empty()) {
+            semantic_enabled = true;
+        }
+    }
+#endif // SEMANTIC        
 
     string historyfile = path_cat(theconfig->getConfDir(), "history");
     g_dynconf = new RclDynConf(historyfile);

@@ -17,8 +17,6 @@
 
 #include "autoconfig.h" // For ENABLE_SEMANTIC
 
-#include <iostream>
-
 #include "rclmain_w.h"
 #include "ssearch_w.h"
 
@@ -29,7 +27,6 @@
 
 using std::string;
 using std::vector;
-using std::map;
 static const QString ellips{"..."};
 
 void RclMain::buildMenus()
@@ -130,11 +127,13 @@ void RclMain::buildMenus()
     sstypGroup->addAction(actSSQuery);
     queryMenu->addAction(actSSQuery);
 #ifdef ENABLE_SEMANTIC
-    auto actSSSem = new QAction(tr("Semantic"), this);
-    actSSSem->setData(QVariant(SSearch::SST_SEM));
-    actSSSem->setCheckable(true);
-    sstypGroup->addAction(actSSSem);
-    queryMenu->addAction(actSSSem);
+    if (semantic_enabled) {
+        auto actSSSem = new QAction(tr("Semantic"), this);
+        actSSSem->setData(QVariant(SSearch::SST_SEM));
+        actSSSem->setCheckable(true);
+        sstypGroup->addAction(actSSSem);
+        queryMenu->addAction(actSSSem);
+    }
 #endif // SEMANTIC
     queryMenu->addSeparator();
     queryMenu->addAction(enbSynAction);
