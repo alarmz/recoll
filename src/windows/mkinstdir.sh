@@ -29,16 +29,23 @@ WEB=WEBENGINE
 TOP=/d/projets
 RCL=${TOP}/recoll/src/
 PYRECOLL=${RCL}/python/recoll/
-# Recoll dependancies
+# Recoll dependencies
 RCLDEPS=${TOP}/recolldeps/
 LIBXML=${RCLDEPS}/msvc/libxml2/libxml2-2.9.4+dfsg1/win32/bin.msvc/libxml2.dll
 LIBXSLT=${RCLDEPS}/msvc/libxslt/libxslt-1.1.29/win32/bin.msvc/libxslt.dll
 ZLIB=${RCLDEPS}/msvc/zlib-1.2.11
 LIBMAGIC=${RCLDEPS}/msvc/libmagic
-# Qt
-QTA=Desktop_Qt_6_8_2_MSVC2022_64bit-Release
+
+# Qt. We always use qt6 except for some builds where the GUI (only) is built with qt5 (by changing
+# the kit in qcreator and rebuilding the GUI).
 qtsdir=release
+QTA=Desktop_Qt_6_8_2_MSVC2022_64bit-Release
+
+QTAG=Desktop_Qt_6_8_2_MSVC2022_64bit-Release
 QTBIN=C:/Qt/6.8.2/msvc2022_64/bin
+# QTBIN=C:/Qt/5.15.2/msvc2019_64/bin
+# QTAG=Desktop_Qt_5_15_2_MSVC2019_64bit-Release
+
 # mingwbin has dlls for aux programs built with mingw (wpd, pff, aspell)
 MINGWBIN=${RCLDEPS}/gcclibs
 
@@ -49,7 +56,7 @@ LIBASPELL=${RCLDEPS}/msvc/aspell-0.60.7/
 
 
 RCLW=$RCL/
-GUIBIN=$RCL/qtgui/build/${QTA}/${qtsdir}/recoll.exe
+GUIBIN=$RCL/qtgui/build/${QTAG}/${qtsdir}/recoll.exe
 RCLIDX=$RCLW/qmake/build/recollindex/${QTA}/${qtsdir}/recollindex.exe
 RCLQ=$RCLW/qmake/build/recollq/${QTA}/${qtsdir}/recollq.exe
 RCLS=$RCLW/qmake/build/rclstartw/${QTA}/${qtsdir}/rclstartw.exe
@@ -158,7 +165,7 @@ copyrecoll()
     chkcp $RCL/filters/rclimgp.py $FILTERS
 
     chkcp $RCL/qtgui/mtpics/*  $DESTDIR/Share/images
-    chkcp $RCL/qtgui/build/${QTA}/${qtsdir}/*.qm $DESTDIR/Share/translations
+    chkcp $RCL/qtgui/build/${QTAG}/${qtsdir}/*.qm $DESTDIR/Share/translations
 
     chkcp $RCL/desktop/recoll.ico $DESTDIR/Share
 }
