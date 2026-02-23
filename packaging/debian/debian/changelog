@@ -1,3 +1,25 @@
+recoll (1.43.13-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
+
+  * GUI: interface languages: add English so that it can be forced in
+    non-english locales.
+  * GUI: result table: add progress indicator when saving big result lists
+    to CSV.
+  * GUI: semantic query interface code is enabled by default, menu entries
+    appear at run time depending on local configuration.
+  * Indexer: optimize getting entries attributes while walking a directory.
+    Marginal performance improvement.
+  * Mbox: also build the mbox cache during preview. Helps with external
+    indexes, for which the local cache does not exist.
+  * Tar handler: use filename and modification date from the tar entries.
+  * Windows: use %USERPROFILE% as initial value of topdirs list. Less
+    confusing than ~
+  * Windows: use the Perl rclimg.exe instead of rclimg.py: much faster. The
+    Python version is only used for image OCR, which is rarely needed.
+  * Windows: add help menu entry to check the up to date version on the
+    Recoll Web site (by starting a browser on the page).
+  
+ -- Jean-Francois Dockes <jf@dockes.org>  Mon, 23 Feb 2026 11:20:00 +0100
+
 recoll (1.43.12-1~ppaPPAVERS~SERIES1) SERIES; urgency=low
 
   * Python API: qresultstore: use surrogateescape for decoding urls.

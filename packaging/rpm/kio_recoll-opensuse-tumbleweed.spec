@@ -18,7 +18,7 @@
 %define rname recoll
 
 Name:           kio_recoll
-Version:        1.43.0
+Version:        1.43.13
 Release:        0
 Summary:        Extended Search
 License:        GPL-2.0+

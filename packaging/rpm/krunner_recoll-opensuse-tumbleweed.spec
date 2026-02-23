@@ -18,7 +18,7 @@
 %define rname recoll
 
 Name:           recollrunner
-Version:        1.43.0
+Version:        1.43.13
 Release:        0
 Summary:        KRunner for the Recoll full text search tool
 License:        GPL-2.0+
