@@ -507,7 +507,7 @@ void ResList::resetView()
     // following helps making sure that the textedit is really
     // blank. Else, there are often icons or text left around
 #if defined(USING_WEBKIT) || defined(USING_WEBENGINE)
-    m_text = "";
+    m_lasttext = m_text = "";
     QString html("<html><head>");
     html += u8s2qs(m_pager->headerContent()) + "</head>";
     html += "<body></body></html>";
