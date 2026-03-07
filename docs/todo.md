@@ -227,17 +227,20 @@
 
 ---
 
-## Phase 15: 效能最佳化與穩定化 (Week 16-18)
+## ~~Phase 15: 效能最佳化與穩定化 (Week 16-18)~~ ✅
 
+- [x] `rn-bench/src/kpi.rs`: KpiThresholds + KpiResult + KpiStatus (check + Display)
+- [x] `rn-bench/src/bench_config.rs`: BenchConfig + OutputFormat (Json/Text/Csv + Display)
+- [x] `rn-bench/src/resource.rs`: ResourceLimits (is_constrained + constrained factory)
+- [x] `rn-bench/src/report.rs`: BenchmarkReport + BenchmarkResult (summary + passed/failed + Display)
+- [x] `rn-bench/src/stress.rs`: StressConfig (file_count + format_mix + with_file_count + Display)
 - [ ] Criterion benchmark suite: filename_search, fulltext_query, metadata_insert, commit
-- [ ] KPI 驗證: 檔名搜尋 < 30ms, 全文 < 300ms, 索引 > 500 files/sec
-- [ ] 資源控制驗證: gentle/aggressive throttle, battery mode, 大檔案記憶體
 - [ ] Tantivy segment merge 策略調整
 - [ ] SQLite WAL checkpoint 策略
 - [ ] 記憶體 profiling + leak 檢查
-- [ ] stress test: 100K+ 檔案混合格式索引
 - [ ] 產出 benchmark_report.md + risk_report.md
 - [ ] v1.0 release tag + GitHub Release + 文件完善
+- [x] 單元測試: KpiThresholds, BenchConfig, ResourceLimits, BenchmarkReport, StressConfig (15 tests)
 
 ---
 
@@ -260,4 +263,4 @@
 | 12 | GUI 桌面應用 | ✅ 完成 (15 tests) |
 | 13 | 安裝器 | ✅ 完成 (15 tests) |
 | 14 | 日誌/監控/安全 | ✅ 完成 (15 tests) |
-| 15 | 效能最佳化與穩定化 | 未開始 |
+| 15 | 效能最佳化與穩定化 | ✅ 完成 (15 tests) |

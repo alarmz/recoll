@@ -102,11 +102,12 @@ engine. The Rust components live under the `crates/` directory:
 - **rn-gui**: GUI desktop app — SearchViewModel, FilterState, PreviewData, StatusInfo, TrayAction
 - **rn-installer**: Installer — InstallerManifest, WixConfig, InnoConfig, VersionInfo, ReleaseInfo
 - **rn-logging**: Logging, monitoring & security — LogConfig, Rotation, SecurityPolicy, HealthCheck, AuditEntry
+- **rn-bench**: Performance & benchmarking — KpiThresholds, BenchConfig, ResourceLimits, BenchmarkReport, StressConfig
 
 ### Building & Testing (Rust)
 
 ```bash
-# Run all Rust tests (284 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher, rn-cli, rn-windows, rn-gpu, rn-sdk, rn-gui, rn-installer, rn-logging)
+# Run all Rust tests (299 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher, rn-cli, rn-windows, rn-gpu, rn-sdk, rn-gui, rn-installer, rn-logging, rn-bench)
 cargo test --all
 
 # Check formatting and lint
@@ -223,11 +224,12 @@ sudo cmake --install build
 - **rn-gui**：GUI 桌面應用 — SearchViewModel、FilterState、PreviewData、StatusInfo、TrayAction
 - **rn-installer**：安裝器 — InstallerManifest、WixConfig、InnoConfig、VersionInfo、ReleaseInfo
 - **rn-logging**：日誌/監控/安全 — LogConfig、Rotation、SecurityPolicy、HealthCheck、AuditEntry
+- **rn-bench**：效能基準測試 — KpiThresholds、BenchConfig、ResourceLimits、BenchmarkReport、StressConfig
 
 ### 編譯與測試 (Rust)
 
 ```bash
-# 執行所有 Rust 測試 (共 284 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors、rn-indexer、rn-watcher、rn-cli、rn-windows、rn-gpu、rn-sdk、rn-gui、rn-installer、rn-logging)
+# 執行所有 Rust 測試 (共 299 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors、rn-indexer、rn-watcher、rn-cli、rn-windows、rn-gpu、rn-sdk、rn-gui、rn-installer、rn-logging、rn-bench)
 cargo test --all
 
 # 檢查格式和 lint
