@@ -1336,6 +1336,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "rn-sdk"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "serde",
+ "serde_json",
+]
+
+[[package]]
 name = "rn-search"
 version = "0.1.0"
 dependencies = [

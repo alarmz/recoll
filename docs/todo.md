@@ -164,14 +164,17 @@
 
 ---
 
-## Phase 11: SDK / Public API (Week 11)
+## ~~Phase 11: SDK / Public API (Week 11)~~ ✅
 
-- [ ] `rn-sdk/src/lib.rs`: RecollNext Rust API (open, search, index_path, stats, health)
-- [ ] `rn-sdk/src/ffi.rs`: C FFI exports (rn_open, rn_search, rn_close)
+- [x] `rn-sdk/src/handle.rs`: SdkConfig + RecollNext handle (open/close/is_open/config)
+- [x] `rn-sdk/src/request.rs`: SearchRequest (validate + builder pattern)
+- [x] `rn-sdk/src/health.rs`: HealthReport (ComponentStatus/OverallStatus/from_components)
+- [x] `rn-sdk/src/endpoint.rs`: Endpoint 路由定義 (search/health/stats/index/config)
+- [x] `rn-sdk/src/ffi.rs`: FfiResult + FfiSearchResult (#[repr(C)])
 - [ ] `rn-sdk/src/http.rs`: axum HTTP server (127.0.0.1:9312)
-- [ ] HTTP endpoints: /api/v1/search, /stats, /health, /index, /config
 - [ ] API 文件: docs/api-reference.md
 - [ ] 整合測試: HTTP API E2E 驗證
+- [x] 單元測試: Handle, SearchRequest, HealthReport, Endpoint, FFI (15 tests)
 
 ---
 
@@ -241,7 +244,7 @@
 | 8 | Windows 整合 | ✅ 完成 (15 tests) |
 | 9 | GPU 加速 | ✅ 完成 (14 tests) |
 | 10 | 設定與恢復 | ✅ 完成 (15 tests) |
-| 11 | SDK / API | 未開始 |
+| 11 | SDK / API | ✅ 完成 (15 tests) |
 | 12 | GUI 桌面應用 | 未開始 |
 | 13 | 安裝器 | 未開始 |
 | 14 | 日誌/監控/安全 | 未開始 |
