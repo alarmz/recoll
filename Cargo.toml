@@ -5,6 +5,7 @@ members = [
     "crates/rn-meta",
     "crates/rn-search",
     "crates/rn-extractors",
+    "crates/rn-indexer",
 ]
 
 [workspace.dependencies]

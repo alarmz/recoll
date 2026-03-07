@@ -1,0 +1,15 @@
+[package]
+name = "rn-indexer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rn-core = { path = "../rn-core" }
+anyhow = { workspace = true }
+crossbeam-channel = { workspace = true }
+walkdir = { workspace = true }
+unicode-normalization = { workspace = true }
+glob = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

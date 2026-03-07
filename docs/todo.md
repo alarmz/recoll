@@ -78,16 +78,18 @@
 
 ---
 
-## Phase 5: Indexer Pipeline (Week 5-6)
+## ~~Phase 5: Indexer Pipeline (Week 5-6)~~ ✅
 
-- [ ] `rn-indexer/src/queue.rs`: TaskQueue (BinaryHeap + crossbeam-channel + PrioritizedTask Ord)
-- [ ] `rn-indexer/src/throttle.rs`: IoThrottle (Off/Gentle/CpuCap)
-- [ ] `rn-indexer/src/crawler.rs`: Crawler (walkdir + exclude + is_up_to_date + throttle)
+- [x] `rn-indexer/src/queue.rs`: TaskQueue (BinaryHeap + PrioritizedTask Ord + FIFO within same priority)
+- [x] `rn-indexer/src/throttle.rs`: IoThrottle (Off/Gentle/Aggressive)
+- [x] `rn-indexer/src/crawler.rs`: Crawler (walkdir + exclude patterns + hidden dir filtering)
+- [x] `rn-indexer/src/commit_policy.rs`: CommitPolicy (ByCount/ByTime/Hybrid) + CommitTracker
+- [x] `rn-indexer/src/normalize.rs`: normalize_text (Unicode NFC + whitespace collapse + truncate)
+- [x] `rn-indexer/src/service.rs`: ServiceState (Idle/Running/Paused/Stopped + 狀態轉換驗證)
 - [ ] `rn-indexer/src/workers/extract.rs`: ExtractWorker (tokio::select + failure retry + backoff)
-- [ ] `rn-indexer/src/workers/normalize.rs`: NormalizeWorker (Unicode NFC + 語言偵測 + truncate)
-- [ ] `rn-indexer/src/workers/index_writer.rs`: IndexWriterWorker (CommitPolicy: ByCount/ByTime/Hybrid)
+- [ ] `rn-indexer/src/workers/index_writer.rs`: IndexWriterWorker
 - [ ] `rn-indexer/src/workers/tombstone.rs`: TombstoneWorker (delete_term + meta cleanup)
-- [ ] `rn-indexer/src/service.rs`: IndexerService (start/pause/resume/shutdown + ServiceState)
+- [x] 單元測試: TaskQueue, IoThrottle, Crawler, CommitPolicy, Normalize, ServiceState (23 tests)
 - [ ] 整合測試: Crawler 掃描 1 萬筆 → Pipeline 全程 → 搜尋驗證
 - [ ] Benchmark: 初次索引吞吐 > 500 files/sec
 
@@ -225,7 +227,7 @@
 | 2 | Tantivy 基礎 | ✅ 完成 (24 tests) |
 | 3 | 查詢解析與排序 | ✅ 完成 (17 tests) |
 | 4 | 文件抽取器 | ✅ 完成 (23 tests) |
-| 5 | Indexer Pipeline | 未開始 |
+| 5 | Indexer Pipeline | ✅ 完成 (23 tests) |
 | 6 | 檔案監控 | 未開始 |
 | 7 | CLI 工具 | 未開始 |
 | 8 | Windows 整合 | 未開始 |

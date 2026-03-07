@@ -93,11 +93,12 @@ engine. The Rust components live under the `crates/` directory:
 - **rn-meta**: SQLite metadata store (rusqlite, WAL mode)
 - **rn-search**: Tantivy search engine — schema, tokenizers, query parsing, ranking, snippets
 - **rn-extractors**: Document extractors — plain text, HTML, Markdown, source code, CSV, fallback
+- **rn-indexer**: Indexer pipeline — task queue, crawler, throttle, commit policy, text normalization, service state
 
 ### Building & Testing (Rust)
 
 ```bash
-# Run all Rust tests (124 tests across rn-core, rn-meta, rn-search, rn-extractors)
+# Run all Rust tests (147 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer)
 cargo test --all
 
 # Check formatting and lint
@@ -205,11 +206,12 @@ sudo cmake --install build
 - **rn-meta**：SQLite metadata 儲存 (rusqlite, WAL mode)
 - **rn-search**：Tantivy 搜尋引擎 — schema、tokenizer、查詢解析、排序、snippet
 - **rn-extractors**：文件抽取器 — 純文字、HTML、Markdown、原始碼、CSV、fallback
+- **rn-indexer**：索引管線 — 任務佇列、檔案爬取、節流、提交策略、文字正規化、服務狀態
 
 ### 編譯與測試 (Rust)
 
 ```bash
-# 執行所有 Rust 測試 (共 124 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors)
+# 執行所有 Rust 測試 (共 147 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors、rn-indexer)
 cargo test --all
 
 # 檢查格式和 lint
