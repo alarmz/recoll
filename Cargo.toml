@@ -2,6 +2,7 @@
 resolver = "2"
 members = [
     "crates/rn-core",
+    "crates/rn-meta",
 ]
 
 [workspace.dependencies]

@@ -1,0 +1,14 @@
+[package]
+name = "rn-meta"
+version = "0.1.0"
+edition = "2021"
+description = "Recoll Next — SQLite metadata store"
+
+[dependencies]
+rn-core = { path = "../rn-core" }
+rusqlite = { workspace = true }
+anyhow = { workspace = true }
+uuid = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }

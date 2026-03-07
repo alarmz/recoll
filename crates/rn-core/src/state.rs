@@ -13,6 +13,22 @@ pub enum DocumentState {
     Deleted,
 }
 
+impl DocumentState {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Discovered => "discovered",
+            Self::Queued => "queued",
+            Self::Extracting => "extracting",
+            Self::Extracted => "extracted",
+            Self::Normalized => "normalized",
+            Self::Indexed => "indexed",
+            Self::Failed { .. } => "failed",
+            Self::Stale => "stale",
+            Self::Deleted => "deleted",
+        }
+    }
+}
+
 pub fn can_transition(from: &DocumentState, to: &DocumentState) -> bool {
     use DocumentState::*;
     matches!(
