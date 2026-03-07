@@ -37,7 +37,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 ; Main executables
 Source: "..\src\build_win\recollindex.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\src\build_win\recollq.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\src\build_win\recoll.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\build_win\recoll.exe"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
 ; Library
 Source: "..\src\build_win\recoll.lib"; DestDir: "{app}\lib"; Flags: ignoreversion
 ; Configuration examples
@@ -49,8 +49,11 @@ Source: "..\src\doc\user\usermanual.html"; DestDir: "{app}\doc"; Flags: ignoreve
 Source: "..\src\doc\user\docbook-xsl.css"; DestDir: "{app}\doc"; Flags: ignoreversion
 ; vcpkg DLLs
 Source: "..\src\build_win\*.dll"; DestDir: "{app}"; Flags: ignoreversion skipifsourcedoesntexist
-; Qt platform plugin (required for GUI)
-Source: "C:\vcpkg\installed\x64-windows\Qt6\plugins\platforms\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion
+; Qt platform plugin (required for GUI, path configurable via /DQtPlatformPluginDir)
+#ifndef QtPlatformPluginDir
+#define QtPlatformPluginDir "C:\vcpkg\installed\x64-windows\Qt6\plugins\platforms"
+#endif
+Source: "{#QtPlatformPluginDir}\qwindows.dll"; DestDir: "{app}\platforms"; Flags: ignoreversion skipifsourcedoesntexist
 
 [Icons]
 Name: "{group}\Recoll"; Filename: "{app}\recoll.exe"

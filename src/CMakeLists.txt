@@ -788,6 +788,7 @@ endif ()
 ### Tests
 option(RECOLL_BUILD_TESTS "Build unit tests" ON)
 if (RECOLL_BUILD_TESTS)
+    enable_testing()
     add_subdirectory(catch)
 endif ()
 
