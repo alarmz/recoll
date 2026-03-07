@@ -1,0 +1,35 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/rn-core",
+]
+
+[workspace.dependencies]
+tantivy = "0.22"
+tokio = { version = "1", features = ["full"] }
+rusqlite = { version = "0.31", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "0.8"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing-appender = "0.2"
+anyhow = "1"
+thiserror = "1"
+uuid = { version = "1", features = ["v4", "serde"] }
+crossbeam-channel = "0.5"
+rayon = "1"
+notify = "6"
+walkdir = "2"
+clap = { version = "4", features = ["derive"] }
+jieba-rs = "0.7"
+unicode-normalization = "0.1"
+unicode-segmentation = "1"
+xxhash-rust = { version = "0.8", features = ["xxh3"] }
+glob = "0.3"
+axum = "0.7"
+async-trait = "0.1"
+chrono = { version = "0.4", features = ["serde"] }
+mime_guess = "2"
+tempfile = "3"
+criterion = "0.5"
