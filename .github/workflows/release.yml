@@ -82,23 +82,21 @@ jobs:
     runs-on: windows-latest
     env:
       VCPKG_DEFAULT_TRIPLET: x64-windows
-      VCPKG_ROOT: C:\vcpkg
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update vcpkg
-        run: |
-          cd C:\vcpkg
-          git pull
-          .\bootstrap-vcpkg.bat
+      - name: Bootstrap vcpkg
         shell: cmd
+        run: |
+          cd /d %VCPKG_INSTALLATION_ROOT%
+          bootstrap-vcpkg.bat
 
       - name: Install Ninja
         run: choco install ninja -y
 
       - name: Install dependencies
         run: |
-          C:\vcpkg\vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
+          vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
 
       - name: Configure
         working-directory: src
@@ -108,11 +106,11 @@ jobs:
           cmake -S . -B build_win -G Ninja ^
             -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
             -DCMAKE_BUILD_TYPE=Release ^
-            -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^
+            "-DCMAKE_TOOLCHAIN_FILE=%VCPKG_INSTALLATION_ROOT%/scripts/buildsystems/vcpkg.cmake" ^
             -DRECOLL_QTGUI=OFF ^
             -DRECOLL_BUILD_TESTS=ON ^
             -DXAPIAN_SHARED=OFF ^
-            "-DXAPIAN_STATIC_LIBRARY=C:/vcpkg/installed/x64-windows/lib/xapian.lib"
+            "-DXAPIAN_STATIC_LIBRARY=%VCPKG_INSTALLATION_ROOT%/installed/x64-windows/lib/xapian.lib"
 
       - name: Build
         working-directory: src
@@ -129,7 +127,7 @@ jobs:
       - name: Build Inno Setup installer
         shell: cmd
         run: |
-          "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /DMyAppVersion=${{ github.event.release.tag_name }} /DQtPlatformPluginDir=C:\vcpkg\installed\x64-windows\Qt6\plugins\platforms installer\recoll.iss
+          "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /DMyAppVersion=${{ github.event.release.tag_name }} "/DQtPlatformPluginDir=%VCPKG_INSTALLATION_ROOT%\installed\x64-windows\Qt6\plugins\platforms" installer\recoll.iss
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
