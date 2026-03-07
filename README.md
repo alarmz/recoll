@@ -97,11 +97,12 @@ engine. The Rust components live under the `crates/` directory:
 - **rn-watcher**: File system watcher — debouncer, event mapper, reconciler, FsWatcher (notify)
 - **rn-cli**: CLI tool — clap commands (init, search, index, stats, doctor), config, output formatting
 - **rn-windows**: Windows integration — service config, installer args, shell extension, cancellation token, status
+- **rn-gpu**: GPU acceleration — GpuBackend trait, NullBackend fallback, GpuDispatcher, factory
 
 ### Building & Testing (Rust)
 
 ```bash
-# Run all Rust tests (195 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher, rn-cli, rn-windows)
+# Run all Rust tests (209 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher, rn-cli, rn-windows, rn-gpu)
 cargo test --all
 
 # Check formatting and lint
@@ -213,11 +214,12 @@ sudo cmake --install build
 - **rn-watcher**：檔案監控 — 事件去抖動、事件轉換、檔案校正、FsWatcher (notify)
 - **rn-cli**：CLI 工具 — clap 命令 (init、search、index、stats、doctor)、設定、輸出格式化
 - **rn-windows**：Windows 整合 — 服務設定、安裝命令、Shell Extension、取消令牌、狀態解析
+- **rn-gpu**：GPU 加速 — GpuBackend trait、NullBackend fallback、GpuDispatcher、factory
 
 ### 編譯與測試 (Rust)
 
 ```bash
-# 執行所有 Rust 測試 (共 195 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors、rn-indexer、rn-watcher、rn-cli、rn-windows)
+# 執行所有 Rust 測試 (共 209 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors、rn-indexer、rn-watcher、rn-cli、rn-windows、rn-gpu)
 cargo test --all
 
 # 檢查格式和 lint

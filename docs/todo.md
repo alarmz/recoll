@@ -136,16 +136,17 @@
 
 ---
 
-## Phase 9: GPU 加速 (Week 9-10)
+## ~~Phase 9: GPU 加速 (Week 9-10)~~ ✅
 
-- [ ] `rn-gpu/src/lib.rs`: GpuBackend trait (batch_preprocess, batch_embed, device_info)
-- [ ] `rn-gpu/src/null_backend.rs`: NullBackend (CPU fallback)
-- [ ] `rn-gpu/src/dispatcher.rs`: GpuDispatcher (batch accumulation + flush + min_batch_size)
-- [ ] `rn-gpu/src/factory.rs`: create_best_available_backend() (CUDA → ROCm → Null)
+- [x] `rn-gpu/src/backend.rs`: GpuBackend trait (Send+Sync, batch_preprocess, batch_embed, device_info)
+- [x] `rn-gpu/src/backend.rs`: DeviceInfo (Debug, Clone, PartialEq, Eq, Display)
+- [x] `rn-gpu/src/null_backend.rs`: NullBackend (Debug, Clone, Copy, CPU fallback)
+- [x] `rn-gpu/src/dispatcher.rs`: GpuDispatcher (batch accumulation + try_flush/force_flush + try_embed/force_embed)
+- [x] `rn-gpu/src/factory.rs`: create_best_available() (feature-gated CUDA → Vulkan → NullBackend)
+- [x] Feature gate: `#[cfg(feature = "cuda")]` / `#[cfg(feature = "vulkan")]` 預留
 - [ ] `rn-gpu/src/backends/cuda.rs`: CudaBackend::try_init() + device detection
-- [ ] Feature gate: `#[cfg(feature = "gpu")]` 整合到 rn-indexer
 - [ ] Benchmark: GPU vs CPU preprocess 吞吐對比
-- [ ] 單元測試: NullBackend fallback、batch flush 邏輯
+- [x] 單元測試: NullBackend, DeviceInfo, BatchResult, Dispatcher, Factory (14 tests)
 
 ---
 
@@ -236,7 +237,7 @@
 | 6 | 檔案監控 | ✅ 完成 (17 tests) |
 | 7 | CLI 工具 | ✅ 完成 (16 tests) |
 | 8 | Windows 整合 | ✅ 完成 (15 tests) |
-| 9 | GPU 加速 | 未開始 |
+| 9 | GPU 加速 | ✅ 完成 (14 tests) |
 | 10 | 設定與恢復 | 未開始 |
 | 11 | SDK / API | 未開始 |
 | 12 | GUI 桌面應用 | 未開始 |

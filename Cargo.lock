@@ -1302,6 +1302,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "rn-gpu"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+]
+
+[[package]]
 name = "rn-indexer"
 version = "0.1.0"
 dependencies = [

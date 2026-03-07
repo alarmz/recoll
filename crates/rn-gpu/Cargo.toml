@@ -1,0 +1,13 @@
+[package]
+name = "rn-gpu"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+cuda = []
+vulkan = []
+
+[dependencies]
+anyhow = { workspace = true }
+
+[dev-dependencies]
