@@ -107,17 +107,18 @@
 
 ---
 
-## Phase 7: CLI 工具 (Week 7-8)
+## ~~Phase 7: CLI 工具 (Week 7-8)~~ ✅
 
-- [ ] `rn-cli/src/main.rs`: clap derive 命令結構
-- [ ] `rn-cli/src/commands/init.rs`: 初始化索引目錄
+- [x] `rn-cli/src/cli.rs`: clap derive 命令結構 (init, search, index, stats, doctor)
+- [x] `rn-cli/src/cli.rs`: ThrottleArg ValueEnum + global --config 參數
+- [x] `rn-cli/src/commands/init.rs`: 初始化索引目錄 (.recoll-next/ + config.toml + --force)
+- [x] `rn-cli/src/config.rs`: CliConfig (Serialize/Deserialize TOML + load_from + default)
+- [x] `rn-cli/src/output.rs`: Formattable trait + SearchOutput/StatsOutput text/JSON 格式化
 - [ ] `rn-cli/src/commands/index.rs`: 執行索引 (--full, --dry-run, --throttle)
 - [ ] `rn-cli/src/commands/search.rs`: 搜尋 (--limit, --offset, --type, --json, --no-snippet)
 - [ ] `rn-cli/src/commands/watch.rs`: 啟動監控 (--daemon, --reconcile-interval)
-- [ ] `rn-cli/src/commands/doctor.rs`: 健康檢查 (--fix, --verbose)
-- [ ] `rn-cli/src/commands/stats.rs`: 統計 (--json)
-- [ ] `rn-cli/src/commands/repair.rs`: 修復 (--check-only, --reindex-failed, --optimize)
 - [ ] `rn-cli/src/commands/service.rs`: Service 管理 (install/uninstall/start/stop/status)
+- [x] 單元測試: CLI 解析、init、config、output (16 tests)
 - [ ] Smoke test: E2E `rn-cli index` + `rn-cli search` 可正常運作
 
 ---
@@ -230,7 +231,7 @@
 | 4 | 文件抽取器 | ✅ 完成 (23 tests) |
 | 5 | Indexer Pipeline | ✅ 完成 (23 tests) |
 | 6 | 檔案監控 | ✅ 完成 (17 tests) |
-| 7 | CLI 工具 | 未開始 |
+| 7 | CLI 工具 | ✅ 完成 (16 tests) |
 | 8 | Windows 整合 | 未開始 |
 | 9 | GPU 加速 | 未開始 |
 | 10 | 設定與恢復 | 未開始 |

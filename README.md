@@ -95,11 +95,12 @@ engine. The Rust components live under the `crates/` directory:
 - **rn-extractors**: Document extractors — plain text, HTML, Markdown, source code, CSV, fallback
 - **rn-indexer**: Indexer pipeline — task queue, crawler, throttle, commit policy, text normalization, service state
 - **rn-watcher**: File system watcher — debouncer, event mapper, reconciler, FsWatcher (notify)
+- **rn-cli**: CLI tool — clap commands (init, search, index, stats, doctor), config, output formatting
 
 ### Building & Testing (Rust)
 
 ```bash
-# Run all Rust tests (164 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher)
+# Run all Rust tests (180 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher, rn-cli)
 cargo test --all
 
 # Check formatting and lint
@@ -209,11 +210,12 @@ sudo cmake --install build
 - **rn-extractors**：文件抽取器 — 純文字、HTML、Markdown、原始碼、CSV、fallback
 - **rn-indexer**：索引管線 — 任務佇列、檔案爬取、節流、提交策略、文字正規化、服務狀態
 - **rn-watcher**：檔案監控 — 事件去抖動、事件轉換、檔案校正、FsWatcher (notify)
+- **rn-cli**：CLI 工具 — clap 命令 (init、search、index、stats、doctor)、設定、輸出格式化
 
 ### 編譯與測試 (Rust)
 
 ```bash
-# 執行所有 Rust 測試 (共 164 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors、rn-indexer、rn-watcher)
+# 執行所有 Rust 測試 (共 180 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors、rn-indexer、rn-watcher、rn-cli)
 cargo test --all
 
 # 檢查格式和 lint
