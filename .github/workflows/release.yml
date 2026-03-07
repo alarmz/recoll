@@ -74,6 +74,9 @@ jobs:
         with:
           vcpkgGitCommitId: '1e199d32ad53aab1defda61ce41c380302e3f95c'
 
+      - name: Install Ninja
+        run: choco install ninja -y
+
       - name: Install dependencies
         run: |
           vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
@@ -86,7 +89,7 @@ jobs:
           cmake -S . -B build_win -G Ninja ^
             -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
             -DCMAKE_BUILD_TYPE=Release ^
-            -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake ^
+            "-DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake" ^
             -DRECOLL_QTGUI=OFF ^
             -DRECOLL_BUILD_TESTS=ON ^
             -DXAPIAN_SHARED=OFF
