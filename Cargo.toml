@@ -13,6 +13,7 @@ members = [
     "crates/rn-sdk",
     "crates/rn-gui",
     "crates/rn-installer",
+    "crates/rn-logging",
 ]
 
 [workspace.dependencies]

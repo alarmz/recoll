@@ -1340,6 +1340,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "rn-logging"
+version = "0.1.0"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "rn-meta"
 version = "0.1.0"
 dependencies = [

@@ -101,11 +101,12 @@ engine. The Rust components live under the `crates/` directory:
 - **rn-sdk**: SDK / Public API — RecollNext handle, SearchRequest, HealthReport, endpoints, FFI types
 - **rn-gui**: GUI desktop app — SearchViewModel, FilterState, PreviewData, StatusInfo, TrayAction
 - **rn-installer**: Installer — InstallerManifest, WixConfig, InnoConfig, VersionInfo, ReleaseInfo
+- **rn-logging**: Logging, monitoring & security — LogConfig, Rotation, SecurityPolicy, HealthCheck, AuditEntry
 
 ### Building & Testing (Rust)
 
 ```bash
-# Run all Rust tests (269 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher, rn-cli, rn-windows, rn-gpu, rn-sdk, rn-gui, rn-installer)
+# Run all Rust tests (284 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher, rn-cli, rn-windows, rn-gpu, rn-sdk, rn-gui, rn-installer, rn-logging)
 cargo test --all
 
 # Check formatting and lint
@@ -221,11 +222,12 @@ sudo cmake --install build
 - **rn-sdk**：SDK / Public API — RecollNext handle、SearchRequest、HealthReport、端點定義、FFI 型別
 - **rn-gui**：GUI 桌面應用 — SearchViewModel、FilterState、PreviewData、StatusInfo、TrayAction
 - **rn-installer**：安裝器 — InstallerManifest、WixConfig、InnoConfig、VersionInfo、ReleaseInfo
+- **rn-logging**：日誌/監控/安全 — LogConfig、Rotation、SecurityPolicy、HealthCheck、AuditEntry
 
 ### 編譯與測試 (Rust)
 
 ```bash
-# 執行所有 Rust 測試 (共 269 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors、rn-indexer、rn-watcher、rn-cli、rn-windows、rn-gpu、rn-sdk、rn-gui、rn-installer)
+# 執行所有 Rust 測試 (共 284 個測試，涵蓋 rn-core、rn-meta、rn-search、rn-extractors、rn-indexer、rn-watcher、rn-cli、rn-windows、rn-gpu、rn-sdk、rn-gui、rn-installer、rn-logging)
 cargo test --all
 
 # 檢查格式和 lint

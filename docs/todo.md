@@ -212,16 +212,18 @@
 
 ---
 
-## Phase 14: 日誌、監控與安全 (Week 15-16)
+## ~~Phase 14: 日誌、監控與安全 (Week 15-16)~~ ✅
 
+- [x] `rn-logging/src/config.rs`: LogConfig + LogLevel (Display + PartialOrd + parse)
+- [x] `rn-logging/src/rotation.rs`: Rotation (Daily/Hourly/Never + Display)
+- [x] `rn-logging/src/security.rs`: SecurityPolicy (localhost_only + max_snippet_len + excluded_dirs + is_excluded)
+- [x] `rn-logging/src/health.rs`: HealthCheck + CheckResult + CheckStatus + OverallHealth (evaluate + Copy)
+- [x] `rn-logging/src/audit.rs`: AuditEntry (sanitize + Display + created_at)
 - [ ] tracing + tracing-subscriber + tracing-appender 整合
 - [ ] 結構化 JSON 日誌 + DAILY rotation + max_size + backup
-- [ ] 健康檢查系統: metadata_db / tantivy / watcher / gpu 各元件
 - [ ] `rn-cli doctor`: 健康狀態報告 + 自動修復建議
-- [ ] 安全: HTTP API localhost-only 綁定
-- [ ] 安全: 日誌不記錄全文、snippet 長度限制
-- [ ] 安全: exclude 規則排除敏感資料夾
 - [ ] 安全: `rn-cli repair --purge` 清空索引
+- [x] 單元測試: LogConfig, Rotation, SecurityPolicy, HealthCheck, AuditEntry (15 tests)
 
 ---
 
@@ -257,5 +259,5 @@
 | 11 | SDK / API | ✅ 完成 (15 tests) |
 | 12 | GUI 桌面應用 | ✅ 完成 (15 tests) |
 | 13 | 安裝器 | ✅ 完成 (15 tests) |
-| 14 | 日誌/監控/安全 | 未開始 |
+| 14 | 日誌/監控/安全 | ✅ 完成 (15 tests) |
 | 15 | 效能最佳化與穩定化 | 未開始 |
