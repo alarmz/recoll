@@ -40,7 +40,7 @@ jobs:
         working-directory: src/build
         run: ctest --output-on-failure || ./catch/recoll_tests
 
-      - name: Package
+      - name: Package tarball
         working-directory: src
         run: |
           mkdir -p release/recoll-linux-x64
@@ -49,10 +49,34 @@ jobs:
           cp -r sampleconf release/recoll-linux-x64/examples
           tar czf recoll-linux-x64.tar.gz -C release recoll-linux-x64
 
-      - name: Upload release asset
+      - name: Build RPM
+        run: |
+          sudo apt-get install -y rpm
+          VERSION=${{ github.event.release.tag_name }}
+          VERSION=${VERSION#v}
+
+          # Prepare SOURCES with build outputs
+          mkdir -p ~/rpmbuild/{SOURCES,SPECS,BUILD,RPMS,SRPMS}
+          cp src/build/recollindex src/build/recollq ~/rpmbuild/SOURCES/
+          if ls src/build/librecoll.so* 1>/dev/null 2>&1; then
+            cp -a src/build/librecoll.so* ~/rpmbuild/SOURCES/
+          fi
+          cp -r src/sampleconf ~/rpmbuild/SOURCES/sampleconf
+          cp -r src/filters ~/rpmbuild/SOURCES/filters
+
+          rpmbuild -bb \
+            --define "rpm_version ${VERSION}" \
+            --define "_sourcedir $HOME/rpmbuild/SOURCES" \
+            packaging/rpm/recoll-release.spec
+
+          cp ~/rpmbuild/RPMS/x86_64/recoll-*.rpm .
+
+      - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
-          files: src/recoll-linux-x64.tar.gz
+          files: |
+            src/recoll-linux-x64.tar.gz
+            recoll-*.rpm
 
   build-windows:
     runs-on: windows-latest
