@@ -102,7 +102,7 @@ engine. The Rust components live under the `crates/` directory:
 ### Building & Testing (Rust)
 
 ```bash
-# Run all Rust tests (209 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher, rn-cli, rn-windows, rn-gpu)
+# Run all Rust tests (224 tests across rn-core, rn-meta, rn-search, rn-extractors, rn-indexer, rn-watcher, rn-cli, rn-windows, rn-gpu)
 cargo test --all
 
 # Check formatting and lint

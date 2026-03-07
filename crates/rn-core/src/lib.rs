@@ -1,5 +1,8 @@
+pub mod config;
 pub mod error;
 pub mod extract;
+pub mod lock;
+pub mod repair;
 pub mod search;
 pub mod state;
 pub mod task;

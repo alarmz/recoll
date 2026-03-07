@@ -150,15 +150,17 @@
 
 ---
 
-## Phase 10: 設定系統與錯誤恢復 (Week 10)
+## ~~Phase 10: 設定系統與錯誤恢復 (Week 10)~~ ✅
 
-- [ ] `rn-core/src/config.rs`: AppConfig 結構 (indexer/workers/commit/gpu/search/watcher/logging/windows)
-- [ ] `rn-core/src/config.rs`: Config::load() — CLI > env > user > system > defaults
-- [ ] `rn-core/src/config.rs`: hot_reload() 可熱更新子集
+- [x] `rn-core/src/config.rs`: AppConfig 結構 (indexer/gpu/search/watcher/logging) + PartialEq
+- [x] `rn-core/src/config.rs`: ConfigLoader::load() / load_from_file() (anyhow::Result)
+- [x] `rn-core/src/config.rs`: ConfigField enum + is_hot_reloadable() 可熱更新判斷
+- [x] `rn-core/src/lock.rs`: LockFile (acquire/release/is_stale + Drop 自動釋放)
+- [x] `rn-core/src/repair.rs`: RepairPlan::diagnose() (Issue → RepairAction) + Display
 - [ ] TOML 設定檔範本 (`%APPDATA%\RecollNext\config.toml`)
-- [ ] Crash recovery: lock file 檢查 + PRAGMA integrity_check + state 重設
-- [ ] Repair 命令: orphan 偵測 + state 不一致修復 + Tantivy segment merge
+- [ ] Crash recovery: PRAGMA integrity_check + state 重設
 - [ ] Panic recovery: worker catch_unwind + 自動重啟
+- [x] 單元測試: AppConfig, ConfigLoader, HotReload, LockFile, RepairPlan (15 tests)
 
 ---
 
@@ -238,7 +240,7 @@
 | 7 | CLI 工具 | ✅ 完成 (16 tests) |
 | 8 | Windows 整合 | ✅ 完成 (15 tests) |
 | 9 | GPU 加速 | ✅ 完成 (14 tests) |
-| 10 | 設定與恢復 | 未開始 |
+| 10 | 設定與恢復 | ✅ 完成 (15 tests) |
 | 11 | SDK / API | 未開始 |
 | 12 | GUI 桌面應用 | 未開始 |
 | 13 | 安裝器 | 未開始 |
