@@ -1,0 +1,13 @@
+[package]
+name = "rn-search"
+version = "0.1.0"
+edition = "2021"
+description = "Recoll Next — Tantivy search engine integration"
+
+[dependencies]
+tantivy = { workspace = true }
+jieba-rs = { workspace = true }
+anyhow = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }
