@@ -26,7 +26,7 @@ fn filename_score_exact_match_returns_high_score() {
 fn filename_score_partial_match_returns_mid_score() {
     let score = compute_filename_score(&["main"], "main_helper.rs");
     assert!(
-        score > 0.0 && score <= 1.0,
+        (0.0..=1.0).contains(&score),
         "部分匹配應得中間分數, got {score}"
     );
 }
@@ -51,6 +51,6 @@ fn recency_score_recent_file_scores_higher_than_old() {
     let recent = compute_recency_score(now - 3600); // 1 小時前
     let old = compute_recency_score(now - 365 * 86400); // 1 年前
     assert!(recent > old, "近期檔案分數 {recent} 應高於舊檔案 {old}");
-    assert!(recent > 0.0 && recent <= 1.0);
-    assert!(old >= 0.0 && old <= 1.0);
+    assert!((0.0..=1.0).contains(&recent));
+    assert!((0.0..=1.0).contains(&old));
 }

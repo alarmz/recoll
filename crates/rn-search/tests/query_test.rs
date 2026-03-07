@@ -1,7 +1,6 @@
 //! QueryParser 行為測試
 
 use rn_search::query::RnQueryParser;
-use rn_search::reader::RnReader;
 use rn_search::schema::RnSchema;
 use rn_search::tokenizer::register_tokenizers;
 use rn_search::writer::RnWriter;
