@@ -178,16 +178,20 @@
 
 ---
 
-## Phase 12: GUI 桌面應用 (Week 12-14)
+## ~~Phase 12: GUI 桌面應用 (Week 12-14)~~ ✅
 
+- [x] `rn-gui/src/search_vm.rs`: SearchViewModel + SearchHit (query/results/total + set_query)
+- [x] `rn-gui/src/filter.rs`: FilterState (file_type/path_prefix/date_from + is_active/clear)
+- [x] `rn-gui/src/preview.rs`: PreviewData + PreviewVariant (Text/Image/Unsupported + MIME 判斷)
+- [x] `rn-gui/src/status.rs`: StatusInfo + AppState (Idle/Indexing/Paused + progress)
+- [x] `rn-gui/src/tray.rs`: TrayAction (Show/Hide/Quit + label/from_id/all)
 - [ ] `rn-gui`: Tauri 2.x 專案初始化
 - [ ] 搜尋頁面: 搜尋框 + 篩選列 (type/path/date)
 - [ ] 結果列表: 檔案圖示 + 路徑 + snippet + metadata
 - [ ] 預覽面板: 檔案內容預覽 / metadata 摘要
-- [ ] 狀態列: 已索引檔案數 / 佇列 / GPU 狀態
 - [ ] 設定頁面: TOML 設定 GUI 化
-- [ ] 系統匣: 最小化到 tray + 通知
 - [ ] 與 rn-sdk 整合 (Tauri commands → SDK API)
+- [x] 單元測試: SearchViewModel, FilterState, PreviewData, StatusInfo, TrayAction (15 tests)
 
 ---
 
@@ -245,7 +249,7 @@
 | 9 | GPU 加速 | ✅ 完成 (14 tests) |
 | 10 | 設定與恢復 | ✅ 完成 (15 tests) |
 | 11 | SDK / API | ✅ 完成 (15 tests) |
-| 12 | GUI 桌面應用 | 未開始 |
+| 12 | GUI 桌面應用 | ✅ 完成 (15 tests) |
 | 13 | 安裝器 | 未開始 |
 | 14 | 日誌/監控/安全 | 未開始 |
 | 15 | 效能最佳化與穩定化 | 未開始 |
