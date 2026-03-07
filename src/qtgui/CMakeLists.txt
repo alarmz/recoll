@@ -106,6 +106,8 @@ set(qtgui_SOURCES
     widgets/qxtconfirmationmessage.cpp
     widgets/qxtconfirmationmessage.h
     widgets/qxtglobal.h
+    winschedtool.cpp
+    winschedtool.h
     xmltosd.cpp
     xmltosd.h
     )
@@ -141,16 +143,34 @@ set_target_properties(recoll PROPERTIES
         "${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}"
     MACOSX_BUNDLE_ICON_FILE recoll.icns
 )
+if (NOT WIN32)
+    set_target_properties(recoll PROPERTIES
+        INSTALL_RPATH "$ORIGIN/../${CMAKE_INSTALL_LIBDIR}/recoll"
+    )
+endif ()
+if (WIN32)
+    set_target_properties(recoll PROPERTIES WIN32_EXECUTABLE TRUE)
+endif ()
 target_compile_definitions(recoll PRIVATE BUILDING_RECOLLGUI)
 
-set(QtComponents Core Gui Widgets PrintSupport)
+set(QtComponents Core Gui Widgets PrintSupport Network)
 
 if (RECOLL_ENABLE_WEBENGINE)
-    list(APPEND QtComponents WebEngineWidgets)
-    target_compile_definitions(recoll PUBLIC USING_WEBENGINE)
+    find_package(Qt${QT_MAJOR_VERSION} QUIET COMPONENTS WebEngineWidgets)
+    if (Qt${QT_MAJOR_VERSION}WebEngineWidgets_FOUND)
+        list(APPEND QtComponents WebEngineWidgets)
+        target_compile_definitions(recoll PUBLIC USING_WEBENGINE)
+    else()
+        message(WARNING "QtWebEngine not found, falling back to QTextBrowser for preview")
+    endif()
 else()
-    list(APPEND QtComponents WebKitWidgets)
-    target_compile_definitions(recoll PUBLIC USING_WEBKIT)
+    find_package(Qt${QT_MAJOR_VERSION} QUIET COMPONENTS WebKitWidgets)
+    if (Qt${QT_MAJOR_VERSION}WebKitWidgets_FOUND)
+        list(APPEND QtComponents WebKitWidgets)
+        target_compile_definitions(recoll PUBLIC USING_WEBKIT)
+    else()
+        message(WARNING "QtWebKit not found, falling back to QTextBrowser for preview")
+    endif()
 endif ()
 
 find_package(Qt${QT_MAJOR_VERSION} REQUIRED COMPONENTS ${QtComponents})
@@ -168,6 +188,10 @@ target_include_directories(recoll PRIVATE
     )
 
 target_link_libraries(recoll PRIVATE librecoll)
+
+if (WIN32)
+    target_sources(recoll PRIVATE ../windows/getopt.cc)
+endif ()
 
 if (QT_MAJOR_VERSION GREATER 5)
     qt_finalize_target(recoll)

@@ -21,7 +21,7 @@
 #include <fstream>
 #include <time.h>
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define localtime_r(A,B) localtime_s(B,A)
 #endif
 

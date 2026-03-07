@@ -1,21 +1,179 @@
 # Recoll
 
 Recoll is a desktop full-text search tool. It finds keywords inside
-documents as well as file names. 
+documents as well as file names.
 
-* Versions are available for Linux and MS Windows.
+* **Cross-platform**: native builds for Linux and Windows (MSVC).
 * A WEB front-end with preview and download features can replace or
-  supplement the GUI for remote use. 
+  supplement the GUI for remote use.
 * It can search most document formats. You may need external applications
-  for text extraction. 
+  for text extraction.
 * It can reach any storage place: files, archive members, email
-  attachments, transparently handling decompression. 
+  attachments, transparently handling decompression.
 * One click will open the document inside a native editor or display an
-  even quicker text preview. 
+  even quicker text preview.
 * The software is free, open source, and licensed under the GPL.
 
 For more detail, see the [features page on the web site](https://www.recoll.org/pages/features.html) or
-the [online documentation](https://www.recoll.org/pages/documentation.html). 
+the [online documentation](https://www.recoll.org/pages/documentation.html).
 
-Most distributions feature prebuilt packages for Recoll, but if you need them, [the instructions for
-building and installing are here](https://www.recoll.org/usermanual/usermanual.html#RCL.INSTALL.BUILDING).
+## Windows Support
+
+Recoll now builds natively on Windows using MSVC and CMake. The Windows
+build produces `recollindex.exe` and `recollq.exe` for command-line
+indexing and querying.
+
+### Building on Windows
+
+**Prerequisites:**
+- Visual Studio 2022 Build Tools (MSVC)
+- CMake 3.25+
+- Ninja
+- [vcpkg](https://github.com/microsoft/vcpkg)
+
+**Install dependencies:**
+```powershell
+vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
+```
+
+**Build:**
+```cmd
+call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
+
+cd src
+cmake -S . -B build_win -G Ninja ^
+  -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
+  -DCMAKE_BUILD_TYPE=Release ^
+  -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^
+  -DRECOLL_QTGUI=OFF ^
+  -DXAPIAN_SHARED=OFF
+
+cmake --build build_win --parallel
+```
+
+**Run tests:**
+```cmd
+cd build_win
+ctest --output-on-failure
+```
+
+### Windows Installer
+
+A Windows installer is available for each release. Download
+`recoll-<version>-win64-setup.exe` from the
+[Releases](../../releases) page. The installer adds Recoll to your
+PATH so you can use `recollindex` and `recollq` from any terminal.
+
+## Building on Linux
+
+Most distributions feature prebuilt packages for Recoll. To build from
+source:
+
+```bash
+sudo apt-get install cmake ninja-build \
+  libxapian-dev libxml2-dev libxslt1-dev zlib1g-dev \
+  qtbase5-dev qtwebengine5-dev qttools5-dev
+
+cd src
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
+ctest --test-dir build --output-on-failure
+sudo cmake --install build
+```
+
+For detailed build instructions, see the
+[online documentation](https://www.recoll.org/usermanual/usermanual.html#RCL.INSTALL.BUILDING).
+
+## CI/CD
+
+This project uses GitHub Actions for continuous integration:
+
+- **CI** (`ci.yml`): Runs unit tests on every push and pull request
+  (Linux + Windows).
+- **Release** (`release.yml`): Builds Linux and Windows binaries and
+  a Windows installer on each GitHub Release.
+
+---
+
+# Recoll (中文)
+
+Recoll 是一個桌面全文搜尋工具，可以在文件內容和檔名中搜尋關鍵字。
+
+* **跨平台支援**：原生支援 Linux 和 Windows (MSVC) 編譯。
+* 提供 WEB 前端介面，支援預覽和下載功能，可用於遠端存取。
+* 支援大多數文件格式的搜尋，部分格式需要外部應用程式進行文字擷取。
+* 可搜尋各種儲存位置：檔案、壓縮檔成員、電子郵件附件，自動處理解壓縮。
+* 一鍵即可在原生編輯器中開啟文件，或快速顯示文字預覽。
+* 本軟體為自由開源軟體，採用 GPL 授權。
+
+## Windows 支援
+
+Recoll 現在可以在 Windows 上使用 MSVC 和 CMake 原生編譯。Windows 版本會產生
+`recollindex.exe` 和 `recollq.exe`，用於命令列索引和查詢。
+
+### 在 Windows 上編譯
+
+**必要條件：**
+- Visual Studio 2022 Build Tools (MSVC)
+- CMake 3.25+
+- Ninja
+- [vcpkg](https://github.com/microsoft/vcpkg)
+
+**安裝相依套件：**
+```powershell
+vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
+```
+
+**編譯：**
+```cmd
+call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
+
+cd src
+cmake -S . -B build_win -G Ninja ^
+  -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
+  -DCMAKE_BUILD_TYPE=Release ^
+  -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^
+  -DRECOLL_QTGUI=OFF ^
+  -DXAPIAN_SHARED=OFF
+
+cmake --build build_win --parallel
+```
+
+**執行測試：**
+```cmd
+cd build_win
+ctest --output-on-failure
+```
+
+### Windows 安裝程式
+
+每個版本都會提供 Windows 安裝程式。請從
+[Releases](../../releases) 頁面下載
+`recoll-<version>-win64-setup.exe`。安裝程式會將 Recoll 加入系統 PATH，
+讓你可以在任何終端機中使用 `recollindex` 和 `recollq`。
+
+## 在 Linux 上編譯
+
+大多數 Linux 發行版都有預編譯的 Recoll 套件。如需從原始碼編譯：
+
+```bash
+sudo apt-get install cmake ninja-build \
+  libxapian-dev libxml2-dev libxslt1-dev zlib1g-dev \
+  qtbase5-dev qtwebengine5-dev qttools5-dev
+
+cd src
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build --parallel
+ctest --test-dir build --output-on-failure
+sudo cmake --install build
+```
+
+詳細的編譯說明請參閱
+[線上文件](https://www.recoll.org/usermanual/usermanual.html#RCL.INSTALL.BUILDING)。
+
+## CI/CD
+
+本專案使用 GitHub Actions 進行持續整合：
+
+- **CI** (`ci.yml`)：每次 push 和 pull request 都會在 Linux 和 Windows 上執行單元測試。
+- **Release** (`release.yml`)：每次在 GitHub 發布 Release 時，會自動編譯 Linux 和 Windows 的二進位檔案，並產生 Windows 安裝程式。

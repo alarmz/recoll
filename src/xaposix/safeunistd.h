@@ -23,10 +23,34 @@
 
 #ifndef _MSC_VER
 # include <unistd.h>
-#define sys_read ::read
-#define sys_write ::write
+
+# ifdef __WIN32__
+// MinGW: unistd.h exists but read/write take unsigned int count.
+// Provide wrappers that accept size_t.
+#  ifndef _SSIZE_T_DEFINED
+#   ifdef _WIN64
+typedef __int64    ssize_t;
+#   else
+typedef int   ssize_t;
+#   endif
+#   define _SSIZE_T_DEFINED
+#  endif
+inline ssize_t sys_read(int fd, void* buf, size_t cnt)
+{
+    return static_cast<ssize_t>(_read(fd, buf, static_cast<unsigned int>(cnt)));
+}
+inline ssize_t sys_write(int fd, const void* buf, size_t cnt)
+{
+    return static_cast<ssize_t>(_write(fd, buf, static_cast<unsigned int>(cnt)));
+}
+# else
+// POSIX: read/write are fine as-is
+#  define sys_read ::read
+#  define sys_write ::write
+# endif
 
 #else
+// MSVC
 
 // sys/types.h has a typedef for off_t so make sure we've seen that before
 // we hide it behind a #define.
@@ -48,10 +72,6 @@
 # define lseek(FD, OFF, WHENCE) _lseeki64(FD, OFF, WHENCE)
 # define off_t __int64
 
-#endif
-
-#ifdef __WIN32__
-
 #ifndef _SSIZE_T_DEFINED
 #ifdef  _WIN64
 typedef __int64    ssize_t;
@@ -63,13 +83,13 @@ typedef int   ssize_t;
 
 inline ssize_t sys_read(int fd, void* buf, size_t cnt)
 {
-    return static_cast<ssize_t>(::read(fd, buf, static_cast<int>(cnt)));
+    return static_cast<ssize_t>(::_read(fd, buf, static_cast<int>(cnt)));
 }
 inline ssize_t sys_write(int fd, const void* buf, size_t cnt)
 {
-    return static_cast<ssize_t>(::write(fd, buf, static_cast<int>(cnt)));
+    return static_cast<ssize_t>(::_write(fd, buf, static_cast<int>(cnt)));
 }
 
-#endif /* __WIN32__ */
+#endif /* _MSC_VER */
 
 #endif /* XAPIAN_INCLUDED_SAFEUNISTD_H */

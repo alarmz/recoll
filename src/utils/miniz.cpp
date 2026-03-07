@@ -2958,7 +2958,7 @@ static FILE *mz_freopen(const char *pPath, const char *pMode, FILE *pStream)
 #include <sys/utime.h>
 #endif
 #if defined(__MINGW64__)
-#define MZ_FOPENREAD mz_fopen
+#define MZ_FOPENREAD(f, m) _wfopen(f, m)
 #define MZ_FOPEN mz_fopen
 #else /*->msc*/
 #define MZ_FOPENREAD(f, m) _wfopen(f, m)

@@ -5,3 +5,24 @@
 /* MYTH of autoheader */
 
 #define ICONV_CONST
+
+/* Path to file identification command (fallback when libmagic is not used) */
+#ifndef FILE_PROG
+#define FILE_PROG "file"
+#endif
+
+#ifdef _WIN32
+/* Windows-specific configuration.
+   Most Windows defines (DISABLE_X11MON, RCL_MONITOR, ENABLE_LIBMAGIC, etc.)
+   are set via CMake compile definitions to avoid redefinition warnings. */
+
+/* Compile the aspell interface */
+#define RCL_USE_ASPELL 1
+
+/* Windows has malloc.h */
+#define HAVE_MALLOC_H 1
+
+/* Windows has vsnprintf */
+#define HAVE_VSNPRINTF 1
+
+#endif

@@ -1,0 +1,104 @@
+name: Release
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            cmake ninja-build \
+            libxapian-dev libxml2-dev libxslt1-dev zlib1g-dev \
+            qtbase5-dev qtwebengine5-dev qttools5-dev \
+            libaspell-dev
+
+      - name: Configure
+        working-directory: src
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DRECOLL_QT6_BUILD=OFF \
+            -DRECOLL_ENABLE_WEBENGINE=ON \
+            -DRECOLL_BUILD_TESTS=ON \
+            -DRECOLL_QTGUI=OFF
+
+      - name: Build
+        working-directory: src
+        run: cmake --build build --parallel
+
+      - name: Run tests
+        working-directory: src/build
+        run: ctest --output-on-failure
+
+      - name: Package
+        working-directory: src
+        run: |
+          mkdir -p release/recoll-linux-x64
+          cp build/recollindex build/recollq release/recoll-linux-x64/
+          if [ -f build/librecoll.so ]; then cp build/librecoll.so* release/recoll-linux-x64/; fi
+          cp -r sampleconf release/recoll-linux-x64/examples
+          tar czf recoll-linux-x64.tar.gz -C release recoll-linux-x64
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: src/recoll-linux-x64.tar.gz
+
+  build-windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgGitCommitId: '01f602195983451bc83e72f4214af2cbc495aa94'
+
+      - name: Install dependencies
+        run: |
+          vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
+
+      - name: Configure
+        working-directory: src
+        shell: cmd
+        run: |
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+          cmake -S . -B build_win -G Ninja ^
+            -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
+            -DCMAKE_BUILD_TYPE=Release ^
+            -DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake ^
+            -DRECOLL_QTGUI=OFF ^
+            -DRECOLL_BUILD_TESTS=ON ^
+            -DXAPIAN_SHARED=OFF
+
+      - name: Build
+        working-directory: src
+        shell: cmd
+        run: |
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+          cmake --build build_win --parallel
+
+      - name: Run tests
+        working-directory: src/build_win
+        run: ctest --output-on-failure
+
+      - name: Build Inno Setup installer
+        shell: cmd
+        run: |
+          "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /DMyAppVersion=${{ github.event.release.tag_name }} installer\recoll.iss
+
+      - name: Upload release assets
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            installer/Output/recoll-setup.exe

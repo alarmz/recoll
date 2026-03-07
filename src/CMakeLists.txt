@@ -143,6 +143,8 @@ configure_file(common/autoconfig.h.cmake.in autoconfig.h @ONLY)
 
 
 ### Source files
+
+# Common sources shared across all platforms
 set(librecoll_SOURCES
     aspell/rclaspell.cpp
     aspell/rclaspell.h
@@ -316,7 +318,6 @@ set(librecoll_SOURCES
     utils/damlev.h
     utils/ecrontab.cpp
     utils/ecrontab.h
-    utils/execmd.cpp
     utils/execmd.h
     utils/fileudi.cpp
     utils/fileudi.h
@@ -336,15 +337,12 @@ set(librecoll_SOURCES
     utils/mimeparse.h
     utils/miniz.cpp
     utils/miniz.h
-    utils/netcon.cpp
-    utils/netcon.h
     utils/pathut.cpp
     utils/pathut.h
     utils/picoxml.h
+    utils/powerstatus.cpp
     utils/pxattr.cpp
     utils/pxattr.h
-    utils/rclionice.cpp
-    utils/rclionice.h
     utils/readfile.cpp
     utils/readfile.h
     utils/smallut.cpp
@@ -358,12 +356,27 @@ set(librecoll_SOURCES
     utils/wipedir.cpp
     utils/wipedir.h
     utils/workqueue.h
-    utils/x11mon.cpp
-    utils/x11mon.h
     utils/zlibut.cpp
     utils/zlibut.h
     xaposix/safeunistd.h
     )
+
+# Platform-specific source files
+if (WIN32)
+    list(APPEND librecoll_SOURCES
+        windows/execmd_w.cpp
+        windows/fnmatch.c
+        windows/wincodepages.cpp
+        windows/strptime.cpp
+    )
+else ()
+    list(APPEND librecoll_SOURCES
+        utils/execmd.cpp
+        utils/netcon.cpp utils/netcon.h
+        utils/x11mon.cpp utils/x11mon.h
+        utils/rclionice.cpp utils/rclionice.h
+    )
+endif ()
 
 set(recollindex_SOURCES
     index/checkindexed.cpp
@@ -374,15 +387,27 @@ set(recollindex_SOURCES
     index/indexer.h
     index/rclmonprc.cpp
     index/rclmonrcv.cpp
+    index/rclmonrcv_fsevents.cpp
+    index/rclmonrcv_inotify.cpp
+    index/rclmonrcv_fam.cpp
+    index/rclmonrcv_win32.cpp
     index/recollindex.cpp
     index/webqueue.cpp
     index/webqueue.h
     )
 
+if (WIN32)
+    list(APPEND recollindex_SOURCES windows/getopt.cc)
+endif ()
+
 set(recollq_SOURCE
     query/recollqmain.cpp
     query/recollq.cpp
     query/recollq.h)
+
+if (WIN32)
+    list(APPEND recollq_SOURCE windows/getopt.cc)
+endif ()
 
 
 set(example_config_files
@@ -535,6 +560,7 @@ set_source_files_properties(${docs_files} PROPERTIES
 
 
 set(COMMON_INCLUDES_DIRS
+    aspell
     bincimapmime
     common
     index
@@ -545,6 +571,10 @@ set(COMMON_INCLUDES_DIRS
     utils
     xaposix
 )
+
+if (WIN32)
+    list(APPEND COMMON_INCLUDES_DIRS windows)
+endif ()
 
 ### Targets
 
@@ -574,9 +604,27 @@ target_compile_definitions(librecoll PUBLIC
     READFILE_ENABLE_ZLIB
     READFILE_ENABLE_MINIZ
     READFILE_ENABLE_MD5
-    HAVE_DLOPEN
     RECOLL_DATADIR="${CMAKE_INSTALL_PREFIX}/share/recoll"
 )
+
+if (WIN32)
+    target_compile_definitions(librecoll PUBLIC
+        __WIN32__
+        PSAPI_VERSION=1
+        UNICODE
+        _UNICODE
+        DISABLE_X11MON
+        RCL_MONITOR
+    )
+    if (MSVC)
+        target_compile_definitions(librecoll PUBLIC USING_STATIC_LIBICONV)
+    endif ()
+    target_link_libraries(librecoll PUBLIC
+        Shell32 rpcrt4 ws2_32 user32 shlwapi psapi kernel32
+    )
+else ()
+    target_compile_definitions(librecoll PUBLIC HAVE_DLOPEN)
+endif ()
 
 
 ### External Libraries
@@ -586,7 +634,7 @@ if (LINUX AND RECOLL_ENABLE_X11MON)
     find_package(X11 REQUIRED) # https://cmake.org/cmake/help/latest/module/FindX11.html
     target_link_libraries(librecoll PUBLIC ${X11MON_LIBRARIES})
     target_include_directories(librecoll PUBLIC ${X11MON_INCLUDE_DIRS})
-else()
+elseif (NOT WIN32)
     target_compile_definitions(librecoll PUBLIC DISABLE_X11MON)
 endif()
 
@@ -595,30 +643,38 @@ endif()
 find_package(LibXml2 REQUIRED) # https://cmake.org/cmake/help/latest/module/FindLibXml2.html
 find_package(LibXslt REQUIRED) # https://cmake.org/cmake/help/latest/module/FindLibXslt.html
 find_package(Xapian REQUIRED) # https://github.com/xapian/xapian/blob/master/xapian-core/cmake/xapian-config.cmake.in
+find_package(ZLIB REQUIRED)
 
-target_link_libraries(librecoll PUBLIC
-    LibXml2::LibXml2
-    LibXslt::LibXslt
-    ${XAPIAN_LIBRARIES}
-)
+if (XAPIAN_STATIC_LIBRARY AND NOT XAPIAN_SHARED)
+    target_link_libraries(librecoll PUBLIC
+        LibXml2::LibXml2 LibXslt::LibXslt
+        ${XAPIAN_STATIC_LIBRARY} ZLIB::ZLIB
+    )
+else ()
+    target_link_libraries(librecoll PUBLIC
+        LibXml2::LibXml2 LibXslt::LibXslt
+        ${XAPIAN_LIBRARIES} ZLIB::ZLIB
+    )
+endif ()
 
 include_directories(${XAPIAN_INCLUDE_DIR})
 
 if (RECOLL_ENABLE_LIBMAGIC)
     find_package(Libmagic REQUIRED)
     target_link_libraries(librecoll PUBLIC Libmagic::Libmagic)
-else()
+    target_compile_definitions(librecoll PUBLIC ENABLE_LIBMAGIC)
+elseif (NOT WIN32)
     find_package(FileCommand REQUIRED)
     target_link_libraries(librecoll PUBLIC FileCommand::FILE_PROG)
 endif()
 
+if (WIN32 OR APPLE)
+    find_package(Iconv REQUIRED)
+    target_link_libraries(librecoll PUBLIC Iconv::Iconv)
+endif ()
+
 if (APPLE)
-    # assuming packages are installed via homebrew.
     include_directories(/usr/local/include /opt/homebrew/include)
-    # External dependencies will be copied automatically via macdeployqt
-    find_package(ZLIB REQUIRED) # https://cmake.org/cmake/help/latest/module/FindZLIB.html
-    find_package(Iconv REQUIRED) # https://cmake.org/cmake/help/latest/module/FindIconv.html
-    target_link_libraries(librecoll PUBLIC ZLIB::ZLIB Iconv::Iconv)
 endif ()
 
 #--- recollindex ---
@@ -654,6 +710,26 @@ if (APPLE)
         RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/recoll.app/Contents/MacOS/)
 endif()
 
+if (WIN32)
+    install(TARGETS ${RECOLL_EXECUTABLES}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+    if (TARGET librecoll)
+        install(TARGETS librecoll
+            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        )
+    endif ()
+    install(FILES ${example_config_files}
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/recoll/examples)
+    install(FILES ${filter_files}
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/recoll/filters)
+    install(FILES ${mtpics_files}
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/recoll/images)
+    install(FILES ${docs_files}
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/recoll/doc)
+endif ()
 
 if (LINUX)
     set_target_properties(${RECOLL_EXECUTABLES} PROPERTIES
@@ -707,6 +783,12 @@ if (LINUX)
 
     install(FILES ${QM_FILES}
         DESTINATION ${CMAKE_INSTALL_DATADIR}/recoll/translations)
+endif ()
+
+### Tests
+option(RECOLL_BUILD_TESTS "Build unit tests" ON)
+if (RECOLL_BUILD_TESTS)
+    add_subdirectory(catch)
 endif ()
 
 feature_summary(WHAT ALL DESCRIPTION "Build configuration:")

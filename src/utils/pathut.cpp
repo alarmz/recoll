@@ -68,11 +68,11 @@
 // systems, and on MinGW, where it comes with a supplemental wide char
 // interface. When building with MSVC, we use our bundled msvc_dirent.h,
 // which is equivalent to the one in MinGW
-#ifdef _MSC_VER
+#ifdef _WIN32
 #include "msvc_dirent.h"
-#else // !_MSC_VER
+#else
 #include <dirent.h>
-#endif // _MSC_VER
+#endif
 
 
 #ifdef _WIN32
