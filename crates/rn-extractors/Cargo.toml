@@ -1,0 +1,13 @@
+[package]
+name = "rn-extractors"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rn-core = { path = "../rn-core" }
+anyhow = { workspace = true }
+mime_guess = { workspace = true }
+pulldown-cmark = "0.12"
+
+[dev-dependencies]
+tempfile = { workspace = true }

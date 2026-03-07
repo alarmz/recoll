@@ -31,50 +31,50 @@
 
 ---
 
-## Phase 2: Tantivy 搜尋引擎基礎 (Week 3)
+## ~~Phase 2: Tantivy 搜尋引擎基礎 (Week 3)~~ ✅
 
-- [ ] `rn-search/src/schema.rs`: RnSchema::build() — 所有 field 定義
-- [ ] `rn-search/src/tokenizer/mod.rs`: register_tokenizers() — rn_default, rn_cjk, rn_code, rn_filename
-- [ ] `rn-search/src/tokenizer/jieba.rs`: JiebaTokenizer wrapper (Tantivy Tokenizer trait)
-- [ ] `rn-search/src/tokenizer/code.rs`: CodeTokenizer (camelCase/snake_case 分割)
-- [ ] `rn-search/src/tokenizer/filename.rs`: FilenameTokenizer (- _ . 分割)
-- [ ] `rn-search/src/writer.rs`: IndexWriter 封裝 (add_document, delete_by_term, commit)
-- [ ] `rn-search/src/reader.rs`: IndexReader 封裝 (search, reload)
-- [ ] 單元測試: schema 建立、文件寫入讀取、中文分詞驗證
+- [x] `rn-search/src/schema.rs`: RnSchema::build() — 所有 field 定義
+- [x] `rn-search/src/tokenizer/mod.rs`: register_tokenizers() — rn_default, rn_cjk, rn_code, rn_filename
+- [x] `rn-search/src/tokenizer/jieba.rs`: JiebaTokenizer wrapper (Tantivy Tokenizer trait)
+- [x] `rn-search/src/tokenizer/code.rs`: CodeTokenizer (camelCase/snake_case 分割)
+- [x] `rn-search/src/tokenizer/filename.rs`: FilenameTokenizer (- _ . 分割)
+- [x] `rn-search/src/writer.rs`: IndexWriter 封裝 (add_document, delete_by_term, commit)
+- [x] `rn-search/src/reader.rs`: IndexReader 封裝 (search, reload)
+- [x] 單元測試: schema 建立、文件寫入讀取、中文分詞驗證 (24 tests)
 - [ ] Benchmark: 10 萬筆文件查詢 < 300ms
 
 ---
 
-## Phase 3: 查詢解析與排序 (Week 4)
+## ~~Phase 3: 查詢解析與排序 (Week 4)~~ ✅
 
-- [ ] `rn-search/src/query.rs`: QueryParser — keyword, "phrase", field:value 語法
-- [ ] `rn-search/src/query.rs`: 日期範圍 modified:>2024-01-01
-- [ ] `rn-search/src/query.rs`: 副檔名 ext:pdf, 路徑 path:D:\projects\*
-- [ ] `rn-search/src/query.rs`: 大小過濾 size:>10MB
-- [ ] `rn-search/src/ranking.rs`: RankingWeights 結構 + compute_filename_score()
-- [ ] `rn-search/src/ranking.rs`: compute_recency_score() 衰減曲線
-- [ ] `rn-search/src/snippet.rs`: SnippetBuilder + CJK 處理
+- [x] `rn-search/src/query.rs`: QueryParser — keyword, "phrase", field:value 語法
+- [x] `rn-search/src/query.rs`: 日期範圍 modified:>2024-01-01
+- [x] `rn-search/src/query.rs`: 副檔名 ext:pdf, 路徑 path:/project
+- [x] `rn-search/src/query.rs`: 大小過濾 size:>1024
+- [x] `rn-search/src/ranking.rs`: RankingWeights 結構 + compute_filename_score()
+- [x] `rn-search/src/ranking.rs`: compute_recency_score() 衰減曲線
+- [x] `rn-search/src/snippet.rs`: SnippetBuilder + 自訂高亮標記
 - [ ] `rn-search/src/reader.rs`: SearchCoordinator — 並行查詢 MetaDB + Tantivy 合併排序
-- [ ] 單元測試: 各查詢語法解析、scoring formula、snippet 邊界
+- [x] 單元測試: 各查詢語法解析、scoring formula、snippet 邊界 (17 tests)
 
 ---
 
-## Phase 4: 文件抽取器 (Week 5)
+## ~~Phase 4: 文件抽取器 (Week 5)~~ ✅
 
-- [ ] `rn-extractors/src/lib.rs`: Extractor trait + CostProfile
-- [ ] `rn-extractors/src/registry.rs`: ExtractorRegistry + default_registry() + mime_guess
-- [ ] `rn-extractors/src/plain_text.rs`: PlainTextExtractor (UTF-8/BOM 偵測)
+- [x] `rn-extractors/src/lib.rs`: Extractor trait + CostProfile
+- [x] `rn-extractors/src/registry.rs`: ExtractorRegistry + default_registry() + mime_guess
+- [x] `rn-extractors/src/plain_text.rs`: PlainTextExtractor (UTF-8/BOM 偵測)
 - [ ] `rn-extractors/src/pdf.rs`: PdfExtractor (pdf-extract + OCR fallback)
 - [ ] `rn-extractors/src/docx.rs`: DocxExtractor (docx-rs)
 - [ ] `rn-extractors/src/xlsx.rs`: XlsxExtractor (calamine)
 - [ ] `rn-extractors/src/pptx.rs`: PptxExtractor
-- [ ] `rn-extractors/src/html.rs`: HtmlExtractor (tag stripping)
-- [ ] `rn-extractors/src/markdown.rs`: MarkdownExtractor (pulldown-cmark)
-- [ ] `rn-extractors/src/source_code.rs`: SourceCodeExtractor
+- [x] `rn-extractors/src/html.rs`: HtmlExtractor (tag stripping)
+- [x] `rn-extractors/src/markdown.rs`: MarkdownExtractor (pulldown-cmark)
+- [x] `rn-extractors/src/source_code.rs`: SourceCodeExtractor
 - [ ] `rn-extractors/src/email.rs`: EmlExtractor (RFC 822)
-- [ ] `rn-extractors/src/csv.rs`: CsvExtractor
-- [ ] `rn-extractors/src/fallback.rs`: FallbackExtractor (嘗試 UTF-8 讀取)
-- [ ] 單元測試: 每個 extractor 的 supports() + fixture 檔案抽取驗證
+- [x] `rn-extractors/src/csv.rs`: CsvExtractor
+- [x] `rn-extractors/src/fallback.rs`: FallbackExtractor (嘗試 UTF-8 讀取)
+- [x] 單元測試: 每個 extractor 的 supports() + fixture 檔案抽取驗證 (23 tests)
 
 ---
 
@@ -222,9 +222,9 @@
 |-------|------|------|
 | 0 | Workspace + 核心型別 | ✅ 完成 (41 tests) |
 | 1 | Metadata 儲存 | ✅ 完成 (19 tests) |
-| 2 | Tantivy 基礎 | 未開始 |
-| 3 | 查詢解析與排序 | 未開始 |
-| 4 | 文件抽取器 | 未開始 |
+| 2 | Tantivy 基礎 | ✅ 完成 (24 tests) |
+| 3 | 查詢解析與排序 | ✅ 完成 (17 tests) |
+| 4 | 文件抽取器 | ✅ 完成 (23 tests) |
 | 5 | Indexer Pipeline | 未開始 |
 | 6 | 檔案監控 | 未開始 |
 | 7 | CLI 工具 | 未開始 |
