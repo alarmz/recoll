@@ -42,11 +42,11 @@ fn doc_id_and_path_are_string_stored() {
 }
 
 #[test]
-fn content_is_indexed_but_not_stored() {
+fn content_is_indexed_and_stored() {
     let s = RnSchema::build();
     let content_entry = s.schema.get_field_entry(s.content);
     assert!(content_entry.is_indexed());
-    assert!(!content_entry.is_stored());
+    assert!(content_entry.is_stored());
 }
 
 #[test]

@@ -34,11 +34,13 @@ impl RnSchema {
             )
             .set_stored();
 
-        let text_not_stored = TextOptions::default().set_indexing_options(
-            TextFieldIndexing::default()
-                .set_tokenizer("rn_default")
-                .set_index_option(IndexRecordOption::WithFreqsAndPositions),
-        );
+        let text_content = TextOptions::default()
+            .set_indexing_options(
+                TextFieldIndexing::default()
+                    .set_tokenizer("rn_default")
+                    .set_index_option(IndexRecordOption::WithFreqsAndPositions),
+            )
+            .set_stored();
 
         let i64_fast = NumericOptions::default().set_fast().set_stored();
         let u64_fast = NumericOptions::default().set_fast().set_stored();
@@ -49,7 +51,7 @@ impl RnSchema {
         let title = builder.add_text_field("title", text_stored.clone());
         let extension = builder.add_text_field("extension", STRING | STORED | FAST);
         let mime_type = builder.add_text_field("mime_type", STRING | STORED);
-        let content = builder.add_text_field("content", text_not_stored);
+        let content = builder.add_text_field("content", text_content);
         let summary = builder.add_text_field("summary", STORED);
         let language = builder.add_text_field("language", STRING | STORED);
         let created_at = builder.add_i64_field("created_at", i64_fast.clone());
