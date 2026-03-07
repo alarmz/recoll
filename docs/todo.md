@@ -1,0 +1,238 @@
+# Recoll Next — Implementation Phases
+
+> 根據 [technical-design.md](technical-design.md) 劃分的實作階段
+> 完成的項目以 ~~刪除線~~ 標記
+
+---
+
+## Phase 0: Workspace 建立與核心型別 (Week 1)
+
+- [ ] 建立 Cargo workspace，所有 crate skeleton 可 `cargo check` 通過
+- [ ] `rn-core/src/task.rs`: IndexTask, FileVersion, TaskPriority, OperationType, TaskSource
+- [ ] `rn-core/src/state.rs`: DocumentState enum + 狀態轉換驗證函式
+- [ ] `rn-core/src/extract.rs`: ExtractResult, Language, ExtractionMethod, ExtractWarning
+- [ ] `rn-core/src/search.rs`: SearchResult, MatchReason, SourceType, SearchResponse
+- [ ] `rn-core/src/error.rs`: IndexError (thiserror)
+- [ ] `rn-core/src/types.rs`: FileId, MimeType 等共用型別
+- [ ] 單元測試: TaskPriority 排序、DocumentState 合法轉換
+
+---
+
+## Phase 1: Metadata 儲存 (Week 2)
+
+- [ ] `rn-meta/migrations/001_init.sql`: files, watch_roots, exclude_rules, index_stats 表
+- [ ] `rn-meta/src/store.rs`: MetaStore::open() + PRAGMA 設定 (WAL, cache_size)
+- [ ] `rn-meta/src/store.rs`: upsert_metadata() — INSERT ON CONFLICT
+- [ ] `rn-meta/src/store.rs`: is_up_to_date() — mtime + size 比對
+- [ ] `rn-meta/src/store.rs`: search_filename_prefix() — LIKE 前綴查詢
+- [ ] `rn-meta/src/store.rs`: set_state(), get_doc_id(), delete_by_path()
+- [ ] `rn-meta/src/store.rs`: find_stale(), get_stats(), get_failed_tasks()
+- [ ] 單元測試: upsert/query, prefix search, state 轉換, stale 偵測
+
+---
+
+## Phase 2: Tantivy 搜尋引擎基礎 (Week 3)
+
+- [ ] `rn-search/src/schema.rs`: RnSchema::build() — 所有 field 定義
+- [ ] `rn-search/src/tokenizer/mod.rs`: register_tokenizers() — rn_default, rn_cjk, rn_code, rn_filename
+- [ ] `rn-search/src/tokenizer/jieba.rs`: JiebaTokenizer wrapper (Tantivy Tokenizer trait)
+- [ ] `rn-search/src/tokenizer/code.rs`: CodeTokenizer (camelCase/snake_case 分割)
+- [ ] `rn-search/src/tokenizer/filename.rs`: FilenameTokenizer (- _ . 分割)
+- [ ] `rn-search/src/writer.rs`: IndexWriter 封裝 (add_document, delete_by_term, commit)
+- [ ] `rn-search/src/reader.rs`: IndexReader 封裝 (search, reload)
+- [ ] 單元測試: schema 建立、文件寫入讀取、中文分詞驗證
+- [ ] Benchmark: 10 萬筆文件查詢 < 300ms
+
+---
+
+## Phase 3: 查詢解析與排序 (Week 4)
+
+- [ ] `rn-search/src/query.rs`: QueryParser — keyword, "phrase", field:value 語法
+- [ ] `rn-search/src/query.rs`: 日期範圍 modified:>2024-01-01
+- [ ] `rn-search/src/query.rs`: 副檔名 ext:pdf, 路徑 path:D:\projects\*
+- [ ] `rn-search/src/query.rs`: 大小過濾 size:>10MB
+- [ ] `rn-search/src/ranking.rs`: RankingWeights 結構 + compute_filename_score()
+- [ ] `rn-search/src/ranking.rs`: compute_recency_score() 衰減曲線
+- [ ] `rn-search/src/snippet.rs`: SnippetBuilder + CJK 處理
+- [ ] `rn-search/src/reader.rs`: SearchCoordinator — 並行查詢 MetaDB + Tantivy 合併排序
+- [ ] 單元測試: 各查詢語法解析、scoring formula、snippet 邊界
+
+---
+
+## Phase 4: 文件抽取器 (Week 5)
+
+- [ ] `rn-extractors/src/lib.rs`: Extractor trait + CostProfile
+- [ ] `rn-extractors/src/registry.rs`: ExtractorRegistry + default_registry() + mime_guess
+- [ ] `rn-extractors/src/plain_text.rs`: PlainTextExtractor (UTF-8/BOM 偵測)
+- [ ] `rn-extractors/src/pdf.rs`: PdfExtractor (pdf-extract + OCR fallback)
+- [ ] `rn-extractors/src/docx.rs`: DocxExtractor (docx-rs)
+- [ ] `rn-extractors/src/xlsx.rs`: XlsxExtractor (calamine)
+- [ ] `rn-extractors/src/pptx.rs`: PptxExtractor
+- [ ] `rn-extractors/src/html.rs`: HtmlExtractor (tag stripping)
+- [ ] `rn-extractors/src/markdown.rs`: MarkdownExtractor (pulldown-cmark)
+- [ ] `rn-extractors/src/source_code.rs`: SourceCodeExtractor
+- [ ] `rn-extractors/src/email.rs`: EmlExtractor (RFC 822)
+- [ ] `rn-extractors/src/csv.rs`: CsvExtractor
+- [ ] `rn-extractors/src/fallback.rs`: FallbackExtractor (嘗試 UTF-8 讀取)
+- [ ] 單元測試: 每個 extractor 的 supports() + fixture 檔案抽取驗證
+
+---
+
+## Phase 5: Indexer Pipeline (Week 5-6)
+
+- [ ] `rn-indexer/src/queue.rs`: TaskQueue (BinaryHeap + crossbeam-channel + PrioritizedTask Ord)
+- [ ] `rn-indexer/src/throttle.rs`: IoThrottle (Off/Gentle/CpuCap)
+- [ ] `rn-indexer/src/crawler.rs`: Crawler (walkdir + exclude + is_up_to_date + throttle)
+- [ ] `rn-indexer/src/workers/extract.rs`: ExtractWorker (tokio::select + failure retry + backoff)
+- [ ] `rn-indexer/src/workers/normalize.rs`: NormalizeWorker (Unicode NFC + 語言偵測 + truncate)
+- [ ] `rn-indexer/src/workers/index_writer.rs`: IndexWriterWorker (CommitPolicy: ByCount/ByTime/Hybrid)
+- [ ] `rn-indexer/src/workers/tombstone.rs`: TombstoneWorker (delete_term + meta cleanup)
+- [ ] `rn-indexer/src/service.rs`: IndexerService (start/pause/resume/shutdown + ServiceState)
+- [ ] 整合測試: Crawler 掃描 1 萬筆 → Pipeline 全程 → 搜尋驗證
+- [ ] Benchmark: 初次索引吞吐 > 500 files/sec
+
+---
+
+## Phase 6: 檔案監控 (Week 7)
+
+- [ ] `rn-windows/src/watcher.rs`: FsWatcher (notify RecommendedWatcher + RecursiveMode)
+- [ ] `rn-windows/src/debounce.rs`: Debouncer (window_ms + should_emit)
+- [ ] `rn-windows/src/reconcile.rs`: Reconciler (定期校正 MetaDB vs 實際檔案系統)
+- [ ] Watcher → IndexTask 轉換 (WatchEventKind → OperationType)
+- [ ] 整合測試: 建立/修改/刪除檔案 → watcher 偵測 → 索引更新 → 搜尋驗證
+- [ ] 單元測試: Debouncer suppress 邏輯、rapid writes 壓制
+
+---
+
+## Phase 7: CLI 工具 (Week 7-8)
+
+- [ ] `rn-cli/src/main.rs`: clap derive 命令結構
+- [ ] `rn-cli/src/commands/init.rs`: 初始化索引目錄
+- [ ] `rn-cli/src/commands/index.rs`: 執行索引 (--full, --dry-run, --throttle)
+- [ ] `rn-cli/src/commands/search.rs`: 搜尋 (--limit, --offset, --type, --json, --no-snippet)
+- [ ] `rn-cli/src/commands/watch.rs`: 啟動監控 (--daemon, --reconcile-interval)
+- [ ] `rn-cli/src/commands/doctor.rs`: 健康檢查 (--fix, --verbose)
+- [ ] `rn-cli/src/commands/stats.rs`: 統計 (--json)
+- [ ] `rn-cli/src/commands/repair.rs`: 修復 (--check-only, --reindex-failed, --optimize)
+- [ ] `rn-cli/src/commands/service.rs`: Service 管理 (install/uninstall/start/stop/status)
+- [ ] Smoke test: E2E `rn-cli index` + `rn-cli search` 可正常運作
+
+---
+
+## Phase 8: Windows 平台整合 (Week 8-9)
+
+- [ ] `rn-windows/src/service.rs`: Windows Service (define_windows_service, SCM 整合)
+- [ ] `rn-windows/src/install.rs`: install_service() / uninstall_service()
+- [ ] `rn-windows/src/service.rs`: async_service_main() (CancellationToken + graceful shutdown)
+- [ ] Windows Explorer Shell Extension (Registry 右鍵選單)
+- [ ] 測試: Service install → start → indexing → stop → uninstall 全流程
+
+---
+
+## Phase 9: GPU 加速 (Week 9-10)
+
+- [ ] `rn-gpu/src/lib.rs`: GpuBackend trait (batch_preprocess, batch_embed, device_info)
+- [ ] `rn-gpu/src/null_backend.rs`: NullBackend (CPU fallback)
+- [ ] `rn-gpu/src/dispatcher.rs`: GpuDispatcher (batch accumulation + flush + min_batch_size)
+- [ ] `rn-gpu/src/factory.rs`: create_best_available_backend() (CUDA → ROCm → Null)
+- [ ] `rn-gpu/src/backends/cuda.rs`: CudaBackend::try_init() + device detection
+- [ ] Feature gate: `#[cfg(feature = "gpu")]` 整合到 rn-indexer
+- [ ] Benchmark: GPU vs CPU preprocess 吞吐對比
+- [ ] 單元測試: NullBackend fallback、batch flush 邏輯
+
+---
+
+## Phase 10: 設定系統與錯誤恢復 (Week 10)
+
+- [ ] `rn-core/src/config.rs`: AppConfig 結構 (indexer/workers/commit/gpu/search/watcher/logging/windows)
+- [ ] `rn-core/src/config.rs`: Config::load() — CLI > env > user > system > defaults
+- [ ] `rn-core/src/config.rs`: hot_reload() 可熱更新子集
+- [ ] TOML 設定檔範本 (`%APPDATA%\RecollNext\config.toml`)
+- [ ] Crash recovery: lock file 檢查 + PRAGMA integrity_check + state 重設
+- [ ] Repair 命令: orphan 偵測 + state 不一致修復 + Tantivy segment merge
+- [ ] Panic recovery: worker catch_unwind + 自動重啟
+
+---
+
+## Phase 11: SDK / Public API (Week 11)
+
+- [ ] `rn-sdk/src/lib.rs`: RecollNext Rust API (open, search, index_path, stats, health)
+- [ ] `rn-sdk/src/ffi.rs`: C FFI exports (rn_open, rn_search, rn_close)
+- [ ] `rn-sdk/src/http.rs`: axum HTTP server (127.0.0.1:9312)
+- [ ] HTTP endpoints: /api/v1/search, /stats, /health, /index, /config
+- [ ] API 文件: docs/api-reference.md
+- [ ] 整合測試: HTTP API E2E 驗證
+
+---
+
+## Phase 12: GUI 桌面應用 (Week 12-14)
+
+- [ ] `rn-gui`: Tauri 2.x 專案初始化
+- [ ] 搜尋頁面: 搜尋框 + 篩選列 (type/path/date)
+- [ ] 結果列表: 檔案圖示 + 路徑 + snippet + metadata
+- [ ] 預覽面板: 檔案內容預覽 / metadata 摘要
+- [ ] 狀態列: 已索引檔案數 / 佇列 / GPU 狀態
+- [ ] 設定頁面: TOML 設定 GUI 化
+- [ ] 系統匣: 最小化到 tray + 通知
+- [ ] 與 rn-sdk 整合 (Tauri commands → SDK API)
+
+---
+
+## Phase 13: 安裝器 (Week 14-15)
+
+- [ ] `installer/wix/main.wxs`: WiX 4 MSI 腳本
+- [ ] MSI 安裝流程: 複製檔案 → Shell Extension → Service → PATH → 捷徑
+- [ ] `installer/recoll-next.iss`: Inno Setup 備選方案
+- [ ] CI/CD Release workflow: tag → build → test → MSI → GitHub Release upload
+- [ ] 升級/降級測試
+- [ ] 使用者指南: docs/user-guide.md
+
+---
+
+## Phase 14: 日誌、監控與安全 (Week 15-16)
+
+- [ ] tracing + tracing-subscriber + tracing-appender 整合
+- [ ] 結構化 JSON 日誌 + DAILY rotation + max_size + backup
+- [ ] 健康檢查系統: metadata_db / tantivy / watcher / gpu 各元件
+- [ ] `rn-cli doctor`: 健康狀態報告 + 自動修復建議
+- [ ] 安全: HTTP API localhost-only 綁定
+- [ ] 安全: 日誌不記錄全文、snippet 長度限制
+- [ ] 安全: exclude 規則排除敏感資料夾
+- [ ] 安全: `rn-cli repair --purge` 清空索引
+
+---
+
+## Phase 15: 效能最佳化與穩定化 (Week 16-18)
+
+- [ ] Criterion benchmark suite: filename_search, fulltext_query, metadata_insert, commit
+- [ ] KPI 驗證: 檔名搜尋 < 30ms, 全文 < 300ms, 索引 > 500 files/sec
+- [ ] 資源控制驗證: gentle/aggressive throttle, battery mode, 大檔案記憶體
+- [ ] Tantivy segment merge 策略調整
+- [ ] SQLite WAL checkpoint 策略
+- [ ] 記憶體 profiling + leak 檢查
+- [ ] stress test: 100K+ 檔案混合格式索引
+- [ ] 產出 benchmark_report.md + risk_report.md
+- [ ] v1.0 release tag + GitHub Release + 文件完善
+
+---
+
+## 進度追蹤
+
+| Phase | 名稱 | 狀態 |
+|-------|------|------|
+| 0 | Workspace + 核心型別 | 未開始 |
+| 1 | Metadata 儲存 | 未開始 |
+| 2 | Tantivy 基礎 | 未開始 |
+| 3 | 查詢解析與排序 | 未開始 |
+| 4 | 文件抽取器 | 未開始 |
+| 5 | Indexer Pipeline | 未開始 |
+| 6 | 檔案監控 | 未開始 |
+| 7 | CLI 工具 | 未開始 |
+| 8 | Windows 整合 | 未開始 |
+| 9 | GPU 加速 | 未開始 |
+| 10 | 設定與恢復 | 未開始 |
+| 11 | SDK / API | 未開始 |
+| 12 | GUI 桌面應用 | 未開始 |
+| 13 | 安裝器 | 未開始 |
+| 14 | 日誌/監控/安全 | 未開始 |
+| 15 | 效能最佳化與穩定化 | 未開始 |
