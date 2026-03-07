@@ -1,6 +1,6 @@
+use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
 use std::time::{Duration, SystemTime};
-use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct SearchResult {
@@ -24,7 +24,10 @@ pub enum MatchReason {
     ContentPhrase,
     ContentKeyword,
     TitleMatch,
-    Combined { filename_score: f32, content_score: f32 },
+    Combined {
+        filename_score: f32,
+        content_score: f32,
+    },
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]

@@ -1,7 +1,7 @@
 //! 搜尋結果型別行為測試
 
+use rn_core::search::{MatchReason, SearchResponse, SourceType};
 use std::time::Duration;
-use rn_core::search::{SourceType, MatchReason, SearchResponse};
 
 #[test]
 fn all_source_type_variants_exist() {
@@ -19,7 +19,10 @@ fn all_match_reason_variants_exist() {
     let _cp = MatchReason::ContentPhrase;
     let _ck = MatchReason::ContentKeyword;
     let _tm = MatchReason::TitleMatch;
-    let _cb = MatchReason::Combined { filename_score: 0.8, content_score: 0.6 };
+    let _cb = MatchReason::Combined {
+        filename_score: 0.8,
+        content_score: 0.6,
+    };
 }
 
 #[test]
