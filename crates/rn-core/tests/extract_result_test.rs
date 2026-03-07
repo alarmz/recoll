@@ -1,6 +1,6 @@
 //! 抽取結果型別行為測試
 
-use rn_core::extract::{ExtractResult, Language, ExtractionMethod, ExtractWarning};
+use rn_core::extract::{ExtractResult, ExtractWarning, ExtractionMethod, Language};
 
 #[test]
 fn extract_result_holds_raw_text() {
@@ -40,7 +40,9 @@ fn all_extraction_method_variants_exist() {
 
 #[test]
 fn all_extract_warning_variants_constructible() {
-    let _p = ExtractWarning::PartialContent { reason: "test".into() };
+    let _p = ExtractWarning::PartialContent {
+        reason: "test".into(),
+    };
     let _e = ExtractWarning::EncodingIssue { chars_replaced: 3 };
     let _t = ExtractWarning::TruncatedAt { bytes: 1_000_000 };
     let _o = ExtractWarning::OcrUsed;

@@ -1,9 +1,9 @@
+use crate::models::{FileMeta, IndexStats, MetadataRecord};
+use anyhow::Result;
+use rn_core::state::DocumentState;
+use rusqlite::{params, Connection};
 use std::path::Path;
 use std::sync::{Arc, Mutex};
-use anyhow::Result;
-use rusqlite::{params, Connection};
-use rn_core::state::DocumentState;
-use crate::models::{MetadataRecord, FileMeta, IndexStats};
 
 const SELECT_FILE_META: &str =
     "SELECT file_id, path, filename, extension, size, modified_at, mime_type, index_state, doc_id, last_error, retry_count FROM files";
@@ -40,7 +40,9 @@ impl MetaStore {
              CREATE INDEX IF NOT EXISTS idx_files_filename   ON files(filename);
              CREATE INDEX IF NOT EXISTS idx_files_state      ON files(index_state);",
         )?;
-        Ok(Self { conn: Arc::new(Mutex::new(conn)) })
+        Ok(Self {
+            conn: Arc::new(Mutex::new(conn)),
+        })
     }
 
     pub fn upsert_metadata(&self, rec: &MetadataRecord) -> Result<()> {
@@ -71,9 +73,8 @@ impl MetaStore {
 
     pub fn is_up_to_date(&self, path: &str, mtime: i64, size: i64) -> Result<bool> {
         let conn = self.conn.lock().unwrap();
-        let mut stmt = conn.prepare(
-            "SELECT 1 FROM files WHERE path = ?1 AND modified_at = ?2 AND size = ?3"
-        )?;
+        let mut stmt =
+            conn.prepare("SELECT 1 FROM files WHERE path = ?1 AND modified_at = ?2 AND size = ?3")?;
         Ok(stmt.exists(params![path, mtime, size])?)
     }
 
@@ -83,13 +84,16 @@ impl MetaStore {
         let sql = format!("{SELECT_FILE_META} WHERE filename LIKE ?1 LIMIT ?2");
         let mut stmt = conn.prepare(&sql)?;
         let rows = stmt.query_map(params![pattern, limit as i64], FileMeta::from_row)?;
-        rows.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
+        rows.collect::<std::result::Result<Vec<_>, _>>()
+            .map_err(Into::into)
     }
 
     pub fn set_state(&self, path: &str, state: &DocumentState) -> Result<()> {
         let conn = self.conn.lock().unwrap();
         let (error, retry) = match state {
-            DocumentState::Failed { error, retry_count } => (Some(error.as_str()), *retry_count as i32),
+            DocumentState::Failed { error, retry_count } => {
+                (Some(error.as_str()), *retry_count as i32)
+            }
             _ => (None, 0),
         };
         conn.execute(
@@ -130,16 +134,34 @@ impl MetaStore {
         let sql = format!("{SELECT_FILE_META} WHERE index_state = 'stale' AND path LIKE ?1");
         let mut stmt = conn.prepare(&sql)?;
         let rows = stmt.query_map(params![pattern], FileMeta::from_row)?;
-        rows.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
+        rows.collect::<std::result::Result<Vec<_>, _>>()
+            .map_err(Into::into)
     }
 
     pub fn get_stats(&self) -> Result<IndexStats> {
         let conn = self.conn.lock().unwrap();
         let total: usize = conn.query_row("SELECT COUNT(*) FROM files", [], |r| r.get(0))?;
-        let indexed: usize = conn.query_row("SELECT COUNT(*) FROM files WHERE index_state = 'indexed'", [], |r| r.get(0))?;
-        let failed: usize = conn.query_row("SELECT COUNT(*) FROM files WHERE index_state = 'failed'", [], |r| r.get(0))?;
-        let stale: usize = conn.query_row("SELECT COUNT(*) FROM files WHERE index_state = 'stale'", [], |r| r.get(0))?;
-        Ok(IndexStats { total_files: total, indexed_files: indexed, failed_files: failed, stale_files: stale })
+        let indexed: usize = conn.query_row(
+            "SELECT COUNT(*) FROM files WHERE index_state = 'indexed'",
+            [],
+            |r| r.get(0),
+        )?;
+        let failed: usize = conn.query_row(
+            "SELECT COUNT(*) FROM files WHERE index_state = 'failed'",
+            [],
+            |r| r.get(0),
+        )?;
+        let stale: usize = conn.query_row(
+            "SELECT COUNT(*) FROM files WHERE index_state = 'stale'",
+            [],
+            |r| r.get(0),
+        )?;
+        Ok(IndexStats {
+            total_files: total,
+            indexed_files: indexed,
+            failed_files: failed,
+            stale_files: stale,
+        })
     }
 
     pub fn get_failed_tasks(&self, limit: usize) -> Result<Vec<FileMeta>> {
@@ -147,6 +169,7 @@ impl MetaStore {
         let sql = format!("{SELECT_FILE_META} WHERE index_state = 'failed' LIMIT ?1");
         let mut stmt = conn.prepare(&sql)?;
         let rows = stmt.query_map(params![limit as i64], FileMeta::from_row)?;
-        rows.collect::<std::result::Result<Vec<_>, _>>().map_err(Into::into)
+        rows.collect::<std::result::Result<Vec<_>, _>>()
+            .map_err(Into::into)
     }
 }

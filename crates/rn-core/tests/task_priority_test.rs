@@ -16,7 +16,10 @@ fn normal_priority_sorts_before_low() {
 fn sorting_produces_high_normal_low_order() {
     let mut priorities = vec![TaskPriority::Low, TaskPriority::High, TaskPriority::Normal];
     priorities.sort();
-    assert_eq!(priorities, vec![TaskPriority::High, TaskPriority::Normal, TaskPriority::Low]);
+    assert_eq!(
+        priorities,
+        vec![TaskPriority::High, TaskPriority::Normal, TaskPriority::Low]
+    );
 }
 
 #[test]

@@ -5,29 +5,29 @@
 
 ---
 
-## Phase 0: Workspace 建立與核心型別 (Week 1)
+## ~~Phase 0: Workspace 建立與核心型別 (Week 1)~~ ✅
 
-- [ ] 建立 Cargo workspace，所有 crate skeleton 可 `cargo check` 通過
-- [ ] `rn-core/src/task.rs`: IndexTask, FileVersion, TaskPriority, OperationType, TaskSource
-- [ ] `rn-core/src/state.rs`: DocumentState enum + 狀態轉換驗證函式
-- [ ] `rn-core/src/extract.rs`: ExtractResult, Language, ExtractionMethod, ExtractWarning
-- [ ] `rn-core/src/search.rs`: SearchResult, MatchReason, SourceType, SearchResponse
-- [ ] `rn-core/src/error.rs`: IndexError (thiserror)
-- [ ] `rn-core/src/types.rs`: FileId, MimeType 等共用型別
-- [ ] 單元測試: TaskPriority 排序、DocumentState 合法轉換
+- [x] 建立 Cargo workspace，所有 crate skeleton 可 `cargo check` 通過
+- [x] `rn-core/src/task.rs`: IndexTask, FileVersion, TaskPriority, OperationType, TaskSource
+- [x] `rn-core/src/state.rs`: DocumentState enum + 狀態轉換驗證函式
+- [x] `rn-core/src/extract.rs`: ExtractResult, Language, ExtractionMethod, ExtractWarning
+- [x] `rn-core/src/search.rs`: SearchResult, MatchReason, SourceType, SearchResponse
+- [x] `rn-core/src/error.rs`: IndexError (thiserror)
+- [x] `rn-core/src/types.rs`: FileId, MimeType 等共用型別
+- [x] 單元測試: TaskPriority 排序、DocumentState 合法轉換 (41 tests)
 
 ---
 
-## Phase 1: Metadata 儲存 (Week 2)
+## ~~Phase 1: Metadata 儲存 (Week 2)~~ ✅
 
-- [ ] `rn-meta/migrations/001_init.sql`: files, watch_roots, exclude_rules, index_stats 表
-- [ ] `rn-meta/src/store.rs`: MetaStore::open() + PRAGMA 設定 (WAL, cache_size)
-- [ ] `rn-meta/src/store.rs`: upsert_metadata() — INSERT ON CONFLICT
-- [ ] `rn-meta/src/store.rs`: is_up_to_date() — mtime + size 比對
-- [ ] `rn-meta/src/store.rs`: search_filename_prefix() — LIKE 前綴查詢
-- [ ] `rn-meta/src/store.rs`: set_state(), get_doc_id(), delete_by_path()
-- [ ] `rn-meta/src/store.rs`: find_stale(), get_stats(), get_failed_tasks()
-- [ ] 單元測試: upsert/query, prefix search, state 轉換, stale 偵測
+- [x] `rn-meta/src/models.rs`: MetadataRecord, FileMeta, IndexStats 資料模型
+- [x] `rn-meta/src/store.rs`: MetaStore::open() + PRAGMA 設定 (WAL mode)
+- [x] `rn-meta/src/store.rs`: upsert_metadata() — INSERT ON CONFLICT
+- [x] `rn-meta/src/store.rs`: is_up_to_date() — mtime + size 比對
+- [x] `rn-meta/src/store.rs`: search_filename_prefix() — LIKE 前綴查詢
+- [x] `rn-meta/src/store.rs`: set_state(), get_doc_id(), set_doc_id(), delete_by_path()
+- [x] `rn-meta/src/store.rs`: find_stale(), get_stats(), get_failed_tasks()
+- [x] 單元測試: upsert/query, prefix search, state 轉換, stale 偵測 (19 tests)
 
 ---
 
@@ -220,8 +220,8 @@
 
 | Phase | 名稱 | 狀態 |
 |-------|------|------|
-| 0 | Workspace + 核心型別 | 未開始 |
-| 1 | Metadata 儲存 | 未開始 |
+| 0 | Workspace + 核心型別 | ✅ 完成 (41 tests) |
+| 1 | Metadata 儲存 | ✅ 完成 (19 tests) |
 | 2 | Tantivy 基礎 | 未開始 |
 | 3 | 查詢解析與排序 | 未開始 |
 | 4 | 文件抽取器 | 未開始 |

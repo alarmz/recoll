@@ -84,12 +84,36 @@ sudo cmake --install build
 For detailed build instructions, see the
 [online documentation](https://www.recoll.org/usermanual/usermanual.html#RCL.INSTALL.BUILDING).
 
+## Recoll Next (Rust Rewrite)
+
+A next-generation rewrite of Recoll in Rust using Tantivy as the search
+engine. The Rust components live under the `crates/` directory:
+
+- **rn-core**: Core types — IndexTask, DocumentState, ExtractResult, SearchResult, etc.
+- **rn-meta**: SQLite metadata store (rusqlite, WAL mode)
+
+### Building & Testing (Rust)
+
+```bash
+# Run all Rust tests (60 tests across rn-core and rn-meta)
+cargo test --all
+
+# Check formatting and lint
+cargo fmt --all -- --check
+cargo clippy --all-targets -- -D warnings
+```
+
+See [docs/todo.md](docs/todo.md) for the full implementation roadmap.
+
 ## CI/CD
 
 This project uses GitHub Actions for continuous integration:
 
-- **CI** (`ci.yml`): Runs unit tests on every push and pull request
-  (Linux + Windows).
+- **Rust CI** (`ci.yml`): Runs `cargo fmt`, `cargo clippy -D warnings`,
+  and `cargo test --all` on Ubuntu + Windows matrix for every push and
+  pull request.
+- **C++ CI** (`ci.yml`): Builds the C++ codebase with CMake/Ninja and
+  runs CTest on Linux and Windows.
 - **Release** (`release.yml`): Builds Linux and Windows binaries and
   a Windows installer on each GitHub Release.
 
@@ -171,9 +195,30 @@ sudo cmake --install build
 詳細的編譯說明請參閱
 [線上文件](https://www.recoll.org/usermanual/usermanual.html#RCL.INSTALL.BUILDING)。
 
+## Recoll Next (Rust 重寫)
+
+使用 Rust 和 Tantivy 搜尋引擎重寫的下一代 Recoll。Rust 元件位於 `crates/` 目錄下：
+
+- **rn-core**：核心型別 — IndexTask、DocumentState、ExtractResult、SearchResult 等
+- **rn-meta**：SQLite metadata 儲存 (rusqlite, WAL mode)
+
+### 編譯與測試 (Rust)
+
+```bash
+# 執行所有 Rust 測試 (共 60 個測試，涵蓋 rn-core 和 rn-meta)
+cargo test --all
+
+# 檢查格式和 lint
+cargo fmt --all -- --check
+cargo clippy --all-targets -- -D warnings
+```
+
+詳細的實作進度請參閱 [docs/todo.md](docs/todo.md)。
+
 ## CI/CD
 
 本專案使用 GitHub Actions 進行持續整合：
 
-- **CI** (`ci.yml`)：每次 push 和 pull request 都會在 Linux 和 Windows 上執行單元測試。
+- **Rust CI** (`ci.yml`)：每次 push 和 pull request 都會在 Ubuntu + Windows 矩陣上執行 `cargo fmt`、`cargo clippy -D warnings` 和 `cargo test --all`。
+- **C++ CI** (`ci.yml`)：使用 CMake/Ninja 編譯 C++ 程式碼，並在 Linux 和 Windows 上執行 CTest。
 - **Release** (`release.yml`)：每次在 GitHub 發布 Release 時，會自動編譯 Linux 和 Windows 的二進位檔案，並產生 Windows 安裝程式。
