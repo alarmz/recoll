@@ -79,7 +79,8 @@ jobs:
             "-DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake" ^
             -DRECOLL_QTGUI=OFF ^
             -DRECOLL_BUILD_TESTS=ON ^
-            -DXAPIAN_SHARED=OFF
+            -DXAPIAN_SHARED=OFF ^
+            "-DXAPIAN_STATIC_LIBRARY=%VCPKG_ROOT%/installed/x64-windows/lib/xapian.lib"
 
       - name: Build
         working-directory: src
