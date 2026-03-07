@@ -8,6 +8,7 @@ members = [
     "crates/rn-indexer",
     "crates/rn-watcher",
     "crates/rn-cli",
+    "crates/rn-windows",
 ]
 
 [workspace.dependencies]

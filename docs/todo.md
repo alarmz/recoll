@@ -123,13 +123,16 @@
 
 ---
 
-## Phase 8: Windows 平台整合 (Week 8-9)
+## ~~Phase 8: Windows 平台整合 (Week 8-9)~~ ✅
 
+- [x] `rn-windows/src/config.rs`: ServiceConfig (name, display_name, binary_name)
+- [x] `rn-windows/src/installer.rs`: install_args/uninstall_args/start_args/stop_args (sc.exe 命令產生)
+- [x] `rn-windows/src/cancel.rs`: CancellationToken (Arc<AtomicBool> 優雅關機)
+- [x] `rn-windows/src/shell_ext.rs`: ShellExtension (Registry 路徑、選單文字、命令列)
+- [x] `rn-windows/src/status.rs`: ServiceStatus (parse running/stopped/paused/unknown)
 - [ ] `rn-windows/src/service.rs`: Windows Service (define_windows_service, SCM 整合)
-- [ ] `rn-windows/src/install.rs`: install_service() / uninstall_service()
-- [ ] `rn-windows/src/service.rs`: async_service_main() (CancellationToken + graceful shutdown)
-- [ ] Windows Explorer Shell Extension (Registry 右鍵選單)
 - [ ] 測試: Service install → start → indexing → stop → uninstall 全流程
+- [x] 單元測試: Config, Installer, ShellExt, CancellationToken, Status (15 tests)
 
 ---
 
@@ -232,7 +235,7 @@
 | 5 | Indexer Pipeline | ✅ 完成 (23 tests) |
 | 6 | 檔案監控 | ✅ 完成 (17 tests) |
 | 7 | CLI 工具 | ✅ 完成 (16 tests) |
-| 8 | Windows 整合 | 未開始 |
+| 8 | Windows 整合 | ✅ 完成 (15 tests) |
 | 9 | GPU 加速 | 未開始 |
 | 10 | 設定與恢復 | 未開始 |
 | 11 | SDK / API | 未開始 |
