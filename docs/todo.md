@@ -95,14 +95,15 @@
 
 ---
 
-## Phase 6: 檔案監控 (Week 7)
+## ~~Phase 6: 檔案監控 (Week 7)~~ ✅
 
-- [ ] `rn-windows/src/watcher.rs`: FsWatcher (notify RecommendedWatcher + RecursiveMode)
-- [ ] `rn-windows/src/debounce.rs`: Debouncer (window_ms + should_emit)
-- [ ] `rn-windows/src/reconcile.rs`: Reconciler (定期校正 MetaDB vs 實際檔案系統)
-- [ ] Watcher → IndexTask 轉換 (WatchEventKind → OperationType)
-- [ ] 整合測試: 建立/修改/刪除檔案 → watcher 偵測 → 索引更新 → 搜尋驗證
-- [ ] 單元測試: Debouncer suppress 邏輯、rapid writes 壓制
+- [x] `rn-watcher/src/watcher.rs`: FsWatcher (notify RecommendedWatcher + RecursiveMode + crossbeam-channel)
+- [x] `rn-watcher/src/debounce.rs`: Debouncer (window + pending HashMap + immediate flush for Delete)
+- [x] `rn-watcher/src/reconcile.rs`: reconcile() (disk vs known 差異比較 — added/removed/modified)
+- [x] `rn-watcher/src/event_mapper.rs`: map_event() (EventKind → OperationType, Rename → Delete+Create)
+- [x] 整合測試: 建立/修改/刪除檔案 → FsWatcher 偵測 (3 tests)
+- [x] 單元測試: Debouncer suppress + EventMapper + Reconciler (14 tests)
+- [x] 總計 17 tests
 
 ---
 
@@ -228,7 +229,7 @@
 | 3 | 查詢解析與排序 | ✅ 完成 (17 tests) |
 | 4 | 文件抽取器 | ✅ 完成 (23 tests) |
 | 5 | Indexer Pipeline | ✅ 完成 (23 tests) |
-| 6 | 檔案監控 | 未開始 |
+| 6 | 檔案監控 | ✅ 完成 (17 tests) |
 | 7 | CLI 工具 | 未開始 |
 | 8 | Windows 整合 | 未開始 |
 | 9 | GPU 加速 | 未開始 |

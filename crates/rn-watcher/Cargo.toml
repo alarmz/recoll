@@ -1,0 +1,13 @@
+[package]
+name = "rn-watcher"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rn-core = { path = "../rn-core" }
+notify = { workspace = true }
+anyhow = { workspace = true }
+crossbeam-channel = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }
