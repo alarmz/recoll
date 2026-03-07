@@ -70,7 +70,9 @@ jobs:
         working-directory: src
         shell: cmd
         run: |
+          set "SAVED_VCPKG_ROOT=%VCPKG_ROOT%"
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
+          set "VCPKG_ROOT=%SAVED_VCPKG_ROOT%"
           cmake -S . -B build_win -G Ninja ^
             -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
             -DCMAKE_BUILD_TYPE=Release ^
