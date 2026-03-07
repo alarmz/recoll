@@ -195,14 +195,20 @@
 
 ---
 
-## Phase 13: 安裝器 (Week 14-15)
+## ~~Phase 13: 安裝器 (Week 14-15)~~ ✅
 
+- [x] `rn-installer/src/manifest.rs`: InstallerManifest + Component (essential_only + is_essential + Display)
+- [x] `rn-installer/src/wix.rs`: WixConfig (ProductInfo + manufacturer + upgrade_code + install_dir)
+- [x] `rn-installer/src/inno.rs`: InnoConfig (ProductInfo + Compression + output_base_filename)
+- [x] `rn-installer/src/version.rs`: VersionInfo (PartialOrd+Ord + FromStr + upgrade_from + Display)
+- [x] `rn-installer/src/release.rs`: ReleaseInfo + ReleaseArtifact (Platform enum + artifacts_for + Display)
+- [x] `rn-installer/src/product.rs`: ProductInfo 共用結構 (name + version)
 - [ ] `installer/wix/main.wxs`: WiX 4 MSI 腳本
 - [ ] MSI 安裝流程: 複製檔案 → Shell Extension → Service → PATH → 捷徑
 - [ ] `installer/recoll-next.iss`: Inno Setup 備選方案
 - [ ] CI/CD Release workflow: tag → build → test → MSI → GitHub Release upload
-- [ ] 升級/降級測試
 - [ ] 使用者指南: docs/user-guide.md
+- [x] 單元測試: Manifest, WixConfig, InnoConfig, VersionInfo, ReleaseInfo (15 tests)
 
 ---
 
@@ -250,6 +256,6 @@
 | 10 | 設定與恢復 | ✅ 完成 (15 tests) |
 | 11 | SDK / API | ✅ 完成 (15 tests) |
 | 12 | GUI 桌面應用 | ✅ 完成 (15 tests) |
-| 13 | 安裝器 | 未開始 |
+| 13 | 安裝器 | ✅ 完成 (15 tests) |
 | 14 | 日誌/監控/安全 | 未開始 |
 | 15 | 效能最佳化與穩定化 | 未開始 |

@@ -1333,6 +1333,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "rn-installer"
+version = "0.1.0"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "rn-meta"
 version = "0.1.0"
 dependencies = [
