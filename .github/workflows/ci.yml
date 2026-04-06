@@ -43,7 +43,7 @@ jobs:
     runs-on: windows-latest
     env:
       VCPKG_DEFAULT_TRIPLET: x64-windows
-      VCPKG_BINARY_SOURCES: "clear;x-gha,readwrite"
+      VCPKG_BINARY_SOURCES: "clear"
     steps:
       - uses: actions/checkout@v4
 
@@ -61,6 +61,17 @@ jobs:
 
       - name: Install Ninja
         run: choco install ninja -y
+
+      - name: Pre-cache xapian source (fallback for unreliable upstream)
+        shell: bash
+        run: |
+          mkdir -p "$VCPKG_ROOT/downloads"
+          if ! curl -fSL --retry 2 --connect-timeout 15 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
+            "https://oligarchy.co.uk/xapian/1.4.22/xapian-core-1.4.22.tar.xz"; then
+            echo "Primary download failed, trying GitHub mirror..."
+            curl -fSL --retry 2 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
+              "https://github.com/xapian/xapian/releases/download/v1.4.22/xapian-core-1.4.22.tar.xz"
+          fi
 
       - name: Install dependencies
         run: |
