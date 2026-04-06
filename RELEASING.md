@@ -49,6 +49,39 @@ This updates:
 - [packaging/chocolatey/tools/chocolateyinstall.ps1](/home/alarm/recoll/packaging/chocolatey/tools/chocolateyinstall.ps1)
 - [packaging/chocolatey/tools/VERIFICATION.txt](/home/alarm/recoll/packaging/chocolatey/tools/VERIFICATION.txt)
 
+## Generate release notes
+
+GitHub release Markdown does not expand environment variables by itself, so this
+repository uses a template plus a generator script instead.
+
+Run:
+
+```bash
+./packaging/windows/generate-release-notes.sh
+```
+
+This reads the GitHub release by tag, finds the Windows installer asset, then
+generates a versioned release-notes file under [releases/](/home/alarm/recoll/releases).
+
+Optional overrides:
+
+```bash
+RELEASE_TAG=v1.43.13 OUTPUT_PATH=releases/v1.43.13.md ./packaging/windows/generate-release-notes.sh
+```
+
+Or fully override the fetched values with environment variables:
+
+```bash
+VERSION=1.43.13 \
+RELEASE_TAG=v1.43.13 \
+RELEASE_URL=https://github.com/alarmz/recoll/releases/tag/v1.43.13 \
+WIN_ASSET_NAME=recoll-win64-setup.exe \
+WIN_ASSET_URL=https://github.com/alarmz/recoll/releases/download/v1.43.13/recoll-win64-setup.exe \
+WIN_SHA256=<sha256> \
+OUTPUT_PATH=releases/v1.43.13.md \
+./packaging/windows/generate-release-notes.sh
+```
+
 ## Release notes checklist
 
 For each GitHub release, include:

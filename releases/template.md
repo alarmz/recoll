@@ -1,17 +1,17 @@
-# Recoll for Windows 1.43.13
+# Recoll for Windows {{VERSION}}
 
-Recoll for Windows 1.43.13 is now available.
+Recoll for Windows {{VERSION}} is now available.
 
 This release provides a free, community-maintained Windows installer for Recoll, the open source desktop full-text search tool. If you were looking for a direct Recoll Windows download without building from source, this is the release to use.
 
 ## Download
 
-- Windows installer (64-bit): `recoll-Next-win64-setup.exe`
+- Windows installer (64-bit): `{{WIN_ASSET_NAME}}`
 
 ## SHA256
 
-- `recoll-Next-win64-setup.exe`
-  `434dd87e89d54cda915a3a9200c6acfd6e4e27d4ff1ecdff1fd2422d51a2a59a`
+- `{{WIN_ASSET_NAME}}`
+  `{{WIN_SHA256}}`
 
 ## Why this release matters
 
@@ -32,7 +32,7 @@ Recoll is an open source desktop full-text search application. It can search ins
 
 ### Option 1: Direct install
 
-1. Download `recoll-Next-win64-setup.exe`
+1. Download `{{WIN_ASSET_NAME}}`
 2. Run the installer
 3. Start Recoll from the Start menu
 
@@ -49,8 +49,8 @@ This repository includes a `winget` manifest prepared for submission to the Wind
 
 ## Release details
 
-- Version: `1.43.13`
-- Tag: `v1.43.13`
+- Version: `{{VERSION}}`
+- Tag: `{{RELEASE_TAG}}`
 - Platform: `Windows x64`
 - Installer type: `Inno Setup`
 - Qt build noted in this repository: `Qt 6.8.2`
@@ -60,8 +60,8 @@ This repository includes a `winget` manifest prepared for submission to the Wind
 - Source code: https://github.com/alarmz/recoll
 - README: https://github.com/alarmz/recoll/blob/master/README.md
 - Windows landing page: https://alarmz.github.io/recoll/
-- Release page: https://github.com/alarmz/recoll/releases/tag/v1.43.13
-- Installer download: https://github.com/alarmz/recoll/releases/download/Next/recoll-Next-win64-setup.exe
+- Release page: {{RELEASE_URL}}
+- Installer download: {{WIN_ASSET_URL}}
 
 ## Notes
 
