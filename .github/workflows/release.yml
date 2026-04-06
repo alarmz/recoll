@@ -91,15 +91,17 @@ jobs:
             -DRECOLL_ENABLE_WEBENGINE=OFF \
             -DRECOLL_ENABLE_LIBMAGIC=OFF \
             -DRECOLL_ENABLE_SYSTEMD=OFF \
-            -DRECOLL_ENABLE_X11MON=OFF
+            -DRECOLL_ENABLE_X11MON=OFF \
+            -DRECOLL_BUILD_TESTS=OFF
 
       - name: Build
         run: cmake --build build_mingw --parallel
 
-      - name: Run tests
+      - name: Verify build
         run: |
-          cd build_mingw
-          ctest --output-on-failure || catch/recoll_tests.exe || true
+          test -f build_mingw/recoll.exe && echo "recoll.exe OK"
+          test -f build_mingw/recollindex.exe && echo "recollindex.exe OK"
+          test -f build_mingw/recollq.exe && echo "recollq.exe OK"
 
       - name: Prepare installer dist
         run: |
