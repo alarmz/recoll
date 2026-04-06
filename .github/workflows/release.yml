@@ -81,7 +81,7 @@ jobs:
       - name: Fix xapian cmake config path
         run: |
           sed -i 's|^SET(prefix "/mingw64")|get_filename_component(prefix "${CMAKE_CURRENT_LIST_DIR}/../../../" ABSOLUTE)|' \
-            /$MSYSTEM_PREFIX/lib/cmake/xapian/xapian-config.cmake
+            /mingw64/lib/cmake/xapian/xapian-config.cmake
 
       - name: Configure
         run: |
