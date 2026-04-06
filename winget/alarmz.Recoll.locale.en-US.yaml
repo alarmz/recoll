@@ -1,0 +1,22 @@
+PackageIdentifier: alarmz.Recoll
+PackageVersion: 1.43.13
+PackageLocale: en-US
+Publisher: alarmz
+PublisherUrl: https://github.com/alarmz
+PackageName: Recoll
+PackageUrl: https://github.com/alarmz/recoll
+License: GPL-2.0
+LicenseUrl: https://github.com/alarmz/recoll/blob/master/COPYING
+ShortDescription: Desktop full-text search tool for Windows and Linux
+Description: >-
+  Recoll is a desktop full-text search tool that finds keywords inside documents
+  and file names. It supports most document formats, can search files, archive
+  members, and email attachments, with transparent decompression. Free and open source.
+Tags:
+  - search
+  - full-text-search
+  - desktop-search
+  - file-search
+  - document-search
+ManifestType: defaultLocale
+ManifestVersion: 1.6.0

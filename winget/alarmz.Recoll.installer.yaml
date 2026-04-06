@@ -1,0 +1,13 @@
+PackageIdentifier: alarmz.Recoll
+PackageVersion: 1.43.13
+MinimumOSVersion: 10.0.0.0
+InstallerType: inno
+Installers:
+  - Architecture: x64
+    InstallerUrl: https://github.com/alarmz/recoll/releases/download/v1.43.13/recoll-setup-1.43.13.exe
+    InstallerSha256: TODO_REPLACE_WITH_SHA256
+    InstallerSwitches:
+      Silent: /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+      SilentWithProgress: /SILENT /SUPPRESSMSGBOXES /NORESTART
+ManifestType: installer
+ManifestVersion: 1.6.0
