@@ -81,12 +81,12 @@ jobs:
         shell: bash
         run: |
           mkdir -p "$VCPKG_ROOT/downloads"
-          if ! curl -fSL --retry 2 --connect-timeout 15 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
-            "https://oligarchy.co.uk/xapian/1.4.22/xapian-core-1.4.22.tar.xz"; then
-            echo "Primary download failed, trying GitHub mirror..."
-            curl -fSL --retry 2 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
-              "https://github.com/xapian/xapian/releases/download/v1.4.22/xapian-core-1.4.22.tar.xz"
-          fi
+          curl -fSL --retry 1 --connect-timeout 10 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
+            "https://oligarchy.co.uk/xapian/1.4.22/xapian-core-1.4.22.tar.xz" \
+          || curl -fSL --retry 2 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
+            "https://deb.debian.org/debian/pool/main/x/xapian-core/xapian-core_1.4.22.orig.tar.xz" \
+          || curl -fSL --retry 2 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
+            "https://github.com/alarmz/recoll/releases/download/deps/xapian-core-1.4.22.tar.xz"
 
       - name: Install dependencies
         run: |
