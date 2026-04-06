@@ -1,5 +1,0 @@
-2 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/stemming/a.txt]	[a.txt]	21	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/stemming/b.txt]	[b.txt]	22	bytes	
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/stemming/a.txt]	[a.txt]	21	bytes	

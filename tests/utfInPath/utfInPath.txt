@@ -1,3 +1,0 @@
-2 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/utfInPath/accentué/utf8path.txt]	[utf8path.txt]	49	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/utfInPath/accentué/utf8path.txt]	[utf8path.txt]	49	bytes	

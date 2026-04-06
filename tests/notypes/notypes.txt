@@ -1,4 +1,0 @@
-1 results
-inode/x-empty	[file:///home/dockes/projets/fulltext/testrecoll/notypes/énervé_uniqueTerm.xfy]	[énervé_uniqueTerm.xfy]	0	bytes	
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/notypes/notype1.xfx]	[notype1.xfx]	64	bytes	

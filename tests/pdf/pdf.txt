@@ -1,7 +1,0 @@
-2 results
-application/pdf	[file:///home/dockes/projets/fulltext/testrecoll/pdf/ThinkingInPostScript.pdf]	[Thinking In PostScript]	846435	bytes	
-application/pdf	[file:///home/dockes/projets/fulltext/testrecoll/pdf/linux unicode.pdf]	[developerWorks: Linux | Unicode : Linux Unicode programming]	72669	bytes	
-1 results
-application/pdf	[10.12345/sampledoi]	[How to edit a recoll python script in order to extract data]	6426	bytes	
-1 results
-application/pdf	[10.12345/sampledoi]	[How to edit a recoll python script in order to extract data]	6426	bytes	

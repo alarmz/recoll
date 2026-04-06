@@ -1,5 +1,0 @@
-Looking for content in HTML: should get 0 results
-0 results
-Looking for content in PDF: should get 1 result
-1 results
-application/pdf	[file:///home/dockes/projets/fulltext/testrecoll/excludehtml/registreElevage.pdf]	[Document précédent /]	71290	bytes	

@@ -1,2 +1,0 @@
-1 results
-application/vnd.openxmlformats-officedocument.wordprocessingml.document	[file:///home/dockes/projets/fulltext/testrecoll/docx-comments/Word 2021_text with comments.docx]	[Word 2021_text with comments.docx]	18981	bytes	

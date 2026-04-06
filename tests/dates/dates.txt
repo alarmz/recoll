@@ -1,9 +1,0 @@
-0 results
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/dates/datetest1.txt]	[datetest1.txt]	11	bytes	
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/dates/datetest1.txt]	[datetest1.txt]	11	bytes	
-2 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/dates/datetest3.txt]	[datetest3.txt]	11	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/dates/datetest4.txt]	[datetest4.txt]	11	bytes	
-0 results

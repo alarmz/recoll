@@ -1,5 +1,0 @@
-2 results
-application/msword	[file:///home/dockes/projets/fulltext/testrecoll/msword/programme.doc]	[programme.doc]	58880	bytes	
-application/msword	[file:///home/dockes/projets/fulltext/testrecoll/zip/misc.zip]	[programme.doc]	58880	bytes	
-1 results
-application/msword	[file:///home/dockes/projets/fulltext/testrecoll/msword/IAmActuallyAnRTF.DOC]	[DOC PROGRAMMEUR PCX9]	85381	bytes	

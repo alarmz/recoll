@@ -1,3 +1,0 @@
-2 results
-application/postscript	[file:///home/dockes/projets/fulltext/testrecoll/postscript/glimpse.ps]	[glimpse.ps]	118970	bytes	
-application/postscript	[file:///home/dockes/projets/fulltext/testrecoll/postscript/o'testapo.ps]	[o'testapo.ps]	118970	bytes	

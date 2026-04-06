@@ -1,2 +1,0 @@
-1 results
-application/x-okular-notes	[file:///home/dockes/projets/fulltext/testrecoll/okular-notes/76603.Laboratoires agrees.pdf.xml]	[Okular notes about: /net/y/usr/home/dockes/projets/enbor/docs/Laboratoires_agrees.pdf]	1758	bytes	

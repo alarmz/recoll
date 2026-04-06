@@ -1,9 +1,0 @@
-3 results
-message/rfc822	[file:///home/dockes/projets/fulltext/testrecoll/cjk/mbox]	[Re: recoll sidux and -ja]	6773	bytes	
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/cjk/japanese.html]	[japanese.html]	1403	bytes	
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/cjk/mazu.html]	[mazu.html]	260	bytes	
-4 results
-message/rfc822	[file:///home/dockes/projets/fulltext/testrecoll/cjk/mbox]	[Re: recoll sidux and -ja]	6773	bytes	
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/cjk/japanese.html]	[japanese.html]	1403	bytes	
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/cjk/masu.html]	[masu.html]	215	bytes	
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/cjk/term-konsole-ja.htm]	[sidux Manuals - The Terminal or Konsole]	34269	bytes	

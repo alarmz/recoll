@@ -1,4 +1,0 @@
-1 results
-application/x-dia-diagram	[file:///home/dockes/projets/fulltext/testrecoll/dia/ER-demo.dia]	[ER-demo.dia]	60803	bytes	
-1 results
-application/x-dia-diagram	[file:///home/dockes/projets/fulltext/testrecoll/dia/Istar.dia]	[Istar.dia]	3537	bytes	

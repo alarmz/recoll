@@ -1,4 +1,0 @@
-1 results
-text/x-orgmode-sub	[file:///home/dockes/projets/fulltext/testrecoll/orgmode/orgmode-example.org]	[law and legal code versioned on github]	487	bytes	
-1 results
-text/x-orgmode	[file:///home/dockes/projets/fulltext/testrecoll/orgmode/orgmode-example.org]	[orgmode-example.org]	1366	bytes	

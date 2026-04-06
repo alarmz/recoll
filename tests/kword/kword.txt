@@ -1,4 +1,0 @@
-1 results
-application/x-kword	[file:///home/dockes/projets/fulltext/testrecoll/kword/essai.kwd]	[Un essai avec Kword]	3951	bytes	
-1 results
-application/x-kword	[file:///home/dockes/projets/fulltext/testrecoll/kword/p-lilec1.kwd]	[p-lilec1.kwd]	7075	bytes	

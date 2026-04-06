@@ -1,3 +1,0 @@
-2 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/andor/bu.txt]	[bu.txt]	32	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/andor/leli.txt]	[leli.txt]	26	bytes	

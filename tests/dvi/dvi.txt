@@ -1,2 +1,0 @@
-1 results 
-application/x-dvi	[file:///home/dockes/projets/fulltext/testrecoll/dvi/xyguide.dvi]	[xyguide.dvi]	313720	bytes	

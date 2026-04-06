@@ -1,4 +1,0 @@
-1 results
-application/x-mimehtml	[file:///home/dockes/projets/fulltext/testrecoll/webarchives/01-timbl-in-liberation.mht]	[« Je suis toujours inquiet pour le Web »- Ecrans]	527597	bytes	
-1 results
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/webarchives/RECOLL.war]	[RECOLL: a personal text search system for     Unix/Linux]	7017	bytes	

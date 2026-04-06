@@ -1,6 +1,0 @@
-1 results
-application/ogg	[file:///home/dockes/projets/fulltext/testrecoll/media/11 - What's My Name.ogg]	[What's My Name]	2476519	bytes	
-1 results
-audio/flac	[file:///home/dockes/projets/fulltext/testrecoll/media/14 - VIII. COMMUNIO- Lux aeterna.flac]	[VIII. COMMUNIO- Lux aeterna]	835584	bytes	
-1 results
-audio/mpeg	[file:///home/dockes/projets/fulltext/testrecoll/media/16 - Miracle Cure.mp3]	[Miracle Cure]	340199	bytes	

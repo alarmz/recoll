@@ -1,8 +1,0 @@
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/txt/liste.txt]	[liste.txt]	1182	bytes	
-0 results
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/txt/liste.txt]	[liste.txt]	1182	bytes	
-1 results
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/html/qtextedit.html]	[qtextedit.html]	108921	bytes	
-0 results

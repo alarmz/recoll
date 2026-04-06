@@ -1,7 +1,0 @@
-1 results
-text/xml	[file:///home/dockes/projets/fulltext/testrecoll/xml/vfc13.xml]	[vfc13.xml]	5331	bytes	
-1 results
-text/xml	[file:///home/dockes/projets/fulltext/testrecoll/xml/vfc13z.xml.gz]	[vfc13z.xml.gz]	5332	bytes	
-2 results
-application/xml	[file:///home/dockes/projets/fulltext/testrecoll/xml/vfc13z.suff]	[vfc13z.suff]	5333	bytes	
-application/xml	[file:///home/dockes/projets/fulltext/testrecoll/xml/vfc13]	[vfc13]	5333	bytes	

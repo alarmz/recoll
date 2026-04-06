@@ -1,7 +1,0 @@
-Should find idxtypes/idxt.txt only
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/idxtypes/idxt.txt]	[idxt.txt]	16	bytes	
-
-Should find idxtypes/idxt.html only
-1 results
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/excltypes/idxt.html]	[idxt.html]	69	bytes	

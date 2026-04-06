@@ -1,6 +1,0 @@
-2 results
-audio/x-karaoke	[file:///home/dockes/projets/fulltext/testrecoll/kar/3 (cp1251).mid]	[3 (cp1251).mid]	31252	bytes	
-audio/x-karaoke	[file:///home/dockes/projets/fulltext/testrecoll/kar/3.mid]	[3.mid]	31252	bytes	
-2 results
-audio/x-karaoke	[file:///home/dockes/projets/fulltext/testrecoll/kar/Smooth (cp1252).kar]	[Smooth]	63006	bytes	
-audio/x-karaoke	[file:///home/dockes/projets/fulltext/testrecoll/kar/Smooth.kar]	[Smooth]	63006	bytes	

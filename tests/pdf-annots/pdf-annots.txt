@@ -1,6 +1,0 @@
-2 results
-application/pdf	[file:///home/dockes/projets/fulltext/testrecoll/pdf-annots/syst�me.pdf]	[Présidentielle en Biélorussie : la candidate de l’opposition, Svetlana Tikhanovskaïa, s’est réfugiée en Lituanie]	325430	bytes	
-application/pdf	[file:///home/dockes/projets/fulltext/testrecoll/pdf-annots/Présidentielle en Biélorussie .pdf]	[Présidentielle en Biélorussie : la candidate de l’opposition, Svetlana Tikhanovskaïa, s’est réfugiée en Lituanie]	325430	bytes	
-
-Extracting the value for an annotation field:
-P.: 3, D:20200904094331+00'240', highlight : None P.: 3, D:20200904100158+00'240', highlight : DAVID: Test of a highlight that has a note attached to

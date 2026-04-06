@@ -1,6 +1,0 @@
-3 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/zip/with blanks.zip]	[motd.txt]	84	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/zip/manysmall.zip]	[49.txt]	12	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/zip/misc.zip]	[zipuniq.txt]	12	bytes	
-1 results
-message/rfc822	[file:///home/dockes/projets/fulltext/testrecoll/zip/maildir.zip]	[[FreeBSD-Announce]  ZIPPEDMAILDIR_UNIQUEXXX 	FreeBSD Security Advisory FreeBSD-SA-04:17.procfs]	10765	bytes	

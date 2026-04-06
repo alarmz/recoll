@@ -1,9 +1,0 @@
-2 results
-application/vnd.sun.xml.writer	[file:///home/dockes/projets/fulltext/testrecoll/ooff/writer.odt]	[Ceci est le titre du document openoffice élément <> "toto"]	8296	bytes	
-application/vnd.oasis.opendocument.text-flat-xml	[file:///home/dockes/projets/fulltext/testrecoll/ooff-flat/writer-flat.fodt]	[Ceci est le titre du document openoffice élément <> "toto"]	22391	bytes	
-2 results
-application/vnd.sun.xml.writer	[file:///home/dockes/projets/fulltext/testrecoll/ooff/tabs.odt]	[tabs.odt]	9253	bytes	
-application/vnd.oasis.opendocument.text-flat-xml	[file:///home/dockes/projets/fulltext/testrecoll/ooff-flat/tabs-flat.fodt]	[tabs-flat.fodt]	24830	bytes	
-2 results
-application/vnd.sun.xml.impress	[file:///home/dockes/projets/fulltext/testrecoll/ooff/presentation.odp]	[presentation.odp]	12454	bytes	
-application/vnd.oasis.opendocument.presentation-flat-xml	[file:///home/dockes/projets/fulltext/testrecoll/ooff-flat/presentation-flat.fodp]	[presentation-flat.fodp]	69539	bytes	

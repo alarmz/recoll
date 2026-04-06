@@ -1,6 +1,0 @@
-1 results
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/epub/HC-100-1e.epub]	[HC-100-2.xhtml]	2387	bytes	
-1 results
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/epub/atkins.epub]	[atkins.epub]	259640	bytes	
-1 results
-text/html	[file:///home/dockes/projets/fulltext/testrecoll/epub/pg121.epub]	[Northanger Abbey, by Jane Austen (1803)]	52225	bytes	

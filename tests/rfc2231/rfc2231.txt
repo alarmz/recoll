@@ -1,6 +1,0 @@
-0 results
-0 results
-0 results
-2 results
-application/octet-stream	[file:///home/dockes/projets/fulltext/testrecoll/rfc2231/thunder]	[épatantuniquefilenameterm.bin  (vrai attach)]	5785	bytes	
-message/rfc822	[file:///home/dockes/projets/fulltext/testrecoll/rfc2231/thunder]	[vrai attach]	11208	bytes	

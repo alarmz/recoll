@@ -1,2 +1,0 @@
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/dir/d1/testdirfile.txt]	[testdirfile.txt]	1	bytes	

@@ -1,8 +1,0 @@
-README for Debian
------------------
-
- The rclgrep package is a partial installation of the recollcmd package, with no
- Xapian dependency. It conflicts with recollcmd, which also provides the rclgrep
- command.
-
- -- Jean-Francois Dockes <jf@dockes.org>  Tue, 20 Sep 2022 08:32:00 +0200

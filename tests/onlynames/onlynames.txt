@@ -1,3 +1,0 @@
-2 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/onlynames/subdir/fn.matchesonepat]	[fn.matchesonepat]	20	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/onlynames/subdir/fn.matchestwopat]	[fn.matchestwopat]	20	bytes	

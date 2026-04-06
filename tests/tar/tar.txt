@@ -1,6 +1,0 @@
-5 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/tar/tarfile.tar]	[tarfile.tar]	15	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/tar/tarfile.tar.gz]	[tarfile.tar.gz]	15	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/tar/tarfile.tgz]	[tarfile.tgz]	15	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/tar/tarfile.tar.bz2]	[tarfile.tar.bz2]	15	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/tar/tarfile.tbz]	[tarfile.tbz]	15	bytes	

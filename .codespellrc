@@ -1,6 +1,0 @@
-[codespell]
-skip = .git,*.pdf,*.svg,UnicodeData*.txt,CaseFolding*.txt,unac.c,i18n,usermanual-*.*
-# projets - present in paths contained throughout
-# TEH
-# inactivate,reencode - API
-ignore-words-list = projets,teh,inactivate,reencode

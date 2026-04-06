@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 Jean-Francois Dockes <jfd@recoll.org> -->
+<component type="desktop-application">
+  <id>org.recoll.recoll</id>
+  <launchable type="desktop-id">recoll-searchgui.desktop</launchable>
+  <metadata_license>GPL-2.0+</metadata_license>
+  <name>Recoll</name>
+  <summary>Full-text search for your desktop</summary>
+  <description>
+    <p>Recoll is a document indexer. It finds keywords inside documents text as well as file
+    names.</p>  
+    <ul>
+      <li>It can search most document formats.</li>
+      <li>It can reach any storage place: files, archive members, email attachments, transparently
+      handling decompression.</li> 
+      <li>One click will open the document inside a native editor or display an even quicker text
+      preview.</li> 
+    </ul>
+  </description>
+  <content_rating type="oars-1.1" />
+  <url type="homepage">https://www.recoll.org/</url>
+  <url type="bugtracker">https://framagit.org/medoc92/recoll/-/issues</url>
+  <url type="donation">https://www.lesbonscomptes.com/donations</url>
+  <url type="vcs-browser">https://framagit.org/medoc92/recoll</url>
+  <releases>
+    <release version="1.43.14" date="2026-03-16">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.13" date="2026-02-23">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.12" date="2026-01-23">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.13" date="2026-01-23">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.11" date="2026-01-23">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.10" date="2026-01-16">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.9" date="2025-12-22">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.8" date="2025-12-20">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.7" date="2025-11-06">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.6" date="2025-10-06">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.5" date="2025-08-29">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.4" date="2025-08-08">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.3" date="2025-06-27">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.2" date="2025-05-07">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.1" date="2025-05-02">
+      <description>
+        <ul>
+          <li>Fix "remember sort state" feature</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.43.0" date="2025-03-13">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.42.1" date="2025-02-07">
+      <description>
+        <ul>
+        <li>Repair GUI history features, broken by lazy UDI extraction in 1.42.0.</li>
+        <li>Fix line numbers issue in orgmode handler.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.42.0" date="2025-01-22">
+      <description>
+        <ul>
+          <li>GUI: Added "single application" mode, where starting a new instance just activates an
+          existing one.</li>
+          <li>GUI: added preferences option for a more passive search entry completion.</li>
+          <li>GUI: New idxlocalguisettings config switch to decide that some GUI settings
+          will be local to the index (only the result table setup at the
+          moment). The settings are stored in $RECOLL_CONFDIR/recollgui.ini</li>
+          <li>New libreoffice-based handler for Apple Office documents (pages, numbers,
+          keynote).</li> 
+          <li>Raw indexes: fix date processing bug.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.41.1" date="2024-12-14">
+      <description>
+        <ul>
+          <li>New recoll release</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.41.0" date="2024-11-24">
+      <description>
+        <p>Version bump due to small text splitter changes for Tibetan support</p>
+        <ul>
+          <li>Tibetan support: process with n-grams.</li>
+          <li>Adjust build for building on Mac OS with Homebrew packages.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="1.40.4" date="2024-11-15">
+      <description>
+        <ul>
+          <li>Python extension: fix db.getdoc() unable to use external index.</li>
+          <li>GUI: raise the preview window when activated again.</li>
+          <li>GUI: add menu entry to access the online webhelp manual.</li>
+          <li>Fix indexing fb2 files with imbricated sections.</li>
+          <li>Document using CPUQuota parameters with systemd to throttle the indexer CPU use.</li>
+          <li>Mac OS: add missing files in install to fix zip archive processing.</li>
+          <li>recollq: fix -p/-g options always showing limited number of snippets.</li>
+          <li>XSLT-based handlers: accept an absolute path for the stylesheet.</li>
+          <li>GUI preferences: fix many tooltips not shown in the index preferences section.</li>
+        </ul>
+      </description>
+    </release>
+  </releases>
+  <project_license>GPL-2.0+</project_license>
+  <developer id="org.dockes">
+    <name>Jean-Francois Dockes</name>
+  </developer>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://www.recoll.org/pics/recoll-1.32.png</image>
+      <caption>Search result list</caption>
+    </screenshot>
+  </screenshots>
+</component>

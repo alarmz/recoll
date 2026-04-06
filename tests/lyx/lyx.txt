@@ -1,8 +1,0 @@
-2 results
-application/x-lyx	[file:///home/dockes/projets/fulltext/testrecoll/lyx/accentué.lyx]	[accentué.lyx]	3577	bytes	
-application/x-lyx	[file:///home/dockes/projets/fulltext/testrecoll/lyx/fr_splash.lyx]	[fr_splash.lyx]	3577	bytes	
-2 results
-application/x-lyx	[file:///home/dockes/projets/fulltext/testrecoll/lyx/splash.lyx]	[splash.lyx]	2974	bytes	
-application/x-lyx	[file:///home/dockes/projets/fulltext/testrecoll/lyx/with spaces.lyx]	[with spaces.lyx]	2974	bytes	
-1 results
-application/x-lyx	[file:///home/dockes/projets/fulltext/testrecoll/lyx/hu_splash.lyx]	[hu_splash.lyx]	4773	bytes	

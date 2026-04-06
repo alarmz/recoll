@@ -1,2 +1,0 @@
-1 results
-application/vnd.ms-visio.drawing	[file:///home/dockes/projets/fulltext/testrecoll/visio/visio2.vsdx]	[visio2.vsdx]	96002	bytes	

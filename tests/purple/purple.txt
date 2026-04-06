@@ -1,4 +1,0 @@
-1 results
-text/x-purple-log	[file:///home/dockes/projets/fulltext/testrecoll/purple/2011-08-25.160747+0200CEST.txt]	[Conversation with 666666 at Thu 25 Aug 2011 04:07:47 PM CEST on 333333 (icq)]	316	bytes	
-1 results
-text/x-purple-log	[file:///home/dockes/projets/fulltext/testrecoll/purple/2014-09-22.104527+0200CEST.txt]	[Conversation with friend at 2014-09-22T10:45:27 CEST on Hell-G/G (jabber)]	363	bytes	

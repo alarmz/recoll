@@ -1,7 +1,0 @@
-6 results
-	[file:///home/dockes/projets/fulltext/testrecoll/badsuffs/badsufffilename.log.gz]	[badsufffilename.log.gz]	19	bytes	
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/badsuffs/badsufffilename.md5]	[badsufffilename.md5]	19	bytes	
-application/x-tar	[file:///home/dockes/projets/fulltext/testrecoll/badsuffs/badsufffilename.tar.bz2]	[badsufffilename.tar.bz2]	57	bytes	
-application/x-tar	[file:///home/dockes/projets/fulltext/testrecoll/badsuffs/badsufffilename.tar.gz]	[badsufffilename.tar.gz]	39	bytes	
-application/x-tar	[file:///home/dockes/projets/fulltext/testrecoll/badsuffs/badsufffilename.tbz]	[badsufffilename.tbz]	19	bytes	
-application/x-tar	[file:///home/dockes/projets/fulltext/testrecoll/badsuffs/badsufffilename.tgz]	[badsufffilename.tgz]	19	bytes	

@@ -1,2 +1,0 @@
-1 results
-text/x-man	[file:///home/dockes/projets/fulltext/testrecoll/man/ifconfig.8.gz]	[ifconfig.8.gz]	60689	bytes	

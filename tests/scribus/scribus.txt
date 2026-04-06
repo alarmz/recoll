@@ -1,3 +1,0 @@
-2 results 
-application/x-scribus	[file:///home/dockes/projets/fulltext/testrecoll/scribus/Document-1.sla]	[Ceci est le titre du document]	53847	bytes	
-application/x-scribus	[file:///home/dockes/projets/fulltext/testrecoll/scribus/Prova_Scribus-1.scd]	[Prova_Scribus-1.scd]	34995	bytes	

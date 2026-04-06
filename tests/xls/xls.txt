@@ -1,2 +1,0 @@
-1 results 
-application/vnd.ms-excel	[file:///home/dockes/projets/fulltext/testrecoll/xls/landis1.xls]	[landis1.xls]	8704	bytes	

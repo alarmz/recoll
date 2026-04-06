@@ -1,6 +1,0 @@
-1 results
-application/x-gnumeric	[file:///home/dockes/projets/fulltext/testrecoll/gnumeric/trygnumeric.gnumeric]	[The gnumericTitle]	2111	bytes	
-1 results
-application/x-gnumeric	[file:///home/dockes/projets/fulltext/testrecoll/gnumeric/trygnumeric.gnumeric]	[The gnumericTitle]	2111	bytes	
-1 results
-application/x-gnumeric	[file:///home/dockes/projets/fulltext/testrecoll/gnumeric/trygnumeric.gnumeric]	[The gnumericTitle]	2111	bytes	

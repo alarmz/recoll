@@ -1,4 +1,0 @@
-1 results
-application/x-abiword	[file:///home/dockes/projets/fulltext/testrecoll/abiword/essai1.abw]	[LE TITRE ABIWORD]	10644	bytes	
-1 results
-application/x-abiword	[file:///home/dockes/projets/fulltext/testrecoll/abiword/resume.abw]	[resume.abw]	13137	bytes	

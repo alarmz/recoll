@@ -1,2 +1,0 @@
-1 results
-application/vnd.wordperfect	[file:///home/dockes/projets/fulltext/testrecoll/wordperfect/acenaph.wpd]	[acenaph.wpd]	45346	bytes	

@@ -1,6 +1,0 @@
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/compressed/a   b.txt.gz]	[a   b.txt.gz]	15	bytes	
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/compressed/b   b.txt.bz2]	[b   b.txt.bz2]	15	bytes	
-1 results
-text/plain	[file:///home/dockes/projets/fulltext/testrecoll/compressed/nosuff]	[nosuff]	15	bytes	

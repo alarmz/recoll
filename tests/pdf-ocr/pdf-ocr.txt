@@ -1,2 +1,0 @@
-1 results
-application/pdf	[file:///home/dockes/projets/fulltext/testrecoll/pdf/pdf-tesseract.pdf]	[pdf-tesseract.pdf]	226331	bytes	

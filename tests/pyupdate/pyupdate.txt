@@ -1,3 +1,0 @@
-Thread-2 ran 100 queries
-Thread-3 ran 100 queries
-Thread-4 ran 100 queries

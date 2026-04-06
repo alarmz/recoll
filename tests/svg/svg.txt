@@ -1,6 +1,0 @@
-1 results
-image/svg+xml	[file:///home/dockes/projets/fulltext/testrecoll/svg/svgtest.svg]	[svgtesttitle]	2439	bytes	
-1 results
-image/svg+xml	[file:///home/dockes/projets/fulltext/testrecoll/svg/polar-chart-example-1.svg]	[polar-chart-example-1.svg]	44692	bytes	
-1 results
-image/svg+xml	[file:///home/dockes/projets/fulltext/testrecoll/svg/connections-SR3000.svg]	[connections-generic.fig]	75897	bytes	
