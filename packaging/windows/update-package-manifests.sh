@@ -20,6 +20,8 @@ version="$(
     | tr -d '\r' \
     | cut -d- -f1
 )"
+release_tag="$(printf '%s\n' "$release_json" | jq -r '.tag_name')"
+expected_release_tag="v${version}"
 url="$(printf '%s\n' "$win_asset_json" | jq -r '.browser_download_url')"
 hash="$(printf '%s\n' "$win_asset_json" | jq -r '.digest | sub("^sha256:"; "")')"
 release_url="$(printf '%s\n' "$release_json" | jq -r '.html_url')"
@@ -28,6 +30,20 @@ escaped_url_with_fragment="$(printf '%s\n' "$url_with_fragment" | sed 's/[&|]/\\
 escaped_hash="$(printf '%s\n' "$hash" | sed 's/[&|]/\\&/g')"
 escaped_url="$(printf '%s\n' "$url" | sed 's/[&|]/\\&/g')"
 escaped_release_url="$(printf '%s\n' "$release_url" | sed 's/[&|]/\\&/g')"
+
+if [[ "$release_tag" != "$expected_release_tag" ]]; then
+  cat >&2 <<EOF
+Release tag mismatch for ${repo}
+  Latest GitHub release tag: ${release_tag}
+  Expected tag from installer version: ${expected_release_tag}
+
+Fix this before publishing to winget or Chocolatey:
+  1. Create a GitHub release tagged ${expected_release_tag}
+  2. Upload the Windows installer asset to that release
+  3. Mark ${expected_release_tag} as the latest release
+EOF
+  exit 1
+fi
 
 sed -i \
   -e "s|\"url\": \".*\"|\"url\": \"${escaped_url_with_fragment}\"|" \

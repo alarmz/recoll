@@ -32,6 +32,12 @@ Run:
 ./packaging/windows/update-package-manifests.sh
 ```
 
+Important:
+
+- The GitHub release tag should match the Windows installer version.
+- If [src/windows/recoll-setup.iss](/home/alarm/recoll/src/windows/recoll-setup.iss) says `1.43.13`, the release tag should be `v1.43.13`.
+- Do not publish package-manager manifests from a placeholder tag such as `Next`.
+
 This updates:
 
 - [recoll.json](/home/alarm/recoll/recoll.json)
@@ -47,6 +53,7 @@ This updates:
 
 For each GitHub release, include:
 
+- Tag name matching the installer version, for example `v1.43.13`
 - Installer download link
 - SHA256 checksum
 - Version number
