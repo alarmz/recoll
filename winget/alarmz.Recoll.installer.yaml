@@ -4,8 +4,8 @@ MinimumOSVersion: 10.0.0.0
 InstallerType: inno
 Installers:
   - Architecture: x64
-    InstallerUrl: https://github.com/alarmz/recoll/releases/download/v1.43.13/recoll-setup-1.43.13.exe
-    InstallerSha256: TODO_REPLACE_WITH_SHA256
+    InstallerUrl: https://github.com/alarmz/recoll/releases/download/Next/recoll-Next-win64-setup.exe
+    InstallerSha256: 434DD87E89D54CDA915A3A9200C6ACFD6E4E27D4FF1ECDFF1FD2422D51A2A59A
     InstallerSwitches:
       Silent: /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
       SilentWithProgress: /SILENT /SUPPRESSMSGBOXES /NORESTART

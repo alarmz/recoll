@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+    <id>recoll.install</id>
+    <version>1.43.13</version>
+    <title>Recoll (Install)</title>
+    <authors>alarmz</authors>
+    <projectUrl>https://github.com/alarmz/recoll</projectUrl>
+    <packageSourceUrl>https://github.com/alarmz/recoll</packageSourceUrl>
+    <licenseUrl>https://github.com/alarmz/recoll/blob/master/COPYING</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectSourceUrl>https://github.com/alarmz/recoll</projectSourceUrl>
+    <docsUrl>https://github.com/alarmz/recoll#readme</docsUrl>
+    <bugTrackerUrl>https://github.com/alarmz/recoll/issues</bugTrackerUrl>
+    <tags>recoll search full-text-search desktop-search windows file-search document-search</tags>
+    <summary>Free Recoll Windows installer and desktop full-text search tool.</summary>
+    <description>Recoll is a desktop full-text search tool that finds keywords inside documents and file names. This package installs the community-maintained Windows build published from the public GitHub release assets.</description>
+    <releaseNotes>https://github.com/alarmz/recoll/releases/tag/Next</releaseNotes>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>

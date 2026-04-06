@@ -11,7 +11,9 @@
     },
     "innosetup": true,
     "shortcuts": [
-        ["recoll.exe", "Recoll"]
-    ],
-    "notes": "For Scoop, add this repo as a bucket or copy this manifest into your own bucket."
+        [
+            "recoll.exe",
+            "Recoll"
+        ]
+    ]
 }
