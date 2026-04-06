@@ -1,179 +1,224 @@
-# Recoll
+# Recoll for Windows
 
-Recoll is a desktop full-text search tool. It finds keywords inside
-documents as well as file names.
-
-* **Cross-platform**: native builds for Linux and Windows (MSVC).
-* A WEB front-end with preview and download features can replace or
-  supplement the GUI for remote use.
-* It can search most document formats. You may need external applications
-  for text extraction.
-* It can reach any storage place: files, archive members, email
-  attachments, transparently handling decompression.
-* One click will open the document inside a native editor or display an
-  even quicker text preview.
-* The software is free, open source, and licensed under the GPL.
-
-For more detail, see the [features page on the web site](https://www.recoll.org/pages/features.html) or
-the [online documentation](https://www.recoll.org/pages/documentation.html).
-
-## Windows Support
-
-Recoll now builds natively on Windows using MSVC and CMake. The Windows
-build produces `recollindex.exe` and `recollq.exe` for command-line
-indexing and querying.
-
-### Building on Windows
-
-**Prerequisites:**
-- Visual Studio 2022 Build Tools (MSVC)
-- CMake 3.25+
-- Ninja
-- [vcpkg](https://github.com/microsoft/vcpkg)
-
-**Install dependencies:**
-```powershell
-vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
-```
-
-**Build:**
-```cmd
-call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
-
-cd src
-cmake -S . -B build_win -G Ninja ^
-  -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
-  -DCMAKE_BUILD_TYPE=Release ^
-  -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^
-  -DRECOLL_QTGUI=OFF ^
-  -DXAPIAN_SHARED=OFF
-
-cmake --build build_win --parallel
-```
-
-**Run tests:**
-```cmd
-cd build_win
-ctest --output-on-failure
-```
-
-### Windows Installer
-
-A Windows installer is available for each release. Download
-`recoll-<version>-win64-setup.exe` from the
-[Releases](../../releases) page. The installer adds Recoll to your
-PATH so you can use `recollindex` and `recollq` from any terminal.
-
-## Building on Linux
-
-Most distributions feature prebuilt packages for Recoll. To build from
-source:
-
-```bash
-sudo apt-get install cmake ninja-build \
-  libxapian-dev libxml2-dev libxslt1-dev zlib1g-dev \
-  qtbase5-dev qtwebengine5-dev qttools5-dev
-
-cd src
-cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build build --parallel
-ctest --test-dir build --output-on-failure
-sudo cmake --install build
-```
-
-For detailed build instructions, see the
-[online documentation](https://www.recoll.org/usermanual/usermanual.html#RCL.INSTALL.BUILDING).
-
-## CI/CD
-
-This project uses GitHub Actions for continuous integration:
-
-- **CI** (`ci.yml`): Runs unit tests on every push and pull request
-  (Linux + Windows).
-- **Release** (`release.yml`): Builds Linux and Windows binaries and
-  a Windows installer on each GitHub Release.
+[English](#english) | [中文](#中文)
 
 ---
 
-# Recoll (中文)
+## English
 
-Recoll 是一個桌面全文搜尋工具，可以在文件內容和檔名中搜尋關鍵字。
+### Free Recoll Windows installer and binaries
 
-* **跨平台支援**：原生支援 Linux 和 Windows (MSVC) 編譯。
-* 提供 WEB 前端介面，支援預覽和下載功能，可用於遠端存取。
-* 支援大多數文件格式的搜尋，部分格式需要外部應用程式進行文字擷取。
-* 可搜尋各種儲存位置：檔案、壓縮檔成員、電子郵件附件，自動處理解壓縮。
-* 一鍵即可在原生編輯器中開啟文件，或快速顯示文字預覽。
-* 本軟體為自由開源軟體，採用 GPL 授權。
+This repository provides a free, community-maintained Windows build of Recoll, the open source desktop full-text search tool.
 
-## Windows 支援
+If you were searching for any of these, you are in the right place:
 
-Recoll 現在可以在 Windows 上使用 MSVC 和 CMake 原生編譯。Windows 版本會產生
-`recollindex.exe` 和 `recollq.exe`，用於命令列索引和查詢。
+- Recoll Windows download
+- Recoll Windows installer
+- Recoll for Windows binary
+- Recoll setup.exe
+- Free Recoll Windows build
 
-### 在 Windows 上編譯
+### Quick download
 
-**必要條件：**
-- Visual Studio 2022 Build Tools (MSVC)
-- CMake 3.25+
-- Ninja
-- [vcpkg](https://github.com/microsoft/vcpkg)
+- [Download the latest Recoll Windows installer (64-bit)](https://github.com/alarmz/recoll/releases/latest)
+- [Windows download page](docs/index.md)
 
-**安裝相依套件：**
+### What this repository provides
+
+- Free Windows installer for Recoll
+- Prebuilt 64-bit Windows binaries
+- Source code for the Windows build
+- Winget manifest files for easier package distribution
+
+This is intended to make Recoll easier to use on Microsoft Windows without requiring users to compile it themselves.
+
+### What is Recoll?
+
+Recoll is a desktop full-text search tool. It finds keywords inside documents as well as file names.
+
+Main features:
+
+- Available for Linux and Windows
+- Searches many document formats
+- Can search files, archive members, and email attachments
+- Supports previewing and opening matching documents
+- Free and open source software under the GPL
+
+For more detail, see the [official features page](https://www.recoll.org/pages/features.html) and the [official documentation](https://www.recoll.org/pages/documentation.html).
+
+### Install on Windows
+
+#### Option 1: Download the installer
+
+Download the latest installer from [GitHub Releases](https://github.com/alarmz/recoll/releases/latest) and run the `recoll-setup-*.exe` file.
+
+#### Option 2: Install with `winget`
+
+Once the package is published in the Windows Package Manager community repository, users will be able to install it with:
+
 ```powershell
-vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
+winget install alarmz.Recoll
 ```
 
-**編譯：**
-```cmd
-call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" amd64
+The manifest files for this are in [winget/](winget/).
 
-cd src
-cmake -S . -B build_win -G Ninja ^
-  -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
-  -DCMAKE_BUILD_TYPE=Release ^
-  -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^
-  -DRECOLL_QTGUI=OFF ^
-  -DXAPIAN_SHARED=OFF
+#### Option 3: Install with `Scoop`
 
-cmake --build build_win --parallel
+This repository also works as a Scoop bucket:
+
+```powershell
+scoop bucket add alarmz https://github.com/alarmz/recoll
+scoop install alarmz/recoll
 ```
 
-**執行測試：**
-```cmd
-cd build_win
-ctest --output-on-failure
-```
+The manifest is in [bucket/recoll.json](bucket/recoll.json).
 
-### Windows 安裝程式
+#### Option 4: Install with Chocolatey
 
-每個版本都會提供 Windows 安裝程式。請從
-[Releases](../../releases) 頁面下載
-`recoll-<version>-win64-setup.exe`。安裝程式會將 Recoll 加入系統 PATH，
-讓你可以在任何終端機中使用 `recollindex` 和 `recollq`。
+A Chocolatey package skeleton is included in [packaging/chocolatey](packaging/chocolatey/). Publishing to the public Chocolatey community feed requires a maintainer account and package push.
 
-## 在 Linux 上編譯
+### Install on Linux
 
-大多數 Linux 發行版都有預編譯的 Recoll 套件。如需從原始碼編譯：
+Most Linux distributions already package Recoll. Typical examples:
 
 ```bash
-sudo apt-get install cmake ninja-build \
-  libxapian-dev libxml2-dev libxslt1-dev zlib1g-dev \
-  qtbase5-dev qtwebengine5-dev qttools5-dev
-
-cd src
-cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
-cmake --build build --parallel
-ctest --test-dir build --output-on-failure
-sudo cmake --install build
+apt install recoll
+dnf install recoll
+pacman -S recoll
 ```
 
-詳細的編譯說明請參閱
-[線上文件](https://www.recoll.org/usermanual/usermanual.html#RCL.INSTALL.BUILDING)。
+If you need to build from source, see the [official build instructions](https://www.recoll.org/usermanual/usermanual.html#RCL.INSTALL.BUILDING).
 
-## CI/CD
+### Windows build notes
 
-本專案使用 GitHub Actions 進行持續整合：
+- Platform: Windows x64
+- Installer format: Inno Setup
+- Current Qt build noted in this repository: Qt 6.8.2
+- Windows-related build scripts live under [src/windows](src/windows/).
 
-- **CI** (`ci.yml`)：每次 push 和 pull request 都會在 Linux 和 Windows 上執行單元測試。
-- **Release** (`release.yml`)：每次在 GitHub 發布 Release 時，會自動編譯 Linux 和 Windows 的二進位檔案，並產生 Windows 安裝程式。
+### Why this helps users
+
+Many users can find Recoll on Linux package managers, but Windows users often search for:
+
+- Recoll Windows binary
+- Recoll Windows setup
+- Recoll installer download
+- Everything alternative with full-text search
+- DocFetcher alternative
+
+This repository exists to give those users a direct, free, open source download path.
+
+### Search keywords
+
+Recoll Windows, Recoll for Windows, Recoll Windows download, Recoll Windows installer, Recoll Windows binary, Recoll setup.exe, free Windows desktop search, open source desktop search, document full-text search, file content search, Everything alternative, DocFetcher alternative
+
+---
+
+## 中文
+
+### 免費的 Recoll Windows 安裝程式與 binary
+
+這個 repository 提供 Recoll 的免費、社群維護 Windows 版本，讓使用者不用自行編譯，也能在 Windows 上安裝使用這個開源桌面全文搜尋工具。
+
+如果你是搜尋下面這些關鍵字找到這裡，這個 repo 就是你要的：
+
+- Recoll Windows 下載
+- Recoll Windows 安裝程式
+- Recoll Windows binary
+- Recoll setup.exe
+- 免費 Recoll Windows 版本
+
+### 快速下載
+
+- [下載最新 Recoll Windows 安裝程式（64-bit）](https://github.com/alarmz/recoll/releases/latest)
+- [Windows 下載說明頁](docs/index.md)
+
+### 這個 repo 提供什麼
+
+- 免費的 Recoll Windows 安裝程式
+- 預先編譯好的 64-bit Windows binary
+- 可對照的原始碼
+- 可用於發佈的 winget manifest
+
+這個 fork 的目的，是讓 Windows 使用者可以直接安裝 Recoll，而不是卡在自行編譯環境。
+
+### Recoll 是什麼？
+
+Recoll 是桌面全文搜尋工具，可搜尋文件內容與檔案名稱。
+
+主要特色：
+
+- 支援 Linux 與 Windows
+- 可搜尋多種文件格式
+- 可搜尋檔案、壓縮檔內容與電子郵件附件
+- 支援預覽與開啟命中的文件
+- 免費、開源，採 GPL 授權
+
+更多資訊可參考 [官方功能頁](https://www.recoll.org/pages/features.html) 與 [官方文件](https://www.recoll.org/pages/documentation.html)。
+
+### Windows 安裝方式
+
+#### 方式 1：直接下載安裝程式
+
+到 [GitHub Releases](https://github.com/alarmz/recoll/releases/latest) 下載最新的 `recoll-setup-*.exe` 後直接執行。
+
+#### 方式 2：使用 `winget`
+
+等套件發佈到 Windows Package Manager 社群倉庫後，使用者可以直接執行：
+
+```powershell
+winget install alarmz.Recoll
+```
+
+相關 manifest 已經放在 [winget/](winget/)。
+
+#### 方式 3：使用 `Scoop`
+
+這個 repository 也可以直接當成 Scoop bucket 使用：
+
+```powershell
+scoop bucket add alarmz https://github.com/alarmz/recoll
+scoop install alarmz/recoll
+```
+
+manifest 位於 [bucket/recoll.json](bucket/recoll.json)。
+
+#### 方式 4：使用 Chocolatey
+
+此 repo 已附上 [packaging/chocolatey](packaging/chocolatey/) 的 Chocolatey 套件骨架；若要發佈到公開 Chocolatey community feed，還需要 maintainer 帳號與 push 權限。
+
+### Linux 安裝方式
+
+大多數 Linux 發行版都已內建 Recoll 套件，例如：
+
+```bash
+apt install recoll
+dnf install recoll
+pacman -S recoll
+```
+
+如果你需要自行編譯，可參考 [官方 build 說明](https://www.recoll.org/usermanual/usermanual.html#RCL.INSTALL.BUILDING)。
+
+### Windows build 補充
+
+- 平台：Windows x64
+- 安裝程式格式：Inno Setup
+- 目前此 repo 記錄的 Qt 版本：Qt 6.8.2
+- Windows 相關 build script 位於 [src/windows](src/windows/)。
+
+### 為什麼這個 repo 有價值
+
+Linux 使用者通常可以直接從套件管理器安裝，但 Windows 使用者常常會搜尋：
+
+- Recoll Windows binary
+- Recoll Windows setup
+- Recoll Windows installer
+- 全文搜尋 Windows 工具
+- Everything 替代品
+- DocFetcher 替代品
+
+這個 repository 的價值，就是提供一個直接、免費、開源的 Windows 下載入口。
+
+### 搜尋關鍵字
+
+Recoll Windows, Recoll for Windows, Recoll Windows 下載, Recoll Windows 安裝檔, Recoll Windows binary, Recoll setup.exe, 免費 Windows 搜尋工具, 開源桌面搜尋, 文件全文搜尋, 檔案內容搜尋, Everything 替代品, DocFetcher 替代品

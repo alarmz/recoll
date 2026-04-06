@@ -1,0 +1,31 @@
+PackageIdentifier: alarmz.Recoll
+PackageVersion: 1.43.13
+PackageLocale: en-US
+Publisher: alarmz
+PublisherUrl: https://github.com/alarmz
+PackageName: Recoll
+PackageUrl: https://github.com/alarmz/recoll
+License: GPL-2.0
+LicenseUrl: https://github.com/alarmz/recoll/blob/master/COPYING
+ShortDescription: Free Recoll Windows installer and desktop full-text search tool
+Description: >-
+  Recoll is a desktop full-text search tool that finds keywords inside documents
+  and file names. This package provides a free Windows installer and prebuilt
+  binaries for Recoll. It supports most document formats, can search files,
+  archive members, and email attachments, with transparent decompression. Free
+  and open source.
+Tags:
+  - recoll
+  - search
+  - windows
+  - full-text-search
+  - desktop-search
+  - file-search
+  - document-search
+  - indexing
+ReleaseNotes: >-
+  Community-maintained Windows build of Recoll with an Inno Setup installer.
+  Published from the public GitHub release assets.
+ReleaseNotesUrl: https://github.com/alarmz/recoll/releases/tag/Next
+ManifestType: defaultLocale
+ManifestVersion: 1.6.0
