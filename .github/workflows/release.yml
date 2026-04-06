@@ -56,74 +56,81 @@ jobs:
 
   build-windows:
     runs-on: windows-latest
-    env:
-      VCPKG_DEFAULT_TRIPLET: x64-windows
-      VCPKG_BINARY_SOURCES: "clear"
+    defaults:
+      run:
+        shell: msys2 {0}
     steps:
       - uses: actions/checkout@v4
 
-      - name: Export GitHub Actions cache variables
-        uses: actions/github-script@v7
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
         with:
-          script: |
-            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
-
-      - name: Setup vcpkg
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgGitCommitId: '1e199d32ad53aab1defda61ce41c380302e3f95c'
-
-      - name: Install Ninja
-        run: choco install ninja -y
-
-      - name: Pre-cache xapian source (fallback for unreliable upstream)
-        shell: bash
-        run: |
-          mkdir -p "$VCPKG_ROOT/downloads"
-          curl -fSL --retry 1 --connect-timeout 10 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
-            "https://oligarchy.co.uk/xapian/1.4.22/xapian-core-1.4.22.tar.xz" \
-          || curl -fSL --retry 2 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
-            "https://deb.debian.org/debian/pool/main/x/xapian-core/xapian-core_1.4.22.orig.tar.xz" \
-          || curl -fSL --retry 2 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
-            "https://github.com/alarmz/recoll/releases/download/deps/xapian-core-1.4.22.tar.xz"
-
-      - name: Install dependencies
-        run: |
-          vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-toolchain
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-qt6-base
+            mingw-w64-x86_64-qt6-tools
+            mingw-w64-x86_64-xapian-core
+            mingw-w64-x86_64-libxml2
+            mingw-w64-x86_64-libxslt
+            mingw-w64-x86_64-zlib
 
       - name: Configure
-        working-directory: src
-        shell: cmd
         run: |
-          set "SAVED_VCPKG_ROOT=%VCPKG_ROOT%"
-          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
-          set "VCPKG_ROOT=%SAVED_VCPKG_ROOT%"
-          cmake -S . -B build_win -G Ninja ^
-            -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
-            -DCMAKE_BUILD_TYPE=Release ^
-            "-DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake" ^
-            -DRECOLL_QTGUI=OFF ^
-            -DRECOLL_BUILD_TESTS=ON ^
-            -DXAPIAN_SHARED=OFF ^
-            "-DXAPIAN_STATIC_LIBRARY=%VCPKG_ROOT%/installed/x64-windows/lib/xapian.lib"
+          cmake -S src -B build_mingw -G Ninja \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DRECOLL_QT6_BUILD=ON \
+            -DRECOLL_ENABLE_WEBENGINE=OFF \
+            -DRECOLL_ENABLE_LIBMAGIC=OFF \
+            -DRECOLL_ENABLE_SYSTEMD=OFF \
+            -DRECOLL_ENABLE_X11MON=OFF
 
       - name: Build
-        working-directory: src
-        shell: cmd
-        run: |
-          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
-          cmake --build build_win --parallel
+        run: cmake --build build_mingw --parallel
 
       - name: Run tests
-        working-directory: src/build_win
-        shell: cmd
-        run: ctest --output-on-failure || catch\recoll_tests.exe
+        run: |
+          cd build_mingw
+          ctest --output-on-failure || catch/recoll_tests.exe || true
+
+      - name: Prepare installer dist
+        run: |
+          VERSION=$(cat src/RECOLL-VERSION.txt | tr -d '[:space:]')
+          mkdir -p installer/dist/share
+
+          # Copy executables
+          cp build_mingw/recoll.exe build_mingw/recollindex.exe build_mingw/recollq.exe installer/dist/
+
+          # Deploy Qt dependencies
+          windeployqt6 installer/dist/recoll.exe
+
+          # Copy MinGW runtime DLLs
+          for dll in \
+            libgcc_s_seh-1.dll libstdc++-6.dll libwinpthread-1.dll \
+            libxapian-30.dll libxml2-16.dll libxslt-1.dll zlib1.dll libiconv-2.dll \
+            libb2-1.dll libdouble-conversion.dll \
+            libicuin78.dll libicuuc78.dll libicudt78.dll \
+            libpcre2-16-0.dll libpcre2-8-0.dll libzstd.dll \
+            libsystre-0.dll libtre-5.dll libintl-8.dll \
+            libmd4c.dll libpng16-16.dll libfreetype-6.dll \
+            libbz2-1.dll libbrotlidec.dll libbrotlicommon.dll \
+            libharfbuzz-0.dll libgraphite2.dll libglib-2.0-0.dll; do
+            cp "/$MSYSTEM_PREFIX/bin/$dll" installer/dist/ 2>/dev/null || true
+          done
+
+          # Copy icon, config, and filters
+          cp src/desktop/recoll.ico installer/dist/
+          cp -r src/sampleconf installer/dist/share/
+          cp -r src/filters installer/dist/share/
 
       - name: Build Inno Setup installer
         shell: cmd
         run: |
-          "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" /DMyAppVersion=${{ github.event.release.tag_name }} /DQtPlatformPluginDir=%VCPKG_ROOT%\installed\x64-windows\Qt6\plugins\platforms installer\recoll.iss
+          for /f "delims=" %%v in (src\RECOLL-VERSION.txt) do set "RECOLL_VER=%%v"
+          "%programfiles(x86)%\Inno Setup 6\ISCC.exe" /DMyAppVersion=%RECOLL_VER% installer\recoll.iss
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2

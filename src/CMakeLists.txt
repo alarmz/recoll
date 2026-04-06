@@ -677,6 +677,10 @@ if (APPLE)
     include_directories(/usr/local/include /opt/homebrew/include)
 endif ()
 
+if (WIN32 AND MINGW)
+    target_link_libraries(librecoll PUBLIC regex)
+endif ()
+
 #--- recollindex ---
 
 add_executable(recollindex ${recollindex_SOURCES})
