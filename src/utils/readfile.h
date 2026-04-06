@@ -20,6 +20,7 @@
 // Code for reading data which may be stored in plain or zlib format or insize a zip archive,
 // and sending the data for processing by a sink object.
 #include <sys/types.h>
+#include <cstdint>
 
 #include <string>
 #include <memory>

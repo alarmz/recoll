@@ -17,4 +17,9 @@ target_include_directories(recoll_tests PRIVATE
 
 target_link_libraries(recoll_tests PRIVATE librecoll)
 
+if (WIN32)
+    set_target_properties(recoll_tests PROPERTIES WIN32_EXECUTABLE FALSE)
+    target_link_options(recoll_tests PRIVATE -Wl,--subsystem,console)
+endif ()
+
 add_test(NAME recoll_tests COMMAND recoll_tests)
