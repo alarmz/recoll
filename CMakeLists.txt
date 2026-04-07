@@ -316,7 +316,6 @@ set(librecoll_SOURCES
     utils/damlev.h
     utils/ecrontab.cpp
     utils/ecrontab.h
-    utils/execmd.cpp
     utils/execmd.h
     utils/fileudi.cpp
     utils/fileudi.h
@@ -336,14 +335,14 @@ set(librecoll_SOURCES
     utils/mimeparse.h
     utils/miniz.cpp
     utils/miniz.h
-    utils/netcon.cpp
     utils/netcon.h
     utils/pathut.cpp
     utils/pathut.h
+    utils/powerstatus.cpp
+    utils/powerstatus.h
     utils/picoxml.h
     utils/pxattr.cpp
     utils/pxattr.h
-    utils/rclionice.cpp
     utils/rclionice.h
     utils/readfile.cpp
     utils/readfile.h
@@ -358,12 +357,28 @@ set(librecoll_SOURCES
     utils/wipedir.cpp
     utils/wipedir.h
     utils/workqueue.h
-    utils/x11mon.cpp
     utils/x11mon.h
     utils/zlibut.cpp
     utils/zlibut.h
     xaposix/safeunistd.h
     )
+
+# Platform-specific source files
+if (WIN32)
+    list(APPEND librecoll_SOURCES
+        windows/execmd_w.cpp
+        windows/fnmatch.c
+        windows/wincodepages.cpp
+        windows/strptime.cpp
+    )
+else ()
+    list(APPEND librecoll_SOURCES
+        utils/execmd.cpp
+        utils/netcon.cpp
+        utils/x11mon.cpp
+        utils/rclionice.cpp
+    )
+endif ()
 
 set(recollindex_SOURCES
     index/checkindexed.cpp
@@ -379,11 +394,21 @@ set(recollindex_SOURCES
     index/webqueue.h
     )
 
+if (WIN32)
+    list(APPEND recollindex_SOURCES
+        windows/getopt.cc
+        index/rclmonrcv_win32.cpp
+    )
+endif ()
+
 set(recollq_SOURCE
     query/recollqmain.cpp
     query/recollq.cpp
     query/recollq.h)
 
+if (WIN32)
+    list(APPEND recollq_SOURCE windows/getopt.cc)
+endif ()
 
 set(example_config_files
     sampleconf/fields
@@ -535,6 +560,7 @@ set_source_files_properties(${docs_files} PROPERTIES
 
 
 set(COMMON_INCLUDES_DIRS
+    aspell
     bincimapmime
     common
     index
@@ -545,6 +571,10 @@ set(COMMON_INCLUDES_DIRS
     utils
     xaposix
 )
+
+if (WIN32)
+    list(APPEND COMMON_INCLUDES_DIRS windows)
+endif ()
 
 ### Targets
 
@@ -574,9 +604,28 @@ target_compile_definitions(librecoll PUBLIC
     READFILE_ENABLE_ZLIB
     READFILE_ENABLE_MINIZ
     READFILE_ENABLE_MD5
-    HAVE_DLOPEN
     RECOLL_DATADIR="${CMAKE_INSTALL_PREFIX}/share/recoll"
 )
+
+if (WIN32)
+    target_compile_definitions(librecoll PUBLIC
+        __WIN32__
+        PSAPI_VERSION=1
+        UNICODE
+        _UNICODE
+        DISABLE_X11MON
+        IDX_THREADS
+        RCL_MONITOR
+        FSWATCH_WIN32
+        HAVE_STRUCT_TIMESPEC
+        FILE_PROG="file"
+    )
+    target_link_libraries(librecoll PUBLIC
+        ws2_32 shlwapi shell32 psapi
+    )
+else()
+    target_compile_definitions(librecoll PUBLIC HAVE_DLOPEN)
+endif()
 
 
 ### External Libraries
@@ -586,7 +635,7 @@ if (LINUX AND RECOLL_ENABLE_X11MON)
     find_package(X11 REQUIRED) # https://cmake.org/cmake/help/latest/module/FindX11.html
     target_link_libraries(librecoll PUBLIC ${X11MON_LIBRARIES})
     target_include_directories(librecoll PUBLIC ${X11MON_INCLUDE_DIRS})
-else()
+elseif (NOT WIN32)
     target_compile_definitions(librecoll PUBLIC DISABLE_X11MON)
 endif()
 
@@ -607,18 +656,27 @@ include_directories(${XAPIAN_INCLUDE_DIR})
 if (RECOLL_ENABLE_LIBMAGIC)
     find_package(Libmagic REQUIRED)
     target_link_libraries(librecoll PUBLIC Libmagic::Libmagic)
-else()
+    target_compile_definitions(librecoll PUBLIC ENABLE_LIBMAGIC)
+elseif (NOT WIN32)
     find_package(FileCommand REQUIRED)
     target_link_libraries(librecoll PUBLIC FileCommand::FILE_PROG)
+endif()
+
+if (WIN32 OR APPLE)
+    find_package(Iconv REQUIRED)
+    target_link_libraries(librecoll PUBLIC Iconv::Iconv)
+endif()
+
+if (WIN32)
+    find_package(ZLIB REQUIRED)
+    target_link_libraries(librecoll PUBLIC ZLIB::ZLIB)
 endif()
 
 if (APPLE)
     # assuming packages are installed via homebrew.
     include_directories(/usr/local/include /opt/homebrew/include)
-    # External dependencies will be copied automatically via macdeployqt
-    find_package(ZLIB REQUIRED) # https://cmake.org/cmake/help/latest/module/FindZLIB.html
-    find_package(Iconv REQUIRED) # https://cmake.org/cmake/help/latest/module/FindIconv.html
-    target_link_libraries(librecoll PUBLIC ZLIB::ZLIB Iconv::Iconv)
+    find_package(ZLIB REQUIRED)
+    target_link_libraries(librecoll PUBLIC ZLIB::ZLIB)
 endif ()
 
 #--- recollindex ---
@@ -707,6 +765,16 @@ if (LINUX)
 
     install(FILES ${QM_FILES}
         DESTINATION ${CMAKE_INSTALL_DATADIR}/recoll/translations)
+endif ()
+
+if (WIN32)
+    install(TARGETS ${RECOLL_EXECUTABLES}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    )
+    install(FILES ${example_config_files}
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/recoll/examples)
+    install(FILES ${filter_files}
+        DESTINATION ${CMAKE_INSTALL_DATADIR}/recoll/filters)
 endif ()
 
 feature_summary(WHAT ALL DESCRIPTION "Build configuration:")

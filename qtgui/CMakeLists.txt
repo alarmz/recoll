@@ -70,6 +70,8 @@ set(qtgui_SOURCES
     rclm_wins.cpp
     rclmain_w.cpp
     rclmain_w.h
+    winschedtool.cpp
+    winschedtool.h
     rclwebpage.h
     rclzg.cpp
     rclzg.h
@@ -124,6 +126,10 @@ endif()
 set(CMAKE_AUTOMOC TRUE)
 set(CMAKE_AUTOUIC TRUE)
 set(CMAKE_AUTORCC TRUE)
+
+if (WIN32)
+    list(APPEND qtgui_SOURCES ../windows/getopt.cc)
+endif ()
 
 add_executable(recoll
     ${qtgui_SOURCES}

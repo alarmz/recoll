@@ -111,14 +111,14 @@ static std::string mimetypefromdata(
 #else /* Not using libmagic, use command -> */
 
     // 'file' fallback if the configured command (default: xdg-mime) is not found
-    static const vector<string> tradfilecmd = {{FILE_PROG}, {"--mime-type"}};
+    static const std::vector<std::string> tradfilecmd = {{FILE_PROG}, {"--mime-type"}};
 
-    vector<string> cmd;
-    string scommand;
+    std::vector<std::string> cmd;
+    std::string scommand;
     if (cfg->getConfParam("systemfilecommand", scommand)) {
         LOGDEB2("mimetype: syscmd from config: " << scommand << "\n");
         stringToStrings(scommand, cmd);
-        string exe;
+        std::string exe;
         if (cmd.empty()) {
             cmd = tradfilecmd;
         } else if (!ExecCmd::which(cmd[0], exe)) {
@@ -132,15 +132,15 @@ static std::string mimetypefromdata(
         cmd = tradfilecmd;
     }
 
-    string result;
+    std::string result;
     LOGDEB2("mimetype: executing: [" << stringsToString(cmd) << "]\n");
     if (!ExecCmd::backtick(cmd, result)) {
         LOGERR("mimetypefromdata: exec " << stringsToString(cmd) << " failed\n");
-        return string();
+        return std::string();
     }
     trimstring(result, " \t\n\r");
     LOGDEB2("mimetype: systemfilecommand output [" << result << "]\n");
-    
+
     // The normal output from "file -i" looks like the following:
     //   thefilename.xxx: text/plain; charset=us-ascii
     // Sometimes the semi-colon is missing like in:
@@ -150,7 +150,7 @@ static std::string mimetypefromdata(
     // xdg-mime only outputs the MIME type.
 
     // If there is no colon and there is a slash, this is hopefully the MIME type
-    if (result.find(":") == string::npos && result.find("/") != string::npos) {
+    if (result.find(":") == std::string::npos && result.find("/") != std::string::npos) {
         return result;
     }
 
@@ -159,7 +159,7 @@ static std::string mimetypefromdata(
         // Garbage "file" output. Maybe the result of a charset conversion attempt?
         LOGERR("mimetype: can't interpret output from [" <<
                stringsToString(cmd) << "] : [" << result << "]\n");
-        return string();
+        return std::string();
     }
     result = result.substr(fn.size());
 

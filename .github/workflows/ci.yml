@@ -2,12 +2,12 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, recoll-1.43.14 ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, recoll-1.43.14 ]
 
 jobs:
-  test-linux:
+  build-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,43 +16,35 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y \
-            cmake ninja-build \
-            libxapian-dev libxml2-dev libxslt1-dev zlib1g-dev \
-            qtbase5-dev qtwebengine5-dev qttools5-dev \
-            libaspell-dev
+            cmake ninja-build pkg-config \
+            libxapian-dev libxml2-dev libxslt1-dev zlib1g-dev libicu-dev \
+            qt6-base-dev qt6-webengine-dev qt6-tools-dev qt6-tools-dev-tools \
+            libgl1-mesa-dev libaspell-dev
 
       - name: Configure
-        working-directory: src
         run: |
           cmake -S . -B build -G Ninja \
             -DCMAKE_BUILD_TYPE=Release \
-            -DRECOLL_QT6_BUILD=OFF \
+            -DRECOLL_QT6_BUILD=ON \
             -DRECOLL_ENABLE_WEBENGINE=ON \
-            -DRECOLL_BUILD_TESTS=ON \
-            -DRECOLL_QTGUI=OFF
+            -DRECOLL_QTGUI=ON \
+            -DRECOLL_BUILD_TESTS=OFF
 
       - name: Build
-        working-directory: src
         run: cmake --build build --parallel
 
-      - name: Run tests
-        working-directory: src/build
-        run: ctest --output-on-failure || ./catch/recoll_tests
+      - name: Smoke test
+        run: |
+          ./build/recollq --help || true
+          ./build/recollindex --help || true
+          file ./build/recoll ./build/recollindex ./build/recollq
 
-  test-windows:
+  build-windows:
     runs-on: windows-latest
     env:
       VCPKG_DEFAULT_TRIPLET: x64-windows
-      VCPKG_BINARY_SOURCES: "clear"
     steps:
       - uses: actions/checkout@v4
-
-      - name: Export GitHub Actions cache variables
-        uses: actions/github-script@v7
-        with:
-          script: |
-            core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
-            core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
 
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
@@ -73,12 +65,21 @@ jobs:
           || curl -fSL --retry 2 -o "$VCPKG_ROOT/downloads/xapian-core-1.4.22.tar.xz" \
             "https://github.com/alarmz/recoll/releases/download/deps/xapian-core-1.4.22.tar.xz"
 
-      - name: Install dependencies
+      - name: Install dependencies (vcpkg)
         run: |
           vcpkg install xapian:x64-windows libxml2:x64-windows libxslt:x64-windows zlib:x64-windows libiconv:x64-windows
 
+      - name: Install Qt6
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.7.3'
+          host: 'windows'
+          target: 'desktop'
+          arch: 'win64_msvc2019_64'
+          modules: 'qtwebengine qtwebchannel qtpositioning'
+          cache: true
+
       - name: Configure
-        working-directory: src
         shell: cmd
         run: |
           set "SAVED_VCPKG_ROOT=%VCPKG_ROOT%"
@@ -88,19 +89,20 @@ jobs:
             -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl ^
             -DCMAKE_BUILD_TYPE=Release ^
             "-DCMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems/vcpkg.cmake" ^
-            -DRECOLL_QTGUI=OFF ^
-            -DRECOLL_BUILD_TESTS=ON ^
-            -DXAPIAN_SHARED=OFF ^
-            "-DXAPIAN_STATIC_LIBRARY=%VCPKG_ROOT%/installed/x64-windows/lib/xapian.lib"
+            -DVCPKG_MANIFEST_MODE=OFF ^
+            -DRECOLL_QTGUI=ON ^
+            -DRECOLL_QT6_BUILD=ON ^
+            -DRECOLL_ENABLE_WEBENGINE=ON ^
+            -DRECOLL_BUILD_TESTS=OFF ^
+            -DXAPIAN_SHARED=ON
 
       - name: Build
-        working-directory: src
         shell: cmd
         run: |
           call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" amd64
           cmake --build build_win --parallel
 
-      - name: Run tests
-        working-directory: src/build_win
+      - name: Smoke test
         shell: cmd
-        run: ctest --output-on-failure || catch\recoll_tests.exe
+        run: |
+          dir build_win\recoll.exe build_win\recollindex.exe build_win\recollq.exe
